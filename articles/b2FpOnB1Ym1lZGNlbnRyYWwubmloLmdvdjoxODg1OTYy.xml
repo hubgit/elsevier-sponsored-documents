@@ -1,0 +1,1656 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Structure</journal-id>
+      <journal-title>Structure (London, England : 1993)</journal-title>
+      <issn pub-type="ppub">0969-2126</issn>
+      <publisher>
+        <publisher-name>Cell Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">1885962</article-id>
+      <article-id pub-id-type="pmid">17292841</article-id>
+      <article-id pub-id-type="publisher-id">STFODE1289</article-id>
+      <article-id pub-id-type="doi">10.1016/j.str.2007.01.004</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>How Does a Voltage Sensor Interact with a Lipid Bilayer? Simulations of a Potassium Channel Domain</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sands</surname>
+            <given-names>Zara A.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sansom</surname>
+            <given-names>Mark S.P.</given-names>
+          </name>
+          <email>mark.sansom@bioch.ox.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">1</xref>
+          <xref rid="cor1" ref-type="corresp">∗</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>1</sup>Department of Biochemistry, University of Oxford, South Parks Road, Oxford OX1 3QU, United Kingdom</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>∗</label>Corresponding author <email>mark.sansom@bioch.ox.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>2</month>
+        <year>2007</year>
+      </pub-date>
+      <volume>15</volume>
+      <issue>2</issue>
+      <fpage>235</fpage>
+      <lpage>244</lpage>
+      <history>
+        <date date-type="received">
+          <day>30</day>
+          <month>10</month>
+          <year>2006</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>14</day>
+          <month>12</month>
+          <year>2006</year>
+        </date>
+        <date date-type="accepted">
+          <day>4</day>
+          <month>1</month>
+          <year>2007</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2007 ELL &amp; Excerpta Medica.</copyright-statement>
+        <copyright-year>2007</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Summary</title>
+        <p>The nature of voltage sensing by voltage-activated ion channels is a key problem in membrane protein structural biology. The way in which the voltage-sensor (VS) domain interacts with its membrane environment remains unclear. In particular, the known structures of Kv channels do not readily explain how a positively charged S4 helix is able to stably span a lipid bilayer. Extended (2 × 50 ns) molecular dynamics simulations of the high-resolution structure of the isolated VS domain from the archaebacterial potassium channel KvAP, embedded in zwitterionic and in anionic lipid bilayers, have been used to explore VS/lipid interactions at atomic resolution. The simulations reveal penetration of water into the center of the VS and bilayer. Furthermore, there is significant local deformation of the lipid bilayer by interactions between lipid phosphate groups and arginine side chains of S4. As a consequence of this, the electrostatic field is “focused” across the center of the bilayer.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>CELLBIO</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec1">
+      <title>Introduction</title>
+      <p>Voltage-gated potassium (Kv) channels play a key role in electrically excitable cells (<xref rid="bib18" ref-type="bibr">Hille, 2001</xref>). Recent structural and biophysical (<xref rid="bib45 bib50" ref-type="bibr">Swartz, 2004; Yellen, 2002</xref>) studies have focused on the mechanism of voltage sensing by these channels. Structural data suggest that the voltage sensor (VS) of Kv channels forms a largely independent domain. A high-resolution structure of an isolated VS domain from the archaebacterial channel KvAP has been determined (<xref rid="bib21 bib22" ref-type="bibr">Jiang et al., 2003a, 2003b</xref>). This structure is broadly consistent with molecular physiology and spectroscopic data and thus is likely to represent a major physiological conformation of the VS within Kv channels (<xref rid="bib1 bib4 bib7 bib22 bib27 bib32 bib34 bib37 bib42 bib44" ref-type="bibr">Aggarwal and MacKinnon, 1996; Bezanilla, 2000; Chanda et al., 2005; Jiang et al., 2003b; Long et al., 2005b; Phillips et al., 2005; Posson et al., 2005; Ruta et al., 2005; Seoh et al., 1996; Starace and Bezanilla, 2004</xref>). Furthermore, the isolated voltage sensor of KvAP forms a stably folded domain when in either a phosphatidylcholine (PC) or a 3:1 phosphatidylcholine/phosphatidylglycerol (PC/PG) lipid bilayer environment (<xref rid="bib8" ref-type="bibr">Cuello et al., 2005</xref>). It is thought that the VS, or elements of its structure, move in response to change in voltage across a cell membrane. Consistent with this, the VS appears capable of adopting different orientations relative to the pore domain of Kv channels (<xref rid="bib24" ref-type="bibr">Lee et al., 2005</xref>), although it is unclear whether all of these orientations are possible for a Kv channel in situ in a membrane. The structure of the VS in a mammalian channel, Kv1.2, is similar to that of the isolated KvAP VS, and packs rather loosely against the pore domain (<xref rid="bib26 bib27" ref-type="bibr">Long et al., 2005a, 2005b</xref>). However, the exact nature and extent of depolarization-induced VS motion remains unresolved (<xref rid="bib1 bib3 bib4 bib6 bib7 bib15 bib22 bib23 bib27 bib28 bib32 bib34 bib37 bib42 bib44 bib48 bib49 bib51" ref-type="bibr">Aggarwal and MacKinnon, 1996; Baker et al., 1998; Bezanilla, 2000; Cha et al., 1999; Chanda et al., 2005; Glauner et al., 1999; Jiang et al., 2003b; Larsson et al., 1996; Long et al., 2005b; Mannuzzu et al., 1996; Phillips et al., 2005; Posson et al., 2005; Ruta et al., 2005; Seoh et al., 1996; Starace and Bezanilla, 2004; Yang and Horn, 1995; Yang et al., 1996; Yusaf et al., 1996</xref>). In this context, it is crucial to understand how a VS domain interacts with the surrounding lipid bilayer.</p>
+      <p>In support of the VS domain as an independent unit, homologous domains have been found in two non-Kv proteins: a voltage-sensitive phosphatase (Ci-VSP) (<xref rid="bib29" ref-type="bibr">Murata et al., 2005</xref>) and a voltage-sensitive proton (Hv or mVSOP) channel (<xref rid="bib35 bib39" ref-type="bibr">Ramsey et al., 2006; Sasaki et al., 2006</xref>). As both of these proteins lack discernible K channel-like pore domains, it is reasonable to assume that the voltage-sensing domains and pore-forming domains of Kv channels can function independently.</p>
+      <p>The VS is composed of four transmembrane (TM) helices, S1–S4. The isolated VS domain of KvAP revealed that the S3 helix was distorted into two distinct helical segments, namely S3a and S3b, where the C-terminal S3b segment and the N-terminal portion of the S4 helix (the latter termed the S4a helix; <xref rid="bib38" ref-type="bibr">Sands et al., 2005</xref>) are packed tightly together to form a helix-turn-helix motif, termed a VS paddle.</p>
+      <p>S4 is an unusual TM helix in that it contains several basic amino acid side chains which act as the primary voltage-sensing elements. This pattern of basic side chains within S4 is conserved among Kv channels and also in voltage-activated calcium and sodium channels, the voltage-sensitive phosphatase, and the Hv channel. The question arises as to how the S4 helix is accommodated within a lipid bilayer. Following the determination of the Kv1.2 crystal structure (<xref rid="bib26" ref-type="bibr">Long et al., 2005a</xref>), it was apparent that the gating charges (i.e., Arg side chains) located along the S4 helix of the VS are likely to interact with the surrounding lipid environment. A limited number of studies have attempted to probe these interactions (<xref rid="bib13 bib37 bib38 bib40" ref-type="bibr">Freites et al., 2005; Ruta et al., 2005; Sands et al., 2005; Schmidt et al., 2006</xref>). However, there is still considerable debate over the exact extent of these interactions, and over the exact location and lipid exposure of the Arg side chains. In particular, it remains uncertain whether the charges of S4 are completely shielded from interactions with the lipid by other regions of the VS protein, or whether some degree of local reorganization of the lipid bilayer may accommodate the voltage-sensing S4 helix. A related question is that of how the S4-containing VS domain is inserted into a bilayer. An S4 helix derived from KvAP may be biosynthetically inserted into a membrane (<xref rid="bib17" ref-type="bibr">Hessa et al., 2005</xref>), and S4 helix peptides also may insert into a bilayer in vitro (<xref rid="bib12" ref-type="bibr">Fernández-Vidal et al., 2006</xref>).</p>
+      <p>Molecular dynamics (MD) simulations provide a computational approach to exploring structure/function relationships of ion channels and related membrane proteins (<xref rid="bib36" ref-type="bibr">Roux and Schulten, 2004</xref>) and the interactions of membrane proteins with their lipid bilayer environment (<xref rid="bib10" ref-type="bibr">Deol et al., 2006</xref>). Recently, atomistic MD simulations have been used to explore the interactions of an isolated S4 helix spanning a lipid bilayer (<xref rid="bib13" ref-type="bibr">Freites et al., 2005</xref>) and of a Kv1.2 channel with a lipid bilayer (<xref rid="bib46" ref-type="bibr">Treptow and Tarek, 2006</xref>). However, these studies were of trajectories of duration of less than 10 ns, and so one should be cautious in their interpretation in terms of VS/lipid interactions, as simulations of ∼20 ns duration do not fully sample protein and lipid interactions (see, e.g., <xref rid="bib10" ref-type="bibr">Deol et al., 2006</xref>). Accordingly, more extended (&gt;20 ns) simulations are here performed in order to allow improved sampling of the lipid/protein contacts. In the current study, we perform two 50 ns duration MD simulations to investigate how the isolated VS domain of KvAP behaves in a “default” zwitterionic PC lipid bilayer and in a mixed anionic PC/PG (3:1) lipid bilayer. The latter environment mimics the lipid composition of cell membranes and has been used in experimental studies of the VS domain. The results reveal penetration of water into the center of the VS, and local deformation of the lipid bilayer by interactions of S4 side chains with phospholipid head groups. This is in agreement with the simulations of the isolated S4 helix (<xref rid="bib13" ref-type="bibr">Freites et al., 2005</xref>) and, indeed, in terms of side-chain/lipid interactions, with recent experimental data (<xref rid="bib40" ref-type="bibr">Schmidt et al., 2006</xref>).</p>
+    </sec>
+    <sec id="sec2">
+      <title>Results</title>
+      <sec id="sec2.1">
+        <title>The Simulations: Progress and Stability</title>
+        <p>The conformational stability of the isolated VS in the PC and PC/PG lipid bilayer environments was measured by the degree of conformational drift of the protein from the structure used to initiate the simulations (i.e., the X-ray structure of Protein Data Bank [PDB] ID code <ext-link xlink:href="1ORS" ext-link-type="gen">1ORS</ext-link>). This was evaluated by measuring the root-mean-square deviation (rmsd) of the Cα atoms from their starting coordinates. Each simulation shows an initial jump followed by a slower rise to a plateau of ∼1.8 Å for all Cα atoms, and of ∼1.5 Å for core fold Cα atoms (<xref rid="tbl1" ref-type="table">Table 1</xref>). This is comparable to the Cα rmsd values acquired for other, more “canonical,” membrane proteins in lipid bilayers, such as Aqp1 (<xref rid="bib20" ref-type="bibr">Jensen et al., 2001</xref>). One may also compare the VS/bilayer Cα rmsd's with those of the extended (50 ns) simulation of the same domain in a decyl maltoside (DM) micelle (<xref rid="bib38" ref-type="bibr">Sands et al., 2005</xref>) (<xref rid="tbl1" ref-type="table">Table 1</xref>). As anticipated, the micellar environment allows greater structural drift than a lipid bilayer environment (<xref rid="bib5" ref-type="bibr">Bond and Sansom, 2003</xref>). This may be attributed to reduced packing constraints of the protein/detergent micelle system.</p>
+        <p>The relative flexibility of the VS in each of the lipid bilayer environments was also assessed by calculating the root-mean-square fluctuation (rmsf) of each Cα atom from its time-averaged coordinate. The overall profiles were similar, with the rmsf values being significantly higher for the interhelical regions relative to the α-helical core regions (see <xref rid="app2" ref-type="sec">Figure S1</xref> in the <xref rid="app2" ref-type="sec">Supplemental Data</xref> available with this article online), as anticipated from micelle simulations (<xref rid="bib38" ref-type="bibr">Sands et al., 2005</xref>). There is one significant difference between the two bilayer environments. The S3b-S4a region (residues ∼100–125) is more mobile in PC than in PC/PG. This suggests that the S3b-S4a region exhibits a degree of flexibility that can be attenuated by its lipid environment. Detailed analysis reveals that the motion of the S3b-S4a region during the VS/PC simulation appears to be correlated to the motion of the midsection of S3 and that this correlated motion is conserved, albeit to a lesser extent, in the VS/PCPG simulation (see <xref rid="app2" ref-type="sec">Figure S2</xref>). This is the only significant correlated motion that is conserved between the VS/PC and VS/PCPG systems, and thus it may constitute a physiologically important motion that underlies voltage sensing (i.e., the S3b-S4a region of the “paddle” may move as a rigid unit relative to the rest of the VS). In this context, is it interesting that the two different structures of the intact KvAP molecule (PDB ID codes <ext-link xlink:href="1ORQ" ext-link-type="gen">1ORQ</ext-link> and <ext-link xlink:href="2A0L" ext-link-type="gen">2A0L</ext-link>) show that the S3b-S4a region of the paddle exists in different orientations with respect to other components of the VS. It is also interesting to note that the motions of the two helical segments (S3a and S3b) which comprise the S3 helix do not appear to be significantly correlated in either the VS/PC or VS/PCPG simulations (see <xref rid="app2" ref-type="sec">Figure S2</xref>).</p>
+        <p>Overall, one may conclude that the VS domain protein is conformationally stable in a bilayer environment simulation on a 50 ns timescale. Thus, it behaves like a stable canonical membrane protein, even though it is an isolated domain containing a positively charged S4 helix. Perhaps the stability of the isolated domain is not surprising, given that the two-state model of membrane protein folding (<xref rid="bib33" ref-type="bibr">Popot and Engelman, 2000</xref>) implies that isolated TM helices and domains should be stable. However, initially one might consider it surprising that there does not appear to be a need for the exposed S4 helix to interact with other protein regions to remove the positive charges from the hydrophobic membrane environment. The way in which the lipid bilayer adjusts to the S4 helix and the possible functional consequences of this will now be explored in more detail.</p>
+      </sec>
+      <sec id="sec2.2">
+        <title>Voltage Sensor/Lipid Interactions</title>
+        <p>The nature of the interactions between the VS (especially S4) and the lipid head groups is of particular interest. Simulation studies of an isolated S4 helix (<xref rid="bib13" ref-type="bibr">Freites et al., 2005</xref>) and of the intact Kv1.2 channel (<xref rid="bib46" ref-type="bibr">Treptow and Tarek, 2006</xref>) inserted into a lipid bilayer have been reported and suggest a degree of distortion of the bilayer. However, the simulations were relatively brief compared to the time taken for lipids to “relax” around a membrane protein. It has been suggested that there may be a considerable energetic barrier to inserting a single arginine residue within the core of a lipid bilayer (<xref rid="bib11" ref-type="bibr">Dorairaj and Allen, 2006</xref>), and thus it is important to examine the nature of S4/lipid interactions in the more extensively sampled simulations presented here.</p>
+        <p>As a first step, we have combined visualization of simulations with analysis of the location (along the bilayer normal) of the P atoms of the phospholipid head group (<xref rid="fig1" ref-type="fig">Figure 1</xref>A). Examination of snapshots from the simulations suggests that the lipids interact strongly and are “drawn” into charge filled crevices within the VS domain. Further examination indicates that the presence of the VS significantly perturbs the (local) organization of the lipid bilayer. The lipid head groups are drawn into the VS over the course of each simulation; this phenomenon effectively compresses the lipid bilayer within the immediate vicinity of the VS and results in unusual conformations being adopted by nearby lipids (see <xref rid="app2" ref-type="sec">Figure S3</xref>). For instance, we observe varying degrees of lipid tail interdigitation. We also see evidence of lipid tail groups “snaking” around the hydrophobic surface of the VS. Visualization of snapshots suggests close interactions of proximal lipid phosphates with Arg side chains of S4 (see <xref rid="fig1" ref-type="fig">Figure 1</xref>B).</p>
+        <p>This drawing in of the lipid by the charged residues of the VS may be quantified by measuring the bilayer P-P distance as a function of radial (i.e., in the bilayer plane) distance out from the center of the protein (see <xref rid="fig2" ref-type="fig">Figure 2</xref>). It is evident that there is local deformation of the lipid bilayer by the VS domain. Thus, in both simulations, the P-P thickness close to the center of the protein is ∼7 Å less than that for more distant regions of the bilayer (and in control, i.e., lipid bilayer only, simulations). This is in stark contrast with other, more canonical, membrane proteins, such as the inwardly rectifying K<sup>+</sup> channel KirBac3.1, which when simulated for 20 ns in a PC bilayer does not lead to localized lipid bilayer compression (A. Grottesi and M.S.P.S., unpublished data; see <xref rid="fig2" ref-type="fig">Figure 2</xref>).</p>
+      </sec>
+      <sec id="sec2.3">
+        <title>H-Bonding Interactions</title>
+        <p>Although the charged S4 helix is significantly (∼50%) exposed to the lipid bilayer environment during the course of each simulation, the VS domains remain conformationally stable. It is of some interest, therefore, how these gating charges are accommodated over the course of each simulation (<xref rid="fig1" ref-type="fig">Figure 1</xref>B). It was found that the charged residues located along S4 can form H-bond interactions with water molecules and lipid head groups (<xref rid="fig3" ref-type="fig">Figure 3</xref>). The total number of hydrogen bonds was monitored over the course of each simulation and it was found that when the VS was simulated in a PC environment, the S4 helix could form a greater number of H-bond contacts with its environment (lipids and waters) than if simulated in a PC/PG bilayer.</p>
+        <p>Further analysis also reveals that the lipid head groups in the mixed PC/PG have the propensity to form a greater number of H bonds with the positively charged residues located along S4 than do the lipid head groups of the PC simulation (<xref rid="fig4" ref-type="fig">Figure 4</xref>). This finding is hardly surprising, given that the PG head group has a greater number of potential H-bond donors and H-bond acceptors.</p>
+        <p>Each of the charged residues located along the S4 helix is involved in forming H bonds with water molecules over the course of the simulations, indicating that individual water molecules extensively penetrate the VS. However, in contrast to the gating charge arginines, the centrally located Arg133 forms a limited number of H bonds with waters. It can also be observed that the lipid head groups can form H bonds with all of the gating charge residues located toward the N terminus of S4 (Arg117, Arg120, Arg123, and Arg126) and the two charged residues located toward the C terminus of S4 (Asp146 and Lys147). Such H-bonding interactions may help stabilize the VS and the highly charged S4 helix within a bilayer environment.</p>
+      </sec>
+      <sec id="sec2.4">
+        <title>Water Penetration</title>
+        <p>Inspection of the average partial density plots for each simulation reveals a reduction in water density toward the center of the S4 helix and the marked absence of water density at a central constriction point (<xref rid="fig5" ref-type="fig">Figure 5</xref>). Interestingly, we note the presence of a “bump” in each of the water density profiles. In the VS/PC simulation, the increase in water density occurs at z ∼ −5 Å, which overlaps with the density of Arg126; it is therefore likely that H-bond interactions draw waters in toward this residue. For the VS/PCPG simulation, there also appears to be an overlap between the water and the Arg126 density profiles in addition to this, though there is an overlap that occurs at z ∼ −3 Å between the water and the Asp62/Arg133 salt-bridging residues, which is most likely due to the formation of H bonds between these residues and water (see <xref rid="fig4" ref-type="fig">Figure 4</xref>).</p>
+        <p>The partial density plots also reveal an asymmetric distribution of the lipid head groups, with the phosphorus atoms sitting lower in the lipid leaflet accommodating the gating charges. This location bias suggests that the gating charges form more favorable interactions with lipid head groups than do the charged residues located toward the C terminus of S4.</p>
+      </sec>
+      <sec id="sec2.5">
+        <title>Functional Consequences: Water, “Pore,” and Electrostatic Potentials</title>
+        <p>Analysis of the radius profile along the VS crevice reveals that there is a central constriction which (when averaged over the course of each simulation) is significantly narrower than the radius of a water molecule (see <xref rid="fig6" ref-type="fig">Figure 6</xref>B). The constriction stretches over a region in excess of 7 Å in length and centers on a salt bridge formed between Asp62/Arg133 and the hydrophobic residues located “below” this bond (Leu65, Val66, Ala96, and Leu97). The salt bridge effectively brings these hydrophobic residues into close proximity, and may explain why the charged residues located toward the C terminus of S4 form fewer interactions with the hydrophilic lipid head groups.</p>
+        <p>Electrostatic potential calculations (performed using the PMEPOT plug-in for visual molecular dynamics [VMD]; see <xref rid="sec4" ref-type="sec">Experimental Procedures</xref>) suggest that the electrostatic potential is focused across the hydrophobic residues that are brought into close proximity by the maintenance of the Asp62 and Arg133 salt bridge (<xref rid="fig6" ref-type="fig">Figure 6</xref>C). This is discussed further below in the context of implications for the voltage-gating mechanism of Kv channels.</p>
+      </sec>
+      <sec id="sec2.6">
+        <title>Revisiting Lipid/S4 Interactions</title>
+        <p>The lateral mobility of each lipid (head group) was assessed by calculating the mean-square fluctuation (msf) of the lipid phosphorus atoms over the last 10 ns of each simulation (<xref rid="fig7" ref-type="fig">Figure 7</xref>). In general, the slower lipids were found to be in closer proximity to the VS, although discrete clusters of slow lipids were observed in the “bulk” environment. Such slow islands have been observed in other protein-lipid simulations (e.g., the bacterial transporter BtuB; Pikunic, J., Khalid, S., and M.S.P.S., unpublished data) and seem to correlate with lipid-binding surface motifs on the protein.</p>
+        <p>Visual inspection of the equilibrated portion of each trajectory revealed that some of the lipid head group H-bonding interactions to the VS were facilitated by interchanging water molecules. It was also clear that some of the more mobile lipids could maintain continual H-bonding interactions with the VS throughout the simulation period. This is best understood by considering the lipid head group that binds to R123 and over time migrates down to R126 (<xref rid="fig7" ref-type="fig">Figure 7</xref>B).</p>
+      </sec>
+    </sec>
+    <sec id="sec3">
+      <title>Discussion</title>
+      <p>Our analysis has examined the interactions of the isolated VS domain of KvAP in lipid bilayer environments. These simulations, conducted over a timescale that allows reasonable sampling of lipid/protein interactions, reveal how it is that the isolated VS domain of KvAP can form a stably folded domain in either a PC or a mixed PC/PG lipid bilayer environment. This provides further support for the contention that the VS domain can subsist independently of the pore-forming domain of Kv channels.</p>
+      <p>The VS domain and, moreover, the charged S4 helix, appear to be accommodated in both a PC and a PC/PG bilayer through substantial H-bonding interactions of charged residues with water molecules and lipid head groups. These favorable H-bonding interactions lead to two phenomena occurring, namely the extensive penetration of water molecules into the VS and the significant local perturbation of the lipid species within close proximity of the VS. This latter process is the consequence of favorable H bonding between lipid head groups and charged residues situated in the crevices of the VS. Such interactions effectively draw the coordinated lipid species into the VS and effectively reduce the bilayer width (∼7 Å over 50 ns) within the immediate vicinity of the VS domain.</p>
+      <p>Lateral lipid mobility analysis revealed another interesting phenomena occurring in the lipid bilayer: discrete clusters of slow lipids within the immediate vicinity of the VS and in the bulk lipid bilayer environment. Favorable nonbonding interactions between the VS and the lipids (head groups/tails) may account for the decreased lateral mobility of the lipid species that comprise these slow islands.</p>
+      <p>Thus, these simulations reveal that the lipid bilayer does not simply function as an unstructured fluid into which the protein is embedded; indeed, they reveal a picture of a structured yet dynamical lipid bilayer that can reorganize to accommodate the (charged) protein. A similar situation was seen in simulations of the isolated S4 helix in a bilayer (<xref rid="bib13" ref-type="bibr">Freites et al., 2005</xref>). Furthermore, recent experimental studies (published since the initial version of this paper was submitted) strongly support the existence of interactions between the arginine side chains of the voltage-sensor domain of KvAP and the phosphates of the lipid head groups (<xref rid="bib40" ref-type="bibr">Schmidt et al., 2006</xref>).</p>
+      <p>These simulations also reveal that the S3b-S4a region is significantly more mobile in PC than in PC/PG. This suggests that the S3b-S4a region exhibits a degree of flexibility that can be attenuated by its environment. The sensitivity of the S3b-S4a region to its environment may account for the different orientations of the S4 helix observed in the Kv channel structures elucidated thus far (<xref rid="bib21 bib24 bib26" ref-type="bibr">Jiang et al., 2003a; Lee et al., 2005; Long et al., 2005a</xref>).</p>
+      <p>Another important finding from these simulations is that there is a central constriction in the apparent VS cavity which is too narrow to facilitate the passage of water molecules through the VS. The constriction is centered on a salt bridge formed between Asp62 and Arg133 and the hydrophobic band of residues that sit beneath this bond (located toward the N terminus of S1, C terminus of S2, C terminus of S3a, and C terminus of S4). Electrostatic potential calculations reveal that the lipid bilayer potential is focused across this highly circumscribed hydrophobic region. Given that the isolated VS of KvAP is broadly consistent with a range of biophysical and physiological data for an open state of the channel, it is possible that this salt bridge and the hydrophobic occlusion it maintains may be where the voltage is focused in the open conformation under physiological conditions.</p>
+      <p>It should be noted that the simulations described here were performed on the high-resolution (1.9 Å) structure of the isolated VS domain from KvAP (PDB ID code <ext-link xlink:href="1ORS" ext-link-type="gen">1ORS</ext-link>). However, it should also be noted that the conformation of this domain is different in the two structures of the intact KvAP channel (PDB ID codes <ext-link xlink:href="1ORQ" ext-link-type="gen">1ORQ</ext-link> and <ext-link xlink:href="2A0L" ext-link-type="gen">2A0L</ext-link>). This may reflect a degree of distortion (or adoption of a “minor” conformation) of the KvAP channel conformation in the absence of a lipid bilayer environment. The isolated VS domain structure is rather closer in conformation to that of the VS domain in the Kv1.2 structure (PDB ID code <ext-link xlink:href="2A79" ext-link-type="gen">2A79</ext-link>; see, e.g., <xref rid="fig4" ref-type="fig">Figure 4</xref> in <xref rid="bib38" ref-type="bibr">Sands et al., 2005</xref> for a comparison). However, there are still some differences between the KvAP VS and the Kv1.2 VS. In particular, the salt-bridge interaction between R133 and D62 which helps to maintain the hydrophobic plug inside the KvAP VS may be absent from the VS of Kv1.2. However, given the lower resolution (2.9 Å) of the Kv1.2 structure (reflected in the absence from the coordinate set of side chains for helices S1 and S3, and for any atoms of the S1/S2, S2/S3, and S3/S4 loops), a detailed comparison may have to await a higher-resolution structure (or model) for the VS of Kv1.2.</p>
+      <p>Overall, we may conclude that the lipid environment can accommodate the highly charged S4 helix of the VS through extensive H-bonding interactions and that lipid interactions may modulate the behavior of the VS (as seen in recent experimental studies; <xref rid="bib40" ref-type="bibr">Schmidt et al., 2006</xref>). It is also likely that in situ the voltage is focused across the narrow hydrophobic plug maintained by an Asp62-Arg133 salt bridge and that the exposure of the gating charges from the extracellular to the intracellular aspect of the cell would require disruption of this S2-S4 salt bridge. The compression of the lipid bilayer in the vicinity of the VS would effectively reduce the distance the gating charges would have to travel if voltage gating occurred via a large-scale motion as postulated by the paddle model (<xref rid="bib22 bib27 bib37" ref-type="bibr">Jiang et al., 2003b; Long et al., 2005b; Ruta et al., 2005</xref>). It is also likely that any movements of the gating charges may be facilitated by coordinating lipid species, which would effectively reduce the energy barrier to gating charge translocation. Therefore, the paddle model of the voltage-sensing mechanism should not be ruled out on energetic considerations.</p>
+      <p>It is interesting to consider that our overall conclusions concerning the distortion of a lipid bilayer by insertion of the VS domain are very similar to those reached by <xref rid="bib13" ref-type="bibr">Freites et al. (2005)</xref> on the basis of their simulations of the isolated S4 helix and more recently of the VS domain (<xref rid="bib14" ref-type="bibr">Freites et al., 2006</xref>). This suggests a certain robustness of the underlying result to whether a single S4 helix or a more complex S4-containing domain is used. Perhaps this is indicative of an early stage in evolution where a more complex domain “captured” a putative voltage-sensing helix. It would be interesting in this context to examine in detail the behavior of more distant homologs of the Kv channel VS domain (<xref rid="bib29 bib35 bib39" ref-type="bibr">Murata et al., 2005; Ramsey et al., 2006; Sasaki et al., 2006</xref>).</p>
+    </sec>
+    <sec sec-type="materials-methods" id="sec4">
+      <title>Experimental Procedures</title>
+      <sec id="sec4.1">
+        <title>Protein Model</title>
+        <p>The initial voltage-sensing domain model (residues 19–147) was taken from the 1.9 Å isolated voltage-sensor crystal structure (PDB ID code <ext-link xlink:href="1ORS" ext-link-type="gen">1ORS</ext-link>) (<xref rid="bib21" ref-type="bibr">Jiang et al., 2003a</xref>). Side-chain ionization states were determined based on pK<sub>A</sub> calculations performed using the program WHAT IF (<xref rid="bib47" ref-type="bibr">Vriend, 1990</xref>) combined with locally written code. From these calculations, it was predicted that all of the ionizable side chains would be present in their default (at pH 7) ionization states with the exception of D146, which was considered to have an equal propensity for adopting either a neutral or protonated state. A study of the KvAP VS in a DM detergent micelle revealed that simulations where D146 is present in either a neutral or protonated state yield remarkably similar results (<xref rid="bib38" ref-type="bibr">Sands et al., 2005</xref>). Thus, the simulations of the KvAP VS in PC and PC/PG were performed with all of the ionizable residues in their default states (at pH 7), including D146.</p>
+      </sec>
+      <sec id="sec4.2">
+        <title>Setup of Bilayer Systems</title>
+        <p>An equilibrated PC bilayer comprised of 128 lipid molecules (64 lipid molecules per leaflet) was obtained, courtesy of D.P. Tieleman (<ext-link xlink:href="http://moose.bio.ucalgary.ca" ext-link-type="uri">http://moose.bio.ucalgary.ca</ext-link>) for the VS/PC simulations. To set up the 3:1 PC/PG bilayer, lipids of the PC bilayer were “mutated” into PG species. To mutate a PC into PG, the choline group needs to be replaced with a glycerol group. A glycerol group already exists in PC which connects the phosphate group to the fatty chains. For each choline group, the rmsd of all possible choline/glycerol pairs in the bilayer was calculated after least-square-fitted superimposition. The choline group of each lipid was replaced by the glycerol group of the pair with the lowest rmsd. This ensured that the final bilayer was as close to an equilibrated state as possible.</p>
+        <p>As the PG lipid species carries a net negative charge, it was necessary to establish a symmetrical PC/PG bilayer while maintaining an even distribution of the two lipid species if the integrity of the membrane were to be maintained over the course of an MD simulation. The random selection of lipids for mutation could not guarantee these requirements. Instead, the positions for PG lipids were manually chosen to avoid PG clusters. To achieve this, each leaflet of the PC bilayer was divided into an 8 × 8 grid, with one PC lipid occupying each grid point. On each row and column, one PC lipid out of every four was mutated into PG. The VS was inserted into the resultant PC and PC/PG bilayers and overlapping lipid molecules were removed.</p>
+        <p>Each protein/bilayer system was energy minimized and then solvated by superimposition of a box of preequilibrated single point charge water molecules, followed by removal of any water molecules too close to either protein or lipid molecules. The resultant systems were then subjected to further energy minimization. Potassium and chloride ions were added to each system by random replacement of water molecules, until a final concentration of ∼0.1 M was achieved. The resultant systems were subjected to a further stage of energy minimization. Prior to the production run, a 1 ns equilibration run was performed during which all of the heavy (i.e., non-H) protein atoms were harmonically restrained with an isotropic force constant of 1000 kJ mol<sup>−1</sup> nm<sup>−1</sup>. Restrained MD runs were performed at 300K for each protein/bilayer system. Finally, all positional restraints were removed and production run simulations were performed for each system.</p>
+      </sec>
+      <sec id="sec4.3">
+        <title>Simulation Details</title>
+        <p>Simulations were performed using GROMACS 3.1 (<xref rid="bib25" ref-type="bibr">Lindahl et al., 2001</xref>) (see <ext-link xlink:href="http://www.gromacs.org" ext-link-type="uri">http://www.gromacs.org</ext-link>). The GROMOS96 force field was used for both simulations (<xref rid="bib41" ref-type="bibr">Scott et al., 1999</xref>). The parameters for PC and PG were based on GROMOS96, supplemented with additional bond, angle, and dihedral terms.</p>
+        <p>All energy minimization procedures used &lt;1000 steps of steepest descent method, in order to relax any steric conflicts generated during system setup. Long-range electrostatic interactions were calculated using the particle mesh Ewald (PME) method, with a 10 Å cutoff for the real space calculation (<xref rid="bib9" ref-type="bibr">Darden et al., 1993</xref>). A cutoff of 10 Å was used for the van der Waals interactions. The simulations were performed at constant temperature, pressure, and number of particles. The temperatures of the protein, lipid, and solvent (waters and ions) were separately coupled using the Nose-Hoover thermostat (<xref rid="bib30" ref-type="bibr">Nose, 1984</xref>) at 300K, with a coupling constant τ<sub>T</sub> = 0.1 ps. System pressures were semi-isotropically coupled using the Parrinello-Rahman barostat (<xref rid="bib31" ref-type="bibr">Parrinello and Rahman, 1981</xref>) at 1 bar with a coupling constant τ<sub>P</sub> = 1 ps and compressibility = 4.5 × 10<sup>−5</sup> bar<sup>−1</sup>. The LINCS algorithm (<xref rid="bib16" ref-type="bibr">Hess et al., 1997</xref>) was used throughout to constrain bond lengths. The time step for integration in both simulations was 2 fs, and the coordinates and velocities were saved every 5 ps. Simulations were performed on a 68 node PC cluster with dual Xeon4 processors. All analyses used GROMACS and/or locally written code. Electrostatic potential maps were obtained from the average of a PME calculation performed over 100 configurations spanning the last 10 ns of each simulation using the PMEPOT plug-in for VMD (<xref rid="bib2 bib19" ref-type="bibr">Aksimentiev and Schulten, 2005; Humphrey et al., 1996</xref>).</p>
+      </sec>
+    </sec>
+    <sec id="app1" sec-type="supplementary-material">
+      <title>Supplemental Data</title>
+      <p>Supplemental Data include three figures and can be found with this article online at <ext-link xlink:href="http://www.structure.org/cgi/content/full/15/2/235/DC1/" ext-link-type="uri">http://www.structure.org/cgi/content/full/15/2/235/DC1/</ext-link>.</p>
+    </sec>
+    <sec id="app2" sec-type="supplementary-material">
+      <title>Supplemental Data</title>
+      <p>
+        <supplementary-material content-type="local-data" id="mmc1">
+          <caption>
+            <title>Document S1. Three Figures</title>
+          </caption>
+          <media xlink:href="mmc1.pdf" mimetype="application" mime-subtype="pdf"/>
+        </supplementary-material>
+      </p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This research was supported by the Wellcome Trust. Thanks to our colleagues, especially Daniele Bemporad, Peter Bond, Jorge Pikunic, Alessandro Grottesi, and Ben Hall.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>Aggarwal and MacKinnon, 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aggarwal</surname>
+              <given-names>S.K.</given-names>
+            </name>
+            <name>
+              <surname>MacKinnon</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Contribution of the S4 segment to gating charge in the Shaker K+ channel</article-title>
+          <source>Neuron</source>
+          <year>1996</year>
+          <volume>16</volume>
+          <fpage>1169</fpage>
+          <lpage>1177</lpage>
+          <pub-id pub-id-type="pmid">8663993</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <label>Aksimentiev and Schulten, 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aksimentiev</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Schulten</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Imaging α-hemolysin with molecular dynamics: ionic conductance, osmotic permeability, and the electrostatic potential map</article-title>
+          <source>Biophys. J.</source>
+          <year>2005</year>
+          <volume>88</volume>
+          <fpage>3745</fpage>
+          <lpage>3761</lpage>
+          <pub-id pub-id-type="pmid">15764651</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <label>Baker et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baker</surname>
+              <given-names>O.S.</given-names>
+            </name>
+            <name>
+              <surname>Larsson</surname>
+              <given-names>H.P.</given-names>
+            </name>
+            <name>
+              <surname>Mannuzzu</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Isacoff</surname>
+              <given-names>E.Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Three transmembrane conformations and sequence-dependent displacement of the S4 domain in Shaker K+ channel gating</article-title>
+          <source>Neuron</source>
+          <year>1998</year>
+          <volume>20</volume>
+          <fpage>1283</fpage>
+          <lpage>1294</lpage>
+          <pub-id pub-id-type="pmid">9655514</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <label>Bezanilla, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bezanilla</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>The voltage sensor in voltage-dependent ion channels</article-title>
+          <source>Physiol. Rev.</source>
+          <year>2000</year>
+          <volume>80</volume>
+          <fpage>555</fpage>
+          <lpage>592</lpage>
+          <pub-id pub-id-type="pmid">10747201</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <label>Bond and Sansom, 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bond</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Sansom</surname>
+              <given-names>M.S.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Membrane protein dynamics versus environment: simulations of OmpA in a micelle and in a bilayer</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>2003</year>
+          <volume>329</volume>
+          <fpage>1035</fpage>
+          <lpage>1053</lpage>
+          <pub-id pub-id-type="pmid">12798692</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <label>Cha et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cha</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Snyder</surname>
+              <given-names>G.E.</given-names>
+            </name>
+            <name>
+              <surname>Selvin</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Bezanilla</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Atomic scale movement of the voltage-sensing region in a potassium channel measured via spectroscopy</article-title>
+          <source>Nature</source>
+          <year>1999</year>
+          <volume>402</volume>
+          <fpage>809</fpage>
+          <lpage>813</lpage>
+          <pub-id pub-id-type="pmid">10617201</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <label>Chanda et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chanda</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Asamoah</surname>
+              <given-names>O.K.</given-names>
+            </name>
+            <name>
+              <surname>Blunck</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Roux</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Bezanilla</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gating charge displacement in voltage-gated ion channels involves limited transmembrane movement</article-title>
+          <source>Nature</source>
+          <year>2005</year>
+          <volume>436</volume>
+          <fpage>852</fpage>
+          <lpage>856</lpage>
+          <pub-id pub-id-type="pmid">16094369</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <label>Cuello et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cuello</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Cortes</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Perozo</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure and dynamics of the KvAP voltage sensor domain reconstituted in lipid bilayers</article-title>
+          <source>Biophys. J.</source>
+          <year>2005</year>
+          <volume>86</volume>
+          <fpage>458A</fpage>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <label>Darden et al., 1993</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Darden</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>York</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Pedersen</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Particle mesh Ewald—an N.log(N) method for Ewald sums in large systems</article-title>
+          <source>J. Chem. Phys.</source>
+          <year>1993</year>
+          <volume>98</volume>
+          <fpage>10089</fpage>
+          <lpage>10092</lpage>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <label>Deol et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deol</surname>
+              <given-names>S.S.</given-names>
+            </name>
+            <name>
+              <surname>Domene</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bond</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Sansom</surname>
+              <given-names>M.S.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Anionic phospholipid interactions with the potassium channel KcsA: simulation studies</article-title>
+          <source>Biophys. J.</source>
+          <year>2006</year>
+          <volume>90</volume>
+          <fpage>822</fpage>
+          <lpage>830</lpage>
+          <pub-id pub-id-type="pmid">16272446</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <label>Dorairaj and Allen, 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dorairaj</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Allen</surname>
+              <given-names>T.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Free energies of arginine-lipid interactions: potential of mean force of a transmembrane helix through a membrane</article-title>
+          <source>Biophys. J.</source>
+          <year>2006</year>
+          <volume>90</volume>
+          <fpage>213A</fpage>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <label>Fernández-Vidal et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fernández-Vidal</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Castro-Roman</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>S.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Membrane insertion of a S4 potassium channel voltage sensor: an experimental study</article-title>
+          <source>Biophys. J.</source>
+          <year>2006</year>
+          <volume>90</volume>
+          <fpage>241A</fpage>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <label>Freites et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Freites</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Tobias</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>von Heijne</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>S.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Interface connections of a transmembrane voltage sensor</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>15059</fpage>
+          <lpage>15064</lpage>
+          <pub-id pub-id-type="pmid">16217012</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <label>Freites et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Freites</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Tobias</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>S.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>A voltage-sensor water pore</article-title>
+          <source>Biophys. J.</source>
+          <year>2006</year>
+          <volume>91</volume>
+          <fpage>L90</fpage>
+          <lpage>L92</lpage>
+          <pub-id pub-id-type="pmid">17012321</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <label>Glauner et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glauner</surname>
+              <given-names>K.S.</given-names>
+            </name>
+            <name>
+              <surname>Mannuzzau</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Gandhi</surname>
+              <given-names>C.S.</given-names>
+            </name>
+            <name>
+              <surname>Isacoff</surname>
+              <given-names>E.Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spectroscopic mapping of voltage sensor movement in the Shaker potassium channel</article-title>
+          <source>Nature</source>
+          <year>1999</year>
+          <volume>402</volume>
+          <fpage>813</fpage>
+          <lpage>817</lpage>
+          <pub-id pub-id-type="pmid">10617202</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <label>Hess et al., 1997</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hess</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Bekker</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Berendsen</surname>
+              <given-names>H.J.C.</given-names>
+            </name>
+            <name>
+              <surname>Fraaije</surname>
+              <given-names>J.G.E.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>LINCS: a linear constraint solver for molecular simulations</article-title>
+          <source>J. Comput. Chem.</source>
+          <year>1997</year>
+          <volume>18</volume>
+          <fpage>1463</fpage>
+          <lpage>1472</lpage>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <label>Hessa et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hessa</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>von Heijne</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Membrane insertion of a potassium-channel voltage sensor</article-title>
+          <source>Science</source>
+          <year>2005</year>
+          <volume>307</volume>
+          <fpage>1427</fpage>
+          <pub-id pub-id-type="pmid">15681341</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <label>Hille, 2001</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hille</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ionic Channels of Excitable Membranes</article-title>
+          <year>2001</year>
+          <publisher-name>Sinauer Associates</publisher-name>
+          <publisher-loc>Sunderland, MA</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <label>Humphrey et al., 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Humphrey</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Dalke</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Schulten</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>VMD—visual molecular dynamics</article-title>
+          <source>J. Mol. Graph.</source>
+          <year>1996</year>
+          <volume>14</volume>
+          <fpage>33</fpage>
+          <lpage>38</lpage>
+          <pub-id pub-id-type="pmid">8744570</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <label>Jensen et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jensen</surname>
+              <given-names>M.O.</given-names>
+            </name>
+            <name>
+              <surname>Tajkhorshid</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Schulten</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>The mechanism of glycerol conduction in aquaglyceroporins</article-title>
+          <source>Structure</source>
+          <year>2001</year>
+          <volume>9</volume>
+          <fpage>1083</fpage>
+          <lpage>1093</lpage>
+          <pub-id pub-id-type="pmid">11709172</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <label>Jiang et al., 2003a</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jiang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ruta</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Cadene</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Chait</surname>
+              <given-names>B.T.</given-names>
+            </name>
+            <name>
+              <surname>Mackinnon</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>X-ray structure of a voltage-dependent K+ channel</article-title>
+          <source>Nature</source>
+          <year>2003</year>
+          <volume>423</volume>
+          <fpage>33</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="pmid">12721618</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <label>Jiang et al., 2003b</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jiang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Ruta</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>A.G.</given-names>
+            </name>
+            <name>
+              <surname>Mackinnon</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>The principle of gating charge movement in a voltage-dependent K+ channel</article-title>
+          <source>Nature</source>
+          <year>2003</year>
+          <volume>423</volume>
+          <fpage>42</fpage>
+          <lpage>48</lpage>
+          <pub-id pub-id-type="pmid">12721619</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <label>Larsson et al., 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Larsson</surname>
+              <given-names>H.P.</given-names>
+            </name>
+            <name>
+              <surname>Baker</surname>
+              <given-names>O.S.</given-names>
+            </name>
+            <name>
+              <surname>Dhillon</surname>
+              <given-names>D.S.</given-names>
+            </name>
+            <name>
+              <surname>Isacoff</surname>
+              <given-names>E.Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transmembrane movement of the Shaker K+ channel S4</article-title>
+          <source>Neuron</source>
+          <year>1996</year>
+          <volume>16</volume>
+          <fpage>387</fpage>
+          <lpage>397</lpage>
+          <pub-id pub-id-type="pmid">8789953</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <label>Lee et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>S.Y.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>MacKinnon</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure of the KvAP voltage-dependent K+ channel and its dependence on the lipid membrane</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>15441</fpage>
+          <lpage>15446</lpage>
+          <pub-id pub-id-type="pmid">16223877</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <label>Lindahl et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lindahl</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Hess</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>van der Spoel</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>GROMACS 3.0: a package for molecular simulation and trajectory analysis</article-title>
+          <source>J. Mol. Model. (Online)</source>
+          <year>2001</year>
+          <volume>7</volume>
+          <fpage>306</fpage>
+          <lpage>317</lpage>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <label>Long et al., 2005a</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Long</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Campbell</surname>
+              <given-names>E.B.</given-names>
+            </name>
+            <name>
+              <surname>MacKinnon</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Crystal structure of a mammalian voltage-dependent Shaker family K+ channel</article-title>
+          <source>Science</source>
+          <year>2005</year>
+          <volume>309</volume>
+          <fpage>897</fpage>
+          <lpage>902</lpage>
+          <pub-id pub-id-type="pmid">16002581</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <label>Long et al., 2005b</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Long</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Campbell</surname>
+              <given-names>E.B.</given-names>
+            </name>
+            <name>
+              <surname>MacKinnon</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Voltage sensor of Kv1.2: structural basis of electromechanical coupling</article-title>
+          <source>Science</source>
+          <year>2005</year>
+          <volume>309</volume>
+          <fpage>903</fpage>
+          <lpage>908</lpage>
+          <pub-id pub-id-type="pmid">16002579</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <label>Mannuzzu et al., 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mannuzzu</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Moronne</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Isacoff</surname>
+              <given-names>E.Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Direct physical measure of conformational rearrangement underlying potassium channel gating</article-title>
+          <source>Science</source>
+          <year>1996</year>
+          <volume>271</volume>
+          <fpage>213</fpage>
+          <lpage>216</lpage>
+          <pub-id pub-id-type="pmid">8539623</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <label>Murata et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Murata</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Iwasaki</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Sasaki</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Inaba</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Okamura</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Phosphoinositide phosphatase activity coupled to an intrinsic voltage sensor</article-title>
+          <source>Nature</source>
+          <year>2005</year>
+          <volume>435</volume>
+          <fpage>1239</fpage>
+          <lpage>1243</lpage>
+          <pub-id pub-id-type="pmid">15902207</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <label>Nose, 1984</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nose</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>A molecular dynamics method for simulations in the canonical ensemble</article-title>
+          <source>Mol. Physiol.</source>
+          <year>1984</year>
+          <volume>52</volume>
+          <fpage>255</fpage>
+          <lpage>268</lpage>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <label>Parrinello and Rahman, 1981</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Parrinello</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Rahman</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Polymorphic transitions in single-crystals—a new molecular-dynamics method</article-title>
+          <source>J. Appl. Physiol.</source>
+          <year>1981</year>
+          <volume>52</volume>
+          <fpage>7182</fpage>
+          <lpage>7190</lpage>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <label>Phillips et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Phillips</surname>
+              <given-names>L.R.</given-names>
+            </name>
+            <name>
+              <surname>Milescu</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Li-Smerin</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Midell</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>J.I.</given-names>
+            </name>
+            <name>
+              <surname>Swartz</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Voltage-sensor activation with a tarantula-toxin as cargo</article-title>
+          <source>Nature</source>
+          <year>2005</year>
+          <volume>436</volume>
+          <fpage>857</fpage>
+          <lpage>860</lpage>
+          <pub-id pub-id-type="pmid">16094370</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <label>Popot and Engelman, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Popot</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Engelman</surname>
+              <given-names>D.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Helical membrane protein folding, stability, and evolution</article-title>
+          <source>Annu. Rev. Biochem.</source>
+          <year>2000</year>
+          <volume>69</volume>
+          <fpage>881</fpage>
+          <lpage>922</lpage>
+          <pub-id pub-id-type="pmid">10966478</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <label>Posson et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Posson</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Ge</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bezanilla</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Selvin</surname>
+              <given-names>P.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Small vertical movement of a K+ channel voltage sensor measured with luminescence energy transfer</article-title>
+          <source>Nature</source>
+          <year>2005</year>
+          <volume>436</volume>
+          <fpage>848</fpage>
+          <lpage>851</lpage>
+          <pub-id pub-id-type="pmid">16094368</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <label>Ramsey et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ramsey</surname>
+              <given-names>I.S.</given-names>
+            </name>
+            <name>
+              <surname>Moran</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Chong</surname>
+              <given-names>J.H.A.</given-names>
+            </name>
+            <name>
+              <surname>Clapham</surname>
+              <given-names>D.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A voltage-gated proton-selective channel lacking the pore domain</article-title>
+          <source>Nature</source>
+          <year>2006</year>
+          <volume>440</volume>
+          <fpage>1213</fpage>
+          <lpage>1216</lpage>
+          <pub-id pub-id-type="pmid">16554753</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <label>Roux and Schulten, 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roux</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Schulten</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational studies of membrane channels</article-title>
+          <source>Structure</source>
+          <year>2004</year>
+          <volume>12</volume>
+          <fpage>1343</fpage>
+          <lpage>1351</lpage>
+          <pub-id pub-id-type="pmid">15296727</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <label>Ruta et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ruta</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>MacKinnon</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Calibrated measurement of gating-charge arginine displacement in the KvAP voltage-dependent K+ channel</article-title>
+          <source>Cell</source>
+          <year>2005</year>
+          <volume>123</volume>
+          <fpage>463</fpage>
+          <lpage>475</lpage>
+          <pub-id pub-id-type="pmid">16269337</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <label>Sands et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sands</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Grottesi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Sansom</surname>
+              <given-names>M.S.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>The intrinsic flexibility of the Kv voltage sensor and its implications for channel gating mechanisms</article-title>
+          <source>Biophys. J.</source>
+          <year>2005</year>
+          <volume>90</volume>
+          <fpage>1598</fpage>
+          <lpage>1606</lpage>
+          <pub-id pub-id-type="pmid">16326912</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <label>Sasaki et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sasaki</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Takagi</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Okamura</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>A voltage sensor-domain protein is a voltage-gated proton channel</article-title>
+          <source>Science</source>
+          <year>2006</year>
+          <volume>312</volume>
+          <fpage>589</fpage>
+          <lpage>592</lpage>
+          <pub-id pub-id-type="pmid">16556803</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <label>Schmidt et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Jiang</surname>
+              <given-names>Q.X.</given-names>
+            </name>
+            <name>
+              <surname>MacKinnon</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Phospholipids and the origin of cationic gating charges in voltage sensors</article-title>
+          <source>Nature</source>
+          <year>2006</year>
+          <volume>444</volume>
+          <fpage>775</fpage>
+          <lpage>779</lpage>
+          <pub-id pub-id-type="pmid">17136096</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <label>Scott et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scott</surname>
+              <given-names>W.R.P.</given-names>
+            </name>
+            <name>
+              <surname>Hunenberger</surname>
+              <given-names>P.H.</given-names>
+            </name>
+            <name>
+              <surname>Tironi</surname>
+              <given-names>I.G.</given-names>
+            </name>
+            <name>
+              <surname>Mark</surname>
+              <given-names>A.E.</given-names>
+            </name>
+            <name>
+              <surname>Billeter</surname>
+              <given-names>S.R.</given-names>
+            </name>
+            <name>
+              <surname>Fennen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Torda</surname>
+              <given-names>A.E.</given-names>
+            </name>
+            <name>
+              <surname>Huber</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kruger</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>van Gunsteren</surname>
+              <given-names>W.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>The GROMOS biomolecular simulation program package</article-title>
+          <source>J. Phys. Chem. A</source>
+          <year>1999</year>
+          <volume>103</volume>
+          <fpage>3596</fpage>
+          <lpage>3607</lpage>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <label>Seoh et al., 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seoh</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Sigg</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Papazian</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Bezanilla</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Voltage-sensing residues in the S2 and S4 segments of the Shaker K+ channel</article-title>
+          <source>Neuron</source>
+          <year>1996</year>
+          <volume>16</volume>
+          <fpage>1159</fpage>
+          <lpage>1167</lpage>
+          <pub-id pub-id-type="pmid">8663992</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <label>Smart et al., 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smart</surname>
+              <given-names>O.S.</given-names>
+            </name>
+            <name>
+              <surname>Neduvelil</surname>
+              <given-names>J.G.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Wallace</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>Sansom</surname>
+              <given-names>M.S.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>HOLE: a program for the analysis of the pore dimensions of ion channel structural models</article-title>
+          <source>J. Mol. Graph.</source>
+          <year>1996</year>
+          <volume>14</volume>
+          <fpage>354</fpage>
+          <lpage>360</lpage>
+          <pub-id pub-id-type="pmid">9195488</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <label>Starace and Bezanilla, 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Starace</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Bezanilla</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>A proton pore in a potassium channel voltage sensor reveals a focused electric field</article-title>
+          <source>Nature</source>
+          <year>2004</year>
+          <volume>427</volume>
+          <fpage>548</fpage>
+          <lpage>553</lpage>
+          <pub-id pub-id-type="pmid">14765197</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <label>Swartz, 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Swartz</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards a structural view of gating in potassium channels</article-title>
+          <source>Nat. Rev. Neurosci.</source>
+          <year>2004</year>
+          <volume>5</volume>
+          <fpage>905</fpage>
+          <lpage>916</lpage>
+          <pub-id pub-id-type="pmid">15550946</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib46">
+        <label>Treptow and Tarek, 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Treptow</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Tarek</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Environment of the gating charges in the Kv1.2 Shaker potassium channel</article-title>
+          <source>Biophys. J.</source>
+          <year>2006</year>
+          <volume>90</volume>
+          <fpage>L64</fpage>
+          <lpage>L66</lpage>
+          <pub-id pub-id-type="pmid">16533847</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <label>Vriend, 1990</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vriend</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>WHAT IF—a molecular modeling and drug design program</article-title>
+          <source>J. Mol. Graph.</source>
+          <year>1990</year>
+          <volume>8</volume>
+          <fpage>52</fpage>
+          <lpage>56</lpage>
+          <pub-id pub-id-type="pmid">2268628</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib48">
+        <label>Yang and Horn, 1995</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Horn</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evidence for voltage-dependent S4 movement in sodium channels</article-title>
+          <source>Neuron</source>
+          <year>1995</year>
+          <volume>15</volume>
+          <fpage>213</fpage>
+          <lpage>218</lpage>
+          <pub-id pub-id-type="pmid">7619524</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib49">
+        <label>Yang et al., 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>N.B.</given-names>
+            </name>
+            <name>
+              <surname>George</surname>
+              <given-names>A.L.</given-names>
+            </name>
+            <name>
+              <surname>Horn</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular basis of charge movement in voltage-gated sodium channels</article-title>
+          <source>Neuron</source>
+          <year>1996</year>
+          <volume>16</volume>
+          <fpage>113</fpage>
+          <lpage>122</lpage>
+          <pub-id pub-id-type="pmid">8562074</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib50">
+        <label>Yellen, 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yellen</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The voltage-gated potassium channels and their relatives</article-title>
+          <source>Nature</source>
+          <year>2002</year>
+          <volume>419</volume>
+          <fpage>35</fpage>
+          <lpage>42</lpage>
+          <pub-id pub-id-type="pmid">12214225</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib51">
+        <label>Yusaf et al., 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yusaf</surname>
+              <given-names>S.P.</given-names>
+            </name>
+            <name>
+              <surname>Wray</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Sivaprasadarao</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Measurement of the movement of the S4 segment during the activation of a voltage-gated potassium channel</article-title>
+          <source>Pflugers Arch.</source>
+          <year>1996</year>
+          <volume>433</volume>
+          <fpage>91</fpage>
+          <lpage>97</lpage>
+          <pub-id pub-id-type="pmid">9019737</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Figure 1</label>
+      <caption>
+        <p>The KvAP VS in a Phospholipid Bilayer</p>
+        <p>(A) The VS domain (represented in a ribbon format) at the end of a 50 ns simulation in a PC lipid bilayer. The S4 helix is highlighted in magenta and the remaining S1–S3 helices are depicted in gray. The phosphorus atoms of the lipid molecules (shown as spheres) are colored according to the magnitude of their <italic>average</italic> z coordinate, ranging from red at the extracellular interface to blue at the intracellular interface. The arrow indicates the P atom of a lipid molecule whose head group has been “pulled” in toward the interior of the membrane.</p>
+        <p>(B) Interactions between S4 helix arginine side chains and the lipid phosphate groups from a snapshot of the VS/PC simulation at 50 ns.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Figure 2</label>
+      <caption>
+        <p>Local Deformation of the Lipid Bilayer</p>
+        <p>This is measured as the average distance between upper and lower P atoms (<italic>d<sub>PP</sub></italic>) versus the distance of the atoms in the xy plane from the center of mass of the corresponding protein (<italic>r</italic>) over the last 10 ns of each simulation. The <italic>d<sub>PP</sub></italic> versus <italic>r</italic> curves are given for the VS/PC (black, solid line) and VS/PCPG (gray) simulations. As a control, the <italic>d<sub>PP</sub></italic> versus <italic>r</italic> curve is given for a simulation of KirBac3.1 in a PC bilayer (black, broken line). The horizontal lines give the corresponding <italic>d<sub>PP</sub></italic> values for two control PC (black dashed) and PC/PG (gray dashed) bilayer simulations in the absence of protein.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Figure 3</label>
+      <caption>
+        <p>Hydrogen Bonds Formed by the S4 Helix</p>
+        <p>Number of H bonds formed by the side chains of the charged residues of S4 as a function of time for simulations (A) VS/PC and (B) VS/PCPG. In each case, the numbers of H bonds with lipids and with waters are shown in black and gray, respectively.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Figure 4</label>
+      <caption>
+        <p>Interactions of the S4 Helix with Lipid and Water Molecules</p>
+        <p>(A and C) Frequency (over the 50 ns simulation) distributions of the number of H bonds formed with the charged residues of S4. Distributions are shown for the numbers of H bonds each residue forms with water (red) and with lipid (blue) for the VS/PC (A) and VS/PCPG (C) simulations.</p>
+        <p>(B) The S4 helix (represented as a cyan ribbon) taken from the start of the VS/PCPG simulation. The charged residues are depicted in space-filling format, with cationic and anionic side chains colored blue and red, respectively.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Figure 5</label>
+      <caption>
+        <p>Density Profiles along the Bilayer Normal</p>
+        <p>Partial densities for lipids (P atoms of head groups, gray solid lines), water (w, black solid lines), Arg126 (R126, gray crossprofile), and Arg133 (R133, black crossprofile) for simulations (A) VS/PC and (B) VS/PCPG. In the latter, the density profiles for P atoms of the PC and PG molecules are shown separately. The arrows indicate the region in the water profiles corresponding to the penetration of water toward the center of the VS domain.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Figure 6</label>
+      <caption>
+        <p>Water Penetration into the VS Domain</p>
+        <p>(A) Snapshot taken at <italic>t</italic> = 50 ns from the VS domain in a PC bilayer simulation revealing the protein backbone (Cα trace, cyan), lipid phosphorus atoms (p, orange spheres), water molecules (w, red/white spheres) within 2.5 Å of the protein atoms, the residues Asp62 and Arg133 (red and blue, respectively) which form a salt bridge between S2 and S4, and the hydrophobic residues (Leu65, Val66, Ala96, and Leu97, shown in white) that effectively occlude the pore to the permeation of water and ions.</p>
+        <p>(B) The average pore radius lining surface (red/green/blue) over the last 5 ns of the VS/PC simulation calculated using HOLE (<xref rid="bib43" ref-type="bibr">Smart et al., 1996</xref>), along with the VS protein Cα trace (cyan) taken at <italic>t</italic> = 45 ns.</p>
+        <p>(C) Electrostatic potential distribution in a region centered on the VS. The map is taken from a slice in the xz plane of the VS/PC system (see <xref rid="sec4" ref-type="sec">Experimental Procedures</xref>). The potential is shown on an RGB scale spanning ± 120 mV. The potential is focused over a highly circumscribed region about the Asp62-Arg133 salt bridge.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Figure 7</label>
+      <caption>
+        <p>Phospholipid Molecules “Bound” to the VS</p>
+        <p>(A) Average lipid and protein coordinates calculated over the last 10 ns of the VS/PC bilayer simulation. The phosphorus atoms (shown in space-filling format) of the PC bilayer are colored according to their mobility (measured as rmsf in the xy plane) of each atom; the color scale extends from blue = 0 Å<sup>2</sup> to red = 48 Å<sup>2</sup>.</p>
+        <p>(B–E) Four lipid molecules whose average z value coordinate has undergone the largest displacement from the initial lipid bilayer setup are shown in further detail, along with residues to which they form H-bonding interactions at <italic>t</italic> = 50 ns.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <table-wrap position="float" id="tbl1">
+      <label>Table 1</label>
+      <caption>
+        <p>Summary of Simulations</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>Simulation</th>
+            <th>Lipids</th>
+            <th>Waters</th>
+            <th>Cα Rmsd (Å)</th>
+            <th>Core Cα Rmsd (Å)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>VS/PC</td>
+            <td>73 PC</td>
+            <td align="char">4,066</td>
+            <td align="char">1.8</td>
+            <td align="char">1.4</td>
+          </tr>
+          <tr>
+            <td>VS/PCPG</td>
+            <td>51 PC: 16 PG</td>
+            <td align="char">4,109</td>
+            <td align="char">1.8</td>
+            <td align="char">1.6</td>
+          </tr>
+          <tr>
+            <td>VS/micelle</td>
+            <td>94 DM</td>
+            <td align="char">13,457</td>
+            <td align="char">2.5</td>
+            <td align="char">1.9</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>Rmsds are calculated for Cα atoms over the final 10 ns of each simulation relative to the crystal structure of PDB ID code <ext-link xlink:href="1ORS" ext-link-type="gen">1ORS</ext-link>. Data for VS/micelle simulations are from <xref rid="bib38" ref-type="bibr">Sands et al., (2005)</xref>.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-wrap>
+</article>

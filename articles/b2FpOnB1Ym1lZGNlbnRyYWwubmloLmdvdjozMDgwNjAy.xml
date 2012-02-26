@@ -1,0 +1,386 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="brief-report">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Eur Psychiatry</journal-id>
+      <journal-title-group>
+        <journal-title>European Psychiatry</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0924-9338</issn>
+      <issn pub-type="epub">1778-3585</issn>
+      <publisher>
+        <publisher-name>Editions scientifiques Elsevier</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3080602</article-id>
+      <article-id pub-id-type="pmid">21036551</article-id>
+      <article-id pub-id-type="publisher-id">EURPSY2861</article-id>
+      <article-id pub-id-type="doi">10.1016/j.eurpsy.2010.08.006</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Short Communication</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Modelling psychiatric measures using Skew-Normal distributions</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Counsell</surname>
+            <given-names>N.</given-names>
+          </name>
+          <email>Nicholas.Counsell@psych.ox.ac.uk</email>
+          <xref rid="aff0005" ref-type="aff">a</xref>
+          <xref rid="cor0005" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Cortina-Borja</surname>
+            <given-names>M.</given-names>
+          </name>
+          <xref rid="aff0010" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lehtonen</surname>
+            <given-names>A.</given-names>
+          </name>
+          <xref rid="aff0005" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Stein</surname>
+            <given-names>A.</given-names>
+          </name>
+          <xref rid="aff0005" ref-type="aff">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff0005"><label>a</label>Department of Psychiatry, Warneford Hospital, University of Oxford, Oxford, OX3 7JX, UK</aff>
+      <aff id="aff0010"><label>b</label>Centre for Paediatric Epidemiology and Biostatistics, UCL Institute of Child Health, University College London, 30, Guilford Street, London, WC1N 1EH, UK</aff>
+      <author-notes>
+        <corresp id="cor0005"><label>⁎</label>Corresponding author. Tel.: +44 1865 226234; fax: +44 1865 793101. <email>Nicholas.Counsell@psych.ox.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>3</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>26</volume>
+      <issue>2</issue>
+      <fpage>112</fpage>
+      <lpage>114</lpage>
+      <history>
+        <date date-type="received">
+          <day>29</day>
+          <month>3</month>
+          <year>2010</year>
+        </date>
+        <date date-type="accepted">
+          <day>19</day>
+          <month>8</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Masson SAS.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier Masson SAS</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Data from psychiatric research frequently exhibit departures from Normality. Methods which utilise the data optimally to model the distribution directly are available. We highlight the issue of modelling skewness, resulting from screening instruments where the majority of respondents are healthy individuals and few participants have a value reflecting particular disorders.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Child Development</kwd>
+        <kwd>Biostatistics</kwd>
+        <kwd>Skewness</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>Variables arising from instruments designed to assess health status often follow asymmetric and long-tailed distributions, resulting from a majority of healthy individuals with low values and a few individuals with larger values reflecting particular disorders (e.g. screening questionnaires for symptoms and diagnoses). Although there may be other types of departure from Normality (e.g. value inflation, peakedness or flatness), skewness occurs frequently in a screening setting where the distributions are nearly Normal; thus it is particularly important to account for the values reflecting disorder whilst preserving the usual Normal properties of the general population. Non-Normally distributed responses are sometimes analysed using generalized linear models assuming a Poisson or a Gamma distribution. The former is adequate for count, not continuous, data and is often not flexible enough to cope with skewed data; the latter might be too different to the Normal for the purposes we have outlined. To adequately perform statistical analyses, we can rely on empirically chosen transformations (e.g. logarithmic, Box-Cox <xref rid="bib0020" ref-type="bibr">[4]</xref>) to make the data conform to the methods’ assumptions. However, it is not always possible to find a suitable transformation, and analysing data on a different scale might compromise interpretability. This means that rather than the dataset properties informing the statistical analyses, often inappropriate or non-optimal methods in which the data is not fully exploited are used, with assumption violations being accepted as an inevitable nuisance. This problem is compounded when analysing multivariate data. Although conclusions may not be compromised in large samples, distributional inferences from models including location, scale and shape parameters are preferable and aid our assessment of a population's characteristics. It is increasingly easy to implement and use statistical software to fit the models described below. In this paper, we highlight the utility of the bivariate Skew-Normal extension of the Normal distribution and apply it to a dataset from a clinical psychiatry research environment.</p>
+    </sec>
+    <sec sec-type="methods" id="sec0010">
+      <label>2</label>
+      <title>Methods</title>
+      <p>Non-parametric tests may be insufficient for a study's purpose, for instance, through the difficulties in fitting models when adjusting for covariates. In parametric modelling, data is often transformed, or the Normality assumption is inspected informally and any problem downplayed or ignored. Crawford et al. <xref rid="bib0025" ref-type="bibr">[5]</xref> have discussed this issue in a neuropsychological study, whilst Mardia <xref rid="bib0045" ref-type="bibr">[9]</xref> demonstrates the consequences of non-Normality and heterogeneity of variances in well-known multivariate statistical models. More recently, Elhai et al. <xref rid="bib0035" ref-type="bibr">[7]</xref> discuss these problems in the analysis of mental health services data and use zero-inflated distributions to overcome them for count data. Though these models are more flexible than the usual Normal models, they may not be applicable in analyses concerning multivariate, continuous, non-Normally distributed data. In this case, a more desirable solution, which is increasingly easy to implement, is to fit an appropriate model to the observed, asymmetric data.</p>
+      <p>Often it is important to analyse the joint distribution of multiple response variables, e.g. when modelling the same individuals measured at two or more time points or on a number of variables. In this case, deciding which transformations might be adequate to achieve the usual multivariate analysis of variance assumptions is difficult <xref rid="bib0060" ref-type="bibr">[12]</xref>, as additional parameters are introduced to change the scale of the responses as required, which in turn complicate interpretability. Here we demonstrate the application of a bivariate Skew-Normal (SN<sub>2</sub>) model <xref rid="bib0015" ref-type="bibr">[3]</xref> to analyse measurements of maternal cognitions at two time points (3 and 6 months postnatal); a derived contour plot is useful to inform further extensions and gain insight in the bivariate data structure.</p>
+      <p>Data from the Oxford Parent Project, an ongoing longitudinal observational cohort study to investigate the influence of parenting on child development in the context of postnatal psychiatric disorder, is utilised. Three groups are included in the study: mothers with postnatal depression (<italic>n </italic>= 34), generalised anxiety disorder (GAD) (<italic>n </italic>= 52), and a healthy control group (<italic>n </italic>= 84).</p>
+      <p>There are three core components to psychological functioning: emotions, cognitions (thought processes) and behaviour. Most research in this area has concentrated on parental emotions and behaviour, with very little research on the thought processes that influence behaviour, especially when a parent is depressed or anxious. We are particularly interested in the core role of maternal cognitions, a key aspect of both depression and GAD. We term this process preoccupation, defined as a state of narrowed or self-focused attention in which one's mind is dominated by recurrent negative intrusive thoughts that are difficult to control or dismiss, and which recur due to their self-perpetuating nature <xref rid="bib0065" ref-type="bibr">[13]</xref>. Preoccupation was assessed using a 20-item questionnaire measuring the components of this cognitive process, with items scored from 0 to 4 (low-to-high) leading to total scores in the range 0 to 80 <xref rid="bib0050" ref-type="bibr">[10]</xref>. We investigate the relationship between preoccupation scores at two time points accounting for distributional properties of the data, and the study groupings.</p>
+      <p>The Normal distribution is particularly important in applied statistics and measurements of many real-world phenomena are well described by this probability model. However, due to some inherent biases in the underlying data-generating process, some measures will never be well characterised by the Normal distribution. The SN distribution <xref rid="bib0005" ref-type="bibr">[1]</xref> is a simple parametric generalisation of the Normal distribution which allows for model building, estimation and hypothesis testing. It contains the Normal model as a particular case and requires an additional shape parameter, <italic>λ</italic>, which governs skewness. This has been extended to the <italic>k</italic>-dimensional multivariate SN<sub><italic>k</italic></sub> case <xref rid="bib0015" ref-type="bibr">[3]</xref> which, as well as parameters for location and scale, includes shape and dependence parameters.</p>
+      <p>We fitted SN<sub>2</sub> models using the functions sn.mle and msn.mle from the package sn <xref rid="bib0010" ref-type="bibr">[2]</xref> in the statistical computing environment R version 2.7.1 <xref rid="bib0055" ref-type="bibr">[11]</xref> on a Windows<sup>®</sup> platform. We used the Bayesian Information Criterion (BIC) as a goodness-of-fit criterion to rank competing models; <xref rid="bib0040" ref-type="bibr">[8]</xref> note that smaller values of BIC correspond to better fitting models.</p>
+    </sec>
+    <sec id="sec0015">
+      <label>3</label>
+      <title>Results</title>
+      <p>Plotting preoccupation scores from the two time points against each other (<xref rid="fig0005" ref-type="fig">Fig. 1</xref>), a clear relationship is evident by case status; mothers with postnatal depression or GAD generally have high preoccupation at both time points, with more spread than controls. Higher values have more scope for change than lower values, while mothers with postnatal disorders may be more susceptible to higher levels of preoccupation than controls. Note that there are more individuals with high-to-low change than increasing scores. The data is bivariately skewed, with a large cluster in the bottom left graphical region the majority of whom are controls.</p>
+      <p>Maternal preoccupation scores have similar positively skewed shape coefficients corresponding to heavier right tails at both 3 and 6 months (<italic>λ</italic><sub>3m</sub> = 0.30, <italic>λ</italic><sub>6m</sub> = 0.31). Significant correlation exists between the two time points (Spearman's correlation = .711, <italic>p</italic> &lt; .001), with median scores reducing from 31 to 28. The non-parametric Kruskal-Wallis <italic>H</italic> rank test shows that scores differ significantly in location among the three groups (<italic>χ</italic><sup>2</sup><sub>3m</sub> = 86.3 on 2 d.f., <italic>p</italic> &lt; .001; <italic>χ</italic><sup>2</sup><sub>6m</sub> = 68.1 on 2 d.f., <italic>p</italic> &lt; .001) with controls having lower levels of preoccupation than mothers with postnatal disorders. Although these tests do not require the Normality assumption, they are difficult to generalise to multivariate settings and to use allowing for covariates. Shapiro-Wilk tests confirm non-Normality (<italic>p</italic>'s &lt; .001); logarithmic and Box-Cox transformations improve this situation, but not adequately as evidenced by the resulting highly curved QQ-plots and significant test statistics (data not shown). Thus, we use methods to account directly for this asymmetry; this is appropriate regardless of transformation success, and it could be argued that it is preferable to fit a model to the observed data rather than to adjust data to a given model.</p>
+      <p>The test for asymmetric departures from the bivariate Normal distribution, proposed by Mardia <xref rid="bib0045" ref-type="bibr">[9]</xref>, yielded a significant result (<italic>p</italic> &lt; .001). Fitting the SN<sub>2</sub> model to compare the distributions of the three groups, whilst accounting for the joint asymmetry and dependence between preoccupation at 3 and 6 months, substantially improves the goodness-of-fit from the corresponding bivariate Normal model (BIC<sub>N</sub> = 2674.8, BIC<sub>SN</sub> = 2603.5). A univariate predictive regression model from this SN<sub>2</sub> distribution could then be fitted to estimate missing 6 month preoccupation scores from 3 month data for example, considering the inclusion of case status or other covariates.</p>
+    </sec>
+    <sec id="sec0020">
+      <label>4</label>
+      <title>Discussion</title>
+      <p>Non-Normal models can help us understand asymmetric data arising from psychiatric research, further enabling appropriate analyses and inference depending on the study's aims, where alternative techniques are less flexible or overly complicated.</p>
+      <p>SN models can also be used to obtain confidence intervals based on parametric bootstrap methods <xref rid="bib0030" ref-type="bibr">[6]</xref> for functions of response variables whose distribution is difficult to characterise analytically. For example, bivariate centiles of preoccupation can be estimated from the fitted distribution, but the analytic form of their standard error is hard to obtain; however, they could be easily approximated using a parametric bootstrap procedure.</p>
+      <p>In this practical application of the SN<sub>2</sub> distribution, we have demonstrated a method which was informed by the true data properties throughout. This allows for a modelling process when non-parametric tests are insufficient, with substantial scope for flexibility and complexity, which we believe could be used in many areas across behavioural and psychiatric research.</p>
+    </sec>
+    <sec id="sec0025">
+      <title>Conflict of interest statement</title>
+      <p>None.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib0005">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azzalini</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A class of distributions which includes the normal ones</article-title>
+          <source>Scand J Stat</source>
+          <volume>12</volume>
+          <year>1985</year>
+          <fpage>171</fpage>
+          <lpage>178</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0010">
+        <label>2</label>
+        <mixed-citation publication-type="other">Azzalini A. R package ‘sn’: The skew-normal and skew-t distributions (version 0.4-10); 2008. Available from: http://azzalini.stat.unipd.it/SN.</mixed-citation>
+      </ref>
+      <ref id="bib0015">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azzalini</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Capitanio</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical applications of the multivariate skew normal distribution</article-title>
+          <source>J Roy Stat Soc B</source>
+          <volume>61</volume>
+          <year>1999</year>
+          <fpage>579</fpage>
+          <lpage>602</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0020">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Box</surname>
+              <given-names>G.E.P.</given-names>
+            </name>
+            <name>
+              <surname>Cox</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>An analysis of transformations</article-title>
+          <source>J Roy Stat Soc B</source>
+          <volume>26</volume>
+          <year>1964</year>
+          <fpage>211</fpage>
+          <lpage>252</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0025">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crawford</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Garthwaite</surname>
+              <given-names>P.H.</given-names>
+            </name>
+            <name>
+              <surname>Azzalini</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Howell</surname>
+              <given-names>D.C.</given-names>
+            </name>
+            <name>
+              <surname>Laws</surname>
+              <given-names>K.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Testing for a deficit in single-case studies: effects of departures from normality</article-title>
+          <source>Neuropsychologia</source>
+          <volume>44</volume>
+          <year>2006</year>
+          <fpage>666</fpage>
+          <lpage>677</lpage>
+          <pub-id pub-id-type="pmid">16046228</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0030">
+        <label>6</label>
+        <mixed-citation publication-type="other">Davison AC, Hinkley DV. Bootstrap methods and their application. Cambridge University Press, 1997.</mixed-citation>
+      </ref>
+      <ref id="bib0035">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Elhai</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Calhoun</surname>
+              <given-names>P.S.</given-names>
+            </name>
+            <name>
+              <surname>Ford</surname>
+              <given-names>J.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical procedures for analyzing mental health services data</article-title>
+          <source>Psychiatry Res</source>
+          <volume>160</volume>
+          <year>2008</year>
+          <fpage>129</fpage>
+          <lpage>136</lpage>
+          <pub-id pub-id-type="pmid">18585790</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0040">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kuha</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>AIC and BIC: comparisons of assumptions and performance</article-title>
+          <source>Sociol Methods Res</source>
+          <volume>33</volume>
+          <year>2004</year>
+          <fpage>188</fpage>
+          <lpage>229</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0045">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mardia</surname>
+              <given-names>K.V.</given-names>
+            </name>
+          </person-group>
+          <article-title>The effect of nonnormality on some multivariate tests and robustness to nonnormality in the linear model</article-title>
+          <source>Biometrika</source>
+          <volume>58</volume>
+          <year>1971</year>
+          <fpage>105</fpage>
+          <lpage>121</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0050">
+        <label>10</label>
+        <mixed-citation publication-type="other">Nicol-Harper R. An exploration of the impact of maternal preoccupation on mother-infant interaction, D.Phil. [thesis]. Oxford: University of Oxford; 2005.</mixed-citation>
+      </ref>
+      <ref id="bib0055">
+        <label>11</label>
+        <mixed-citation publication-type="other">R Development Core Team. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0; 2008. Available from: http://www.R-project.org.</mixed-citation>
+      </ref>
+      <ref id="bib0060">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rode</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Chinchilli</surname>
+              <given-names>V.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The use of box-cox transformations in the development of multivariate tolerance regions with applications to clinical chemistry</article-title>
+          <source>Am Stat</source>
+          <volume>42</volume>
+          <year>1988</year>
+          <fpage>23</fpage>
+          <lpage>30</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0065">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stein</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lehtonen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Harvey</surname>
+              <given-names>A.G.</given-names>
+            </name>
+            <name>
+              <surname>Nicol-Harper</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Craske</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The influence of postnatal psychiatric disorder on child development: is maternal preoccupation one of the key underlying processes?</article-title>
+          <source>Psychopathology</source>
+          <volume>42</volume>
+          <year>2009</year>
+          <fpage>11</fpage>
+          <lpage>21</lpage>
+          <pub-id pub-id-type="pmid">19023230</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>We are grateful to The Wellcome Trust who funded this research (grant number 071571), to the mothers who participated in the study, to members of the OPP team (particularly Bev Davies, Valerie West, Lindsay Hague, Heather Williams and Nicole Jones), and to Michelle Craske, Allison Harvey, Lynne Murray, Peter Cooper and Rosie Nicol-Harper for their input to the study. The UCL Institute of Child Health receives a proportion of funding from the Department of Health's NIHR Biomedical Research Centres funding scheme. The Centre for Paediatric Epidemiology and Biostatistics also benefits from funding support from the Medical Research Council in its capacity as the MRC Centre of Epidemiology for Child Health (G0400546).</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Contour plot of the bivariate Skew-Normal model for preoccupation scores at 3 and 6 months, by case group.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+  </floats-group>
+</article>

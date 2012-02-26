@@ -1,0 +1,649 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Comput Graph</journal-id>
+      <journal-title-group>
+        <journal-title>Computers &amp; Graphics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0097-8493</issn>
+      <publisher>
+        <publisher-name>Pergamon Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3149669</article-id>
+      <article-id pub-id-type="pmid">21976781</article-id>
+      <article-id pub-id-type="publisher-id">CAG2153</article-id>
+      <article-id pub-id-type="doi">10.1016/j.cag.2011.04.004</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Mobile Augmented Reality</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Robust detection and tracking of annotations for outdoor augmented reality browsing</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Langlotz</surname>
+            <given-names>Tobias</given-names>
+          </name>
+          <email>langlotz@icg.tugraz.at</email>
+          <email>mail@tobias-langlotz.de</email>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Degendorfer</surname>
+            <given-names>Claus</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mulloni</surname>
+            <given-names>Alessandro</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schall</surname>
+            <given-names>Gerhard</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Reitmayr</surname>
+            <given-names>Gerhard</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schmalstieg</surname>
+            <given-names>Dieter</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>Graz University of Technology, Institute for Computer Graphics and Vision, Inffeldgasse 16, 8010 Graz, Austria</aff>
+      <pub-date pub-type="pmc-release">
+        <month>8</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>8</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>35</volume>
+      <issue>4</issue>
+      <fpage>831</fpage>
+      <lpage>840</lpage>
+      <history>
+        <date date-type="received">
+          <day>30</day>
+          <month>1</month>
+          <year>2011</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>26</day>
+          <month>4</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>27</day>
+          <month>4</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Ltd.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>A common goal of outdoor augmented reality (AR) is the presentation of annotations that are registered to anchor points in the real world. We present an enhanced approach for registering and tracking such anchor points, which is suitable for current generation mobile phones and can also successfully deal with the wide variety of viewing conditions encountered in real life outdoor use. The approach is based on on-the-fly generation of panoramic images by sweeping the camera over the scene. The panoramas are then used for stable orientation tracking, while the user is performing only rotational movements. This basic approach is improved by several new techniques for the re-detection and tracking of anchor points. For the re-detection, specifically after temporal variations, we first compute a panoramic image with extended dynamic range, which can better represent varying illumination conditions. The panorama is then searched for known anchor points, while orientation tracking continues uninterrupted. We then use information from an internal orientation sensor to prime an active search scheme for the anchor points, which improves matching results. Finally, global consistency is enhanced by statistical estimation of a global rotation that minimizes the overall position error of anchor points when transforming them from the source panorama in which they were created, to the current view represented by a new panorama. Once the anchor points are redetected, we track the user's movement using a novel 3-degree-of-freedom orientation tracking approach that combines vision tracking with the absolute orientation from inertial and magnetic sensors. We tested our system using an AR campus guide as an example application and provide detailed results for our approach using an off-the-shelf smartphone. Results show that the re-detection rate is improved by a factor of 2 compared to previous work and reaches almost 90% for a wide variety of test cases while still keeping the ability to run at interactive frame rates.</p>
+      </abstract>
+      <abstract abstract-type="graphical">
+        <sec>
+          <title>Graphical abstract</title>
+          <p>
+            <fig id="f0045" position="anchor">
+              <graphic xlink:href="fx1"/>
+            </fig>
+          </p>
+        </sec>
+        <sec>
+          <title>Highlights</title>
+          <p>► Enhanced approach to register and track annotations' anchor points. ► Panoramic image with extended dynamic range to increase image quality. ► Use of internal orientation sensor to prime an active search for the anchor points. ► Minimizing position error of anchor points by aligning panoramas. ► Tracking using a 3-degree-of-freedom orientation tracking based on sensor fusion.</p>
+        </sec>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Augmented reality</kwd>
+        <kwd>Annotation</kwd>
+        <kwd>Tracking</kwd>
+        <kwd>Mobile phone</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>Augmented reality (AR) browsers are a new class of outdoor AR application intended for smartphones. The core function of an AR-browser is simply to display mostly textual annotations that are registered to places or objects in the real world used as anchor points and are given as absolute global coordinates. Current commercial solutions rely on non-visual sensors of the smartphone namely GPS, magnetometer and linear accelerometers <xref rid="bib22 bib13" ref-type="bibr">[22,13]</xref>, to determine where annotations should appear in the camera image.</p>
+      <p>However, performance of these sensors is poor. Magnetometers suffer from noise, jitter and temporal magnetic influences, often leading to deviations of tens of degrees in the orientation measurement. Even if we assume sufficient positional accuracy from GPS, which may often not be the case for consumer-grade devices in densely occluded urban environments, large orientation deviations imply that annotations will simply appear on the wrong location.</p>
+      <p>A smartphone's built-in camera allows attacking the localization problem by computer vision. However, visual detection and localization in outdoor scenes is still challenging, since it must address temporal variations such as large illumination changes. This problem is exacerbated by the fact that the coverage of the environment with reference views may be very unbalanced, and that the limited computational power of smartphones restricts the techniques that are applicable in practice. AR browsing also requires that annotations stay registered after the initial detection, which requires not only one-time detection but also real-time tracking even under fast motions. The challenge of meeting all these requirements simultaneously has limited the generality of previous outdoor AR tracking solutions on smartphones.</p>
+      <p>For an improved user experience, we can exploit the characteristics of smartphones and the AR browsers running on them. On the one hand, smartphones allow fusion of camera and non-visual sensors. On the other hand, AR browsers are usually operated while the user is standing still and only performing rotational movements. Previous work exploits this rotational motion to generate panoramas on the fly and then use them for vision-based orientation tracking <xref rid="bib25" ref-type="bibr">[25]</xref>. Later work extended the panorama creation in a way that allowed users to annotate objects within the panorama. These annotations can be shared with other users visiting the same spot as annotations anchor points were redetected in newly created panoramas by matching small image patches <xref rid="bib12" ref-type="bibr">[12]</xref>. These tasks – panoramic mapping and matching of annotations anchor points – can be carried out simultaneously in real-time, leading to an uninterrupted user experience. This paper presents an enhanced approach, which significantly improves the performance of both re-detection and tracking over the basic system (summarized in <xref rid="s0015" ref-type="sec">Section 3</xref>). Panoramas are created with an extended dynamic range representation, which can better represent the wide variety of illumination conditions found outdoors (<xref rid="s0035" ref-type="sec">Section 4.1</xref>). The internal orientation sensors are used to prime an active search scheme for the anchor points, which improves the matching results by suppressing incorrect assignments (<xref rid="s0040" ref-type="sec">Section 4.2</xref>). Finally, the global consistency is enhanced by statistical estimation of a global transformation that minimizes the overall position error of anchor points when transforming them from the source panorama in which they were created, to the current view represented by a new panorama (<xref rid="s0045" ref-type="sec">Section 4.3</xref>). This step considers multiple hypotheses for the association of anchor points to known candidates, and as a result further suppresses wrong associations. Once the anchor points are redetected, we track the user's movement using a novel 3-degree-of-freedom orientation tracking approach that combines vision tracking with the absolute orientation from inertial and magnetic sensors (<xref rid="s0050" ref-type="sec">Section 5</xref>). This fusion improves tracking performance even under fast motion and tracking failures and provides important input for the initialization of the visual tracking component.</p>
+      <p>We tested our system using an AR campus guide application as a test case and provide detailed results for our approach using an off-the-shelf smartphone (<xref rid="s0055" ref-type="sec">Section 6</xref>). Results show that the re-detection rate is improved by a factor of 2 by the enhancements reported in this paper and reaches almost 90% for a wide variety of test cases.</p>
+    </sec>
+    <sec id="s0010">
+      <label>2</label>
+      <title>Related work</title>
+      <p>Previous work can be roughly divided into two research directions. Firstly, work on systems allowing the user to annotate the environment using an AR interface. Secondly, work which deals with re-detection and tracking of objects in outdoor environments.</p>
+      <p>Early work displaying annotations using augmented reality were conducted by Feiner et al. <xref rid="bib7" ref-type="bibr">[7]</xref> as in the MARS project. This approach can be seen as the conceptual origin for the recent development of commercial AR-browser applications running on smartphones such as Wikitude <xref rid="bib13" ref-type="bibr">[13]</xref> or Layar <xref rid="bib22" ref-type="bibr">[22]</xref>. These commercial systems present annotations from databases that were created offline and positioned using GPS references. In contrast, some recent research work deals with placing annotations online, within the AR application.</p>
+      <p>A number of approaches exist for this online annotating. For e.g., Reitmayr et al. <xref rid="bib16" ref-type="bibr">[16]</xref> used an existing 3D model of the environment to calculate the exact position of the annotation by casting a ray into the scene. Later Reitmayr et al. <xref rid="bib19" ref-type="bibr">[19]</xref> described a set of techniques to simplify the online authoring of annotations in unknown environments using a simultaneous localization and mapping (SLAM) system.</p>
+      <p>The approach presented by Piekarski and Thomas <xref rid="bib15" ref-type="bibr">[15]</xref> uses triangulation for placing annotations. Rays are cast from different positions in the environment into the direction of the annotation and then intersected.</p>
+      <p>Wither et al. <xref rid="bib26" ref-type="bibr">[26]</xref> used aerial photographs to support the annotation process. After casting a ray into the direction of the object to be annotated in the AR view, a secondary view shows an aerial photograph, allowing the user to move the annotation along the ray. Later Wither replaced this manual placement along a ray with a single-point laser range finder <xref rid="bib27" ref-type="bibr">[27]</xref>.</p>
+      <p>The work in <xref rid="bib12" ref-type="bibr">[12]</xref> proposed another method allowing the user to place annotations in a panoramic view of the environment. This technique, which is the foundation for this paper, is further summarized in <xref rid="s0015" ref-type="sec">Section 3</xref>. The main drawback of this technique is its poor detection performance under strong temporal variations.</p>
+      <p>Several previous PC-based outdoor AR systems rely on a combination of vision, GPS and inertial measurement unit (IMU) sensors to obtain a global 6DOF registration within the earth reference frame <xref rid="bib7 bib23" ref-type="bibr">[7,23]</xref>. These sensors have recently also become available in smartphones, but the inexpensive, low-power MEMS devices used in smartphones perform poorly compared to dedicated industrial sensors used in previous larger AR setups.</p>
+      <p>In all these devices GPS provides 3D positional information, while orientation is estimated from linear accelerometers (measuring the local gravity vector) and magnetic compasses (measuring the local magnetic field vector). Typically, electromagnetic fields and conductive materials in both the environment and the hardware setup itself distort a magnetometer's measurement. Azuma et al. <xref rid="bib3" ref-type="bibr">[3]</xref> provide an insightful description of the performance of such sensors and the resulting significant registration errors, especially if annotated objects are far away <xref rid="bib4" ref-type="bibr">[4]</xref>.</p>
+      <p>Several approaches exist to overcome the inherent limitations of using sensors alone. Careful calibration of the magnetic sensors' scale, bias and non-orthogonal parameters, as well as influences such as hard- and soft-iron effects in close proximity, can reduce the deviations between measurements and the true magnetic field vector. Calibration can be based on the assumptions of measuring the same vector under different orientations <xref rid="bib29" ref-type="bibr">[29]</xref>, measuring invariants of a setup such as the angle between the north vector and gravity vector <xref rid="bib10" ref-type="bibr">[10]</xref>, or manual calibration using measurements in relation to ground-truth <xref rid="bib3" ref-type="bibr">[3]</xref>. However, in many cases a one-time calibration is not sufficient, as the errors change with time and location. Therefore online calibration methods <xref rid="bib8" ref-type="bibr">[8]</xref> are required to adapt to varying distortions. The hybrid orientation tracking presented in <xref rid="s0050" ref-type="sec">Section 5</xref> can be seen as a kind of online calibration.</p>
+      <p>Camera-based tracking methods can provide higher accuracy and update rate than pure non-visual sensor-based systems, but they usually rely on the model of the environment. Here, the device's pose is measured in relation to the model using visual features <xref rid="bib24" ref-type="bibr">[24]</xref>. Klein and Murray <xref rid="bib11" ref-type="bibr">[11]</xref> presented a SLAM-based tracker that builds the model of the environment on the fly but only works in small workspaces. Arth et al. <xref rid="bib2" ref-type="bibr">[2]</xref> presented a method for localizing a mobile user's 6DOF pose in a wide area using a sparse 3D point reconstruction and visibility constraints. It is well known that fusion of vision with non-visual sensor data allows for more robust performance under fast motion and tracking failures <xref rid="bib17 bib20 bib28" ref-type="bibr">[17,20,28]</xref> and provides an important input for the initialization of the visual tracking component <xref rid="bib6 bib18" ref-type="bibr">[6,18]</xref>. However, little research work on tracking with sensor fusion on smartphones has been done to date, possibly because of poor sensor quality, limited computational power or the relatively recent availability of sensor-equipped smartphones.</p>
+      <p>In unknown environments, visual tracking cannot provide absolute measurements, but it can provide constraints that allow calibrating sensors online. Azuma et al. <xref rid="bib5" ref-type="bibr">[5]</xref> used relative rotation measurements obtained through 2D feature tracking to learn the distortions in a magnetic compass. In earlier work <xref rid="bib21" ref-type="bibr">[21]</xref>, we looked at overcoming short-term distortions through tracking of the difference between vision-based orientation tracking and a compass. Any significant change to this difference over the time was interpreted as a failure of one subsystem, and the system logic consequently switched to the more reliable one. However, this scheme did not allow for compensating an initial distortion in the magnetic sensor. The approach described in this paper estimates the difference over the time and can therefore reduce larger distortions in the compass.</p>
+    </sec>
+    <sec id="s0015">
+      <label>3</label>
+      <title>Panoramic augmented reality annotations</title>
+      <p>In the following we will briefly introduce our previous work on panoramic mapping and tracking as the system described in this paper is based on a panoramic map of the environment, created in a simultaneous mapping and tracking step and used for continuous real-time orientation tracking. We further give an overview on our previous work of using the panorama as an intermediate representation of the environment on which template-based matching of annotations anchor points is performed as a background activity. Concurrently the orientation tracking allows real-time updates to the AR user interface used for displaying the annotations.</p>
+      <sec id="s0020">
+        <label>3.1</label>
+        <title>Panoramic mapping and tracking</title>
+        <p>The panoramic mapping and tracking is based on the assumption that the user performs only rotational movements with the camera phone at an annotated spot, while translational movements can be neglected. The user's position is determined with GPS. This assumption allows the current camera frame to be mapped incrementally onto a cylinder to create a 2D environment map (see <xref rid="f0005" ref-type="fig">Fig. 1</xref>).</p>
+        <p>Identifying and processing only those parts of the current camera frame, which are not yet mapped, helps to increase the speed of this algorithm, as only a few (usually &lt;1000) pixels have to be mapped per frame.</p>
+        <p>After updating the panoramic map, the algorithm computes the rotational tracking information for each frame. This step employs an active search scheme together with a motion model assuming constant motion. FAST keypoints <xref rid="bib14" ref-type="bibr">[14]</xref> are extracted at each frame for the current camera frame and compared against the keypoints in the current panoramic map. To compute the FAST keypoints on the unfinished panoramic map, the map is divided into tiles. If all the pixels within a tile are mapped, the tile is considered finished. Finished tiles are searched for FAST keypoints in a background thread. The available keypoints are then used for updating the tracking information. The full algorithm of panoramic mapping and tracking is running in real-time at 30 fps on current generations smartphones such as the HTC HD2 making the panorama generation only dependent on how fast the user captures the environment by rotating the camera. A more detailed overview of the implemented approach and timings are given in <xref rid="bib25" ref-type="bibr">[25]</xref>.</p>
+      </sec>
+      <sec id="s0025">
+        <label>3.2</label>
+        <title>Template-based annotation matching</title>
+        <p>In <xref rid="bib12" ref-type="bibr">[12]</xref> we present an approach, which uses the panoramic representation of the environment to augment the live view with annotations. The system determines the position of an annotation by using an image patch stored on a remote server. As soon as a new user approaches an annotated spot, the application downloads all image patches of annotated panoramas in the close proximity and matches them against the new panorama while this is produced using the algorithm described in <xref rid="s0020" ref-type="sec">Section 3.1</xref>. The matching itself relies on normalized cross correlation (NCC). To avoid excessive matching against the full panorama at each frame, the matching is scheduled only to test finished tiles, which were also used for creating the keypoints as described in <xref rid="s0020" ref-type="sec">Section 3.1</xref>. Consequently, each panorama tile is only tested once against the list of image templates.</p>
+        <p>Another speed up is achieved by using a hierarchy of tests. A Walsh transform is computed as a pre-check before applying the more expensive template matching using NCC. This reduces the numbers of NCC operations, as only the cases that pass a threshold when matching Walsh transforms are tested with NCC.</p>
+        <p>Matching the annotation templates against the map rather than the camera image allows us to schedule the matching to guarantee a desired frame rate: Each finished tile is not checked immediately, but put into a queue instead. During each frame the system schedules only as much work from the queue as allowed by the given time budget. Since the operations are simple and their timings are predictable, we can easily limit the workload so that the time budget is not exceeded.</p>
+        <p>Our system can therefore run at constant speed on any phone that is able to perform real-time panoramic mapping and tracking. On fast phones, the annotations are detected quickly, whereas on slower phones it takes longer. Matching one cell against 12 annotations takes ∼28 ms on an HTC HD2. Targeting a frame rate of 20 Hz (50 ms per frame) allows scheduling ∼10 ms for detection of every frame. <xref rid="f0010" ref-type="fig">Fig. 2</xref> shows the workflow of the system presented in <xref rid="bib12" ref-type="bibr">[12]</xref>: Peter starts by creating a panoramic map and labels objects of interest. The annotations, Peter's GPS location and a description of the visual appearance of the annotated area are transmitted to a server. Later, Mary wants to retrieve annotations authored by Peter. Her phone notifies her when she is close to locations annotated by Peter, using GPS information. A map view allows her to reach a spot close to where Peter was when he created the annotations. After pointing up, the phone uses a newly created panorama for efficiently matching Peter's annotations to the environment. Mary's phone displays the corresponding annotation, as soon as the supporting area of a particular annotation is re-detected. Mary is now able to create additional annotations herself.</p>
+        <p>The main drawback of this approach is that it relies entirely on the vision-based matching, and is therefore susceptible to temporal variations such as shadows or vegetation changes. Furthermore, the template matching is carried out on the whole panorama without using prior knowledge to optimize the search area. All annotations are treated independently, which means that the position resulting from an earlier matching process does not assist later matches.</p>
+        <p>All this resulted in matching scores, which are very good (about 90%) for searching annotations under the same environmental conditions (position of the sun, weather conditions). However if environment conditions are different, the matching scores in tests dropped by almost a factor of 2 (about 56%). This is clearly not sufficient for using this approach in social computing application, where annotations should be reliably reproduced for extended periods of time.</p>
+      </sec>
+    </sec>
+    <sec id="s0030">
+      <label>4</label>
+      <title>Enhanced re-detection of annotations in panorama maps</title>
+      <p>The focus of this work is the improvement of the low re-detection rate of annotations in the case of different environment conditions by keeping the general workflow as presented in <xref rid="s0025" ref-type="sec">Section 3.2</xref>. Thus the users are guided to a spot containing previously created annotations using GPS. While the users point their phone to the environment, the system creates a panorama which we use simultaneously to detect the annotations. The differences against previous work are three improvements for the stability of re-detection.</p>
+      <p>Firstly, the basic quality of the panoramic map must be enhanced so that later matching can tolerate stronger deviations in appearance. This requires capturing more information in the original panorama, which is achieved by deploying an extended dynamic range representation of the map.</p>
+      <p>Secondly, commonly available smartphone hardware is exploited more consequentially. Non-visual sensor measurements are used to narrow down the search area of the vision-based re-detection. Moreover, the sensor-based tracking is used as a backup in case the vision-based system fails.</p>
+      <p>Thirdly, we estimate a global transformation <italic>T</italic>, which aligns the source panorama and the target panorama, using reliable statistical techniques. By applying <italic>T</italic>, we can map all annotations stored on the server corresponding to a source panorama to a newly created target panorama. In the following, a detailed description of these steps is given.</p>
+      <sec id="s0035">
+        <label>4.1</label>
+        <title>Extended dynamic range panoramic maps</title>
+        <p>The basic template matching of image patches describing annotations and the panoramic map is strongly dependent on the image quality of the panoramic map.</p>
+        <p>A main problem in this process is the automatic adjustment of exposure and white balance of built-in cameras in current generation smartphones. The camera chip performs arbitrary processing to deliver a “nice” image, without letting the application programmer control or even understand the process. While this automatic image processing seems to have no strong effect towards the tracking and therefore does not adversely affect the stitching success, it results in visible boundaries in the panoramic map (see <xref rid="f0015" ref-type="fig">Fig. 3</xref>), where contributions from multiple frames are stitched together. These patches show discontinuities in brightness caused by variations in the exposure settings. Later in the matching, the discontinuities introduce artificial gradients, which heavily affect the template-based matching of the anchor points. The situation is made worse by the fact that discontinuities can appear both, in the image patches describing the annotations, which are extracted from the panoramic map, and in the newly created panoramic map used for re-detecting the annotations.</p>
+        <p>The best solution to suppress such discontinuities caused by exposure changes would be to use a camera that allows the programmer to fix the exposure rate. Such a programmable camera would even provide the possibility to create true high dynamic range images, if the response function could be determined for the integrated camera. However, to the best of our knowledge, the only mobile device capable of controlling camera parameters is the Nokia N900 with Frankencam API <xref rid="bib1" ref-type="bibr">[1]</xref>. It seems unlikely that fully programmable cameras will become widespread in the foreseeable future.</p>
+        <p>Thus we created a different approach that allows the creation of extended dynamic range (EDR) images on phones without any access to the exposure settings. While this approach must necessarily rely on simple estimation, it can compensate for the most severe artefacts introduced by auto-exposure. For this purpose, we map the first camera frame into the panoramic map and use the pixel intensities as a baseline for all further mappings. All subsequent frames are heuristically adjusted to match the intensities found in the first frame, by estimating the overall change of the exposure setting between the first and the current frame.</p>
+        <p>We achieved this by using the FAST keypoints, which are computed in the current camera frame and the panoramic map. As these keypoints are already generated for tracking purposes (see <xref rid="s0020" ref-type="sec">Section 3.1</xref>), this step does not generate an additional overhead. We compute the difference of intensities for all pairs of matching keypoints found in the camera frame and in the panoramic map. The average difference of these point pairs is used to correct the current camera frame by adding the difference to each pixel before mapping it into the panorama. This simple correction significantly reduces the discontinuities of intensities. The panoramic map is built using 16 bits per color channel, which was empirically found to be sufficient to avoid any clipping errors when adjusting pixel values in the described way, without consuming too much memory bandwidth for a smartphone. The display of the panoramic map with extended dynamic range is done with a simple linear tone-mapping operator. A resulting panorama image is showed in <xref rid="f0015" ref-type="fig">Fig. 3</xref>. As it can be seen, the discontinuity artefacts are noticeably reduced, which is confirmed by our experimental results.</p>
+      </sec>
+      <sec id="s0040">
+        <label>4.2</label>
+        <title>Sensor fusion for improved re-detection</title>
+        <p>Current generation smartphones regularly include GPS, compass, accelerometer and recently even miniature gyroscopes. The accuracy of these sensors is usually inferior to a well-tuned visual tracking technique, but non-visual sensors are complementary because of their robust operation. We therefore integrated the compass and the accelerometers to create a better re-detection of annotations.</p>
+        <p>The improved re-detection is achieved by narrowing down the search area for the vision-based template matching using the information obtained from the internal sensors. The region in the panorama where the annotation is likely to be located-based is determined based on a direction estimate from the internal sensors.</p>
+        <p>The panoramic map is created at a resolution of 2048×512 pixels from 320×240 pixel sized camera images. A typical camera has a field of view of ∼60°, so the camera resolution is close to the map resolution: 320 pixels/60° (360°=1920 pixels). The theoretical angular resolution of the map is therefore 360°/2048 pixels=0.176° per pixel. Assuming a maximum error of the compass of ±10° we can expect to find the annotation in a window of ±57 pixels around the estimated position. We consider an area 3 times larger that this window, but weigh the NCC score with a function that penalizes by distance from the active search window. Thus we only consider matches outside the primary search area if they have a very good matching score.</p>
+      </sec>
+      <sec id="s0045">
+        <label>4.3</label>
+        <title>Matching annotations using a global transformation</title>
+        <p>In the previous approaches, the annotations were considered independent of each other during the re-detection. Thus, the detected position of an annotation was not used to optimize the re-detection of other annotations. Moreover, empirical analysis revealed that the main reason for wrong results from the NCC template matching came from more than one good match for one annotation (see <xref rid="f0020" ref-type="fig">Fig. 4</xref>). This led to the problem that single annotations could not be detected reliably or were detected at the wrong location, whereas other annotations were robustly detected at the correct spot. This situation calls for additional geometric verification.</p>
+        <p>We approach the problem by considering the annotations in the source panorama (the panorama which was used to create the annotations) as a set for which a consistent geometric estimate must be achieved. Therefore, the detection is extended by the requirement to find a global transformation <italic>T</italic>, which maps the set of annotations from the source panorama into the target panorama (representing the current environment) with a minimized average error. As we assume the panoramas to be made at the same position, the transformation is a pure rotation aligning source and target panorama with three degrees of freedom.</p>
+        <p>To compute rotation <italic>T</italic>, we describe the position of an anchor point in the source panorama by representing anchor coordinates as a 3D vector from the camera position to a point on the cylindrical panorama (see <xref rid="f0025" ref-type="fig">Fig. 5</xref>). We extended the workflow as presented in <xref rid="s0025" ref-type="sec">Section 3.2</xref> to also store this 3D vector together with the image patch for each annotation. This dataset describing the annotation is uploaded to a remote server and tagged with the GPS address of the current position as depicted in <xref rid="f0010" ref-type="fig">Fig. 2</xref>. We do not upload any panoramic image, as only this dataset is required to redetect the annotations. As the size of the dataset is in the range a few kilobytes (∼2 kB for the image patch+text information) it can be easily handled via a 3G connection.</p>
+        <p>Once a user approaches a place where annotations were created, the mobile phone accesses the closest datasets based on the GPS position. We take into account that GPS can be inaccurate and therefore we download all datasets that were created within proximity of 50 m. After downloading the datasets the anchor points are redetected using the template-based matching and annotations are initially placed using the best match. But instead of using only the best match, we also keep the best three candidate matches based on NCC score for later use. For all found candidate matches, we compute the vector-based position in the target panorama as we did for the original annotations in the source panorama.</p>
+        <p>While online tracking and mapping continues, a RANSAC based approach running in a background thread determines and updates a global rotation <italic>T</italic>. This rotation aims to optimally map the set of all annotations from the source panorama to the target panorama by aligning the panoramas.</p>
+        <p>We randomly select two annotations and one of their three best candidate positions in the target panorama as input for finding the best rotation using RANSAC. To find the best match, the rotation <italic>T</italic> between the two coordinate systems is calculated so that two vector pairs <inline-formula><mml:math id="M1" altimg="si0006.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:math></inline-formula>, <inline-formula><mml:math id="M2" altimg="si0007.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></inline-formula> and <inline-formula><mml:math id="M3" altimg="si0008.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>b</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:math></inline-formula>, <inline-formula><mml:math id="M4" altimg="si0009.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>b</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></inline-formula> can be aligned to each other while minimizing an <italic>L</italic><sup>2</sup> norm of remaining angular differences. We use the absolute orientation between two sets of vectors <xref rid="bib9" ref-type="bibr">[9]</xref> to compute this rotation. The resulting rotation is the hypothesis for the RANSAC algorithm. All annotations are mapped to the target panorama using the current estimate for <italic>T</italic>, and the difference of the resulting 2D position in target map space to the annotation position found through template matching is determined. If the distance is below a threshold, the annotation is counted as inlier and its error is also counted as inlier. Its error is then added to an error score.</p>
+        <p>For a hypothesis with more than 50% inliers, a normalized error score is determined by dividing the raw error score by the number of inliers. The normalized score determines if the new <italic>T</italic> replaces the previous best hypothesis. This process is repeated until a <italic>T</italic> with an error score below a certain threshold is found. Such a <italic>T</italic> is then used to transform all annotations from the source to the target panorama. Annotations for which no successful match could be found can now also be displayed at an appropriate position, although with less accuracy because their placement is only determined indirectly.</p>
+        <p>Obviously, the source and target panorama are never taken from the exact same position, and the resulting systematic error can affect the performance of the robust estimation. We empirically determined that a 50% threshold for inliers and a 10 pixel threshold for the normalized error score in 2D map coordinates yields a good compromise between minimizing overall error and reliable performance of the RANSAC approach.</p>
+        <p>Finding the best rotation to align the two panoramas requires about ∼30 ms for 8 annotations but the panoramas are not aligned each frame, as it is only necessary to update the model once new candidates for annotations anchor points are detected based on the vision-based template matching.</p>
+      </sec>
+    </sec>
+    <sec id="s0050">
+      <label>5</label>
+      <title>Hybrid orientation tracking</title>
+      <p>Once we have redetected the anchor points of the textual annotations, we need to track orientation changes to guarantee a continuous precise augmentation of the annotations in the users current view. The re-dection using the absolute orientation as described in <xref rid="s0040" ref-type="sec">Section 4.2</xref>, requires measurements from the magnetic compass and linear accelerometers to estimate the absolute orientation of the device, because the vision-based tracking only estimates orientation with respect to an arbitrary initial reference frame. Moreover, the vision-based orientation tracking has difficulties in dealing with fast motion, image blur, occlusion and other visual anomalies. On the other hand, the vision-based tracking is more accurate than the sensor-based orientation estimate. Therefore, we fuse the two orientation measurements to obtain a robust and accurate orientation.</p>
+      <p>In principle, the vision-based tracking would be sufficient for accurate orientation estimation, but it only provides relative measurements. Therefore, we use the sensor-based orientation to estimate the global pose of the initial reference frame of the vision-based tracker and then apply the incremental measurements to this initial and global pose. A first estimate can be obtained by simply reading the sensor-based orientation; at the same time the vision-based tracker is initialized.</p>
+      <p>However a single measurement of the sensor-based orientation will be inaccurate. Therefore, we continuously refine an online estimation of the relative orientation between the initial vision-based tracking frame and the world reference frame.</p>
+      <p>We assume a north-oriented world reference frame <italic>N</italic> given locally by the direction to magnetic north and the gravity vector. The inertial and magnetic sensors measure the gravity and magnetic field vectors relative to a device reference frame <italic>D</italic>. The output of the sensors is a rotation <italic>R</italic><sub><italic>DN</italic></sub><xref rid="fn1" ref-type="fn">1</xref> that maps the gravity vector and the direction of north from the world reference frame into the device reference frame (see <xref rid="f0030" ref-type="fig">Fig. 6</xref>).</p>
+      <p>The visual orientation tracker provides a rotation of the device <italic>R</italic><sub><italic>DP</italic></sub> from the reference frame <italic>P</italic> of the panorama into the device reference frame <italic>D</italic>. In principle, the device reference frame differs for camera and other sensors. For simplicity, we assume a calibrated device in the following, for which the two reference frames can be considered identical.</p>
+      <p>Our aim is to estimate the invariant rotation <italic>R</italic><sub><italic>PN</italic></sub> from the world reference frame <italic>N</italic> to the panorama reference frame <italic>P</italic> (see <xref rid="f0030" ref-type="fig">Fig. 6</xref>). Composing the rotations from world to panorama to device reference frame, we obtain<disp-formula id="eq0005"><label>(1)</label><alternatives><textual-form specific-use="jats-markup"><italic>R</italic><sub><italic>D</italic><italic>P</italic></sub><italic>R</italic><sub><italic>P</italic><italic>N</italic></sub> = <italic>R</italic><sub><italic>D</italic><italic>N</italic></sub></textual-form><mml:math id="M5" altimg="si0010.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>R</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi><mml:mi>P</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi>R</mml:mi></mml:mrow><mml:mrow><mml:mi>P</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>R</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></disp-formula><disp-formula id="eq0010"><label>(2)</label><mml:math id="M6" altimg="si0011.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>R</mml:mi></mml:mrow><mml:mrow><mml:mi>P</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msubsup><mml:mrow><mml:mi>R</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi><mml:mi>P</mml:mi></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup><mml:msub><mml:mrow><mml:mi>R</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:msub><mml:mo>.</mml:mo></mml:math></disp-formula></p>
+      <p>Using Eq. <xref rid="eq0010" ref-type="disp-formula">(2)</xref> we can estimate the relative rotation <italic>R</italic><sub><italic>PN</italic></sub> from simultaneous measurements from the vision-based and the sensor-based tracking. At every timestamp <italic>t</italic>, we record measurements <italic>g</italic><sub><italic>t</italic></sub> for the gravity vector <italic>g</italic> and <italic>m</italic><sub><italic>t</italic></sub> for the magnetic field vector <italic>m</italic>, both <italic>g</italic> and <italic>m</italic> defined in the world reference frame. A rotation <italic>R</italic><sub><italic>DN</italic></sub>=[<italic>r</italic><sub><italic>x</italic></sub> <italic>r</italic><sub><italic>y</italic></sub> <italic>r</italic><sub><italic>z</italic></sub>] is calculated such that<disp-formula id="eq0015"><label>(3)</label><alternatives><textual-form specific-use="jats-markup"><italic>g</italic><sub><italic>t</italic></sub> = <italic>R</italic><sub><italic>D</italic><italic>N</italic></sub><italic>g</italic>,  and</textual-form><mml:math id="M7" altimg="si0012.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>g</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>R</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:msub><mml:mi>g</mml:mi><mml:mo>,</mml:mo><mml:mspace width="1em"/><mml:mtext>and</mml:mtext></mml:math></alternatives></disp-formula><disp-formula id="eq0020"><label>(4)</label><alternatives><textual-form specific-use="jats-markup"><italic>m</italic><sub><italic>t</italic></sub><italic>r</italic><sub><italic>z</italic></sub> = 0.</textual-form><mml:math id="M8" altimg="si0013.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>m</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mi>z</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0.</mml:mn></mml:math></alternatives></disp-formula></p>
+      <p>The resulting rotation accurately represents the pitch and roll measured through the linear accelerometers, while the magnetic field vector may vary within the plane of up and north direction (X–Y plane). This reflects our observation that the magnetic field vector is noisier and introduces errors into the roll and pitch of the device. For the video frame available at timestamp <italic>t</italic>, our vision tracker provides a measurement of the rotation <italic>R</italic><sub><italic>DP</italic></sub>. Given the two measurements <italic>R</italic><sub><italic>DN</italic></sub> and <italic>R</italic><sub><italic>DP</italic></sub>, we can compute <italic>R</italic><sub><italic>PN</italic></sub> through Eq. <xref rid="eq0010" ref-type="disp-formula">(2)</xref>. To filter repeated measurements of <italic>R</italic><sub><italic>PN</italic></sub>, we use an extended Kalman filter (EKF) operating on the rotation <italic>R</italic><sub><italic>PN</italic></sub>.</p>
+      <p>To represent the filter state, we model rotations with 3 parameters using the exponential map of the Lie group SO(3) of rigid body rotations. The filter state at time <italic>t</italic> is an element of the associated Lie algebra <italic>so</italic>(3), represented as a 3-vector <italic>μ</italic>,. This element describes the error in the estimation of the rotation <italic>R</italic><sub><italic>PN</italic></sub>. <italic>μ</italic> is normal distributed with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>μ</italic> ∼ <italic>N</italic>(0, <italic>P</italic><sub><italic>t</italic></sub>)</textual-form><mml:math id="M9" altimg="si0014.gif" overflow="scroll"><mml:mi>μ</mml:mi><mml:mo>∼</mml:mo><mml:mi>N</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:msub><mml:mrow><mml:mi>P</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> with a fixed covariance <italic>P</italic>. It relates the current estimate <inline-formula><mml:math id="M10" altimg="si0015.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo>ˆ</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></inline-formula> to the real R<sub>PN</sub> through the following relation<disp-formula id="eq0025"><label>(5)</label><mml:math id="M11" altimg="si0016.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>R</mml:mi></mml:mrow><mml:mrow><mml:mi>P</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi>exp</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>μ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo>ˆ</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo></mml:math></disp-formula>where exp(.) maps from an element in the Lie algebra <italic>so</italic>(3) to a rotation <italic>R</italic>. Conversely, log(<italic>R</italic>) maps a rotation in SO(3) into the Lie algebra. As we are estimating a constant, we assume a constant position motion model, where <italic>μ</italic> does not change and the covariance grows through noise represented by a fixed noise covariance matrix.</p>
+      <p>The measurement equation for the filter state <italic>μ</italic> states that the expected measurement equals the current rotation <inline-formula><mml:math id="M12" altimg="si0017.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo>ˆ</mml:mo></mml:mover></mml:math></inline-formula> and the difference is the identity rotation<disp-formula id="eq0030"><label>(6)</label><mml:math id="M13" altimg="si0018.gif" overflow="scroll"><mml:mi>log</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>R</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:msub><mml:msubsup><mml:mrow><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo>ˆ</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>μ</mml:mi></mml:math></disp-formula></p>
+      <p>The measurement Jacobian of Eq. <xref rid="eq0030" ref-type="disp-formula">(6)</xref> is now simply the identity matrix. This Jacobian is used in the extended Kalman filter framework to update the state <italic>μ</italic>. Finally, we correct for the new error estimate and update the current rotation <inline-formula><mml:math id="M14" altimg="si0019.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo>ˆ</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:math></inline-formula> by left multiplying exp(<italic>μ</italic>) to it. After this we reset the error <italic>μ</italic> again to 0.</p>
+      <p>The global orientation of the device within the world reference frame is computed through concatenation of the estimated panorama reference frame orientation <italic>R</italic><sub><italic>PN</italic></sub> and the measured orientation from the visual tracker <italic>R</italic><sub><italic>DP</italic></sub> as described in Eq. <xref rid="eq0005" ref-type="disp-formula">(1)</xref>. Thus we combine the accurate but relative orientation from visual tracking with a filtered estimate of the reference frame orientation. The implementation as a recursive filter is efficient and fast, requiring only little memory and processing power.</p>
+    </sec>
+    <sec id="s0055">
+      <label>6</label>
+      <title>Experiments and results</title>
+      <p>We implemented and evaluated our approach on a common smartphone (HTC HD2) as part of a campus information system. During the evaluation, we focused on two main criteria: Firstly, the re-detection rate used for detecting the annotation anchor points, and secondly, the accuracy of the hybrid tracker used for tracking the orientation.</p>
+      <sec id="s0060">
+        <label>6.1</label>
+        <title>Re-detection performance</title>
+        <p>To test the re-detection performance, we created 12 panoramas at different positions on our campus, aiming at obtaining a diverse set of images and environmental conditions. The average distance between these panoramas was ∼50 m. For each panorama, we created 4–6 annotations, leading to 58 annotations in total. For better comparison, we created panorama images both by using the extended dynamic range approach presented in <xref rid="s0035" ref-type="sec">Section 4.1</xref> and by using standard 8-bit dynamic range. We then proceeded to attempt matching the collected annotations against newly created panoramas resulting from the recorded video streams.</p>
+        <p>To test the matching performance under different lighting settings (see bottom <xref rid="f0035" ref-type="fig">Fig. 7</xref>), we created the panoramas and the annotations on a sunny day 1 h before sunset and tried to match them to material from a different day taken about noon. This led to situations in which certain building parts had noticeable shadows but the annotation templates however did not show these shadows. We also collected material with lighting artifacts including lens flares and bright spots at the position of the sun, which where mapped directly into the panorama image makes it very difficult to match annotations in such areas.</p>
+        <p>As our approach requires the user to be at the same position from where the annotations and the source panorama were created we evaluated the matching performance within a 2 m radius to the original position. As GPS was sometimes inaccurate we had the case that at one position two annotated spots were assumed to be within 50 m resulting in the fact that the application downloaded the datasets of both annotated spots and choose the one achieving the highest scores in the NCC-based template matching for further processing.</p>
+        <p>The evaluation procedure was setup so that all combinations of re-detection enhancements were systematically tested. The baseline system without any enhancements resulted in a re-detection rate of about 40%, which is less than that reported in <xref rid="bib12" ref-type="bibr">[12]</xref>, because of the more difficult environmental conditions used to create the datasets. The results are summarized in <xref rid="f0035" ref-type="fig">Fig. 7</xref>. The sensor fusion improves re-detection by about +15%, to a point where the RANSAC approach for determining the global transformation finds enough inliers, so that the combined sensor fusion and global transformation technique delivers 86% re-detection rate. The EDR representation seems only effective in improving already very good results a bit further, while EDR applied alone on difficult situations can even slightly reduce matching performance. However, the combination of all three enhancements leads to an overall re-detection of 90%, which is more than twice the original performance and probably satisfactory for everyday operation.</p>
+      </sec>
+      <sec id="s0065">
+        <label>6.2</label>
+        <title>Hybrid tracking accuracy</title>
+        <p>Using the sensors, we can directly calculate the 3×3 rotation matrix representing the phone's orientation. We tested the absolute accuracy of our hybrid orientation tracker using a set of reference points in the environment, which were surveyed using a professional tachyometer at centimeter level accuracy. The distance from the camera to the reference points varied from 26 to 92 m.</p>
+        <p>For better reproducibility, the mobile device was mounted on a tripod positioned above the reference point. We measured the accuracy of the tracker by aiming the device's camera at one of the reference points and subsequently turning the device towards all other reference points without resetting the tracker. The device was kept still for about 30 s at each reference point, while the orientations reported by the sensors, the vision tracker and the hybrid tracker were logged.</p>
+        <p>The measurement noise used in the evaluation was derived from static observations of the sensors. As the measurement function <xref rid="eq0010" ref-type="disp-formula">(2)</xref> combines the two inputs, the measurement noises of sensors and visual tracker need to be combined. In practice, the visual tracker has much lower noise and is subsumed in the sensors' noise. The process noise was tuned and set to 10<sup>4</sup>, yielding the lowest root mean square error for recorded sequences. <xref rid="f0040" ref-type="fig">Fig. 8</xref> (left and middle) depicts a plot of a measurement session, while the phone is turned in clockwise direction from one reference point to the next. <xref rid="f0040" ref-type="fig">Fig. 8</xref> (right) shows the error to the closest reference point, effectively showing the error to the ground-truth heading.</p>
+        <p>The results demonstrate two improvements over pure sensor-based orientation tracking. Firstly, high frequency noise is reduced with a very small lag relative to fast motions (see <xref rid="f0040" ref-type="fig">Fig. 8</xref> left and middle). The visual tracking is dominating the motion estimation and provides low jitter rotation estimates. Secondly, over the time, the error of the filtered rotation is smaller than the sensor-only rotation, because deviations in the compass measurements are averaged over different orientations. Overall, we obtain a responsive, less jittery estimate that is on average more accurate than the orientation derived from the sensors alone and more robust in case of fast motions.</p>
+      </sec>
+    </sec>
+    <sec id="s0070">
+      <label>7</label>
+      <title>Conclusions and future work</title>
+      <p>We presented an approach for the detection and tracking of annotations in mobile AR applications. The used approach allows users visiting the same spot to share annotations augmented in the live camera view. The annotations created by the first user are detected in the view of the second user by matching image patches against a newly created panorama of the environment. To improve the detection we narrow down the search area and apply geometric constraints. Once the annotations are detected we track the user's orientation using a reliable hybrid tracking approach allowing us to correctly augment the annotations in the live camera view. We show that the presented approach outperforms previous approaches in terms of robustness and accuracy. Combining all approaches described in this paper for improving re-detection significantly increased the re-detection rate for the matching of annotations by a factor of 2 compared to previous work, yielding a 90% re-detection rate under strong temporal variations in the environment. Once detected, the presented sensor fusion approach is used for tracking the users orientation and significantly improves the orientation estimation quality. The approaches presented here are generally applicable to outdoor AR, but specifically improve smartphones, which have rather low quality sensors and limited computation power for computer vision.</p>
+      <p>Future work should address the problem of a more efficient representation of the anchor points. Storing patches is simple and flexible, but an encoding of the neighborhood relying on feature descriptors suitable for real-time matching may be more efficient. Unfortunately, reliable feature matching under strong temporal variations and with limited input image quality remains an open research topic. Further investigations can be done to improve the selection of the correct annotation dataset by not only using the GPS information but also using the current camera image for vision-based localization. Moreover, further investigations are needed to better understand the relationship of extended dynamic range image capturing on the re-detection results.</p>
+      <p>Other future work targets the tracker. As the visual tracker itself adds some bias as the relative orientation, estimation can overestimate or underestimate the true angle of rotation, if the focal length of the camera is not accurately known. By adding a correction factor to the filter estimate, it would be possible to estimate this bias and correct it in the final rotation output.</p>
+      <p>Finally, a purely temporal filtering of errors is not the ideal solution. The filter depends on receiving measurements under different orientations to reduce errors through averaging. Measuring errors for a longer time in a certain orientation will pull the estimate towards that orientation and away from the true average. A more accurate model should consider distribution of the orientation measurements while also weighting old measurements to account for changes over time. Together, both could form a truly dynamic online calibration method.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Adams</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Horowitz</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Gelfand</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Baek</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Matusik</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>The Frankencamera. ACM Transactions on Graphics</source>
+          <volume>29</volume>
+          <year>2010</year>
+          <fpage>1</fpage>
+          <lpage>12</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <label>2</label>
+        <mixed-citation publication-type="other">Arth C, Wagner D, Klopschitz M, Irschara A, Schmalstieg D. Wide area localization on mobile phones, In Proceedings of the international symposium on mixed and augmented reality (ISMAR). IEEE press; 2009. p. 73–82.</mixed-citation>
+      </ref>
+      <ref id="bib3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azuma</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Hoff</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Neely</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Sarfaty</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A motion-stabilized outdoor augmented reality system</article-title>
+          <source>In Proceedings of IEEE VR</source>
+          <year>1999</year>
+          <fpage>252</fpage>
+          <lpage>259</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azuma</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>The challenge of making augmented reality work outdoors</article-title>
+          <source>Mixed Reality: Merging Real and Virtual Worlds</source>
+          <year>1999</year>
+          <fpage>379</fpage>
+          <lpage>390</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azuma</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>J.W.</given-names>
+            </name>
+            <name>
+              <surname>Jiang</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Park</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>You</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Neumann</surname>
+              <given-names>U.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tracking in unprepared environments for augmented reality systems</article-title>
+          <source>Computer and Graphics</source>
+          <year>1999</year>
+          <fpage>787</fpage>
+          <lpage>793</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <label>6</label>
+        <mixed-citation publication-type="other">Coors V, Huch T, Kretschmer U. Matching buildings: pose estimation in an urban environment. In: Proceedings of the ISAR 2000. Munich, Germany; October 5–6, 2000. p. 89–92.</mixed-citation>
+      </ref>
+      <ref id="bib7">
+        <label>7</label>
+        <mixed-citation publication-type="other">Feiner S, MacIntyre B, Höllerer T and Webster A. A touring machine: prototyping 3D mobile augmented reality systems for exploring the urban environment. In: Proceedings of the ISWC'97. 1997. p. 74–81.</mixed-citation>
+      </ref>
+      <ref id="bib8">
+        <label>8</label>
+        <mixed-citation publication-type="other">Hoff B, Azuma R. Autocalibration of an electronic compass in an outdoor augmented reality system. In Proceedings of the ISAR 2000. p. 159–64.</mixed-citation>
+      </ref>
+      <ref id="bib9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Horn</surname>
+              <given-names>B.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Closed form solution of absolute orientation using unit quaternions</article-title>
+          <source>Journal of the Optical Society of America</source>
+          <year>1987</year>
+          <fpage>629</fpage>
+          <lpage>642</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <label>10</label>
+        <mixed-citation publication-type="other">Hu X, Liu Y, Wang Y, Hu Y, Yan D. Autocalibration of an electronic compass for augmented reality. In: Proceedings of the ISMAR 2005. p. 182–3.</mixed-citation>
+      </ref>
+      <ref id="bib11">
+        <label>11</label>
+        <mixed-citation publication-type="other">Klein G, Murray D. Parallel tracking and mapping on a camera phone. In: Proceedings of the eighth international symposium on mixed and augmented reality (ISMAR). IEEE press; 2009. p. 83–8.</mixed-citation>
+      </ref>
+      <ref id="bib12">
+        <label>12</label>
+        <mixed-citation publication-type="other">Langlotz T, Wagner D, Mulloni A, Schmalstieg D. Online creation of panoramic augmented reality annotations on mobile phones. Accepted for IEEE pervasive computing. IEEE press; 2010.</mixed-citation>
+      </ref>
+      <ref id="bib13">
+        <label>13</label>
+        <mixed-citation publication-type="other">Mobilizy. Wikitude. 〈<ext-link ext-link-type="uri" xlink:href="http://www.wikitude.org/">http://www.wikitude.org/</ext-link>〉.</mixed-citation>
+      </ref>
+      <ref id="bib14">
+        <label>14</label>
+        <mixed-citation publication-type="other">Ozuysal M, Fua P, Lepetit V. Fast keypoint recognition in ten lines of code. In: Proc. CVPR 2007. IEEE press; 2007. p. 1–8.</mixed-citation>
+      </ref>
+      <ref id="bib15">
+        <label>15</label>
+        <mixed-citation publication-type="other">Piekarski W, Thomas B. Interactive augmented reality techniques for construction at a distance of 3D geometry, In: Proc. workshop on virtual environments. 2003. p. 19–28.</mixed-citation>
+      </ref>
+      <ref id="bib16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reitmayr</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Schmalstieg</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Collaborative augmented reality for outdoor navigation and information browsing</article-title>
+          <source>Location Based Services and TeleCartography</source>
+          <year>2004</year>
+          <fpage>31</fpage>
+          <lpage>41</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib17">
+        <label>17</label>
+        <mixed-citation publication-type="other">Reitmayr G, Drummond TW. Going out: robust tracking for outdoor augmented reality. In: Proc. ISMAR 2006. Santa Barbara, CA, USA: IEEE press; 2006. October 22–25, 2006. p. 109–18.</mixed-citation>
+      </ref>
+      <ref id="bib18">
+        <label>18</label>
+        <mixed-citation publication-type="other">Reitmayr G, Drummond TW. Initialisation for visual tracking in urban environments. In: Proc. ISMAR 2007. IEEE press; 2007. p. 161–0.</mixed-citation>
+      </ref>
+      <ref id="bib19">
+        <label>19</label>
+        <mixed-citation publication-type="other">Reitmayr G, Eade E, Drummond TW. Semi-automatic annotations in unknown environments, In: Proc. ISMAR 2007. IEEE press; 2007. p. 67–70.</mixed-citation>
+      </ref>
+      <ref id="bib20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ribo</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lang</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Ganster</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Brandner</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Stock</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Pinz</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Hybrid tracking for outdoor augmented reality applications</article-title>
+          <source>IEEE Comp. Graph. Appl., IEEE press</source>
+          <year>2002</year>
+          <fpage>54</fpage>
+          <lpage>63</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib21">
+        <label>21</label>
+        <mixed-citation publication-type="other">Schall G, Wagner D, Reitmayr G, Taichmann E, Wieser M, Schmalstieg D, et al., Global pose estimation using multi-sensor fusion for outdoor augmented reality. In: Proc. ISMAR 2009. IEEE press; 2009. p. 153–62.</mixed-citation>
+      </ref>
+      <ref id="bib22">
+        <label>22</label>
+        <mixed-citation publication-type="other">sprxmobile. Layar reality browser. 〈<ext-link ext-link-type="uri" xlink:href="http://www.layar.com/">http://www.layar.com/</ext-link>〉.</mixed-citation>
+      </ref>
+      <ref id="bib23">
+        <label>23</label>
+        <mixed-citation publication-type="other">Thomas BH, Demczuk V, Piekarski W, Hepworth D, Gunther B. A wearable computer system with augmented reality to support terrestrial navigation. In: Proc. ISWC'98. 1998. p. 168–71.</mixed-citation>
+      </ref>
+      <ref id="bib24">
+        <label>24</label>
+        <mixed-citation publication-type="other">Wagner D, Reitmayr G, Mulloni A, Drummond T, Schmalstieg D. Pose tracking from natural features on mobile phones. In: Proc. seventh IEEE/ACM international symposium on mixed and augmented reality (ISMAR). IEEE press; 2008. p. 125–34.</mixed-citation>
+      </ref>
+      <ref id="bib25">
+        <label>25</label>
+        <mixed-citation publication-type="other">Wagner D, Mulloni A, Langlotz T, Schmalstieg D. Real-time panoramic mapping and tracking on mobile phones. In: Proc. IEEE virtual reality 2010. IEEE press; 2010.</mixed-citation>
+      </ref>
+      <ref id="bib26">
+        <label>26</label>
+        <mixed-citation publication-type="other">Wither J, DiVerd S, Hollerer T. Using aerial photographs for improved mobile AR annotation, In: Proc. IEEE/ACM international symposium on mixed and augmented reality. IEEE press; 2006. p. 159–62.</mixed-citation>
+      </ref>
+      <ref id="bib27">
+        <label>27</label>
+        <mixed-citation publication-type="other">Wither J, Coffin C, Ventura J, Hollerer T. Fast annotation and modeling with a single-point laser range finder, In: Proc. seventh IEEE/ACM international symposium on mixed and augmented reality. IEEE press; 2008. p. 65–8.</mixed-citation>
+      </ref>
+      <ref id="bib28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>You</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Neumann</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Azuma</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Hybrid inertial and vision tracking for augmented reality registration</article-title>
+          <source>In Proceedings of VR</source>
+          <volume>1999</volume>
+          <year>1999</year>
+          <fpage>260</fpage>
+          <lpage>267</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>A novel auto-calibration method of the vector magnetometer</article-title>
+          <source>In Proceedings of Electronic Measurement Instruments, ICEMI '09</source>
+          <volume>volume 1</volume>
+          <year>2009</year>
+          <fpage>145</fpage>
+          <lpage>150</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was funded by the Christian Doppler Laboratory for Handheld Augmented Reality through the Austrian Research Promotion Agency (FFG) under the contract no. FIT-IT 820922 (Smart Vidente), and through the Austrian Science Fund FWF (W1209). We thank the Stadtvermessungsamt Graz for providing the real world test dataset.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1">
+        <label>1</label>
+        <p>The subscripts in R<sub>BA</sub> are read from right to left to signify a transformation from reference frame A to reference frame B.</p>
+      </fn>
+    </fn-group>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Projection of the camera image onto the cylindrical map.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Workflow of the panoramic AR annotation system involves two users—Peter creates annotations and at a later time Mary browses through these annotations.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>(Top) A panorama image containing visual artefacts, which are caused by the automatic and continuous exposure adjustment of current mobile phone cameras. (Bottom) A panorama image that was created by extending the dynamic range during the mapping into the panorama and applying a tone-mapping afterwards.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="f0020">
+      <label>Fig. 4</label>
+      <caption>
+        <p>(Bottom) A source panorama that was used to create the annotations. (Top) A newly created panorama with the best candidates for placing the annotation resulting from the template-based matching. For every annotation anchor point we store a maximum of three best matches. Green dots in the upper image have the best matching scores and are therefore used for label placement. Red ones are the second and third best matches of an annotation, which makes them a candidate for a possible correct match.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="f0025">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Illustration describing the alignment of two cylindrical mapped panoramas based on the position of the annotations anchor points. Two vectors <inline-formula><mml:math id="M15" altimg="si0001.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:math></inline-formula> and <inline-formula><mml:math id="M16" altimg="si0002.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></inline-formula> are pointing to two annotation positions in the cylindrical source panorama. Middle cylinder describes a panorama, which is created on the fly on the smartphone. The vectors <inline-formula><mml:math id="M17" altimg="si0003.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>b</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:math></inline-formula> and <inline-formula><mml:math id="M18" altimg="si0004.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>b</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></inline-formula> are pointing to two possible annotation positions in this new panorama. Rotating one cylinder into the other in order to align both vectors of each cylinder using absolute orientation with an error <italic>δ</italic>, results in a rotation, which can be used in a RANSAC calculation to determine a model with a sufficient small error.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="f0030">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Overview of the rotations between world reference system <italic>N</italic>, device reference system <italic>D</italic> and panorama reference system <italic>P</italic>.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="f0035">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Re-detection evaluation. (Top) Overview of the re-detection results. (Bottom) Fragments of two panorama images showing different environment conditions during the evaluation.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="f0040">
+      <label>Fig. 8</label>
+      <caption>
+        <p>(Left and Middle) Plot of heading, pitch and roll for a free-hand movement of the mobile phone between two reference points. We plot orientation for the raw sensor values, a filtered estimate and the hybrid tracker. (Right) Test sequence showing the errors in degrees to the north for the sequences recorded on the phone. Visual tracking is only shown as reference as true absolute orientation is usually not known.</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+  </floats-group>
+</article>

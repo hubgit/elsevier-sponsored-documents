@@ -1,0 +1,1522 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">J Mol Biol</journal-id>
+      <journal-title-group>
+        <journal-title>Journal of Molecular Biology</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0022-2836</issn>
+      <issn pub-type="epub">1089-8638</issn>
+      <publisher>
+        <publisher-name>Elsevier</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2891488</article-id>
+      <article-id pub-id-type="pmid">20149797</article-id>
+      <article-id pub-id-type="publisher-id">YJMBI62100</article-id>
+      <article-id pub-id-type="doi">10.1016/j.jmb.2010.01.074</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Protein Folding Requires Crowd Control in a Simulated Cell</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Jefferys</surname>
+            <given-names>Benjamin R.</given-names>
+          </name>
+          <email>benjamin.jefferys@imperial.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kelley</surname>
+            <given-names>Lawrence A.</given-names>
+          </name>
+          <email>l.a.kelley@imperial.ac.uk</email>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sternberg</surname>
+            <given-names>Michael J.E.</given-names>
+          </name>
+          <email>m.sternberg@imperial.ac.uk</email>
+        </contrib>
+      </contrib-group>
+      <aff>Division of Molecular Biosciences, Biochemistry Building, Imperial College London, South Kensington, London SW7 2AZ, UK</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Fax: +44 (0) 20 7594 5789. <email>benjamin.jefferys@imperial.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>16</day>
+        <month>4</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>4</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>397</volume>
+      <issue>5</issue>
+      <fpage>1329</fpage>
+      <lpage>1338</lpage>
+      <history>
+        <date date-type="received">
+          <day>25</day>
+          <month>9</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>30</day>
+          <month>12</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>2</day>
+          <month>1</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Ltd.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Macromolecular crowding has a profound effect upon biochemical processes in the cell. We have computationally studied the effect of crowding upon protein folding for 12 small domains in a simulated cell using a coarse-grained protein model, which is based upon Langevin dynamics, designed to unify the often disjoint goals of protein folding simulation and structure prediction. The model can make predictions of native conformation with accuracy comparable with that of the best current template-free models. It is fast enough to enable a more extensive analysis of crowding than previously attempted, studying several proteins at many crowding levels and further random repetitions designed to more closely approximate the ensemble of conformations. We found that when crowding approaches 40% excluded volume, the maximum level found in the cell, proteins fold to fewer native-like states. Notably, when crowding is increased beyond this level, there is a sudden failure of protein folding: proteins fix upon a structure more quickly and become trapped in extended conformations. These results suggest that the ability of small protein domains to fold without the help of chaperones may be an important factor in limiting the degree of macromolecular crowding in the cell. Here, we discuss the possible implications regarding the relationship between protein expression level, protein size, chaperone activity and aggregation.</p>
+      </abstract>
+      <kwd-group>
+        <title>Abbreviation</title>
+        <kwd>TM, template modelling</kwd>
+      </kwd-group>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>macromolecular crowding</kwd>
+        <kwd>protein structure prediction</kwd>
+        <kwd>protein misfolding</kwd>
+        <kwd>protein aggregation</kwd>
+        <kwd>protein expression</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>It is widely acknowledged that there are two fundamental questions in modelling protein folding:<xref rid="bib1" ref-type="bibr"><sup>1</sup></xref><list list-type="simple"><list-item><p>What is the biologically active conformation of a protein sequence?</p></list-item><list-item><p>How does a protein find that state in the cell?</p></list-item></list>These two problems have generally been approached using radically different methods. The most successful methods for predicting the biologically active state are through finding a homologue of the sequence to another sequence with known structure or through assembly of fragments of structure when such homology cannot be detected. These are valuable tools for suggesting the structure of a protein sequence where no experimental structure is available, and they consistently perform well at CASP (Critical Assessment of techniques for protein Structure Prediction) experiments.<xref rid="bib2 bib3 bib4 bib5 bib6 bib7" ref-type="bibr"><sup>2–7</sup></xref></p>
+      <p>However, such methods provide little, if any, insight into the principles underlying the search for that state: the speed and reliability of folding, the stability and flexibility of the final conformation, the effect of conditions in the cell, misfolding and aggregation and error-correcting processes. Molecular dynamics is used for investigating these elements of protein folding.<xref rid="bib8" ref-type="bibr"><sup>8</sup></xref> Although progress is being made toward predicting protein structure through molecular dynamics,<xref rid="bib9" ref-type="bibr"><sup>9</sup></xref> such methods are not yet among the most successful predictive tools and the large computational resources required make their application to large-scale analysis impractical.</p>
+      <p>Simplifications of molecular dynamics that reduce the number of particles modelled, simplify the force field and use time-saving heuristics in the search method<xref rid="bib1 bib10" ref-type="bibr"><sup>1,10</sup></xref> enable larger-scale analyses of protein folding. Ultimately, the goal is to study the mechanism of protein folding and obtain the biologically active conformation with a unified model for protein structure, which predicts the native state through accurate modelling of the folding process. We present here a protein model developed for this purpose and demonstrate its effectiveness in both protein structure prediction and the study of the protein folding process. The structural model reduces the backbone to a series of particles representing C<sup>α</sup> atoms and particles representing the centroid of side-chain atoms.<xref rid="bib11" ref-type="bibr"><sup>11</sup></xref> The folding model is a simplified iterative solution of Newtonian equations of motion based upon Langevin dynamics, with linear elastic springs modelling the majority of effects in the force field. Solution of this equation aims to simulate protein folding over time through a putative pathway. The Langevin equation includes a term for random bombardment by implicit solvent; therefore, the generated folding pathway is dependent upon the seed for a random number generator and multiple pathways must be produced to assess the ensemble of conformations. Such a model can be used to investigate many aspects of protein folding, including the effect of conditions in the cell, such as macromolecular crowding.</p>
+      <p>The cell is a crowded and chaotic environment: it is estimated that between 10% and 40% of the cell's volume is occupied by macromolecules.<xref rid="bib12 bib13" ref-type="bibr"><sup>12,13</sup></xref> However, complex and intricate biochemical processes must be performed reliably in this environment. A minimum concentration of molecules in the cell is necessary for interacting partners to associate. There is also a maximum concentration beyond which normal cellular function would be prevented due to restriction of molecular motion. Evidence suggests that crowding enhances protein stability, protein association and chaperonin action but that it also increases protein aggregation and lowers diffusion rates.<xref rid="bib12" ref-type="bibr"><sup>12</sup></xref> The macromolecular concentration observed in cells may have been selected to balance these factors, according to requirements in different cellular localities.<xref rid="bib14 bib15" ref-type="bibr"><sup>14,15</sup></xref> In this study, we investigated the role of protein folding in this balance.</p>
+      <p>Previous work suggests that macromolecular crowding has a complex effect upon protein folding.<xref rid="bib12 bib16" ref-type="bibr"><sup>12,16</sup></xref> Computational models and experimental work show that, at a crowding level similar to that of the cell as a whole, crowding can make proteins fold more rapidly and stabilise the native state at secondary and tertiary levels.<xref rid="bib17 bib18 bib19 bib20 bib21 bib22" ref-type="bibr"><sup>17–22</sup></xref> This effect is interpreted as being due to the reduction of conformation space by exclusion of extended conformations.</p>
+      <p>Computational studies of the effect of crowding upon protein folding commonly use a Gō-like term<xref rid="bib23" ref-type="bibr"><sup>23</sup></xref> in the energy function for the protein, which favours interactions known to occur in the native conformation.<xref rid="bib19 bib21 bib22 bib24" ref-type="bibr"><sup>19,21,22,24</sup></xref> Clearly, such terms disqualify these methods as tools for predicting the final conformation. As a consequence of using a Gō-like potential, terms may be omitted for non-native but favourable interactions that might be encountered on the way to the native state—interactions that might be important in finding the native state or in creating a non-native local energy minimum.<xref rid="bib25" ref-type="bibr"><sup>25</sup></xref> If the effect of crowding were to trap a protein in such a minimum, then this effect would not be observed with a Gō-like potential.</p>
+      <p>Simulations making use of molecular dynamics do not have this disadvantage. However, due to computational limitations, they often study only the change in stability of proteins in their native state when subjected to crowding,<xref rid="bib8 bib19" ref-type="bibr"><sup>8,19</sup></xref> and where proteins have been refolded from a partially denatured state, only very small proteins were studied.<xref rid="bib19" ref-type="bibr"><sup>19</sup></xref> A study using molecular dynamics has shown that crowding may destabilise the native state of the protein by forcing the solvent into a more ordered state, reducing the entropic advantage of the native over other conformations.<xref rid="bib8" ref-type="bibr"><sup>8</sup></xref> Native stability and refolding rates are important aspects of the protein folding problem. However, in the cell, proteins are synthesized slowly into a crowded environment. While computational analysis has found that co-translational folding appears to have a small effect on protein folding rate and has only weakly imprinted motifs in structures that might be expected if it did,<xref rid="bib26 bib27 bib28 bib29" ref-type="bibr"><sup>26–29</sup></xref> experimental observations are more mixed.<xref rid="bib30 bib31" ref-type="bibr"><sup>30,31</sup></xref> Slow synthesis may allow proteins to find a compact state more easily than from a denatured state, an effect that may be even more important in a crowded environment. Additionally, computational and experimental constraints have limited previous studies to one or two structures and few crowding levels. This raises the possibility that effects observed are specific to the chosen conditions.</p>
+      <p>To address these issues, we have studied the effect of crowding using a protein model that does not include knowledge of long-range interactions, can predict protein tertiary structure with accuracy comparable with that of the best current template-free methods, includes a simulation of the folding pathway during slow synthesis of a protein by a large, heavy ribosome and is fast enough to allow study of many proteins at several crowding levels. The aim of this work was to find the upper limit of crowding in which proteins can successfully fold and compare this with the level of crowding observed in the cell.</p>
+    </sec>
+    <sec>
+      <title>Results</title>
+      <sec>
+        <title>Model verification through structure prediction</title>
+        <p>We tested our model by making predictions of the tertiary structure for a set of 30 small protein domains (listed in <xref rid="app1" ref-type="sec">Supplementary Material</xref>) that were chosen for the quality of experimental structure, size and fold class. The structure prediction protocol is described in <xref rid="sec1" ref-type="sec">Materials and Methods</xref>. Modelling is based upon the predicted secondary structure using psipred.<xref rid="bib32" ref-type="bibr"><sup>32</sup></xref> Five structure predictions are made for each protein, and the best TM (template modelling) score<xref rid="bib33" ref-type="bibr"><sup>33</sup></xref> and largest fraction of residues alignable to within 5 Å to the native are given in <xref rid="fig1" ref-type="fig">Fig. 1</xref>. The TM score is a measure of structural similarity that is more sensitive to the similarity of protein fragments than the more commonly used global RMSD (root-mean-square deviation). The mean TM score between randomly chosen Protein Data Bank structures is 0.17, and a TM score exceeding 0.3 indicates a roughly native-like topology. It is unusual to exceed a TM score of 0.4 in template-free modelling. The best of the five predictions for 24 of the proteins has a TM score higher than 0.3, and for 4 of those proteins, the score is higher than 0.4. Predictions and the best structures generated for 3 of the proteins are illustrated in <xref rid="fig2" ref-type="fig">Fig. 2</xref>.</p>
+        <p>These results mean this method is comparable with the best template-free structure prediction methods.<xref rid="bib34" ref-type="bibr"><sup>34</sup></xref> Each prediction is made from simulations using at most 40 CPU hours, a tiny fraction of the time that is used by many other successful template-free predictive methods. It is this short processing time that has enabled this work studying protein folding in detail under hundreds of experimental conditions.</p>
+        <p>Our model iteratively generates putative folding pathways using basic physical principles. While we have not analysed how these pathways compare with experimental data that might suggest the natural folding process for a protein, the good results from predicting tertiary structure using conformations sampled from these pathways suggest that they are reasonable. Although the amount of good-quality data regarding the mechanism of folding is growing, it is still small compared with the huge and reliable database of protein structures, and therefore those data are used as a metric to assess the performance of our model.</p>
+      </sec>
+      <sec>
+        <title>Effect of crowding upon protein folding</title>
+        <p>The effect of crowding upon protein folding was investigated for a subset of the proteins used to test the model through structure prediction. Of the 30 proteins, 12 (listed in <xref rid="app1" ref-type="sec">Supplementary Material</xref>) for which the model performs well were chosen, producing structures with a TM score higher than 0.3 for at least 10% of the total simulation during 100 syntheses of the protein. These proteins were then studied under a range of crowding conditions. We assume that the primary crowding agent at the time of protein folding is another previously synthesized protein of size similar to that which is being folded. Other crowding macromolecules are likely to be present in the cell; however, the effect of heterogeneous crowding as compared with homogeneous crowding is beyond the scope of this work and left for future investigation. It is observed from experimental work that the specific physicochemical properties of the crowding macromolecules are not especially important, rather it is the volume of solvent excluded by the molecules that has the greatest influence upon protein folding.<xref rid="bib16 bib17 bib35" ref-type="bibr"><sup>16,17,35</sup></xref> Therefore, crowding was simulated by spheres with radius and mass designed to simulate the volume excluded by a small domain. Modelling a protein-like crowding macromolecule at this coarse level of detail makes this study computationally feasible: a more detailed model would slow simulations by orders of magnitude. Since the primary concern at this stage is folding rather than structure prediction, we used secondary structure assigned from the known native using Stride.<xref rid="bib36" ref-type="bibr"><sup>36</sup></xref> Each of the 12 proteins was synthesized 100 times into a cell with a number of crowding macromolecules according to the desired crowding level. After synthesis, simulation continued for 1 million iterations and conformations were sampled at 1000 iteration intervals, this being sufficient to allow local rearrangement of secondary structure elements. In summary, 1000 conformation samples were taken from each of 100 folding simulations, producing 100,000 protein conformations for each protein at each crowding level. Since 12 proteins were selected for this analysis, 1.2 million conformations in total were produced to assess the effect of a given level of crowding. The simulation is illustrated in <xref rid="fig3" ref-type="fig">Fig. 3</xref>, and a series of images taken at regular iteration intervals from a simulation synthesizing a protein into a cell with the maximum experimentally observed crowding level is shown in <xref rid="fig4" ref-type="fig">Fig. 4</xref>. To determine how the changing environment affects different aspects of folding, we made measurements of conformation size, conformational freedom and time spent in a native-like state as volume excluded by crowding macromolecules increases. Results are summarised in <xref rid="fig5" ref-type="fig">Fig. 5</xref>.</p>
+        <sec>
+          <title>Effect of crowding upon conformation size</title>
+          <p>Crowding may result in more compact proteins through exclusion of extended conformations or in less compact proteins through trapping in extended conformations. In order to investigate this, we measured conformation size using radius of gyration relative to the radius of gyration of the native state. The median (black line) and middle 50th (blue region) percentiles of the distribution of these radii are given in the top graph in <xref rid="fig5" ref-type="fig">Fig. 5</xref>. Conformations are generally compact up to 45% excluded volume. At 50% excluded volume, many conformations are less compact. Visual examination of the most extended conformations shows that they are trapped in narrow corridors of solvent between the crowding particles, as illustrated in (f) in <xref rid="fig5" ref-type="fig">Fig. 5</xref>.</p>
+        </sec>
+        <sec>
+          <title>Effect of crowding upon conformational freedom</title>
+          <p>Crowding may change the conformational freedom of proteins—they may be stabilised or destabilised by collisions with macromolecules. We assess the time step of each simulation at which a protein finds a conformation that does not change significantly for the rest of the simulation. Conformations are defined as being similar if the mean difference in pairwise distances between corresponding amino acids is less than 4 Å. The reported time step for a given simulation is that at which a conformation that is similar to all conformations after it until the end of the simulation is found. The median (black line) and middle 50th (blue region) percentiles of this number are shown in the middle graph in <xref rid="fig5" ref-type="fig">Fig. 5</xref>. Freedom remains fairly constant up to 30% excluded volume, with most of the simulated proteins free to explore conformation space until around 800,000 iterations (out of 1 million). Above 40% excluded volume, conformational freedom decreases sharply: most simulated proteins fix upon a structure before 200,000 iterations. Combining this with the observations on conformation size, at 50% excluded volume, it would seem that proteins are becoming trapped in an extended state. At slightly below this level, proteins are generally trapped in a compact state.</p>
+        </sec>
+        <sec>
+          <title>Effect of crowding upon native-like time</title>
+          <p>Crowding may increase or decrease the similarity of the protein to the native state during the simulation. We assess this effect to be measuring native-like time, which we define as the percentage of sampled conformations that are higher than 0.3 in TM score to the native state. The percentage across all proteins is shown in the bottom graph of <xref rid="fig5" ref-type="fig">Fig. 5</xref>. Native-like time remains fairly constant up to 25% excluded volume, with over 20% of conformations being above 0.3 in TM score. There is an initial slight drop up to 30% crowding, which cannot be attributed to more extended conformations or becoming trapped in a conformation early. Above this level, native-like time reduces rapidly, until at 50% excluded volume, just over 10% of conformations have a TM score above 0.3. The large drop in native-like time at 35% coincides with a slight reduction in conformational freedom, although conformation size remains fairly constant. Some proteins become stabilised in compact but non-native conformations by the presence of crowding particles, illustrated in (e) in <xref rid="fig5" ref-type="fig">Fig. 5</xref>. This effect becomes more acute at 45% excluded volume, when conformational freedom drops sharply. Finally, when crowding is so great the proteins cannot find a compact conformation, proteins very quickly become trapped in extended states that are clearly less likely to be similar to the native [illustrated in (f) in <xref rid="fig5" ref-type="fig">Fig. 5</xref>].</p>
+          <p>In summary, there is little effect on the measured features up to 20% excluded volume. At around 25%, native-like time begins to reduce, although not due to being fixed early or trapped in extended conformations. Above 40% crowding, proteins are becoming stuck in structures earlier in the simulation, and around 15 of the structures are in native-like topologies, compared with 14 with no crowding. At 50% crowding, proteins are stabilised in extended conformations early in the simulation in narrow gaps between macromolecules.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>We have presented a protein structure model designed to predict tertiary structure without the use of a template or detailed knowledge of the native state. The model demonstrates accuracy comparable with that of the most successful methods, such as fragment folding, with the added benefit that it is fast and models a putative folding pathway. Using this model, we have tested the effect of macromolecular crowding upon the folding of 12 small protein domains synthesized into a simulated cell.</p>
+      <p>Crowding macromolecules in the simulated cell were simulated using same-sized spheres up to an excluded volume of 50%. As crowding is increased to experimentally observed levels (20% to 40%), a slow decrease in native-like time, due to the stabilisation of non-native but compact states, is observed. However, when the crowding level surpasses the maximum observed experimentally, conformation size and conformational freedom change sharply and native-like time drops substantially. This represents a level of crowding beyond that observed experimentally, yet still far less than the maximum achievable by close packing spheres (74%),<xref rid="bib37" ref-type="bibr"><sup>37</sup></xref> leaving more than sufficient space for a protein to fold—especially given that the modelled crowding macromolecules can move to accommodate the growing protein.</p>
+      <p>The results presented here have shown the effect of folding upon the protein folding pathway at a coarse level. The general finding that proteins fix upon a protein structure very much earlier in an overcrowded cell, relative to uncrowded conditions, is not intended to be a prediction of the level of conformational frustration but is indicative that this is a possible cause of the reduction in successful protein folding at extreme crowding levels. The folding pathways produced by the iterative process in our model have not been verified in detail; therefore, a study of the effect of crowding upon such detail would be premature at this stage. However, future work based upon such verification may reveal more about the specific cause of the effect we have observed. In particular, the relative influence of two-state <italic>versus</italic> cooperative folding processes under crowded conditions, as compared with proteins in pure water, may be important.</p>
+      <p>The importance of crowding to cellular processes is clear. High levels of crowding are known to increase protein aggregation, which can lead to cell death, and substantial evidence that prevention of aggregation is a key factor in protein evolution exists.<xref rid="bib38" ref-type="bibr"><sup>38</sup></xref> It is clear that reliable protein folding is critical to the survival of the cell. Hence, factors that detrimentally affect this process are expected to be under strong selective pressure. This work suggests that crowding above 40% excluded volume severely hinders folding. The agreement between this maximum value of crowding tolerated in our simulation and that found experimentally suggests that the ability to fold proteins reliably in the cell may be an important evolutionary constraint upon the level of macromolecule concentration.</p>
+      <p>Macromolecular crowding is influenced by two key factors: protein size and expression level. The well-established inverse relationship between these two factors<xref rid="bib39 bib40 bib41" ref-type="bibr"><sup>39–41</sup></xref> is generally interpreted as being due to evolutionary minimization of transcriptional and translational costs. However, the results of this work suggest that this relationship may also be in part due to the balancing of size and expression to maintain a crowding level that permits folding. This suggestion is supported by the strong anti-correlation between expression level and propensity to aggregate<xref rid="bib42" ref-type="bibr"><sup>42</sup></xref> and by evidence that larger proteins are more prone to aggregation.<xref rid="bib43" ref-type="bibr"><sup>43</sup></xref></p>
+      <p>Crowding may have been controlled during evolution to allow the folding of small domains without recourse to error-correcting mechanisms, such as chaperones and directed proteolysis. Chaperones associate preferentially with larger domains, generally above 200–300 amino acids,<xref rid="bib44 bib45 bib46" ref-type="bibr"><sup>44–46</sup></xref> suggesting that error-correcting mechanisms such as chaperones may have evolved in part to enable crowding to increase beyond the level tolerated by larger domains.</p>
+      <p>This work demonstrates a theoretical model that unifies the often disjoint goals of protein structure prediction and modelling folding dynamics, using it to study the effect of crowding to a level of detail that would be difficult to achieve experimentally. Further development of such a model can enable study of protein flexibility, complex formation, sequence design for synthetic biology and disease-causing misfolding and aggregation.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec1">
+      <title>Materials and Methods</title>
+      <sec>
+        <title>Protein structure and force field</title>
+        <p>The model, known as <italic>poing</italic>, reduces a protein structure to C<sup>α</sup> points plus side-chain centroids.<xref rid="bib11" ref-type="bibr"><sup>11</sup></xref> It models structures through iterative prediction of a folding pathway that enforces a number of heuristic constraints representing effects important in protein folding. <italic>poing</italic> uses the Langevin equation<xref rid="bib47" ref-type="bibr"><sup>47</sup></xref> for the motion of a particle in the system:<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mover accent="true"><mml:mi>F</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mo>−</mml:mo><mml:mi>γ</mml:mi><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mi>m</mml:mi></mml:mfrac></mml:mrow></mml:math></disp-formula>where <italic>a⃗</italic> is the acceleration of the particle, <italic>F⃗</italic> is the force field at the coordinates of the particle (the sum of all forces acting on the particle), γ is a drag factor due to motion through the implicit solvent, <italic>v⃗</italic> is the current velocity of the particle, <italic>R⃗</italic> is a random force vector designed to model the effect of kicks from the implicit solvent and <italic>m</italic> is the mass of the particle. This equation is solved iteratively. The force field consists of a set of pairwise force functions that act upon the particles:<disp-formula id="fd2"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>F</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>F</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mi mathvariant="normal">cov</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>F</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mtext>bb</mml:mtext></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>F</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mtext>sc</mml:mtext></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>F</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mtext>vdw</mml:mtext></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mi>F</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:mrow><mml:mrow><mml:mtext>hb</mml:mtext></mml:mrow></mml:msub></mml:mrow></mml:math></disp-formula><italic>F⃗</italic><sub>cov</sub> represents stiff springs linking backbone and side-chain particles that are directly covalently bonded. <italic>F⃗</italic><sub>bb</sub> represents springs between backbone particles with sequence separations of 2 or 3, with a range of equilibrium lengths based on secondary structure assigned to the relevant amino acids, either from secondary structure prediction (when used as a predictive tool) or from knowledge of the native (when used to simulate folding pathways). <italic>F⃗</italic><sub>sc</sub> represents springs linking side-chain particles to neighbouring backbone particles, controlling the orientation of side chains relative to the backbone. <italic>F⃗</italic><sub>vdw</sub> is a repulsive force derived from the probability that atoms in an all-atom model of those particles at a given distance apart would clash sterically, based upon analysis of side-chain and backbone conformations in the Protein Data Bank.<xref rid="bib48" ref-type="bibr"><sup>48</sup></xref> <italic>F⃗</italic><sub>hb</sub> is an attractive force between backbone particles designed to bring virtual backbone hydrogen bonding O and H atoms into closer proximity, if they already come within a distance threshold.</p>
+      </sec>
+      <sec>
+        <title>Hybrid implicit–explicit solvent with hydrophobic effect</title>
+        <p>The standard Langevin has an implicit solvent model, with drag (−γ<italic>v⃗</italic>) and kick (<italic>R⃗</italic>) terms in the main equation. We have enhanced this by ensuring that drag and kicks only act upon parts of a particle exposed to solvent, with solvent-accessible surfaces modelled by spheres around each particle of a radius dependent upon the side-chain type. This ensures that the internal parts of a protein are not subject to solvent effects, a key advantage of modelling an explicit solvent. The solvent-accessible radii used have been optimised to maximise the difference in accessible area between known native and a set of non-native states for a small test set of proteins, to destabilise non-native states.</p>
+        <p>The solvent kick model is modified from the normal Langevin to enable this process. At each time step, a kick is initiated upon a particle with some probability per Å<sup>2</sup> accessible surface area. All kicks are of the same velocity. If the kick does not come from a direction that is blocked by other particles, it is added to the acceleration for that particle. The probability of kicks is increased for hydrophobic side-chain particles. This results in preferential burial of hydrophobic residues away from solvent and therefore the hydrophobic collapse of a protein molecule. This is the only effect of the hydrophobicity of a side chain in the model.</p>
+      </sec>
+      <sec>
+        <title>Structure prediction</title>
+        <p>Given a sequence of amino acids, the initial step is to predict the secondary structure using psipred,<xref rid="bib32" ref-type="bibr"><sup>32</sup></xref> a neural network-based secondary structure prediction tool that takes as input position-specific scoring matrices derived from homologous sequences found with PSI-BLAST. The accuracy of this method generally reduces where no homologue is found. A simple three-state output (helix, extended/strand and coil) is used to assign secondary structure to the amino acids in the <italic>poing</italic> model. The protein is then modelled in <italic>poing</italic>, for (6000<italic>l</italic> + 400,000) iterations, where <italic>l</italic> is the number of amino acids in the protein. Forty structures are sampled at equal intervals from iteration 6000<italic>l</italic> to the end of the simulation. As a computational shortcut to a compact structure, the protein is slowly synthesized by adding an amino acid to the C-terminus of the protein every set of 1000 iterations and tethering this growing end to the edge of a large heavy sphere representing a ribosome. This process is repeated 150 times with different random seeds for the generation of kicks from solvent in the Langevin equation, producing many folding trajectories. This produces the final pool of structures from which predictions are made.</p>
+        <p>Determination of structure predictions from generated conformations is performed in three stages. First, a mean of the contact maps of the backbone particles of the pool of structures is generated. The contact maps are calculated based upon backbone traces smoothed with a window of nine amino acids. The contact maps disregard contacts between amino acids within the same secondary structure unit. Different distance cutoffs are used depending on the secondary structure: 8 Å between amino acids that are both assigned as strand and 11 Å in all other cases. This reflects the fact that the backbones of hydrogen-bonded strands are closer than other secondary structure elements. All 6000 structures are sorted according to their similarity to this mean contact map—the contact map similarity score penalises a lack of contact where there should be one and rewards the presence of a contact where there should be one.</p>
+        <p>The top 20 structures selected by similarity to a consensus contact map are scored using ProQ,<xref rid="bib49" ref-type="bibr"><sup>49</sup></xref> a neural net-based structure scoring program trained to predict the MaxSub score of a protein as compared with its (unknown) native state. If any of the top 5 structures picked by ProQ are very similar to one another, the one with the lowest score is eliminated and the next structure down is brought in to the top 5. Two proteins are judged to be very similar if more than 90% of the residues can be aligned to less than 7 Å RMSD. This process is repeated until the top 5 represents a range of the best structures produced by <italic>poing</italic>, or there are no more structures.</p>
+      </sec>
+      <sec>
+        <title>Model for protein synthesis into a crowded cell</title>
+        <p>This is illustrated in <xref rid="fig3" ref-type="fig">Fig. 3</xref>. The model consists of a simulated protein (described above) and crowding macromolecule spheres inside a containing sphere and a heavy ribosome with a synthesis exit point located on its surface, with the exit point tethered to the centre of the containing sphere. The ribosome, crowding macromolecules and containing sphere all move iteratively under forces applied through the Langevin equation, including the solvent model. Details of these elements are given below.</p>
+        <p>In <italic>poing</italic>, the ribosome is modelled with a heavy sphere of radius 100 Å. All simulated particles are excluded from this sphere. The mass is set to make the ribosome an essentially immovable object. The protein emerges from an exit tunnel on the surface of a ribosome, to which it is tethered: this is modelled by a particle attached to the surface of the ribosome. This particle has the same mass as the ribosome in order to approximate the moment of inertia of the ribosome as a whole. The backbone particle at the growing end of a protein is attached to this particle. This set of strong springs and massive particles presents a major constraint to the protein's freedom, which is designed to approximate the effect of the ribosome on protein folding.</p>
+        <p>Protein synthesis is modelled by periodically adding backbone and side-chain particles to the C-terminus chain at the position of the exit tunnel. The new backbone point is tethered to the exit point, and the old backbone point to which it is attached is no longer tethered (however, its location is still restricted by its backbone link to the new backbone particle). We used a synthesis rate of one amino acid per 1000 time steps. This is an artificially fast synthesis rate, relative to the rate of protein collapse in our model; however, short tests have found that slower synthesis rates do not alter our observations. This relatively fast rate was chosen as a computational optimisation.</p>
+        <p>Macromolecular crowding is designed to simulate the crowding of a protein by other proteins of a similar size. Previous work<xref rid="bib17" ref-type="bibr"><sup>17</sup></xref> has suggested that the specific physicochemical properties of the crowding macromolecules are not especially important and that the principal effect is volume exclusion. It would be computationally prohibitive and unnecessary to crowd a protein with other complete protein models if there is no requirement to simulate specific interactions. Therefore, in <italic>poing</italic>, a crowding macromolecule is reduced to a large, heavy sphere. The macromolecules crowding a protein are assumed to be of size similar to the protein being crowded. The set of small domains used in this study is between 43 and 90 amino acids long. All particles in the protein model have the same mass, and each amino acid has two particles associated with it. This is simplified to a single crowding particle that models a 75-amino-acid protein, of diameter 30 Å (the approximate size of a 75-amino-acid protein) and with mass 150 times that of a single particle. The entire system of particles (excluding the ribosome) is contained within a sphere of diameter 100 Å.</p>
+        <p>The ribosome exit point is tied to the centre of the crowding containment sphere with a spring, ensuring that the protein is synthesized into the centre of the crowding area. This ensures that any observed effects upon folding from crowding are due to the crowding rather than boundary-specific effects that might be observed if the protein is synthesized at the boundary.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liwo</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Khalili</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Scheraga</surname>
+              <given-names>H.A.</given-names>
+            </name>
+          </person-group>
+          <article-title><italic>Ab initio</italic> simulations of protein-folding pathways by molecular dynamics with the united-residue model of polypeptide chains</article-title>
+          <source>Proc. Natl Acad. Sci. USA</source>
+          <volume>102</volume>
+          <year>2005</year>
+          <fpage>2362</fpage>
+          <lpage>2367</lpage>
+          <pub-id pub-id-type="pmid">15677316</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moult</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Fidelis</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Kryshtafovych</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Rost</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Hubbard</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Tramontano</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Critical assessment of methods of protein structure prediction—round VII</article-title>
+          <source>Proteins</source>
+          <volume>69</volume>
+          <year>2007</year>
+          <fpage>3</fpage>
+          <lpage>9</lpage>
+          <pub-id pub-id-type="pmid">17918729</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein structure prediction: when is it useful?</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>145</fpage>
+          <lpage>155</lpage>
+          <pub-id pub-id-type="pmid">19327982</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Das</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Qian</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Raman</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Vernon</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Bradley</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure prediction for CASP7 targets using extensive all-atom refinement with Rosetta@home</article-title>
+          <source>Proteins</source>
+          <volume>69</volume>
+          <year>2007</year>
+          <fpage>118</fpage>
+          <lpage>128</lpage>
+          <pub-id pub-id-type="pmid">17894356</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>I-TASSER server for protein 3D structure prediction</article-title>
+          <source>BMC Bioinformatics</source>
+          <volume>9</volume>
+          <year>2008</year>
+          <fpage>40</fpage>
+          <pub-id pub-id-type="pmid">18215316</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kelley</surname>
+              <given-names>L.A.</given-names>
+            </name>
+            <name>
+              <surname>Sternberg</surname>
+              <given-names>M.J.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein structure prediction on the Web: a case study using the Phyre server</article-title>
+          <source>Nat. Protoc.</source>
+          <volume>4</volume>
+          <year>2009</year>
+          <fpage>363</fpage>
+          <lpage>371</lpage>
+          <pub-id pub-id-type="pmid">19247286</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Soeding</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Biegert</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lupas</surname>
+              <given-names>A.N.</given-names>
+            </name>
+          </person-group>
+          <article-title>The HHpred interactive server for protein homology detection and structure prediction</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>33</volume>
+          <year>2005</year>
+          <fpage>W244</fpage>
+          <lpage>W248</lpage>
+          <pub-id pub-id-type="pmid">15980461</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lucent</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Vishal</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Pande</surname>
+              <given-names>V.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein folding under confinement: a role for solvent</article-title>
+          <source>Proc. Natl Acad. Sci. USA</source>
+          <volume>104</volume>
+          <year>2007</year>
+          <fpage>10430</fpage>
+          <lpage>10434</lpage>
+          <pub-id pub-id-type="pmid">17563390</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shell</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Ozkan</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Voelz</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>G.A.</given-names>
+            </name>
+            <name>
+              <surname>Dill</surname>
+              <given-names>K.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Blind test of physics-based prediction of protein structures</article-title>
+          <source>Biophys. J.</source>
+          <volume>96</volume>
+          <year>2009</year>
+          <fpage>917</fpage>
+          <lpage>924</lpage>
+          <pub-id pub-id-type="pmid">19186130</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>DeBartolo</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Colubri</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Jha</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Fitzgerald</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Freed</surname>
+              <given-names>K.F.</given-names>
+            </name>
+            <name>
+              <surname>Sosnick</surname>
+              <given-names>T.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mimicking the folding pathway to improve homology-free protein structure prediction</article-title>
+          <source>Proc. Natl Acad. Sci. USA</source>
+          <volume>106</volume>
+          <year>2009</year>
+          <fpage>3734</fpage>
+          <lpage>3739</lpage>
+          <pub-id pub-id-type="pmid">19237560</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Levitt</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Warshel</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computer simulation of protein folding</article-title>
+          <source>Nature</source>
+          <volume>253</volume>
+          <year>1975</year>
+          <fpage>694</fpage>
+          <lpage>698</lpage>
+          <pub-id pub-id-type="pmid">1167625</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ellis</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Macromolecular crowding: an important but neglected aspect of the intracellular environment</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>11</volume>
+          <year>2001</year>
+          <fpage>114</fpage>
+          <lpage>119</lpage>
+          <pub-id pub-id-type="pmid">11179900</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rivas</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Ferrone</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Herzfeld</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Life in a crowded world</article-title>
+          <source>EMBO Rep.</source>
+          <volume>5</volume>
+          <year>2004</year>
+          <fpage>23</fpage>
+          <lpage>27</lpage>
+          <pub-id pub-id-type="pmid">14710181</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pielak</surname>
+              <given-names>G.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A model of intracellular organization</article-title>
+          <source>Proc. Natl Acad. Sci. USA</source>
+          <volume>102</volume>
+          <year>2005</year>
+          <fpage>5901</fpage>
+          <lpage>5902</lpage>
+          <pub-id pub-id-type="pmid">15840719</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Long</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Helfrich</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Mangeney-Slavin</surname>
+              <given-names>L.K.</given-names>
+            </name>
+            <name>
+              <surname>Keating</surname>
+              <given-names>C.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic microcompartmentation in synthetic cells</article-title>
+          <source>Proc. Natl Acad. Sci. USA</source>
+          <volume>102</volume>
+          <year>2005</year>
+          <fpage>5920</fpage>
+          <lpage>5925</lpage>
+          <pub-id pub-id-type="pmid">15788532</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Minton</surname>
+              <given-names>A.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Influence of macromolecular crowding upon the stability and state of association of proteins: predictions and observations</article-title>
+          <source>J. Pharm. Sci.</source>
+          <volume>94</volume>
+          <year>2005</year>
+          <fpage>1668</fpage>
+          <lpage>1675</lpage>
+          <pub-id pub-id-type="pmid">15986476</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van den Berg</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Ellis</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Dobson</surname>
+              <given-names>C.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Effects of macromolecular crowding on protein folding and aggregation</article-title>
+          <source>EMBO J.</source>
+          <volume>18</volume>
+          <year>1999</year>
+          <fpage>6927</fpage>
+          <lpage>6933</lpage>
+          <pub-id pub-id-type="pmid">10601015</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van den Berg</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Wain</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Dobson</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Ellis</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Macromolecular crowding perturbs protein refolding kinetics: implications for folding inside the cell</article-title>
+          <source>EMBO J.</source>
+          <volume>19</volume>
+          <year>2000</year>
+          <fpage>3870</fpage>
+          <lpage>3875</lpage>
+          <pub-id pub-id-type="pmid">10921869</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheung</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Klimov</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Thirumalai</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular crowding enhances native state stability and refolding rates of globular proteins</article-title>
+          <source>Proc. Natl Acad. Sci. USA</source>
+          <volume>102</volume>
+          <year>2005</year>
+          <fpage>4753</fpage>
+          <lpage>4758</lpage>
+          <pub-id pub-id-type="pmid">15781864</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ai</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Bai</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Choy</surname>
+              <given-names>W.Y.</given-names>
+            </name>
+          </person-group>
+          <article-title><sup>15</sup>N NMR spin relaxation dispersion study of the molecular crowding effects on protein folding under native conditions</article-title>
+          <source>J. Am. Chem. Soc.</source>
+          <volume>128</volume>
+          <year>2006</year>
+          <fpage>3916</fpage>
+          <lpage>3917</lpage>
+          <pub-id pub-id-type="pmid">16551092</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lu</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural transitions of confined model proteins: molecular dynamics simulation and experimental validation</article-title>
+          <source>Biophys. J.</source>
+          <volume>90</volume>
+          <year>2006</year>
+          <fpage>3224</fpage>
+          <lpage>3238</lpage>
+          <pub-id pub-id-type="pmid">16461405</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stagg</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>S.Q.</given-names>
+            </name>
+            <name>
+              <surname>Cheung</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Wittung-Stafshede</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular crowding enhances native structure and stability of alpha/beta protein flavodoxin</article-title>
+          <source>Proc. Natl Acad. Sci. USA</source>
+          <volume>104</volume>
+          <year>2007</year>
+          <fpage>18976</fpage>
+          <lpage>18981</lpage>
+          <pub-id pub-id-type="pmid">18024596</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taketomi</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Ueda</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Go</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Studies on protein folding, unfolding and fluctuations by computer simulation: I. The effect of specific amino acid sequence represented by specific inter-unit interactions</article-title>
+          <source>Int. J. Pept. Protein Res.</source>
+          <volume>7</volume>
+          <year>1975</year>
+          <fpage>445</fpage>
+          <lpage>459</lpage>
+          <pub-id pub-id-type="pmid">1201909</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Samiotakis</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wittung-Stafshede</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Cheung</surname>
+              <given-names>M.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Folding, stability and shape of proteins in crowded environments: experimental and computational approaches</article-title>
+          <source>Int. J. Mol. Sci.</source>
+          <volume>10</volume>
+          <year>2009</year>
+          <fpage>572</fpage>
+          <lpage>588</lpage>
+          <pub-id pub-id-type="pmid">19333422</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Mirny</surname>
+              <given-names>L.A.</given-names>
+            </name>
+            <name>
+              <surname>Shakhnovich</surname>
+              <given-names>E.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Kinetics, thermodynamics and evolution of non-native interactions in a protein folding nucleus</article-title>
+          <source>Nat. Struct. Biol.</source>
+          <volume>7</volume>
+          <year>2000</year>
+          <fpage>336</fpage>
+          <lpage>342</lpage>
+          <pub-id pub-id-type="pmid">10742180</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sikorski</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Skolnick</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic Monte Carlo simulations of globular protein folding. Model studies of <italic>in vivo</italic> assembly of four helix bundles and four member beta-barrels</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>215</volume>
+          <year>1990</year>
+          <fpage>183</fpage>
+          <lpage>198</lpage>
+          <pub-id pub-id-type="pmid">2398497</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Elcock</surname>
+              <given-names>A.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular simulations of cotranslational protein folding: fragment stabilities, folding cooperativity, and trapping in the ribosome</article-title>
+          <source>PLoS Comput. Biol.</source>
+          <volume>e98</volume>
+          <year>2006</year>
+          <fpage>2</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bib28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Topological accessibility shows a distinct asymmetry in the folds of betaalpha proteins</article-title>
+          <source>FEBS Lett.</source>
+          <volume>580</volume>
+          <year>2006</year>
+          <fpage>5263</fpage>
+          <lpage>5267</lpage>
+          <pub-id pub-id-type="pmid">16979627</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deane</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Dong</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Huard</surname>
+              <given-names>F.P.E.</given-names>
+            </name>
+            <name>
+              <surname>Lance</surname>
+              <given-names>B.K.</given-names>
+            </name>
+            <name>
+              <surname>Wood</surname>
+              <given-names>G.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cotranslational protein folding—fact or fiction?</article-title>
+          <source>Bioinformatics</source>
+          <volume>23</volume>
+          <year>2007</year>
+          <fpage>i142</fpage>
+          <lpage>i148</lpage>
+          <pub-id pub-id-type="pmid">17646290</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gay</surname>
+              <given-names>G.D.P.</given-names>
+            </name>
+            <name>
+              <surname>Ruiz-Sanz</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Neira</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Itzhaki</surname>
+              <given-names>L.S.</given-names>
+            </name>
+            <name>
+              <surname>Fersht</surname>
+              <given-names>A.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Folding of a nascent polypeptide chain <italic>in vitro</italic>: cooperative formation of structure in a protein module</article-title>
+          <source>Proc. Natl Acad. Sci. USA</source>
+          <volume>92</volume>
+          <year>1995</year>
+          <fpage>3683</fpage>
+          <lpage>3686</lpage>
+          <pub-id pub-id-type="pmid">7731965</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fedorov</surname>
+              <given-names>A.N.</given-names>
+            </name>
+            <name>
+              <surname>Baldwin</surname>
+              <given-names>T.O.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cotranslational protein folding</article-title>
+          <source>J. Biol. Chem.</source>
+          <volume>272</volume>
+          <year>1997</year>
+          <fpage>32715</fpage>
+          <lpage>32718</lpage>
+          <pub-id pub-id-type="pmid">9407040</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein secondary structure prediction based on position-specific scoring matrices</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>292</volume>
+          <year>1999</year>
+          <fpage>195</fpage>
+          <lpage>202</lpage>
+          <pub-id pub-id-type="pmid">10493868</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib33">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Skolnick</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Scoring function for automated assessment of protein structure template quality</article-title>
+          <source>Proteins</source>
+          <volume>57</volume>
+          <year>2004</year>
+          <fpage>702</fpage>
+          <lpage>710</lpage>
+          <pub-id pub-id-type="pmid">15476259</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib34">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jauch</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Yeo</surname>
+              <given-names>H.C.</given-names>
+            </name>
+            <name>
+              <surname>Kolatkar</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Clarke</surname>
+              <given-names>N.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessment of CASP7 structure predictions for template free targets</article-title>
+          <source>Proteins</source>
+          <volume>69</volume>
+          <year>2007</year>
+          <fpage>57</fpage>
+          <lpage>67</lpage>
+          <pub-id pub-id-type="pmid">17894330</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib35">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Uversky</surname>
+              <given-names>V.N.</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>E.M.</given-names>
+            </name>
+            <name>
+              <surname>Bower</surname>
+              <given-names>K.S.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Fink</surname>
+              <given-names>A.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Accelerated alpha-synuclein fibrillation in crowded milieu</article-title>
+          <source>FEBS Lett.</source>
+          <volume>515</volume>
+          <year>2002</year>
+          <fpage>99</fpage>
+          <lpage>103</lpage>
+          <pub-id pub-id-type="pmid">11943202</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib36">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frishman</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Argos</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Knowledge-based protein secondary structure assignment</article-title>
+          <source>Proteins</source>
+          <volume>23</volume>
+          <year>1995</year>
+          <fpage>566</fpage>
+          <lpage>579</lpage>
+          <pub-id pub-id-type="pmid">8749853</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib37">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hales</surname>
+              <given-names>T.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A proof of the Kepler conjecture</article-title>
+          <source>Ann. Math.</source>
+          <volume>162</volume>
+          <year>2005</year>
+          <fpage>1063</fpage>
+          <lpage>1183</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib38">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Monsellier</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Chiti</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Prevention of amyloid-like aggregation as a driving force of protein evolution</article-title>
+          <source>EMBO Rep.</source>
+          <volume>8</volume>
+          <year>2007</year>
+          <fpage>737</fpage>
+          <lpage>742</lpage>
+          <pub-id pub-id-type="pmid">17668004</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib39">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jansen</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Gerstein</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of the yeast transcriptome with structural and functional categories: characterizing highly expressed proteins</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>28</volume>
+          <year>2000</year>
+          <fpage>1481</fpage>
+          <lpage>1488</lpage>
+          <pub-id pub-id-type="pmid">10684945</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib40">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Coghlan</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wolfe</surname>
+              <given-names>K.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Relationship of codon bias to mRNA concentration and protein length in <italic>Saccharomyces cerevisiae</italic></article-title>
+          <source>Yeast</source>
+          <volume>16</volume>
+          <year>2000</year>
+          <fpage>1131</fpage>
+          <lpage>1145</lpage>
+          <pub-id pub-id-type="pmid">10953085</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib41">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lu</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Vogel</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Yao</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Marcotte</surname>
+              <given-names>E.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Absolute protein expression profiling estimates the relative contributions of transcriptional and translational regulation</article-title>
+          <source>Nat. Biotechnol.</source>
+          <volume>25</volume>
+          <year>2007</year>
+          <fpage>117</fpage>
+          <lpage>124</lpage>
+          <pub-id pub-id-type="pmid">17187058</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib42">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tartaglia</surname>
+              <given-names>G.G.</given-names>
+            </name>
+            <name>
+              <surname>Pechmann</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Dobson</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Vendruscolo</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Life on the edge: a link between gene expression levels and aggregation rates of human proteins</article-title>
+          <source>Trends Biochem. Sci.</source>
+          <volume>32</volume>
+          <year>2007</year>
+          <fpage>204</fpage>
+          <lpage>206</lpage>
+          <pub-id pub-id-type="pmid">17419062</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib43">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rousseau</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Serrano</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Schymkowitz</surname>
+              <given-names>J.W.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>How evolutionary pressure against protein aggregation shaped chaperone specificity</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>355</volume>
+          <year>2006</year>
+          <fpage>1037</fpage>
+          <lpage>1047</lpage>
+          <pub-id pub-id-type="pmid">16359707</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib44">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Teter</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Houry</surname>
+              <given-names>W.A.</given-names>
+            </name>
+            <name>
+              <surname>Ang</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Tradler</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Rockabrand</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Fischer</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Polypeptide flux through bacterial Hsp70: DnaK cooperates with trigger factor in chaperoning nascent chains</article-title>
+          <source>Cell</source>
+          <volume>97</volume>
+          <year>1999</year>
+          <fpage>755</fpage>
+          <lpage>765</lpage>
+          <pub-id pub-id-type="pmid">10380927</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib45">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bukau</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Deuerling</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Pfund</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Craig</surname>
+              <given-names>E.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Getting newly synthesized proteins into shape</article-title>
+          <source>Cell</source>
+          <volume>101</volume>
+          <year>2000</year>
+          <fpage>119</fpage>
+          <lpage>122</lpage>
+          <pub-id pub-id-type="pmid">10786831</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib46">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hartl</surname>
+              <given-names>F.U.</given-names>
+            </name>
+            <name>
+              <surname>Hayer-Hartl</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular chaperones in the cytosol: from nascent chain to folded protein</article-title>
+          <source>Science</source>
+          <volume>295</volume>
+          <year>2002</year>
+          <fpage>1852</fpage>
+          <lpage>1858</lpage>
+          <pub-id pub-id-type="pmid">11884745</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib47">
+        <label>47</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schlick</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <source>Molecular Modeling and Simulation</source>
+          <year>2002</year>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <publisher-loc>New York, NY</publisher-loc>
+          <fpage>435</fpage>
+          <lpage>438</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib48">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berman</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Westbrook</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Feng</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Gilliland</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Bhat</surname>
+              <given-names>T.N.</given-names>
+            </name>
+            <name>
+              <surname>Weissig</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Protein Data Bank</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>28</volume>
+          <year>2000</year>
+          <fpage>235</fpage>
+          <lpage>242</lpage>
+          <pub-id pub-id-type="pmid">10592235</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib49">
+        <label>49</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wallner</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Elofsson</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Can correct protein models be identified?</article-title>
+          <source>Protein Sci.</source>
+          <volume>12</volume>
+          <year>2003</year>
+          <fpage>1073</fpage>
+          <lpage>1086</lpage>
+          <pub-id pub-id-type="pmid">12717029</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec id="app1" sec-type="supplementary-material">
+      <label>Appendix A</label>
+      <title>Supplementary data</title>
+      <p>
+        <supplementary-material content-type="local-data" id="d30e678">
+          <caption>
+            <p>Supplementary Material</p>
+          </caption>
+          <media xlink:href="mmc1.pdf" mimetype="application" mime-subtype="pdf"/>
+        </supplementary-material>
+      </p>
+    </sec>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This work was supported by the Wellcome Trust and the Biotechnology and Biological Sciences Research Council. We thank Maxime Huvet and Mark Wass for valuable comments and suggestions.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Structure prediction results. TM scores for the proteins are shown on the left. The shape and colour indicate broad protein class: red circles are all-helical, blue squares are all-strand and green diamonds are mixed. Twenty-four targets were predicted with structures better than 0.3 in TM score, and four of those were predicted with structures better than 0.4 in TM score. For comparison, we plotted the largest proportion of the protein that can be aligned to the native at less than 5 Å RMSD on the right. The point shape and colour are as those for the graph on the left.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Best of five predictions and the best structure (by TM score) generated by the model during structure prediction for an all-helical protein, a mixed protein and an all-sheet protein. Proteins are shown coloured from red at the C-terminus to blue at the N-terminus, with arrows representing strands and ribbons representing helices. The best TM score structure in the right-hand column shows the best conformation, as compared with the known native structure, out of several thousands of structures produced by 150 separate folding trajectories and therefore does <italic>not</italic> represent a prediction but rather the theoretical best prediction that could be made by <italic>poing</italic>. Images were generated using PyMOL.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Illustration of model for synthesizing protein into a crowded container. The white curly lines represent springs that hold together the ribosome, ribosome exit point and container and keep particles inside the container. The ribosome is the large red circle (only partially visible), the ribosome synthesis exit point is the small blue circle on the ribosome's surface, the crowding macromolecules are in translucent gray and the protein is shown with colours going from red at the C-terminus to purple at the N-terminus.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>A series of images showing the synthesis of a protein into a cell with 41% volume excluded by macromolecules. Each image is approximately 10,000 time steps apart. The protein is shown in cartoon form, with ribbons showing the assigned secondary structure. Colour scheme is as that for <xref rid="fig3" ref-type="fig">Fig. 3</xref>, with translucent crowding macromolecules. Note that the protein is becoming squeezed between the crowding macromolecules as it is synthesized. Images were generated by <italic>poing</italic>, the protein model used for this work.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Effects of crowding upon conformation size, conformational freedom and native-like time. <italic>N</italic> = 1.2 million for each crowding level for all graphs, although structures produced during simulation of a single folding trajectory are not strictly independent, and 1200 folding trajectories were simulated. The illustrations at the bottom show how crowding changes the space remaining for the protein to fold. Colour scheme is as that for <xref rid="fig3" ref-type="fig">Fig. 3</xref>. All elements have proportions designed to show the relative excluded volume resulting from crowding as relative excluded area in two dimensions—for example, at 50% crowding, 50% of the area within the container not occupied by the ribosome is occupied by macromolecules. (Row A) These illustrate the space that remains for a successfully folded protein. Space is limited at 50% (c), but there is still space for more proteins in the three-dimensional case. (Row B) These illustrate the largest effect of crowding upon folding. At 14% (d), there is no measurable effect on the folded protein. At 36% (e), proteins are starting to get trapped in non-native but compact conformations. At 50% (f), proteins are becoming trapped in extended conformations.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+  </floats-group>
+</article>

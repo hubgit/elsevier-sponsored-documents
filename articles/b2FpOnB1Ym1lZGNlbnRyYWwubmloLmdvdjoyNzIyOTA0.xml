@@ -1,0 +1,1615 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="announcement">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title>Neuroimage</journal-title>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2722904</article-id>
+      <article-id pub-id-type="pmid">19398015</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG6190</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2009.04.062</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Technical Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Dynamic causal modelling of distributed electromagnetic responses</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Daunizeau</surname>
+            <given-names>Jean</given-names>
+          </name>
+          <email>j.daunizeau@fil.ion.ucl.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kiebel</surname>
+            <given-names>Stefan J.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>Karl J.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>
+        <addr-line>The Wellcome Trust Centre for Neuroimaging, Institute of Neurology, UCL 12 Queen Square, London, WC1N 3BG UK</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Fax: +44 207 813 1445. <email>j.daunizeau@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>8</month>
+        <year>2009</year>
+      </pub-date>
+      <volume>47</volume>
+      <issue>2</issue>
+      <fpage>590</fpage>
+      <lpage>601</lpage>
+      <history>
+        <date date-type="received">
+          <day>5</day>
+          <month>2</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>6</day>
+          <month>4</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>14</day>
+          <month>4</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2009 Elsevier Inc.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>In this note, we describe a variant of dynamic causal modelling for evoked responses as measured with electroencephalography or magnetoencephalography (EEG and MEG). We depart from equivalent current dipole formulations of DCM, and extend it to provide spatiotemporal source estimates that are spatially distributed. The spatial model is based upon <italic>neural-field</italic> equations that model neuronal activity on the cortical manifold. We approximate this description of electrocortical activity with a set of local standing-waves that are coupled though their temporal dynamics. The ensuing distributed DCM models source as a mixture of overlapping patches on the cortical mesh. Time-varying activity in this mixture, caused by activity in other sources and exogenous inputs, is propagated through appropriate lead-field or gain-matrices to generate observed sensor data. This spatial model has three key advantages. First, it is more appropriate than equivalent current dipole models, when real source activity is distributed locally within a cortical area. Second, the spatial degrees of freedom of the model can be specified and therefore optimised using model selection. Finally, the model is linear in the spatial parameters, which finesses model inversion. Here, we describe the distributed spatial model and present a comparative evaluation with conventional equivalent current dipole (ECD) models of auditory processing, as measured with EEG.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Dynamic causal modelling</kwd>
+        <kwd>EEG</kwd>
+        <kwd>MEG</kwd>
+        <kwd>Neural-mass</kwd>
+        <kwd>Neural-field</kwd>
+        <kwd>Variational Bayes</kwd>
+        <kwd>Inversion</kwd>
+        <kwd>System identification</kwd>
+        <kwd>Source reconstruction</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>We have previously introduced a dynamic causal modelling (DCM) for event-related potentials and fields as measured with EEG and MEG (<xref rid="bib9 bib10 bib11 bib28 bib29 bib19" ref-type="bibr">David and Friston 2003; David et al., 2005, 2006; Kiebel et al., 2006; Kiebel et al., 2007; Garrido et al., 2007</xref>). This extended the application of DCM beyond fMRI (<xref rid="bib15 bib33" ref-type="bibr">Friston et al., 2003; Marreiros et al., 2008a</xref>) to cover EEG, MEG and local field potentials (<xref rid="bib36" ref-type="bibr">Moran et al., 2007</xref>). However, all current DCMs model hemodynamic or electromagnetic signals as arising from a network of sources, where each source is considered to be a point process; i.e., an equivalent current dipole. In other words, the network is modelled as a <italic>graph</italic>, where sources correspond to <italic>nodes</italic> and conditional dependencies among the hidden states of each node are mediated by effective connectivity (known as <italic>edges</italic>). In this work, we replace the nodes with a distributed and continuous set of sources on the cortical surface. This provides a more realistic spatial model of underlying activity and, in the context of electromagnetic models, renders the DCM linear in its spatial parameters (c.f., <xref rid="bib18" ref-type="bibr">Fuchs et al., 1999</xref>). The aim of this note is to describe this extension and compare it with models based upon point-sources or equivalent current dipoles (ECD). This model rests on the notions of mesostates (<xref rid="bib7" ref-type="bibr">Daunizeau and Friston 2007</xref>) and anatomically informed basis functions (<xref rid="bib41" ref-type="bibr">Phillips et al., 2002</xref>) but is motivated using neural-field theory (<xref rid="bib1" ref-type="bibr">Amari, 1995;</xref> <xref rid="bib25" ref-type="bibr">Jirsa and Haken, 1996;</xref> <xref rid="bib30" ref-type="bibr">Liley et al., 2002</xref>).</p>
+      <p>DCM entails the specification of a generative model for an observed time-series and the inversion of this model to make inferences on model space and the parameters of each model. These inferences use the model evidence and posterior density of the parameters, respectively. In DCM, the underlying generative model is based on some state-equations (i.e., a state-space model) that describe the evolution of hidden states as a function of themselves and exogenous inputs (e.g., a stimulus function). The state-equations are supplemented with an observer function of the states to generate observed responses. By integrating the state-equation and applying the observer function, one obtains predicted responses. Under Gaussian assumptions about observation error these predictions furnish a likelihood model of observed responses. This likelihood model is combined with priors on the parameters to provide a full forward model of the data, which can be inverted using standard techniques (e.g., <xref rid="bib16" ref-type="bibr">Friston et al., 2007a</xref>). These techniques generally rest on optimising a free-energy bound on the models log-evidence to approximate the posterior density of the model parameters.</p>
+      <p>In this work, we focus on the mapping from neuronal states to observed measurements at the sensors. We depart from equivalent current dipole models and employ an approximate neural-field model. Neural-field models describe electrocortical activity in terms of neuronal states (e.g. mean firing rate and post-synaptic membrane depolarisation) that are continuous over space (<xref rid="bib1" ref-type="bibr">Amari 1995</xref>; Jirsa 1996; Liley 2002). This approach has shown how local and distal connectivity can interact to generate realistic spatiotemporal patterns of cortical activity that might underlie EEG rhythms (<xref rid="bib37" ref-type="bibr">Nunez 1974</xref>) and their perceptual correlates, like visual hallucinations (<xref rid="bib13" ref-type="bibr">Ermentrout and Cowan 1979</xref>). The patterns studied using neural-field models include <italic>bumps</italic> (transient clustering of activity) and <italic>travelling waves</italic> (which have been associated with synchronous discharges seen during epileptic seizures; <xref rid="bib6" ref-type="bibr">Connors and Amitai 1993</xref>). These patterns are engendered by local (mesoscopic) connectivity. However, several authors have pointed out the importance of large-scale (macroscopic) connectivity in stabilizing local spatiotemporal dynamics (<xref rid="bib26 bib3 bib43 bib23" ref-type="bibr">Jirsa and Kelso 2000; Breakspear and Stam 2005; Qubbaj and Jirsa 2007; Hutt and Atay 2005</xref>).</p>
+      <p>In this paper, we use theoretical results from neural-field theory, which combine mesoscopic and macroscopic connectivity, to model M/EEG. Specifically, we approximate the neural-field description of electrocortical activity with a set of distributed and continuous cortical sources that behave as standing-waves with compact local support. These standing-waves are coupled by temporal dynamics and follow from a truncated space-time decomposition of the solution of the underlying neural-field equations. The aims of this note are to (i) describe this neural-field DCM, (ii) compare it with established equivalent current dipole variants and (iii) to provide a framework for more realistic neural-field DCMs. We discuss these models in relation to the subtle balance between their face validity and identifiability.</p>
+      <p>In the first section of this paper, we derive a standing-wave approximation to the neural-field formulation and the ensuing parameterization of the DCM for distributed responses. In the second section, we present a comparative evaluation of DCMs based upon ECDs and distributed sources. We compare these models in terms of their relative log-evidence using a multi-subject EEG dataset, acquired during an auditory mismatch negativity paradigm. We conclude with a discussion of the benefits and potential uses of DCM for distributed responses.</p>
+    </sec>
+    <sec>
+      <title>DCM for distributed responses</title>
+      <p>In this section, we approximate a neural-field description of electrocortical activity with local standing-waves. We then combine the ensuing spatial model with the temporal state-space models used in previous DCMs for event-related responses (<xref rid="bib9 bib10" ref-type="bibr">David and Friston 2003; David et al., 2005</xref><xref rid="bib11 bib28" ref-type="bibr">, 2006; Kiebel et al., 2006</xref><xref rid="bib29 bib19" ref-type="bibr">, 2007; Garrido et al., 2007</xref>). This combination provides a full spatiotemporal DCM for distributed responses, which can be fitted or inverted in the usual way.</p>
+      <sec>
+        <title>From neural-fields to standing-waves</title>
+        <sec>
+          <title>Neural-fields and mesoscopic modelling</title>
+          <p>We start with a description of the dynamics of a single neuron within an ensemble of neurons. These dynamics can be modelled as a temporal convolution of the average (mean-field) firing of the local population that is seen by the neuron:<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:msubsup><mml:mi>x</mml:mi><mml:mi>j</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:mi>G</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mi>t</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msub><mml:mrow><mml:mrow><mml:mo>〈</mml:mo><mml:mrow><mml:mi>H</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mi>j</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:mi>θ</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo>〉</mml:mo></mml:mrow></mml:mrow><mml:mi>j</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>u</mml:mi></mml:mrow></mml:msub><mml:mi>u</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi><mml:mo>′</mml:mo></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>G</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">{</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:mi>γ</mml:mi><mml:mfrac><mml:mi>t</mml:mi><mml:mi>κ</mml:mi></mml:mfrac><mml:mi>exp</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mi>t</mml:mi><mml:mi>κ</mml:mi></mml:mfrac></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mtd><mml:mtd><mml:mrow><mml:mi>t</mml:mi><mml:mo>≥</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mrow><mml:mi>t</mml:mi><mml:mo>&lt;</mml:mo><mml:mn>0</mml:mn><mml:mtext>.</mml:mtext></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+          <p>Here, <italic>x</italic><sub><italic>j</italic></sub><sup>(<italic>i</italic>)</sup>(<italic>t</italic>) is the post-synaptic membrane potential (PSP) of the <italic>j</italic>-th neuron in the <italic>i</italic>-th population; <italic>G</italic> is the alpha-kernel; <italic>H</italic> is the Heaviside function that models firing above depolarisation threshold <italic>θ</italic>; <italic>κ</italic> is a lumped rate-constant and <italic>γ</italic> controls the maximum post-synaptic potential. <xref rid="fd1" ref-type="disp-formula">Eq. 1</xref> assumes that any neuron senses all the neurons in the population it belongs to. This means endogenous input (from this population) can be written as the expected firing rate over that population (cf., <xref rid="bib35" ref-type="bibr">Marreiros et al., 2008c</xref>). Here exogenous input (from another population or stimulus-bound subcortical input) is modelled as an injected current <italic>u</italic> scaled by the parameter <italic>γ</italic><sub><italic>iu</italic></sub>. <xref rid="fd1" ref-type="disp-formula">Eq. 1</xref> can be reformulated in terms of an ODE (cf., <xref rid="bib9" ref-type="bibr">David and Friston, 2003</xref>):<disp-formula id="fd2"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo>¨</mml:mo></mml:mover><mml:mi>j</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mi>γ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msub><mml:mrow><mml:mrow><mml:mo>〈</mml:mo><mml:mrow><mml:mi>H</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mi>j</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mi>i</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:mi>θ</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo>〉</mml:mo></mml:mrow></mml:mrow><mml:mi>j</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>u</mml:mi></mml:mrow></mml:msub><mml:mi>u</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mi>κ</mml:mi><mml:msubsup><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mi>j</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mrow><mml:mo>+</mml:mo><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msubsup><mml:mi>x</mml:mi><mml:mi>j</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup></mml:mrow></mml:mrow><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+          <p>Given <xref rid="fd2" ref-type="disp-formula">Eq. 2</xref> we can now model the dynamics of the population mean PSP by taking its expectation over neurons <mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mrow><mml:mo>〈</mml:mo><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mi>i</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup></mml:mrow><mml:mo>〉</mml:mo></mml:mrow></mml:mrow><mml:mi>j</mml:mi></mml:msub></mml:mrow></mml:math> (<xref rid="bib34" ref-type="bibr">Marreiros et al., 2008b</xref>):<disp-formula id="fd3"><label>(3)</label><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msup><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>¨</mml:mo></mml:mover><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mi>κ</mml:mi><mml:msup><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mo>ς</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msup><mml:mo>ς</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>u</mml:mi></mml:mrow></mml:msub><mml:mi>u</mml:mi><mml:mo>+</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mi>S</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mo>exp</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mi>ρ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mo>−</mml:mo><mml:mi>θ</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mfrac></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula>where <italic>μ</italic><sup>(<italic>j</italic>)</sup> corresponds to the mean PSP in each population <italic>j</italic> sending exogenous input. This is a conventional neural-mass model that effectively applies a linear synaptic (alpha) kernel to input—<italic>ς</italic><sup>(<italic>i</italic>)</sup>, from other populations. This input is a nonlinear (sigmoid) function of depolarisation (<xref rid="bib24" ref-type="bibr">Jansen and Rit 1995</xref>), which can be thought of as the cumulative probability distribution of PSPs over the population sending afferent signals. See <xref rid="fig1" ref-type="fig">Fig. 1</xref>, which shows the explicit form of the state-equations for a cortical source containing three fields or populations.</p>
+          <p>In DCM, a cortical source is typically modelled using three neuronal subpopulations corresponding roughly to spiny stellate <italic>input</italic> cells (in the granular layer) intrinsic inhibitory interneurons (assigned to the supragranular layer) and deep pyramidal <italic>output</italic> cells in the infragranular layer. The connectivity within (intrinsic) and between (extrinsic) sources conforms to the laminar rules articulated in <xref rid="bib14" ref-type="bibr">Felleman and Van Essen (1991)</xref>. This is implicitly modelled in <xref rid="fd3" ref-type="disp-formula">Eq. 3</xref> through the mixture of exogenous and endogenous inputs <italic>ς</italic> that depends on the connectivity or coupling parameters—<italic>γ<sub>ij</sub></italic>. This sort of neural-mass model has been used to emulate electrophysiological recordings (e.g. <xref rid="bib24 bib49 bib10" ref-type="bibr">Jansen and Rit 1995; Wendling et al., 2000; David et al., 2005</xref>) and as a generative model for event-related potentials in DCM (<xref rid="bib11" ref-type="bibr">David et al., 2006</xref>).</p>
+          <p>However, these neural-mass models are not formulated to model spatially extended cortical regions (a square centimeter or so); they model the states of point processes, typically one macrocolumn (about 10,000 neurons, or a square millimeter of cortex; <xref rid="bib3" ref-type="bibr">Breakspear and Stam, 2005</xref>). Neural-field models are important generalizations of neural-mass models, which account for the spatial spread of activity, through local connectivity between macrocolumns. In these models, states like the PSP of each cortical layer can be regarded as a continuum or <italic>field</italic>, which is a function of space <italic>r</italic> and time: <italic>μ</italic><sup>(<italic>i</italic>)</sup>(<italic>t</italic>) → <italic>μ</italic><sup>(<italic>i</italic>)</sup>(<bold>r</bold>,<italic>t</italic>). This allows one to formulate the dynamics of each field in terms of partial differential equations (PDE). These are essentially wave-equations that accommodate lateral interactions among neural-masses (e.g., cortical columns). Key forms for neural-field equations were proposed and analyzed by <xref rid="bib37" ref-type="bibr">Nunez (1974)</xref> and Amari (1975). <xref rid="bib25" ref-type="bibr">Jirsa and Haken (1996)</xref> generalized these models and also considered delays in the propagation of spikes over space. The introduction of delays leads to dynamics that are reminiscent of those observed empirically. Typically, neural-field models can be construed as a spatiotemporal convolution that can be written in terms of a Green function (see e.g. <xref rid="bib27" ref-type="bibr">Jirsa et al., 2002</xref>):<disp-formula id="fd4"><label>(4)</label><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:mi>G</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mo>−</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mi>t</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msup><mml:mo>ς</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi><mml:mo>′</mml:mo><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mi>G</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mo>−</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mi>t</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>δ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mi>t</mml:mi><mml:mo>′</mml:mo><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mi>c</mml:mi></mml:mfrac><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mo>−</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mi>γ</mml:mi></mml:mfrac><mml:mo>exp</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mo>−</mml:mo><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mi>γ</mml:mi></mml:mfrac><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mo>−</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+          <p>Here, <italic>G</italic> is a Green function (modelling mesoscopic lateral connectivity), |<bold>r</bold> − <bold>r</bold>′| is the distance between <bold>r</bold> and <bold>r</bold>′, <italic>c</italic> is the speed of spike propagation, <italic>γ</italic> controls the spatial decay of lateral interactions (within a neural-field) and, as above, the input <italic>ς</italic><sup>(<italic>i</italic>)</sup> models both the effective connectivity between the neural-fields of different populations or layers. <xref rid="fd4" ref-type="disp-formula">Eq. 4</xref> is formulated as a simple convolution<xref rid="fn1" ref-type="fn">1</xref>; the corresponding second-order equations of motion are the neural wave-equations (see <xref rid="app1" ref-type="sec">Appendix 1</xref>):<disp-formula id="fd5"><label>(5)</label><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mfrac><mml:mrow><mml:msup><mml:mo>∂</mml:mo><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:msup><mml:mi>t</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mi>κ</mml:mi><mml:mfrac><mml:mo>∂</mml:mo><mml:mrow><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>−</mml:mo><mml:mfrac><mml:mn>3</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mo>∇</mml:mo><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>c</mml:mi><mml:mi>κ</mml:mi><mml:msup><mml:mo>ς</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula>where <italic>κ</italic> = <italic>c</italic> <italic>/</italic> <italic>γ</italic> and ▿<sup>2</sup> is the Laplacian operator that returns the spatial curvature. Note the similarity in form of <xref rid="fd3" ref-type="disp-formula">Eqs. 3</xref> and <xref rid="fd5" ref-type="disp-formula">5</xref>. These sorts of models have been extremely useful in modelling spatiotemporally extended dynamics, which unfold on the cortical manifold (see <xref rid="bib12" ref-type="bibr">Deco et al. (2008)</xref> for a recent review, <xref rid="bib5" ref-type="bibr">Coombes et al. (2007)</xref> for a more informed derivation of 2D neural fields and <xref rid="bib44" ref-type="bibr">Robinson et al. (1997)</xref> for a seminal analysis of the properties of coupled neural-fields).</p>
+        </sec>
+        <sec>
+          <title>Approximating the dynamics of neural-fields</title>
+          <p>In what follows, we will try to approximate the dynamics described by the partial differential equations above, with a system whose dynamics can be described with the ordinary differential equations used in neural-mass formulations. Using separation of variables, it is fairly easy to show (see <xref rid="app1" ref-type="sec">Appendix 2</xref>) that the solution of the neural-field equations can be expressed as a superposition of spatiotemporal modes that can be factorised into spatial and temporal components. For the <italic>i</italic>-th field or population:<disp-formula id="fd6"><label>(6)</label><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+          <p>Here, <italic>w</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup>(<italic>r</italic>) is the <italic>k</italic>-th spatial mode or pattern and is the solution to the eigenvalue problem ▿<sup>2</sup><italic>w<sub>k</sub><sup>(i)</sup></italic> + <italic>λ</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup><italic>w</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup> = 0. Note that this eigenvalue problem has to satisfy Dirichlet boundary conditions, i.e. the spatial modes are zero at the edges of the cortical region supporting the neural field. The temporal expressions of these modes are the eigenfunctions <italic>v</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup>(<italic>t</italic>) of the field, which obey the following second-order ODE:<disp-formula id="fd7"><label>(7)</label><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>¨</mml:mo></mml:mover><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mi>κ</mml:mi><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo>+</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>−</mml:mo><mml:mfrac><mml:mn>3</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msubsup><mml:mi>λ</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:mi>c</mml:mi><mml:mi>κ</mml:mi><mml:msubsup><mml:mo>ς</mml:mo><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula>where the scalar input seen by each mode ς<sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup>(<italic>t</italic>) is given by projecting the input field ς<sup>(<italic>i</italic>)</sup> (<bold>r</bold>,<italic>t</italic>) onto that mode<disp-formula id="fd8"><label>(8)</label><mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mo>ς</mml:mo><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msup><mml:mo>ς</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+          <p>This means the solution of the partial differential equations describing the spatiotemporal dynamics of neural-fields (<xref rid="fd6" ref-type="disp-formula">Eq. 6</xref>) can be decomposed into spatial modes, <italic>w</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup>(<bold>r</bold>), weighted by the solutions of the coupled ODEs in <xref rid="fd7" ref-type="disp-formula">Eq. 7</xref>, which describe the temporal dynamics of the neural-field.</p>
+          <p>We now want to simplify this description without compromising the dynamical repertoire of the model. Previous work on EEG/MEG source reconstruction suggests that most of the variance in EEG/MEG measurements can be accounted for by a set of temporally coherent and spatially extended cortical sources (see <xref rid="bib8" ref-type="bibr">Daunizeau et al., 2006;</xref> <xref rid="bib7" ref-type="bibr">Daunizeau and Friston, 2007;</xref> and <xref rid="bib16 bib17" ref-type="bibr">Friston et al., 2007a,b</xref>). This coarse-grain description of electrocortical activity corresponds to a truncated spatiotemporal decomposition, in which each cortical region has just one spatial mode, whose activity is modulated over time (see also Jirsa et al. <xref rid="bib27 bib50" ref-type="bibr">2002; Wennekers 2008</xref>; and <xref rid="bib45" ref-type="bibr">Robinson et al., 2001</xref>). Here, we motivate a related approximation based on equilibrium arguments. In the absence of exogenous input, each spatial mode decays at a rate that is proportional to <mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mrow><mml:mi>κ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mfrac><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:mfrac><mml:msqrt><mml:mrow><mml:mfrac><mml:mn>3</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msubsup><mml:mi>λ</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup></mml:mrow></mml:msqrt></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math>. This is important, because high propagation velocities <italic>c</italic>, will dissipate the spatial modes quickly, with the exception of the fundamental mode <italic>w</italic><sub>0</sub>, which has a zero eigenvalue; <italic>λ</italic><sub>0</sub><sup>(<italic>i</italic>)</sup> = 0. This means that, after a short period of time, the depolarisation of the <italic>i</italic>-th population or field will become a standing-wave; corresponding to fluctuations of the fundamental mode:<disp-formula id="fd9"><label>(9)</label><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>¨</mml:mo></mml:mover><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mi>κ</mml:mi><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msubsup><mml:mi>v</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>c</mml:mi><mml:mi>κ</mml:mi><mml:msubsup><mml:mi>w</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msubsup><mml:mo>ς</mml:mo><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+          <p>Here, <italic>v</italic><sub>0</sub><sup>(<italic>i</italic>)</sup>(<italic>t</italic>) describes the temporal evolution of this mode. Critically, these dynamics have exactly the same form as the neural-mass model; i.e., when <italic>λ</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup> = 0, <xref rid="fd9" ref-type="disp-formula">Eq. 9</xref> is formally identical to <xref rid="fd3" ref-type="disp-formula">Eq. 3</xref>. This suggests that we can model distributed responses using a single mode or pattern, whose fluctuations are coupled by the dynamics of conventional neural-mass models (see <xref rid="app1" ref-type="sec">Appendix</xref> for details).</p>
+          <p>In summary, by ignoring all but the fundamental mode, we can model the spatiotemporal dynamics of each population or layer as fluctuations in a single spatial mode—<italic>w</italic><sub>0</sub><sup>(<italic>i</italic>)</sup>(<bold>r</bold>). Under this approximation, the dynamics of coupled populations become a simple system of coupled standing-waves, each of which behaves like a neural-mass. The temporal dynamics <italic>v</italic><sub>0</sub><sup>(<italic>i</italic>)</sup>(<italic>t</italic>) of these modes are exactly the same as neural-mass models, where the mean PSP is replaced by the eigenfunction:<disp-formula id="fd10"><label>(10)</label><mml:math id="M12" altimg="si12.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>¨</mml:mo></mml:mover><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mi>κ</mml:mi><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo>+</mml:mo><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msubsup><mml:mi>v</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:mi>c</mml:mi><mml:mi>κ</mml:mi><mml:msubsup><mml:mo>ς</mml:mo><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msubsup><mml:mo>ς</mml:mo><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>u</mml:mi></mml:mrow></mml:msub><mml:mi>u</mml:mi><mml:mo>+</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mo>:</mml:mo><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msup><mml:mo>ς</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>d</mml:mi><mml:mi>r</mml:mi><mml:mtext>.</mml:mtext></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+          <p>These approximations allow us to relate neural-mass DCMs to more realistic neural-field models. From the perspective of neural-fields, neural-mass models correspond to an approximation, which is valid when the system is close to equilibrium; i.e. when the interactions between the modes do not drive the system into autonomous behaviour (bumps or travelling waves) and most modes decay quickly. This is typically assumed to be the case for event-related responses (ERPs), which are generally slow damped oscillatory responses to stimulation (e.g. <xref rid="bib29" ref-type="bibr">Kiebel et al., 2007;</xref> <xref rid="bib20" ref-type="bibr">Garrido et al., 2008</xref>). It would be possible to increase the number of modes per population or field to provide a more complete neural-field model; however, this is beyond the scope of the present work. Our model now comprises a set of neural-masses, whose dynamics modulate the expression of some unknown but fixed spatial modes. Next, we consider how these modes are modelled.</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>The spatial model</title>
+        <p>Due to the Dirichlet constraints at the boundary of the cortical regions and local variations in cortical curvature, the fundamental mode <bold>w</bold><sub>0</sub><sup>(<italic>i</italic>)</sup> of the Laplacian operator can have an arbitrary spatial profile. Therefore, we model it as a mixture of spatial basis functions, derived from the gain-matrix associated the cortical region:<disp-formula id="fd11"><label>(11)</label><mml:math id="M13" altimg="si13.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mi mathvariant="bold">w</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>n</mml:mi></mml:munder><mml:mrow><mml:msubsup><mml:mi mathvariant="bold-italic">U</mml:mi><mml:mi>n</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:msubsup><mml:mi>β</mml:mi><mml:mi>n</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+        <p>Here, <bold><italic>U</italic></bold><sub><italic>n</italic></sub><sup>(<italic>i</italic>)</sup> are the spatial eigenvectors of the gain-matrix <bold>L</bold><sup>(<italic>i</italic>)</sup> associated with the set of vertices of the cortical mesh belonging to the <italic>i</italic>-th source or region, and <italic>β</italic><sub><italic>n</italic></sub><sup>(<italic>i</italic>)</sup> are the unknown spatial parameters of our DCM. In addition, we assume that each cortical layer (neuronal population) within each region can contribute to the EEG/MEG signal measured at the sensors. This leads to the following DCM for distributed responses:<disp-formula id="fd12"><label>(12)</label><mml:math id="M14" altimg="si14.gif" overflow="scroll"><mml:mrow><mml:mi mathvariant="bold-italic">y</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>i</mml:mi></mml:munder><mml:mrow><mml:msup><mml:mi mathvariant="bold">L</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:msubsup><mml:mi mathvariant="bold">w</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>J</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:msubsup><mml:mi>v</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mi mathvariant="bold">ɛ</mml:mi></mml:mrow></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula>where <bold><italic>y</italic></bold>(<italic>t</italic>) is the column vector of instantaneous EEG/MEG scalp measurements and <bold>L</bold><sup>(<italic>i</italic>)</sup> are the gain-matrices for the <italic>i</italic>-th region. The unknown relative contributions <italic>J</italic><sub><italic>j</italic></sub> of the eigenfunctions <italic>v</italic><sub>0</sub><sup>(<italic>ij</italic>)</sup>(<italic>t</italic>) of the <italic>j</italic>-th population in the <italic>i</italic>-th cortical region are assumed to be the same for all regions. Note that the fundamental mode is the same for all populations within the same region because it depends only on the geometry of the regional cortical manifold. The free-parameters of the DCM now comprise the spatial parameters <mml:math id="M15" altimg="si15.gif" overflow="scroll"><mml:mrow><mml:mo>ϑ</mml:mo><mml:mo>⊃</mml:mo><mml:mrow><mml:mo stretchy="true">{</mml:mo><mml:mrow><mml:mi>β</mml:mi><mml:mtext>,</mml:mtext><mml:mi>J</mml:mi></mml:mrow><mml:mo stretchy="true">}</mml:mo></mml:mrow></mml:mrow></mml:math> (<xref rid="fd11" ref-type="disp-formula">Eq. 11</xref>) and the neuronal parameters <mml:math id="M16" altimg="si16.gif" overflow="scroll"><mml:mrow><mml:mo>ϑ</mml:mo><mml:mo>⊃</mml:mo><mml:mrow><mml:mo stretchy="true">{</mml:mo><mml:mrow><mml:mi>κ</mml:mi><mml:mtext>,</mml:mtext><mml:mi>γ</mml:mi></mml:mrow><mml:mo stretchy="true">}</mml:mo></mml:mrow></mml:mrow></mml:math> of the ODE (<xref rid="fd10" ref-type="disp-formula">Eq. 10</xref>); these encode synaptic rate-constants and coupling parameters, respectively.</p>
+        <p>The decomposition of the spatial mode into the principal components of the gain-matrix (<xref rid="fd11" ref-type="disp-formula">Eq. 11</xref>) suppresses redundancy in the spatial model; in the sense that spatial modes that cannot be seen by the sensors are precluded. In our implementation, the user specifies the coordinates of the sources comprising the network in canonical space (<xref rid="bib32 bib47" ref-type="bibr">Mattout et al., 2007; Talairach and Tournoux 1988</xref>). The mesh points constituting each source are then identified automatically as those points lying within a sphere centred on the prior source location. We then take the first eight eigenvectors of <bold>L</bold><sup>(<italic>i</italic>)</sup><bold>L</bold><sup>(<italic>i</italic>)<italic>T</italic></sup> to produce the spatial basis functions <bold>U</bold><sup>(<italic>i</italic>)</sup>. The lead-fields are computed using BrainStorm (<ext-link xlink:href="http://neuroimage.usc.edu/brainstorm/" ext-link-type="uri">http://neuroimage.usc.edu/brainstorm/</ext-link>), after co-registering the channel locations to a subject-specific canonical mesh (<xref rid="bib32" ref-type="bibr">Mattout et al., 2007</xref>). This involves warping a template mesh (in canonical space) to match the anatomy of each subject; so that individual differences in anatomy are accommodated but the mapping between subject-specific meshes and canonical space is preserved. The warping uses standard nonlinear spatial normalisation tools in SPM (<ext-link xlink:href="http://www.fil.ion.ucl.ac.uk/spm" ext-link-type="uri">http://www.fil.ion.ucl.ac.uk/spm</ext-link>).</p>
+      </sec>
+      <sec>
+        <title>Model inversion</title>
+        <p>Model inversion proceeds using standard variational techniques under the Laplace assumption as described in previous communications (e.g., <xref rid="bib16" ref-type="bibr">Friston et al., 2007a</xref>). The products of this inversion are a free-energy approximation to the model's log-evidence ln <italic>p</italic>(<italic>y</italic>|<italic>m</italic>) and an approximating posterior density on the model parameters, <italic>q</italic>(<italic>ϑ</italic>) = <italic>N</italic>(<italic>μ</italic><sub><italic>ϑ</italic></sub>,Σ<sub><italic>ϑ</italic></sub>), where <italic>μ</italic><sub><italic>ϑ</italic></sub> is the posterior expectation and Σ<sub><italic>ϑ</italic></sub> is the posterior covariance. This inversion entails the computation of the gradients and curvatures of the log-likelihood function, provided by the likelihood model (<xref rid="fd11" ref-type="disp-formula">Eq. 11</xref>). This involves computing the derivatives of the predicted response with respect to model parameters; i.e., integrating the neuronal state-equations to see how they respond to stimulus-related input (a parameterized Gaussian bump-function of peristimulus time) and then repeating this under small perturbations of the parameters. Critically, the computation of the derivatives with respect to the spatial parameters can be simplified greatly if the response is linear in the parameters. This is the case for the distributed source model, under which<disp-formula id="fd13"><label>(13)</label><mml:math id="M17" altimg="si17.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:mi mathvariant="bold">y</mml:mi></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:msubsup><mml:mi>β</mml:mi><mml:mi>n</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:msup><mml:mi mathvariant="bold">L</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:msubsup><mml:mi mathvariant="bold">U</mml:mi><mml:mi>n</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>J</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:msubsup><mml:mi>v</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:mi mathvariant="bold">y</mml:mi></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:msub><mml:mi>J</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>i</mml:mi></mml:munder><mml:mrow><mml:msup><mml:mi mathvariant="bold">L</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:munder><mml:mo>∑</mml:mo><mml:mi>n</mml:mi></mml:munder><mml:msubsup><mml:mi mathvariant="bold">U</mml:mi><mml:mi>n</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:msubsup><mml:mi>β</mml:mi><mml:mi>n</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:msubsup><mml:mi>v</mml:mi><mml:mn>0</mml:mn><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+        <p>This is not the case for the DCMs based on ECDs, which have nonlinear observer functions with six spatial parameters (encoding the location of the source and its orientation). With the present spatial model, we only have to integrate the system once, given the current estimate of the neuronal parameters, <italic>γ</italic>, <italic>κ</italic> to get <italic>v</italic><sub>0</sub><sup>(<italic>ij</italic>)</sup>. These are then used to compute the gradients in <xref rid="fd13" ref-type="disp-formula">Eq. 13</xref>. This speeds up the iterative variational scheme, as compared to the conventional DCMs based on ECDs.</p>
+        <p>In what follows, we will focus on model comparison under ECD and distributed spatial models, using the same temporal model. We will use Monte Carlo simulations to assess sensitivity and real ERP data to compare the spatial models in terms of their evidence. A difference in log-evidence of three is usually considered significant; because this suggests a relative likelihood of 20:1. Under flat priors on the models, this means that one can be 95% confident that one model is better than the other.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Comparative evaluations</title>
+      <sec>
+        <title>A sensitivity analysis</title>
+        <p>We are primarily interested in making inferences about the connectivity of the network generating data (encoded by <italic>γ</italic><sub><italic>ij</italic></sub>). However, the estimation of these parameters will be sensitive to the specification of the generative model (e.g. the prior position of the sources). In this section, we quantify the relative robustness (if any) of the DCM for distributed responses, relative to ECD models, to variations of the generative model. To assess robustness we compared the changes in the posterior estimates of the neuronal parameters (i.e. synaptic efficacies and rate-constants, which are common to both models) when changing the prior or likelihood of the DCM.</p>
+        <p>To equate the degrees of freedom (number of parameters) in both models, we used six spatial basis functions to model each mode (ECD models have six spatial parameters encoding the location and orientation of each dipole). First, we computed the predictions <mml:math id="M18" altimg="si18.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>y</mml:mi><mml:mo>^</mml:mo></mml:mover></mml:mrow></mml:math> after fitting two DCMs (ECD and distributed) to real mismatch negativity event-related potentials (ERPs) (see next section). This produced two sets of data, generated by ECD and distributed DCMs, with different but known neuronal parameters. These were then used as synthetic data for a series of DCM inversions, as follows:</p>
+        <p>We ran two sets of simulations. In series I, we perturbed the prior mean of the [five] source locations. We examined three levels of perturbation: <italic>σ</italic><sub><italic>x</italic></sub> ∈ {1,2,4} mm, where <italic>σ</italic><sub><italic>x</italic></sub> was the standard deviation of random Gaussian perturbations to the prior mean (see <xref rid="fig2" ref-type="fig">Fig. 2</xref>). In series II, we perturbed the likelihood by adding Gaussian noise to the data; using three signal-to-noise ratios: SNR ∈ {4,8,16} dB. SNR is defined as: SNR = 10 ln var (<mml:math id="M19" altimg="si19.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>y</mml:mi><mml:mo>^</mml:mo></mml:mover></mml:mrow></mml:math>)/var(<italic>ɛ</italic>) (see <xref rid="fig3" ref-type="fig">Fig. 3</xref>). We used 50 Monte Carlo samples for both series.</p>
+        <p>Given the true parameters of the generative model and their posterior estimator, we can evaluate the squared error loss:<disp-formula id="fd14"><label>(14)</label><mml:math id="M20" altimg="si20.gif" overflow="scroll"><mml:mrow><mml:mi>SEL</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mo>ϑ</mml:mo><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>i</mml:mi></mml:munder><mml:mrow><mml:msup><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msub><mml:mo>ϑ</mml:mo><mml:mi>i</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mo>ϑ</mml:mo><mml:mo>^</mml:mo></mml:mover></mml:mrow><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mrow></mml:math></disp-formula> where <mml:math id="M21" altimg="si21.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mover accent="true"><mml:mo>ϑ</mml:mo><mml:mo>^</mml:mo></mml:mover></mml:mrow><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:math> is the <italic>i</italic>-th neuronal parameter. The SEL is a standard estimation error measure, whose posterior expectation is minimized by the mean of the posterior density. This means that using the posterior mean as an estimator <mml:math id="M22" altimg="si22.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mo>ϑ</mml:mo><mml:mo>^</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mrow><mml:mo>〈</mml:mo><mml:mo>ϑ</mml:mo><mml:mo>〉</mml:mo></mml:mrow></mml:mrow><mml:mi>q</mml:mi></mml:msub></mml:mrow></mml:math> of unknown <italic>ϑ</italic> is optimal with respect to squared error loss.</p>
+        <p>We investigated how the SEL changed as a function of prior location and SNR, for both the ECD and the distributed solutions (see <xref rid="fig4" ref-type="fig">Fig. 4</xref>). It can be seen that the distributed DCM is consistently better than its ECD homologue, except at the highest SNR (16 dB), where both models show the same squared error loss. In short, the estimation error on the neuronal parameters, as measured by the squared error loss is much smaller for the distributed DCM, which is less sensitive to noise and inaccurate priors than its ECD variant. In addition, we evaluated the quality of posterior confidence intervals: under the Laplace approximation; <italic>q</italic>(<italic>ϑ</italic>) = <italic>N</italic>(<italic>μ</italic><sub><italic>ϑ</italic></sub>,Σ<sub><italic>ϑ</italic></sub>), this reduces to assessing the accuracy of the posterior covariance in relation to the SEL, since;<disp-formula id="fd15"><label>(15)</label><mml:math id="M23" altimg="si23.gif" overflow="scroll"><mml:mrow><mml:mi>EL</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>q</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mrow><mml:mo>〈</mml:mo><mml:mrow><mml:mi>SEL</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mo>ϑ</mml:mo><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo>〉</mml:mo></mml:mrow></mml:mrow><mml:mi>q</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mi>t</mml:mi><mml:mi>r</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msub><mml:mo>Σ</mml:mo><mml:mo>ϑ</mml:mo></mml:msub></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula>where the expected loss EL(<italic>q</italic>) is the Bayesian estimator of SEL (see <xref rid="bib53" ref-type="bibr">Robert, 1992</xref>). This equivalence means we can assess the posterior covariance in terms of the relationship between the expected and the sampled SEL; for both the ECD and distributed solutions. A good correlation between the expected EL(<italic>q</italic>) = <italic>tr</italic>(Σ<sub><italic>ϑ</italic></sub>) and observed SEL means that the inference scheme is self-consistent; i.e., it adapts its level of confidence in proportion to the real (observed) estimation error. <xref rid="fig5" ref-type="fig">Fig. 5</xref>, shows the expected versus the observed SEL for both series of simulations and DCMs. Although there is an order of magnitude difference between the predicted and the observed SEL, they are strongly correlated. In addition, the correlation between EL(<italic>q</italic>) and SEL under different levels of noise is significantly higher for the distributed DCM.</p>
+        <p>In summary, the DCM of distributed responses is more robust to violations of priors and levels of noise; furthermore, it is more self-consistent in that the observed and expected estimation loss is more tightly coupled, relative to ECD models. We now turn to empirical comparisons, using the relative evidence for both models in real data.</p>
+      </sec>
+      <sec id="sec1">
+        <title>Model comparisons using EEG data</title>
+        <p>In this section, we apply both ECD and distributed DCMs to the grand-mean responses from an eleven-subject auditory mismatch negativity study (<xref rid="bib19" ref-type="bibr">Garrido et al., 2007</xref>). The term ‘mismatch negativity’ (MMN) describes an evoked response component elicited by the presentation of a rare auditory stimulus in a sequence of repetitive standard stimuli (<xref rid="bib52" ref-type="bibr">Näätänen, 2003</xref>). The rare stimulus typically causes a more negative response. The difference between deviant and standard tone reaches a minimum at about 100 ms, and exhibits a second minimum later between 100 and 200 ms.</p>
+        <p>We first performed a conventional imaging source reconstruction to specify the underlying neuronal network, in terms of the number and prior expectations of source locations (<xref rid="bib17" ref-type="bibr">Friston et al., 2007b</xref>). <xref rid="fig6" ref-type="fig">Fig. 6</xref> shows the results of a source reconstruction for the first subject and highlights the prior source locations selected for the DCM analyses. This network is shown in <xref rid="fig7" ref-type="fig">Fig. 7</xref>a, which includes the extrinsic (between source) connections (cf. <xref rid="bib19" ref-type="bibr">Garrido et al., 2007</xref>). In brief, we allowed for forward and backward connections between an early bilateral auditory (rA1 and lA1) source and bilateral superior temporal gyrus (rSTG and lSTG) areas, as well as forward and backward connections between the right STG and a source located in the inferior frontal gyrus (rIFG). We also included transcallosal lateral connections between the STG sources.</p>
+        <p>The conventional understanding of the MMN rests on change-sensitive neuronal populations. In <xref rid="bib29" ref-type="bibr">Kiebel et al., (2007)</xref>, we considered two hypotheses, which explain the MMN either by adaptation or within a predictive coding framework (<xref rid="bib51 bib20" ref-type="bibr">Friston, 2005; Garrido et al., 2008</xref>). We have shown that hypotheses like these can be formulated and tested using DCM, by allowing connections to change between the deviant and the standard conditions. In particular, we can test hypotheses about the mechanisms underlying the MMN by modelling the response evoked by a deviant using the same parameters as for the standard response, except for a gain in selected connections. Here, we repeat this analysis using both spatial variants of DCM.</p>
+        <p><xref rid="tbl1" ref-type="table">Table 1</xref> shows the different architectures we considered in terms of which connections were allowed to change (from the deviant to standard conditions). In brief, these different models correspond to different explanations for the MMN: the adaptation hypothesis (change in intrinsic connections) and the predictive coding hypothesis (change in intrinsic and extrinsic connections). We refer the interested reader to <xref rid="bib29" ref-type="bibr">Kiebel et al., (2007)</xref>:</p>
+        <p>Four sets of connections were allowed to change between the deviant and the standard conditions (see <xref rid="fig7" ref-type="fig">Fig. 7</xref>b); ‘forward’ implies permissible changes in all forward connections; ‘backward’, all backward connections; intrinsic A1′, changes in connectivity intrinsic to A1 and ‘intrinsic all’, all intrinsic connections. We then constructed eleven DCMs from combinations of these four basic differences, namely; “F”, “B”, “FB”, “FI”, “BI”, “FBI”, “FA”, “BA”, “FBA”, and “0” (see <xref rid="tbl1" ref-type="table">Table 1</xref>). The last model precluded any changes between the two conditions and constitutes a null model.</p>
+        <p>In these comparative analyses, we also investigated the effect of changing the spatial support of the cortical regions in the distributed DCMs. This was achieved by varying the radius (1, 2, 4, 8, 16 and 32 mm) of the sphere (centred on the prior location), which defines the mesh vertices in each cortical region. We used the free-energy approximation to the log-evidence to compare the 11 × 7 = 77 models; eleven DCMs with seven spatial models (six distributed models with different spheres and one ECD model). The ensuing log-evidences are shown in <xref rid="fig8" ref-type="fig">Fig. 8</xref>. For almost all DCMs, the ECD models were significantly less likely than distributed DCMs (max <italic>F</italic><sub>distributed</sub> − max<italic>F</italic><sub><italic>ECD</italic></sub> = 294.8). Note that this model comparison automatically accommodates differences in model complexity. These differences were small because the ECD and the distributed and ECD-DCMs had the same number of parameters.</p>
+        <p>When the sphere radius in the distributed DCM is reduced, the DCMs have very similar log-evidences (<xref rid="fig8" ref-type="fig">Fig. 8</xref>a). Note also that the model evidence of the best DCM (FBA) for distributed DCM with small (1, 2, and 4 mm) spheres and the ECD model are very close to each other. This means that these spatial models converge when inverting a well-specified neuronal model. In other words, there is no significant difference in model evidence between ECD and small patches, since the latter are approximated well by a single dipole. <xref rid="fig8" ref-type="fig">Fig. 8</xref> also shows the marginal posterior probabilities of the eleven DCMs; marginalising over all spatial variants. This integrates out dependency on the spatial parameters and replicates the finding of <xref rid="bib19" ref-type="bibr">Garrido et al., (2007)</xref> that the most plausible DCM seems to combine changes in forward, backward and intrinsic connections. For this DCM, there was strong evidence that the distributed DCM (all radii) was a better model than the ECD equivalent.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>We have described a variant of dynamic causal modelling for event-related potentials or fields as measured with EEG and MEG. We motivated this DCM as an approximation to a continuous neural-field model, using a mixture of overlapping patches, with compact spatial support, on the cortical surface. Time-varying activity in this mixture, caused by activity in other sources and experimental inputs, is propagated through appropriate lead-field or gain-matrices to generate observed channel data. In comparison to ECD variants of DCM, this distributed DCM has three advantages; it has greater face validity, the degrees of freedom of the spatial model can be specified (and therefore optimised using model selection) and the model is linear in the spatial parameters (which finesses computational load). Both our simulations and the application to an EEG auditory mismatch negativity dataset demonstrated the superiority of distributed DCMs, when compared to their ECD homologues.</p>
+      <p>The greater face validity of spatially distributed DCMs is similar to that of imaging source reconstruction solutions, when compared to ECD-like solutions: the spatial extent of each regional source must be modelled properly when inverting such models (see below). Furthermore, the neural-mass models we use (<xref rid="bib24" ref-type="bibr">Jansen and Rit 1995</xref>) were designed originally to model mesoscopic electrocortical activity, at a spatial scale finer than that of EEG/MEG. Using simple approximations of neural-field models, we have proposed a simple modification of neural-mass models that render them able to emulate macroscopic spatiotemporal dynamics. Specifically, these modifications allow us to account for the spatial deployment of sources, which appears to be necessary to explain EEG/MEG data (<xref rid="sec1" ref-type="sec">see MMN results section</xref>).</p>
+      <p>Although not pursued here, the number of basis functions or different sizes of cortical regions could be optimised. One would repeat the inversion using different basis functions and evaluate the model evidences (as for the analysis of cortical sources in <xref rid="fig8" ref-type="fig">Fig. 8</xref>). This would allow one to optimise the degrees of freedom of the spatial model, in relation to the spatial information supported by the data; similarly for the size of the cortical patches used to model source-specific activity.</p>
+      <p>Note that there is a formal link between the spatially distributed DCM proposed in this work and EEG/MEG source reconstruction techniques (see e.g. <xref rid="bib8" ref-type="bibr">Daunizeau et al., 2006;</xref> <xref rid="bib17" ref-type="bibr">Friston et al., 2007b</xref>). The key difference between these two approaches rests on the formal constraints used by DCM. These constrain the temporal expression of source activity to conform to a biologically plausible time-course (<xref rid="bib46" ref-type="bibr">Scherg and Von Cramon 1985</xref>). The interpretation of a DCM analysis is not usually concerned with the spatial profile of source activity but focuses on the coupling parameters and how they change with experimental manipulations. However, it is interesting to regard the DCM inversion as a biophysically and neurobiologically informed imaging source reconstruction (see <xref rid="bib28" ref-type="bibr">Kiebel et al., 2006</xref>). In other words, one can regard the Bayesian inversion of spatially distributed DCM as a generalisation of classical forward model inversion used to reconstruct source activity from observed EEG or MEG data. The only difference between classical inversion and DCM is that the source activity has to conform to a biophysically plausible model. Generally, this model entails interactions among sources so that activity in one source is caused by activity in others. Classical forward models focus exclusively on the spatial observer function of the hidden states and ignore formal constraints on the temporal expression of source activity. The resulting spatial models are either ECD-based models or distributed source models of the sort used in image reconstruction (<xref rid="bib2 bib40 bib42" ref-type="bibr">Baillet and Garnero 1997; Pascual-Marqui 2002; Phillips et al., 2005</xref>). Exactly the same distinction between ECD and distributed reconstructions can be applied in the context of DCM. In this note, we have described a distributed spatial model that complements existing ECD dynamic causal models.</p>
+      <p>In the future, it is possible that DCMs will be based on models that are closer to full neural-field models. These models might be more appropriate for EEG and MEG data because they account for continuous lateral interactions within each cortical region. Neural-field models can generate time-dependent dynamics that are expressed as bumps or propagating waves over the cortical surface. In this work, we truncated our space-time decomposition to the fundamental mode (a zero-order approximation). As a consequence, the neural-fields behave as interacting standing-waves; i.e. regionally specific invariant patterns of activity oscillating in response to mutual influence. This space-time separation is a simplified variant of the sort of the spatiotemporal behaviours that could be obtained using a more realistic wave-equation (c.f. <xref rid="fd6" ref-type="disp-formula">Eq. 6</xref>). Our zero-order approximation could be relaxed to increase the complexity of the neural-field model. This can be done by including more modes (see <xref rid="fd7" ref-type="disp-formula">Eqs. 7</xref> and <xref rid="fd8" ref-type="disp-formula">8</xref> and <xref rid="app1" ref-type="sec">Appendix 2</xref>). This would allow one to replace a full PDE to a set of coupled ODEs.</p>
+      <p>Two additional comments should be made: first, the derivation of the 2D neural field PDE relies on the assumption that lateral (isotropic) interactions are deployed over a small spatial scale (see <xref rid="app1" ref-type="sec">Appendix 1</xref>). As a consequence, only long spatial wavelengths (relative to the spatial decay of lateral interactions) can be expressed in the 2D cortical neural field. This means that mesoscale phenomena like patchy feature maps (e.g. orientation preference or ocular dominance) in V1 might not be captured accurately (see <xref rid="bib4" ref-type="bibr">Bressloff 2003</xref> for a recent discussion of isotropic connectivity and <xref rid="bib5" ref-type="bibr">Coombes et al., 2007</xref> for an extension of the long-wavelength approximation to <italic>patchy propagators</italic>).</p>
+      <p>Second, we motivated our standing wave (fundamental mode) approximation to the neural field by noting that at high propagation velocity, higher harmonics will dissipate quickly. This is consistent with more realistic models (including axonal propagation), which also suggest that higher harmonics are damped more heavily (<xref rid="bib38" ref-type="bibr">Nunez 1995</xref>). However, our standing wave approximation to experimentally manipulated (excited) neural fields is different in nature from the emergence of <italic>global</italic> standing-waves as proposed in <xref rid="bib39" ref-type="bibr">Nunez and Srinivasan (2006)</xref>. The latter global waves are thought to underlie global coherence of cortical activity in the absence of stimulation (e.g. eyes-closed resting alpha-band activity). Global standing-waves can be thought of as a resonance phenomenon, whose wavelength is related to the size of the brain. Nunez points out that mental tasks “enhance cell assembly activity [i.e. functional segregation], thereby reducing global field behaviour”. This is in contradistinction to the present work, which postulates that local standing-waves emerge from the interaction of segregated neural ensembles. According to this view, segregation is <italic>necessary</italic> for the standing-waves to emerge, in the sense that it prevents activity spreading over the cortical mantle. In turn, this makes extrinsic functional integration (i.e. between region top-down and bottom-up effects, as opposed to within region lateral interactions) the principal mechanism responsible for sustained large-scale cortical activity.</p>
+    </sec>
+    <sec>
+      <title>Software note</title>
+      <p>All the routines and ideas described in this paper can be implemented with the academic freeware SPM8 (<ext-link xlink:href="http://www.fil.ion.ucl.ac.uk/spm" ext-link-type="uri">http://www.fil.ion.ucl.ac.uk/spm</ext-link>).</p>
+    </sec>
+    <sec id="app1">
+      <title>Appendices</title>
+      <sec>
+        <title>Approximate 2D neural fields on the cortical manifold</title>
+        <p>Deriving the partial differential equation describing the spatiotemporal dynamics of neural fields from the underlying integrodifferential equation is a difficult problem because: (i) even on a Euclidean space, the Fourier analysis of the 2D neural field is not exact and (ii) on curved (Riemannian) manifolds, Euclidean distance measures do not apply. In this appendix, we discuss approximate solutions to these problems.</p>
+        <p>First, we consider the neural field unfolding on a planar surface tangential to the cortical manifold. Let <bold>r</bold> = (<italic>r</italic>,<italic>θ</italic>) denote the 2D position (in polar coordinates) on this Euclidean space. Recall that the spatiotemporal convolution that operates on the input <italic>ς</italic>(<italic>r</italic>,<italic>t</italic>) is given by <xref rid="fd4" ref-type="disp-formula">Eq. 4</xref><disp-formula id="fd16"><label>(A1)</label><mml:math id="M24" altimg="si24.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:mi>μ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>G</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>∗</mml:mo><mml:mo>ς</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mi>G</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>δ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mi>c</mml:mi></mml:mfrac><mml:mi>r</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:munder accentunder="true"><mml:mrow><mml:munder accentunder="true"><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mi>γ</mml:mi></mml:mfrac><mml:mo>exp</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mo>−</mml:mo><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mi>γ</mml:mi></mml:mfrac><mml:mi>r</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo>︸</mml:mo></mml:munder></mml:mrow><mml:mrow><mml:mtext>lateral interaction</mml:mtext></mml:mrow></mml:munder></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula>where ⁎ denotes convolution and <italic>G</italic> is the convolution kernel, whose spatial scale is controlled by the decay of lateral interactions <italic>γ</italic>. Therefore, if the Fourier transform <mml:math id="M25" altimg="si25.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>G</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mtext>,</mml:mtext><mml:mi>ω</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math> of <italic>G</italic> can be represented in the rational form <mml:math id="M26" altimg="si26.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>G</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mtext>,</mml:mtext><mml:mi>ω</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math> = <italic>R</italic>(<italic>k</italic><sup>2</sup>,<italic>iω</italic>) / <italic>P</italic>(<italic>k</italic><sup><italic>2</italic></sup>,<italic>iω</italic>), we have <italic>P</italic>(<italic>k</italic><sup>2</sup>,<italic>iω</italic>)<italic>G</italic>(<italic>k</italic>,<italic>ω</italic>) = <italic>R</italic>(<italic>k</italic><sup>2</sup>,<italic>i</italic>ω)<italic>ζ</italic>(<italic>k</italic>,<italic>ω</italic>). By identifying <italic>k</italic><sup>2</sup> ↔ − ▿<sup>2</sup> and <mml:math id="M27" altimg="si27.gif" overflow="scroll"><mml:mrow><mml:mi>i</mml:mi><mml:mi>ω</mml:mi><mml:mo>↔</mml:mo><mml:mrow><mml:mo>∂</mml:mo><mml:mo>/</mml:mo><mml:mrow><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mrow></mml:mrow></mml:math>, an inverse Fourier transform will yield the PDE in terms of spatial and temporal derivatives (see <xref rid="bib5" ref-type="bibr">Coombes et al., 2007</xref>). Given the functional form of the lateral interactions, <xref rid="bib30" ref-type="bibr">Liley et al. (2002)</xref> proposed an expansion of <italic>P</italic>(<italic>k</italic><sup>2</sup>,<italic>iω</italic>) near <italic>k</italic> = 0, yielding the “long-wavelength” approximation:<disp-formula id="fd17"><label>(A2)</label><mml:math id="M28" altimg="si28.gif" overflow="scroll"><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mfrac><mml:mrow><mml:msup><mml:mo>∂</mml:mo><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:msup><mml:mi>t</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mi>κ</mml:mi><mml:mfrac><mml:mo>∂</mml:mo><mml:mrow><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>−</mml:mo><mml:mfrac><mml:mn>3</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mo>∇</mml:mo><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>μ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>c</mml:mi><mml:mi>κ</mml:mi><mml:mo>ς</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula>where <italic>κ</italic> = <italic>c</italic> / <italic>γ</italic>. This expression is very close but not identical to that obtained more simply (and exactly) for 1D neural fields (e.g. <xref rid="bib12" ref-type="bibr">Deco et al., 2008</xref>). The long-wavelength approximation basically implies that <italic>k</italic> &lt;&lt; 1/<italic>γ</italic>, i.e. <italic>Δr</italic> ≫ <italic>γ</italic>, where <italic>Δr</italic> is the typical spatial wavelength. This is not a critical assumption when modelling EEG scalp data; since the head volume conductor acts as a low-pass spatial filter such that scalp potentials are dominated by the long-wavelength components engendered by cortical sources (<xref rid="bib39" ref-type="bibr">Nunez and Srinivasan 2006</xref>).</p>
+        <p>The PDE <xref rid="fd17" ref-type="disp-formula">(A2)</xref> derives from the spatially invariant form of the Green function above <xref rid="fd16" ref-type="disp-formula">(A1)</xref>, which, on a 2D Riemannian manifold is:<disp-formula id="fd18"><label>(A3)</label><mml:math id="M29" altimg="si29.gif" overflow="scroll"><mml:mrow><mml:mi>G</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>δ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mi>c</mml:mi></mml:mfrac></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mi>γ</mml:mi></mml:mfrac><mml:mo>exp</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mo>−</mml:mo><mml:mrow><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mi>γ</mml:mi></mml:mfrac></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mtext>,</mml:mtext></mml:mrow></mml:math></disp-formula>where <bold>r</bold>(resp. <bold>r</bold>′) is the position on the cortical surface of the target (resp. source) neuron of the neural field, and <italic>d</italic>(<bold>r</bold>,<bold>r</bold>′) is the distance metric on the cortical manifold. Note that the cortical manifold more precisely, each hemisphere) is homotopic to a sphere, which means that its metric is well-behaved and that local geographic (angular) coordinates can be defined on the cortical mantle (<xref rid="bib48" ref-type="bibr">Toro and Burnod 2003</xref>). This implies that a patch of the cortical mantle is homotopic to an open set in <italic>R</italic><sup>2</sup>, where there is a bijective mapping from the angular coordinates to the Euclidean polar coordinates above. If the fall-off distance <italic>γ</italic> is small compared to the inverse curvature (smoothness) of the manifold <italic>Δ</italic>, the Green function can be approximated by a spatially invariant convolution kernel:<disp-formula id="fd19"><label>(A4)</label><mml:math id="M30" altimg="si30.gif" overflow="scroll"><mml:mrow><mml:mi>G</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mover><mml:mo>→</mml:mo><mml:mrow><mml:mi>γ</mml:mi><mml:mo>=</mml:mo><mml:mi>Δ</mml:mi></mml:mrow></mml:mover><mml:mi>δ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mo>−</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow></mml:mrow><mml:mi>c</mml:mi></mml:mfrac></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mi>γ</mml:mi></mml:mfrac><mml:mo>exp</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mo>−</mml:mo><mml:mrow><mml:mfrac><mml:mrow><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mo>−</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow></mml:mrow><mml:mi>γ</mml:mi></mml:mfrac></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>≡</mml:mo><mml:mi>G</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mo>−</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+        <p>This is because contributions from the manifold that diverge from the tangent surface (e.g. neighbouring sulci) will be negligible. Note that this “short-scale lateral connectivity” is required because the assumption of isotropic lateral interaction posits that the boundary effects are negligible far from boundaries. Moreover, it justifies the above “long-wavelength” approximation, in the sense that such a system can almost only resonate at long-wavelength harmonics (relative to <italic>γ</italic>). One can think of the short-scale lateral connectivity in a 1D neural field as a string of interacting (infinitesimal) elements (e.g., under tension). The energy required to excite the string is proportional to the frequency of its harmonics, which means that higher harmonics (short wavelengths) will decay quickly. These considerations mean that under “short-scale lateral connectivity”, the PDE obtained from the lateral interaction function above <xref rid="fd19" ref-type="disp-formula">(A4)</xref> is approximately valid.</p>
+      </sec>
+      <sec>
+        <title>Approximate solutions for neural-fields</title>
+        <p>The neuronal activity of a cortical layer or population can be modelled as a neural-field <italic>μ</italic><sup>(<italic>i</italic>)</sup>(<italic>r</italic>,<italic>t</italic>) that satisfies the following partial differential equation (PDE):<disp-formula id="fd20"><label>(A5)</label><mml:math id="M31" altimg="si31.gif" overflow="scroll"><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mfrac><mml:mrow><mml:msup><mml:mo>∂</mml:mo><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:msup><mml:mi>t</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mi>κ</mml:mi><mml:mfrac><mml:mo>∂</mml:mo><mml:mrow><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mn>3</mml:mn><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mn>2</mml:mn></mml:mfrac><mml:msup><mml:mo>∇</mml:mo><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:msup><mml:mi>f</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msup><mml:mi>f</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>c</mml:mi><mml:mi>κ</mml:mi><mml:msup><mml:mo>ς</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>Here, <italic>μ</italic><sup><italic>(i)</italic></sup>(<bold>r</bold>,<italic>t</italic>) is the field associated with the <italic>i</italic>-th population. In <xref rid="fd20" ref-type="disp-formula">(A5)</xref>, we have lumped input and decay terms into <italic>f</italic><sup><italic>(i)</italic></sup>(<bold>r</bold>,<italic>t</italic>). Using separation of variables, we can express the solution of this PDE as:<disp-formula id="fd21"><label>(A6)</label><mml:math id="M32" altimg="si32.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula></p>
+        <p>where the spatial modes <italic>w</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup>(<bold>r</bold>) are the solutions to the eigenvalue problem:<disp-formula id="fd22"><label>(A7)</label><mml:math id="M33" altimg="si33.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mo>∇</mml:mo><mml:mn>2</mml:mn></mml:msup><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo>+</mml:mo><mml:msubsup><mml:mi>λ</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+        <p>Note that the self-adjoint property of the Laplacian operator ▿<sup>2</sup> ensures the eigenvalues <italic>λ</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup> are real and the spatial eigenvectors or modes <italic>w</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup>(<bold>r</bold>) are real and orthonormal<disp-formula id="fd23"><label>(A8)</label><mml:math id="M34" altimg="si34.gif" overflow="scroll"><mml:mrow><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mi>δ</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:msub><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+        <p>This orthonormal property means we can express the eigenfunctions <italic>v</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup>(<italic>t</italic>) as<disp-formula id="fd24"><label>(A9)</label><mml:math id="M35" altimg="si35.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+        <p>If we differentiate <xref rid="fd24" ref-type="disp-formula">(A9)</xref> with respect to time and use <xref rid="fd20" ref-type="disp-formula">(A5)</xref> to eliminate <mml:math id="M36" altimg="si36.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup></mml:mrow></mml:math>, we obtain<disp-formula id="fd25"><label>(A10)</label><mml:math id="M37" altimg="si37.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:msubsup><mml:mrow><mml:mo>∫</mml:mo><mml:mi>w</mml:mi></mml:mrow><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msup><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mn>2</mml:mn><mml:mi>κ</mml:mi></mml:mrow></mml:mfrac><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>¨</mml:mo></mml:mover></mml:mrow><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi><mml:mo>+</mml:mo><mml:mfrac><mml:mn>3</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mrow><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mo mathvariant="normal">∇</mml:mo></mml:mrow></mml:mrow><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi><mml:mo>+</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mi>f</mml:mi><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+        <p>From the form of the solution <xref rid="fd21" ref-type="disp-formula">(A6)</xref> and <xref rid="fd22" ref-type="disp-formula">(A7)</xref>, we have<disp-formula id="fd26"><label>(A11)</label><mml:math id="M38" altimg="si38.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msup><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>¨</mml:mo></mml:mover><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>¨</mml:mo></mml:mover><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msup><mml:mo>∇</mml:mo><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msup><mml:mo>∇</mml:mo><mml:mn>2</mml:mn></mml:msup><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mrow><mml:msubsup><mml:mi>λ</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+        <p>The input <italic>f</italic><sup>(i)</sup>(<bold>r</bold>,<italic>t</italic>) and its stimulus-related component can also be expressed as a transform pair<disp-formula id="fd27"><label>(A12)</label><mml:math id="M39" altimg="si39.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msup><mml:mi>f</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mrow><mml:msubsup><mml:mi>f</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msubsup><mml:mi>f</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msup><mml:mi>f</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mi>u</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>u</mml:mi><mml:mi>k</mml:mi></mml:msub><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>u</mml:mi><mml:mi>k</mml:mi></mml:msub><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>u</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi><mml:mo>.</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+        <p>Substituting these expressions into <xref rid="fd25" ref-type="disp-formula">(A10)</xref>, we can use the orthogonality of the modes <xref rid="fd23" ref-type="disp-formula">(A8)</xref> to eliminate terms that depend on <italic>r</italic> and express the temporal dynamics as an ODE<disp-formula id="fd28"><label>(A13)</label><mml:math id="M40" altimg="si40.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mn>2</mml:mn><mml:mi>κ</mml:mi></mml:mrow></mml:mfrac><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:munder><mml:mrow><mml:msub><mml:mi>δ</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:msub><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>¨</mml:mo></mml:mover><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo>+</mml:mo><mml:mfrac><mml:mn>3</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:munder><mml:mrow><mml:msub><mml:mi>δ</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:msub><mml:msubsup><mml:mi>λ</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:msubsup><mml:mi>v</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo>+</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:munder><mml:mrow><mml:msub><mml:mi>δ</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:msub><mml:msubsup><mml:mi>f</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mn>2</mml:mn><mml:mi>κ</mml:mi></mml:mrow></mml:mfrac><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>¨</mml:mo></mml:mover><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mfrac><mml:mn>3</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mi>λ</mml:mi><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:msubsup><mml:mi>f</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>Rearranging <xref rid="fd28" ref-type="disp-formula">(A13)</xref> and substituting for <italic>f</italic><sub><italic>k</italic></sub><sup>(i)</sup>(<italic>t</italic>) from <xref rid="fd20" ref-type="disp-formula">(A5)</xref> and <xref rid="fd27" ref-type="disp-formula">(A12)</xref> gives<disp-formula id="fd29"><label>(A14)</label><mml:math id="M41" altimg="si41.gif" overflow="scroll"><mml:mrow><mml:mfrac><mml:mrow><mml:msup><mml:mo>∂</mml:mo><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:msup><mml:mi>t</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mfrac><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mi>κ</mml:mi><mml:mfrac><mml:mo>∂</mml:mo><mml:mrow><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>−</mml:mo><mml:mfrac><mml:mn>3</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msubsup><mml:mi>λ</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>c</mml:mi><mml:mi>κ</mml:mi><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:msup><mml:mo>ς</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+        <p>Recall that <italic>ρ</italic> is the parameter of the sigmoid activation function <italic>S</italic>(<italic>μ</italic><sup>(<italic>i</italic>)</sup>) in <xref rid="fd3" ref-type="disp-formula">Eq. 3</xref>. We can further simplify the expression for the input using the first-order approximation <italic>S</italic>(<italic>μ</italic><sup>(<italic>i</italic>)</sup>) ≈ <italic>ρμ</italic><sup>(<italic>i</italic>)</sup>(<italic>r</italic>, <italic>t</italic>) to give:<disp-formula id="fd30"><label>(A15)</label><mml:math id="M42" altimg="si42.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msup><mml:mo>ς</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>u</mml:mi></mml:mrow></mml:msub><mml:mi>u</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mi>u</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>u</mml:mi><mml:mi>k</mml:mi></mml:msub><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mi>S</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>ρ</mml:mi><mml:msup><mml:mi>μ</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>ρ</mml:mi><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+        <p>Here, we have made the simplifying assumption that all the populations have the same spatial support and modes; and that the coupling between layers, γ<sub><italic>ij</italic></sub> is uniform. This allows us to further approximate the input for the <italic>k</italic>-th mode with:<disp-formula id="fd31"><label>(A16)</label><mml:math id="M43" altimg="si43.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:mo>∫</mml:mo><mml:mrow><mml:msubsup><mml:mi>w</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:msup><mml:mo>ς</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi mathvariant="bold">r</mml:mi><mml:mtext>,</mml:mtext><mml:mi>t</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>d</mml:mi><mml:mi mathvariant="bold">r</mml:mi><mml:mo>≈</mml:mo><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>u</mml:mi></mml:mrow></mml:msub><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:munder><mml:mrow><mml:msub><mml:mi>δ</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:msub><mml:msub><mml:mi>u</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mi>ρ</mml:mi><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:munder><mml:mrow><mml:msub><mml:mi>δ</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow></mml:msub><mml:msubsup><mml:mi>v</mml:mi><mml:mrow><mml:mi>k</mml:mi><mml:mo>′</mml:mo></mml:mrow><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mo>≈</mml:mo><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>u</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mi>u</mml:mi><mml:mi>k</mml:mi></mml:msub><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+        <p>In effect, the modes are uncoupled by their orthogonality. This means the mean-field effects are only communicated within, not between modes. Substituting <xref rid="fd31" ref-type="disp-formula">(A16)</xref> into <xref rid="fd29" ref-type="disp-formula">(A14)</xref> gives an approximate ODE for the temporal expression of each mode:<disp-formula id="fd32"><label>(A17)</label><mml:math id="M44" altimg="si44.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>¨</mml:mo></mml:mover><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mi>κ</mml:mi><mml:msubsup><mml:mover accent="true"><mml:mi>v</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msup><mml:mi>κ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>−</mml:mo><mml:mfrac><mml:mn>3</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:msubsup><mml:mi>λ</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:msup><mml:mi>c</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>c</mml:mi><mml:mi>κ</mml:mi><mml:msubsup><mml:mo>ς</mml:mo><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msubsup><mml:mo>ς</mml:mo><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>u</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mi>u</mml:mi><mml:mi>k</mml:mi></mml:msub><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mi>S</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msubsup><mml:mi>v</mml:mi><mml:mi>k</mml:mi><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msubsup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+        <p>If we retain only the fundamental mode, then <italic>λ</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup> = <italic>λ</italic><sub>0</sub><sup>(<italic>i</italic>)</sup> = 0 and <xref rid="fd32" ref-type="disp-formula">(A17)</xref> has exactly the same form as the neural-mass model in <xref rid="fd3" ref-type="disp-formula">Eq. 3</xref> but where the mean depolarisation is replaced by the eigenfunction of each mode. This also describes the fluctuations of the standing-wave in <xref rid="fd9" ref-type="disp-formula">Eq. 9</xref>.</p>
+        <p>More generally, when different populations have different spatial modes (i.e., populations in different cortical regions), one would have to replace <italic>γ</italic><sub><italic>ij</italic></sub> with Γ<sub><italic>kk</italic></sub><sub>′</sub><sup>(<italic>ij</italic>)</sup> and sum over modes and populations; where the parameter Γ<sub><italic>kk</italic></sub><sub>′</sub><sup>(<italic>ij</italic>)</sup> couples the <italic>k</italic>-th mode of the <italic>i</italic>-th population to the <italic>k</italic>′-th mode in population <italic>j</italic>. This parameter can model inhomogeneous extrinsic connections that couple spatial modes in different parts of the brain; this is the implicit meaning of <italic>γ</italic><sub><italic>ij</italic></sub> = Γ<sub>00</sub><sup>(<italic>ij</italic>)</sup> in the main text.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>The Wellcome Trust funded this work. We would like to thank Marta Garrido for providing the EEG data and Marcia Bennett for invaluable help in preparing this manuscript. Also, we would like to thank the anonymous reviewers for their very helpful comments.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1">
+        <label>1</label>
+        <p>When considering 2D neural fields on the cortical manifold, <xref rid="fd3" ref-type="disp-formula">Eq. 3</xref> is an approximation that is valid whenever the spatial decay of lateral interaction is short enough (typically smaller than the average distance between two cortical sulci; see <xref rid="app1" ref-type="sec">Appendix 1</xref>).</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Amari</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Homogeneous nets of neuron-like elements</article-title>
+          <source>Biol. Cyber.</source>
+          <year>1995</year>
+          <volume>17</volume>
+          <fpage>211</fpage>
+          <lpage>220</lpage>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baillet</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Garnero</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>A Bayesian approach to introducing anatomo-functional priors in the EEG/MEG inverse problem</article-title>
+          <source>IEEE Trans. Biomed. Eng.</source>
+          <year>1997</year>
+          <volume>44</volume>
+          <issue>5</issue>
+          <fpage>374</fpage>
+          <lpage>385</lpage>
+          <pub-id pub-id-type="pmid">9125822</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breakspear</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Stam</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamics of a neural system with a multiscale architecture</article-title>
+          <source>Phil. Trans. R. Soc. B</source>
+          <year>2005</year>
+          <volume>360</volume>
+          <fpage>1051</fpage>
+          <lpage>1074</lpage>
+          <pub-id pub-id-type="pmid">16087448</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bressloff</surname>
+              <given-names>P.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spatially periodic modulation of cortical patterns by long-range horizontal connections</article-title>
+          <source>Physica D</source>
+          <year>2003</year>
+          <volume>185</volume>
+          <fpage>131</fpage>
+          <lpage>157</lpage>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Coombes</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Venkov</surname>
+              <given-names>N.A.</given-names>
+            </name>
+            <name>
+              <surname>Shiau</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Bojak</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Liley</surname>
+              <given-names>D.T.J.</given-names>
+            </name>
+            <name>
+              <surname>Laing</surname>
+              <given-names>C.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modeling electrocortical activity through local approximations of integral neural-field equations</article-title>
+          <source>Phys. Rev. E</source>
+          <year>2007</year>
+          <volume>76</volume>
+          <fpage>1539</fpage>
+          <lpage>1547</lpage>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Connors</surname>
+              <given-names>B.W.</given-names>
+            </name>
+            <name>
+              <surname>Amitai</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Generation of epileptiform discharges by local circuits in neocortex</article-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Scwartzkroin</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <source>Epilepsy: Models, Mechanisms and Concepts</source>
+          <year>1993</year>
+          <publisher-name>Cambridg University Press</publisher-name>
+          <fpage>388</fpage>
+          <lpage>424</lpage>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A mesostate-space model for EEG and MEG</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>38</volume>
+          <issue>1</issue>
+          <fpage>67</fpage>
+          <lpage>81</lpage>
+          <pub-id pub-id-type="pmid">17761440</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Clonda</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Goulard</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Benali</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Lina</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian spatio-temporal approach for EEG sources reconstruction: conciliating ECD and distributed models</article-title>
+          <source>IEEE Trans. Biomed. Eng.</source>
+          <year>2006</year>
+          <volume>53</volume>
+          <fpage>503</fpage>
+          <lpage>516</lpage>
+          <pub-id pub-id-type="pmid">16532777</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A neural-mass model for MEG/EEG: coupling and neuronal dynamics</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <issue>3</issue>
+          <fpage>1743</fpage>
+          <lpage>1755</lpage>
+          <pub-id pub-id-type="pmid">14642484</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modelling event-related responses in the brain</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <issue>3</issue>
+          <fpage>756</fpage>
+          <lpage>770</lpage>
+          <comment>Apr 15</comment>
+          <pub-id pub-id-type="pmid">15808977</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modeling of evoked responses in EEG and MEG</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <issue>4</issue>
+          <fpage>1255</fpage>
+          <lpage>1272</lpage>
+          <pub-id pub-id-type="pmid">16473023</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deco</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Jirsa</surname>
+              <given-names>V.K.</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Breakspear</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>The dynamic brain: from spiking neurons to neural-masses and cortical fields</article-title>
+          <source>Plos. Comp. Biol.</source>
+          <year>2008</year>
+          <volume>4</volume>
+          <issue>8</issue>
+          <fpage>e1000092</fpage>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ermentrout</surname>
+              <given-names>G.B.</given-names>
+            </name>
+            <name>
+              <surname>Cowan</surname>
+              <given-names>J.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>A mathematical theory of visual hallucination patterns</article-title>
+          <source>Biol. Cyber.</source>
+          <year>1979</year>
+          <volume>34</volume>
+          <fpage>137</fpage>
+          <lpage>150</lpage>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Felleman</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Van Essen</surname>
+              <given-names>D.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distributed hierarchical processing in the primate cerebral cortex</article-title>
+          <source>Cereb. Cortex</source>
+          <year>1991</year>
+          <volume>1</volume>
+          <fpage>1</fpage>
+          <lpage>47</lpage>
+          <pub-id pub-id-type="pmid">1822724</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib51">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>A theory of cortical responses</article-title>
+          <source>Phil. Trans. R. Soc. B</source>
+          <year>2005</year>
+          <volume>360</volume>
+          <fpage>815</fpage>
+          <lpage>836</lpage>
+          <pub-id pub-id-type="pmid">15937014</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>19</volume>
+          <issue>4</issue>
+          <fpage>1273</fpage>
+          <lpage>1302</lpage>
+          <pub-id pub-id-type="pmid">12948688</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Trujillo-Barreto</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variational free energy and the Laplace approximation</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>34</volume>
+          <issue>1</issue>
+          <fpage>220</fpage>
+          <lpage>234</lpage>
+          <pub-id pub-id-type="pmid">17055746</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Phillips</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Trujillo-Barreto</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiple sparse priors for the M/EEG inverse problem</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>39</volume>
+          <issue>3</issue>
+          <fpage>1104</fpage>
+          <lpage>1120</lpage>
+          <pub-id pub-id-type="pmid">17997111</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fuchs</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Wagner</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kohler</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Wischmann</surname>
+              <given-names>H.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Linear and nonlinear current density reconstructions</article-title>
+          <source>J. Clin. Neurophysiol.</source>
+          <year>1999</year>
+          <volume>16</volume>
+          <issue>3</issue>
+          <fpage>267</fpage>
+          <lpage>295</lpage>
+          <pub-id pub-id-type="pmid">10426408</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of evoked potentials: a reproducibility study</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>36</volume>
+          <issue>3</issue>
+          <fpage>571</fpage>
+          <lpage>580</lpage>
+          <pub-id pub-id-type="pmid">17478106</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Baldeweg</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The functional anatomy of the MMN: a DCM study of the roving paradigm</article-title>
+          <source>Neuroimage</source>
+          <year>2008</year>
+          <volume>42</volume>
+          <fpage>936</fpage>
+          <lpage>944</lpage>
+          <pub-id pub-id-type="pmid">18602841</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hutt</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Atay</surname>
+              <given-names>F.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of nonlocal neural-fields for both general and gamma-distributed connectivities</article-title>
+          <source>Physica D</source>
+          <year>2005</year>
+          <volume>203</volume>
+          <fpage>30</fpage>
+          <lpage>54</lpage>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jansen</surname>
+              <given-names>B.H.</given-names>
+            </name>
+            <name>
+              <surname>Rit</surname>
+              <given-names>V.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electroencephalogram and visual evoked potential generation in a mathematical model of coupled cortical columns</article-title>
+          <source>Biol Cybern</source>
+          <year>1995</year>
+          <volume>73</volume>
+          <fpage>357</fpage>
+          <lpage>366</lpage>
+          <pub-id pub-id-type="pmid">7578475</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jirsa</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Haken</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Field theory of electromagnetic brain activity</article-title>
+          <source>Phys. Rev. Letters</source>
+          <year>1996</year>
+          <volume>77</volume>
+          <issue>5</issue>
+          <fpage>960</fpage>
+          <lpage>963</lpage>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jirsa</surname>
+              <given-names>V.K.</given-names>
+            </name>
+            <name>
+              <surname>Kelso</surname>
+              <given-names>J.A.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spatiotemporal pattern formation in neural systems with heterogeneous connection topologies</article-title>
+          <source>Phys. Rev. E</source>
+          <year>2000</year>
+          <volume>62</volume>
+          <issue>6</issue>
+          <fpage>8462</fpage>
+          <lpage>8465</lpage>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jirsa</surname>
+              <given-names>V.K.</given-names>
+            </name>
+            <name>
+              <surname>Jantzen</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Fuchs</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kelso</surname>
+              <given-names>J.A.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spatiotemporal forward solution of the EEG and MEG using network modeling</article-title>
+          <source>IEEE Trans. Med. Imag.</source>
+          <year>2002</year>
+          <volume>21</volume>
+          <issue>3</issue>
+          <fpage>493</fpage>
+          <lpage>504</lpage>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of evoked responses in EEG/MEG with lead field parameterization</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <issue>4</issue>
+          <fpage>1273</fpage>
+          <lpage>1284</lpage>
+          <pub-id pub-id-type="pmid">16490364</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of evoked responses: the role of intrinsic connections</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>36</volume>
+          <issue>2</issue>
+          <fpage>332</fpage>
+          <lpage>345</lpage>
+          <pub-id pub-id-type="pmid">17462916</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liley</surname>
+              <given-names>D.T.J.</given-names>
+            </name>
+            <name>
+              <surname>Cadush</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Dafilis</surname>
+              <given-names>M.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>A spatially continuous mean field theory of electrocortical activity</article-title>
+          <source>Network: Comput. Neural Syst.</source>
+          <year>2002</year>
+          <volume>13</volume>
+          <fpage>67</fpage>
+          <lpage>113</lpage>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mattout,</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.N.</given-names>
+            </name>
+            <name>
+              <surname>Friston,</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Canonical source reconstruction for MEG</article-title>
+          <source>Computational Intelligence and Neuroscience</source>
+          <year>2007</year>
+          <comment>Article ID 67613 <ext-link xlink:href="doi:10.1155/2007/67613" ext-link-type="uri">doi:10.1155/2007/67613</ext-link></comment>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marreiros</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling for fMRI: A two-state model</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>39</volume>
+          <issue>1</issue>
+          <fpage>269</fpage>
+          <lpage>278</lpage>
+          <pub-id pub-id-type="pmid">17936017</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marreiros</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Population dynamics: variance and the sigmoid activation function</article-title>
+          <source>Neuroimage</source>
+          <year>2008</year>
+          <volume>42</volume>
+          <fpage>146</fpage>
+          <lpage>157</lpage>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <citation citation-type="other">Marreiros, A.C., Kiebel, S., Daunizeau, J., Harrison, L., Friston, K.J., 2008c. Population dynamics under the Laplace assumption. Neuroimage 44, 701–714.</citation>
+      </ref>
+      <ref id="bib36">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moran</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Reilly</surname>
+              <given-names>R.B.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A neural-mass model of spectral responses in electrophysiology</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>37</volume>
+          <issue>3</issue>
+          <fpage>706</fpage>
+          <lpage>720</lpage>
+          <pub-id pub-id-type="pmid">17632015</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib52">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Näätänen</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mismatch negativity: clinical research and possible applications</article-title>
+          <source>Int. J. Psychophysiol.</source>
+          <year>2003</year>
+          <volume>48</volume>
+          <fpage>179</fpage>
+          <lpage>188</lpage>
+          <pub-id pub-id-type="pmid">12763573</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nunez</surname>
+              <given-names>P.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>The brain wave-equation: a model for the EEG</article-title>
+          <source>Math. Biosci.</source>
+          <year>1974</year>
+          <volume>21</volume>
+          <fpage>279</fpage>
+          <lpage>297</lpage>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nunez</surname>
+              <given-names>P.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neocortical Dynamics and Human EEG Rhythms</article-title>
+          <year>1995</year>
+          <publisher-name>Oxford University Press</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nunez</surname>
+              <given-names>P.L.</given-names>
+            </name>
+            <name>
+              <surname>Srinivasan</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A theoretical basis for standing and travelling brain waves measured with human EEG with implications for an integrated consciousness</article-title>
+          <source>Clin. Neurophysiol.</source>
+          <year>2006</year>
+          <volume>11</volume>
+          <fpage>2424</fpage>
+          <lpage>2435</lpage>
+          <pub-id pub-id-type="pmid">16996303</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pascual-Marqui</surname>
+              <given-names>R.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Standardized low-resolution brain electromagnetic tomography (sLORETA): technical details</article-title>
+          <source>Methods Find Exp. Clin. Pharmacol.</source>
+          <year>2002</year>
+          <volume>24 Suppl. D</volume>
+          <fpage>5</fpage>
+          <lpage>12</lpage>
+          <pub-id pub-id-type="pmid">12575463</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Phillips</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Rugg</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Anatomically informed basis functions for EEG source localization: combining functional and anatomical constraints</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>16</volume>
+          <issue>3 Pt 1</issue>
+          <fpage>678</fpage>
+          <lpage>695</lpage>
+          <pub-id pub-id-type="pmid">12169252</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Phillips</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Rugg</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Maquet</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>An empirical Bayesian solution to the source reconstruction problem in EEG</article-title>
+          <source>NeuroImage.</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>997</fpage>
+          <lpage>1011</lpage>
+          <pub-id pub-id-type="pmid">15670677</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Qubbaj</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Jirsa</surname>
+              <given-names>V.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural-field dynamics with heterogeneous connection topology</article-title>
+          <source>Phys. Rev. Letters</source>
+          <year>2007</year>
+          <volume>98</volume>
+          <issue>23</issue>
+          <fpage>238102</fpage>
+        </citation>
+      </ref>
+      <ref id="bib53">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robert</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>L’analyse statistique Bayesienne, Ed.</article-title>
+          <source>Economica</source>
+          <year>1992</year>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robinson</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Rennie</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Wright</surname>
+              <given-names>J.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Propagation and stability of waves of electrical activity in the cerebral cortex</article-title>
+          <source>Phys. Rev. E</source>
+          <year>1997</year>
+          <volume>56</volume>
+          <issue>1</issue>
+          <fpage>826</fpage>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robinson</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Loxley</surname>
+              <given-names>P.N.</given-names>
+            </name>
+            <name>
+              <surname>O</surname>
+            </name>
+            <name>
+              <surname>Connor</surname>
+              <given-names>S.C.</given-names>
+            </name>
+            <name>
+              <surname>Rennie</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modal analysis of corticothalamic dynamics, electroencephalographic spectra, and evoked potentials</article-title>
+          <source>Phys. Rev. E</source>
+          <year>2001</year>
+          <volume>63</volume>
+          <fpage>041909</fpage>
+        </citation>
+      </ref>
+      <ref id="bib46">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scherg</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Von Cramon</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Two bilateral sources of the late AEP as identified by a spatio-temporal dipole model</article-title>
+          <source>Electroencephalogr. Clin. Neurophysiol.</source>
+          <year>1985</year>
+          <volume>62</volume>
+          <issue>1</issue>
+          <fpage>32</fpage>
+          <lpage>44</lpage>
+          <comment>Jan</comment>
+          <pub-id pub-id-type="pmid">2578376</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Talairach</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tournoux</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Co-Planar Stereotaxic Atlas of the Human Brain: 3-Dimensional Proportional System—An Approach to Cerebral Imaging</article-title>
+          <year>1988</year>
+          <publisher-name>Thieme Medical Publishers</publisher-name>
+          <publisher-loc>New York, NY</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib48">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Toro</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Burnod</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Geometric atlas: modelling the cortex as an organized surface</article-title>
+          <source>Neuroimage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <issue>3</issue>
+          <fpage>1468</fpage>
+          <lpage>1484</lpage>
+          <pub-id pub-id-type="pmid">14642460</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib49">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wendling</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Bellanger</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Bartolomei</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Chauvel</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Relevance of nonlinear lumped-parameter models in the analysis of depth-EEG epileptic signals</article-title>
+          <source>Biol. Cybern.</source>
+          <year>2000</year>
+          <volume>83</volume>
+          <fpage>367</fpage>
+          <lpage>378</lpage>
+          <pub-id pub-id-type="pmid">11039701</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib50">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wennekers</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tuned solutions in dynamic neural-fields as building blocks for extended EEG models</article-title>
+          <source>Cogn. Dynamics</source>
+          <year>2008</year>
+          <volume>2</volume>
+          <issue>2</issue>
+          <fpage>137</fpage>
+          <lpage>146</lpage>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Neural-mass model. This figure depicts the schematic cytoarchitectonics of a cortical source, along with the differential equations used to model the dynamics of each of the three subpopulations (pyramidal, spiny stellate and inhibitory interneurons). These subpopulations have been assigned to granular and agranular cortical layers, which receive forward and backward connections, respectively. Here we have expressed the second-order ODEs in the text with pairs of first-order ODEs. This clarifies how the coupling parameters mediate influences among and between sources. Note that the infragranular population comprises two subpopulations (one excitatory and the one inhibitory). Source or region-specific superscripts have been dropped here for clarity.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Simulation series I: changing the prior locations. This figure depicts the three levels of perturbation to the prior location of the sources, as quantified by the standard deviation <italic>σ</italic><sub><italic>x</italic></sub> of the distance between the true (simulated) position of the sources and the location that has been used to specify the DCM. (a) The 50 random samples of prior location of the five sources (for <italic>σ</italic><sub><italic>x</italic></sub> = 1mm). (b) Id for <italic>σ</italic><sub><italic>x</italic></sub> = 2mm. (c) Id for <italic>σ</italic><sub><italic>x</italic></sub> = 4mm.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Simulation series II: changing signal to noise. This figure shows the three levels of measurement noise in the synthetic data as quantified by the signal-to-noise ratio (SNR). (a) One sample of a synthetic data set (projected onto the sixteen spatial components of a PCA decomposition), at SNR = 4 dB. (b) at SNR = 8 dB. (c) at SNR = 16 dB.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Monte Carlo simulation results-squared error loss. Both graphs show the squared error loss (SEL) as a function of the level of prior dislocation and noise (error bars correspond to one standard deviation). (a) SEL as a function of perturbation on the prior location of the sources—<italic>σ</italic><sub><italic>x</italic></sub>. (b) SEL as a function of signal to noise-SNR. Except for the highest level of SNR (16 dB), where both ECD and distributed DCMs behave similarly, the spatially distributed DCM is consistently better than its ECD variant.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Monte Carlo results—posterior confidence. Both graphs show the expected (<italic>x</italic>-axis) versus the observed (<italic>y</italic>-axis) squared error loss (SEL) for both series of simulations and spatial variants of the DCM. Top: changes in prior locations. Bottom: changes in signal to noise. Left: ECD-DCM. Right: distributed DCM. Although there is an order of magnitude difference between the predicted and observed SEL, they are strongly correlated. Note the increase in correlation for distributed DCMs over ECD-DCMs (bottom right).</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Mismatch negativity study: scalp data and source reconstructions. The mismatch negativity (MMN) is the pattern elicited when contrasting a standard condition (repeated high-pitched tones) with a deviant condition (sparse low-pitched tones). This figure shows both the scalp topography and the corresponding source reconstructions at the time of the maximum difference (approx. 200 ms after onset). (a) Standard condition: the maximum intensity projection (MIP) on the source reconstruction shows five key sources: right/left primary auditory cortex (A1), right/left superior temporal gyrus (STG) and right inferior frontal gyrus (IFG). (b) Deviant condition: the MIP shows the same five sources (with different amplitudes).</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Mismatch negativity study: DCM architectures. The five sources identified by source reconstruction MIP (see <xref rid="fig6" ref-type="fig">Fig. 6</xref>) were used to construct a DCM network as follows: (a) both primary auditory sources were coupled with forward and backward connections to ipsilateral STG sources. The latter were reciprocally connected through lateral connections, and right STG was coupled with forward and backward connections to rIFG. Within this graph, we compared eleven models, corresponding to different combinations of connectivity changes between the standard and the deviant conditions of the MMN paradigm. These condition-specific changes are depicted in (b): four sets of connections were allowed to change: forward connections, backward connections, intrinsic connections for bilateral A1, and all intrinsic connections. We then derived eleven DCMs from combinations of these four sets; “F”, “B”, “FB”, “FI”, “BI”, “FBI”, “FA”, “BA”, “FBA”, and “0” (see <xref rid="tbl1" ref-type="table">Table 1</xref>).</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig8">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Mismatch negativity study: Bayesian model comparison results. Bayesian model comparison was applied to an 11 × 7 factorial model space. Eleven condition effects (see <xref rid="fig6" ref-type="fig">Fig. 6</xref> b) and 7 spatial variants of each DCM (6 distributed DCMs, with different cortical regions (sphere radii ∈ 1, 2, 4, 8, 16, and 32 mm) and one ECD-DCM. (a) Free-energies (log-evidences) for each of the 11 × 7 models. The star indicates that the best of all DCMs is a distributed FBA model (in which all connections were allowed to change) with the largest region. (b) Marginal posterior probabilities of the eleven DCMs (marginalising over spatial models).</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <table-wrap position="float" id="tbl1">
+      <label>Table 1</label>
+      <caption>
+        <p>Condition-specific effects (standard versus deviant): gain in coupling strength.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th valign="top"/>
+            <th valign="top">Forward</th>
+            <th valign="top">Backward</th>
+            <th valign="top">Intrinsic A1</th>
+            <th valign="top">Intrinsic all</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top">F</td>
+            <td valign="top">X</td>
+            <td valign="top"/>
+            <td valign="top"/>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">B</td>
+            <td valign="top"/>
+            <td valign="top">X</td>
+            <td valign="top"/>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">FB</td>
+            <td valign="top">X</td>
+            <td valign="top">X</td>
+            <td valign="top"/>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">FI</td>
+            <td valign="top">X</td>
+            <td valign="top"/>
+            <td valign="top">X</td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">BI</td>
+            <td valign="top"/>
+            <td valign="top">X</td>
+            <td valign="top">X</td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">FBI</td>
+            <td valign="top">X</td>
+            <td valign="top">X</td>
+            <td valign="top">X</td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">FA</td>
+            <td valign="top">X</td>
+            <td valign="top"/>
+            <td valign="top"/>
+            <td valign="top">X</td>
+          </tr>
+          <tr>
+            <td valign="top">BA</td>
+            <td valign="top"/>
+            <td valign="top">X</td>
+            <td valign="top"/>
+            <td valign="top">X</td>
+          </tr>
+          <tr>
+            <td valign="top">FBA</td>
+            <td valign="top">X</td>
+            <td valign="top">X</td>
+            <td valign="top"/>
+            <td valign="top">X</td>
+          </tr>
+          <tr>
+            <td valign="top">A</td>
+            <td valign="top"/>
+            <td valign="top"/>
+            <td valign="top"/>
+            <td valign="top">X</td>
+          </tr>
+          <tr>
+            <td valign="top">0</td>
+            <td valign="top"/>
+            <td valign="top"/>
+            <td valign="top"/>
+            <td valign="top"/>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-wrap>
+</article>

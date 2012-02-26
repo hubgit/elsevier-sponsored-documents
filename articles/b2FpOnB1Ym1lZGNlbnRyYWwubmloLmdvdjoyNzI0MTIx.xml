@@ -1,0 +1,2204 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title>Neuroimage</journal-title>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2724121</article-id>
+      <article-id pub-id-type="pmid">18482850</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG5341</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2008.03.028</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Lesion identification using unified segmentation-normalisation models and fuzzy clustering</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Seghier</surname>
+            <given-names>Mohamed L.</given-names>
+          </name>
+          <email>m.seghier@fil.ion.ucl.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ramlackhansingh</surname>
+            <given-names>Anil</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Crinion</surname>
+            <given-names>Jenny</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Leff</surname>
+            <given-names>Alexander P.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Price</surname>
+            <given-names>Cathy J.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>
+        <addr-line>Wellcome Trust Centre for Neuroimaging, Institute of Neurology, UCL, London UK</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Wellcome Trust Centre for Neuroimaging, Institute of Neurology, 12 Queen Square, London WC1N 3BG, UK. Fax: +44 20 7813 1420. <email>m.seghier@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>7</month>
+        <year>2008</year>
+      </pub-date>
+      <volume>41</volume>
+      <issue>4-3</issue>
+      <fpage>1253</fpage>
+      <lpage>1266</lpage>
+      <history>
+        <date date-type="received">
+          <day>14</day>
+          <month>12</month>
+          <year>2007</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>13</day>
+          <month>3</month>
+          <year>2008</year>
+        </date>
+        <date date-type="accepted">
+          <day>17</day>
+          <month>3</month>
+          <year>2008</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2008 Elsevier Inc.</copyright-statement>
+        <copyright-year>2008</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>In this paper, we propose a new automated procedure for lesion identification from single images based on the detection of outlier voxels. We demonstrate the utility of this procedure using artificial and real lesions. The scheme rests on two innovations: First, we augment the generative model used for combined segmentation and normalization of images, with an empirical prior for an atypical tissue class, which can be optimised iteratively. Second, we adopt a fuzzy clustering procedure to identify outlier voxels in normalised gray and white matter segments. These two advances suppress misclassification of voxels and restrict lesion identification to gray/white matter lesions respectively. Our analyses show a high sensitivity for detecting and delineating brain lesions with different sizes, locations, and textures. Our approach has important implications for the generation of lesion overlap maps of a given population and the assessment of lesion-deficit mappings. From a clinical perspective, our method should help to compute the total volume of lesion or to trace precisely lesion boundaries that might be pertinent for surgical or diagnostic purposes.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Structural MRI</kwd>
+        <kwd>Segmentation</kwd>
+        <kwd>Lesion identification</kwd>
+        <kwd>Gray matter</kwd>
+        <kwd>White matter</kwd>
+        <kwd>Oedema</kwd>
+        <kwd>Fuzzy clustering</kwd>
+        <kwd>Outlier detection</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Precise lesion identification in subjects with structural brain damage is essential for understanding lesion-deficit mappings in the human brain. Usually, the gold-standard method for lesion identification rests on the manual definition of abnormal brain tissue by a trained professional (e.g. <xref rid="bib5 bib17 bib18" ref-type="bibr">Bates et al., 2003; Dronkers et al., 2004; Fiez et al., 2000</xref>); however, this method is laborious, operator-dependent (e.g. <xref rid="bib4 bib19" ref-type="bibr">Ashton et al., 2003; Filippi et al., 1995</xref>), and time-consuming. Alternatively, several semi-automated and fully automated procedures for lesion identification have been proposed (e.g. <xref rid="bib1 bib8 bib9" ref-type="bibr">Anbeek et al., 2004; Capelle et al., 2004; Colliot et al., 2006a</xref><xref rid="bib10 bib14 bib20 bib26 bib37 bib42" ref-type="bibr">,b; Datta et al., 2006; Fletcher-Heath et al., 2001; Hojjatoleslami and Kruggel, 2001; Mehta et al., 2003; Prastawa et al., 2004</xref><xref rid="bib41 bib45 bib46 bib52 bib53 bib60 bib61 bib62" ref-type="bibr">, 2003; Ruan et al., 2007; Sajja et al., 2006; Soltanian-Zadeh et al., 1998; Stamatakis and Tyler, 2005; Wu et al., 2006; Xie et al., 2005; Zhou et al., 2005</xref>). They can be divided in two categories according to the nature of the MRI images used to identify the lesion: (i) multi-channel or multi-spectral methods that operate on several weighted MRI images, including T1, T2, PD, and FLAIR images, with or without contrast agents (e.g. <xref rid="bib30 bib42 bib45 bib52 bib60" ref-type="bibr">Kabir et al., 2007; Prastawa et al., 2004; Ruan et al., 2007; Soltanian-Zadeh et al., 1998; Wu et al., 2006</xref>); and (ii) mono-channel or mono-spectral methods that use only one contrast MRI image (e.g. T1 image) (<xref rid="bib26 bib29 bib33 bib53 bib58" ref-type="bibr">Hojjatoleslami and Kruggel, 2001; Jack et al., 2001; Lau and Ozawa, 2006; Stamatakis and Tyler, 2005; Wilke et al., 2003</xref>).</p>
+      <p>With the financial and time constraints on clinical studies, it is not unusual that patients participating in functional MRI studies have only one anatomical image (usually a T1 image). Several algorithms have been proposed for extracting the maximum information from only one type of MRI contrast. Although these algorithms differ in terms of sensitivity, computational complexity and applicability, we can classify them according to two characteristics: (i) whether they use <italic>a priori</italic> knowledge about the structure of normal brains; including; for instance; a set of neurotypical templates or not and, (ii) whether they use tissue segmentation techniques or not. For example, voxel-based morphometry (VBM), which uses both template priors and segmentation, can characterise structural abnormalities in either the gray or white matter by segmenting and normalising MRI images of patients and comparing them to gray or white matter segments from controls (e.g. <xref rid="bib9 bib23 bib32 bib58 bib59" ref-type="bibr">Colliot et al., 2006a; Gitelman et al., 2001; Kassubek et al., 2002; Wilke et al., 2003; Woermann et al., 1999</xref>). However, this approach has been shown to have low statistical sensitivity for detecting lesions (<xref rid="bib37" ref-type="bibr">Mehta et al., 2003</xref>) and critically depends on the choice of the templates (<xref rid="bib50" ref-type="bibr">Shen et al., 2007</xref>) and processing parameters (e.g. <xref rid="bib58" ref-type="bibr">Wilke et al., 2003</xref>). Other groups have implemented alternative methods that eschew prior knowledge and segmentation. For example, the level-set evolution framework, with deformable models is based on cortical thickness and signal gradients (<xref rid="bib10 bib25 bib61" ref-type="bibr">Colliot et al., 2006b; Ho et al., 2002; Xie et al., 2005</xref>). However, these approaches were developed to target specific lesion types (e.g., focal cortical dysplasia) and cannot be generalised easily to other types of lesions.</p>
+      <p>Recently, <xref rid="bib53" ref-type="bibr">Stamatakis and Tyler (2005)</xref> proposed a lesion identification technique based on the comparison of the damaged brain to a set of normal brains without segmentation. The T1 images of controls and patients were normalised to the same template, spatially smoothed, and then compared statistically voxel-by-voxel to identify regions (i.e. lesions) that differed between patients and the normal range established by the controls (<xref rid="bib53" ref-type="bibr">Stamatakis and Tyler, 2005</xref>). However, this approach depends on potentially suboptimal normalisation and the lesions identified can be contaminated by cerebrospinal fluid (CSF).</p>
+      <p>Another factor that may influence the success of automated lesion delineation is the location of the lesion. For instance, lesions close to the ventricles, the inter-hemispheric fissure, or to the scalp might be problematic, when using some automated methods (e.g., <xref rid="bib35 bib53" ref-type="bibr">Liu et al., 2001; Stamatakis and Tyler, 2005</xref>). In this context, segmentation procedures might help to discriminate CSF and non-brain tissue before identifying the lesion. Furthermore, the existence of <italic>a priori</italic> knowledge about the distribution of normal values (assessed from normal controls) in all brain regions is very useful, particularly when the lesion has similar signal properties to healthy tissue (e.g. gray matter malformations (<xref rid="bib6 bib58" ref-type="bibr">Bernasconi, 2003; Wilke et al., 2003</xref>)). These considerations suggest that robust frameworks for lesion detection should include tissue segmentation and <italic>a priori</italic> knowledge.</p>
+      <p>In this context, we propose a new procedure to identify any type of brain damage given a single anatomical image. Our procedure is based on the assumption that the lesion comprises atypical voxels that disclose themselves as outliers in gray and white matter segments. <italic>Atypical voxels</italic> are those that do not correspond to the expected tissue types; i.e., are neither grey matter (GM), white matter (WM), nor cerebrospinal fluid (CSF). To avoid misclassification, the segmentation routine has to be modified to account for the atypical “extra” tissue class introduced by the lesion. Here we propose a modified version of the unified segmentation scheme (<xref rid="bib3" ref-type="bibr">Ashburner and Friston, 2005</xref>) to segment healthy and damaged brain tissue. The unified segmentation scheme has recently been shown to provide accurate spatial normalisation for lesioned brains (<xref rid="bib12" ref-type="bibr">Crinion et al., 2007</xref>). <italic>Outlier voxels</italic> are those that are far from the normal range of voxel values in controls (<xref rid="bib55" ref-type="bibr">Van Leemput et al., 2001</xref>). The lesion is then identified by searching for outlier voxels in GM and WM segments. This ensures that we identify lesions that are specific to brain tissue (i.e., GM and WM). We use fuzzy clustering with fixed-prototypes (FCP), developed recently for outlier detection in second-level functional MRI analyses (<xref rid="bib49" ref-type="bibr">Seghier et al., 2007</xref>). A few studies have tried to implement this scheme (i.e., identify unexpected and outlier voxels) in multi-spectral mode (e.g. <xref rid="bib41 bib42" ref-type="bibr">Prastawa et al., 2003, 2004</xref>), but its applicability has not yet been demonstrated in mono-spectral mode. In this paper, we evaluate the approach with structural T1 images.</p>
+      <p>The approach is illustrated using both simulated and real patient data. We first explain the rational for using a modified segmentation procedure. We show that adding an extra class to the unified segmentation model effectively precludes the misclassification of damaged voxels as healthy GM or WM tissue. Then, the success of the modified segmentation is assessed qualitatively by ensuring that (i) GM and WM are free from contamination from the lesion and (ii) the extra class does not incorporate intact tissue. Outlier GM and WM voxels are identified by fuzzy clustering and lesion maps are then generated. Using similarity measures, we explore the sensitivity and the specificity of our method for detecting and delineating brain lesions. The results from both our artificial and real lesions demonstrate successful delineation of damaged tissue with high sensitivity.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Data sets</title>
+        <sec>
+          <title>T1 images with simulated lesions</title>
+          <p>Ten T1-weighted images from neurologically normal subjects were modified by inserting a variety of lesions that had been derived from “real” lesioned brains. Full details of how these T1 images were created can be found in <xref rid="bib7" ref-type="bibr">Brett et al. (2001)</xref>. Essentially, the simulations involved creating a lesion definition image (i.e., a manual definition of lesioned tissue) using T1-weighted MRI images of real patients' brains with a variety of lesions. These lesion images were then inserted, “cut-and-pasted”, into T1-weighted MRI images from normal subjects. The lesions were heterogeneous, of different size, T1 signal and location (see <xref rid="bib7" ref-type="bibr">Brett et al., 2001</xref>). Simulated case 01 had metastasis with extensive oedema; 02 had a left anterior frontal infarct near to the scalp; 03 had left anterior and mesial communicating artery aneurysm and temporoparietal infarct; 04 had dorsal and mesial cortical dysplasia; 05 had a posterior and mesial left occipitotemporal infarct; 06 had a large left frontoparietal loculated infarct; 07 had left temporoparietal infarct; 08 had focal cortical atrophy affecting the temporal lobe; 09 had a posterior and mesial left occipitotemporal infarct and 10 had an infarct in the putamen/insula (for illustration, see <xref rid="fig2" ref-type="fig">Fig. 2</xref> of <xref rid="bib12" ref-type="bibr">Crinion et al. (2007)</xref>).</p>
+          <p>In contrast to some previous studies (e.g. <xref rid="bib37 bib53" ref-type="bibr">Mehta et al., 2003; Stamatakis and Tyler 2005</xref>), we used simulated lesions that were derived from real cases rather than using artificial lesions that do not reflect the complexity of real lesions. There are two key advantages of simulated lesions: the natural characteristics, in terms of the size and texture of the lesion, are preserved and we know <italic>a priori</italic> where the boundaries of the lesion are.</p>
+        </sec>
+        <sec>
+          <title>Real T1 images</title>
+          <p>T1 images were acquired from eight patients with strokes that varied in size and affected diverse regions (age 23–68 years) and sixty-four neurologically normal subjects (age 21–75 years). To test the sensitivity of our method on a wide range of lesion volumes and locations, we included: two patients with large and heterogonous frontotemporal lesions extending laterally from the ventricles to near the scalp; two patients with large occipitotemporal lesions; two patients with left hemisphere lesions near to the ventricles; one patient with a right hemispheric lesion near to the ventricles; and one patient with a small infarct close to the inter-hemispheric fissure. These real cases illustrate some of the characteristics that might challenge automated identification of lesions.</p>
+          <p>All acquisitions were performed on a 1.5 T Siemens system (Siemens Medical Systems, Erlangen, Germany). Anatomical imaging consisted of a weighted T1 GRE 3D sequence (TR/TE/Flip = 12.24 ms/ 3.56 ms/ 23°, matrix = 256 × 256, in-plane resolution = 1 × 1 mm, 176 axial slices, 1 mm thick with no gap).</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Lesion identification procedure</title>
+        <p>Our approach comprises four steps:<list list-type="simple"><list-item><label>•</label><p>Segmentation and normalisation of all patients and controls T1 images (allowing for a lesion tissue class).</p></list-item><list-item><label>•</label><p>Spatial smoothing of normalised GM and WM segments.</p></list-item><list-item><label>•</label><p>Detection of outlier voxels in each tissue by comparing the GM and WM segments of the patient to those of controls under fuzzy clustering.</p></list-item><list-item><label>•</label><p>Outlier voxels in each tissue class are assigned to the lesion (i.e., a fuzzy set).</p></list-item></list></p>
+        <p>Note that for illustration purposes we will use the simulated cases 10 and 06 to disclose the rational of each step of our automated method. Simulated case 10 has a chronic stroke affecting the insula (tissue loss) with well-defined borders and a relatively homogeneous T1 signal distribution (close to CSF signal). In contrast, simulated case 06 has a large frontoparietal, loculated lesion with diffuse borders, local mass effects and a heterogeneous T1 signal distribution (tissue loss with T1 signal near to CSF and tissue damage with T1 signal near to GM).</p>
+        <sec>
+          <title>Segmentation of the T1 volumes</title>
+          <sec>
+            <title>Unified segmentation-normalisation</title>
+            <p>We employed the unified procedure implemented in the SPM5 software package (Wellcome Trust Centre for Neuroimaging, London, UK, <ext-link xlink:href="http://www.fil.ion.ucl.ac.uk/spm/" ext-link-type="uri">http://www.fil.ion.ucl.ac.uk/spm/</ext-link>) that combines segmentation, bias correction and spatial normalization through the inversion of a single unified model (for more details see <xref rid="bib3" ref-type="bibr">Ashburner and Friston, 2005</xref>). In brief, the unified model combines tissue class, intensity bias and nonlinear warping into the same probabilistic models that are assumed to generate subject-specific images. Image intensities are modelled by mixtures of Gaussians (MOG). Within a MOG, the prior probability that a voxel intensity is drawn from a particular Gaussian is given by a mixing proportion. In the unified model, the priors on the tissue class from which intensities are drawn are encoded by deformable tissue probability maps. These are generated from the averages of affine registered and tissue classified images of 452 subjects (see <xref rid="fig1" ref-type="fig">Fig. 1</xref>A), provided by the International Consortium for Brain Mapping (<ext-link xlink:href="http://www.loni.ucla.edu/ICBM/" ext-link-type="uri">http://www.loni.ucla.edu/ICBM/</ext-link>). These maps represent the probabilities of finding GM, WM, CSF and “other” tissues at each voxel. In this paper, the unified model used the default number of Gaussians {2,2,2,4} to model each of the intensity distributions of GM, WM, CSF and the “other” tissues respectively.</p>
+            <p>Throughout this work, the following parameters of the SPM5 scheme were held constant: 25 mm for the cut-off of three dimensional discrete cosine transform (DCT) basis functions for spatial warping (for more details see <xref rid="bib2" ref-type="bibr">Ashburner and Friston, 1999</xref>), medium regularisation (see <xref rid="bib12" ref-type="bibr">Crinion et al., 2007</xref>), and 75 mm width for the Gaussian smoothness of intensity bias fields.</p>
+          </sec>
+          <sec>
+            <title>Problems with the segmentation procedure</title>
+            <p>To illustrate the effectiveness of the unified segmentation using the three (plus “other”) priors shown in <xref rid="fig1" ref-type="fig">Fig. 1</xref>A, a normal brain and two simulated lesions (cases 10 and 06) were processed using the SPM5 segmentation routine. The normal brain was segmented as expected into GM, WM and CSF (<xref rid="fig1" ref-type="fig">Fig. 1</xref>B). In simulated case 10, the well-defined insular lesion is entirely classified as CSF (<xref rid="fig1" ref-type="fig">Fig. 1</xref>C), despite the fact that the normal priors were higher for WM than CSF at this spatial location. The lesion site was therefore classified with a low probability of being GM or WM which is important when identifying areas with abnormally low GM or WM. In contrast, for simulated case 06, a part of the lesion was misclassified as normal WM tissue (<xref rid="fig1" ref-type="fig">Fig. 1</xref>D), despite the fact that this tissue had a T1 signal different from the T1 signal in healthy WM. This cannot entirely be explained by the mixing of two Gaussians because the same area remained misclassified as WM even when using one Gaussian per class to model the signal distribution of each tissue. This suggests that the relatively high WM priors at this spatial localisation had biased the apparent difference in T1 signal during the optimisation procedure (for more details, see Eq. (5) in <xref rid="bib3" ref-type="bibr">Ashburner and Friston, 2005</xref>). For our purposes, this segmentation failure will hinder lesion identification. This problem has been documented previously in patients with focal cortical dysplasia, where parts of the lesions were misclassified as intact WM (see for example <xref rid="bib9" ref-type="bibr">Colliot et al., 2006a</xref>). A modification of the segmentation procedure therefore needs to ensure that abnormal voxels are not misclassified as GM or WM.</p>
+          </sec>
+          <sec>
+            <title>A modified segmentation procedure</title>
+            <p>One simple solution to the problem of misclassification of damaged tissue entails adding an “extra” class that includes the unexpected and abnormal voxels within the lesion. This is equivalent to the segmentation procedure in some multi-spectral studies that use the regions that show signal enhancement after contrast agent injection as priors (e.g. <xref rid="bib39 bib41" ref-type="bibr">Moon et al., 2002; Prastawa et al., 2003</xref>). Although lesion location, shape, size, and signal are unknown, we show below how the priors can be approximated for the extra class in a mono-spectral mode. Before describing this extra class, we illustrate its rational by displaying the segmented images in a new way. This involves generating signal-to-probability maps that represent a scatter-plot (i.e., a voxel-by-voxel correspondence) between the T1 image (signal) and the probability of a segmented tissue type.</p>
+            <p><xref rid="fig2" ref-type="fig">Fig. 2</xref> illustrates a scatter-plot of a normal brain. Higher probability values (around 1) for WM and GM corresponded to different T1 signal ranges, suggesting a good partition between the two tissues. However, in the presence of a lesion with a heterogeneous signal, as in simulated case 06, high WM probability was also observed for voxels with a T1 signal range similar to those of the GM class (voxels indicated by an arrow in <xref rid="fig2" ref-type="fig">Fig. 2</xref>B). This suggests that the WM class actually contained voxels from the lesion with a T1 signal far from the normal WM signal; i.e., the WM class has become over inclusive.</p>
+            <p>The modified segmentation algorithm aims to suppress over inclusive WM and GM classes, especially when the lesion has a T1 signal in the range of WM or GM signal. By adding an extra class to the segmentation routine, we aimed to model explicitly voxels that show a discrepancy between the spatial priors and the expected T1 signal (e.g. a location in the WM but with T1 signal values close to GM). To suppress misclassified voxels (those indicated by an arrow in <xref rid="fig2" ref-type="fig">Fig. 2</xref>B), the priors for this extra class should exhibit the following characteristics. First, as the T1 signal in the lesion (e.g. oedema, dysplasia) and GM are comparable, the extra class should have a low probability in GM voxels to avoid incorporating normal GM voxels. Similarly, to differentiate misclassified and intact WM voxels, the extra class should have a low probability in WM voxels to ensure that normal WM are classified properly; however, as misclassified voxels are particularly evident within WM, the probability of the extra class should be higher for voxels located in WM, relative to GM, to “force” the segmentation to reclassify the misclassified tissue. Although these criteria can be satisfied by many priors for the extra class, one simple prior is the mean of WM and CSF priors:<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mi>x</mml:mi><mml:mi>t</mml:mi><mml:mi>r</mml:mi><mml:mi>a</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mi>W</mml:mi><mml:mi>M</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mi>P</mml:mi><mml:mrow><mml:mi>C</mml:mi><mml:mi>S</mml:mi><mml:mi>F</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mn>2</mml:mn></mml:mfrac></mml:mrow><mml:mtext>.</mml:mtext></mml:math></disp-formula>Where <italic>P</italic><sub><italic>WM</italic></sub> and <italic>P</italic><sub><italic>CSF</italic></sub> are the standard priors of WM and CSF respectively (as shown in <xref rid="fig1" ref-type="fig">Fig. 1</xref>A). In short, a new class is formed by taking prior probability mass from the WM and CSF classes but not the GM class (note that <italic>P</italic><sub><italic>extra</italic></sub> values in GM tissue are not zeros). This extra class provides more flexibility in the segmentation procedure, when dealing with the damaged tissue as illustrated below.</p>
+          </sec>
+          <sec>
+            <title>Implementing the modified segmentation</title>
+            <p><xref rid="fig3" ref-type="fig">Fig. 3</xref> illustrates how the modified segmentation routine dealt with damaged tissue in simulated case 06. By adding this extra class, the segmentation was able to classify the abnormal WM tissue (see <xref rid="fig3" ref-type="fig">Fig. 3</xref>A). Although most of the abnormal voxels were given a low probability of being intact WM (as can be seen when comparing <xref rid="fig3" ref-type="fig">Fig. 3</xref>A to <xref rid="fig1" ref-type="fig">Fig. 1</xref>D), some of the abnormal voxels remained misclassified as WM or GM. To improve the segmentation procedure further, the extra class was refined and then used as an empirical prior for a second segmentation on the same T1 image. To obtain a refined version of the extra class, all the voxels classified in the extra class with a probability value lower than a third were removed. This ensured that, at the same location, voxels belonging to the extra class would have a higher probability value than either GM or WM. When using this refined version of the extra prior, the second segmentation removed almost all abnormal voxels from the WM class (see <xref rid="fig3" ref-type="fig">Fig. 3</xref>B for more details). This is clearly visible when comparing the WM classes in <xref rid="fig1 fig3" ref-type="fig">Figs. 1D and 3B</xref>. Remarkably, this segmentation procedure, with two iterations and appropriate extra class priors, modelled abnormal voxels and thus minimised misclassification in GM and WM classes. Note that, at each iteration, the segmentation routine of SPM5 ensures that all priors sum to one at any voxel.</p>
+            <p>Practically, the process shown above can be iterated several times (i.e., an iterative segmentation routine): the estimated extra class acting as the prior for the next segmentation run. Here we use two iterations throughout the paper. For more details about the influence of the number of iterations, see paragraph 1 and Fig. S1 of the <xref rid="app1" ref-type="sec">Supplementary material</xref>.</p>
+            <p>With two iterations, <xref rid="fig4" ref-type="fig">Fig. 4</xref> shows clearly how adding an extra class improved the dissociation of normal and abnormal WM voxels. In these maps, the abnormal WM voxels (shown in black in <xref rid="fig4" ref-type="fig">Fig. 4</xref>A) are classified in the extra class. The final WM class is remarkably similar to a normal WM class (e.g. the scatter map of a normal subject in <xref rid="fig2" ref-type="fig">Fig. 2</xref>A was comparable to the one of the correctly segmented lesioned brain in <xref rid="fig4" ref-type="fig">Fig. 4</xref>B). Critically, we also found that adding this extra class did not alter the segmented healthy tissue when the brain is normal (for more details see paragraph 2 and Fig. S2 of the <xref rid="app1" ref-type="sec">Supplementary material</xref>).</p>
+            <p>This new segmentation approach which creates 4 normalised and segmented classes per subject (i.e., normalised GM, WM, CSF and the extra class) was applied to ten brains with simulated lesions and eight brains with real lesions. For the purpose of lesion identification, only the GM and WM images were used (i.e., here we are only interested in lesions of gray and white matter).</p>
+          </sec>
+        </sec>
+        <sec>
+          <title>Spatial smoothing</title>
+          <p>Before comparing the segmented images of a lesioned brain to those of controls, we need to suppress fine-scale inter-subject anatomical variability. For this purpose, the normalised and segmented GM and WM images of each subject were smoothed spatially with a Gaussian kernel of 8 mm full-width-at-half-maximum (FWHM). See paragraph 3 and Fig. S3 of the <xref rid="app1" ref-type="sec">Supplementary material</xref> for more details about our reasons for selecting 8 mm smoothing. This is in line with other studies that have shown better results with intermediate smoothing values (8–12 mm) for lesion identification (e.g. <xref rid="bib53" ref-type="bibr">Stamatakis and Tyler, 2005</xref>).</p>
+        </sec>
+        <sec>
+          <title>Fuzzy clustering of outliers</title>
+          <p>To identify outlier voxels, we have described previously a method based on Fuzzy Clustering with fixed Prototypes (FCP). This has been used to identify voxels where activation in a given subject is far from the mean activation of the group or population (for more details, see (<xref rid="bib49" ref-type="bibr">Seghier et al., 2007</xref>). In the context of lesion identification, we assume that, at the global level, a lesioned brain can be considered as an outlier in relation to normal (control) brains. This assumption has been suggested for instance in some previous multi-spectral work (e.g. <xref rid="bib29 bib42 bib55" ref-type="bibr">Jack et al., 2001; Prastawa et al., 2004; Van Leemput et al., 2001</xref>). Here, we used FCP to identify voxels that were very different in the lesioned brain as compared to controls.</p>
+          <p>The procedure is as follows: a lesioned GM segment is compared with control GM segments for each voxel <italic>i</italic>, by assessing a similarity metric <italic>D</italic><sub><italic>ij</italic></sub> that represents the difference between the value of voxel <italic>i</italic> of a <italic>j</italic>-th GM fuzzy set and the mean of GM values in this voxel (with <italic>j</italic> = 1… <italic>N</italic><sub><italic>sub</italic></sub>; <italic>N</italic><sub><italic>sub</italic></sub> is the total number of subjects (i.e. number of controls plus the patient)). The similarity metric <italic>D</italic><sub><italic>ij</italic></sub> is defined as:<disp-formula id="fd2"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mo>tanh</mml:mo><mml:mo stretchy="true">(</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mrow><mml:mi>s</mml:mi><mml:mi>u</mml:mi><mml:mi>b</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mrow><mml:mi>s</mml:mi><mml:mi>u</mml:mi><mml:mi>b</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>X</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>X</mml:mi><mml:mo>―</mml:mo></mml:mover><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mi>α</mml:mi></mml:mfrac><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mtext>.</mml:mtext></mml:math></disp-formula>The real constant <italic>α</italic> is a “tuning” parameter that can be adjusted to control the sensitivity of the method to outlier values (see Fig. 3 of <xref rid="bib49" ref-type="bibr">Seghier et al. (2007)</xref>). <italic>tanh</italic> is the hyperbolic tangent, <italic>X</italic><sub><italic>ij</italic></sub> is the tissue probability for the <italic>j</italic>-th subject at voxel <italic>i</italic>, and <italic>X̄</italic>―<sub><italic>i</italic></sub> is the mean over subjects. The constant α is fixed at − 0.5 (the constant <italic>α</italic> is negative to test if <italic>X</italic><sub><italic>ij</italic></sub> is low compared to <italic>X</italic>―<sub><italic>i</italic></sub>, which is in line with the definition of a lesion as an absence of normal brain tissue).</p>
+          <p>The similarity metric <italic>D</italic><sub><italic>ij</italic></sub> is then used to quantify the degree of membership <italic>U</italic><sub><italic>ij</italic></sub> of voxel <italic>i</italic> to class <italic>j</italic> according to the following equation:<disp-formula id="fd3"><label>(3)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>U</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msubsup><mml:mi>D</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>λ</mml:mi></mml:msubsup></mml:mrow><mml:mrow><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:mrow><mml:msubsup><mml:mi>D</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>λ</mml:mi></mml:msubsup></mml:mrow></mml:mrow></mml:mfrac></mml:mrow><mml:mtext>.</mml:mtext></mml:math></disp-formula>The parameter <italic>λ</italic> is a negative number, typically − 4. The values <italic>U</italic><sub><italic>ij</italic></sub> (within the interval [0,1]) comprise the <italic>j</italic>-th fuzzy set. When <italic>j</italic> indexes the lesioned brain, the values <italic>U</italic><sub><italic>ij</italic></sub> comprise the fuzzy set <italic>F</italic><sub><italic>GM</italic></sub>, which represents the degree of membership of voxels that have very low GM probability in the lesioned brain, relative to controls (i.e., a GM lesion map). This procedure was repeated with WM images, yielding the fuzzy set <italic>F</italic><sub><italic>WM</italic></sub>.</p>
+        </sec>
+        <sec>
+          <title>Grouping GM and WM lesions</title>
+          <p>From the above, we obtain two fuzzy sets <italic>F</italic><sub><italic>GM</italic></sub> and <italic>F</italic><sub><italic>WM</italic></sub>, representing the voxels in each lesioned brain that had a very low probability of being GM and WM voxels respectively, compared with the controls. The union, <italic>F</italic><sub><italic>LES</italic></sub> of the two sets identifies the lesion (i.e., a probability of being either GM or WM). The fuzzy set union was assessed with (c.f., <xref rid="bib28" ref-type="bibr">Ibrahim, 1997</xref>),:<disp-formula id="fd4"><label>(4)</label><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>F</mml:mi><mml:mrow><mml:mi>L</mml:mi><mml:mi>E</mml:mi><mml:mi>S</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>F</mml:mi><mml:mrow><mml:mi>G</mml:mi><mml:mi>M</mml:mi></mml:mrow></mml:msub><mml:mo>∪</mml:mo><mml:msub><mml:mi>F</mml:mi><mml:mrow><mml:mi>W</mml:mi><mml:mi>M</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mo>max</mml:mo><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>F</mml:mi><mml:mrow><mml:mi>G</mml:mi><mml:mi>M</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>F</mml:mi><mml:mrow><mml:mi>W</mml:mi><mml:mi>M</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></disp-formula>where ∪ is the set operator “union”. The operator “max” is applied over all voxels.</p>
+          <p>A schematic view of our scheme is provided in <xref rid="fig5" ref-type="fig">Fig. 5</xref>A. An illustration of this procedure is given in <xref rid="fig5" ref-type="fig">Fig. 5</xref>B with simulated case 10. Briefly, after segmentation, the tissue images were smoothed (with FWHM of 8 mm) and compared to normal tissue images from the control subjects to identify outlier voxels. These GM and WM outlier voxels are then combined to form the fuzzy set that defines the lesion. This fuzzy set can be thresholded at a given <italic>U</italic> value to generate a binary mask of the lesion (for more details about the influence of <italic>U</italic> thresholds, see paragraph 4 and Fig. S4 of the <xref rid="app1" ref-type="sec">Supplementary material</xref>).</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Validation of the identified lesions</title>
+        <p>At the global level, the method is judged successful if it can identify the lesion at the right location and with approximately the correct extent. At the voxel level, we assessed Dice's similarity index (<xref rid="bib15" ref-type="bibr">Dice, 1945</xref>) between each binary lesion map (i.e. <italic>F</italic><sub><italic>LES</italic></sub> at a given <italic>U</italic> threshold) and the “real” lesion (considered as true positives) using the following formula:<disp-formula id="fd5"><label>(5)</label><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:mi>D</mml:mi><mml:mi>i</mml:mi><mml:mi>c</mml:mi><mml:mi>e</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mn>2</mml:mn><mml:mo>·</mml:mo><mml:mi>T</mml:mi><mml:mi>P</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mo>·</mml:mo><mml:mi>T</mml:mi><mml:mi>P</mml:mi><mml:mo>+</mml:mo><mml:mi>F</mml:mi><mml:mi>P</mml:mi><mml:mo>+</mml:mo><mml:mi>F</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula>where TP, FP, and FN represent the number of true positives, false positives, and false negatives respectively (for a similar rational see <xref rid="bib46 bib53" ref-type="bibr">Sajja et al., 2006; Stamatakis and Tyler, 2005</xref>). Because the lesion is a fuzzy set (i.e. <italic>F</italic><sub><italic>LES</italic></sub> contained values between 0 and 1), the Dice index was generated at several <italic>U</italic> thresholds (c.f. <xref rid="bib1" ref-type="bibr">Anbeek et al., 2004</xref>). To assess the specificity and the sensitivity of our method, we also generated receiver operating characteristic (ROC) curves (e.g. <xref rid="bib38" ref-type="bibr">Metz, 1978</xref>) that encode the dependence of the true positive rate (sensitivity) on the false positive rate (one minus specificity) for different <italic>U</italic> thresholds.</p>
+        <p>For simulated lesions, the “real” (true) abnormal voxels are approximately known (inserted with the cut/paste procedure as explained above). For real cases, all lesions were manually segmented by an expert (A.P.L) and the resultant masks are thus considered as true voxels.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results</title>
+      <sec>
+        <title>Definition of simulated lesion boundaries</title>
+        <p>At the voxel level, we illustrate the sensitivity of the method on simulated cases 06 and 10 (those presented in <xref rid="fig1" ref-type="fig">Fig. 1</xref>C and D). <xref rid="fig6" ref-type="fig">Fig. 6</xref>A shows the Dice similarity index at different <italic>U</italic> thresholds. At low <italic>U</italic> values (e.g. <italic>U</italic> &lt; 0.05), the Dice index was small due to high false positive rates. The Dice index reached high values (&gt; 0.7) at intermediate <italic>U</italic> values suggesting a remarkable correspondence between the identified lesions and the known simulated lesions. The method is also highly sensitive and specific as illustrated by the ROC curves (i.e. curves near to the top-left corner). At the global level, the boundaries of all simulated lesions are shown in <xref rid="fig6" ref-type="fig">Fig. 6</xref>B. All lesions were identified successfully, including the extensive oedema in simulated case 01, both the aneurysm and infarct in simulated case 03, dysplasia in simulated case 04, large tissue loss and tissue damage in simulated case 06 and atrophy in simulated case 08. Critically, although a low <italic>U</italic> threshold was used (<italic>U</italic> = 0.1) in <xref rid="fig6" ref-type="fig">Fig. 6</xref>B, false positives (i.e., intact tissue identified as damaged) were very limited (e.g. brainstem of simulated case 05 and WM tracks in simulated case 07).</p>
+      </sec>
+      <sec>
+        <title>Definition of real lesion boundaries</title>
+        <p>Given real patient scans, the method was able to identify automatically, and without exception, a wide range of lesions. <xref rid="fig7" ref-type="fig">Fig. 7</xref> shows the ROC curves of the eight real cases. Compared to the manual segmentation (i.e. that defines the “true” abnormal voxels), our method is highly sensitive and specific for these different lesions. The Dice index is on average 0.64 ± 0.1 with a maximum at 0.81. One real case has a small Dice index (0.53) due to non-overlapping voxels between the manual segmentation and our method, in particular near to the ventricles (see <xref rid="fig8" ref-type="fig">Fig. 8</xref>C below), despite lesions identified at the right location.</p>
+        <p>Patients with extensive lesions are shown in <xref rid="fig8" ref-type="fig">Fig. 8</xref>. In these four cases, lesions were identified correctly, including massive tissue loss (<xref rid="fig8" ref-type="fig">Fig. 8</xref>A) and extensive tissue damage in different parts of the brain (<xref rid="fig8" ref-type="fig">Fig. 8</xref>B–D). More challenging cases were the patients with tissue loss near to the ventricles (i.e., comparable T1 signal in lesions and ventricles). <xref rid="fig9" ref-type="fig">Fig. 9</xref> shows the results in three patients; the boundaries of the lesions appear well distinguished from the ventricles, which confirms that our procedure minimised any contamination from ventricles during lesion identification. Lesion identification was successful in both left (<xref rid="fig9" ref-type="fig">Fig. 9</xref>A–B) and right hemispheres (<xref rid="fig9" ref-type="fig">Fig. 9</xref>C). The last real case is shown in <xref rid="fig9" ref-type="fig">Fig. 9</xref>D. The method was remarkably successful in this case, despite a lesion near the inter-hemispheric fissure (<xref rid="fig9" ref-type="fig">Fig. 9</xref>D).</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>In this paper, we propose a new automated procedure for lesion identification from single images based on the detection of outlier voxels. We have demonstrated the utility of this procedure on multiple artificial and real lesions. Our findings show the high sensitivity of the method for detecting and delineating brain lesions with different sizes, locations, and textures. Our approach has important applications for the generation of lesion overlap maps of a given population (e.g. <xref rid="bib21 bib36" ref-type="bibr">Frank et al., 1997; Makale et al., 2002</xref>) and the assessment of lesion-deficit mappings (<xref rid="bib5 bib13 bib31 bib51 bib54" ref-type="bibr">Bates et al., 2003; Damasio et al., 2004; Karnath et al., 2004; Solomon et al., 2007; Tyler et al., 2005</xref>).</p>
+      <p>The rational for using this method is motivated by the following points: (i) this method is suitable when only one type of image (e.g., T1 image) is available; (ii) intensities in the segmented classes are automatically normalised into the interval 0 to 1 for each subject, which should minimise the influence of MR signal non-uniformities (<xref rid="bib27" ref-type="bibr">Hou, 2006</xref>) that may hinder the detection of lesion from T1 volumes (e.g. <xref rid="bib53" ref-type="bibr">Stamatakis and Tyler 2005</xref>); (iii) the analysis was performed on voxels within the tissues of interest (GM and WM) avoiding contributions from the CSF and non-brain classes; (iv) it can assess the lesion effect specifically for each brain tissue; e.g., GM malformations; (v) the existence of the lesion is modelled explicitly as an extra class during brain segmentation, which helps to avoid misclassification of damaged voxels; (vi) identified lesions are mapped directly in a stereotaxic space (e.g. <xref rid="bib44" ref-type="bibr">Rorden and Brett, 2000</xref>); (vii) the algorithm is based on optimal normalisation (i.e. the unified segmentation–normalisation framework) that has been shown to be accurate and robust when dealing with lesioned brains (<xref rid="bib12" ref-type="bibr">Crinion et al., 2007</xref>); (viii) the algorithm for outlier detection is based on the pragmatic theory of fuzzy sets; (ix) the categorisation of a voxel as intact or abnormal is based on the distribution of normal values of GM and WM in healthy subjects; (x) identified lesions are coded as continuous values thereby quantifying the degree of abnormality of each voxel.</p>
+      <p>Some methodological factors may limit the sensitivity of our method. The spatial smoothing used here to minimise inter-subject anatomical variability during the identification of outliers obviously has an influence on the sensitivity and specificity of the method. In line with previous reports (e.g. <xref rid="bib53 bib58" ref-type="bibr">Stamatakis and Tyler, 2005; Wilke et al., 2003</xref>), intermediate smoothing values (e.g. around 8 mm of FWHM) appear to be suitable for the size of lesions tested here. However, this parameter should be adapted to match the size of the expected lesions (due to the matched filter theory (<xref rid="bib47 bib57" ref-type="bibr">Salmond et al., 2002a; White et al., 2001</xref>)), for instance by using low smoothing if the method is applied to identify tiny lesions (e.g. subcortical lesions (<xref rid="bib56" ref-type="bibr">Vogels et al., 1995</xref>) or subtle GM malformations (<xref rid="bib32" ref-type="bibr">Kassubek et al., 2002</xref>)). In addition, the sensitivity of the method also depends on the value of the parameter α during the quantification of the similarity measure <italic>D</italic> (i.e. see Eq. <xref rid="fd2" ref-type="disp-formula">(2)</xref>). Basically, the parameter α controls how far a voxel should be from the mean of controls before it is considered an outlier. Here, it was set objectively to midway in the range of possible probability values (i.e. half the interval [0,1]). An extensive discussion of the influence of the parameter α can be found elsewhere (<xref rid="bib49" ref-type="bibr">Seghier et al., 2007</xref>).</p>
+      <p>Critically, the comparison between the brain-damaged subjects and healthy subjects assume that both groups differ only according to the presence or absence of abnormal tissue. Thus, it is important to cancel or minimise all other potential sources of differences that might be caused by demographic variables, including age and gender. For instance, comparing an elderly subject to younger controls may lead to the detection of abnormal voxels caused by structural differences outside the real lesion (although atrophy detection might be relevant in other contexts; e.g. <xref rid="bib11" ref-type="bibr">Convit et al., 2000</xref>). In addition, the specificity of the method also depends on the accuracy of the segmentation and the normalisation procedure. The normalisation procedure should accurately match the damaged brain to the controls to ensure good correspondence of healthy tissues in both groups. Several parameters may influence the quality of the normalisation procedure (e.g. <xref rid="bib43 bib48 bib50 bib58" ref-type="bibr">Robbins et al., 2004; Salmond et al., 2002b; Shen et al., 2007; Wilke et al., 2003</xref>). Here we used an optimal normalisation procedure that has recently been shown to be more accurate in brain-damaged subjects than standard procedures (<xref rid="bib12" ref-type="bibr">Crinion et al., 2007</xref>).</p>
+      <p>During the evaluation of our method, we assumed manual segmentation as the gold-standard method in order to define the “ground-truth” (true abnormal voxels) used for computing the Dice similarity index and evaluating ROC curves. However, this does not guarantee that misclassified voxels will not be included in the manually segmented lesions (which will lead to an increase of false positives/negative). For instance, <xref rid="bib18" ref-type="bibr">Fiez et al. (2000)</xref> estimated the percentage of intra- and inter-operator errors during lesion identification in 10 subjects. In particular, they showed that, at the voxel level, the intra-operator error (i.e. percentage of nonoverlaping voxels between two lesion segmentations of the same subject and by the same operator) was on average 26% to 36% (for more details see Table 3 of <xref rid="bib18" ref-type="bibr">Fiez et al. (2000)</xref>). Note also that the definition of “exact” lesion boundaries in a mono-spectral mode is difficult even with manual segmentation, because of partial volume effects in T1 images with limited spatial resolution (e.g. <xref rid="bib24 bib34" ref-type="bibr">Guttmann et al., 1999; Links et al., 1998</xref>).</p>
+      <p>In this paper, we tested our method on a variety of lesions (size, location, texture). However, it is likely that other kinds of lesions might be challenging. Some lesion locations might be more difficult; for instance, posterior fossa lesions (e.g. infratentorial tumors) can be difficult to identify automatically (<xref rid="bib22" ref-type="bibr">Gass et al., 2000</xref>). As the gyral anatomy of the cerebellum is more convoluted than that of the cerebrum, lesions in this region may give rise to disproportionate errors of spatial normalization. In this context, it might be useful to use more accurate cerebellar templates (for a similar rational see <xref rid="bib16" ref-type="bibr">Diedrichsen, 2006</xref>). Other lesion locations or causes of abnormal signal intensity may also be problematic for our method. Periventricular lesions (lesions contiguous with ventricles, e.g. <xref rid="bib63" ref-type="bibr">Zimmerman et al., 1986</xref>) can be classified as WM lesions but they are very difficult to distinguish from atrophy effects or CSF-partial voluming (<xref rid="bib40" ref-type="bibr">Payne et al., 2002</xref>). In all these cases and as a general principle we recommend that all automated lesion profiles be checked by eye.</p>
+      <p>Finally, as shown above, identified lesions are coded as continuous values (the fuzzy degree of membership <italic>U</italic> in the interval [0,1]) providing a useful quantification of the degree of abnormality of each voxel. This is essential for methods that use continuous lesion values for generating lesion-deficit mappings (e.g. <xref rid="bib54" ref-type="bibr">Tyler et al., 2005</xref>). On the other hand, for other mapping methods (e.g. <xref rid="bib5 bib13 bib17 bib31" ref-type="bibr">Bates et al., 2003; Damasio et al., 2004; Dronkers et al., 2004; Karnath et al., 2004</xref>) or lesion overlap methods that use binary lesions, the binarisation process can be performed by applying a <italic>U</italic> threshold (typically 0.3) to the fuzzy lesions.</p>
+      <p>In summary, we have presented an automated method for lesion identification in mono-channel MRI that can be implemented easily within the SPM5 software package. With a modified segmentation procedure and fuzzy clustering, our approach was able to detect and delineate a variety of artificial and real lesions. From a clinical perspective, our method should help to compute the total volume of lesion, when this measure is appropriate, or to trace precisely the frontiers between the intact and damaged tissue that might be pertinent for surgical or diagnostic purposes.</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="app1">
+      <label>Appendix A</label>
+      <title>Supplementary data</title>
+      <p>
+        <supplementary-material content-type="local-data" id="N0x1d3b270N0x2f3df60">
+          <media xlink:href="mmc1.pdf" mimetype="application" mime-subtype="pdf"/>
+        </supplementary-material>
+      </p>
+    </sec>
+    <sec sec-type="supplementary-material">
+      <label>Appendix A</label>
+      <title>Supplementary data</title>
+      <p>Supplementary data associated with this article can be found, in the online version, at <ext-link xlink:href="doi:10.1016/j.neuroimage.2008.03.028" ext-link-type="uri">doi:10.1016/j.neuroimage.2008.03.028</ext-link>.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was funded by the Wellcome Trust and the James S. MacDonnell Foundation (conducted as part of the NRG initiative). We thank Karl Friston and John Ashburner for their comments on an earlier version of the manuscript. We would like to thank Matthew Brett for providing us with the simulated lesions.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Anbeek</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Vincken</surname>
+              <given-names>K.L.</given-names>
+            </name>
+            <name>
+              <surname>Van Osch</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Bisschops</surname>
+              <given-names>R.H.</given-names>
+            </name>
+            <name>
+              <surname>Van der Grond</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automatic segmentation of different-sized white matter lesions by voxel probability estimation</article-title>
+          <source>Med. Image Anal.</source>
+          <year>2004</year>
+          <volume>8</volume>
+          <fpage>205</fpage>
+          <lpage>215</lpage>
+          <pub-id pub-id-type="pmid">15450216</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlinear spatial normalization using basis functions</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>1999</year>
+          <volume>7</volume>
+          <fpage>254</fpage>
+          <lpage>266</lpage>
+          <pub-id pub-id-type="pmid">10408769</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Unified segmentation</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>26</volume>
+          <fpage>839</fpage>
+          <lpage>851</lpage>
+          <pub-id pub-id-type="pmid">15955494</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashton</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Takahashi</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Berg</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Goodman</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Totterman</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ekholm</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Accuracy and reproducibility of manual and semiautomated quantification of MS lesions by MRI</article-title>
+          <source>J. Magn. Reson. Imaging</source>
+          <year>2003</year>
+          <volume>17</volume>
+          <fpage>300</fpage>
+          <lpage>308</lpage>
+          <pub-id pub-id-type="pmid">12594719</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bates</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Saygin</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Dick</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Sereno</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Knight</surname>
+              <given-names>R.T.</given-names>
+            </name>
+            <name>
+              <surname>Dronkers</surname>
+              <given-names>N.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Voxel-based lesion-symptom mapping</article-title>
+          <source>Nat. Neurosci.</source>
+          <year>2003</year>
+          <volume>6</volume>
+          <fpage>448</fpage>
+          <lpage>450</lpage>
+          <pub-id pub-id-type="pmid">12704393</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bernasconi</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Advanced MRI analysis methods for detection of focal cortical dysplasia</article-title>
+          <source>Epileptic Disord.</source>
+          <year>2003</year>
+          <volume>5</volume>
+          <fpage>S81</fpage>
+          <lpage>S84</lpage>
+          <pub-id pub-id-type="pmid">14617425</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brett</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Leff</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Rorden</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spatial normalization of brain images with focal lesions using cost function masking</article-title>
+          <source>NeuroImage</source>
+          <year>2001</year>
+          <volume>14</volume>
+          <fpage>486</fpage>
+          <lpage>500</lpage>
+          <pub-id pub-id-type="pmid">11467921</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Capelle</surname>
+              <given-names>A.S.</given-names>
+            </name>
+            <name>
+              <surname>Colot</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Fernandez-Maloigne</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evidential segmentation scheme of multi-echo MR images for the detection of brain tumors using neighborhood information</article-title>
+          <source>Inf. Fusion</source>
+          <year>2004</year>
+          <volume>5</volume>
+          <fpage>203</fpage>
+          <lpage>216</lpage>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Colliot</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Bernasconi</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Khalili</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Antel</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Naessens</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Bernasconi</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Individual voxel-based analysis of gray matter in focal cortical dysplasia</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>29</volume>
+          <fpage>162</fpage>
+          <lpage>171</lpage>
+          <pub-id pub-id-type="pmid">16099679</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Colliot</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Mansi</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Bernasconi</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Naessens</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Klironomos</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Bernasconi</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Segmentation of focal cortical dysplasia lesions on MRI using level set evolution</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>32</volume>
+          <fpage>1621</fpage>
+          <lpage>1630</lpage>
+          <pub-id pub-id-type="pmid">16887367</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Convit</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>de Asis</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>de Leon</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Tarshish</surname>
+              <given-names>C.Y.</given-names>
+            </name>
+            <name>
+              <surname>De Santi</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Rusinek</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Atrophy of the medial occipitotemporal, inferior, and middle temporal gyri in non-demented elderly predict decline to Alzheimer's disease</article-title>
+          <source>Neurobiol. Aging</source>
+          <year>2000</year>
+          <volume>21</volume>
+          <fpage>19</fpage>
+          <lpage>26</lpage>
+          <pub-id pub-id-type="pmid">10794844</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crinion</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Leff</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Brett</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spatial normalization of lesioned brains: performance evaluation and impact on fMRI analyses</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>37</volume>
+          <fpage>866</fpage>
+          <lpage>875</lpage>
+          <pub-id pub-id-type="pmid">17616402</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Damasio</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Tranel</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Grabowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+            <name>
+              <surname>Adolphs</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Damasio</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural systems behind word and concept retrieval</article-title>
+          <source>Cognition</source>
+          <year>2004</year>
+          <volume>92</volume>
+          <fpage>145</fpage>
+          <lpage>177</lpage>
+          <pub-id pub-id-type="pmid">15037129</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Datta</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Sajja</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Wolinsky</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Gupta</surname>
+              <given-names>R.K.</given-names>
+            </name>
+            <name>
+              <surname>Narayana</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Segmentation and quantification of black holes in multiple sclerosis</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>29</volume>
+          <fpage>467</fpage>
+          <lpage>474</lpage>
+          <pub-id pub-id-type="pmid">16126416</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dice</surname>
+              <given-names>L.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Measures of the amount of ecological association between species</article-title>
+          <source>Ecology</source>
+          <year>1945</year>
+          <volume>26</volume>
+          <fpage>297</fpage>
+          <lpage>302</lpage>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Diedrichsen</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A spatially unbiased atlas template of the human cerebellum</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>33</volume>
+          <fpage>127</fpage>
+          <lpage>138</lpage>
+          <pub-id pub-id-type="pmid">16904911</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dronkers</surname>
+              <given-names>N.F.</given-names>
+            </name>
+            <name>
+              <surname>Wilkins</surname>
+              <given-names>D.P.</given-names>
+            </name>
+            <name>
+              <surname>Van Valin</surname>
+              <given-names>R.D.J.</given-names>
+            </name>
+            <name>
+              <surname>Redfern</surname>
+              <given-names>B.B.</given-names>
+            </name>
+            <name>
+              <surname>Jaeger</surname>
+              <given-names>J.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Lesion analysis of the brain areas involved in language comprehension</article-title>
+          <source>Cognition</source>
+          <year>2004</year>
+          <volume>92</volume>
+          <fpage>145</fpage>
+          <lpage>177</lpage>
+          <pub-id pub-id-type="pmid">15037129</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fiez</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Damasio</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Grabowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Lesion segmentation and manual warping to a reference brain: intra- and interobserver reliability</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2000</year>
+          <volume>9</volume>
+          <fpage>192</fpage>
+          <lpage>211</lpage>
+          <pub-id pub-id-type="pmid">10770229</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Filippi</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Horsfield</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Bressi</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Martinelli</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Baratti</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Reganati</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Campi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>D.H.</given-names>
+            </name>
+            <name>
+              <surname>Comi</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Intra- and inter-observer agreement of brain MRI lesion volume measurements in multiple sclerosis. A comparison of techniques</article-title>
+          <source>Brain</source>
+          <year>1995</year>
+          <volume>118</volume>
+          <fpage>1593</fpage>
+          <lpage>1600</lpage>
+          <pub-id pub-id-type="pmid">8595488</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fletcher-Heath</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>L.O.</given-names>
+            </name>
+            <name>
+              <surname>Goldgof</surname>
+              <given-names>D.B.</given-names>
+            </name>
+            <name>
+              <surname>Murtaqh</surname>
+              <given-names>F.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automatic segmentation of non-enhancing brain tumors in magnetic resonance images</article-title>
+          <source>Artif. Intell. Med.</source>
+          <year>2001</year>
+          <volume>21</volume>
+          <fpage>43</fpage>
+          <lpage>63</lpage>
+          <pub-id pub-id-type="pmid">11154873</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frank</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Damasio</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Grabowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Brainvox: an interactive, multimodal visualization and analysis system for neuroanatomical imaging</article-title>
+          <source>NeuroImage</source>
+          <year>1997</year>
+          <volume>5</volume>
+          <fpage>13</fpage>
+          <lpage>30</lpage>
+          <pub-id pub-id-type="pmid">9038281</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gass</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Filippi</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Grossman</surname>
+              <given-names>R.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>The contribution of MRI in the differential diagnosis of posterior fossa damage</article-title>
+          <source>J. Neurol. Sci.</source>
+          <year>2000</year>
+          <volume>172</volume>
+          <fpage>S43</fpage>
+          <lpage>S49</lpage>
+          <pub-id pub-id-type="pmid">10606806</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gitelman</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Tyler</surname>
+              <given-names>L.K.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Voxel-based morphometry of herpes simplex encephalitis</article-title>
+          <source>NeuroImage</source>
+          <year>2001</year>
+          <volume>13</volume>
+          <fpage>623</fpage>
+          <lpage>631</lpage>
+          <pub-id pub-id-type="pmid">11305891</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guttmann</surname>
+              <given-names>C.R.G.</given-names>
+            </name>
+            <name>
+              <surname>Kikinis</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Jakab</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Warfield</surname>
+              <given-names>S.K.</given-names>
+            </name>
+            <name>
+              <surname>Killiany</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Weiner</surname>
+              <given-names>H.L.</given-names>
+            </name>
+            <name>
+              <surname>Jolesz</surname>
+              <given-names>F.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitative follow-up of patients with multiple sclerosis using MRI: Reproducibility</article-title>
+          <source>J. Magn. Reson. Imaging</source>
+          <year>1999</year>
+          <volume>9</volume>
+          <fpage>509</fpage>
+          <lpage>518</lpage>
+          <pub-id pub-id-type="pmid">10232508</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ho</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bullitt</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Gerig</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <source>Level set evolution with region competition: automatic 3-D segmentation of brain tumours. Proc 16th Intern Conf Pattern Recogn, IEEE Computer Society</source>
+          <year>2002</year>
+          <fpage>532</fpage>
+          <lpage>535</lpage>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hojjatoleslami</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Kruggel</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Segmentation of large brain lesions</article-title>
+          <source>IEEE Trans. Med. Imag.</source>
+          <year>2001</year>
+          <volume>20</volume>
+          <fpage>666</fpage>
+          <lpage>669</lpage>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hou</surname>
+              <given-names>Z.</given-names>
+            </name>
+          </person-group>
+          <article-title>A review on MR image intensity inhomogeneity correction</article-title>
+          <source>Int. J. Biomed. Imag.</source>
+          <year>2006</year>
+          <volume>2006</volume>
+          <fpage>1</fpage>
+          <lpage>11</lpage>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ibrahim</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Introduction to Applied Fuzzy Electronics</article-title>
+          <year>1997</year>
+          <publisher-name>Prentice Hall</publisher-name>
+          <publisher-loc>Upper Saddle River, NJ</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jack</surname>
+              <given-names>C.R.</given-names>
+            </name>
+            <name>
+              <surname>O'Brien</surname>
+              <given-names>P.C.</given-names>
+            </name>
+            <name>
+              <surname>Rettman</surname>
+              <given-names>D.W.</given-names>
+            </name>
+            <name>
+              <surname>Shiung</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Muthupillai</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Manduca</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Avula</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Erickson</surname>
+              <given-names>B.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>FLAIR histogram segmentation for measurement of leukoaraiosis volume</article-title>
+          <source>J. Magn. Reson. Imaging</source>
+          <year>2001</year>
+          <volume>14</volume>
+          <fpage>668</fpage>
+          <lpage>676</lpage>
+          <pub-id pub-id-type="pmid">11747022</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kabir</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Dojat</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Scherrer</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Forbes</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Garbay</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>Multimodal MRI segmentation of ischemic stroke lesions. 29th Ann Intern Conf IEEE Eng Med Biol Soc EMBC, Lyon France</source>
+          <year>2007</year>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Karnath</surname>
+              <given-names>H.O.</given-names>
+            </name>
+            <name>
+              <surname>Fruhmann-Berger</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kuker</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Rorden</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>The anatomy of spatial neglect based on voxelwise statistical analysis: a study of 140 patients</article-title>
+          <source>Cereb. Cortex</source>
+          <year>2004</year>
+          <volume>14</volume>
+          <fpage>1164</fpage>
+          <lpage>1172</lpage>
+          <pub-id pub-id-type="pmid">15142954</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kassubek</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Huppertz</surname>
+              <given-names>H.J.</given-names>
+            </name>
+            <name>
+              <surname>Spreer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Schulze-Bonhage</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detection and localization of focal cortical dysplasia by voxel-based 3-D MRI analysis</article-title>
+          <source>Epilepsia</source>
+          <year>2002</year>
+          <volume>43</volume>
+          <fpage>596</fpage>
+          <lpage>602</lpage>
+          <pub-id pub-id-type="pmid">12060018</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lau</surname>
+              <given-names>P.Y.</given-names>
+            </name>
+            <name>
+              <surname>Ozawa</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>A simple method for detecting tumor in T2-weighted MRI brain images: an image-based analysis</article-title>
+          <source>IEICE Trans. Inf. Syst.</source>
+          <year>2006</year>
+          <volume>E89-D</volume>
+          <fpage>1270</fpage>
+          <lpage>1279</lpage>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Links</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Beach</surname>
+              <given-names>L.S.</given-names>
+            </name>
+            <name>
+              <surname>Subramana</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Hennessey</surname>
+              <given-names>J.G.</given-names>
+            </name>
+            <name>
+              <surname>Reiss</surname>
+              <given-names>A.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Edge complexity and partial volume effects</article-title>
+          <source>J. Comput. Assist. Tomogr.</source>
+          <year>1998</year>
+          <volume>22</volume>
+          <fpage>450</fpage>
+          <lpage>458</lpage>
+          <pub-id pub-id-type="pmid">9606389</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>J.G.</given-names>
+            </name>
+            <name>
+              <surname>Udupa</surname>
+              <given-names>J.K.</given-names>
+            </name>
+            <name>
+              <surname>Hackney</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Moonis</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Brain tumor segmentation in MRI by using the fuzzy connectedness method</article-title>
+          <source>Proc. SPIE</source>
+          <year>2001</year>
+          <volume>4322</volume>
+          <fpage>1455</fpage>
+          <lpage>1465</lpage>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Makale</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Solomon</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Patronas</surname>
+              <given-names>N.J.</given-names>
+            </name>
+            <name>
+              <surname>Danek</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Butman</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Grafman</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantification of brain lesions using interactive automated software</article-title>
+          <source>Behav. Res. Meth. Instrum. Comput.</source>
+          <year>2002</year>
+          <volume>34</volume>
+          <fpage>6</fpage>
+          <lpage>18</lpage>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mehta</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Grabowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+            <name>
+              <surname>Trivedi</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Damasio</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evaluation of voxel-based morphometry for focal lesion detection in individuals</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <fpage>1438</fpage>
+          <lpage>1454</lpage>
+          <pub-id pub-id-type="pmid">14642458</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Metz</surname>
+              <given-names>C.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Basic principles of ROC analysis</article-title>
+          <source>Semin. Nucl. Med.</source>
+          <year>1978</year>
+          <volume>8</volume>
+          <fpage>283</fpage>
+          <lpage>298</lpage>
+          <pub-id pub-id-type="pmid">112681</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moon</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Bullitt</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Van Leemput</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Gerig</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automatic brain and tumor segmentation</article-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Dohi</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kikinis</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Medical Image Computing and Computer-Assisted Intervention MICCAI</source>
+          <year>2002</year>
+          <fpage>372</fpage>
+          <lpage>379</lpage>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Payne</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>Fetzer</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>MacFall</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Provenzale</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Byrum</surname>
+              <given-names>C.E.</given-names>
+            </name>
+            <name>
+              <surname>Krishnan</surname>
+              <given-names>K.R.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Development of a semi-automated method for quantification of MRI gray and white matter lesions in geriatric subjects</article-title>
+          <source>Psychiatry Res. Neuroimaging</source>
+          <year>2002</year>
+          <volume>115</volume>
+          <fpage>63</fpage>
+          <lpage>77</lpage>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Prastawa</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Bullitt</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Moon</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Van Leemput</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Gerig</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automatic brain tumor segmentation by subject specific modification of atlas priors</article-title>
+          <source>Acad. Radiol.</source>
+          <year>2003</year>
+          <volume>10</volume>
+          <fpage>1341</fpage>
+          <lpage>1348</lpage>
+          <pub-id pub-id-type="pmid">14697002</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Prastawa</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Bullitt</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Ho</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gerig</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>A brain tumor segmentation framework based on outlier detection</article-title>
+          <source>Med. Image Anal.</source>
+          <year>2004</year>
+          <volume>8</volume>
+          <fpage>275</fpage>
+          <lpage>283</lpage>
+          <pub-id pub-id-type="pmid">15450222</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robbins</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Collins</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Whitesides</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tuning and comparing spatial normalization methods</article-title>
+          <source>Med. Image Anal.</source>
+          <year>2004</year>
+          <volume>8</volume>
+          <fpage>311</fpage>
+          <lpage>323</lpage>
+          <pub-id pub-id-type="pmid">15450225</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rorden</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Brett</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Stereotaxic display of brain lesions</article-title>
+          <source>Behav. Neurol.</source>
+          <year>2000</year>
+          <volume>12</volume>
+          <fpage>191</fpage>
+          <lpage>200</lpage>
+          <pub-id pub-id-type="pmid">11568431</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ruan</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Lebonvallet</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Merabet</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Constans</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tumor segmentation from a multispectral MRI images by using support vector machine classification.</article-title>
+          <source>4th IEEE Int. Symp. Biomed. Imaging</source>
+          <year>2007</year>
+          <fpage>1236</fpage>
+          <lpage>1239</lpage>
+        </citation>
+      </ref>
+      <ref id="bib46">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sajja</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Datta</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Mehta</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Gupta</surname>
+              <given-names>R.K.</given-names>
+            </name>
+            <name>
+              <surname>Wolinsky</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Narayana</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Unified approach for multiple sclerosis lesion segmentation on brain MRI</article-title>
+          <source>Ann. Biomed. Eng.</source>
+          <year>2006</year>
+          <volume>34</volume>
+          <fpage>142</fpage>
+          <lpage>151</lpage>
+          <pub-id pub-id-type="pmid">16525763</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salmond</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Vargha-Khadem</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Connelly</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Gadian</surname>
+              <given-names>D.G.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distributional assumptions in voxel-based morphometry</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>17</volume>
+          <fpage>1027</fpage>
+          <lpage>1030</lpage>
+          <pub-id pub-id-type="pmid">12377176</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib48">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salmond</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Vargha-Khadem</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Connelly</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Gadian</surname>
+              <given-names>D.G.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The precision of anatomical normalization in the medial temporal lobe using spatial basis functions</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>17</volume>
+          <fpage>507</fpage>
+          <lpage>512</lpage>
+          <pub-id pub-id-type="pmid">12482103</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib49">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seghier</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting subject-specific activations using fuzzy clustering</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>36</volume>
+          <fpage>594</fpage>
+          <lpage>605</lpage>
+          <pub-id pub-id-type="pmid">17478103</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib50">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shen</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Szameitat</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Sterr</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>VBM lesion detection depends on the normalization template: a study using simulated atrophy</article-title>
+          <source>Magn. Reson. Imaging.</source>
+          <year>2007</year>
+          <volume>25</volume>
+          <fpage>1385</fpage>
+          <lpage>1396</lpage>
+          <pub-id pub-id-type="pmid">17467945</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib51">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Solomon</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Raymont</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Braun</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Butman</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Grafman</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>User-friendly software for the analysis of brain lesions (ABLe)</article-title>
+          <source>Magn. Reson. Imaging.</source>
+          <year>2007</year>
+          <volume>86</volume>
+          <fpage>245</fpage>
+          <lpage>254</lpage>
+        </citation>
+      </ref>
+      <ref id="bib52">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Soltanian-Zadeh</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Peck</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Windham</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Mikkelsen</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Brain tumor segmentation and characterization by pattern analysis of multispectral NMR images</article-title>
+          <source>NMR Biomed.</source>
+          <year>1998</year>
+          <volume>11</volume>
+          <fpage>201</fpage>
+          <lpage>208</lpage>
+          <pub-id pub-id-type="pmid">9719574</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib53">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stamatakis</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Tyler</surname>
+              <given-names>L.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identifying lesions on structural brain images–validation of the method and application to neuropsychological patients</article-title>
+          <source>Brain Lang.</source>
+          <year>2005</year>
+          <volume>94</volume>
+          <fpage>167</fpage>
+          <lpage>177</lpage>
+          <pub-id pub-id-type="pmid">15896391</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib54">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tyler</surname>
+              <given-names>L.K.</given-names>
+            </name>
+            <name>
+              <surname>Marslen-Wilson</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Stamatakis</surname>
+              <given-names>E.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dissociating neuro-cognitive component processes: voxel-based correlational methodology</article-title>
+          <source>Neuropsychologia</source>
+          <year>2005</year>
+          <volume>43</volume>
+          <fpage>771</fpage>
+          <lpage>778</lpage>
+          <pub-id pub-id-type="pmid">15721189</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib55">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Van Leemput</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Maes</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Vandermeulen</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Colchester</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Suetens</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated segmentation of multiple sclerosis lesions by model outlier detection</article-title>
+          <source>IEEE Trans. Med. Imaging</source>
+          <year>2001</year>
+          <volume>20</volume>
+          <fpage>677</fpage>
+          <lpage>688</lpage>
+          <pub-id pub-id-type="pmid">11513020</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib56">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vogels</surname>
+              <given-names>O.J.</given-names>
+            </name>
+            <name>
+              <surname>Zijlmans</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>van't Hof</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Thijssen</surname>
+              <given-names>H.O.</given-names>
+            </name>
+            <name>
+              <surname>Horstink</surname>
+              <given-names>M.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>MR volume estimation of subcortical brain lesions and ventricular cerebrospinal fluid: a simple and accurate stereologic method</article-title>
+          <source>Am. J. Neuroradiol.</source>
+          <year>1995</year>
+          <volume>16</volume>
+          <fpage>1441</fpage>
+          <lpage>1445</lpage>
+          <pub-id pub-id-type="pmid">7484629</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib57">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>White</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>O'Leary</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Magnotta</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Arndt</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Flaum</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Andreasen</surname>
+              <given-names>N.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Anatomic and functional variability: the effects of filter size in group fMRI data analysis</article-title>
+          <source>NeuroImage</source>
+          <year>2001</year>
+          <volume>13</volume>
+          <fpage>577</fpage>
+          <lpage>588</lpage>
+          <pub-id pub-id-type="pmid">11305887</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib58">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wilke</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kassubek</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ziyeh</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Schulze-Bonhage</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Huppertz</surname>
+              <given-names>H.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated detection of gray matter malformations using optimized voxel-based morphometry: a systematic approach</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <fpage>330</fpage>
+          <lpage>343</lpage>
+          <pub-id pub-id-type="pmid">14527593</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib59">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Woermann</surname>
+              <given-names>F.G.</given-names>
+            </name>
+            <name>
+              <surname>Free</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>JKoepp</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Duncan</surname>
+              <given-names>J.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Voxel-by-voxel comparison of automatically segmented cerebral gray matter—a rater-independent comparison of structural MRI in patients with epilepsy</article-title>
+          <source>NeuroImage</source>
+          <year>1999</year>
+          <volume>10</volume>
+          <fpage>373</fpage>
+          <lpage>384</lpage>
+          <pub-id pub-id-type="pmid">10493896</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib60">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Warfield</surname>
+              <given-names>S.K.</given-names>
+            </name>
+            <name>
+              <surname>Tan</surname>
+              <given-names>I.L.</given-names>
+            </name>
+            <name>
+              <surname>Wells</surname>
+              <given-names>W.M.</given-names>
+            </name>
+            <name>
+              <surname>Meier</surname>
+              <given-names>D.S.</given-names>
+            </name>
+            <name>
+              <surname>van Schijndel</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Barkhof</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Guttmann</surname>
+              <given-names>C.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated segmentation of multiple sclerosis lesion subtypes with multichannel MRI</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>32</volume>
+          <fpage>1205</fpage>
+          <lpage>1215</lpage>
+          <pub-id pub-id-type="pmid">16797188</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib61">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xie</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z.G.</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>Y.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Semi-automated brain tumor and edema segmentation using MRI</article-title>
+          <source>Eur. J. Radiol.</source>
+          <year>2005</year>
+          <volume>56</volume>
+          <fpage>12</fpage>
+          <lpage>19</lpage>
+          <pub-id pub-id-type="pmid">16168259</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib62">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhou</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Chan</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Chong</surname>
+              <given-names>H.V.</given-names>
+            </name>
+            <name>
+              <surname>Krishnan</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Extraction of brain tumor from MR images using one-class support vector machine</article-title>
+          <source>Conf. Proc. IEEE Eng. Med. Biol. Soc.</source>
+          <year>2005</year>
+          <volume>6</volume>
+          <fpage>6411</fpage>
+          <lpage>6414</lpage>
+          <pub-id pub-id-type="pmid">17281735</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib63">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zimmerman</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Fleming</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>B.C.P.</given-names>
+            </name>
+            <name>
+              <surname>Saint-Louis</surname>
+              <given-names>L.A.</given-names>
+            </name>
+            <name>
+              <surname>Deck</surname>
+              <given-names>M.D.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Periventricular hyperintensity as seen by magnetic resonance: prevalence and significance</article-title>
+          <source>Am. J. Neuroradiol.</source>
+          <year>1986</year>
+          <volume>7</volume>
+          <fpage>13</fpage>
+          <lpage>20</lpage>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>(A) GM, WM, and CSF priors as predefined in SPM5. Segmentation into GM, WM and CSF tissues of normal T1 volume (B), simulated case 10 (C), simulated case 06 (D) with the standard unified segmentation routine. Chronic lesion in simulated case (10) is segmented in the CSF class. The presence of damage in simulated case 06, misclassified as intact WM (D), is indicated with a white arrow.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Signal-to-probability maps of a normal brain (A) and simulated case 06 (B). These maps represent a scatter-plot between the T1 image and the segmented tissue. T1 values are coded in an arbitrary unit (from 100 to 700). The GM probability is shown on the right of each plot (dark gray) and the WM probability is shown on the left (light gray). For display purposes, the WM probability values are multiplied by − 1. The black arrow indicates the misclassified tissue in the WM.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>(A) modified segmentation of simulated case 06: (top) the 4 prior images; (bottom) the segmented tissues (GM, WM, CSF) and a first approximation of the extra class. (B) modified segmentation of the same case using the result of the first segmentation run as priors on the extra class. Note that the damage (i.e. spatially located in WM but with T1 signal close to GM) is now classified in the lesion class and not as intact WM.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>(A) Signal-to-probability maps of simulated case 06. These maps represent a scatter-plot between the T1 image and the segmented tissues. T1 values are coded in an arbitrary unit (from 100 to 700). The GM probability is shown in dark gray and the WM probability is shown in light gray. For display purposes, the WM probability values are multiplied by − 1. Voxels located in the WM but correctly classified as lesion (in the extra class) are shown in black. (B) After removing the voxels inside the lesion (those shown in black in A), the signal-to-probability maps of simulated case 06 are comparable to those of a normal brain (both GM and WM tissues are no longer contaminated by the lesion).</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>(A) a schematic view of the different steps, from segmentation to grouping, of our automated lesion identification method. (B) An illustration of the resulting images for simulated case 10 using the modified procedure.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>(A) For simulated cases 06 (circles) and 10 (squares), illustration of the Dice index (left) at different <italic>U</italic> thresholds and ROC curves (right) that plot the true positive rate (sensitivity) on the false positive rate (one minus specificity) for different <italic>U</italic> thresholds. (B) Axial slices illustrating the lesion boundaries of all simulated cases.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Fig. 7</label>
+      <caption>
+        <p>ROC curves of the eight real cases. All curves are remarkably close to the top-left corner (i.e. near to the manual segmentation).</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig8">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Illustration of the boundaries of four real cases with large and heterogeneous lesions on coronal, axial, and sagittal views. Lesion boundaries are displayed at a threshold of <italic>U </italic>&gt; 0.3 (threshold applied on the fuzzy lesion set).</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="fig9">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Illustration of the boundaries of three real cases with lesions near to the ventricles (A–C) and one real case with a lesion near to the inter-hemispheric fissure (D) on coronal, axial, and sagittal views. Lesion boundaries are displayed at a threshold of <italic>U</italic> &gt; 0.3.</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+  </floats-wrap>
+</article>

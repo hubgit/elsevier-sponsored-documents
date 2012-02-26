@@ -1,0 +1,550 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="other">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title-group>
+        <journal-title>Neuroimage</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3183826</article-id>
+      <article-id pub-id-type="pmid">19770049</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG6580</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2009.09.031</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Comments and Controversies</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Dynamic causal modeling and Granger causality Comments on: The identification of interacting networks in the brain using fMRI: Model selection, causality and deconvolution</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>Karl</given-names>
+          </name>
+          <email>k.friston@fil.ion.ucl.ac.uk</email>
+          <xref rid="cr0005" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="af0005">The Wellcome Trust Centre for Neuroimaging, Institute of Neurology, UCL, 12 Queen Square, London, WC1N 3BG, UK</aff>
+      <author-notes>
+        <corresp id="cr0005"><label>⁎</label>Fax: +44 207 813 1445. <email>k.friston@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>15</day>
+        <month>9</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>9</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>58</volume>
+      <issue>2-2</issue>
+      <fpage>303</fpage>
+      <lpage>305</lpage>
+      <history>
+        <date date-type="received">
+          <day>8</day>
+          <month>9</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>16</day>
+          <month>9</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Inc.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s0005">
+      <title>Introduction</title>
+      <p>
+        <disp-quote>
+          <p>“These authors and a related commentary (<xref rid="bb0015" ref-type="bibr">Friston, 2009</xref>) concluded that: i) The concepts of temporal precedence and G-causality should not be used in fMRI connectivity analysis (Roebroeck et al. 2011-this issue).”</p>
+        </disp-quote>
+      </p>
+      <p>First, I should say this was not the conclusion I wanted to convey. Second, I apologize for the superficial and dismissive treatment of Granger causality in <xref rid="bb0015" ref-type="bibr">Friston (2009)</xref>: I was asked to provide a ‘primer’ that focused specifically on the implications of <xref rid="bb0005" ref-type="bibr">David et al. (2009)</xref> for non-specialists. This focus precluded a balanced discussion of effective connectivity analyses. In contrast, Roebroeck et al. (2011-this issue) provide a comprehensive and compelling treatment of the essential issues; while companion papers (in this section) offer a wider discussion on some of the conceptual and technical issues. In light of these papers, I will limit my comments on Roebroeck et al. to develop or nuance some of the key points they make.</p>
+      <p>The reservations articulated in <xref rid="bb0015" ref-type="bibr">Friston (2009)</xref> were not about temporal precedence but about the vector autoregressive models (VAR) on which G-causal inference is based. These reservations are technical and formal: Technically, Granger causal analysis (GCA) rests on the theory of Martingales, which requires random fluctuations in the brain to be infinitely ‘rough’ (like white noise). Pedro Valdes Sosa and I (Valdes-Sosa and Friston, 2011) discuss the implications of this elsewhere. The formal reservations are based on the form of VAR or linear stochastic models (LSM), reviewed nicely in Roebroeck et al. These forms can preclude an interpretation of the model parameters in terms of directed connectivity; I deal with this below but start by commenting on two key themes Roebroeck et al. highlight.</p>
+    </sec>
+    <sec id="s0010">
+      <title>Model comparison and selection</title>
+      <p>
+        <disp-quote>
+          <p>“Exploratory techniques, like GCM, use information in the data to investigate the relative applicability of many models. As such, they have the potential to detect ‘missing’ regions in structural models. Confirmatory approaches, like DCM, test hypotheses about connectivity within a small set of models assumed to be applicable (Roebroeck et al., 2011-this issue).”</p>
+        </disp-quote>
+      </p>
+      <p>This is an important distinction and highlights the fact that DCM is usually called upon, after an exploratory analysis, to answer questions about the connectivity architectures that mediate observed regional responses. These exploratory (whole brain) analyses usually identify co-activated areas (with conventional SPM) or sometimes use pychophysiological interactions (to identify regions whose connections may show task-dependent changes). Granger causality mapping (GCM) can play an important role in this structural model selection. However, DCM is not usually considered as a confirmatory technique, because its primary use is in dynamic model selection. Put simply, DCM is based on model comparison (of the same sort used to infer G-Causality) that allows one to explore model-space. Here, the models differ in their connections and ensuing dynamics. It is now commonplace to explore model-spaces with hundreds of models (e.g., <xref rid="bb0010 bb0050" ref-type="bibr">Fairhall &amp; Ishai 2007; Stephan et al., 2007a</xref>). In this sense, DCM is exploratory. In model comparison, models of the same data are compared in terms of their evidence (this is the basis of Bayes-factors or log-odd ratios). The evidence is simply the probability of the data given a model. The twist here is that, in fMRI, the data change with the structural model, which means one cannot compare structural models with different regions (with GCA or DCM). This makes structural model selection necessary and mandates exploratory analyses. However, this only applies to fMRI; in EEG and MEG, all data channels are used and it is perfectly possible (and optimal) to select the structural model (in terms of dipole number and location) using DCM (e.g., <xref rid="bb0020" ref-type="bibr">Garrido et al., 2008</xref>).<disp-quote><p>“In the model identification stage the parameters in the chosen model class are estimated from the observed data record. In practice, model selection and identification often occur in a somewhat interactive fashion where, for instance, model selection can be informed by the fit of different models to the data achieved in an identification step. (Roebroeck et al., 2011-this issue).”</p></disp-quote></p>
+      <p>This is an important point and highlights the distinction between inference on models (i.e., Bayesian model comparison in DCM or inferring G-causality using the accuracy of models with and without a connection) and inference on unknown parameters of any given model. Model comparison is based on the log-evidence for any model, which comprises accuracy (i.e., fit) and complexity (i.e., number of parameters). In one sense, the ‘interaction’ between model selection and identification is part of model comparison; in that a model with low fit will have smaller evidence (<xref rid="bb0040 bb0060" ref-type="bibr">Penny et al., 2004; Stephan et al., 2009</xref>). Usually, in DCM one optimizes the model by an exhaustive search of model-space (selecting the model with the greatest log-evidence) and then reports the conditional parameter estimates of the best model.<disp-quote><p>“The bias/variance trade-off in model fitting dictates that over-fitting a finite dataset with too many parameters will lead to poor generalization of model fit to other data sets. Therefore, clear justifiable choices must be made both in the structural model and the dynamical model to keep the number of estimated parameters in a suitable range. (Roebroeck et al., 2011-this issue).”</p></disp-quote></p>
+      <p>In fact, proper model comparison (based on the evidence as opposed to just the accuracy or fit) prevents over-fitting for free, because the log-evidence includes a complexity term (<xref rid="bb0040" ref-type="bibr">Penny et al., 2004</xref>). This means the selection of model-space is not constrained by complexity considerations; if a model has too many parameters its complexity will be high and the evidence will fall below a more parsimonious (generalisable) model.<disp-quote><p>“The incapability of DCM to model signal variations beyond those implied by the exogenous inputs makes its connectivity estimation highly dependent on the exact number and form of the assumed inputs and the form of the structural model (Roebroeck et al., 2011-this issue).”</p></disp-quote></p>
+      <p>This is an important point; namely inference on parameters is conditioned on (and depends on) the model. However, this dependency may or may not be greater for deterministic DCMs (as opposed to stochastic DCMs, which model random fluctuations). This is an empirical question that would be addressed using model comparison (i.e., deterministic vs. stochastic formulations of the same DCM).<disp-quote><p>“Model selection procedures for connectivity should include consideration of more than just a few brain structures…. The clear danger with overly simple structural models is that of spurious influence: an erroneous influence found between two selected regions that in reality is due to interactions with additional regions which have been ignored (Roebroeck et al., 2011-this issue).”</p></disp-quote></p>
+      <p>Although an important issue, it is difficult to substantiate general statements of this sort. In fact, conditional estimates of effective connectivity from a full graph (network) are often very consistent with estimates based on subgraphs. This speaks to a common misconception about DCM; namely, that one will get misleading answers if key regions are omitted. This is not the case. Effective connectivity is the ‘effective’ influence one region exerts over another and can be mediated polysynaptically through other (omitted) regions. This means it is perfectly possible (and common practice) to focus on a small number of interconnected regions and use exogenous inputs as surrogates for afferent input from other regions.</p>
+    </sec>
+    <sec id="s0015">
+      <title>Hemodynamic convolution</title>
+      <p>
+        <disp-quote>
+          <p>“Undoing the effect of hemodynamics on fMRI data (by deconvolution) can be an important tool. However, it is crucially dependent upon assumptions that need to be verified (Roebroeck et al., 2011-this issue).”</p>
+        </disp-quote>
+      </p>
+      <p>This is absolutely right, in a qualified sense: DCM does not deconvolve neuronal activity from hemodynamic signals and then look for coupling among the ensuing estimates; it inverts or fits a full model of distributed neuronal responses that is equipped with hemodynamics (i.e., a hemodynamic convolution). This means conditional correlations among the neuronal (coupling) and hemodynamic parameters are properly accounted for during inference. Note that<disp-quote><p>“David et al. performed deconvolution operations to obtain estimates of neuronal source signals for their regions of interest to use in G-causality analysis (Roebroeck et al., 2011-this issue).”</p></disp-quote></p>
+      <p>They had to do this because the model used by GCA has no hemodynamics. However, this deconvolution is not necessary in DCM; it is implicit in model inversion. Crucially, DCM for fMRI uses regionally specific hemodynamic parameters so that variations in hemodynamic latency can explain away any spurious temporal precedence in observed signals. This is expressed nicely in Roebroeck et al.:<disp-quote><p>“For instance, if there are delayed coherent variations between variables in the observed data and the hemodynamic model has much more affordance for delays than the neurodynamic model (as is the case in DCM), then the delay will be put into the hemodynamics in the fitting of the model (Roebroeck et al., 2011-this issue).”</p></disp-quote></p>
+      <p>This ensures that regional hemodynamic variations do not confound the estimation of neuronal coupling parameters. One might think that one needs to know the exact form of the hemodynamics that link neuronal activity to BOLD signals to estimate neuronal parameters properly. In fact, as evidenced by model comparison of the sort reported in <xref rid="bb0055" ref-type="bibr">Stephan et al. (2007b</xref>), this is not the case: Any hemodynamic model with sufficient degrees of freedom will do; in the sense that the neuronal parameters are largely unaffected by changing the form of the hemodynamic model. This explains the success of conventional convolution models used in whole-brain SPM analyses, which use linear mixtures of basis functions. In brief, the only thing that matters is the generalized convolution kernel of the optimized hemodynamic mapping, not the form or parameterization of its underlying differential equations (of course, this is not the case if one was interested in the physiology of the hemodynamics per se; such as the effects of aging on vascular compliance). In summary, while the detailed physiology of neurovascular coupling is an active area of research and modeling, we already know more than sufficient to model it phenomenologically, in that there is no evidence in fMRI data for more elaborate models (<xref rid="bb0055" ref-type="bibr">Stephan et al., 2007b</xref>); at least to date.</p>
+    </sec>
+    <sec id="s0020">
+      <title>Vector autoregression and state-space models</title>
+      <p>
+        <disp-quote>
+          <p>“We will argue that, rather, the important distinctions between DCM and GCM are in a deterministic versus a stochastic dynamical model and in the physical interpretation of its variables.…</p>
+        </disp-quote>
+        <disp-quote>
+          <p>Nonetheless, it will be informative to compare the class of Linear Stochastic Models (LSM), of which the AR model used in GCM is a special case, with the DCM signal model to see that their crucial differences are actually subtle (Roebroeck et al., 2011-this issue).”</p>
+        </disp-quote>
+      </p>
+      <p>This brings us to the formal problems with linear stochastic or vector autoregression (VAR) models employed by GCA. The critique of GCA in <xref rid="bb0015" ref-type="bibr">Friston (2009)</xref> was not directed at exploratory GCM (Granger causality Mapping) with bivariate models (<xref rid="bb0025 bb0045" ref-type="bibr">Goebel et al., 2003; Roebroeck et al., 2005</xref>) but reflected our earlier assessment of multivariate VAR models of networks (i.e., with three or more regions; see <xref rid="bb0030" ref-type="bibr">Harrison et al., 2003</xref> and Fig. 1 in <xref rid="bb0015" ref-type="bibr">Friston 2009</xref>). The problem can be illustrated in terms of the relationship between linear stochastic equations and the equations of motion used by DCM (see Fig. 2 in Roebroeck et al., 2011-this issue). In brief, a (stochastic) DCM can always be formulated as a VAR model, which takes the following form (ignoring exogenous inputs and observables):<disp-formula id="fo0005"><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:mover accent="true"><mml:mi>z</mml:mi><mml:mo>.</mml:mo></mml:mover><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mi>A</mml:mi><mml:mi>z</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:mi>η</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>⇒</mml:mo><mml:mi>z</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mi mathvariant="bold">A</mml:mi><mml:mi>z</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:mi>ɛ</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mi mathvariant="bold">A</mml:mi><mml:mo>=</mml:mo><mml:mi mathvariant="normal">exp</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>A</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula>(where <italic>ɛ</italic>(<italic>t</italic>) is a complicated convolution of the innovation <italic>η</italic>(<italic>t</italic>); see <xref rid="bb0065" ref-type="bibr">Valdes-Sosa et al., 2009</xref>). However, the converse is not true. In other words, there is no necessary mapping between the parameters of a VAR model (the autoregression coefficients <bold>A </bold>∈ ℜ<sup><italic>n </italic></sup><sup>× <italic>n</italic></sup>) and the coupling parameters (effective connectivity <italic>A</italic> ∈ ℜ<sup><italic>n </italic></sup><sup>× <italic>n</italic></sup>) that mediate the influence of one state over another. In other words, the effective connectivity associated with the VAR coefficients does not necessarily exist; more formally <italic>A</italic> = ln(<bold>A</bold>) ∈ ℜ<sup><italic>n </italic></sup><sup>× <italic>n</italic></sup> when, and only when, all the real eigenvalues of <bold>A</bold> are positive. The problems caused by the mapping <bold>A</bold> = exp(<italic>A</italic>) can be illustrated quite simply by considering the coupling among three regions, where there is no connection from the second to the first, e.g.,<disp-formula id="fo0010"><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mi>A</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mrow><mml:mtable columnalign="left"><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mo>−</mml:mo><mml:mn>.5</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mn>.5</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mo>−</mml:mo><mml:mn>.5</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mn>.5</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mn>.5</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo stretchy="true">]</mml:mo></mml:mrow><mml:mo>⇒</mml:mo><mml:mi mathvariant="bold">A</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mrow><mml:mtable columnalign="left"><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mn>.3164</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mo>−</mml:mo><mml:mn>.044</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mo>−</mml:mo><mml:mn>.169</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mn>.1241</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mn>.3164</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mo>−</mml:mo><mml:mn>.212</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mn>.2121</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mn>.1681</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mn>.2724</mml:mn></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo stretchy="true">]</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula>Critically, the VAR parameters suggest that the first two areas are reciprocally connected; e.g., <bold>A</bold><sub>12 </sub>= − .044. This means that that tests for the existence of the VAR (G-causal) parameter <bold>A</bold><sub>12</sub> do not test for the corresponding directed connection <italic>A</italic><sub>12</sub> = 0. This problem becomes greater with longer time intervals (i.e., TR) between observations, which we assume is one, for convenience.</p>
+      <p>Happily, bivariate models are exempt from this problem, because the VAR coefficient associated with an absent connection is always zero, e.g.,<disp-formula id="fo0015"><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mi>A</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mrow><mml:mtable columnalign="left"><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mn>.5</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo stretchy="true">]</mml:mo></mml:mrow><mml:mo>⇒</mml:mo><mml:mi mathvariant="bold">A</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mrow><mml:mtable columnalign="left"><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mn>.3679</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mn>.1839</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mn>.3679</mml:mn></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo stretchy="true">]</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula>This admits their qualified use to detect directed pair-wise coupling, as described in <xref rid="bb0025" ref-type="bibr">Goebel et al. (2003)</xref> and <xref rid="bb0045" ref-type="bibr">Roebroeck et al. (2005)</xref>.</p>
+      <p>In short, there is a formal and fundamental divorce between the forms of network models used by DCM and VAR. This divorce becomes even more acute when we consider high order VAR(p) models. These are required when the number of hidden states exceeds the number of observed data points, as in two-state models for fMRI (<xref rid="bb0035" ref-type="bibr">Marreiros et al., 2008</xref>). At this point, we move beyond the issues considered by Roebroeck et al. (2011-this issue) and so I will close, in the hope that the comments above supplement their useful and informed review.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bb0005">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Guillemain</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Saillet</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Reyt</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Deransart</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Segebarth</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Depaulis</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identifying neural drivers with functional MRI: an electrophysiological validation</article-title>
+          <source>PLoS Biol.</source>
+          <volume>6</volume>
+          <issue>12</issue>
+          <year>2008</year>
+          <fpage>2683</fpage>
+          <lpage>2697</lpage>
+          <comment>Dec 23</comment>
+          <pub-id pub-id-type="pmid">19108604</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0010">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fairhall</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Ishai</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Effective connectivity within the distributed cortical network for face perception</article-title>
+          <source>Cereb. Cortex</source>
+          <volume>17</volume>
+          <issue>10</issue>
+          <year>2007</year>
+          <fpage>2400</fpage>
+          <lpage>2406</lpage>
+          <comment>Oct</comment>
+          <pub-id pub-id-type="pmid">17190969</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0015">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Causal modelling and brain connectivity in functional magnetic resonance imaging</article-title>
+          <source>PLoS Biol.</source>
+          <volume>7</volume>
+          <issue>2</issue>
+          <year>2009</year>
+          <fpage>e33</fpage>
+          <comment>Feb 17</comment>
+          <pub-id pub-id-type="pmid">19226186</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0020">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Baldeweg</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The functional anatomy of the MMN: a DCM study of the roving paradigm</article-title>
+          <source>Neuroimage</source>
+          <volume>42</volume>
+          <issue>2</issue>
+          <year>2008</year>
+          <fpage>936</fpage>
+          <lpage>944</lpage>
+          <comment>Aug 15</comment>
+          <pub-id pub-id-type="pmid">18602841</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0025">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goebel</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Roebroeck</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>D.S.</given-names>
+            </name>
+            <name>
+              <surname>Formisano</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Investigating directed cortical interactions in time-resolved fMRI data using vector autoregressive modeling and Granger causality mapping</article-title>
+          <source>Magn. Reson. Imaging</source>
+          <volume>21</volume>
+          <issue>10</issue>
+          <year>2003</year>
+          <fpage>1251</fpage>
+          <lpage>1261</lpage>
+          <comment>Dec</comment>
+          <pub-id pub-id-type="pmid">14725933</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0030">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multivariate autoregressive modeling of fMRI time series</article-title>
+          <source>Neuroimage</source>
+          <volume>19</volume>
+          <issue>4</issue>
+          <year>2003</year>
+          <fpage>1477</fpage>
+          <lpage>1491</lpage>
+          <comment>Aug</comment>
+          <pub-id pub-id-type="pmid">12948704</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0035">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marreiros</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling for fMRI: a two-state model</article-title>
+          <source>Neuroimage</source>
+          <volume>39</volume>
+          <issue>1</issue>
+          <year>2008</year>
+          <fpage>269</fpage>
+          <lpage>278</lpage>
+          <comment>Jan 1</comment>
+          <pub-id pub-id-type="pmid">17936017</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0040">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparing dynamic causal models</article-title>
+          <source>Neuroimage</source>
+          <volume>22</volume>
+          <issue>3</issue>
+          <year>2004</year>
+          <fpage>1157</fpage>
+          <lpage>1172</lpage>
+          <comment>Jul</comment>
+          <pub-id pub-id-type="pmid">15219588</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0045">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roebroeck</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Formisano</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Goebel</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mapping directed influence over the brain using Granger causality and fMRI</article-title>
+          <source>Neuroimage</source>
+          <volume>25</volume>
+          <year>2005</year>
+          <fpage>230</fpage>
+          <lpage>242</lpage>
+          <pub-id pub-id-type="pmid">15734358</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0050">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Marshall</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Fink</surname>
+              <given-names>G.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Interhemispheric integration of visual processing during task-driven lateralization</article-title>
+          <source>J. Neurosci.</source>
+          <volume>27</volume>
+          <issue>13</issue>
+          <year>2007</year>
+          <fpage>3512</fpage>
+          <lpage>3522</lpage>
+          <comment>Mar 28</comment>
+          <pub-id pub-id-type="pmid">17392467</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0055">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Weiskopf</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Drysdale</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparing hemodynamic models with DCM</article-title>
+          <source>Neuroimage</source>
+          <volume>38</volume>
+          <issue>3</issue>
+          <year>2007</year>
+          <fpage>387</fpage>
+          <lpage>401</lpage>
+          <comment>Nov 15</comment>
+          <pub-id pub-id-type="pmid">17884583</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0060">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Moran</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian model selection for group studies</article-title>
+          <source>Neuroimage</source>
+          <volume>46</volume>
+          <issue>4</issue>
+          <year>2009</year>
+          <fpage>1004</fpage>
+          <lpage>1017</lpage>
+          <comment>Jul 15</comment>
+          <pub-id pub-id-type="pmid">19306932</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0065">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Valdes-Sosa</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Sanchez-Bornot</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Sotero</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Iturria-Medina</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Aleman-Gomez</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Bosch-Bayard</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Carbonell</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Ozaki</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Model driven EEG/fMRI fusion of brain oscillations</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>30</volume>
+          <issue>9</issue>
+          <year>2009</year>
+          <fpage>2701</fpage>
+          <lpage>2721</lpage>
+          <comment>Sep</comment>
+          <pub-id pub-id-type="pmid">19107753</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>

@@ -1,0 +1,1219 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">J Struct Biol</journal-id>
+      <journal-title-group>
+        <journal-title>Journal of Structural Biology</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1047-8477</issn>
+      <issn pub-type="epub">1095-8657</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3087503</article-id>
+      <article-id pub-id-type="pmid">20599512</article-id>
+      <article-id pub-id-type="publisher-id">YJSBI5826</article-id>
+      <article-id pub-id-type="doi">10.1016/j.jsb.2010.06.019</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>An adaptive non-local means filter for denoising live-cell images and improving particle detection</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Yang</surname>
+            <given-names>Lei</given-names>
+          </name>
+          <email>trilithy@gmail.com</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Parton</surname>
+            <given-names>Richard</given-names>
+          </name>
+          <email>richard.parton@bioch.ox.ac.uk</email>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ball</surname>
+            <given-names>Graeme</given-names>
+          </name>
+          <email>graeme.ball@bioch.ox.ac.uk</email>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Qiu</surname>
+            <given-names>Zhen</given-names>
+          </name>
+          <email>zq15@hw.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Greenaway</surname>
+            <given-names>Alan H.</given-names>
+          </name>
+          <email>a.h.greenaway@hw.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Davis</surname>
+            <given-names>Ilan</given-names>
+          </name>
+          <email>ilan.davis@bioch.ox.ac.uk</email>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lu</surname>
+            <given-names>Weiping</given-names>
+          </name>
+          <email>w.lu@hw.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1"><label>a</label>Department of Physics, Heriot-Watt University, Edinburgh EH14 4AS, UK</aff>
+      <aff id="aff2"><label>b</label>Department of Biochemistry, The University of Oxford, Oxford OX1 3QU, UK</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Fax: +44 131 451 3136. <email>w.lu@hw.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>12</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>172</volume>
+      <issue>3</issue>
+      <fpage>233</fpage>
+      <lpage>243</lpage>
+      <history>
+        <date date-type="received">
+          <day>5</day>
+          <month>3</month>
+          <year>2010</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>11</day>
+          <month>6</month>
+          <year>2010</year>
+        </date>
+        <date date-type="accepted">
+          <day>23</day>
+          <month>6</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Inc.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Fluorescence imaging of dynamical processes in live cells often results in a low signal-to-noise ratio. We present a novel feature-preserving non-local means approach to denoise such images to improve feature recovery and particle detection. The commonly used non-local means filter is not optimal for noisy biological images containing small features of interest because image noise prevents accurate determination of the correct coefficients for averaging, leading to over-smoothing and other artifacts. Our adaptive method addresses this problem by constructing a particle feature probability image, which is based on Haar-like feature extraction. The particle probability image is then used to improve the estimation of the correct coefficients for averaging. We show that this filter achieves higher peak signal-to-noise ratio in denoised images and has a greater capability in identifying weak particles when applied to synthetic data. We have applied this approach to live-cell images resulting in enhanced detection of end-binding-protein 1 foci on dynamically extending microtubules in photo-sensitive <italic>Drosophila</italic> tissues. We show that our feature-preserving non-local means filter can reduce the threshold of imaging conditions required to obtain meaningful data.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Denoising</kwd>
+        <kwd>Particle detection</kwd>
+        <kwd>Feature extraction</kwd>
+        <kwd>Non-local means filter</kwd>
+        <kwd>
+          <italic>Drosophila</italic>
+        </kwd>
+        <kwd>Microtubules</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <label>1</label>
+      <title>Introduction</title>
+      <p>Fluorescence live-cell imaging is commonly used to study intracellular molecular dynamics (<xref rid="bib26" ref-type="bibr">Stephens and Allan, 2003</xref>), but only relatively recently has the full quantitative value of such data been commonly exploited (<xref rid="bib14 bib18" ref-type="bibr">Jaqaman et al., 2008; Meijering et al., 2006</xref>). In live cell microscopic imaging there is always a compromise between image quality and cell viability. Excitation of fluorescent probes causes photo-bleaching and photo-toxicity, which limit the light intensity and exposure times that can be used. The requirement to image fast and in multiple dimensions to capture dynamic intracellular events also constrains illumination and exposure regimes and requires fast camera readout. This in turn results in low signal-to-noise ratio (SNR) fluorescence images with mixed Poisson–Gaussian noise (<xref rid="bib26 bib14 bib18" ref-type="bibr">Stephens and Allan, 2003; Jaqaman et al., 2008; Meijering et al., 2006</xref>). Under such circumstances, denoising techniques become a critical tool to improve quantitative analysis of these images in order to understand dynamic intracellular processes and their underlying mechanisms (<xref rid="bib14 bib18 bib24 bib12" ref-type="bibr">Jaqaman et al., 2008; Meijering et al., 2006; Sbalzarini and Koumoutsakos, 2005; Genovesio et al., 2006</xref>).</p>
+      <p>Mean filtering of adjacent pixels is one of the simplest tools for reducing noise contamination, but suffers from the disadvantage that resolution is reduced. A more intelligent approach to noise removal is to make use of the redundancy in images arising from repeated patterns and average only similar pixels. A popular implementation of this idea is the non-local means (NLM) filter (<xref rid="bib5 bib6" ref-type="bibr">Buades et al., 2005; Buades et al., 2008</xref>), which estimates the coefficients for averaging (the extent to which pixel values may be averaged together) by comparing the similarity of patches of pixels. The NLM filter belongs to a class of filters known as feature-preserving filters. In addition to the NLM filter and its recently improved versions (<xref rid="bib4 bib17 bib28 bib31 bib16 bib2 bib3" ref-type="bibr">Brox et al., 2008; Mahmoudi and Sapiro, 2005; Tasdizen, 2008; Yang and Clausi, 2009; Kervrann and Boulanger, 2008; Boulanger et al., 2008; Boulanger et al., 2010</xref>) the bilateral filter (<xref rid="bib29 bib15 bib19" ref-type="bibr">Tomasi and Manduchi, 1998; Jiang et al., 2003; Pantelic et al., 2006</xref>) is also based on feature preservation. All of these methods attempt to identify features to be preserved while eliminating the noise by averaging.</p>
+      <p>In contrast to the feature-preserving approach, the alternative, edge-preserving approach, uses local information in images, namely the gradient of pixel gray values, to preserve the edges that bound image features. The partial differential equation and variational methods belong to this category (<xref rid="bib20 bib23 bib10 bib8" ref-type="bibr">Perona and Malik, 1990; Rudin et al., 1992; Frangakis and Hegerl, 2001; Chan et al., 2001</xref>). In live cell fluorescence imaging, objects of interest are often small particles with limited pixel resolutions so that their edges are poorly defined and their detection can be easily compromised by noise (<xref rid="bib18 bib2" ref-type="bibr">Meijering et al., 2006; Boulanger et al., 2008</xref>). Edge-preserving algorithms based on local gradient information may not, therefore, be robust in identifying the boundaries of small particle features to permit successful denoising of such images. On the other hand, a particle-like feature corresponds to a (small) localized area of high value pixels on average (<xref rid="bib14 bib24 bib12" ref-type="bibr">Jaqaman et al., 2008; Sbalzarini and Koumoutsakos, 2005; Genovesio et al., 2006</xref>). This feature can be adopted to assist in noise reduction in feature-preserving approaches.</p>
+      <p>Recent improvements to the NLM filter have focused on more accurate and faster computing of the Euclidean distances (intensity differences) between neighborhoods, used to estimate the coefficients for averaging (<xref rid="bib4 bib17 bib28 bib31" ref-type="bibr">Brox et al., 2008; Mahmoudi and Sapiro, 2005; Tasdizen, 2008; Yang and Clausi, 2009</xref>). The patch-based filter (PBF) (<xref rid="bib16 bib2 bib3 bib7" ref-type="bibr">Kervrann and Boulanger, 2008; Boulanger et al., 2008; Boulanger et al., 2010; Carlton et al., in press</xref>) is a state-of-the-art development of the non-local means filter in which the sizes of the searching windows are adaptively selected, so achieving a better balance between the accuracy of the point-wise estimator and stochastic error at each spatial position. It has demonstrated a great capability for restoration of natural images with minimal <italic>a priori</italic> knowledge.</p>
+      <p>In this paper, we extend the NLM approach by employing an additional new and robust non-local statistic measurement to denoise low SNR fluorescence live-cell images. Our work is motivated by the observation that denoising algorithms based solely on the Euclidean distance measurement of pixel gray values (as in the existing non-local means approaches) may lead to poor feature preservation when they are applied to low SNR images containing weak particle-like objects. In our newly proposed method we adaptively apply the NLM filter to preserve these weak features using an additional term for the probability that a given pixel belongs to a particle. We show that our proposed feature-preserving method achieves an improved balance between feature enhancement and background smoothing. Moreover, it requires no precise information about noise distribution and is computationally efficient. In our experiments we establish that the method can achieve a higher peak signal-to-noise ratio (PSNR) and higher sensitivity to pick out true particles than several commonly used algorithms when applied to both synthetic and real fluorescence live-cell images. We first present the method underlying the new feature-preserving non-local means (FP-NLM) approach, including the construction of the particle probability images from original grayscale images. Tests of the FP-NLM filter are then carried out on synthetic data, sub-resolution bead images and live-cell images. Conclusions and remarks are presented at the end of the paper.</p>
+    </sec>
+    <sec sec-type="methods">
+      <label>2</label>
+      <title>Method</title>
+      <p>Visually, an important manifestation of a particle-like feature (particle) in live cells is a locally concentrated cluster of pixels with relatively higher gray values compared to their immediate surroundings. Our idea is to find a new non-local statistic method that can enhance such particle-like features in images that suffer from severe noise contamination and employ it for image processing. To achieve this goal, we have mapped an original grayscale image to a feature image that describes particle probability by novel use of (non-local) Haar-like features (<xref rid="bib30" ref-type="bibr">Viola and Jones, 2004</xref>), which have proven very effective in human face detection algorithms. The image mapping is carried out in the following steps. First, the Haar-like feature calculation is made for each pixel. This calculation effectively determines the maximum contrast between a (scalable) small area centered at this pixel and the area of its immediate surroundings (<xref rid="fig1" ref-type="fig">Fig. 1</xref>A–C). A simple threshold is then applied to this value to classify the pixel into two classes, ‘likely belonging to a particle’ or ‘background’. A ‘particle probability’ at each pixel is then computed as the ratio of the number of pixels that likely belong to a particle and are also spatially connected, to the total number of pixels in a small region centered at the pixel. An adaptive non-local means filter is proposed which makes use of the new particle probability image and includes two Gaussian weighted Euclidean distance measurements: the first measures the similarity of pixel gray values between two neighborhoods in the original grayscale image (as in non-local means filter), whereas the second quantifies the similarity in particle probability between the same neighborhood. Since the latter measurement is capable of greatly enhancing the particles that are barely visible in the former, the proposed adaptive non-local means filter is intended to preserve weak particle-like objects when it is used to denoise low SNR fluorescent live-cell images.</p>
+      <sec id="sec1">
+        <label>2.1</label>
+        <title>Haar-like features</title>
+        <p>Haar-like features were first introduced to detect the human face. In the original work by <xref rid="bib30" ref-type="bibr">Viola and Jones (2004)</xref>, a very large set of simple rectangular features based on Haar functions (or wavelets) (<xref rid="bib13" ref-type="bibr">Gonzalez and Woods, 2002</xref>) were constructed to measure the contrast between the facial features and their immediate surrounding areas, i.e., the difference between the average pixel gray value of the feature versus its neighborhood. In fluorescence live-cell images a particle has, on average, higher pixel gray values than its immediate surroundings (background), even in the case of poor SNR and contrast. We therefore use three simple Haar-like features <inline-formula><mml:math id="M1" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> (<italic>k</italic> = 1, 2, 3) to detect particles in living cells, where the index <italic>s</italic> denotes the scales (size) of the features. As depicted in <xref rid="fig1" ref-type="fig">Fig. 1</xref>, for a given scale the shaded (particle) areas have different shapes or orientations and are surrounded by the white (background) areas within a square Haar window. The features are measured by:<disp-formula id="fd1"><label>(1)</label><mml:math id="M2" altimg="si6.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:munder><mml:mrow><mml:mi mathvariant="normal">max</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:munder><mml:mo stretchy="false">(</mml:mo><mml:msubsup><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msubsup><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mi>≡</mml:mi><mml:munder><mml:mrow><mml:mi mathvariant="normal">max</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:munder><mml:mo stretchy="false">{</mml:mo><mml:msub><mml:mrow><mml:mi>M</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>U</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mtext>,</mml:mtext><mml:mi>s</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>M</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mtext>,</mml:mtext><mml:mi>s</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">}</mml:mo></mml:math></disp-formula>where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>M</italic><sub><italic>U</italic><sub><italic>k</italic></sub></sub></textual-form><mml:math id="M3" altimg="si7.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>M</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>U</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>M</italic><sub><italic>V</italic><sub><italic>k</italic></sub></sub></textual-form><mml:math id="M4" altimg="si8.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>M</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> are respectively the means of the pixel values in the shaded area, <italic>U</italic><sub><italic>k</italic></sub>, and in the white area, <italic>V</italic><sub><italic>k</italic></sub>, within the Haar windows centered at pixel <bold><italic>i</italic></bold> (<bold><italic>i</italic></bold> ≡ (<italic>x</italic>,<italic>y</italic>)). Therefore, <italic>H</italic><sub><italic>k</italic></sub> is the maximum difference at different orientations of the averaged gray values between a local area and its surroundings for different scales (sizes of Haar windows). These features can be considered as a set of multi-scale directional steerable filters (<xref rid="bib11" ref-type="bibr">Freeman and Adelson, 1991</xref>), which were designed to obtain optimal response of a filter at different orientations and scales. In applying Eq. <xref rid="fd1" ref-type="disp-formula">(1)</xref>, the sizes of the objects of interest are first estimated empirically from the raw image data, and the maximum size of the shaded area in the Haar window should be set just larger than that of the objects. Since features in live cells are usually much simpler than those of a human face, no spatial correlation of different Haar-like features is required to identify the particle-like objects. Consequently, the decision network used in the face detection is not required. Instead, we combine the three Haar-like features linearly:<disp-formula id="fd9"><label>(2)</label><mml:math id="M5" altimg="si9.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:munderover><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:munderover><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></disp-formula>where <italic>c</italic><sub><italic>k</italic></sub>,<inline-formula><alternatives><textual-form specific-use="jats-markup">∑<sub><italic>k</italic></sub><italic>c</italic><sub><italic>k</italic></sub> = 1</textual-form><mml:math id="M6" altimg="si10.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, are the weights of the Haar-like features. For objects of no preferred shape and orientation, an equal weight of <italic>c</italic><sub><italic>k</italic></sub> = 1/3 (<italic>k</italic> = 1, 2, 3) is the obvious choice. In order to use the Haar-like features in a simple manner to construct a particle probability image, we classify each pixel, <bold><italic>i</italic></bold>, to belong to a particle if:<disp-formula id="fd2"><label>(3)</label><mml:math id="M7" altimg="si11.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>⩾</mml:mo><mml:mi>λ</mml:mi></mml:math></disp-formula>where <italic>λ</italic> is the (positive) threshold value in determining if the grayscale difference value is consistent with a region being a particle or not. In applying Eq. <xref rid="fd2" ref-type="disp-formula">(3)</xref> we empirically choose a ‘weak’ threshold value, <italic>λ</italic>, so that few pixels belonging to a particle are wrongly excluded (see <xref rid="tbl1" ref-type="table">Table 1</xref>). Subsequent steps are able to further reduce false positives as described below.</p>
+      </sec>
+      <sec>
+        <label>2.2</label>
+        <title>Particle probability image</title>
+        <p>We use the results of Eq. <xref rid="fd2" ref-type="disp-formula">(3)</xref> to construct a particle probability image from the original grayscale image. To do so we define the probability of finding a particle at position <bold><italic>i</italic></bold> to be the ratio:<disp-formula id="fd4"><label>(4)</label><alternatives><textual-form specific-use="jats-markup"><italic>P</italic>(<bold><italic>i</italic></bold>) = (Δ<italic>N</italic> / <italic>N</italic><sub><italic>tot</italic></sub>) <sub><italic>A</italic><sub><bold><italic>i</italic></bold></sub></sub></textual-form><mml:math id="M8" altimg="si12.gif" overflow="scroll"><mml:mi>P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">Δ</mml:mi><mml:mi>N</mml:mi><mml:mo>/</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">tot</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:msub><mml:mrow><mml:mo> </mml:mo></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>A</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:math></alternatives></disp-formula>where <italic>N</italic><sub><italic>tot</italic></sub> is the total number of pixels in a given (small) area <italic>A</italic><sub><bold><italic>i</italic></bold></sub> centered at <bold><italic>i</italic></bold> and Δ<italic>N</italic> is the number of pixels in <italic>A</italic><sub><bold><italic>i</italic></bold></sub> that satisfies <inline-formula><mml:math id="M9" altimg="si13.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi></mml:mrow><mml:mrow><mml:mo>′</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="false">)</mml:mo><mml:mo>⩾</mml:mo><mml:mi>λ</mml:mi></mml:mrow></mml:math></inline-formula> (including <bold><italic>i</italic></bold>′ = <bold><italic>i</italic></bold>) and are spatially connected. The number Δ<italic>N</italic> is calculated by using the simple 4-nearest neighborhood growing strategy (<xref rid="bib13" ref-type="bibr">Gonzalez and Woods, 2002</xref>) from the center of the neighborhood. The particle probability image is generated by applying Eq. <xref rid="fd4" ref-type="disp-formula">(4)</xref> at each pixel position and therefore depends upon: the Haar-like feature at this pixel, those in the surrounding area and whether these pixels are spatially connected. The probability is high only when there is a concentration of pixels that satisfy Eq. <xref rid="fd2" ref-type="disp-formula">(3)</xref>, which reflects very well the characteristics of a particle in a grayscale image. Initial overestimation of the particle class (those pixels that belong to particle features), due to the weak threshold introduced in Eq. <xref rid="fd2" ref-type="disp-formula">(3)</xref>, is reduced by application of this connectivity criterion, since noise spikes are randomly distributed in space and are not spatially connected. In general, the size of the neighborhood in measuring Eq. <xref rid="fd4" ref-type="disp-formula">(4)</xref> is chosen to be close to the size of the smallest particle expected in an image.</p>
+        <p>We undertook a case study mapping a grayscale image to a particle probability image by using Eqs. <xref rid="fd1 fd9 fd2 fd4" ref-type="disp-formula">(1)–(4)</xref> on a synthetic image that simulates live-cell data recorded from a microscope. The data are constructed by using a linear model (<xref rid="bib2 bib3" ref-type="bibr">Boulanger et al., 2008; Boulanger et al., 2010</xref>) comprising particles, uneven background, Poisson and Gaussian noises (standard deviation <italic>σ</italic> = 20 for this 8 bit data). The synthetic noise-free and noisy images are shown as <xref rid="fig2" ref-type="fig">Fig. 2</xref>A and B. As seen, particle-like features have varying signal strengths and shapes, the size of which can be estimated by using the two (orthogonal) axes of a particle, the shortest is around 5 pixels whereas the longest is 30 pixels. Accordingly, we choose 5 different Haar-like windows (<italic>s</italic> = 1–5), from 7 × 7 to 37 × 37 pixels, to ensure that the shaded areas in the Haar window varies sufficiently to cover the size range of the particles as required for measuring Eq. <xref rid="fd1" ref-type="disp-formula">(1)</xref>. To allow for a sufficient margin to detect faint particles in images, we empirically set the threshold <italic>λ</italic> in Eq. <xref rid="fd2" ref-type="disp-formula">(3)</xref> to be 20% of the difference in the averaged pixel gray values between a typical particle region and a typical background region across the imaged field. Setting the threshold value in this way avoids falsely excluding true particle objects and accommodates particle intensity variations across the images under investigation. We find that this threshold determination works well for the synthetic and real live-cell images presented in this paper. [Note: with images where signal falloff is severe, image data should first be flat field corrected (for example, by using adaptive histogram equalization methods (<xref rid="bib21 bib25" ref-type="bibr">Pisano et al., 1998; Stark, 2000</xref>)) before applying Eqs. <xref rid="fd1 fd9 fd2 fd4" ref-type="disp-formula">(1)–(4)</xref>.]</p>
+        <p>A binary image from Haar-like feature based classification is presented in <xref rid="fig2" ref-type="fig">Fig. 2</xref>C (bright for <inline-formula><mml:math id="M10" altimg="si14.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>⩾</mml:mo><mml:mi>λ</mml:mi></mml:mrow></mml:math></inline-formula> and dark for <inline-formula><mml:math id="M11" altimg="si15.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>&lt;</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></inline-formula> showing that all the particles in the image are identified. The isolated high gray value pixels are a consequence of overestimation due to the weak threshold and high noise contamination. <xref rid="fig2" ref-type="fig">Fig. 2</xref>D is the particle probability image derived from the binary image by using Eq. <xref rid="fd4" ref-type="disp-formula">(4)</xref> with <italic>A</italic><sub><bold><italic>i</italic></bold></sub> being 5 × 5 pixels, which corresponds to the size of smallest particles in the image. By comparison to the noise-free image (<xref rid="fig2" ref-type="fig">Fig. 2</xref>A), we find the distributions and strengths of the probabilities (<xref rid="fig2" ref-type="fig">Fig. 2</xref>D) are generally well matched to the real particles in the grayscale image. While the algorithm at this stage does still overestimate the identification of particles in this image, the effect is reduced in comparison to the binary image (<xref rid="fig2" ref-type="fig">Fig. 2</xref>C) because the isolated spikes in the latter are averaged over the area of the neighborhood. As seen in <xref rid="fig2" ref-type="fig">Fig. 2</xref>D (marked by ‘a’), the overestimation due to noise and limited resolution of the Haar windows used can lead to the joining together of two or more spatially proximate particles in the probability image. We show below that the overestimation at this level does not play an important role in denoising in our proposed feature-preserving non-local means (FP-NLM) filter.</p>
+      </sec>
+      <sec>
+        <label>2.3</label>
+        <title>Feature-preserving non-local means (FP-NLM) filter</title>
+        <p>In the newly proposed FP-NLM filter an image is processed by two Gaussian weighted Euclidean distances, measured in grayscale and particle probability images. As in the conventional NLM filter, the processed gray value at pixel <bold><italic>i</italic></bold> of image <italic>F</italic>, <italic>FPNLM</italic>(<italic>F</italic>)(<bold><italic>i</italic></bold>), is given as the weighted average of all pixel grayscale values in a searching window <italic>W</italic><sub><bold><italic>i</italic></bold></sub> centered at <bold><italic>i</italic></bold>:<disp-formula id="fd19"><label>(5)</label><mml:math id="M12" altimg="si16.gif" overflow="scroll"><mml:mi mathvariant="italic">FPNLM</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>F</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">j</mml:mi><mml:mo>∈</mml:mo><mml:msub><mml:mrow><mml:mi>W</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:munder><mml:mi>ω</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mtext>,</mml:mtext><mml:mi mathvariant="bold-italic">j</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:msup><mml:mrow><mml:mi>F</mml:mi></mml:mrow><mml:mrow><mml:mo>′</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">j</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></disp-formula>where <italic>F</italic>′(<bold><italic>j</italic></bold>) = <italic>F</italic>(<bold><italic>j</italic></bold>) if there is no pre-processing on the original image. The weight function <inline-formula><alternatives><textual-form specific-use="jats-markup">{ω(<bold><italic>i</italic></bold>,<bold><italic>j</italic></bold>)} <sub><bold><italic>j</italic></bold>∈<italic>W</italic><sub><bold><italic>i</italic></bold></sub></sub></textual-form><mml:math id="M13" altimg="si17.gif" overflow="scroll"><mml:mrow><mml:mo stretchy="false">{</mml:mo><mml:mi>ω</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mtext>,</mml:mtext><mml:mi mathvariant="bold-italic">j</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">}</mml:mo><mml:msub><mml:mrow><mml:mo> </mml:mo></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">j</mml:mi><mml:mo>∈</mml:mo><mml:msub><mml:mrow><mml:mi>W</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> in Eq. <xref rid="fd19" ref-type="disp-formula">(5)</xref> is in a non-local Gaussian form of:<disp-formula id="fd20"><label>(6)</label><mml:math id="M14" altimg="si18.gif" overflow="scroll"><mml:mi>ω</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mtext>,</mml:mtext><mml:mi mathvariant="bold-italic">j</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>A</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac><mml:mi mathvariant="normal">exp</mml:mi><mml:mrow><mml:mfenced open="(" close=")"><mml:mrow><mml:mo>-</mml:mo><mml:mfrac><mml:mrow><mml:msubsup><mml:mrow><mml:mfenced open="‖" close="‖"><mml:mrow><mml:mi mathvariant="bold">V</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>-</mml:mo><mml:mi mathvariant="bold">V</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">j</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mtext>,</mml:mtext><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mrow><mml:mrow><mml:msup><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:mfrac><mml:mo>-</mml:mo><mml:mfrac><mml:mrow><mml:msubsup><mml:mrow><mml:mfenced open="‖" close="‖"><mml:mrow><mml:mi mathvariant="bold">P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>-</mml:mo><mml:mi mathvariant="bold">P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">j</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mtext>,</mml:mtext><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mrow><mml:mrow><mml:msup><mml:mrow><mml:mi>g</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula>where <bold>V</bold>(<italic>N</italic><sub><bold><italic>i</italic></bold></sub>) is the vector of the pixel gray values taken from the neighborhood <italic>N</italic><sub><bold><italic>i</italic></bold></sub> centred at <bold><italic>i</italic></bold> and <bold>P</bold>(<italic>N</italic><sub><bold><italic>i</italic></bold></sub>) is the vector of the particle probability values from the same neighborhood, the Euclidean distance <inline-formula><mml:math id="M15" altimg="si19.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mfenced open="‖" close="‖"><mml:mrow><mml:mo>-</mml:mo></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mtext>,</mml:mtext><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> is a classical <italic>L</italic><sub>2</sub> norm, convolved with a Gaussian kernel of standard deviation <italic>a</italic> (<xref rid="bib5" ref-type="bibr">Buades et al., 2005</xref>). The first term is therefore the Euclidean distance of pixel gray values between the two neighborhoods <italic>N</italic><sub><bold><italic>i</italic></bold></sub> and <italic>N</italic><sub><bold><italic>j</italic></bold></sub> within the searching window, as in the conventional NLM filter. Similarly, the second term is the Euclidean distance of particle probabilities between the two same neighborhoods taken from the probability image. The sizes of the neighborhood and searching window can be chosen by following the same criteria in NLM filter. The parameters <italic>h</italic> and <italic>g</italic> control the strengths of the first and second weights in Eq. <xref rid="fd20" ref-type="disp-formula">(6)</xref>, the values and ratio of which must be set appropriately (see <xref rid="tbl1" ref-type="table">Table 1</xref>) in order to achieve a good balance between background smoothing and object enhancement, <italic>A</italic>(<bold><italic>i</italic></bold>) is the normalization factor ensuring <inline-formula><alternatives><textual-form specific-use="jats-markup">∑<sub><bold><italic>j</italic></bold>∈<italic>W</italic><sub><bold><italic>i</italic></bold></sub></sub>ω(<bold><italic>i</italic></bold>,<bold><italic>j</italic></bold>) = 1</textual-form><mml:math id="M16" altimg="si20.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">j</mml:mi><mml:mo>∈</mml:mo><mml:msub><mml:mrow><mml:mi>W</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold-italic">i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mi>ω</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">i</mml:mi><mml:mtext>,</mml:mtext><mml:mi mathvariant="bold-italic">j</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>. When <italic>g</italic> → ∞, the second term in Eq. <xref rid="fd20" ref-type="disp-formula">(6)</xref> can be dropped and the FP-NLM filter is reduced to the conventional NLM filter (<xref rid="bib5" ref-type="bibr">Buades et al., 2005</xref>), in which the weighted averaging is determined by only the first term that measures the Euclidean distance from the grayscale image <italic>F</italic>′. The second term can therefore be regarded as an adaptively varying coefficient that controls the filtering strength of the conventional NLM filter (first term). In low SNR environments with non-Gaussian noise, when the Euclidean distance measurement fails to establish a difference between a particle region and background region in a grayscale image, the first term attempts to use the background information to smooth the particle region. However, the same measurement in the corresponding particle probability image behaves very robustly because particle features are well preserved in this image. Consequently, the second term acts to protect the particle region by using the probability information to reduce the filtering strength of the first term. On the other hand, isolated spikes in the probability image due to overestimation will not survive because there is little signature of particles in the original grayscale image. The choice of <italic>h</italic> and <italic>g</italic> also depends on whether the goal is to denoise the image or to improve detection. The former (denoising) usually requires a balanced filtering on both feature and background areas whereas the latter (particle detection) pays particular attention only to feature recovery. For the latter case, we can increase the second weighting (reduce <italic>g</italic>) in Eq. <xref rid="fd20" ref-type="disp-formula">(6)</xref> to improve the detection of weak features in low SNR images. A more detailed discussion is given in the experimental Sections <xref rid="sec2 sec3" ref-type="sec">3 and 4</xref>. Moreover, since each pixel in the original image <italic>F</italic>(<bold><italic>j</italic></bold>) has been classified using Haar-like features into two classes by Eq. <xref rid="fd2" ref-type="disp-formula">(3)</xref> and few pixels belonging to the particle class have been wrongly classified due to the use of a weak threshold value, a simple pre-processing of <italic>F</italic>(<bold><italic>j</italic></bold>), such as mean filtering the background region before applying Eq. <xref rid="fd19" ref-type="disp-formula">(5)</xref>, may be useful. A large mean filter window can heavily smooth the background while a small one can remove undesirable high frequency components. The choice of this window size depends on the images under investigation and the biological application. We show later in experiments on synthetic images that this simple mean filtering can significantly reduce artifacts in background that may be caused by the subsequent non-local means filtering.</p>
+        <p>In summary, the proposed algorithm for FP-NLM filter works in three steps. First: calculation of Haar-like features, initially calculated in Eq. <xref rid="fd1" ref-type="disp-formula">(1)</xref> and then combined using Eq. <xref rid="fd9" ref-type="disp-formula">(2)</xref>, followed by binarization according to the threshold condition Eq. <xref rid="fd2" ref-type="disp-formula">(3)</xref>. Second: construction of the particle probability image by using the definition Eq. <xref rid="fd4" ref-type="disp-formula">(4)</xref>, which is the ratio of the number of pixels that satisfy Eq. <xref rid="fd2" ref-type="disp-formula">(3)</xref> and are spatially connected to the total number of pixels in a selected small area. Third: generation of a denoised image in the form of the Gaussian weighted average Eq. <xref rid="fd19" ref-type="disp-formula">(5)</xref> in which the coefficient is given by Eq. <xref rid="fd20" ref-type="disp-formula">(6)</xref>, which is based on two Euclidean distance measurements in the grayscale and particle probability images.</p>
+      </sec>
+    </sec>
+    <sec id="sec2">
+      <label>3</label>
+      <title>Testing algorithm performance with synthetic data</title>
+      <p>We first tested the FP-NLM filter (Eqs. <xref rid="fd19 fd20" ref-type="disp-formula">(5) and (6)</xref>) on the synthetic image shown in <xref rid="fig2" ref-type="fig">Fig. 2</xref>B. The neighborhood was set to be 7 × 7 pixels whereas the searching window is 21 × 21 pixels, both of which follow the suggested values for NLM filter (<xref rid="bib5" ref-type="bibr">Buades et al., 2005</xref>) for a good balance between the performance and the computational cost (see <xref rid="tbl1" ref-type="table">Table 1</xref>). The first filtering parameter <italic>h</italic> determines the conventional non-local means averaging weight, the value of which is chosen within the operation window of <italic>h</italic> = <italic>α</italic><sub>1</sub> · <italic>σ</italic> with <italic>α</italic><sub>1</sub> ∈ [0.75,1] for a ‘high visual quality solution’ (<xref rid="bib6" ref-type="bibr">Buades et al., 2008</xref>). The second filtering parameter <italic>g</italic> determines the level of enhancement in the particle regions. We found that, for the given values <italic>h</italic>, an operation range of <italic>g</italic> = <italic>σ</italic>/<italic>α</italic><sub>2</sub> with <italic>α</italic><sub>2</sub> ∈  [50,100] gives empirically a good balance between background smoothing and particle enhancement in denoised images. Since both parameters are proportional to <italic>σ</italic>, their relative strengths remain the same for varying noise levels in images. The large difference of the two coefficients (1/<italic>α</italic><sub>2</sub> and <italic>α</italic><sub>1</sub>) is due to the fact that the particle probabilities are normalized but gray values are not. We chose a middle value of <italic>h</italic> = 0.9<italic>σ</italic> and <italic>g</italic> = <italic>σ</italic>/70 for the present image under investigation. The denoised image by FP-NLM filtering is shown in <xref rid="fig3" ref-type="fig">Fig. 3</xref>A, where <italic>F</italic>′(<bold><italic>j</italic></bold>) in Eq. <xref rid="fd19" ref-type="disp-formula">(5)</xref> was obtained by applying a mean filter of 5 × 5 pixels to <italic>F</italic>(<bold><italic>j</italic></bold>) in background regions classified by the binary image <xref rid="fig2" ref-type="fig">Fig. 2</xref>C (black pixels). <xref rid="fig3" ref-type="fig">Fig. 3</xref>A has correctly identified all particles by comparing to the noise-free image <xref rid="fig2" ref-type="fig">Fig. 2</xref>A, including those which are barely visible in the noisy image <xref rid="fig2" ref-type="fig">Fig. 2</xref>B.</p>
+      <p>To characterize how the FP-NLM filter performs, we analyzed in detail the results for a small image area (<xref rid="fig3" ref-type="fig">Fig. 3</xref>B), taken from the square window in <xref rid="fig2" ref-type="fig">Fig. 2</xref>B, and compared to those by NLM filter which is a special case of FP-NLM filter when the second weight in Eq. <xref rid="fd20" ref-type="disp-formula">(6)</xref> is neglected (<italic>g</italic> → ∞). We first looked into the region marked by a search window in <xref rid="fig3" ref-type="fig">Fig. 3</xref>B. The results of the NLM filter are given in the upper box in <xref rid="fig4" ref-type="fig">Fig. 4</xref>, where the gray value at the center of the denoised image (C) is the weighted average of the Euclidean distance (B) on the grayscale image (A) over the search window. Since the weights (B) are dispersed over the region due to noise contamination, the enhancement of the central pixel in (C) is weak. The FP-NLM filtering process is shown in the lower box, where the probability image (D) gives rise to strong weighting (G) in the particle area, whereas the pre-processed image (E) (background smoothed version of the original image (A)) leads to a weighting profile (H) which is similar to that obtained by NLM filter (B) in the particle region but reduced in the background region due to the pre-processing. The overall weights (I) are the product of the two functions (G) and (H), showing a strong enhancement to the central (particle) region. As a result, the denoised image (F) has a higher contrast compared to the image (C). Moreover, the same argument can explain how the errors due to particle overestimation in the probability image can be compensated by the correct measurement in the grayscale image. An example is pixel ‘a’ in <xref rid="fig3" ref-type="fig">Fig. 3</xref>B. While this pixel is incorrectly classified as belonging to a particle in the probability image (<xref rid="fig2" ref-type="fig">Fig. 2</xref>D), it is clearly part of background in the grayscale image (<xref rid="fig3" ref-type="fig">Fig. 3</xref>B). The two nearly touching particles are clearly distinguished as separate in the denoised image as shown in <xref rid="fig3" ref-type="fig">Fig. 3</xref>C.</p>
+      <p>We show the denoised results of the same image by NLM filtering and PBF in <xref rid="fig3" ref-type="fig">Fig. 3</xref>D and E. The parameters in the NLM filter are the same as ours, whereas in PBF the patch window is 9 × 9, the maximum number of increments for the nested window size is 4, the critical parameters <italic>λ</italic><sub>0.01</sub> = 113.5 and <italic>ρ</italic> = 3, the reasons for choosing these parameter values for PBF are explained in the original papers (<xref rid="bib16" ref-type="bibr">Kervrann and Boulanger, 2008</xref>). By comparing <xref rid="fig3" ref-type="fig">Fig. 3</xref>A–D and E, the FP-NLM filter and PBF perform noticeably better than the NLM filter. Strong noise contamination leads to over-smoothing of particles, particularly weak ones, using NLM and PBF filters, which can result in loss of potentially important information. This is shown in <xref rid="fig3" ref-type="fig">Fig. 3</xref>F displaying the denoising results by the three filters in the area marked by the box in <xref rid="fig3" ref-type="fig">Fig. 3</xref>A. Retaining the background context underlying particle features can be important to the interpretation of biological data. We find that FP-NLM filter also preserves well the gross non-particle features of the background (comparing <xref rid="fig3" ref-type="fig">Fig. 3</xref>A to <xref rid="fig2" ref-type="fig">Fig. 2</xref>A). This is primarily due to the use of simple mean average to pre-process the background of the original image, which reduces possible artifacts in the images when Eqs. <xref rid="fd19 fd20" ref-type="disp-formula">(5) and (6)</xref> are applied after deconvolution. We can quantify image fidelity by calculating the peak signal-to-noise ratio (PSNR) (<xref rid="bib16" ref-type="bibr">Kervrann and Boulanger, 2008</xref>) between the original and denoised images by FP-NLM filter and several commonly used filters: nonlinear anisotropic diffusion (NAD) (<xref rid="bib20" ref-type="bibr">Perona and Malik, 1990</xref>), total variation (TV) minimization (<xref rid="bib23" ref-type="bibr">Rudin et al., 1992</xref>), Wiener filtering (WF) (<xref rid="bib13" ref-type="bibr">Gonzalez and Woods, 2002</xref>), bilateral filtering (BF) (<xref rid="bib29" ref-type="bibr">Tomasi and Manduchi, 1998</xref>), NLM filtering and PBF (<xref rid="bib16" ref-type="bibr">Kervrann and Boulanger, 2008</xref>). The NAD method is based on a heat (diffusion) equation that is capable of preserving edges while smoothing other areas. The diffusion function used here is (1 + (∣∇ <italic>F</italic>∣<sup>2</sup>)/<italic>K</italic><sup>2</sup>)<sup>−1</sup> with 150 iterations. The TV method tackles edge-preserving smoothing by minimizing an energy functional to achieve the best balance between the TV norm and image fidelity. We set the Lagrangian multiplier (<xref rid="bib23" ref-type="bibr">Rudin et al., 1992</xref>) in the energy functional to be 0.05. WF reduces noise present in the image by comparison with the mean square error (MSE) estimation of the desired noiseless image. Here we use a window of 9 × 9 pixels to estimate local noise distribution for WF (Matlab function wiener2). BF is an improved method of Gaussian low-pass filtering which can prevent smoothing across edges. Here the filtering window size was set to be 31 × 31 pixels, and the standard deviations <italic>σ</italic><sub><italic>domain</italic></sub> = 5 and <italic>σ</italic><sub><italic>range</italic></sub> = 50. The results in <xref rid="tbl2" ref-type="table">Table 2</xref> show that the FP-NLM filter achieves the highest PSNR. Moreover, since an important application for denoising fluorescence live-cell images is to facilitate detection of features of interest, we have computed the receiver operating characteristic (ROC) curves for the binarized denoised images as the threshold is varied (<xref rid="fig5" ref-type="fig">Fig. 5</xref>). Here the true positive rate (TPR, sensitivity) is the proportion of pixels belonging to particles that are correctly recognized and false positive rate (FPR, specificity) is the proportion of pixels belonging to background that are falsely classified, all measured against the known binary class of the noise-free image of <xref rid="fig2" ref-type="fig">Fig. 2</xref>A (representing the ‘ground truth’). The higher sensitivity achieved by FP-NLM filtering indicates its better capability to pick out true particles from images with different levels of noise contamination. These results indicate that our FP-NLM filter is the preferred choice to be used for improving particle detection.</p>
+    </sec>
+    <sec id="sec3">
+      <label>4</label>
+      <title>Applying the algorithm to real data</title>
+      <p>At present, our ability to quantitatively determine the distribution and orientation of the individual microtubules (MT) that constitute a microtubule network is limited in various ways. Examination of markers in fixed material provides a static view and at best reveals only the gross distribution and net orientation. Tracking individual MT with end binding-protein 1 GFP (EB1-GFP) marking extending MT plus ends in living cells, can provide detailed information of dynamics, distribution and orientation (<xref rid="bib27" ref-type="bibr">Stone et al., 2008</xref>). However, the use of EB1-GFP is hampered by difficulties in achieving images from live tissue of sufficient quality to track automatically, which limits our ability to analyze sufficient data to provide biologically and statistically relevant results.</p>
+      <p>In order to first evaluate the performance of our FP-NLM filter in a controlled situation, where we have a reliable ground truth and can easily manipulate the imaging conditions, we tested the filter on a field of sub-resolution fluorescent beads (Invitrogen, 200 nm NileRed beads). Thereafter, we applied our FP-NLM filter to live images of EB1-GFP and assessed its ability to achieve the required image quality for meaningful quantitative analysis. The results of EB1 tracking are outside the scope of this paper and will be published separately.</p>
+      <sec>
+        <label>4.1</label>
+        <title>Test one</title>
+        <p>We tested the FP-NLM filter on a field of 200 nm fluorescent beads representing spot-like sub-resolution features (imaged on an OMX imaging system, from Applied Precision, with a Roper Cascade II back-thinned EMCCD detector in conventional mode). We took a range of exposures to analyze the capability of FP-NLM denoising to reduce the illumination threshold required to obtain meaningful results for analysis. We changed illumination dosage by varying exposure time and laser power. In this way we could achieve images of different signal-to-noise ratio (SNR). Normally, 1% laser power setting (with a 200 mW, 488 nm laser) for 10 ms achieves good image quality with fluorescent beads (<xref rid="fig6" ref-type="fig">Fig. 6</xref>A) and we refer to this setting as dosage level 1 (bead signal is measured 33 gray levels above a background level of 51 gray levels; background standard deviation is 6 gray levels, so giving SNR of 5.5). According to the Rose criterion (<xref rid="bib22" ref-type="bibr">Rose, 1948</xref>), images with SNR ⩾ 5 are required for reliable feature detection. <xref rid="fig6" ref-type="fig">Fig. 6</xref>B shows the same slide as <xref rid="fig6" ref-type="fig">Fig. 6</xref>A but imaged at a lower illumination dosage with only bead intensity of 7 gray levels above the background. The dosage level for this image is 0.2 relative to the reference dosage of 1. The SNR of this image is 1.4. To improve particle detection in the dosage 0.2 image in <xref rid="fig6" ref-type="fig">Fig. 6</xref>B, we applied the FP-NLM filter to the raw data and then deconvolved the denoised image. The resulting image is plotted in <xref rid="fig6" ref-type="fig">Fig. 6</xref>C, which shows a good recovery of the spot-like features (SNR = 4.7) and background noise suppression compared to <xref rid="fig6" ref-type="fig">Fig. 6</xref>A and B.</p>
+        <p>We constructed a ‘ground truth’ for the bead data using a very high quality image (SNR = 19), by applying a simple detection threshold defined as the average of the maximal pixel gray value and the mean value of the image to unambiguously identify particles. We used this ground truth to measure the receiver operator characteristic (ROC) of the images shown in <xref rid="fig6" ref-type="fig">Fig. 6</xref>A–D. The ROC curves are shown in <xref rid="fig6" ref-type="fig">Fig. 6</xref>E. As can be seen, the ROC for image <xref rid="fig6" ref-type="fig">Fig. 6</xref>A at dosage level 1 (SNR = 5.5) has nearly perfect sensitivity and specificity, indicating that the spot-like features can be detected without applying any denoising algorithm. However, for the image in <xref rid="fig6" ref-type="fig">Fig. 6</xref>B at dosage level 0.2, the deterioration of the image quality is evident from the ROC, also shown in <xref rid="fig6" ref-type="fig">Fig. 6</xref>E, where significant errors occur when detection is performed on this image. The ROC of the denoised image is shown to be close to that of <xref rid="fig6" ref-type="fig">Fig. 6</xref>A, demonstrating that reliable detection has been achieved. Together, these results show that, by applying the FP-NLM filter, the illumination threshold required to obtain reliable particle detection (SNR approaching 5) can be reduced by a factor of almost five times for this data. In <xref rid="fig6" ref-type="fig">Fig. 6</xref>E we also plot the ROC of the denoised image obtained using the NLM filter (<xref rid="fig6" ref-type="fig">Fig. 6</xref>D, SNR = 2.7) for comparison. The curve is noticeably below that of FP-NLM filtered image, indicating less effective denoising.</p>
+        <p>Since wide field imaging coupled with deconvolution is often used for rapid imaging of live cells, we also used the bead data to compare the efficacy of denoising before deconvolution versus denoising after deconvolution. Each is known to have drawbacks (<xref rid="bib9" ref-type="bibr">Chaux et al., 2007</xref>). In the former approach, denoising may modify the point spread function (PSF) model of the imaging system and change the noise statistics, both of which can lead to problems in the following deconvolution operation. Following the latter approach, deconvolution can lead to the propagation of noise in images and a change of its statistics, both of which pose difficulties for the subsequent denoising processing. The results are shown in <xref rid="fig6" ref-type="fig">Fig. 6</xref>E for both FP-NLM and NLM filters. We find that while the denoising before deconvolution shows a better result for the FP-NLM filter, denoising after deconvolution performs slightly better for the NLM filter as judged by the ROC curves (<xref rid="fig6" ref-type="fig">Fig. 6</xref>E). Over-smoothing is evident in the NLM denoised image (due to the low SNR of the raw data) and amplification of these errors upon deconvolution explains the poorer performance of this approach in the case of NLM filtered images. In summary, we find that the success of deconvolution before or after denoising depends on the denoising algorithms involved and that the difference between the two is modest in terms of particle detection as measured by ROCs.</p>
+      </sec>
+      <sec>
+        <label>4.2</label>
+        <title>Test two</title>
+        <p>Our final test of the FP-NLM filter was on a live-cell image sequence of EB1-GFP, expressed in the <italic>Drosophila</italic> egg chamber where the MT cytoskeleton is complex and imaging is a considerable challenge (<xref rid="fig7" ref-type="fig">Fig. 7</xref>). In the <italic>Drosophila</italic> egg chamber, MT based transport is responsible for the localization of specific mRNA transcripts which in turn establish the polar axis of the developing fly (<xref rid="bib1" ref-type="bibr">Becalska and Gavis, 2009</xref>). The egg chamber is therefore a good model in which to study the mechanisms involved in the determination of cellular polarity.</p>
+        <p>To test how well the algorithm performs in identifying particles under poor SNR conditions we validated the denoised image against a ground truth as with the bead data (see later). Image data was collected on a DeltaVision imaging system from Applied Precision (using a Roper Cascade II back-thinned EMCCD detector in conventional mode) over three <italic>Z</italic> planes (200 nm, spacing) with 30 ms exposures at 32% illumination intensity, (300 mW Xenon lamp light source), and then deconvolved with softWoRX Resolve 3D software (Applied Precision). <xref rid="fig7" ref-type="fig">Fig. 7</xref>A is a noisy image from a single Z plane at time-point 70 (of 120) to be used to test the FP-NLM filter – the EB1 foci (or particles) are barely visible. <xref rid="fig7" ref-type="fig">Fig. 7</xref>B is the corresponding ‘high quality’ image with good SNR generated by average projecting the three <italic>Z</italic> planes at that time-point. With increased SNR the EB1 foci are clearly visible.</p>
+        <p>The low contrast between particles and background from the cytoplasmic EB1-GFP signal in this type of image data (<xref rid="fig7" ref-type="fig">Fig. 7</xref>A) poses a serious challenge to denoising algorithms based solely on the Euclidean distance measurement of grayscale images. The additional information from the proposed feature image in the FP-NLM filter thus becomes crucial in processing these images. We first apply Eqs. <xref rid="fd1 fd9 fd2 fd4" ref-type="disp-formula">(1)–(4)</xref> to construct the probability image where the threshold in Eq. <xref rid="fd2" ref-type="disp-formula">(3)</xref> is set to be <italic>λ</italic> = 10.0 (calculated as 20% of the intensity difference between particle and background regions as described in Section <xref rid="sec1" ref-type="sec">2.1</xref>) and then use <xref rid="fd19 fd20" ref-type="disp-formula">(5) and (6)</xref>, with parameters <italic>h</italic> = 0.9<italic>σ</italic> and <italic>g</italic> = <italic>σ</italic>/70, to obtain the denoised image, where the noise level is measured as <italic>σ</italic> = 20 on the raw image data. (Note that since deconvolution changes the noise statistics, the noise level of deconvolved data cannot be simply measured by standard deviation.) The denoised image is shown in <xref rid="fig7" ref-type="fig">Fig. 7</xref>C. As seen, particle-like objects have been significantly enhanced and noise in background regions has been suppressed, making the particles of interest readily identifiable. The overall structure of the <italic>Drosophila</italic> egg chamber is well preserved in the denoised image. By comparison, the NLM filter results in over-smoothing of many particles in the image due to the low contrast of these particles against a noisy background (<xref rid="fig7" ref-type="fig">Fig. 7</xref>D). When PBF is applied, particles of interest at different intensity levels have been enhanced (<xref rid="fig7" ref-type="fig">Fig. 7</xref>E), demonstrating the improved capability of the algorithm through adaptively varying the search window size and the filtering strengths. However, filtering of the background region has created obvious artifacts from the noise – compare <xref rid="fig7" ref-type="fig">Fig. 7</xref>N versus J and B: spurious swirling patterns are evident throughout the PBF result, which are noticeably absent from the corresponding FP-NLM result J. FP-NLM avoids this problem because the particle probability image provides additional vital information about particle presence, based on which, both particles and background are dealt with optimally.</p>
+        <p>Since the variations of parameters <italic>h</italic> and <italic>g</italic> in our FP-NLM filter can adjust the relative strengths between background smoothing and object enhancement as discussed earlier (Section <xref rid="sec2" ref-type="sec">3</xref>), we make use of this capability to facilitate the improved detection of particles with lower contrast. The results are shown in <xref rid="fig7" ref-type="fig">Fig. 7</xref>H–L for the white-boxed subregion for different ratios of <italic>g</italic>(<italic>g</italic> = <italic>σ</italic>/<italic>α</italic><sub>2</sub>, <italic>α</italic><sub>2</sub> = 0, 30, 70, 100, 120) to <italic>h</italic> (fixed at <italic>h</italic> = 0.9<italic>σ</italic>). Visual inspection of <xref rid="fig7" ref-type="fig">Fig. 7</xref>H–L reveals a gradual increase in particle clarity with the increase of the ratio <italic>h</italic>/<italic>g</italic>, the effect appears to saturate for <italic>α</italic><sub>2</sub> = 100 and further increase of <italic>α</italic><sub>2</sub> leads to over-enhancement of features. The parameter ranges for <italic>h</italic> and <italic>g</italic> are consistent with those given earlier. For comparison, the denoised images for the same subregion by NLM filtering and PBF are shown in <xref rid="fig7" ref-type="fig">Fig. 7</xref>M and N, respectively. As seen, FP-NLM filter performs noticeably better than PBF in particle enhancement and background smoothing.</p>
+        <p>To measure the effectiveness of the denoising algorithms tested, we used the ROC approach applied earlier (<xref rid="fig5" ref-type="fig">Fig. 5</xref>). The ground truth, representing true EB1 foci, was constructed for the highlighted subregion in the <italic>Z</italic>-projected image (<xref rid="fig7" ref-type="fig">Fig. 7</xref>B) by applying a low detection threshold for binarization. This essentially guaranteed no false negatives. False positives were then eliminated by their failure to match EB1 trajectories across the movie sequence. In this way, manual classification of all the detected pixels as particle or not particle was achieved. <xref rid="fig7" ref-type="fig">Fig. 7</xref>G shows corresponding foci identified in the low SNR image (<xref rid="fig7" ref-type="fig">Fig. 7</xref>A) where visible foci are marked by green arrows, barely visible ones are marked by yellow arrows and those which could not be identified are labelled in red.</p>
+        <p><xref rid="fig7" ref-type="fig">Fig. 7</xref>F shows the ROC curves for <xref rid="fig7" ref-type="fig">Fig. 7</xref>H–N. As can be seen, the FP-NLM filter achieves a higher true positive rate with increasing value of parameter <italic>α</italic><sub>2</sub> up to <italic>α</italic><sub>2</sub> ≈ 100, after which the curves start to saturate. We note, based on <xref rid="fig7" ref-type="fig">Fig. 7</xref>F and H–L, that optimal parameters for particle detection and image denoising can be somewhat different. This is because the former focuses on the identification of particles whereas the latter requires a balanced recovery of both particle and background. Optimal denoising results for this case occur at around <italic>α</italic><sub>2</sub> = 70, whereas optimal particle detection occurs around <italic>α</italic><sub>2</sub> = 100 based on the ROC curves (<xref rid="fig7" ref-type="fig">Fig. 7</xref>F). Again, based on the ROC curves, we find that the FP-NLM filter is preferred to PBF and NLM filters for our biological applications to identify particles of interest in such low contrast images.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>5</label>
+      <title>Discussion and conclusions</title>
+      <p>We have presented a new approach for denoising low SNR live-cell images, focused upon improving the identification of particle-like features. We have tested the new algorithm on simulated data, sub-resolution bead images and live-cell images and demonstrated good performance in enhancing particle contrast, reducing the background noise and minimizing artifacts. The algorithm performs consistently within the operation range of its parameters (see <xref rid="tbl1" ref-type="table">Table 1</xref>).</p>
+      <p>The key in our FP-NLM approach is the calculation of an additional similarity measurement representing ‘particle feature probability’ in the original grayscale image, the inclusion of which leads to significantly enhanced particle contrast. We use Haar-like features to estimate rather than precisely determine the presence of particles at the pixel level. Because it is an estimate only, the simple threshold condition given by Eq. <xref rid="fd2" ref-type="disp-formula">(3)</xref> is an effective approach chosen to construct the particle probability. This is a robust measure because it depends not only on the classification at each pixel but also their spatial connectivity. The particle probability image constructed in this paper is especially designed for enhancing weak, discrete particles and for this purpose it improves the performance of FP-NLM compared to existing NLM and PBF.</p>
+      <p>Our approach is generally applicable for different feature sizes and shapes, since an unlimited variety of Haar-like features can be constructed to extend the basic NLM filter. We have tested various other Haar-like features and found that the three features with different scales of Haar windows that we have selected are a simple but effective choice. A single Haar-like feature (for example <inline-formula><mml:math id="M17" altimg="si21.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> in <xref rid="fig1" ref-type="fig">Fig. 1</xref>A) can work adequately if the particle-like features under investigation have a round shape, whereas inclusion of more Haar-like features than the current three, for example by constructing two additional features with diagonally shaded regions in Haar windows, may increase classification precision and therefore the resolution of particles in the denoised images. But these effects are not critical to the performance of the FP-NLM filter. We would also like to note that Haar-like features can equally be used to classify dark particles of interest against a bright background (<xref rid="bib32 bib33" ref-type="bibr">Yu and Bajaj, 2004; Zhu et al., 2003</xref>) by simply changing the sign in Eq. <xref rid="fd1" ref-type="disp-formula">(1)</xref>, which may have further applications in biology and other fields.</p>
+      <p>Robust detection of features of interest is a critical step in the automation of particle tracking which in turn is critical for the analysis of complex biological data. We find that by using our FP-NLM filter we are able to reduce the illumination dosage level by a factor of almost five times and still achieve reliable feature detection. This should enable increased, more biologically relevant imaging rates and/or durations. We believe that FP-NLM can have significant benefits in many situations where quantitative analysis of dynamic components is required to fully investigate the molecular processes involved. Quantitative analysis of the denoised images of EB1 tracks will allow us to map both the distribution and location of MT to aid our understanding of how transport processes are organized and regulated within cells and tissues.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Becalska</surname>
+              <given-names>A.N.</given-names>
+            </name>
+            <name>
+              <surname>Gavis</surname>
+              <given-names>E.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Lighting up mRNA localization in <italic>Drosophila</italic> oogenesis</article-title>
+          <source>Development</source>
+          <volume>136</volume>
+          <year>2009</year>
+          <fpage>2493</fpage>
+          <lpage>2503</lpage>
+          <pub-id pub-id-type="pmid">19592573</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boulanger</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sibarita</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Kervrann</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bouthemy</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Non-parametric regression for patch-based fluorescence microscopy image sequence denoising</article-title>
+          <source>5th Int. Symp. Biomed. Imaging</source>
+          <year>2008</year>
+          <fpage>748</fpage>
+          <lpage>751</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boulanger</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kervarann</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bouthemy</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Elbau</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Sibarita</surname>
+              <given-names>J.-B.</given-names>
+            </name>
+            <name>
+              <surname>Salmero</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Patch-based non-local functional for denoising fluorescence microscopy image sequences</article-title>
+          <source>IEEE Trans. Med. Imaging</source>
+          <volume>29</volume>
+          <year>2010</year>
+          <fpage>442</fpage>
+          <lpage>454</lpage>
+          <pub-id pub-id-type="pmid">19900849</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brox</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kleinschmidt</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Cremers</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Efficient nonlocal means for denoising of textural patterns</article-title>
+          <source>IEEE Trans. Image Proc.</source>
+          <volume>17</volume>
+          <year>2008</year>
+          <fpage>1083</fpage>
+          <lpage>1092</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buades</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Coll</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Morel</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>A review of image denoising algorithms, with a new one</article-title>
+          <source>Multiscale Model. Simul.</source>
+          <volume>4</volume>
+          <year>2005</year>
+          <fpage>490</fpage>
+          <lpage>530</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buades</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Coll</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Morel</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlocal image and movie denoising</article-title>
+          <source>Int. J. Comput. Vis.</source>
+          <volume>76</volume>
+          <year>2008</year>
+          <fpage>123</fpage>
+          <lpage>139</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <mixed-citation publication-type="other">Carlton, P.M., Boulanger, J., Kervrann, C., Sibarita, J., Salamero, J., Gordon-Messer, S., Bressan, D., Haber, J.E., Haase, S., Shao, L., Winoto, L., Matsuda, A., Kner, P., Uzawa, S., Gustafsson, M., Kam, Z., Agard, D.A., Sedat, J.W., in press. Fast live simultaneous multi-wavelength 4-dimensional optical microscopy. Proc. Natl. Acad. Sci. USA.</mixed-citation>
+      </ref>
+      <ref id="bib8">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chan</surname>
+              <given-names>T.F.</given-names>
+            </name>
+            <name>
+              <surname>Osher</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Shen</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The digital TV filter and nonlinear denoising</article-title>
+          <source>IEEE Trans. Image Proc.</source>
+          <volume>10</volume>
+          <year>2001</year>
+          <fpage>231</fpage>
+          <lpage>241</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chaux</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Blanc-Feraud</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Zerubia</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Wavelet-based restoration methods: application to 3D confocal microscopy images</article-title>
+          <source>Prof. SPIE</source>
+          <volume>6701</volume>
+          <year>2007</year>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frangakis</surname>
+              <given-names>A.S.</given-names>
+            </name>
+            <name>
+              <surname>Hegerl</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Noise reduction in electron tomographic reconstruction using nonlinear anisotropic diffusion</article-title>
+          <source>J. Struct. Biol.</source>
+          <volume>135</volume>
+          <year>2001</year>
+          <fpage>239</fpage>
+          <lpage>250</lpage>
+          <pub-id pub-id-type="pmid">11722164</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Freeman</surname>
+              <given-names>W.T.</given-names>
+            </name>
+            <name>
+              <surname>Adelson</surname>
+              <given-names>E.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>The design and use of steerable filters</article-title>
+          <source>IEEE Trans. Pattern Anal. Mach. Intell.</source>
+          <volume>13</volume>
+          <year>1991</year>
+          <fpage>891</fpage>
+          <lpage>906</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Genovesio</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Liedl</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Emiliani</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Parak</surname>
+              <given-names>W.J.</given-names>
+            </name>
+            <name>
+              <surname>Coppey-Moisan</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Olivo-Marin</surname>
+              <given-names>J.-C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiple particle tracking in 3-D+t microscopy: method and application to the tracking of endocytosed quantum dots</article-title>
+          <source>IEEE Trans. Image Proc.</source>
+          <volume>15</volume>
+          <year>2006</year>
+          <fpage>1062</fpage>
+          <lpage>1070</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gonzalez</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Woods</surname>
+              <given-names>R.E.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Digital Image Processing</chapter-title>
+          <edition>second ed.</edition>
+          <year>2002</year>
+          <publisher-name>Prentice Hall</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="bib14">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jaqaman</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Loerke</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Mettlen</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kuwata</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Grinstein</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Schmid</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Danuser</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robust single-particle tracking in live-cell time-lapse sequences</article-title>
+          <source>Nat. Methods</source>
+          <volume>5</volume>
+          <year>2008</year>
+          <fpage>695</fpage>
+          <lpage>702</lpage>
+          <pub-id pub-id-type="pmid">18641657</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib15">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jiang</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Baker</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>Q.</given-names>
+            </name>
+            <name>
+              <surname>Bajaj</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Chiu</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Applications of a bilateral denoising filter in biological electron microscopy</article-title>
+          <source>J. Struct. Biol.</source>
+          <volume>144</volume>
+          <year>2003</year>
+          <fpage>114</fpage>
+          <lpage>122</lpage>
+          <pub-id pub-id-type="pmid">14643214</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib16">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kervrann</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Boulanger</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Local adaptivity to variable smoothness for exemplar-based image regularization and representation</article-title>
+          <source>Int. J. Comput. Vis.</source>
+          <volume>79</volume>
+          <year>2008</year>
+          <fpage>45</fpage>
+          <lpage>69</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib17">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mahmoudi</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sapiro</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast image and video denoising via nonlocal means of similar neighborhoods</article-title>
+          <source>IEEE Signal Proc. Lett.</source>
+          <volume>12</volume>
+          <year>2005</year>
+          <fpage>839</fpage>
+          <lpage>842</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib18">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meijering</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Smal</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Danuser</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tracking in molecular bioimaging</article-title>
+          <source>IEEE Signal Proc. Mag.</source>
+          <volume>23</volume>
+          <year>2006</year>
+          <fpage>46</fpage>
+          <lpage>53</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib19">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pantelic</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Rothnagel</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>C.-Y.</given-names>
+            </name>
+            <name>
+              <surname>Muller</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Woodford</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Landsberg</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>McDowall</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pailthorpe</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Young</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Banks</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hankamer</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Eriksson</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The discriminative bilateral filter: an enhanced denoising filter for electron microscopy data</article-title>
+          <source>J. Struct. Biol.</source>
+          <volume>155</volume>
+          <year>2006</year>
+          <fpage>395</fpage>
+          <lpage>408</lpage>
+          <pub-id pub-id-type="pmid">16774838</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib20">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Perona</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Malik</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Scale-space and edge detection using anisotropic diffusion</article-title>
+          <source>IEEE Trans. Pattern Anal. Mach. Intell.</source>
+          <volume>12</volume>
+          <year>1990</year>
+          <fpage>629</fpage>
+          <lpage>639</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib21">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pisano</surname>
+              <given-names>E.D.</given-names>
+            </name>
+            <name>
+              <surname>Zong</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Hemminger</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Deluca</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Johnston</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Muller</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Braeuning</surname>
+              <given-names>M.P.</given-names>
+            </name>
+            <name>
+              <surname>Pizer</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Contrast limited adaptive histogram equalization image processing to improve the detection of simulated spiculations in dense mammograms</article-title>
+          <source>J. Digit. Imaging</source>
+          <volume>11</volume>
+          <year>1998</year>
+          <fpage>193</fpage>
+          <lpage>200</lpage>
+          <pub-id pub-id-type="pmid">9848052</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib22">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rose</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The sensitivity performance of the human eye on an absolute scale</article-title>
+          <source>J. Opt. Soc. Am.</source>
+          <volume>38</volume>
+          <year>1948</year>
+          <fpage>196</fpage>
+          <lpage>208</lpage>
+          <pub-id pub-id-type="pmid">18901781</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib23">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rudin</surname>
+              <given-names>L.I.</given-names>
+            </name>
+            <name>
+              <surname>Osher</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Fatemi</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlinear total variation based noise removal algorithms</article-title>
+          <source>Physica D</source>
+          <volume>60</volume>
+          <year>1992</year>
+          <fpage>259</fpage>
+          <lpage>268</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib24">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sbalzarini</surname>
+              <given-names>I.F.</given-names>
+            </name>
+            <name>
+              <surname>Koumoutsakos</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Feature point tracking and trajectory analysis for video imaging in cell biology</article-title>
+          <source>J. Struct. Biol.</source>
+          <volume>151</volume>
+          <year>2005</year>
+          <fpage>182</fpage>
+          <lpage>195</lpage>
+          <pub-id pub-id-type="pmid">16043363</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib25">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stark</surname>
+              <given-names>J.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Adaptive image contrast enhancement using generalization of histogram equalization</article-title>
+          <source>IEEE Trans. Image Proc.</source>
+          <volume>9</volume>
+          <year>2000</year>
+          <fpage>889</fpage>
+          <lpage>896</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib26">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephens</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Allan</surname>
+              <given-names>V.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Light microscopy techniques for live cell imaging</article-title>
+          <source>Science</source>
+          <volume>300</volume>
+          <year>2003</year>
+          <fpage>82</fpage>
+          <lpage>86</lpage>
+          <pub-id pub-id-type="pmid">12677057</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib27">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stone</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Roegiers</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Rolls</surname>
+              <given-names>M.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microtubules have opposite orientation in axons and dendrites of <italic>Drosophila</italic> neurons</article-title>
+          <source>Mol. Biol. Cell</source>
+          <volume>19</volume>
+          <year>2008</year>
+          <fpage>4122</fpage>
+          <lpage>4129</lpage>
+          <pub-id pub-id-type="pmid">18667536</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib28">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tasdizen</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Principal components for non-local means image denoising</article-title>
+          <source>Proc. IEEE Int. Conf. Image Proc.</source>
+          <year>2008</year>
+          <fpage>1728</fpage>
+          <lpage>1731</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib29">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tomasi</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Manduchi</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bilateral filtering for gray and color images</article-title>
+          <source>Proc. IEEE Int. Conf. Comput. Vis.</source>
+          <year>1998</year>
+          <fpage>839</fpage>
+          <lpage>846</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib30">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Viola</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>M.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robust real-time face detection</article-title>
+          <source>Int. J. Comput. Vis.</source>
+          <volume>57</volume>
+          <year>2004</year>
+          <fpage>137</fpage>
+          <lpage>154</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib31">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Clausi</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure-preserving speckle reduction of SAR images using nonlocal means filters</article-title>
+          <source>Proc. IEEE Int. Conf. Image Proc.</source>
+          <year>2009</year>
+          <fpage>2985</fpage>
+          <lpage>2988</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib32">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yu</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Bajaj</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting circular and rectangular particles based on geometric feature detection in electron micrographs</article-title>
+          <source>J. Struct. Biol.</source>
+          <volume>145</volume>
+          <year>2004</year>
+          <fpage>168</fpage>
+          <lpage>180</lpage>
+          <pub-id pub-id-type="pmid">15065684</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib33">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Carragher</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Mouche</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Potter</surname>
+              <given-names>C.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automatic particle detection through efficient Hough transforms</article-title>
+          <source>IEEE Trans. Med. Imaging</source>
+          <volume>22</volume>
+          <year>2003</year>
+          <fpage>1053</fpage>
+          <lpage>1062</lpage>
+          <pub-id pub-id-type="pmid">12956261</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>We are grateful to John Sedat for very valuable discussions. This work is supported by the Engineering and Physical Sciences Research Council, UK (EP/F018673/1); R. Parton and I. Davis are supported by a Wellcome Trust Senior Research Fellowship to ID (081858).</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Three Haar-like features used to classify each pixel into two classes. (A) <inline-formula><mml:math id="M18" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula>; (B) <inline-formula><mml:math id="M19" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula>; (C) <inline-formula><mml:math id="M20" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula>, where <italic>s</italic> is the scale. For a central pixel <italic>i</italic>, <italic>U</italic><sub><italic>k</italic>=1–3</sub> and <italic>V</italic><sub><italic>k</italic>=1–3</sub> are the corresponding particle and background areas, respectively.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Mapping of a grayscale image to a particle probability image. (A) Synthetic noise-free image; (B) corresponding noisy image (standard deviation <italic>σ</italic> = 20 for 8 bit data); (C) binary image showing classification results, the 5 Haar-like window sizes used were 7 × 7, 11 × 11, 17 × 17, 25 × 25, 37 × 37 (increment of 1.5 times), and <italic>λ</italic> = 7.0 based on the 20% threshold criterion; (D) particle probability image.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Tests on the synthetic noisy image shown in <xref rid="fig2" ref-type="fig">Fig. 2</xref>B. (A) FP-NLM filtered; (B) a selected image region taken from <xref rid="fig2" ref-type="fig">Fig. 2</xref>B and enlarged; (C) FP-NLM filtering result in the selected region; (D) denoised image of <xref rid="fig2" ref-type="fig">Fig. 2</xref>B by NLM filter; (E) denoised image of <xref rid="fig2" ref-type="fig">Fig. 2</xref>B by PBF; (F) denoised images of the area marked by the white box in (A, D, and E) shown enlarged, left: FP-NLM filtered, middle: NLM filtered and right: PBF filtered. The filtering parameters are given in the main text.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Comparison of the denoised results for the central point (marked by a small box in A, C, F) of the searching window between FP-NLM and NLM filters. Upper box – NLM filter: (A) a selected particle region from <italic>W</italic><sub>1</sub> of <xref rid="fig3" ref-type="fig">Fig. 3</xref>B, (B) normalized weights and (C) denoised result. Lower box – FP-NLM filter: (D) particle probability image and (G) associated weights, (E) pre-processed image of <italic>W</italic><sub>1</sub> and (H) associated weights, (I) normalized weights and (F) denoised result. Pixel values in (A), (C), (E) and (F) have been increased by 2 times for better display. The parameters are the same as used for <xref rid="tbl2" ref-type="table">Table 2</xref>, and given in the main text.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Comparison of receiver operating characteristic (ROC) curves for denoising results of different algorithms (see figure key) on the synthetic image shown in <xref rid="fig2" ref-type="fig">Fig. 2</xref>A with noise of standard deviations <italic>σ</italic> = 20 (A) and <italic>σ</italic> = 30 (B).</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Tests of denoising algorithm performance on a field of sub-resolution fluorescent beads representing spot-like features. (A) Good SNR image (dosage level 1): deconvolved single Z plane. (B) Low SNR image (dosage level 0.2): deconvolved single Z plane. (C) Denoised result on <xref rid="fig6" ref-type="fig">Fig. 6</xref>B (PF-NLM filtered and then deconvolved). (D) Denoised result on <xref rid="fig6" ref-type="fig">Fig. 6</xref>B (NLM filtered and then deconvolved). (E) ROC curves comparing different denoising performances (see figure key). Note: images (A–D) have been individually contrasted for better display.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Application of denoising to the detection of EB1 foci in a <italic>Drosophila</italic> egg chamber expressing EB1-GFP. (A) Low SNR image: single time-point, single <italic>Z</italic>-plane. (B) Good SNR image: same time-point as (A) after average projection of 3 <italic>Z</italic>-planes (see main text). (C) Resultant image after denoising (A) by FP-NLM filter with <italic>λ</italic> = 10.0 (based on the 20% selection criterion), <italic>h</italic> = 0.9<italic>σ</italic>, <italic>g</italic> = <italic>σ</italic>/70 and <italic>σ</italic> = 20. (D–E) Resultant images after denoising (A) by NLM filter (D) and PBF (E). (F) ROC curves comparing filtering performance (see main text). (G) Manual identification of EB1 particles for the subregion marked in (A), arrowheads indicate the locations of particles, green: strong particle; yellow: weak particle; red: particle not discernible. (H–L) Denoised images of the subregion marked in (A) for the five different values of <italic>g</italic> = <italic>σ</italic>/<italic>α</italic><sub>2</sub>tested [<italic>α</italic><sub>2</sub> = 0; 30; 70; 100 and 120, respectively, with a fixed value of <italic>h</italic> = 0.9<italic>σ</italic>] other parameters used are the same as in the experiments on synthetic image data. (M–N) Denoised images of the subregion marked in (A) using NLM and PBF, respectively. Scale bars A–E = 10 μm; G–N = 5 μm. (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of this article.)</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <table-wrap id="tbl1" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Parameters of FP-NLM filter [used in Eqs. <xref rid="fd1 fd9 fd2 fd4 fd19 fd20" ref-type="disp-formula">(1)–(6)</xref>].</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th/>
+            <th>Values</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <italic>W</italic>
+              <sub>
+                <bold>
+                  <italic>i</italic>
+                </bold>
+              </sub>
+            </td>
+            <td>Searching window centered at position <bold><italic>i</italic></bold>, used to calculate the average in Eq. <xref rid="fd19" ref-type="disp-formula">(5)</xref></td>
+            <td>21 × 21 pixels used in FP-NLM and NLM. Variable window size in PBF</td>
+          </tr>
+          <tr>
+            <td>
+              <italic>N</italic>
+              <sub>
+                <bold>
+                  <italic>i</italic>
+                </bold>
+              </sub>
+            </td>
+            <td>Neighborhood centered at position <bold><italic>i</italic></bold>, used to calculate the Euclidean distance</td>
+            <td>7 × 7 pixels used in FP-NLM and NLM; 9 × 9 pixels used in PBF</td>
+          </tr>
+          <tr>
+            <td>
+              <italic>h</italic>
+            </td>
+            <td>First filtering parameter</td>
+            <td><italic>h</italic> = <italic>α</italic><sub>1</sub> · <italic>σ</italic>,<italic>α</italic><sub>1</sub> ∈ [0.75,1] chosen in NLM (<xref rid="bib6" ref-type="bibr">Buades et al., 2008</xref>), <italic>h</italic> = 0.9<italic>σ</italic> used in FP-NLM; N/A for PBF</td>
+          </tr>
+          <tr>
+            <td>
+              <italic>g</italic>
+            </td>
+            <td>Second filtering parameter</td>
+            <td><italic>g</italic> = <italic>σ</italic>/<italic>α</italic><sub>2</sub>, <italic>α</italic><sub>2</sub> ∈ [50,100] is chosen empirically in FP-NLM; N/A for NLM and PBF. Reduce to improve detection of weak features</td>
+          </tr>
+          <tr>
+            <td>
+              <italic>s</italic>
+            </td>
+            <td>The scale of Haar window used to calculate Haar-like features <inline-formula><mml:math id="M21" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mi>H</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> (<italic>k</italic> = 1, 2, 3)</td>
+            <td>Sufficiently large to cover the size range of particle; <italic>s</italic> = 1–5 is used in the paper, from 7 × 7 to 37 × 37 pixels</td>
+          </tr>
+          <tr>
+            <td>
+              <italic>λ</italic>
+            </td>
+            <td>Weak threshold to classify each pixel into two classes (particle/background)</td>
+            <td>Typically 20% of the difference of the averaged pixel gray values between a typical particle region and a typical background region in the image</td>
+          </tr>
+          <tr>
+            <td>
+              <italic>A</italic>
+              <sub>
+                <bold>
+                  <italic>i</italic>
+                </bold>
+              </sub>
+            </td>
+            <td>An area centered at position <bold><italic>i</italic></bold> to calculate particle probability</td>
+            <td>Typically the size of the smallest particles to be detected in the image; 5 × 5 used in the paper</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap id="tbl2" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>PSNR performance comparison of denoising algorithms.<xref rid="tblfn1" ref-type="table-fn">a</xref></p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>RAW <italic>σ</italic></th>
+            <th>NAD</th>
+            <th>TV</th>
+            <th>WF</th>
+            <th>BF</th>
+            <th>NLM</th>
+            <th>PBF</th>
+            <th>FP-NLM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="char">20</td>
+            <td align="char">34.26</td>
+            <td align="char">34.81</td>
+            <td align="char">34.05</td>
+            <td align="char">32.01</td>
+            <td align="char">33.44</td>
+            <td align="char">36.04</td>
+            <td align="char">36.59</td>
+          </tr>
+          <tr>
+            <td align="char">30</td>
+            <td align="char">31.87</td>
+            <td align="char">32.45</td>
+            <td align="char">32.10</td>
+            <td align="char">28.36</td>
+            <td align="char">31.30</td>
+            <td align="char">33.84</td>
+            <td align="char">34.25</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tblfn1">
+          <label>a</label>
+          <p>PSNR was determined from the denoised synthetic image data for the 7 different algorithms compared. Two levels of noise were tested: added Gaussian noise levels of <italic>σ</italic> = 20 (as shown in <xref rid="fig2" ref-type="fig">Fig. 2</xref>A) and 30. PSNR values of the unprocessed images were 21.88 and 18.65, respectively.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>

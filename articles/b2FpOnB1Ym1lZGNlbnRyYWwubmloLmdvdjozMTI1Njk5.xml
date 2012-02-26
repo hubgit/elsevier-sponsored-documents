@@ -1,0 +1,1997 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuron</journal-id>
+      <journal-title-group>
+        <journal-title>Neuron</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0896-6273</issn>
+      <issn pub-type="epub">1097-4199</issn>
+      <publisher>
+        <publisher-name>Cell Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3125699</article-id>
+      <article-id pub-id-type="pmid">20670837</article-id>
+      <article-id pub-id-type="publisher-id">NEURON10287</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuron.2010.06.019</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Oscillations and Filtering Networks Support Flexible Routing of Information</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Akam</surname>
+            <given-names>Thomas</given-names>
+          </name>
+          <email>t.akam@ion.ucl.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">1</xref>
+          <xref rid="cor1" ref-type="corresp">∗</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kullmann</surname>
+            <given-names>Dimitri M.</given-names>
+          </name>
+          <email>d.kullmann@ion.ucl.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">1</xref>
+          <xref rid="cor2" ref-type="corresp">∗∗</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1"><label>1</label>UCL Institute of Neurology, Queen Square, London WC1N 3BG, UK</aff>
+      <author-notes>
+        <corresp id="cor1"><label>∗</label>Corresponding author <email>t.akam@ion.ucl.ac.uk</email></corresp>
+        <corresp id="cor2"><label>∗∗</label>Corresponding author <email>d.kullmann@ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>29</day>
+        <month>7</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>29</day>
+        <month>7</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>67</volume>
+      <issue>2-10</issue>
+      <fpage>308</fpage>
+      <lpage>320</lpage>
+      <history>
+        <date date-type="accepted">
+          <day>3</day>
+          <month>6</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 ELL &amp; Excerpta Medica.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Summary</title>
+        <sec>
+          <p>The mammalian brain exhibits profuse interregional connectivity. How information flow is rapidly and flexibly switched among connected areas remains poorly understood. Task-dependent changes in the power and interregion coherence of network oscillations suggest that such oscillations play a role in signal routing. We show that switching one of several convergent pathways from an asynchronous to an oscillatory state allows accurate selective transmission of population-coded information, which can be extracted even when other convergent pathways fire asynchronously at comparable rates. We further show that the band-pass filtering required to perform this information extraction can be implemented in a simple spiking network model with a single feed-forward interneuron layer. This constitutes a mechanism for flexible signal routing in neural circuits, which exploits sparsely synchronized network oscillations and temporal filtering by feed-forward inhibition.</p>
+        </sec>
+        <sec>
+          <title>Video Abstract</title>
+          <p>
+            <supplementary-material content-type="local-data" id="d30e174">
+              <media xlink:href="mmc2.mp4" mimetype="video" mime-subtype="mp4"/>
+            </supplementary-material>
+          </p>
+        </sec>
+      </abstract>
+      <abstract abstract-type="graphical">
+        <title>Highlights</title>
+        <p>► We report a mechanism for selective routing of population-coded signals ► Spatial rate codes can be reproduced as oscillation amplitude patterns ► A feed-forward interneuron layer can be tuned to act as a band-pass filter ► We show how multiple population codes can be represented in parallel by oscillations</p>
+      </abstract>
+      <kwd-group>
+        <kwd>SYSNEURO</kwd>
+        <kwd>SYSBIO</kwd>
+        <kwd>SIGNALING</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec1">
+      <title>Introduction</title>
+      <p>Different behavioral tasks require distinct patterns of functional interaction between specialized modules in the brain. For example, when you read a book in a noisy train carriage, information from your visual stream is processed by language regions while auditory input is ignored. Then, if a conversation catches your attention, you can effortlessly switch focus, processing the auditory linguistic content that you were ignoring a moment before. A more concrete experimental example is provided by visual-attention experiments in which participants perform a perceptual discrimination task about a stimulus in one part of their visual field while ignoring simultaneously presented distracting stimuli (<xref rid="bib11 bib31" ref-type="bibr">Brefczynski and DeYoe, 1999; Gandhi et al., 1999</xref>). These tasks require selective processing of information from the regions of the early visual system representing the task-relevant stimulus. While important in attentional processing (<xref rid="bib6" ref-type="bibr">Berman and Colby, 2009</xref>), signal routing is likely necessary for other cognitive tasks involving distributed brain systems (<xref rid="bib2" ref-type="bibr">Anderson et al., 2004</xref>).</p>
+      <p>Proposals for how this routing is achieved can be broadly divided into two groups: those in which asynchronous rate-coded signals are routed by dedicated switching circuits (<xref rid="bib1 bib62 bib66" ref-type="bibr">Anderson and Van Essen, 1987; Vogels and Abbott, 2009; Zylberberg et al., 2010</xref>), and those in which changes in patterns of synchronized network activity play a key role in modulating signal flow (<xref rid="bib20 bib54 bib28" ref-type="bibr">Crick and Koch, 1990; Salinas and Sejnowski, 2001; Fries, 2005</xref>). Consistent with the latter “oscillatory gating” hypothesis are experimental data showing task-dependent transient increases in oscillatory synchronization (<xref rid="bib29 bib4 bib59 bib7" ref-type="bibr">Fries et al., 2001; Bauer et al., 2006; Taylor et al., 2005; Bichot et al., 2005</xref>) and frequency-selective increases in oscillatory coherence between regions during tasks thought to require their cooperation (<xref rid="bib34 bib58 bib44 bib52 bib51 bib40 bib25" ref-type="bibr">Gregoriou et al., 2009; Siegel et al., 2008; Montgomery and Buzsáki, 2007; Popescu et al., 2009; Pesaran et al., 2008; Lee, 2003; Doesburg et al., 2008</xref>; N. Dotson et al., 2009, Soc. Neurosci., abstract).</p>
+      <p>A possible way to selectively and accurately route a target signal to a receiving population in the presence of multiple distracting inputs was recently demonstrated using a “detailed balance” nonoscillatory gating mechanism (<xref rid="bib62" ref-type="bibr">Vogels and Abbott, 2009</xref>). Comparable capability has not so far been demonstrated using oscillatory mechanisms. Furthermore, it remains unclear how synchrony changes in population codes can mediate signal gating, what operations downstream regions must perform on their inputs to achieve gating, and how these operations can be implemented by neural network dynamics.</p>
+      <p>We have addressed these questions using a feed-forward model in which independent stimuli are represented as population codes in separate networks of spiking neurons. These populations converge to form the input to a single output network (<xref rid="fig1" ref-type="fig">Figure 1</xref>). When activity in all input networks is asynchronous, little information is available to the output network about the stimulus represented in any one of them, because each contributes a small fraction of the total spike input. However, we show that when one of the input networks is switched from an asynchronous to an oscillatory state, accurate information about the stimulus represented by this network becomes available to the output network. This is because in the oscillating network, the spatial pattern of firing rates is reproduced in the spatial pattern of firing-rate oscillation amplitude, thus providing a parallel channel for information transmission that is minimally affected by asynchronous distracting inputs. We further show that the filtering necessary to read out such information can be achieved by a simple and biologically plausible network of excitatory and inhibitory neurons exploiting a novel network-level resonance phenomenon. The resulting signal-gating mechanism allows accurate and selective propagation of a target signal in the presence of multiple distracting inputs. Switching among inputs can be achieved within a few cycles. Finally, we show that, when multiple input networks are oscillating in different frequency bands, filtering at the appropriate frequency can be used to pull out individual signals from the combined input, a form of frequency-division multiplexing for neural codes.</p>
+    </sec>
+    <sec id="sec2">
+      <title>Results</title>
+      <p>We start with a model consisting of four input networks, each of which represents a separate population-coded stimulus. These converge to form the input to a single output network. The task required of the model is to act as a switch, selecting the signal encoded in any one input network (the “sender” network), to be routed to the output network, while ignoring the signals encoded in the other input networks (“distractors”).</p>
+      <sec id="sec2.1">
+        <title>Input Networks</title>
+        <p>Each input network was represented by 8000 excitatory principal cells and 2000 inhibitory interneurons, described as exponential integrate-and-fire models, mutually and reciprocally interconnected with conductance-based synapses and random connectivity. Spiking activity was induced through tonic depolarization, supplemented by a spatially patterned external Poisson spike input, used to impart stimulus tuning to the neurons as described below.</p>
+        <p>Input networks were independently switched from asynchronous to oscillatory dynamics by increasing the strength of local excitatory synapses onto interneurons, while reducing the strength of external synaptic drive to the interneurons to maintain the average firing rate of both populations (average firing rates in the asynchronous state: principal cells 4.98 Hz, interneurons 13.64 Hz; in the oscillating state: principal cells 5.34 Hz, interneurons 14.62 Hz). This switch could be equally achieved by changing other parameters such as synaptic time courses (<xref rid="bib15" ref-type="bibr">Buehlmann and Deco, 2008</xref>) or external noise (<xref rid="bib14" ref-type="bibr">Brunel and Hansel, 2006</xref>), or by periodic external input. The precise method does not qualitatively affect the rest of this study.</p>
+        <p>In the asynchronous state, network activity generated large excitatory and inhibitory synaptic currents in each cell, which combined to produce a small net current. Stochastic fluctuations in these currents gave rise to irregular spiking activity (<xref rid="fig2" ref-type="fig">Figure 2</xref>A). These features are characteristic of the balanced regime (<xref rid="bib61" ref-type="bibr">van Vreeswijk and Sompolinsky, 1996</xref>) observed in cortical networks during up states in vivo (<xref rid="bib35 bib24" ref-type="bibr">Haider et al., 2006; Destexhe et al., 2003</xref>) and in vitro (<xref rid="bib57" ref-type="bibr">Shu et al., 2003</xref>).</p>
+        <p>In the oscillatory state, the instantaneous firing probabilities of both principal and inhibitory cell populations fluctuated strongly at approximately 41 Hz while individual neurons fired irregularly at lower rates (<xref rid="fig2" ref-type="fig">Figures 2</xref>B–2D). Average Fano factors for neurons in the oscillating state were close to 1 (0.96 for a 100 ms bin). These sparsely synchronized dynamics (<xref rid="bib13" ref-type="bibr">Brunel and Hakim, 2008</xref>) are consistent with in vivo (<xref rid="bib29 bib10 bib41 bib37 bib21" ref-type="bibr">Fries et al., 2001; Bragin et al., 1995; Logothetis et al., 2001; Hasenstaub et al., 2005; Csicsvari et al., 1998</xref>) and in vitro (<xref rid="bib36" ref-type="bibr">Hájos et al., 2004</xref>) studies that show irregular activity of individual units but oscillatory activity at the network level. Excitatory and inhibitory synaptic currents oscillated approximately in phase, again consistent with recent in vivo and in vitro measurements during gamma band network oscillations (<xref rid="bib3 bib48" ref-type="bibr">Atallah and Scanziani, 2009; Oren et al., 2006</xref>).</p>
+        <p>We used one-dimensional circular variables as the stimuli encoded and transmitted by the sender and distractor networks. (We make this choice for simplicity of network design and clarity of explanation, although the gating mechanism described here can be extended to more complicated stimuli.) Variables were encoded as population codes in which each principal cell had a bell-shaped firing-rate tuning curve with respect to stimulus orientation, such that they fired most strongly when the stimulus was aligned with their preferred orientation (<xref rid="fig3" ref-type="fig">Figure 3</xref>A2). Population codes with such tuning curves occur widely in the brain, and the one-dimensional case we consider here is analogous to orientation-selective cells in V1 or head-direction cells in the postsubiculum. This tuning was implemented by imposing a spatial pattern on the external input exciting the principal cells. Each principal cell was assigned a preferred stimulus orientation, and the external Poisson rate to each cell was determined by a cosine function of the difference between its preferred orientation and the stimulus orientation. The preferred orientation varied smoothly through 180° across the population of 8000 principal cells, so cells 1 and 8000 had a similar orientation preference, giving the network a ring topology.</p>
+        <p>We verified that the activity of the principal cells during asynchronous network activity could be decoded to produce an accurate estimate of the stimulus value using a template-matching decoding method (<xref rid="bib23" ref-type="bibr">Deneve et al., 1999</xref>). The average spatial pattern of firing rates as a function of stimulus angle was first estimated from a training set of network activity. This spatial pattern was then used as a template for decoding by finding the stimulus estimate that minimized the mean squared error between firing rates measured over a 50 ms test period and the template of firing rates as a function of stimulus angle. To quantify decoding accuracy, we calculated the standard deviation of the stimulus estimate (standard deviation 1.40°), and the circular correlation coefficient (<xref rid="bib26" ref-type="bibr">Fisher and Lee, 1983</xref>) between the true values of uniformly distributed stimuli and their estimates decoded from neural activity (correlation 0.998).</p>
+        <p>When the network was switched to a sparsely synchronized state, the mean firing rates of individual principal cells showed a very similar dependence on stimulus orientation as in the asynchronous state (<xref rid="fig3" ref-type="fig">Figures 3</xref>A2 and 3C1). Template-matching decoding continued to produce a reliable estimate of the stimulus orientation from the average firing rates over a 50 ms period of network activity (estimate standard deviation 1.22°, correlation 0.998).</p>
+        <p>We asked whether the periodic temporal structure induced by the oscillation provided new coding possibilities. One possible coding variable is the phase of firing of individual cells relative to the network oscillation, as proposed for hippocampal place cells during theta oscillations (<xref rid="bib46" ref-type="bibr">O'Keefe and Recce, 1993</xref>). Although an analogous form of phase coding has also been proposed to occur in gamma-oscillating networks (<xref rid="bib30" ref-type="bibr">Fries et al., 2007</xref>), we have not explored this further here. Instead, we asked whether the spatial pattern of the amplitude of oscillations in the firing rate can itself encode information about the stimulus.</p>
+        <p>Because individual neurons fired irregularly with average rates well below the population oscillation frequency, the Fourier spectrum of spike patterns for individual neurons was dominated by Poisson-like noise. The spatial pattern of oscillation amplitude became apparent only when we were looking at the firing rate of populations of principal cells with similar stimulus preference. We therefore grouped them into 20 subpopulations of 400 adjacent cells. We then evaluated the frequency spectrum of the total firing rate of each subpopulation using a short-time Fourier transform (STFT) with a 50 ms Hanning window (<xref rid="fig2" ref-type="fig">Figure 2</xref>D). We used two measurements from the Fourier spectrum in further analysis: the amplitude at 0 Hz (which is simply the average firing rate of the population over the window) and the amplitude at the 41 Hz oscillation frequency, which we refer to as the gamma amplitude.</p>
+        <p>We evaluated the spatial pattern of gamma amplitude across the 20 subpopulations for 50 ms periods of network activity in the asynchronous and oscillating states (<xref rid="fig3" ref-type="fig">Figure 3</xref>A3). In the asynchronous state, the gamma band amplitude was small, reflecting random fluctuations in network activity. However, in the oscillating state, the periodic modulation induced by the network oscillation elicited a large gamma amplitude for subpopulations whose average firing rate was high. This caused the spatial pattern of the gamma amplitude to reproduce the spatial pattern of firing rates. This spatial pattern of gamma amplitude could be decoded just like a pattern of firing rates to produce an accurate estimate of the stimulus orientation (estimate standard deviation 1.35°, correlation 0.998 using template matching).</p>
+        <p>These two different frequency components (0 and 41 Hz) of the firing rate are effectively two separate channels, each of which carries information about the stimulus orientation. Because the network generated large gamma amplitudes only in the oscillating state, when the signal from an oscillating sender network was summed with signals from asynchronous distractor networks, the gamma amplitude of the combined signal was dominated by activity in the oscillating network. Can this allow accurate estimate of the stimulus represented in the oscillating sender with minimal contamination by the distractors?</p>
+      </sec>
+      <sec id="sec2.2">
+        <title>Signal Gating among Convergent Pathways</title>
+        <p>We considered a situation in which the sender network and three distractor networks converged onto a single receiver network, such that the postsynaptic input was simply the sum of the presynaptic activity patterns (<xref rid="fig3" ref-type="fig">Figures 3</xref>A and 3B). When the sender network was in the same asynchronous state as the distractors, the orientation of the stimulus driving the sender network was ambiguous and could be estimated little better than chance from the combined spike input (estimate standard deviation 38.78°, correlation 0.171).</p>
+        <p>We asked whether changing the sender network to an oscillatory state increased the information available to the receiver. To do this, we analyzed the spatial pattern of gamma amplitude for the postsynaptic input using the method described above for the presynaptic activity. As before, we divided the summed input from the sender and distractor networks into 20 subpopulations, each containing afferents with similar stimulus tuning (400 from each of the four input networks). Activity in each group of afferents was pooled to produce a firing-rate signal. We analyzed this signal using the STFT to evaluate the 0 Hz and 41 Hz Fourier components for 50 ms sections of the combined input. Although the 0 Hz amplitude was uninformative (<xref rid="fig3" ref-type="fig">Figure 3</xref>B2), the gamma amplitude faithfully reproduced the pattern of activity in the oscillating sender network, almost as if the distracting inputs were not present (<xref rid="fig3" ref-type="fig">Figures 3</xref>B3 and 3C2). The stimulus driving the oscillating sender network could be accurately estimated from the gamma amplitude of the combined input (estimate standard deviation 3.53°, correlation 0.986). This improved estimation accuracy corresponded to a &gt;100-fold increase in the lower bound on the Fisher information available to the postsynaptic network (presynaptic, 0.51°<sup>−2</sup>; postsynaptic, asynchronous sender, 0.00066°<sup>−2</sup>; postsynaptic, oscillating sender, 0.08°<sup>−2</sup>; <xref rid="fig3" ref-type="fig">Figure 3</xref>D).</p>
+      </sec>
+      <sec id="sec2.3">
+        <title>Gating Using a Spiking Network Filter</title>
+        <p>The results above demonstrate that a population-level oscillation in the sender network greatly enhances the information available to the receiver about the stimulus it encodes. Can a biologically plausible neuronal network read out this information? A reformulation of this problem is to ask whether a network of simulated neurons can reproduce the spatial activity pattern of its oscillating input in the firing rates of its output neurons, while ignoring the asynchronous component of the input it receives.</p>
+        <p>In designing such a network, we took as our starting point the detailed balance model recently outlined by <xref rid="bib62" ref-type="bibr">Vogels and Abbott (2009)</xref>, in which an excitatory input is precisely balanced by feed-forward inhibition, such that changes in the firing rate of the input do not alter the activity of the target principal cells. We mapped the orientation-tuned excitatory inputs onto a population of 2000 principal cells, and a population of 2000 interneurons that formed a feed-forward layer, projecting to the principal cells (<xref rid="fig4" ref-type="fig">Figure 4</xref>A). Interneurons innervating a given principal cell received inputs from afferents with orientation tuning similar to those afferents innervating the principal cell directly (although the fine structure of the connectivity was random). This produced a pattern of feed-forward inhibitory input that balanced out the pattern of excitation in the target principal cells. Interneurons were also recurrently connected; this connectivity was local, such that only interneurons receiving input from afferents with similar orientation preference made synaptic connections with one another.</p>
+        <p>When this receiver network was driven by a bell-shaped pattern of asynchronous Poisson spike input, the pattern of input firing rates was reproduced in the interneuron layer activity and the resulting feed-forward inhibition prevented spiking in the principal cell population (<xref rid="fig4" ref-type="fig">Figure 4</xref>C).</p>
+        <p>To impart sensitivity to periodically modulated input patterns, we exploited a network resonance phenomenon that occurs in recurrently connected interneuron networks. Under conditions of tonic excitatory drive, interneuron networks can generate spontaneous oscillations (<xref rid="bib64 bib63 bib12" ref-type="bibr">Whittington et al., 1995; Wang and Buzsáki, 1996; Brunel and Hakim, 1999</xref>), but these break down to an asynchronous state as the level of heterogeneity or external noise is increased (<xref rid="bib14" ref-type="bibr">Brunel and Hansel, 2006</xref>). We found that in the asynchronous state, but near the transition to sparsely synchronized oscillation, the interneuron network acted like a damped oscillator, showing clear resonance behavior when driven by periodic input. To illustrate this resonance behavior, we drove the input afferents with a sinusoidally modulated Poisson spike input, with a range of modulation frequencies from 0 to 55 Hz (<xref rid="fig4" ref-type="fig">Figure 4</xref>B). The periodic modulation of the input firing rate evoked a periodic fluctuation of the firing rate of the feed-forward interneuron population. Resonance was observed both in the amplitude of the firing-rate modulation, especially prominent between 25 and 40 Hz, and in the phase of the interneuron firing-rate modulation relative to the input firing-rate modulation. The interneuron firing rate was in phase with the input at frequencies up to ∼25 Hz but lagged behind the input at higher frequencies, with approximately 90° lag for 40 Hz input modulation. This resonance phenomenon was a network effect arising from the recurrent connectivity in the interneuron layer and was not a result of subthreshold resonance in the individual interneurons (<xref rid="bib27" ref-type="bibr">Fourcaud-Trocmé et al., 2003</xref>). In <xref rid="app2" ref-type="sec">Supplemental Results</xref> and <xref rid="app2" ref-type="sec">Figure S1</xref> (available online), we show that intrinsic cellular properties combined with gap-junction connectivity can also generate resonance properties that support filtering by interneuron populations.</p>
+        <p>The 90° phase lag between the input firing-rate oscillation in the gamma band and the response of the feed-forward inhibitory population allowed the principal cells to fire in response to the oscillating input. The phase-delayed oscillations in the inhibitory firing rate disinhibited the principal cells at the phase when excitatory input was strongest. The ability to respond to spatially patterned oscillating input was tested by driving the receiver network with a bell-shaped pattern of Poisson input, sinusoidally modulated at 40 Hz (<xref rid="fig4" ref-type="fig">Figure 4</xref>D). This periodically modulated input activity pattern was reproduced in robust spiking activity in the principal cell layer.</p>
+        <p>For effective signal gating, the pattern of activity induced by an oscillating input should be minimally affected by converging inputs from other asynchronous networks. We tested this by driving the receiver network with the same bell-shaped pattern of periodically modulated input as in <xref rid="fig4" ref-type="fig">Figure 4</xref>D, but with an additional bell-shaped asynchronous Poisson input with a 3-fold larger average firing rate and a peak position rotated in orientation space from the peak of the oscillating input (<xref rid="fig4" ref-type="fig">Figure 4</xref>E). The spatial pattern of spiking activity in the receiver network was very similar to that induced in the absence of the asynchronous input, faithfully reproducing the location of the hump of oscillating input. The filter network was sensitive to the size of the oscillating component of the input, responding in a graded manner to changes in its average firing rate (<xref rid="app2" ref-type="sec">Figures S2</xref>A and S2B).</p>
+        <p>To quantify the signal-gating performance of the filtering network, we drove it with the combined input from one oscillating sender network and three asynchronous distractor networks. Spiking activity in the filter network output layer reproduced the pattern of activity of the oscillating input regardless of the spatial pattern of asynchronous input. The stimulus encoded in the oscillating input network could be accurately decoded from the spatial pattern of filter network principal cell firing rates by using template matching on 50 ms sections of activity (estimate standard deviation 4.25°, correlation 0.978). Population firing rates in the filter network oscillated strongly, but individual neurons fired highly irregularly (mean Fano factor 1.51 for 100 ms bin).</p>
+        <p>We tested the how the gating performance varied depending on the number of distracting inputs (<xref rid="app2" ref-type="sec">Figure S2</xref>C). As the number of distracting inputs increased, decoding accuracy decreased both for decoding from the gamma amplitude of the combined input and for decoding from filter network firing rates. This occurred because although each individual distractor generated a small amount of noise in the gamma band, as the numbers of distractors increased, their combined contribution grew, until it eventually drowned out the signal from the oscillating sender. As with the detailed balance gating mechanism (<xref rid="bib62" ref-type="bibr">Vogels and Abbott, 2009</xref>), high signal propagation performance requires that the number of active distracting inputs be restricted.</p>
+        <p>For simplicity the filtering network considered above included only feed-forward inhibition. We verified that the addition of feedback inhibition did not prevent the filtering network from functioning (<xref rid="app2" ref-type="sec">Figures S2</xref>D–S2I).</p>
+      </sec>
+      <sec id="sec2.4">
+        <title>Switching among Input Networks</title>
+        <p>Because the sender and distractor networks considered here had the same architecture, information about the stimulus represented in any one of the different input populations could be made available to the receiving network by switching which one was in an oscillatory state: one of the distractors could thus become the sender, and vice versa.</p>
+        <p>We tested how rapidly the filter network responded to this switching. After such a transition, it took ∼150 ms (∼6 oscillatory cycles) for the stimulus estimate decoded from the filter network to reach steady-state accuracy (<xref rid="fig5" ref-type="fig">Figure 5</xref>A). We observed that when a presynaptic network was switched from asynchronous to oscillatory dynamics, the oscillation did not start suddenly, but rather developed slowly over a number of cycles, limiting the speed of switching (<xref rid="fig5" ref-type="fig">Figure 5</xref>B2). However, by delivering a small kick to the network at the time of switching (a brief pulse of excitatory input to the interneurons), a strong oscillation could be induced immediately, reaching full amplitude on the first cycle after switching (<xref rid="fig5" ref-type="fig">Figure 5</xref>B3). This reduced the time taken for the filter network output to reach steady-state accuracy to 75 ms (∼3 cycles; <xref rid="fig5" ref-type="fig">Figure 5</xref>A). The rapid response of the filtering network could allow brief episodes of network oscillation lasting only a few cycles to transmit a pulse of information down a pathway whose default state was gated off.</p>
+      </sec>
+      <sec id="sec2.5">
+        <title>Multiplexing Population Codes in the Frequency Domain</title>
+        <p>The gating mechanism we have described works because only the oscillating sender network contributes strongly to the gamma band amplitude of the combined signal. For this reason, signal gating is severely compromised if distracting inputs also oscillate in the same frequency band (<xref rid="app2" ref-type="sec">Figures S3</xref>A–S3E). However, network oscillations occur in the brain over a wide range of frequencies, raising the possibility that multiple population codes originating from networks oscillating at different frequencies could be multiplexed into a single set of inputs. This could allow the receiving network to choose which of several different inputs to respond to, by choosing which frequency band to filter from the combined input. Indeed, recent evidence from the hippocampus lends support to this hypothesis (<xref rid="bib19" ref-type="bibr">Colgin et al., 2009</xref>). Just as frequency division multiplexing in electronic communication networks allows multiple independent signals to share the electromagnetic spectrum or optical fiber bandwidth, multiplexing may facilitate efficient use of white matter tracts in the brain.</p>
+        <p>To explore the possibility for multiplexing in our model, we replaced two of the asynchronous distracting networks with modified versions of the sender network, one of which oscillated at a high gamma frequency (∼100 Hz) and the other in the beta frequency band (∼16 Hz). The combined signal therefore contained an asynchronous, a low gamma, a high gamma, and a beta frequency component, each of which encoded a different stimulus in its spatial pattern of activity (<xref rid="fig6" ref-type="fig">Figure 6</xref>). The spatial pattern of activity in each of the oscillating inputs could be accurately read out from the combined signal by evaluating the spatial pattern of firing-rate oscillation amplitude at the appropriate frequency. The estimate standard deviations decoded from 125 ms sections of the combined input activity for the beta frequency input was 1.93°; for the low gamma input, 2.19°; and for the high gamma input, 1.72°. (A longer window—125 ms as opposed to the 50 ms window used for <xref rid="fig3" ref-type="fig">Figure 3</xref>—was used both to capture the longer period of the beta frequency oscillation and to reduce broadening of Fourier spectral peaks due to the time-frequency uncertainty principle.)</p>
+        <p>We drove the filter network with this combined input to test whether it could extract the low gamma input in the presence of distractors oscillating in other frequency bands. The stimulus encoded in the low gamma input network could be accurately decoded from the spatial pattern of filter network firing rates evaluated over 125 ms sections (estimate standard deviation 4.60°, correlation 0.976). The high correlation between the input stimulus and the estimate decoded from the filter network output shows that the filter network is able to perform the band-pass filtering needed to extract one of the three multiplexed signals. However, the accuracy was lower than that achieved by decoding from the gamma amplitude directly, suggesting that a filter network with a narrower pass-band could achieve higher signal propagation accuracy.</p>
+        <p>The filter network as outlined above was designed to extract information encoded in the low gamma band (approximately 40 Hz). However, the principles of its operation are not restricted to this frequency. The main determinants of its frequency selectivity are the resonance frequency of the feed-forward interneuron population and the synaptic time courses of excitatory and inhibitory input received by the principal cells. The former is itself strongly influenced by the time courses of synapses, although as shown in the <xref rid="app2" ref-type="sec">Supplemental Information</xref>, intrinsic neuronal properties such as the afterhyperpolarization (AHP) also potentially play a major role (<xref rid="app2" ref-type="sec">Figure S1</xref>). The kinetics of the conductances underlying these phenomena varies extensively across different types of interneurons, suggesting that different microcircuits may support temporal filtering operations over a wide frequency range. Furthermore, gap-junction coupling between interneurons of the same class may promote precisely the resonant network dynamics required for filtering (<xref rid="bib5 bib38" ref-type="bibr">Bennett and Zukin, 2004; Hestrin and Galarreta, 2005</xref>). To illustrate filtering in a different frequency band, we implemented a version of the filtering network with synaptic kinetics based on the late spiking interneurons of layer 1 (<xref rid="bib18" ref-type="bibr">Chu et al., 2003</xref>). Because of the slow time course of these conductances, the pass-band of this filtering network was tuned to a frequency of ∼10 Hz (<xref rid="app2" ref-type="sec">Figures S3</xref>F–S3H).</p>
+        <p>Modulation of the amplitude of a high-frequency oscillation by the phase of a low-frequency oscillation has been observed in several brain regions (<xref rid="bib53" ref-type="bibr">Roopun et al., 2008</xref>). We found that this arrangement reproduced the spatial pattern of firing rates in the spatial pattern of amplitude at both oscillation frequencies (<xref rid="app2" ref-type="sec">Figures S3</xref>I–S3N). This suggests a possible role for these dynamics in multiplexing a stimulus into two frequency bands simultaneously.</p>
+      </sec>
+      <sec id="sec2.6">
+        <title>Time-Varying Stimuli</title>
+        <p>We have hitherto considered only stationary stimuli. Can the encoding scheme and the filtering network function with time-varying stimuli? We tested this by summing the activity in one oscillating sender and three asynchronous distractor networks representing stimuli that varied independently over time (<xref rid="fig7" ref-type="fig">Figure 7</xref>). We analyzed the spatiotemporal pattern of gamma amplitude of the combined input using a 50 ms Hanning window as before, but we moved the window along the input activity in 25 ms steps. The spatiotemporal pattern of gamma amplitude reproduced the activity in the oscillating sender network and was decoded to produce an accurate estimate of the time-varying stimulus driving the oscillating network (<xref rid="fig7" ref-type="fig">Figure 7</xref>B2).</p>
+        <p>We drove the input afferents of the filtering network with this convergent spike activity (<xref rid="fig7" ref-type="fig">Figure 7</xref>C). This induced an oscillating bump of spiking activity in the principal cells of the filtering network that followed activity in the oscillating input network. The firing rates of the principal cells in the receiver network were decoded to produce an estimator that accurately tracked the orientation of the stimulus driving the oscillating sender network (<xref rid="fig7" ref-type="fig">Figure 7</xref>C1). We thus conclude that, for stimuli that vary relatively slowly relative to the oscillation frequency, the mechanism described here is indeed able to route signals with high accuracy.</p>
+      </sec>
+    </sec>
+    <sec id="sec3">
+      <title>Discussion</title>
+      <p>We have described a novel mechanism by which changes in the dynamical state of neural networks can turn on and off functional connectivity between anatomically connected regions.</p>
+      <p>The mechanism exploits two principles: first, in a sparsely synchronized oscillating network, a spatial pattern of firing rates is reproduced as a spatial pattern of firing-rate oscillation amplitude. This can be decoded like a conventional population code to recover the value of the encoded stimulus. Crucially, asynchronous networks or networks oscillating in different frequency bands contribute only very weakly to this amplitude pattern. Second, the pattern of oscillation amplitude at a given frequency can be read out (converted into a pattern of firing rates) by a feed-forward interneuron layer tuned to act as a band-pass filter. Importantly, and in contrast to an alternative proposal (<xref rid="bib28" ref-type="bibr">Fries, 2005</xref>), there is no requirement for an external pacemaker to synchronize the sender and receiver networks in the scheme described here. It is sufficient for the sender network to oscillate within the pass-band for information to be selectively routed to the receiver. Of course, gating mechanisms with and without pacemaking signals are not mutually exclusive, and each may offer distinct advantages in different applications.</p>
+      <p>The gating mechanism proposed here provides several complementary approaches to modulate functional connectivity. The activity in a sending network can be switched between an asynchronous and an oscillatory state, or the frequency of the population oscillation can be varied to control how strongly it drives the pass-bands of receiving filter networks. Alternatively, the filtering performed by a receiving network on its inputs can be modulated to read out different codes multiplexed into separate frequency bands. This could be achieved by controlling the relative amount of feed-forward inhibition provided by interneuron populations implementing different filters. Neuromodulatory inputs are an attractive candidate mechanism for controlling the dynamic state of networks involved in gating. Such inputs must have sufficient spatial and cellular selectivity to change the state of local networks, but they do not need to be targeted differentially to individual cells within a population. This is a potential advantage over the detailed balance scheme (<xref rid="bib62" ref-type="bibr">Vogels and Abbott, 2009</xref>), which requires the control input to apply a pattern of gain modulation at the single-neuron level unless each signal pathway has its own associated interneuron population.</p>
+      <p>Several forms of cross-frequency interaction, including phase-amplitude coupling (nesting) and phase locking, have been reported in network oscillations in vivo. Although we have identified one possible coding consequence of nesting (<xref rid="app2" ref-type="sec">Figures S3</xref>I–S3N), a full treatment of this subject is outside the scope of the current work (<xref rid="bib39 bib53 bib49" ref-type="bibr">Jensen and Colgin, 2007; Roopun et al., 2008; Palva and Palva, 2007</xref>).</p>
+      <p>Our study builds on previous literature addressing both the flexible routing of neural signals and the possible role of network oscillations in gain modulation. Several authors have described models in which asynchronous signals are routed by interposing dedicated circuitry between sending and receiving regions (<xref rid="bib1 bib66 bib47" ref-type="bibr">Anderson and Van Essen, 1987; Zylberberg et al., 2010; Olshausen et al., 1993</xref>). Using oscillatory mechanisms to turn on and off direct interregion connections could alleviate the need for this additional circuitry. Prior studies have focused on how oscillatory mechanisms could reproduce effects of attention on V4 neuronal responses (<xref rid="bib15 bib45 bib65 bib43" ref-type="bibr">Buehlmann and Deco, 2008; Niebur et al., 1993; Zeitler et al., 2008; Mishra et al., 2006</xref>). Our focus was not to reproduce a particular experimental result but rather to build a network that performs the specific computational task of signal gating—turning on and off functional connectivity for a given fixed anatomical connectivity. Studies have explored how the input-output relationship of neuronal networks can be modulated by oscillatory synchronization (<xref rid="bib8 bib9 bib42 bib60 bib22 bib16" ref-type="bibr">Börgers et al., 2005, 2008; Masuda, 2009; Tiesinga et al., 2004; de Almeida et al., 2009; Burchell et al., 1998</xref>). Our model demonstrates significant novel functionality by allowing selective and accurate gating of population-coded signals on the basis of their oscillatory modulation, even in the presence of multiple, overlapping, distracting inputs.</p>
+      <p>Although our model generates a very high correlation between true input stimulus values and their estimates decoded from the filter network, there is inevitably a reduction in accuracy compared with stimulus representation in the input populations. This occurs because although distracting inputs are not oscillating, they produce noise in the gamma band because of their stochastic spiking, which degrades the signal. Detailed balance (<xref rid="bib62" ref-type="bibr">Vogels and Abbott, 2009</xref>) also suffers from signal degradation as a result of the distracting inputs, because although gated-off signals are, on average, canceled by inhibition, stochastic spiking causes fluctuations that degrade the output. This is why Vogels and Abbott report that the number of active inputs must be limited for accurate signal propagation. In both mechanisms, even with a small number of active distracting inputs, the output signal is degraded in comparison to the input, resulting in reduced accuracy for a given integration time. The information rate per neuron will therefore be reduced in pathways in which multiple distracting inputs are active and flexible signal routing is required. This may be one factor contributing to reduced psychophysical performance in discrimination tasks in the presence of distracting stimuli (<xref rid="bib50 bib56" ref-type="bibr">Pelli and Tillman, 2008; Seidemann and Newsome, 1999</xref>).</p>
+      <p>The output of the filtering network we have described is itself oscillating, and hence the signal gating mechanism is not recursive. In other words, the output of the filtering network would need to be desynchronized before it could be used as the input to another convergent pathway employing the same gating mechanism. Possible desynchronization mechanisms include neurons with subthreshold bursting dynamics to sustain spiking over the phase when they are not receiving strong input, or low pass filtering provided either by slow synaptic conductances, such as NMDA receptors, or by intrinsic neuronal properties, such as dendritic filtering.</p>
+      <p>A key signature of the described oscillatory gating mechanism is strong, coherent oscillation between sending and receiving regions during communication. Task-dependent increases in strength and interregion coherence of network oscillations have been reported in numerous brain systems, including the visual system during attentional processing (<xref rid="bib29 bib58 bib17" ref-type="bibr">Fries et al., 2001; Siegel et al., 2008; Buschman and Miller, 2007</xref>), the hippocampus (<xref rid="bib19" ref-type="bibr">Colgin et al., 2009</xref>) during memory tasks (<xref rid="bib44" ref-type="bibr">Montgomery and Buzsáki, 2007</xref>), between the amygdala and striatum during learning (<xref rid="bib52" ref-type="bibr">Popescu et al., 2009</xref>), the frontal and parietal cortex during working memory (N. Dotson et al., 2009, Soc. Neurosci., abstract) and decision making (<xref rid="bib51" ref-type="bibr">Pesaran et al., 2008</xref>), and within the motor system during movement tasks (<xref rid="bib40 bib55" ref-type="bibr">Lee, 2003; Schoffelen et al., 2005</xref>). Especially consistent with our model are those studies that have shown strong task-dependent synchronization in a narrow frequency band between distinct brain regions (<xref rid="bib52 bib51" ref-type="bibr">Popescu et al., 2009; Pesaran et al., 2008</xref>). In both these studies, the oscillatory activity was limited to a subpopulation of cells recorded in the relevant regions, and the oscillations were confined to short bursts. This dispersal of oscillatory activity suggests that without careful analysis the strength of oscillatory events may be underestimated as a result of spatial and temporal averaging.</p>
+      <p>Finally, the mechanism described here makes strong predictions for the intracellular currents during signal gating. If a network is gating “on” a subset of its inputs using the mechanism that we describe, the spike rate in principal cells will be strongly correlated with the amplitude of oscillatory fluctuation in its synaptic input. Additionally, spiking activity will be strongly correlated with a phase shift between periodic modulation of excitatory and inhibitory synaptic currents. These experimentally testable predictions are distinct from gating mechanisms, such as detailed balance (<xref rid="bib62" ref-type="bibr">Vogels and Abbott, 2009</xref>), that do not rely on oscillatory synchronization.</p>
+    </sec>
+    <sec sec-type="methods" id="sec4">
+      <title>Experimental Procedures</title>
+      <p>Simulations were performed with the software NEST (<xref rid="bib32" ref-type="bibr">Gewaltig and Diesmann, 2007</xref>), except those for <xref rid="app2" ref-type="sec">Figure S1</xref> and <xref rid="app2" ref-type="sec">Figures S3</xref>F–S3H, which were performed in BRIAN (<xref rid="bib33" ref-type="bibr">Goodman and Brette, 2009</xref>). A 0.1 ms time step was used for numerical integration. All data analysis and plotting were carried out in python with the use of the Ipython, Numpy, Scipy, and Matplotlib libraries.</p>
+      <sec id="sec4.1">
+        <title>Neurons</title>
+        <p>All neurons were described as exponential integrate-and-fire models (<xref rid="bib27" ref-type="bibr">Fourcaud-Trocmé et al., 2003</xref>), and synapses were conductance based with alpha-function time courses. The membrane potential of the exponential integrate-and-fire neuron obeys the following equation:<disp-formula><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mi>C</mml:mi><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mi>l</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>V</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mi>l</mml:mi></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mi>l</mml:mi></mml:msub><mml:msub><mml:mi mathvariant="italic">Δ</mml:mi><mml:mi mathvariant="italic">T</mml:mi></mml:msub><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mfrac><mml:mrow><mml:mi>V</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi mathvariant="italic">Δ</mml:mi><mml:mi mathvariant="italic">T</mml:mi></mml:msub></mml:mrow></mml:mfrac></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow></mml:msup><mml:mo>−</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mi>e</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>V</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mi>e</mml:mi></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mi>V</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:msub><mml:mi>I</mml:mi><mml:mi>e</mml:mi></mml:msub></mml:mrow></mml:math></disp-formula></p>
+        <p>When the membrane potential reaches the spike cutoff of 0 mV, it is reset to −65 mV.</p>
+        <p>The following parameters were the same across all neuron populations: membrane capacitance <italic>C</italic> = 100 pF, leak conductance <italic>g<sub>l</sub></italic> = 10 nS, leak reversal potential <italic>E<sub>l</sub></italic> = −60 mV, spike threshold <italic>V<sub>T</sub></italic> = −50 ± 2 mV, slope factor <italic>Δ<sub>T</sub></italic> = 2 mV, excitatory synaptic reversal potential <italic>E<sub>e</sub></italic> = 0 mV, inhibitory reversal potential <italic>E<sub>i</sub></italic> = −80 mV.</p>
+        <p>Synaptic time courses, synaptic conductances, and tonic current were different across populations:<list list-type="simple"><list-item><p>Sender network principal cells: excitatory alpha function τ = 4 ms, inhibitory τ = 3.5 ms, tonic current <italic>I<sub>e</sub></italic> = 30 ± 20 pA.</p></list-item><list-item><p>Sender network interneurons: excitatory τ = 4 ms, inhibitory τ = 3 ms, tonic current <italic>I<sub>e</sub></italic> = 30 ± 80 pA.</p></list-item><list-item><p>Receiver network principal cells: excitatory τ = 4 ms, inhibitory τ = 4 ms, tonic current <italic>I<sub>e</sub></italic> = 30 ± 20 pA.</p></list-item><list-item><p>Receiver network interneurons: excitatory τ = 4 ms, inhibitory τ = 8 ms, tonic current <italic>I<sub>e</sub></italic> = 30 ± 20 pA.</p></list-item></list></p>
+        <p>Heterogeneity was introduced in the populations by randomly varying the spike threshold and tonic current across individual cells according to a normal distribution. These parameters are quoted as mean ± standard deviation.</p>
+      </sec>
+      <sec id="sec4.2">
+        <title>Sender and Distractor Networks</title>
+        <p>The sender and distractor networks consisted of 8000 excitatory and 2000 inhibitory neurons with random internal connectivity. Each principal cell in the network received synaptic input from randomly selected 400 principal cells and 200 interneurons. Each interneuron received synaptic input from randomly selected 400 principal cells and 100 interneurons. Each pyramidal cell received external Poisson spike input, with a rate <italic>R<sub>ex</sub></italic> (in Hz) given by<disp-formula><alternatives><textual-form specific-use="jats-markup"><italic>R</italic><sub><italic>e</italic><italic>x</italic></sub>=400+140 cos(2(θ<sub><italic>s</italic><italic>t</italic><italic>i</italic><italic>m</italic></sub>−θ<sub><italic>p</italic><italic>r</italic><italic>e</italic><italic>f</italic></sub>)),</textual-form><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mi>x</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>400</mml:mn><mml:mo>+</mml:mo><mml:mn>140</mml:mn><mml:mspace width="0.25em"/><mml:mi>cos</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:mn>2</mml:mn><mml:mrow><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mi>θ</mml:mi><mml:mrow><mml:mi>s</mml:mi><mml:mi>t</mml:mi><mml:mi>i</mml:mi><mml:mi>m</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>θ</mml:mi><mml:mrow><mml:mi>p</mml:mi><mml:mi>r</mml:mi><mml:mi>e</mml:mi><mml:mi>f</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mtext>,</mml:mtext></mml:mrow></mml:math></alternatives></disp-formula>in which <italic>θ<sub>stim</sub></italic> was the current stimulus orientation and <italic>θ<sub>pref</sub></italic> was the neurons' preferred orientation. Each interneuron received external Poisson input with a constant rate of 400 Hz. In the asynchronous state, alpha-function peak conductivities (in nS) between external inputs (X), interneurons (I), and pyramidal cells (E) were: E-E = 0.1, E-I = 0.2, I-E = 0.6, I-I = 1.5, X-E = 1, X-I = 0.8. To switch the network into the oscillating state, the synapses from excitatory to inhibitory and from external to inhibitory were modified to E-I = 0.3, X-I = 0.4.</p>
+      </sec>
+      <sec id="sec4.3">
+        <title>Sender and Distractor Network Variants</title>
+        <p>For <xref rid="fig6" ref-type="fig">Figure 6</xref>, the sender network was modified by changing synaptic weights and time courses to produce two variants, one of which oscillated at ∼16 Hz and one of which oscillated at ∼100 Hz.</p>
+        <p>The following are 16 Hz beta frequency synaptic parameters:<list list-type="simple"><list-item><p>Principal cells: excitatory alpha function τ = 12 ms, inhibitory τ = 15 ms.</p></list-item><list-item><p>Interneurons: excitatory τ = 12 ms, inhibitory τ = 15 ms.</p></list-item><list-item><p>Alpha-function peak conductances (in nS): E-E = 0.05, E-I = 0.08, I-E = 0.1, I-I = 0.2, X-E = 0.47, X-I = 0.5.</p></list-item></list></p>
+        <p>The following are 100 Hz high gamma frequency synaptic parameters:<list list-type="simple"><list-item><p>Principal cells: excitatory alpha function τ = 4 ms, inhibitory τ = 3.5 ms.</p></list-item><list-item><p>Interneurons: excitatory τ = 4 ms, inhibitory τ = 2 ms.</p></list-item><list-item><p>Alpha-function peak conductivities (in nS): E-E = 0.1, E-I = 0.2, I-E = 0.6, I-I = 2.5, X-E = 1.55, X-I = 0.8.</p></list-item></list></p>
+        <p>For <xref rid="app2" ref-type="sec">Figures S3</xref>A–S3E three variant networks were created, with parameter values between those used for the asynchronous distractor network and those used for the oscillating sender network. These spanned the transition from asynchronous to sparsely synchronized dynamics. The only parameters changed were the synaptic strengths from the external input to the inhibitory interneurons and from the principal cells to the interneurons. In order of increasingly oscillatory dynamics, the modified alpha-function peak conductances (in nS) in the three variants were as follows:<list list-type="simple"><list-item><p>Variant one: X-I = 0.6, E-I = 0.24.</p></list-item><list-item><p>Variant two: X-I = 0.5, E-I = 0.26.</p></list-item><list-item><p>Variant three: X-I = 0.45, E-I = 0.28.</p></list-item></list></p>
+      </sec>
+      <sec id="sec4.4">
+        <title>Receiver Network</title>
+        <p>The receiver network consisted of 8000 input afferents, 2000 principal cells, and 2000 interneurons. The input afferents each had a preferred orientation, which varied smoothly across the population from 0° to 180°. Orientation tuning of interneuron and principal cell activity was inherited entirely from their connectivity to the input afferents; however, in describing the connectivity pattern, it is useful to think of each pyramidal cell and interneuron as having a predefined orientation preference that again varied across the population from 0° to 180°. For each connection type (for example, interneuron to principal cell), the average connection weight between a presynaptic cell and a postsynaptic target was defined as a Gaussian function of the separation of their orientation preferences. The Gaussian function was specified for each connection type by a width in orientation space and an average total number of afferents of that type received by each cell. The width of the connection pattern is the expected standard deviation of orientation preferences of the afferents received by a cell. For the connections between input afferents (X), principal cells (E), and interneurons (I), these connection widths were X-I = 13.5°, X-E = 13.5°, I-I = 13.5°, I-E = 17°. The average numbers of afferents received by a postsynaptic cell for each connection type were X-I = 100, X-E = 600, I-I = 200, I-E = 200. Specific connections onto each cell were generated stochastically, with the number of connections between a presynaptic and postsynaptic pair drawn from a Poisson distribution with a mean determined by the Gaussian distributions described above. The peak conductances (in nS) of the alpha function synaptic time course for each connection type were X-I = 0.3, X-E = 0.1, I-I = 0.1, I-E = 0.75.</p>
+      </sec>
+      <sec id="sec4.5">
+        <title>Filter Network Variants</title>
+        <p>Alternative implementations of the filtering network were created for <xref rid="app2" ref-type="sec">Figure S1</xref>. For simplicity, we did not implement a spatially mapped version of these networks in which different cells had different orientation preferences; instead, there was a single population of 800 input afferents whose firing rate was homogeneous. These projected to a population of 400 interneurons and 400 principal cells. The interneuron population was recurrently connected and made connections onto the principal cells. The connection probability between cells in each pathway (X-E, X-I, I-E, I-I) was such that the average number of inputs received by cells of each type was the same as in the original filtering network. Except where stated otherwise below, neuronal and synaptic parameters were the same as in the original filter network.</p>
+        <p>In the first variant filter network (<xref rid="app2" ref-type="sec">Figure S1</xref>C), interneurons had a spike AHP current modeled as an alpha-function conductance with τ = 10 ms, conductance 18 nS, and reversal potential −80 mV. Interneurons in this network were recurrently connected with gap junctions with a conductance of 0.04 nS and a connection probability of 0.5. The tonic current received by interneurons was 50 ± 20 pA, and the alpha function τ of I-I synapses was 3 mS.</p>
+        <p>The second filter network variant had two interneuron populations: a feed-forward (FF) population and an interneuron-selective (IS) population (green and purple, respectively, in the network diagram in <xref rid="app2" ref-type="sec">Figure S1</xref>D). For both populations, neuronal parameters and connections from the input afferents were the same as for the interneurons in the original filtering network. To describe the inhibitory connectivity, we state for each pathway the alpha function τ, peak conductance, and average number of synapses of each type received by a postsynaptic cell. FF-FF: τ = 3 ms, peak conductance = 0.1 nS, n synapses = 200. FF-principal cell: τ = 4 ms, peak conductance = 0.75 nS, n synapses = 200. IS-IS: τ = 8 ms, peak conductance = 0.1 nS, n synapses = 200. IS-FF: τ = 8 ms, peak conductance = 0.1 nS, n synapses = 200.</p>
+        <p>For comparison, we also implemented a pathway with no feed-forward inhibition (<xref rid="app2" ref-type="sec">Figure S1</xref>A). Each principal cell received, on average, 600 synaptic connections from input afferents with alpha function τ = 4 ms and peak conductance = 0.018 nS.</p>
+        <p>For <xref rid="app2" ref-type="sec">Figures S2</xref>E and S2F, we added an additional population of feedback interneurons to the filtering network. These had the same intrinsic properties as the normal interneurons in the filtering network except for the tonic current, which was 120 ± 20 pA. Each feedback interneuron received 100 excitatory synapses from randomly selected filter network principal cells with alpha function conductance τ = 4 ms, peak conductance = 0.6 nS, and reversal potential = 0 mV. Each feedback interneuron received 100 recurrent inhibitory synapses from randomly selected feedback interneurons with alpha function conductance τ = 3 ms, peak conductance = 1.5 nS, and reversal potential = −80 mV. Each filter network principal cell received 100 inhibitory synapses from randomly selected feedback interneurons with alpha function conductance τ = 4 ms, peak conductance = 0.6 nS, and reversal potential = −80. The tonic current received by filter network principal cells was increased to 120 ± 20 pA.</p>
+        <p>For <xref rid="app2" ref-type="sec">Figures S2</xref>G–S2I, we added a feedback connection from the filter network principal cells to the feed-forward interneurons. Each interneuron received 100 excitatory synapses from randomly selected filter network principal cells with alpha function conductance τ = 4 ms, reversal potential 0 mv. In <xref rid="app2" ref-type="sec">Figures S2</xref>G and S2H, the peak alpha function conductance is 0.075 nS, whereas in <xref rid="app2" ref-type="sec">Figure S2</xref>I it is 0.15 nS.</p>
+        <p>For <xref rid="app2" ref-type="sec">Figure S3</xref>F, we implemented a filtering network with the pass band tuned to 10 Hz. The filter network was identical to that used in <xref rid="app2" ref-type="sec">Figure S1</xref>B, except for synaptic time scales and strengths, which were as follows: Peak conductances: X-I 0.3 nS, X-E 0.1 nS, I-E 0.8 nS, I-I 0.1 nS. Alpha function τ: X-I 8 ms, X-E 8 ms, I-E 15 ms, I-I 30 ms.</p>
+      </sec>
+      <sec id="sec4.6">
+        <title>Simulations and Analysis</title>
+        <p>For each network configuration, we performed 200 simulations of 1 s of network activity The initial 100 ms of all simulations were discarded to prevent start-up transients contaminating the data.</p>
+        <p>To quantify the 0 Hz and gamma amplitude, as well as the decoded estimation accuracy, simulations were divided into nonoverlapping 50 ms sections. In all convergent pathway conditions, the orientations of the target and distractor stimuli were randomly drawn from uniform distributions. The spatial pattern of 0 Hz amplitude (average firing rate) and 41 Hz gamma amplitude for each section was analyzed by dividing the neurons into 20 subpopulations and pooling the activity in each group to produce a firing-rate signal (all population firing rates were discretized with a 1 ms time bin). The Fourier transform of these 20 firing-rate signals was analyzed with the use of a 50 ms Hanning window to reduce spectral leakage. The amplitude of the Fourier transforms was measured at 0 Hz, to give the population average firing rate, and at the 41 Hz oscillation frequency.</p>
+      </sec>
+      <sec id="sec4.7">
+        <title>Decoding</title>
+        <p>The 50 ms sections were divided into a training set and a test set. The spatial pattern of average firing rates and gamma amplitude across 20 subpopulations was calculated for each 50 ms section as described above. The training set was used to produce a template of the average firing rate (or gamma amplitude) <italic>R</italic> as a function of the orientation offset <italic>θ</italic> between the population's preferred orientation and the stimulus orientation. The template used was a least-squares fit of a Von Mises distribution to the average spatial pattern of firing rates (or gamma amplitudes) over the training set:<disp-formula><alternatives><textual-form specific-use="jats-markup">Template function:<italic>R</italic>(θ)=<italic>Ae</italic><sup>(<italic>k</italic> cos(2θ))</sup></textual-form><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mtext>Template function</mml:mtext><mml:mo>:</mml:mo><mml:mi>R</mml:mi><mml:mo>(</mml:mo><mml:mi>θ</mml:mi><mml:mo>)</mml:mo><mml:mo>=</mml:mo><mml:msup><mml:mi mathvariant="italic">Ae</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mi>k</mml:mi><mml:mspace width="0.25em"/><mml:mtext>cos</mml:mtext><mml:mo>(</mml:mo><mml:mn>2</mml:mn><mml:mi>θ</mml:mi><mml:mo>)</mml:mo><mml:mo>)</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></disp-formula></p>
+        <p>This template function was then used to decode an estimate of the stimulus orientation for each section in the test set by finding the orientation estimate <italic>θ<sub>est</sub></italic> that minimized the least-squared error between the measured firing rates (or gamma amplitudes) and the template function. We report the standard deviation of these estimates over the training set, the lower bound on the Fisher information given by the reciprocal of the variance and the circular correlation coefficient (<xref rid="bib26" ref-type="bibr">Fisher and Lee, 1983</xref>) between the uniformly distributed target stimuli and their decoded estimates.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Anderson</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Van Essen</surname>
+              <given-names>D.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Shifter circuits: a computational strategy for dynamic aspects of visual processing</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <volume>84</volume>
+          <year>1987</year>
+          <fpage>6297</fpage>
+          <lpage>6301</lpage>
+          <pub-id pub-id-type="pmid">3114747</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Anderson</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Bothell</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Byrne</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Douglass</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Lebiere</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Qin</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>An integrated theory of the mind</article-title>
+          <source>Psychol. Rev.</source>
+          <volume>111</volume>
+          <year>2004</year>
+          <fpage>1036</fpage>
+          <lpage>1060</lpage>
+          <pub-id pub-id-type="pmid">15482072</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Atallah</surname>
+              <given-names>B.V.</given-names>
+            </name>
+            <name>
+              <surname>Scanziani</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Instantaneous modulation of gamma oscillation frequency by balancing excitation with inhibition</article-title>
+          <source>Neuron</source>
+          <volume>62</volume>
+          <year>2009</year>
+          <fpage>566</fpage>
+          <lpage>577</lpage>
+          <pub-id pub-id-type="pmid">19477157</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bauer</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Oostenveld</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Peeters</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Fries</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tactile spatial attention enhances gamma-band activity in somatosensory cortex and reduces low-frequency activity in parieto-occipital areas</article-title>
+          <source>J. Neurosci.</source>
+          <volume>26</volume>
+          <year>2006</year>
+          <fpage>490</fpage>
+          <lpage>501</lpage>
+          <pub-id pub-id-type="pmid">16407546</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bennett</surname>
+              <given-names>M.V.L.</given-names>
+            </name>
+            <name>
+              <surname>Zukin</surname>
+              <given-names>R.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electrical coupling and neuronal synchronization in the Mammalian brain</article-title>
+          <source>Neuron</source>
+          <volume>41</volume>
+          <year>2004</year>
+          <fpage>495</fpage>
+          <lpage>511</lpage>
+          <pub-id pub-id-type="pmid">14980200</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berman</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Colby</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Attention and active vision</article-title>
+          <source>Vision Res.</source>
+          <volume>49</volume>
+          <year>2009</year>
+          <fpage>1233</fpage>
+          <lpage>1248</lpage>
+          <pub-id pub-id-type="pmid">18627774</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bichot</surname>
+              <given-names>N.P.</given-names>
+            </name>
+            <name>
+              <surname>Rossi</surname>
+              <given-names>A.F.</given-names>
+            </name>
+            <name>
+              <surname>Desimone</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Parallel and serial neural mechanisms for visual search in macaque area V4</article-title>
+          <source>Science</source>
+          <volume>308</volume>
+          <year>2005</year>
+          <fpage>529</fpage>
+          <lpage>534</lpage>
+          <pub-id pub-id-type="pmid">15845848</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Börgers</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Epstein</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Kopell</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Background gamma rhythmicity and attention in cortical local circuits: a computational study</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <volume>102</volume>
+          <year>2005</year>
+          <fpage>7002</fpage>
+          <lpage>7007</lpage>
+          <pub-id pub-id-type="pmid">15870189</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Börgers</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Epstein</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Kopell</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gamma oscillations mediate stimulus competition and attentional selection in a cortical network model</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <volume>105</volume>
+          <year>2008</year>
+          <fpage>18023</fpage>
+          <lpage>18028</lpage>
+          <pub-id pub-id-type="pmid">19004759</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bragin</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Jandó</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Nádasdy</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Hetke</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Wise</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Buzsáki</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gamma (40-100 Hz) oscillation in the hippocampus of the behaving rat</article-title>
+          <source>J. Neurosci.</source>
+          <volume>15</volume>
+          <year>1995</year>
+          <fpage>47</fpage>
+          <lpage>60</lpage>
+          <pub-id pub-id-type="pmid">7823151</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brefczynski</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>DeYoe</surname>
+              <given-names>E.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A physiological correlate of the ‘spotlight’ of visual attention</article-title>
+          <source>Nat. Neurosci.</source>
+          <volume>2</volume>
+          <year>1999</year>
+          <fpage>370</fpage>
+          <lpage>374</lpage>
+          <pub-id pub-id-type="pmid">10204545</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brunel</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Hakim</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast global oscillations in networks of integrate-and-fire neurons with low firing rates</article-title>
+          <source>Neural Comput.</source>
+          <volume>11</volume>
+          <year>1999</year>
+          <fpage>1621</fpage>
+          <lpage>1671</lpage>
+          <pub-id pub-id-type="pmid">10490941</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brunel</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Hakim</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sparsely synchronized neuronal oscillations</article-title>
+          <source>Chaos</source>
+          <volume>18</volume>
+          <year>2008</year>
+          <fpage>015113</fpage>
+          <pub-id pub-id-type="pmid">18377094</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib14">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brunel</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Hansel</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>How noise affects the synchronization properties of recurrent networks of inhibitory neurons</article-title>
+          <source>Neural Comput.</source>
+          <volume>18</volume>
+          <year>2006</year>
+          <fpage>1066</fpage>
+          <lpage>1110</lpage>
+          <pub-id pub-id-type="pmid">16595058</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib15">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buehlmann</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Deco</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The neuronal basis of attention: rate versus synchronization modulation</article-title>
+          <source>J. Neurosci.</source>
+          <volume>28</volume>
+          <year>2008</year>
+          <fpage>7679</fpage>
+          <lpage>7686</lpage>
+          <pub-id pub-id-type="pmid">18650344</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib16">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Burchell</surname>
+              <given-names>T.R.</given-names>
+            </name>
+            <name>
+              <surname>Faulkner</surname>
+              <given-names>H.J.</given-names>
+            </name>
+            <name>
+              <surname>Whittington</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gamma frequency oscillations gate temporally coded afferent inputs in the rat hippocampal slice</article-title>
+          <source>Neurosci. Lett.</source>
+          <volume>255</volume>
+          <year>1998</year>
+          <fpage>151</fpage>
+          <lpage>154</lpage>
+          <pub-id pub-id-type="pmid">9832195</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib17">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buschman</surname>
+              <given-names>T.J.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>E.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Top-down versus bottom-up control of attention in the prefrontal and posterior parietal cortices</article-title>
+          <source>Science</source>
+          <volume>315</volume>
+          <year>2007</year>
+          <fpage>1860</fpage>
+          <lpage>1862</lpage>
+          <pub-id pub-id-type="pmid">17395832</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib18">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chu</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Galarreta</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Hestrin</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Synaptic interactions of late-spiking neocortical neurons in layer 1</article-title>
+          <source>J. Neurosci.</source>
+          <volume>23</volume>
+          <year>2003</year>
+          <fpage>96</fpage>
+          <lpage>102</lpage>
+          <pub-id pub-id-type="pmid">12514205</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib19">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Colgin</surname>
+              <given-names>L.L.</given-names>
+            </name>
+            <name>
+              <surname>Denninger</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Fyhn</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Hafting</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Bonnevie</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Jensen</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Moser</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>Moser</surname>
+              <given-names>E.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Frequency of gamma oscillations routes flow of information in the hippocampus</article-title>
+          <source>Nature</source>
+          <volume>462</volume>
+          <year>2009</year>
+          <fpage>353</fpage>
+          <lpage>357</lpage>
+          <pub-id pub-id-type="pmid">19924214</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib20">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crick</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Koch</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Some reflections on visual awareness</article-title>
+          <source>Cold Spring Harb Symp Quant Biol.</source>
+          <volume>55</volume>
+          <year>1990</year>
+          <fpage>953</fpage>
+          <lpage>962</lpage>
+          <pub-id pub-id-type="pmid">2132872</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib21">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Csicsvari</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hirase</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Czurko</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Buzsáki</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reliability and state dependence of pyramidal cell-interneuron synapses in the hippocampus: an ensemble approach in the behaving rat</article-title>
+          <source>Neuron</source>
+          <volume>21</volume>
+          <year>1998</year>
+          <fpage>179</fpage>
+          <lpage>189</lpage>
+          <pub-id pub-id-type="pmid">9697862</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib22">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>de Almeida</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Idiart</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lisman</surname>
+              <given-names>J.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A second function of gamma frequency oscillations: an E%-max winner-take-all mechanism selects which cells fire</article-title>
+          <source>J. Neurosci.</source>
+          <volume>29</volume>
+          <year>2009</year>
+          <fpage>7497</fpage>
+          <lpage>7503</lpage>
+          <pub-id pub-id-type="pmid">19515917</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib23">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deneve</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Latham</surname>
+              <given-names>P.E.</given-names>
+            </name>
+            <name>
+              <surname>Pouget</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reading population codes: a neural implementation of ideal observers</article-title>
+          <source>Nat. Neurosci.</source>
+          <volume>2</volume>
+          <year>1999</year>
+          <fpage>740</fpage>
+          <lpage>745</lpage>
+          <pub-id pub-id-type="pmid">10412064</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib24">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Destexhe</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Rudolph</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Paré</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>The high-conductance state of neocortical neurons in vivo</article-title>
+          <source>Nat. Rev. Neurosci.</source>
+          <volume>4</volume>
+          <year>2003</year>
+          <fpage>739</fpage>
+          <lpage>751</lpage>
+          <pub-id pub-id-type="pmid">12951566</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib25">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Doesburg</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Roggeveen</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Kitajo</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Ward</surname>
+              <given-names>L.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Large-scale gamma-band phase synchronization and selective attention</article-title>
+          <source>Cereb. Cortex</source>
+          <volume>18</volume>
+          <year>2008</year>
+          <fpage>386</fpage>
+          <lpage>396</lpage>
+          <pub-id pub-id-type="pmid">17556771</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib26">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fisher</surname>
+              <given-names>N.I.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>A.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>A correlation coefficient for circular data</article-title>
+          <source>Biometrika</source>
+          <volume>70</volume>
+          <year>1983</year>
+          <fpage>327</fpage>
+          <lpage>332</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib27">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fourcaud-Trocmé</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Hansel</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>van Vreeswijk</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Brunel</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>How spike generation mechanisms determine the neuronal response to fluctuating inputs</article-title>
+          <source>J. Neurosci.</source>
+          <volume>23</volume>
+          <year>2003</year>
+          <fpage>11628</fpage>
+          <lpage>11640</lpage>
+          <pub-id pub-id-type="pmid">14684865</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib28">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fries</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>A mechanism for cognitive dynamics: neuronal communication through neuronal coherence</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <volume>9</volume>
+          <year>2005</year>
+          <fpage>474</fpage>
+          <lpage>480</lpage>
+          <pub-id pub-id-type="pmid">16150631</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib29">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fries</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Reynolds</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Rorie</surname>
+              <given-names>A.E.</given-names>
+            </name>
+            <name>
+              <surname>Desimone</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modulation of oscillatory neuronal synchronization by selective visual attention</article-title>
+          <source>Science</source>
+          <volume>291</volume>
+          <year>2001</year>
+          <fpage>1560</fpage>
+          <lpage>1563</lpage>
+          <pub-id pub-id-type="pmid">11222864</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib30">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fries</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Nikolić</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Singer</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>The gamma cycle</article-title>
+          <source>Trends Neurosci.</source>
+          <volume>30</volume>
+          <year>2007</year>
+          <fpage>309</fpage>
+          <lpage>316</lpage>
+          <pub-id pub-id-type="pmid">17555828</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib31">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gandhi</surname>
+              <given-names>S.P.</given-names>
+            </name>
+            <name>
+              <surname>Heeger</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Boynton</surname>
+              <given-names>G.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spatial attention affects brain activity in human primary visual cortex</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <volume>96</volume>
+          <year>1999</year>
+          <fpage>3314</fpage>
+          <lpage>3319</lpage>
+          <pub-id pub-id-type="pmid">10077681</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib32">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gewaltig</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Diesmann</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>NEST (Neural Simulation Tool)</article-title>
+          <source>Scholarpedia</source>
+          <volume>2</volume>
+          <year>2007</year>
+          <fpage>1430</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bib33">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goodman</surname>
+              <given-names>D.F.M.</given-names>
+            </name>
+            <name>
+              <surname>Brette</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>The brian simulator</article-title>
+          <source>Front Neurosci.</source>
+          <volume>3</volume>
+          <year>2009</year>
+          <fpage>192</fpage>
+          <lpage>197</lpage>
+          <pub-id pub-id-type="pmid">20011141</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib34">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gregoriou</surname>
+              <given-names>G.G.</given-names>
+            </name>
+            <name>
+              <surname>Gotts</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Desimone</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>High-frequency, long-range coupling between prefrontal and visual cortex during attention</article-title>
+          <source>Science</source>
+          <volume>324</volume>
+          <year>2009</year>
+          <fpage>1207</fpage>
+          <lpage>1210</lpage>
+          <pub-id pub-id-type="pmid">19478185</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib35">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Haider</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Duque</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hasenstaub</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>McCormick</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neocortical network activity in vivo is generated through a dynamic balance of excitation and inhibition</article-title>
+          <source>J. Neurosci.</source>
+          <volume>26</volume>
+          <year>2006</year>
+          <fpage>4535</fpage>
+          <lpage>4545</lpage>
+          <pub-id pub-id-type="pmid">16641233</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib36">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hájos</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Pálhalmi</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Mann</surname>
+              <given-names>E.O.</given-names>
+            </name>
+            <name>
+              <surname>Németh</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Paulsen</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Freund</surname>
+              <given-names>T.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spike timing of distinct types of GABAergic interneuron during hippocampal gamma oscillations in vitro</article-title>
+          <source>J. Neurosci.</source>
+          <volume>24</volume>
+          <year>2004</year>
+          <fpage>9127</fpage>
+          <lpage>9137</lpage>
+          <pub-id pub-id-type="pmid">15483131</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib37">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hasenstaub</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Shu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Haider</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Kraushaar</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Duque</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>McCormick</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Inhibitory postsynaptic potentials carry synchronized frequency information in active cortical networks</article-title>
+          <source>Neuron</source>
+          <volume>47</volume>
+          <year>2005</year>
+          <fpage>423</fpage>
+          <lpage>435</lpage>
+          <pub-id pub-id-type="pmid">16055065</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib38">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hestrin</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Galarreta</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electrical synapses define networks of neocortical GABAergic neurons</article-title>
+          <source>Trends Neurosci.</source>
+          <volume>28</volume>
+          <year>2005</year>
+          <fpage>304</fpage>
+          <lpage>309</lpage>
+          <pub-id pub-id-type="pmid">15927686</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib39">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jensen</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Colgin</surname>
+              <given-names>L.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cross-frequency coupling between neuronal oscillations</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <volume>11</volume>
+          <year>2007</year>
+          <fpage>267</fpage>
+          <lpage>269</lpage>
+          <pub-id pub-id-type="pmid">17548233</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib40">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coherent oscillations in neuronal activity of the supplementary motor area during a visuomotor task</article-title>
+          <source>J. Neurosci.</source>
+          <volume>23</volume>
+          <year>2003</year>
+          <fpage>6798</fpage>
+          <lpage>6809</lpage>
+          <pub-id pub-id-type="pmid">12890774</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib41">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Logothetis</surname>
+              <given-names>N.K.</given-names>
+            </name>
+            <name>
+              <surname>Pauls</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Augath</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Trinath</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Oeltermann</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neurophysiological investigation of the basis of the fMRI signal</article-title>
+          <source>Nature</source>
+          <volume>412</volume>
+          <year>2001</year>
+          <fpage>150</fpage>
+          <lpage>157</lpage>
+          <pub-id pub-id-type="pmid">11449264</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib42">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Masuda</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Selective Population Rate Coding: A Possible Computational Role of Gamma Oscillations in Selective Attention</article-title>
+          <source>Neural Comput.</source>
+          <volume>21</volume>
+          <year>2009</year>
+          <fpage>3335</fpage>
+          <lpage>3362</lpage>
+          <pub-id pub-id-type="pmid">19686062</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib43">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mishra</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Fellous</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Sejnowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Selective attention through phase relationship of excitatory and inhibitory input synchrony in a model cortical neuron</article-title>
+          <source>Neural Netw.</source>
+          <volume>19</volume>
+          <year>2006</year>
+          <fpage>1329</fpage>
+          <lpage>1346</lpage>
+          <pub-id pub-id-type="pmid">17027225</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib44">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Montgomery</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Buzsáki</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gamma oscillations dynamically couple hippocampal CA3 and CA1 regions during memory task performance</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <volume>104</volume>
+          <year>2007</year>
+          <fpage>14495</fpage>
+          <lpage>14500</lpage>
+          <pub-id pub-id-type="pmid">17726109</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib45">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Niebur</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Koch</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Rosin</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>An oscillation-based model for the neuronal basis of attention</article-title>
+          <source>Vision Res.</source>
+          <volume>33</volume>
+          <year>1993</year>
+          <fpage>2789</fpage>
+          <lpage>2802</lpage>
+          <pub-id pub-id-type="pmid">8296473</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib46">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>O'Keefe</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Recce</surname>
+              <given-names>M.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Phase relationship between hippocampal place units and the EEG theta rhythm</article-title>
+          <source>Hippocampus</source>
+          <volume>3</volume>
+          <year>1993</year>
+          <fpage>317</fpage>
+          <lpage>330</lpage>
+          <pub-id pub-id-type="pmid">8353611</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib47">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Olshausen</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Van Essen</surname>
+              <given-names>D.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A neurobiological model of visual attention and invariant pattern recognition based on dynamic routing of information</article-title>
+          <source>J. Neurosci.</source>
+          <volume>13</volume>
+          <year>1993</year>
+          <fpage>4700</fpage>
+          <lpage>4719</lpage>
+          <pub-id pub-id-type="pmid">8229193</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib48">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oren</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Mann</surname>
+              <given-names>E.O.</given-names>
+            </name>
+            <name>
+              <surname>Paulsen</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Hájos</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Synaptic currents in anatomically identified CA3 neurons during hippocampal gamma oscillations in vitro</article-title>
+          <source>J. Neurosci.</source>
+          <volume>26</volume>
+          <year>2006</year>
+          <fpage>9923</fpage>
+          <lpage>9934</lpage>
+          <pub-id pub-id-type="pmid">17005856</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib49">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Palva</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Palva</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>New vistas for alpha-frequency band oscillations</article-title>
+          <source>Trends Neurosci.</source>
+          <volume>30</volume>
+          <year>2007</year>
+          <fpage>150</fpage>
+          <lpage>158</lpage>
+          <pub-id pub-id-type="pmid">17307258</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib50">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pelli</surname>
+              <given-names>D.G.</given-names>
+            </name>
+            <name>
+              <surname>Tillman</surname>
+              <given-names>K.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The uncrowded window of object recognition</article-title>
+          <source>Nat. Neurosci.</source>
+          <volume>11</volume>
+          <year>2008</year>
+          <fpage>1129</fpage>
+          <lpage>1135</lpage>
+          <pub-id pub-id-type="pmid">18828191</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib51">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pesaran</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Nelson</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Andersen</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Free choice activates a decision circuit between frontal and parietal cortex</article-title>
+          <source>Nature</source>
+          <volume>453</volume>
+          <year>2008</year>
+          <fpage>406</fpage>
+          <lpage>409</lpage>
+          <pub-id pub-id-type="pmid">18418380</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib52">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Popescu</surname>
+              <given-names>A.T.</given-names>
+            </name>
+            <name>
+              <surname>Popa</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Paré</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coherent gamma oscillations couple the amygdala and striatum during learning</article-title>
+          <source>Nat. Neurosci.</source>
+          <volume>12</volume>
+          <year>2009</year>
+          <fpage>801</fpage>
+          <lpage>807</lpage>
+          <pub-id pub-id-type="pmid">19430471</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib53">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roopun</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Kramer</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Carracedo</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Kaiser</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Davies</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Traub</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Kopell</surname>
+              <given-names>N.J.</given-names>
+            </name>
+            <name>
+              <surname>Whittington</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Temporal Interactions between Cortical Rhythms</article-title>
+          <source>Front Neurosci.</source>
+          <volume>2</volume>
+          <year>2008</year>
+          <fpage>145</fpage>
+          <lpage>154</lpage>
+          <pub-id pub-id-type="pmid">19225587</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib54">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salinas</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Sejnowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Correlated neuronal activity and the flow of neural information</article-title>
+          <source>Nat. Rev. Neurosci.</source>
+          <volume>2</volume>
+          <year>2001</year>
+          <fpage>539</fpage>
+          <lpage>550</lpage>
+          <pub-id pub-id-type="pmid">11483997</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib55">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schoffelen</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Oostenveld</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Fries</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuronal coherence as a mechanism of effective corticospinal interaction</article-title>
+          <source>Science</source>
+          <volume>308</volume>
+          <year>2005</year>
+          <fpage>111</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="pmid">15802603</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib56">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seidemann</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Newsome</surname>
+              <given-names>W.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Effect of spatial attention on the responses of area MT neurons</article-title>
+          <source>J. Neurophysiol.</source>
+          <volume>81</volume>
+          <year>1999</year>
+          <fpage>1783</fpage>
+          <lpage>1794</lpage>
+          <pub-id pub-id-type="pmid">10200212</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib57">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Hasenstaub</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>McCormick</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Turning on and off recurrent balanced cortical activity</article-title>
+          <source>Nature</source>
+          <volume>423</volume>
+          <year>2003</year>
+          <fpage>288</fpage>
+          <lpage>293</lpage>
+          <pub-id pub-id-type="pmid">12748642</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib58">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Siegel</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Donner</surname>
+              <given-names>T.H.</given-names>
+            </name>
+            <name>
+              <surname>Oostenveld</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Fries</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Engel</surname>
+              <given-names>A.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuronal synchronization along the dorsal visual pathway reflects the focus of spatial attention</article-title>
+          <source>Neuron</source>
+          <volume>60</volume>
+          <year>2008</year>
+          <fpage>709</fpage>
+          <lpage>719</lpage>
+          <pub-id pub-id-type="pmid">19038226</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib59">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Mandon</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Freiwald</surname>
+              <given-names>W.A.</given-names>
+            </name>
+            <name>
+              <surname>Kreiter</surname>
+              <given-names>A.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coherent oscillatory activity in monkey area v4 predicts successful allocation of attention</article-title>
+          <source>Cereb. Cortex</source>
+          <volume>15</volume>
+          <year>2005</year>
+          <fpage>1424</fpage>
+          <lpage>1437</lpage>
+          <pub-id pub-id-type="pmid">15659657</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib60">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tiesinga</surname>
+              <given-names>P.H.</given-names>
+            </name>
+            <name>
+              <surname>Fellous</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Salinas</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>José</surname>
+              <given-names>J.V.</given-names>
+            </name>
+            <name>
+              <surname>Sejnowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Inhibitory synchrony as a mechanism for attentional gain modulation</article-title>
+          <source>J. Physiol. (Paris)</source>
+          <volume>98</volume>
+          <year>2004</year>
+          <fpage>296</fpage>
+          <lpage>314</lpage>
+          <pub-id pub-id-type="pmid">16274973</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib61">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van Vreeswijk</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Sompolinsky</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Chaos in neuronal networks with balanced excitatory and inhibitory activity</article-title>
+          <source>Science</source>
+          <volume>274</volume>
+          <year>1996</year>
+          <fpage>1724</fpage>
+          <lpage>1726</lpage>
+          <pub-id pub-id-type="pmid">8939866</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib62">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vogels</surname>
+              <given-names>T.P.</given-names>
+            </name>
+            <name>
+              <surname>Abbott</surname>
+              <given-names>L.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gating multiple signals through detailed balance of excitation and inhibition in spiking networks</article-title>
+          <source>Nat. Neurosci.</source>
+          <volume>12</volume>
+          <year>2009</year>
+          <fpage>483</fpage>
+          <lpage>491</lpage>
+          <pub-id pub-id-type="pmid">19305402</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib63">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>X.J.</given-names>
+            </name>
+            <name>
+              <surname>Buzsáki</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gamma oscillation by synaptic inhibition in a hippocampal interneuronal network model</article-title>
+          <source>J. Neurosci.</source>
+          <volume>16</volume>
+          <year>1996</year>
+          <fpage>6402</fpage>
+          <lpage>6413</lpage>
+          <pub-id pub-id-type="pmid">8815919</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib64">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Whittington</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Traub</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Jefferys</surname>
+              <given-names>J.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Synchronized oscillations in interneuron networks driven by metabotropic glutamate receptor activation</article-title>
+          <source>Nature</source>
+          <volume>373</volume>
+          <year>1995</year>
+          <fpage>612</fpage>
+          <lpage>615</lpage>
+          <pub-id pub-id-type="pmid">7854418</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib65">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zeitler</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Fries</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Gielen</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Biased competition through variations in amplitude of γ-oscillations</article-title>
+          <source>J. Comput. Neurosci.</source>
+          <volume>25</volume>
+          <year>2008</year>
+          <fpage>89</fpage>
+          <lpage>107</lpage>
+          <pub-id pub-id-type="pmid">18293071</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib66">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zylberberg</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Fernández Slezak</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Roelfsema</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Dehaene</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Sigman</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The brain's router: a cortical network model of serial processing in the primate brain</article-title>
+          <source>PLoS Comput. Biol.</source>
+          <volume>6</volume>
+          <year>2010</year>
+          <fpage>e1000765</fpage>
+          <pub-id pub-id-type="pmid">20442869</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec id="app2" sec-type="supplementary-material">
+      <title>Supplemental Information</title>
+      <p>
+        <supplementary-material content-type="local-data" id="mmc1">
+          <caption>
+            <title>Document S1. Supplemental Results and Three Figures</title>
+          </caption>
+          <media xlink:href="mmc1.pdf" mimetype="application" mime-subtype="pdf"/>
+        </supplementary-material>
+      </p>
+    </sec>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the Wellcome Trust and the European Research Council. We are grateful to P. Latham for helpful discussion and comments on the manuscript.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Figure 1</label>
+      <caption>
+        <p>Population-Coded Information and Oscillations</p>
+        <p>Input networks represent independent variables as population codes with bell-shaped firing-rate tuning curves with respect to stimulus orientation. If one input network switches from an asynchronous state (blue) to an oscillating state (red), how much more information is available to the output network about the variable that it encodes?</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Figure 2</label>
+      <caption>
+        <p>Sender Network Activity</p>
+        <p>(A and B) Spike raster showing 100 ms of activity in the sender network in the asynchronous (A) and oscillating (B) states. (A1 and B1) principal cell spike raster. (A2 and B2) Interneuron spike raster. (A3 and B3) Average firing rate for the principal cells (blue) and interneurons (green). (A4 and B4) Membrane potential of sample principal cell. (A5 and B5) Synaptic currents in sample principal cell (excitatory: blue; inhibitory: green; net current: red).</p>
+        <p>(C) Average firing rate of a subpopulation of 400 principal cells over a 50 ms window in the asynchronous (C1) and oscillatory (C2) states. Activity was sampled from the areas indicated by colored outlines in the spike rasters (A1 and B1).</p>
+        <p>(D) Fourier transforms of the subpopulation firing rates shown in (C). Arrows illustrate the 0 Hz (average firing rate) and 41 Hz (gamma amplitude) measurements used in later analysis.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Figure 3</label>
+      <caption>
+        <p>Stimulus Representation in Network Activity</p>
+        <p>(A) Activity in one oscillating and three asynchronous sender networks during 50 ms. (A1) Spike raster. (A2) Average principal cell firing rate for 20 subpopulations, each of 400 neurons. (A3) Spatial pattern of gamma amplitude (population firing-rate oscillation amplitude at 41 Hz) across the 20 subpopulations.</p>
+        <p>(B) Postsynaptic input obtained by summing activity in the four sender networks.</p>
+        <p>(C) Average 0 Hz amplitude (solid line) and gamma amplitude (dashed line) as function of stimulus orientation for (C1) presynaptic activity in oscillating (red) and asynchronous (blue) networks and (C2) summed postsynaptic input. Error bars represent standard deviation. For the combined input, both gamma amplitude and firing rate (0 Hz amplitude) show stimulus tuning, but the gamma amplitude is far less variable because of the small contribution of distracting inputs.</p>
+        <p>(D) Accuracy of stimulus representation as measured by the orientation estimate standard deviation (D1) and Fisher information (D2); estimates decoded from activity in the sender network (S) or from the combined input from sender and distractor populations when the sender network was in an asynchronous state (A) or an oscillatory state (O).</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Figure 4</label>
+      <caption>
+        <p>Filter Network</p>
+        <p>(A) Diagram of filter network connectivity showing the input afferents (black), feed-forward interneuron layer (green), and principal cells (blue).</p>
+        <p>(B) Resonance in filter network interneuron population activity. Panels show the firing rate of the interneuron population (green) driven by periodically modulated Poisson spike input (mean rate indicated in black) at a range of frequencies bracketing the network resonance frequency (see <xref rid="app2" ref-type="sec">Figure S1</xref> as well).</p>
+        <p>(C–E) Filter network principal cells reproduce position of oscillating input activity, irrespective of spatial pattern of asynchronous input. Filter network activity is driven by (C) asynchronous input, (D) gamma-modulated input, (E) mixed gamma-modulated and asynchronous input. (C1, D1, E1) Spatial pattern of firing rates in afferent fibers (black: asynchronous Poisson input, Poisson input sinusoidally modulated at 40 Hz). (C2, D2, E2) Spatial pattern of the firing rate in the interneuron layer. (C3, D3, E3) Spatial pattern of the firing rate in the principal cell layer. (C4, D4, E4) Spike raster for principal cells. (C5, D5, E5) Spike raster for interneurons. (C6, D6, E6) Firing rate of principal cell (blue) and interneuron (green) populations. See <xref rid="app2" ref-type="sec">Figure S2</xref> as well.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Figure 5</label>
+      <caption>
+        <p>Time Course of Switching between Input Stimuli</p>
+        <p>(A) Accuracy of the stimulus estimate decoded from the filter network output during the switch between input networks.</p>
+        <p>(B) Firing rate in the input networks during switching. Blue traces: network switching from oscillating to asynchronous. Black traces: network switching from asynchronous to oscillating (note slow transition into oscillating state). Red traces: network rapidly switched from asynchronous to oscillating by giving the interneuron population a brief kick at the time of transition.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Figure 6</label>
+      <caption>
+        <p>Multiplexing Multiple Signals in the Frequency Domain</p>
+        <p>Four input networks, one asynchronous, one oscillating in the high gamma band, one in the low gamma band, and one in the beta band, converge to produce a combined pattern of input activity. Reading out the pattern of amplitude of the combined input at the appropriate frequency recovers the spatial pattern of activity in any one of the oscillating networks.</p>
+        <p>(A) Spike rasters.</p>
+        <p>(B) Spatial patterns of the firing rate.</p>
+        <p>(C–E) Spatial pattern of the firing-rate oscillation amplitude in beta (C), low gamma (D), and high gamma (E) frequency bands. See <xref rid="app2" ref-type="sec">Figure S3</xref> as well.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Figure 7</label>
+      <caption>
+        <p>Gating Time-Varying Stimuli</p>
+        <p>(A) Spike rasters of principal cells in four input networks, each encoding a different time-varying stimulus. The network generating the raster (A1) is in the oscillating state, while the other three networks are in the asynchronous state.</p>
+        <p>(B) Combined input obtained by summing activity in the input networks: (B1) spike raster, (B2) spatiotemporal pattern of gamma band amplitude, together with the stimulus driving oscillating network (red line) and the decoded stimulus estimate (black dots).</p>
+        <p>(C) Activity in the filtering network when driven by convergent input: (C1) principal cell spike raster (black), stimulus driving oscillating network (red), stimulus estimate decoded from pyramidal cell activity (blue), (C2) interneuron spike raster, (C3) membrane potential of a sample principal cell, (C4) synaptic currents in a sample principal cell (inhibitory: green; excitatory: blue; net current: red).</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+  </floats-group>
+</article>

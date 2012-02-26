@@ -1,0 +1,1743 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Mol Cell</journal-id>
+      <journal-title>Molecular Cell</journal-title>
+      <issn pub-type="ppub">1097-2765</issn>
+      <issn pub-type="epub">1097-4164</issn>
+      <publisher>
+        <publisher-name>Cell Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2779338</article-id>
+      <article-id pub-id-type="pmid">19818712</article-id>
+      <article-id pub-id-type="publisher-id">MOLCEL3207</article-id>
+      <article-id pub-id-type="doi">10.1016/j.molcel.2009.07.028</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Fail-Safe Transcriptional Termination for Protein-Coding Genes in <italic>S. cerevisiae</italic></article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rondón</surname>
+            <given-names>Ana G.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mischo</surname>
+            <given-names>Hannah E.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kawauchi</surname>
+            <given-names>Junya</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Proudfoot</surname>
+            <given-names>Nick J.</given-names>
+          </name>
+          <email>nicholas.proudfoot@path.ox.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">1</xref>
+          <xref rid="cor1" ref-type="corresp">∗</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>1</sup>Sir William Dunn School of Pathology, University of Oxford, South Parks Road, Oxford OX1 3RE, UK</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>∗</label>Corresponding author <email>nicholas.proudfoot@path.ox.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>09</day>
+        <month>10</month>
+        <year>2009</year>
+      </pub-date>
+      <volume>36</volume>
+      <issue>1</issue>
+      <fpage>88</fpage>
+      <lpage>98</lpage>
+      <history>
+        <date date-type="received">
+          <day>23</day>
+          <month>2</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>5</day>
+          <month>6</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>22</day>
+          <month>7</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2009 ELL &amp; Excerpta Medica</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Summary</title>
+        <p>Transcription termination of RNA polymerase II (Pol II) on protein-coding genes in <italic>S. cerevisiae</italic> relies on pA site recognition by 3′ end processing factors. Here we demonstrate the existence of two alternative termination mechanisms that rescue polymerases failing to disengage from the template at pA sites. One of these fail-safe mechanisms is mediated by the NRD complex, similar to termination of short noncoding genes. The other termination mechanism is mediated by Rnt1 cleavage of the nascent transcript. Both fail-safe termination mechanisms trigger degradation of readthrough transcripts by the exosome. However, Rnt1-mediated termination can also enhance the usage of weak pA signals and thereby generate functional mRNA. We propose that these alternative Pol II termination pathways serve the dual function of avoiding transcription interference and promoting rapid removal of aberrant transcripts.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>DNA</kwd>
+        <kwd>RNA</kwd>
+        <kwd>PROTEINS</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec1">
+      <title>Introduction</title>
+      <p>RNA polymerase II (Pol II) in <italic>S. cerevisiae</italic> transcribes genes for either polyadenylated mRNA or noncoding RNA such as small nuclear RNA (snRNA) and small nucleolar RNA (snoRNA). In both cases, Pol II termination is tightly coupled to RNA 3′ end formation, although different <italic>cis</italic>- and <italic>trans</italic>-acting elements are involved. Transcription termination of mRNA-encoding genes relies on recognition of the polyadenylation (pA) signal by cleavage/polyadenylation complexes that trigger Pol II disassembly from the template by a still-uncertain mechanism (<xref rid="bib4" ref-type="bibr">Birse et al., 1998</xref>). According to the torpedo model, cleavage at the pA site provides an entry site for 5′ to 3′ exonucleases such as Rat1 that degrades Pol II-associated nascent RNA, destabilizing Pol II interaction with the template. Alternatively, the allosteric model proposes that transcription over the pA signal alters the processivity of elongating polymerases, making them prone to release from the template (<xref rid="bib6" ref-type="bibr">Buratowski, 2005</xref>).</p>
+      <p>Termination of snoRNA and snRNA gene transcription in <italic>S. cerevisiae</italic> occurs by a different, specific mechanism involving the NRD complex (NRD) comprising Nrd1, Nab3, and Sen1 (<xref rid="bib36 bib37" ref-type="bibr">Rasmussen and Culbertson, 1998; Steinmetz et al., 2001</xref>). Although the NRD termination mechanism is not fully understood, specific features of its three components have been characterized. Nrd1 binds to both a minimal RNA sequence GUA[A/G] and the Pol II Rpb1 carboxy-terminal domain (CTD) (<xref rid="bib8 bib12" ref-type="bibr">Carroll et al., 2004; Conrad et al., 2000</xref>). The Nrd1 CTD-interacting domain (CID) is homologous to that of Pcf11, a component of CFIA. However, while Pcf11 binds preferentially to Ser2-phosphorylated (S2-P) CTD, Nrd1 interacts with Ser5-phosphorylated (S5-P) CTD (<xref rid="bib44" ref-type="bibr">Vasiljeva et al., 2008</xref>). This difference in CTD specificity supports the role of Nrd1 in transcription termination on short genes and Pcf11 on longer mRNA-encoding genes (<xref rid="bib20 bib44" ref-type="bibr">Gudipati et al., 2008; Vasiljeva et al., 2008</xref>). Nab3 binds to Nrd1 and RNA, showing specificity for UCUU sequence (<xref rid="bib8 bib12" ref-type="bibr">Carroll et al., 2004; Conrad et al., 2000</xref>). Finally Sen1 is a putative RNA helicase from the SF1 super family and bears a DEAxQ consensus. Its ortholog in <italic>S. pombe</italic> has been shown to unwind nucleic acid hybrids in vitro (<xref rid="bib24" ref-type="bibr">Kim et al., 1999</xref>). Sen1 also interacts with Pol II through Rpb1 CTD but lacks a CID (<xref rid="bib42" ref-type="bibr">Ursic et al., 2004</xref>). Supporting its ubiquitous importance, NRD has also been shown to act on Pol II-derived cryptic unstable transcripts (CUTs; <xref rid="bib45" ref-type="bibr">Wyers et al., 2005</xref>). Transcription termination of CUTs is coupled to RNA degradation by the nuclear exosome, a complex of exonucleases, assisted by TRAMP, which contains the poly(A) polymerase Trf4. As NRD interacts with TRAMP and the exosome, this is thought to recruit them to the 3′ end generated by NRD termination (<xref rid="bib3 bib40 bib43" ref-type="bibr">Arigo et al., 2006; Thiebaut et al., 2006; Vasiljeva and Buratowski, 2006</xref>).</p>
+      <p>Rnt1 is an RNase III type endonuclease that recognizes a hairpin AGNN tetraloop, cleaving dsRNA at 14–16 nt from the loop (<xref rid="bib11" ref-type="bibr">Chanfreau et al., 2000</xref>). This is followed by Trf4-dependent polyadenylation and exosome-mediated degradation (<xref rid="bib2 bib15" ref-type="bibr">Allmang et al., 1999; Egecioglu et al., 2006</xref>). Simultaneously, Rat1 and Xrn1 target and degrade the 3′ product (<xref rid="bib14" ref-type="bibr">Danin-Kreiselman et al., 2003</xref>). Rnt1-mediated cleavage is required for rRNA, snRNA, and snoRNA processing as well as degradation of unspliced or lariat RNAs (<xref rid="bib2 bib10 bib14 bib16" ref-type="bibr">Allmang et al., 1999; Chanfreau et al., 1998; Danin-Kreiselman et al., 2003; Elela et al., 1996</xref>). It is also implicated in regulation of steady-state levels of mRNAs encoding iron metabolism proteins (<xref rid="bib30" ref-type="bibr">Lee et al., 2005</xref>). Rnt1 cleavage is thought to occur cotranscriptionally, at least for Pol I-dependent transcription, as mutations in <italic>RNT1</italic> impair Pol I termination (<xref rid="bib23 bib35" ref-type="bibr">Kawauchi et al., 2008; Prescott et al., 2004</xref>). In contrast, termination at snRNA and snoRNA genes is unaffected by deletion of <italic>RNT1</italic> (<xref rid="bib26" ref-type="bibr">Kim et al., 2006</xref>).</p>
+      <p>We present evidence that malfunction of pA-dependent termination due to either mutations in <italic>RAT1</italic> or a weak pA signal triggers alternative termination pathways that re-establish Pol II termination. One of these fail-safe mechanisms corresponds to the previously characterized NRD termination pathway. The 3′ ends of readthrough transcripts generated in <italic>rat1-1</italic> strain match clusters of Nrd1- and Nab3-binding sites. The other fail-safe termination pathway is mediated by Rnt1 RNA cleavage. This provides an entry site for Rat1 and so promotes transcription termination. The upstream RNA is rapidly degraded by the exosome. However, if a weak pA site is close to the Rnt1 cleavage site (RCS), this is activated and the transcript is stabilized by Pap1-mediated polyadenylation. Finally we analyze the crosstalk between pA-dependent, NRD- and Rnt1-induced termination pathways in the endogenous <italic>NPL3</italic> locus and on reporter plasmids.</p>
+    </sec>
+    <sec id="sec2">
+      <title>Results</title>
+      <sec id="sec2.1">
+        <title>NRD Induces Pol II Termination in <italic>rat1-1</italic> Mutant</title>
+        <p>We have shown that Sen1 cooperates with Rat1 to promote Pol II transcription termination on two different mRNA-coding genes, <italic>CYC1</italic> transcribed from the <italic>GAL1</italic> promoter, and the endogenous <italic>PMA1</italic> gene (<xref rid="bib23" ref-type="bibr">Kawauchi et al., 2008</xref>). To extend this analysis, we performed transcription run ons (TROs) using the transcription termination reporter plasmid pKGG (<italic>KanMX4</italic>, <italic>GAL10-</italic>7 intergenic, <italic>GFP</italic>; <xref rid="fig1" ref-type="fig">Figure 1</xref>A; <xref rid="bib32" ref-type="bibr">Morillon et al., 2003</xref>). Transcription from the pKGG <italic>TEF</italic> promoter was detected with strand-specific M13 probes spanning the construct (<xref rid="fig1" ref-type="fig">Figure 1</xref>A). As in later TROs, we show quantitation of triplicate experiments adjacent to a representative filter. Although TROs are subject to some variability, the profiles obtained are reproducible. In WT cells, <italic>KanMX4</italic> transcription terminated heterogeneously beyond probe 4. Slight variation in growth conditions altered the levels of 5′ end signal (probe 1), possibly reflecting promoter-restricted Pol II. While the single <italic>rat1-1</italic> mutant showed little increase in transcription beyond the poly(A) signal, the single <italic>sen1-1</italic> mutant did show some increase over probes 4–8, indicating a defect in Pol II termination. Higher readthrough levels were detected on the double <italic>rat1-1 sen1-1</italic> mutant (<xref rid="fig1" ref-type="fig">Figure 1</xref>B), indicating a more severe termination defect consistent with previous results (<xref rid="bib23" ref-type="bibr">Kawauchi et al., 2008</xref>). To test if the <italic>sen1-1</italic> TRO phenotype was representative of other NRD components, we combined the <italic>rat1-1</italic> allele with <italic>nrd1-102</italic>, which is known to be defective in snoRNA gene termination (<xref rid="bib12 bib37" ref-type="bibr">Conrad et al., 2000; Steinmetz et al., 2001</xref>). TRO analysis shows that while <italic>nrd1-102</italic> did not appreciably affect termination, <italic>rat1-1 nrd1-102</italic> double mutant generated a strong defect with Pol II transcribing into the downstream <italic>GFP</italic> gene (<xref rid="fig1" ref-type="fig">Figure 1</xref>C), similar to <italic>rat1-1 sen1-1</italic> (<xref rid="fig1" ref-type="fig">Figure 1</xref>B). The <italic>rat1-1 nrd1-102</italic> termination defect was confirmed using a different gene construct, pGCYC1 (data not shown). Together, these results indicate that, in the absence of functional Rat1, NRD acts to terminate readthrough transcription.</p>
+      </sec>
+      <sec id="sec2.2">
+        <title>Nrd1 Accumulates at the 3′ Ends of Protein-Coding Genes in <italic>rat1-1</italic> Mutant</title>
+        <p>Nrd1 has been shown to spread across the body of mRNA encoding genes, with a higher signal in the 5′ region suggesting a role in early elongation (<xref rid="bib34" ref-type="bibr">Nedea et al., 2003</xref>). These data may conflict with its role in termination predicted by our above TRO results. We therefore investigated the possibility that Nrd1 profiles change in <italic>rat1-1</italic>. Chromatin immunoprecipitation (ChIP) analysis across endogenous <italic>ADH1</italic> in wild-type (WT) cells reveals Nrd1 signal spread across the whole gene peaking at the 5′ region and downstream of the pA signal (<xref rid="fig2" ref-type="fig">Figure 2</xref>A), as previously described (<xref rid="bib34" ref-type="bibr">Nedea et al., 2003</xref>). In contrast with <italic>rat1-1</italic>, Nrd1 followed the WT distribution in the coding region but also accumulated in the 3′ flanking region (mainly over probe A4; <xref rid="fig2" ref-type="fig">Figure 2</xref>A, right panel). This profile mirrors Pol II distribution for <italic>rat1-1</italic> (<xref rid="fig2" ref-type="fig">Figure 2</xref>A, left panel) where higher readthrough signal in A4 indicates termination defects. Similar results were obtained on endogenous <italic>PMA1</italic> (see <xref rid="app2" ref-type="sec">Figure S1</xref> available online). From these experiments we infer that Nrd1 is associated with polymerases that fail to terminate in <italic>rat1-1</italic> mutant cells.</p>
+        <p>Recent work has indicated that Nrd1 specifically binds to Pol II S5-P CTD. Moreover, this modification is necessary to elicit termination via Nrd1 (<xref rid="bib20 bib44" ref-type="bibr">Gudipati et al., 2008; Vasiljeva et al., 2008</xref>). We therefore tested the CTD phosphorylation state on polymerases that fail to terminate in <italic>rat1-1</italic>. ChIP analysis with S2-P (3E10) or S5-P (3E8) CTD-specific antibodies was performed on <italic>ADH1</italic>. As shown above, shifting <italic>rat1-1</italic> cells to nonpermissive temperature resulted in Pol II readthrough signals over probes A3 and A4 (<xref rid="fig2" ref-type="fig">Figure 2</xref>A). These polymerases were highly phosphorylated in Ser2 (<xref rid="fig2" ref-type="fig">Figure 2</xref>B, left panel). In addition, the rate of Ser5 dephosphorylation in <italic>rat1-1</italic> is lower than in the WT, resulting in similar levels of S5-P at the 5′ and 3′ ends of <italic>ADH1</italic> (A1B and A2) and higher levels than in the WT at A3 and A4 (<xref rid="fig2" ref-type="fig">Figure 2</xref>B, right panel). These results were confirmed in the <italic>PMA1</italic> locus (<xref rid="app2" ref-type="sec">Figure S1</xref>). Overall we show that readthrough Pol II contains significant levels of S5-P CTD colocalized with Nrd1. These data support an additional function for NRD in terminating Pol II transcription when Rat1-dependent termination is impaired.</p>
+      </sec>
+      <sec id="sec2.3">
+        <title>Pol II Utilizes Nrd1- and Nab3-Binding Sites Downstream of Gal10 pA in a <italic>rat1-1</italic> Mutant</title>
+        <p>Nrd1 and Nab3 bind cooperatively to clusters of the minimal sequences GUA[A/G] and UCUU, respectively, which act redundantly to induce Pol II termination on snoRNA and snRNA genes (<xref rid="bib9" ref-type="bibr">Carroll et al., 2007</xref>). pKGG employed in our TRO assays (<xref rid="fig1" ref-type="fig">Figure 1</xref>) contains two discrete clusters of these sequences downstream from the <italic>GAL10</italic> pA signal: five Nrd1-binding sites about 370 bp and two Nab3-binding sites about 760 bp downstream of the stop codon (<xref rid="fig2" ref-type="fig">Figure 2</xref>C). To determine if NRD-mediated termination observed in <italic>rat1-1</italic> correlates with Nrd1- and Nab3-binding sites, we performed ligation-mediated RT/PCR to map the 3′ ends of readthrough transcripts. Since these transcripts are unstable, we also employed a <italic>GAL1p::RRP41</italic> allele to deplete the exosome (<xref rid="bib41" ref-type="bibr">Torchet et al., 2002</xref>). LM-RT-PCR analysis in <italic>rat1-1</italic> showed two discrete ends coinciding with the Nrd1- and Nab3-binding clusters (<xref rid="fig2" ref-type="fig">Figure 2</xref>C, lane 2). The lower band was also present in WT cells (<xref rid="fig2" ref-type="fig">Figure 2</xref>C, lane 1) and could therefore reflect RNA 3′ ends generated by pA-directed termination, as well as by NRD termination signals. We then cloned and sequenced <italic>rat1-1</italic> LM-RT-PCR products (39 individual clones). Thirteen clones had 3′ ends in the first cluster region around the fifth Nrd1-binding site, while 19 were in the second cluster mainly at the first UCUU Nab3 sequence. A further five clones mapped around 70 nt downstream of the last UCUU repeat. The precise sites are indicated by arrows (<xref rid="fig2" ref-type="fig">Figure 2</xref>C) except for those mapping to downstream Nab3 sites. Only two clones mapped between the two clusters. Five of the clones contain two to four extra adenines not present in the genomic sequence. Two are indicated with an asterisk in <xref rid="fig2" ref-type="fig">Figure 2</xref>C, and the other three are outside the clusters, one in the intermediate region and two downstream the second cluster. We predict that these nontemplated adenines are remnants of a short poly(A) tail added by TRAMP to promote exosome degradation (<xref rid="bib29" ref-type="bibr">LaCava et al., 2005</xref>) and may correspond to the original 3′ ends generated by NRD termination. The other 3′ ends mapping near to the Nrd1- or Nab3-binding sites may be generated by partial degradation in the presence of low levels of exosome still remaining after metabolic depletion.</p>
+        <p>We mutated two Nrd1- and the two Nab3-binding sites as indicated (pKGGm) to evaluate their impact on termination. Mutations in the second cluster clearly reduced the number of transcripts ending in this region, as shown by a decrease in the intensity of the 670 bp PCR product (<xref rid="fig2" ref-type="fig">Figure 2</xref>C, lanes 2 and 4). Mutations introduced in the first cluster do not significantly alter its efficiency possibly due to the three residual Nrd1-binding sites and pA-dependent termination also occurring in this region. We predict from our results that these redundant Nrd1- and Nab3-binding sites cooperate to induce termination in this <italic>GAL10</italic> 3′ flanking region in <italic>rat1-1</italic> cells.</p>
+      </sec>
+      <sec id="sec2.4">
+        <title>Rnt1 Cleavage Sequence Terminates Pol II Transcription in the Absence of a pA Signal</title>
+        <p>Although NRD may provide a fail-safe termination mechanism, the main termination pathway for protein-coding genes relies on the pA signal. The role of this signal in termination remains controversial, as there is evidence in support of both the torpedo and the allosteric models (<xref rid="bib6" ref-type="bibr">Buratowski, 2005</xref>). To further discriminate between these two models, we generated a system whereby the <italic>CYC1</italic> pA signal is replaced by a strong RCS of 81 nt derived from rDNA repeats downstream the 25S gene. Initially RCS was cloned into the pGCYC1-512 plasmid in place of the deleted pA signal (pGCYC1RCS; <xref rid="fig3" ref-type="fig">Figure 3</xref>A). While Pol II transcribes beyond the site of normal transcription termination in pGCYC1−512, shown by signal over probes 4–6, RCS partially rescued this defect, decreasing the amount of signal over these regions (<xref rid="fig3" ref-type="fig">Figure 3</xref>A). To confirm this result, we cloned the RCS into pKGG with a deleted <italic>GAL10</italic> pA signal (pKGGΔpA) to form a new plasmid, pKGGRCS (<xref rid="fig3" ref-type="fig">Figure 3</xref>B). In agreement with previous studies on <italic>GAL10-GAL7</italic> (<xref rid="bib19" ref-type="bibr">Greger and Proudfoot, 1998</xref>), deletion of the 55 nt encompassing the pA signal induces a substantial defect in termination shown by TRO as an increase in signal over probes 4–7. Again, insertion of RCS into pKGGΔpA restores termination, as shown by a reduction in probes' 3–7 signal (<xref rid="fig3" ref-type="fig">Figure 3</xref>B). We next considered the possibility that any cleavage in the RNA might suppress termination defects resulting from deletion of a pA signal. To test this hypothesis, we cloned a hammerhead ribozyme (RZ) or noncleaving mutant (mRZ) at the same position as the RCS in pGCYC-512 to generate pGCYC1RZ and pGCYC1mRZ, respectively. TRO analysis of these transformed plasmids shows that although the RZ slightly diminished the pGCYC1-512 termination defect, it does not suppress it (<xref rid="fig3" ref-type="fig">Figure 3</xref>C). We confirmed that RNA was cleaved in the presence of pA, RCS, and RZ but not mRZ by RT-PCR with primers flanking the cleavage positions (data not shown). These data imply that RCS, but not other cleavage events, leads to Pol II transcription termination in the absence of a canonical pA signal.</p>
+      </sec>
+      <sec id="sec2.5">
+        <title>Rnt1 and Rat1 Are Required for Termination Mediated by RCS</title>
+        <p>To obtain mechanistic data on the process of RCS-induced termination, we investigated its dependence on Rnt1 activity. By TRO we observed that <italic>RNT1</italic> deletion significantly impairs termination in the pGCYC1RCS plasmid. In an isogenic WT strain, transcription largely terminated in region 3, in contrast to the <italic>rnt1Δ</italic> strain, where higher levels of Pol II transcription extended into region 6 (<xref rid="fig4" ref-type="fig">Figure 4</xref>B). This result argues for a role of Rnt1 in RCS-dependent termination but does not discriminate between a role in RNA cleavage or recruitment of other interacting factors, such as Sen1 (<xref rid="bib42" ref-type="bibr">Ursic et al., 2004</xref>). However, when the <italic>sen1-1</italic> strain was transformed with pGCYC1RCS and termination measured at nonpermissive temperatures, the TRO profile was identical to WT (data not shown). This argues against a role for Rnt1 in recruiting Sen1 to mediate termination. To establish that RCS generates an entry site for Rat1, we performed TRO analysis on a strain bearing a methionine-repressible <italic>RAT1</italic> gene (<italic>MET1p::RAT1</italic>). This depletes Rat1 from the cell after 20 hr growth in media with methionine (<xref rid="bib17" ref-type="bibr">El Hage et al., 2008</xref>). Under these conditions, a significant proportion of Pol II failed to terminate in region 3, resulting in increased signal over probes 4–6 as compared to isogenic WT (<xref rid="fig4" ref-type="fig">Figure 4</xref>C). The above results indicate that termination induced by RCS follows a similar mechanism to pA-mediated termination by supplying Rat1 with an entry site to degrade the RNA and consequently destabilize elongating Pol II.</p>
+      </sec>
+      <sec id="sec2.6">
+        <title>RCS-Mediated Termination Generates Unstable RNAs</title>
+        <p>The possibility that RCS-mediated Pol II termination provides a second fail-safe termination mechanism was further investigated. We therefore performed steady-state analysis to measure mRNA levels from RCS-terminated gene constructs (<xref rid="fig5" ref-type="fig">Figure 5</xref>). To control for the levels of endogenous <italic>CYC1</italic> mRNA expression, we isolated RNA from cells grown in glucose, since pGCYC1 is only expressed under galactose induction. Northern blot analysis of total or polyadenylated RNA shows high <italic>CYC1</italic> mRNA levels when expression from pGCYC1 is induced (<xref rid="fig5" ref-type="fig">Figure 5</xref>A). Deletion of the pA signal (ΔpA) or insertion of RCS largely abolished mRNA expression from pGCYC1 (leaving only residual endogenous <italic>CYC1</italic> mRNA), presumably because nascent RNA is rapidly degraded. The upper band observed in ΔpA corresponds to a cryptic pA site previously reported for pGCYC1-512 (<xref rid="bib46" ref-type="bibr">Zaret and Sherman, 1984</xref>). This band was absent in lanes 3 and 7 (<xref rid="fig5" ref-type="fig">Figure 5</xref>A), confirming that RCS terminates transcription before Pol II reaches the cryptic pA. These results were repeated by quantitative (q) RT-PCR with oligodT on total RNA from cells transformed with pGCYC1, pGCYC1−512, or pGCYC1RCS (<xref rid="fig5" ref-type="fig">Figure 5</xref>B). Taken together, these observations suggest that Rnt1-dependent cleavage of the nascent RNA causes destabilization of the transcript, most probably by forming a 3′ end accessible to the exosome. Importantly, these experiments prove that there is no cryptic pA site in pGCYC1-512 that promotes termination in pGCYC1RCS. Hence RCS constitutes a termination pathway alternative to the pA signal and NRD-dependent pathways previously described (<xref rid="bib26" ref-type="bibr">Kim et al., 2006</xref>). RCS-mediated termination shares components with pA signal-dependent termination, since both require Rat1 (<xref rid="fig4" ref-type="fig">Figure 4</xref>C; <xref rid="bib25" ref-type="bibr">Kim et al., 2004</xref>). However, RCS cleavage fails to recruit poly(A) polymerases that might stabilize the RNA.</p>
+      </sec>
+      <sec id="sec2.7">
+        <title>RCS Enhances the Usage of Closely Positioned Cryptic pA Sites</title>
+        <p>In parallel with steady-state analysis of pGCYC1RCS, we assessed mRNA accumulation in the pKGG-based system used above for termination assays (<xref rid="fig1" ref-type="fig">Figure 1</xref>). Even though <italic>GAL10</italic> pA deletion precluded termination (<xref rid="fig3" ref-type="fig">Figure 3</xref>B), it only halved <italic>KanMX4</italic> mRNA levels (<xref rid="fig5" ref-type="fig">Figures 5</xref>C and 5D). This implies that deletion of the main <italic>GAL10</italic> pA signal results in selection of a weaker pA signal, still able to trigger RNA 3′ end formation but not inducing transcription termination. RCS insertion in pKGGΔpA rescued mRNA levels to pKGG values. We assayed whether transcript polyadenylation in the presence of RCS depends on the canonical pA polymerase Pap1. We therefore employed a <italic>pap1-5</italic> allele that is defective in polyadenylation at nonpermissive temperature to isolate RNA from the pKGG, pKGGΔpA, and pKGGRCS plasmids. qRT-PCR shows a strong reduction in <italic>KanMX4</italic> mRNA accumulation with all three constructs (<xref rid="fig5" ref-type="fig">Figure 5</xref>E). In contrast, deletion of <italic>TRF4</italic>, the TRAMP poly(A) polymerase, did not alter levels of <italic>kanMX4</italic> mRNA (data not shown). These results show that RCS can enhance utilization of cryptic pA sites.</p>
+      </sec>
+      <sec id="sec2.8">
+        <title>NRD Competes with Weak pA Sites to Elicit Pol II Termination</title>
+        <p>To further characterize the cryptic pA sites remaining in pKGGΔpA, we performed 3′RACE on total RNA prepared from a WT strain transformed with this plasmid or pKGG. As previously described, <italic>GAL10</italic> mRNA displayed heterogeneous 3′ ends over the poly(A) signal region (<xref rid="bib19" ref-type="bibr">Greger and Proudfoot, 1998</xref>). With the ΔpA sequence, three independent 3′ ends were placed within the region immediately downstream of the deleted pA site (gray arrows in <xref rid="fig6" ref-type="fig">Figure 6</xref>A). Strikingly, RCS insertion changed the polyadenylation site to the Rnt1 cleavage point or 20 nt upstream (<xref rid="fig6" ref-type="fig">Figure 6</xref>A, arrows in the upper sequence). We suggest that Rnt1 cleavage kinetics are faster than those of the residual poly(A) signal present in <italic>GAL10</italic> ΔpA. In some cases the 3′ end formed by Rnt1 cleavage is directly polyadenylated, but more often it is partially trimmed before being protected by a pA tail.</p>
+        <p>The analysis of the sequence upstream the weak pA signal present in pKGGΔpA reveals three Nab3-binding sites. We wanted to check if these sites influence the usage of the weak pA signal. They were therefore mutated in pKGG, pKGGΔpA, and pKGGRCS (<xref rid="fig6" ref-type="fig">Figure 6</xref>A). Northern and qRT-PCR showed no difference in mRNA accumulation in the presence or absence of Nab3-binding site (BS+ versus BS−) when the strong <italic>GAL10</italic> pA site or RCS is in the vicinity. Importantly in pKGGΔpA, mutation of Nab3-binding sites significantly increased the amount of mRNA reaching WT levels (<xref rid="fig6" ref-type="fig">Figures 6</xref>B and 6C). Together, these results argue for a competition between NRD and pA-dependent pathways when the pA signal is weak. In the presence of a strong pA signal, termination is coupled to polyadenylation, and stable mRNA is produced. However, when there is a weak pA signal, NRD-mediated termination may compete to induce termination and recruit the exosome. In contrast, insertion of RCS enhances weak pA usage and diminishes NRD-mediated termination.</p>
+      </sec>
+      <sec id="sec2.9">
+        <title>RCS Constitutes a Fail-Safe Transcription Termination Mechanism in NPL3</title>
+        <p>RCSs are broadly distributed in the yeast genome. Furthermore, Rnt1 substrates were found in precursors of rRNA, snRNA, and snoRNA and more recently in some coding and integenic regions (<xref rid="bib2 bib10 bib14 bib16" ref-type="bibr">Allmang et al., 1999; Chanfreau et al., 1998; Danin-Kreiselman et al., 2003; Elela et al., 1996</xref>). We wished to check whether RCS present downstream of an endogenous mRNA-encoding gene can trigger transcription termination and also determine the fate of this transcript. The tandem <italic>NPL3-GIP17</italic> locus was therefore selected, as it contains an unusually long intergenic region that may fold into an AGNN tetraloop hairpin, as predicted by M-fold (<xref rid="bib47" ref-type="bibr">Zuker, 1994</xref>). Furthermore, a similar analysis of <italic>NPL3-GIP17</italic> has identified a functional RCS between these two genes (<xref rid="bib18" ref-type="bibr">Ghazal et al., 2009</xref>). By circular LM-RT-PCR, we mapped the <italic>NPL3</italic> pA site 250 nt downstream the stop codon (data not shown). However, 3 out of 16 clones analyzed were longer, indicating that a proportion of polymerases fail to terminate at the pA site. This is in agreement with recent studies showing that <italic>NPL3</italic> pA signal is weak and Npl3 itself regulates pA site usage by competing with 3′ end cleavage and polyadenylation factors (<xref rid="bib31" ref-type="bibr">Lund et al., 2008</xref>). To determine whether the intergenic region is transcribed and cleaved by Rnt1, total WT and <italic>rnt1Δ</italic> RNA was analyzed by northern blot using a probe spanning the <italic>NPL3</italic> coding region. <italic>RNT1</italic> deletion yielded similar levels of <italic>NPL3</italic> mRNA to the WT. However, two additional major transcripts corresponding in size to readthough transcripts ending near the <italic>GIP17</italic> 5′ end and 3′ terminal pA site were also evident (<xref rid="fig7" ref-type="fig">Figure 7</xref>B). To investigate <italic>NPL3-GIP17</italic> transcription termination more closely, we performed Pol II ChIP analysis. Pol II signal was consistently high across the intergenic region of <italic>NPL3-GIP17</italic>, indicative of inefficient termination presumably due to a relatively weak <italic>NPL3</italic> pA signal. However, this signal reduced immediately following the RCS in region 5 to a level that correlates with the lower <italic>GIP17</italic> transcription profile (<xref rid="fig7" ref-type="fig">Figure 7</xref>C). In <italic>rnt1Δ</italic>, Pol II signal remained downstream of RCS, confirming a role for Rnt1 in transcription termination in region 5. Most of the polymerases that transcribe beyond the RCS terminated at the cryptic pA located at <italic>GIP17</italic> 5′ region (N6), although a small proportion still continued until <italic>GIP17</italic> pA site (<xref rid="fig7" ref-type="fig">Figures 7</xref>B and 7C). This suggests that a substantial proportion of Pol II transcribing <italic>NPL3</italic> fails to terminate at the pA site and continues into the RCS region. Rnt1 normally cleaves these readthrough transcripts, inducing termination and degradation of these aberrant RNAs. However, in the absence of Rnt1, Pol II terminates at a cryptic pA site located at the 5′ region of <italic>GIP17</italic> or at the <italic>GIP17</italic> natural pA site.</p>
+        <p>We next investigated the fate of <italic>NPL3</italic> readthrough RNA cleaved at the RCS. Previous studies on genes that contain RCS showed that Rnt1-cleaved RNA is rapidly degraded by Rat1 and the nuclear exosome (<xref rid="bib2 bib14" ref-type="bibr">Allmang et al., 1999; Danin-Kreiselman et al., 2003</xref>). If this is also the case for <italic>NPL3</italic> readthrough transcripts, mutations in the exosome should display stabilizing effects. We visualized <italic>NPL3</italic> transcripts in conditions of metabolic depletion or deletion of different subunits of the exosome or the TRAMP complex (<xref rid="fig7" ref-type="fig">Figure 7</xref>D). The absence of functional exosome stabilized a longer Npl3 transcript ending at the RCS. This transcript was smaller than the readthrough transcripts observed in an <italic>rnt1Δ</italic> strain, consistent with the RCS location upstream <italic>GIP17</italic>. The amount of <italic>NPL3</italic> mRNA was not significantly affected in exosome mutants (<xref rid="fig7" ref-type="fig">Figure 7</xref>D), but it was strongly reduced in cleavage/pA mutants (<xref rid="fig7" ref-type="fig">Figure 7</xref>E), proving their requirement for pA and 3′ end processing factors in <italic>NPL3</italic> mRNA formation. Together these results reveal a dual role for the RCS at the <italic>NPL3</italic> locus. On one hand, it ensures Pol II termination, thereby minimizing transcription interference on <italic>GIP17</italic> that might otherwise occur due to the weak <italic>NPL3</italic> pA signal. In addition, it provides an entry site for the exosome that, aided by TRAMP, removes these aberrant transcripts.</p>
+        <p>Our analysis on <italic>NPL3</italic> confirms our above results on Pol II termination at the pGCYC1RCS and pKGGRCS plasmids. Overall, RCS constitutes an alternative, pA-independent termination pathway that is coupled to aberrant RNA degradation.</p>
+      </sec>
+    </sec>
+    <sec id="sec3">
+      <title>Discussion</title>
+      <p>We describe the existence of two fail-safe transcription termination pathways for protein-coding genes. NRD previously associated with termination of snRNA, snoRNA, and CUT genes also induces termination of polymerases that read through a pA signal due to mutations in <italic>RAT1</italic>. Similarly, Rnt1-mediated Pol II termination is pA independent and requires Rnt1 and Rat1 activity. Since Rnt1-mediated RNA cleavage is not coupled to stabilization of the transcript by polyadenylation, the 5′ cleavage product is rapidly degraded by the exosome. However, if Rnt1 cleavage occurs in the vicinity of a weak pA site, then 3′ end processing factors are recruited and the transcript is polyadenylated by Pap1. A natural example of Rnt1-dependent termination is that of <italic>NPL3</italic>. Here Pol II termination is inefficient, and some polymerases transcribe beyond the pA site into the intergenic region containing a RCS. This induces transcription termination and degradation of the readthrough transcript.</p>
+      <p>Pol II transcription termination at protein-coding genes requires the coordination of multiple 3′ end formation factors. These may affect CTD S2-P levels, provide a permissive chromatin environment, promote recognition of pA signal by the 3′ end processing machinery, and subsequent Rat1-dependent Pol II termination. Such complexity may cause a proportion of polymerases to fail to terminate even in WT cells, resulting in transcriptional interference of tandem downstream genes (<xref rid="bib19" ref-type="bibr">Greger and Proudfoot, 1998</xref>). Also with convergent genes, readthough polymerases may generate antisense transcripts that induce heterochromatin formation (<xref rid="bib7 bib21" ref-type="bibr">Camblong et al., 2007; Gullerova and Proudfoot, 2008</xref>). We propose that the NRD- and Rnt1-mediated fail-safe mechanisms provide a second chance to terminate Pol II, and so minimize these deleterious effects.</p>
+      <sec id="sec3.1">
+        <title>NRD Termination Pathway as a Fail-Safe Mechanism</title>
+        <p>In contrast to mammalian genes, yeast promoters of noncoding and protein-coding genes are similar, and no specific transcription factors have been described. Accordingly, Rat1 and NRD can both be found associated with Pol II transcribing either gene type (<xref rid="bib26 bib34" ref-type="bibr">Kim et al., 2006; Nedea et al., 2003</xref>). Termination signals may be redundant, since an snRNA terminator cloned at the 3′ end of a protein-coding gene can elicit termination by generating a polyadenylated RNA (<xref rid="bib38" ref-type="bibr">Steinmetz et al., 2006a</xref>). It seems likely that the molecular decision to terminate transcription is taken at the 3′ end of the gene and may be influenced by other factors than just the available <italic>cis</italic>-acting sequences. Here we show that combining mutations previously reported to affect termination of noncoding genes (<italic>sen1-1</italic> or <italic>nrd1-102</italic>) with a <italic>rat1-1</italic> allele causes a strong increase in mRNA encoding gene readthrough transcription. Significantly, these readthrough transcripts end at Nrd1- and Nab3-binding sites. Discrimination between pA- or NRD-dependent termination correlates with the phosphorylation state of Pol II CTD. Nrd1 binds preferentially to S5-P CTD, and S2-P antagonizes this interaction (<xref rid="bib20 bib44" ref-type="bibr">Gudipati et al., 2008; Vasiljeva et al., 2008</xref>). In contrast, pA-mediated termination requires S2-P CTD (<xref rid="bib1" ref-type="bibr">Ahn et al., 2004</xref>). These data are consistent with the fact that the distance between a promoter and a CUT influences termination efficiency (<xref rid="bib20 bib28" ref-type="bibr">Gudipati et al., 2008; Kopcewicz et al., 2007</xref>) and that termination of the 1 kb polycistronic <italic>SNR</italic> is not affected by <italic>SEN1</italic> mutations (<xref rid="bib39" ref-type="bibr">Steinmetz et al., 2006b</xref>). Notably, there is no clear limit for NRD-dependent termination but rather a gradual decrease in efficiency with a commensurate increase in pA-dependent termination (<xref rid="bib20" ref-type="bibr">Gudipati et al., 2008</xref>). We now show that NRD-dependent termination can occur more than 1.5 kb downstream a promoter in the pKGG system when pA-dependent termination is impaired as shown in <xref rid="fig1 fig2" ref-type="fig">Figures 1 and 2</xref>. This effect may be favored by a slight decrease in Ser5 dephosphorylation observed in <italic>rat1-1</italic> mutants. Importantly, the level of S5-P needed to elicit NRD-dependent termination is low, as Pol II recognizes an NRD terminator at 600 bp downstream of the promoter where the amount of CTD S5-P is small (<xref rid="bib1" ref-type="bibr">Ahn et al., 2004</xref>).</p>
+      </sec>
+      <sec id="sec3.2">
+        <title>Rnt1 Cleavage Triggers Pol II Termination</title>
+        <p>Rnt1 initially identified based on homology with bacterial RNase III principally acts to process precursor molecules of noncoding RNAs such as rRNA, snRNA, and snoRNAs. We previously showed that <italic>RNT1</italic> deletion causes Pol I to read through the rDNA termination region (<xref rid="bib23 bib35" ref-type="bibr">Kawauchi et al., 2008; Prescott et al., 2004</xref>). Conversely, Pol II transcription termination at snRNA or snoRNA genes is not influenced by <italic>RNT1</italic> mutants (<xref rid="bib26" ref-type="bibr">Kim et al., 2006</xref>). We now show that Rnt1-mediated transcript cleavage terminates Pol II when transcribing protein-coding genes. Thus a RCS placed downstream of a gene lacking pA signals suppresses otherwise defective termination. This constitutes an additional pA-independent termination mechanism to NRD. Significantly, Rnt1- or pA-dependent termination is equally robust as judged by TRO (<xref rid="fig3" ref-type="fig">Figure 3</xref>). Some Rnt1 sites are formed at internal positions in Pol II-transcribed noncoding genes (e.g., snRNA), where they act to facilitate RNA processing but do not promote Pol II termination (<xref rid="bib2" ref-type="bibr">Allmang et al., 1999</xref>). Here NRD-mediated termination may be more efficient due to high S5-P CTD levels and the presence of strong Nrd1- and Nab3-binding sites. Also, the RCS derived from the Pol I terminator used in our experiments may bind Rnt1 with higher affinity than RCS present in snRNAs. Rnt1-induced termination involves Rat1, suggesting a torpedo-like mechanism. It is likely that other factors recruited specifically by Rnt1 or the RCS are involved, since cleaving the RNA with a ribozyme does not elicit termination. Sen1 interaction with Rnt1 (<xref rid="bib42" ref-type="bibr">Ursic et al., 2004</xref>) is a possible candidate for facilitating Rnt1-mediated termination, either by ensuring that the RNA is properly folded into the tetraloop or by bringing NRD into play. However, our results indicate that Sen1 is not required for Rnt1-mediated termination. Further analysis is required to characterize the exact mechanism by which Rnt1 cleavage promotes Pol II termination.</p>
+      </sec>
+      <sec id="sec3.3">
+        <title>Rnt1-Mediated Termination Enhances Recognition of Weak pA Signals</title>
+        <p>The fate of a nascent transcript terminated by Rnt1 depends on neighboring signals. We observed that in the absence of a pA site, RNA is completely degraded upon Rnt1 cleavage due to Trf4 polyadenylation and exosome-mediated digestion (<xref rid="bib2 bib15" ref-type="bibr">Allmang et al., 1999; Egecioglu et al., 2006</xref>). This constitutes a surveillance pathway to remove RNAs that fail to assemble (<xref rid="bib33" ref-type="bibr">Morlando et al., 2004</xref>). Similarly, mRNAs that are not properly polyadenylated are rapidly removed by the exosome (<xref rid="bib41" ref-type="bibr">Torchet et al., 2002</xref>). However, when a weak pA signal is close to the RCS, the RNA is fully polyadenylated and so escapes degradation. In the <italic>GAL10</italic> termination region, deletion of the major pA signal impairs termination and decreases polyadenylation of the transcript. However, this 55 nt deletion does not preclude 3′ end processing, as a significant amount of mRNA is still detected. Insertion of the RCS rescues termination and full levels of polyadenylation. This polyadenylation is mediated by Pap1, indicating that 3′ end factors are recruited. We predict that the remnant sequence in the <italic>GAL10</italic>ΔpA is still able to assemble 3′ end processing factors but that RNA cleavage is very inefficient. Insertion of RCS provides an alternative efficient mechanism to cleave the transcript.</p>
+        <p><italic>NPL3</italic> encodes an RNA-binding protein involved in multiple stages of RNA metabolism and may act as a transcriptional antiterminator by competing with 3′ end processing factors for binding to RNA (<xref rid="bib5" ref-type="bibr">Bucheli and Buratowski, 2005</xref>). Indeed, Npl3 autoregulates its own pA site usage. Thus, increased levels of Npl3 favor its binding to the pA site instead of CFIA. As a result, transcription proceeds into the intergenic region, generating unstable readthrough transcripts (<xref rid="bib31" ref-type="bibr">Lund et al., 2008</xref>). Interestingly, Sen1 acts to enhance Npl3 autoregulation, since its inactivation causes a reduction in readthrough transcription (<xref rid="bib39" ref-type="bibr">Steinmetz et al., 2006b</xref>). Possibly Sen1 helicase activity alters the structure of the <italic>NPL3</italic> transcript in favor of Npl3 recognition. Our results confirm that these readthrough transcripts cleaved by Rnt1 are substrates for TRAMP exosome-mediated degradation. This provides a natural example of Rnt1-mediated termination as a fail-safe mechanism. A proportion of polymerases read through the weak <italic>NPL3</italic> pA site into downstream signals where Rnt1 cleavage triggers termination. In addition, this Rnt1 cleavage process results in the appearance of an unprotected 3′ end favoring the rapid degradation of these aberrant RNAs. Mutation of 3′ end processing factors precludes pA usage, and as a consequence, more transcription is terminated via Rnt1, producing no stable mRNA. Interestingly, mutations in TRAMP or the exosome stabilize readthrough transcripts without increasing the amount of <italic>NPL3</italic> mRNA. This indicates that once the transcript is cleaved it can not be processed at the pA site. It is important to mention that Rnt1-mediated Pol II termination of protein-coding genes may be a relatively common process in <italic>S. cerevisiae.</italic> Thus, a parallel study (<xref rid="bib18" ref-type="bibr">Ghazal et al., 2009</xref>, in this issue of <italic>Molecular Cell</italic>) using genome-wide analysis has revealed that several additional genes to <italic>NPL3</italic> generate 3′ flanking region Pol II profiles and detectible readthrough transcripts in <italic>rnt1Δ</italic> strains, indicative of Rnt1-dependent termination.</p>
+        <p>Overall, the data presented in these studies demonstrate the existence of three different termination pathways for protein-coding genes. The dominant pA-dependent mechanism exclusively generates stable mRNA. If Pol II fails to terminate at the pA site, then NRD- or Rnt1-mediated termination may act as a fail-safe mechanism. This remarkable triplication of Pol II termination mechanisms in <italic>S. cerevisiae</italic> must reflect strong evolutionary selection to maintain separate transcription units.</p>
+      </sec>
+    </sec>
+    <sec sec-type="materials-methods" id="sec4">
+      <title>Experimental Procedures</title>
+      <sec id="sec4.1">
+        <title>Yeast Strains and Plasmids</title>
+        <p>Strains, plasmids, and oligonucleotides used in this study are listed in <xref rid="app2" ref-type="sec">Tables S1–S3</xref>.</p>
+        <p>Yeast strains were grown in minimal media at 25°C and transferred to 37°C 2.5 hr prior to TRO or ChIP assays. YCBA63 and DRY41-4A were grown in selective media with 2% galactose to OD 0.6 and then transferred to selective media with 2% glucose for 20 hr at 25°C and 2.5 hr at 37°C. YAEH97 was grown at 30°C to OD 0.5 in SD medium lacking methionine, then diluted to OD 0.03 and grown for 20 hr in medium supplemented with methionine (5 mM).</p>
+      </sec>
+      <sec id="sec4.2">
+        <title>ChIP</title>
+        <p>ChIP was performed as described (<xref rid="bib27" ref-type="bibr">Komarnitsky et al., 2000</xref>), with modifications presented in the <xref rid="app2" ref-type="sec">Supplemental Data</xref>.</p>
+      </sec>
+      <sec id="sec4.3">
+        <title>TRO Analysis</title>
+        <p>TRO analysis and probes for pKGG, pGCYC1, and derived plasmids are as described (<xref rid="bib4 bib32" ref-type="bibr">Birse et al., 1998; Morillon et al., 2003</xref>). Locations of the probes used are shown in <xref rid="fig1 fig3" ref-type="fig">Figures 1 and 3</xref>. Signals are plotted relative to probe 1 between WT and several mutant strains. <xref rid="fig1 fig3 fig4" ref-type="fig">Figures 1, 3, and 4</xref> display data based on three repetitions.</p>
+      </sec>
+      <sec id="sec4.4">
+        <title>LM-RT-PCR, 3′RACE, and cRT-PCR</title>
+        <p>LM-RT-PCR was performed as described (<xref rid="bib22" ref-type="bibr">Hitchcock et al., 2004</xref>) with modifications presented in the <xref rid="app2" ref-type="sec">Supplemental Data</xref>.</p>
+        <p>3′RACE was performed with the primers listed in <xref rid="app2" ref-type="sec">Table S3</xref>.</p>
+        <p>cRT-PCR was performed as previously described (<xref rid="bib13" ref-type="bibr">Couttet et al., 1997</xref>), with 5 μg of total RNA from W303. The primers used for nested PCR are indicated in <xref rid="app2" ref-type="sec">Table S3</xref>. PCR products were cloned and the resulting colonies screened as described above.</p>
+      </sec>
+      <sec id="sec4.5">
+        <title>Northern Blot and Q-RT-PCR</title>
+        <p>Northern blot was performed from 8 μg of total RNA or 400 ng of mRNA isolated with Oligotex mRNA kit.</p>
+        <p>qRT-PCR employed 1 μg of total RNA with oligodT and SuperScript III following the manufacture indications. Two microliters were used as template for each quantitative PCR, using primers as listed in <xref rid="app2" ref-type="sec">Table S3</xref>.</p>
+      </sec>
+    </sec>
+    <sec id="app1" sec-type="supplementary-material">
+      <title>Supplemental Data</title>
+      <p>Supplemental Data include three tables, Supplemental Experimental Procedures, Supplemental References, and one figure and can be found with this article online at <ext-link xlink:href="http://www.cell.com/molecular-cell/supplemental/S1097-2765(09)00584-X" ext-link-type="uri">http://www.cell.com/molecular-cell/supplemental/S1097-2765(09)00584-X</ext-link>.</p>
+    </sec>
+    <sec id="app2" sec-type="supplementary-material">
+      <title>Supplemental Data</title>
+      <p>
+        <supplementary-material content-type="local-data" id="mmc1">
+          <caption>
+            <title>Document S1. Three Tables, Supplemental Experimental Procedures, Supplemental References, and One Figure</title>
+          </caption>
+          <media xlink:href="mmc1.pdf" mimetype="application" mime-subtype="pdf"/>
+        </supplementary-material>
+      </p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>We would like to thank C. Cole, J. Corden, and D. Tollervey for providing strains, and D. Eick for 3E10 and 3E8 antibodies. This work was supported by a Wellcome Trust Programme Grant (to N.J.P.), Long Term EMBO fellowship (to A.G.R.), and a Graduate Scholarship from the Boehringer Ingelheim Fonds (to H.E.M.).</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ahn</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Buratowski</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Phosphorylation of serine 2 within the RNA polymerase II C-terminal domain couples transcription and 3′ end processing</article-title>
+          <source>Mol. Cell</source>
+          <year>2004</year>
+          <volume>13</volume>
+          <fpage>67</fpage>
+          <lpage>76</lpage>
+          <pub-id pub-id-type="pmid">14731395</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Allmang</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kufel</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Chanfreau</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Mitchell</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Petfalski</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Tollervey</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functions of the exosome in rRNA, snoRNA and snRNA synthesis</article-title>
+          <source>EMBO J.</source>
+          <year>1999</year>
+          <volume>18</volume>
+          <fpage>5399</fpage>
+          <lpage>5410</lpage>
+          <pub-id pub-id-type="pmid">10508172</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Arigo</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Eyler</surname>
+              <given-names>D.E.</given-names>
+            </name>
+            <name>
+              <surname>Carroll</surname>
+              <given-names>K.L.</given-names>
+            </name>
+            <name>
+              <surname>Corden</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Termination of cryptic unstable transcripts is directed by yeast RNA-binding proteins Nrd1 and Nab3</article-title>
+          <source>Mol. Cell</source>
+          <year>2006</year>
+          <volume>23</volume>
+          <fpage>841</fpage>
+          <lpage>851</lpage>
+          <pub-id pub-id-type="pmid">16973436</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Birse</surname>
+              <given-names>C.E.</given-names>
+            </name>
+            <name>
+              <surname>Minvielle-Sebastia</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>Keller</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Proudfoot</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coupling termination of transcription to messenger RNA maturation in yeast</article-title>
+          <source>Science</source>
+          <year>1998</year>
+          <volume>280</volume>
+          <fpage>298</fpage>
+          <lpage>301</lpage>
+          <pub-id pub-id-type="pmid">9535662</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bucheli</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>Buratowski</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Npl3 is an antagonist of mRNA 3′ end formation by RNA polymerase II</article-title>
+          <source>EMBO J.</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>2150</fpage>
+          <lpage>2160</lpage>
+          <pub-id pub-id-type="pmid">15902270</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buratowski</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Connections between mRNA 3′ end processing and transcription termination</article-title>
+          <source>Curr. Opin. Cell Biol.</source>
+          <year>2005</year>
+          <volume>17</volume>
+          <fpage>257</fpage>
+          <lpage>261</lpage>
+          <pub-id pub-id-type="pmid">15901494</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Camblong</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Iglesias</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Fickentscher</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Dieppois</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Stutz</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Antisense RNA stabilization induces transcriptional gene silencing via histone deacetylation in S. cerevisiae</article-title>
+          <source>Cell</source>
+          <year>2007</year>
+          <volume>131</volume>
+          <fpage>706</fpage>
+          <lpage>717</lpage>
+          <pub-id pub-id-type="pmid">18022365</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carroll</surname>
+              <given-names>K.L.</given-names>
+            </name>
+            <name>
+              <surname>Pradhan</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Granek</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Clarke</surname>
+              <given-names>N.D.</given-names>
+            </name>
+            <name>
+              <surname>Corden</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of cis elements directing termination of yeast nonpolyadenylated snoRNA transcripts</article-title>
+          <source>Mol. Cell. Biol.</source>
+          <year>2004</year>
+          <volume>24</volume>
+          <fpage>6241</fpage>
+          <lpage>6252</lpage>
+          <pub-id pub-id-type="pmid">15226427</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carroll</surname>
+              <given-names>K.L.</given-names>
+            </name>
+            <name>
+              <surname>Ghirlando</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Ames</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Corden</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Interaction of yeast RNA-binding proteins Nrd1 and Nab3 with RNA polymerase II terminator elements</article-title>
+          <source>RNA</source>
+          <year>2007</year>
+          <volume>13</volume>
+          <fpage>361</fpage>
+          <lpage>373</lpage>
+          <pub-id pub-id-type="pmid">17237360</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chanfreau</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Legrain</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Jacquier</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Yeast RNase III as a key processing enzyme in small nucleolar RNAs metabolism</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>1998</year>
+          <volume>284</volume>
+          <fpage>975</fpage>
+          <lpage>988</lpage>
+          <pub-id pub-id-type="pmid">9837720</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chanfreau</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Buckle</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Jacquier</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Recognition of a conserved class of RNA tetraloops by Saccharomyces cerevisiae RNase III</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2000</year>
+          <volume>97</volume>
+          <fpage>3142</fpage>
+          <lpage>3147</lpage>
+          <pub-id pub-id-type="pmid">10716739</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Conrad</surname>
+              <given-names>N.K.</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Steinmetz</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Patturajan</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Brow</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Swanson</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Corden</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>A yeast heterogeneous nuclear ribonucleoprotein complex associated with RNA polymerase II</article-title>
+          <source>Genetics</source>
+          <year>2000</year>
+          <volume>154</volume>
+          <fpage>557</fpage>
+          <lpage>571</lpage>
+          <pub-id pub-id-type="pmid">10655211</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Couttet</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Fromont-Racine</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Steel</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Pictet</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Grange</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Messenger RNA deadenylylation precedes decapping in mammalian cells</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>1997</year>
+          <volume>94</volume>
+          <fpage>5628</fpage>
+          <lpage>5633</lpage>
+          <pub-id pub-id-type="pmid">9159123</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Danin-Kreiselman</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>C.Y.</given-names>
+            </name>
+            <name>
+              <surname>Chanfreau</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>RNAse III-mediated degradation of unspliced pre-mRNAs and lariat introns</article-title>
+          <source>Mol. Cell</source>
+          <year>2003</year>
+          <volume>11</volume>
+          <fpage>1279</fpage>
+          <lpage>1289</lpage>
+          <pub-id pub-id-type="pmid">12769851</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Egecioglu</surname>
+              <given-names>D.E.</given-names>
+            </name>
+            <name>
+              <surname>Henras</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Chanfreau</surname>
+              <given-names>G.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Contributions of Trf4p- and Trf5p-dependent polyadenylation to the processing and degradative functions of the yeast nuclear exosome</article-title>
+          <source>RNA</source>
+          <year>2006</year>
+          <volume>12</volume>
+          <fpage>26</fpage>
+          <lpage>32</lpage>
+          <pub-id pub-id-type="pmid">16373491</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Elela</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Igel</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Ares</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>RNase III cleaves eukaryotic preribosomal RNA at a U3 snoRNP-dependent site</article-title>
+          <source>Cell</source>
+          <year>1996</year>
+          <volume>85</volume>
+          <fpage>115</fpage>
+          <lpage>124</lpage>
+          <pub-id pub-id-type="pmid">8620530</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>El Hage</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Koper</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kufel</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tollervey</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Efficient termination of transcription by RNA polymerase I requires the 5′ exonuclease Rat1 in yeast</article-title>
+          <source>Genes Dev.</source>
+          <year>2008</year>
+          <volume>22</volume>
+          <fpage>1069</fpage>
+          <lpage>1081</lpage>
+          <pub-id pub-id-type="pmid">18413717</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ghazal</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Gagnon</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Jacques</surname>
+              <given-names>P.-E.</given-names>
+            </name>
+            <name>
+              <surname>Landry</surname>
+              <given-names>J.-R.</given-names>
+            </name>
+            <name>
+              <surname>Roberts</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Elela</surname>
+              <given-names>S.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Yeast RNase III triggers polyadenylation-independent transcription termination</article-title>
+          <source>Mol. Cell</source>
+          <year>2009</year>
+          <volume>36</volume>
+          <fpage>99</fpage>
+          <lpage>109</lpage>
+          <comment>this issue</comment>
+          <pub-id pub-id-type="pmid">19818713</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Greger</surname>
+              <given-names>I.H.</given-names>
+            </name>
+            <name>
+              <surname>Proudfoot</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Poly(A) signals control both transcriptional termination and initiation between the tandem GAL10 and GAL7 genes of Saccharomyces cerevisiae</article-title>
+          <source>EMBO J.</source>
+          <year>1998</year>
+          <volume>17</volume>
+          <fpage>4771</fpage>
+          <lpage>4779</lpage>
+          <pub-id pub-id-type="pmid">9707436</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gudipati</surname>
+              <given-names>R.K.</given-names>
+            </name>
+            <name>
+              <surname>Villa</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Boulay</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Libri</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Phosphorylation of the RNA polymerase II C-terminal domain dictates transcription termination choice</article-title>
+          <source>Nat. Struct. Mol. Biol.</source>
+          <year>2008</year>
+          <volume>15</volume>
+          <fpage>786</fpage>
+          <lpage>794</lpage>
+          <pub-id pub-id-type="pmid">18660821</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gullerova</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Proudfoot</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cohesin complex promotes transcriptional termination between convergent genes in S. pombe</article-title>
+          <source>Cell</source>
+          <year>2008</year>
+          <volume>132</volume>
+          <fpage>983</fpage>
+          <lpage>995</lpage>
+          <pub-id pub-id-type="pmid">18358811</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hitchcock</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Zeiner</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Sturm</surname>
+              <given-names>N.R.</given-names>
+            </name>
+            <name>
+              <surname>Campbell</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The 3′ termini of small RNAs in Trypanosoma brucei</article-title>
+          <source>FEMS Microbiol. Lett.</source>
+          <year>2004</year>
+          <volume>236</volume>
+          <fpage>73</fpage>
+          <lpage>78</lpage>
+          <pub-id pub-id-type="pmid">15212793</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kawauchi</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Mischo</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Braglia</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Rondon</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Proudfoot</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Budding yeast RNA polymerases I and II employ parallel mechanisms of transcriptional termination</article-title>
+          <source>Genes Dev.</source>
+          <year>2008</year>
+          <volume>22</volume>
+          <fpage>1082</fpage>
+          <lpage>1092</lpage>
+          <pub-id pub-id-type="pmid">18413718</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>H.D.</given-names>
+            </name>
+            <name>
+              <surname>Choe</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Seo</surname>
+              <given-names>Y.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>The sen1(+) gene of Schizosaccharomyces pombe, a homologue of budding yeast SEN1, encodes an RNA and DNA helicase</article-title>
+          <source>Biochemistry</source>
+          <year>1999</year>
+          <volume>38</volume>
+          <fpage>14697</fpage>
+          <lpage>14710</lpage>
+          <pub-id pub-id-type="pmid">10545196</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Krogan</surname>
+              <given-names>N.J.</given-names>
+            </name>
+            <name>
+              <surname>Vasiljeva</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Rando</surname>
+              <given-names>O.J.</given-names>
+            </name>
+            <name>
+              <surname>Nedea</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Greenblatt</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Buratowski</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>The yeast Rat1 exonuclease promotes transcription termination by RNA polymerase II</article-title>
+          <source>Nature</source>
+          <year>2004</year>
+          <volume>432</volume>
+          <fpage>517</fpage>
+          <lpage>522</lpage>
+          <pub-id pub-id-type="pmid">15565157</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Vasiljeva</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Rando</surname>
+              <given-names>O.J.</given-names>
+            </name>
+            <name>
+              <surname>Zhelkovsky</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Buratowski</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distinct pathways for snoRNA and mRNA termination</article-title>
+          <source>Mol. Cell</source>
+          <year>2006</year>
+          <volume>24</volume>
+          <fpage>723</fpage>
+          <lpage>734</lpage>
+          <pub-id pub-id-type="pmid">17157255</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Komarnitsky</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Buratowski</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Different phosphorylated forms of RNA polymerase II and associated mRNA processing factors during transcription</article-title>
+          <source>Genes Dev.</source>
+          <year>2000</year>
+          <volume>14</volume>
+          <fpage>2452</fpage>
+          <lpage>2460</lpage>
+          <pub-id pub-id-type="pmid">11018013</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kopcewicz</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>O'Rourke</surname>
+              <given-names>T.W.</given-names>
+            </name>
+            <name>
+              <surname>Reines</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Metabolic regulation of IMD2 transcription and an unusual DNA element that generates short transcripts</article-title>
+          <source>Mol. Cell. Biol.</source>
+          <year>2007</year>
+          <volume>27</volume>
+          <fpage>2821</fpage>
+          <lpage>2829</lpage>
+          <pub-id pub-id-type="pmid">17296737</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>LaCava</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Houseley</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Saveanu</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Petfalski</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Jacquier</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Tollervey</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>RNA degradation by the exosome is promoted by a nuclear polyadenylation complex</article-title>
+          <source>Cell</source>
+          <year>2005</year>
+          <volume>121</volume>
+          <fpage>713</fpage>
+          <lpage>724</lpage>
+          <pub-id pub-id-type="pmid">15935758</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Henras</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Chanfreau</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiple RNA surveillance pathways limit aberrant expression of iron uptake mRNAs and prevent iron toxicity in S. cerevisiae</article-title>
+          <source>Mol. Cell</source>
+          <year>2005</year>
+          <volume>19</volume>
+          <fpage>39</fpage>
+          <lpage>51</lpage>
+          <pub-id pub-id-type="pmid">15989963</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lund</surname>
+              <given-names>M.K.</given-names>
+            </name>
+            <name>
+              <surname>Kress</surname>
+              <given-names>T.L.</given-names>
+            </name>
+            <name>
+              <surname>Guthrie</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Autoregulation of Npl3, a yeast SR protein, requires a novel downstream region and serine phosphorylation</article-title>
+          <source>Mol. Cell. Biol.</source>
+          <year>2008</year>
+          <volume>28</volume>
+          <fpage>3873</fpage>
+          <lpage>3881</lpage>
+          <pub-id pub-id-type="pmid">18391019</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morillon</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Karabetsou</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>O'Sullivan</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kent</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Proudfoot</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Mellor</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Isw1 chromatin remodeling ATPase coordinates transcription elongation and termination by RNA polymerase II</article-title>
+          <source>Cell</source>
+          <year>2003</year>
+          <volume>115</volume>
+          <fpage>425</fpage>
+          <lpage>435</lpage>
+          <pub-id pub-id-type="pmid">14622597</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morlando</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ballarino</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Greco</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Caffarelli</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Dichtl</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Bozzoni</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coupling between snoRNP assembly and 3′ processing controls box C/D snoRNA biosynthesis in yeast</article-title>
+          <source>EMBO J.</source>
+          <year>2004</year>
+          <volume>23</volume>
+          <fpage>2392</fpage>
+          <lpage>2401</lpage>
+          <pub-id pub-id-type="pmid">15167896</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nedea</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Pootoolal</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Zhong</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Canadien</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Hughes</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Buratowski</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>C.L.</given-names>
+            </name>
+            <name>
+              <surname>Greenblatt</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Organization and function of APT, a subcomplex of the yeast cleavage and polyadenylation factor involved in the formation of mRNA and small nucleolar RNA 3′-ends</article-title>
+          <source>J. Biol. Chem.</source>
+          <year>2003</year>
+          <volume>278</volume>
+          <fpage>33000</fpage>
+          <lpage>33010</lpage>
+          <pub-id pub-id-type="pmid">12819204</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Prescott</surname>
+              <given-names>E.M.</given-names>
+            </name>
+            <name>
+              <surname>Osheim</surname>
+              <given-names>Y.N.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>H.S.</given-names>
+            </name>
+            <name>
+              <surname>Alen</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Roan</surname>
+              <given-names>J.G.</given-names>
+            </name>
+            <name>
+              <surname>Reeder</surname>
+              <given-names>R.H.</given-names>
+            </name>
+            <name>
+              <surname>Beyer</surname>
+              <given-names>A.L.</given-names>
+            </name>
+            <name>
+              <surname>Proudfoot</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcriptional termination by RNA polymerase I requires the small subunit Rpa12p</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2004</year>
+          <volume>101</volume>
+          <fpage>6068</fpage>
+          <lpage>6073</lpage>
+          <pub-id pub-id-type="pmid">15073335</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rasmussen</surname>
+              <given-names>T.P.</given-names>
+            </name>
+            <name>
+              <surname>Culbertson</surname>
+              <given-names>M.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>The putative nucleic acid helicase Sen1p is required for formation and stability of termini and for maximal rates of synthesis and levels of accumulation of small nucleolar RNAs in Saccharomyces cerevisiae</article-title>
+          <source>Mol. Cell. Biol.</source>
+          <year>1998</year>
+          <volume>18</volume>
+          <fpage>6885</fpage>
+          <lpage>6896</lpage>
+          <pub-id pub-id-type="pmid">9819377</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Steinmetz</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Conrad</surname>
+              <given-names>N.K.</given-names>
+            </name>
+            <name>
+              <surname>Brow</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Corden</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>RNA-binding protein Nrd1 directs poly(A)-independent 3′-end formation of RNA polymerase II transcripts</article-title>
+          <source>Nature</source>
+          <year>2001</year>
+          <volume>413</volume>
+          <fpage>327</fpage>
+          <lpage>331</lpage>
+          <pub-id pub-id-type="pmid">11565036</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Steinmetz</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Ng</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Cloute</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Brow</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>cis- and trans-Acting determinants of transcription termination by yeast RNA polymerase II</article-title>
+          <source>Mol. Cell. Biol.</source>
+          <year>2006</year>
+          <volume>26</volume>
+          <fpage>2688</fpage>
+          <lpage>2696</lpage>
+          <pub-id pub-id-type="pmid">16537912</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Steinmetz</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Warren</surname>
+              <given-names>C.L.</given-names>
+            </name>
+            <name>
+              <surname>Kuehner</surname>
+              <given-names>J.N.</given-names>
+            </name>
+            <name>
+              <surname>Panbehi</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Ansari</surname>
+              <given-names>A.Z.</given-names>
+            </name>
+            <name>
+              <surname>Brow</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Genome-wide distribution of yeast RNA polymerase II and its control by Sen1 helicase</article-title>
+          <source>Mol. Cell</source>
+          <year>2006</year>
+          <volume>24</volume>
+          <fpage>735</fpage>
+          <lpage>746</lpage>
+          <pub-id pub-id-type="pmid">17157256</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thiebaut</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kisseleva-Romanova</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Rougemaille</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Boulay</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Libri</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcription termination and nuclear degradation of cryptic unstable transcripts: a role for the nrd1-nab3 pathway in genome surveillance</article-title>
+          <source>Mol. Cell</source>
+          <year>2006</year>
+          <volume>23</volume>
+          <fpage>853</fpage>
+          <lpage>864</lpage>
+          <pub-id pub-id-type="pmid">16973437</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Torchet</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bousquet-Antonelli</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Milligan</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Kufel</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tollervey</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Processing of 3′-extended read-through transcripts by the exosome can generate functional mRNAs</article-title>
+          <source>Mol. Cell</source>
+          <year>2002</year>
+          <volume>9</volume>
+          <fpage>1285</fpage>
+          <lpage>1296</lpage>
+          <pub-id pub-id-type="pmid">12086625</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ursic</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Chinchilla</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Finkel</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Culbertson</surname>
+              <given-names>M.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiple protein/protein and protein/RNA interactions suggest roles for yeast DNA/RNA helicase Sen1p in transcription, transcription-coupled DNA repair and RNA processing</article-title>
+          <source>Nucleic Acids Res.</source>
+          <year>2004</year>
+          <volume>32</volume>
+          <fpage>2441</fpage>
+          <lpage>2452</lpage>
+          <pub-id pub-id-type="pmid">15121901</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vasiljeva</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Buratowski</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nrd1 interacts with the nuclear exosome for 3′ processing of RNA polymerase II transcripts</article-title>
+          <source>Mol. Cell</source>
+          <year>2006</year>
+          <volume>21</volume>
+          <fpage>239</fpage>
+          <lpage>248</lpage>
+          <pub-id pub-id-type="pmid">16427013</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vasiljeva</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Mutschler</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Buratowski</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Meinhart</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Nrd1-Nab3-Sen1 termination complex interacts with the Ser5-phosphorylated RNA polymerase II C-terminal domain</article-title>
+          <source>Nat. Struct. Mol. Biol.</source>
+          <year>2008</year>
+          <volume>15</volume>
+          <fpage>795</fpage>
+          <lpage>804</lpage>
+          <pub-id pub-id-type="pmid">18660819</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wyers</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Rougemaille</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Badis</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Rousselle</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Dufour</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>Boulay</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Regnault</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Devaux</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Namane</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Seraphin</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cryptic Pol II transcripts are degraded by a nuclear quality control pathway involving a new poly(A) polymerase</article-title>
+          <source>Cell</source>
+          <year>2005</year>
+          <volume>121</volume>
+          <fpage>725</fpage>
+          <lpage>737</lpage>
+          <pub-id pub-id-type="pmid">15935759</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib46">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zaret</surname>
+              <given-names>K.S.</given-names>
+            </name>
+            <name>
+              <surname>Sherman</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mutationally altered 3′ ends of yeast CYC1 mRNA affect transcript stability and translational efficiency</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>1984</year>
+          <volume>177</volume>
+          <fpage>107</fpage>
+          <lpage>135</lpage>
+          <pub-id pub-id-type="pmid">6086937</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zuker</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Prediction of RNA secondary structure by energy minimization</article-title>
+          <source>Methods Mol. Biol.</source>
+          <year>1994</year>
+          <volume>25</volume>
+          <fpage>267</fpage>
+          <lpage>294</lpage>
+          <pub-id pub-id-type="pmid">7516239</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Figure 1</label>
+      <caption>
+        <p>NRD Terminates Pol II on mRNA-Coding Genes in <italic>rat1-1</italic> Mutant</p>
+        <p>(A) Diagram of pKGG employed in TRO. M13 probes used are indicated. Arrows denote <italic>TEF1</italic> and <italic>GAL7</italic> promoters and vertical line <italic>GAL10</italic> pA signal.</p>
+        <p>(B) TRO and quantitation of WT, <italic>rat1-1</italic>, <italic>sen1-1</italic>, and <italic>rat1-1 sen1-1</italic>. M is background signal. Values are plotted relative to probe 1. Quantitations are based on three independent experimental repeats. Error bars show standard deviation.</p>
+        <p>(C) WT, <italic>rat1-1</italic>, <italic>nrd1-102</italic>, and <italic>rat1-1 nrd1-102</italic> TRO in pKGG are as in (B).</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Figure 2</label>
+      <caption>
+        <p>Nrd1 Accumulates in Intergenic Regions in <italic>rat1-1</italic> Mutants</p>
+        <p>(A) Diagram of <italic>ADH1</italic>-<italic>YOL087c</italic>. Horizontal bars denote the ChIP probes. ChIP analyses using either anti-Rpb1 (8WG16) or IgG fast flow agarose were performed in TAP-<italic>NRD1 RAT1</italic> (WT) or TAP-<italic>NRD1 rat1-1</italic>. M corresponds to nontranscribed <italic>MUC11</italic>. Values are based on three independent ChIPs, and error bars show standard deviation.</p>
+        <p>(B) ChIP with anti-S2-P CTD (3E10) or anti-S5-P CTD (3E8) on FD4D (WT) or FD4B (<italic>rat1-1</italic>) chromatin.</p>
+        <p>(C) <italic>GAL10-7</italic> intergenic region in pKGG. pA signal is shown as a vertical line and Nrd1 and Nab3 clusters as gray boxes. Nrd1- and Nab3-binding sites (boxed) are shown as expanded sequences. Arrows indicate 3′ ends of readthrough transcripts determined by LM-RT-PCR. Multiple transcripts terminated at the same point are indicated by number, and transcripts adenylated are indicated by asterisk. Internal primer used in PCR (horizontal arrow) and position relative to <italic>KanMX4</italic> stop codon are indicated. Numbering at borders of the cluster sequences relate to stop codon position. Point mutations in pKGGm at the Nrd1 or Nab3 sites are indicated by gray arrows. Lower agarose gel shows the LM-RT-PCR products in <italic>RAT1</italic> and <italic>rat1-1</italic> strains depleted for the exosome (Rrp41). Estimated product sizes are indicated on the right. Lowest band corresponds to primer dimers.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Figure 3</label>
+      <caption>
+        <p>RCS Induces Pol II Termination When pA Is Deleted</p>
+        <p>(A) Diagram of pGCYC1, pGCYC1-512, and pGCYC1RCS with <italic>CYC1</italic> promoter replaced by inducible <italic>GAL1</italic> promoter. The vertical line represents pA signal, brackets pA deletion and hairpin RCS. TRO were performed in W303 transformed with each plasmid. Hybridization profiles and quantitations are shown as in <xref rid="fig1" ref-type="fig">Figure 1</xref>.</p>
+        <p>(B) Diagram of pKGG, pKGGΔpA, and pKGGRCS. <italic>TEF1</italic> and <italic>GAL7</italic> promoters are indicated by arrows, and pA, ΔpA, and RCS are as in (A). TRO was using W303 and shown as in <xref rid="fig1" ref-type="fig">Figure 1</xref>.</p>
+        <p>(C) Diagram of pGCYC1, pGCYC1-512, pGCYC1RZ, and pGCYC1mRZ is as in (A), but the hairpin indicates RZ and crossed hairpin mRZ. TRO was performed in W303 and shown as in <xref rid="fig1" ref-type="fig">Figure 1</xref>.</p>
+        <p>TRO quantitation error bars show standard deviation.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Figure 4</label>
+      <caption>
+        <p>RCS-Dependent Termination Involves Rnt1 and Rat1</p>
+        <p>(A) Diagram of pGCYC1RCS employed for TRO as in <xref rid="fig3" ref-type="fig">Figure 3</xref>A.</p>
+        <p>(B) BMA64 and <italic>rnt1Δ</italic> were used in TRO assay. Hybridization profiles and quantitation are presented.</p>
+        <p>(C) As in (B), except W303 and YAEH97 were grown in media without methionine, and depletion was induced as described in the <xref rid="sec4" ref-type="sec">Experimental Procedures</xref>.</p>
+        <p>TRO quantitation error bars show standard deviation.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Figure 5</label>
+      <caption>
+        <p>RNA Cleavage by Rnt1 Promotes Degradation Unless Close by Weak pA Site</p>
+        <p>(A) Northern blot analysis of pGCYC1 (pA), pGCYC1-512 (ΔpA), pGCYC1RCS (RCS), and endogenous <italic>CYC1</italic> total and polyadenylated RNA from W303. <italic>RPS2</italic> RNA levels were used as loading control.</p>
+        <p>(B) qRT-PCR from W303 transformed with pGCYC1, pGCYC1-512, pGCYC1RCS, and grown in galactose (plasmid) or glucose (endog) conditions. OligodT-primed cDNA was a template for real-time PCR using coding region <italic>CYC1</italic> primers.</p>
+        <p>(C) Northern blot analysis of pKGG (pA), pKGGΔpA (ΔpA), pKGGRCS (RCS) total or pA selected RNA. Membranes were first hybridized with KanMX4 probe and subsequently stripped and reprobed for RPS2 RNA as control.</p>
+        <p>(D) qRT-PCR from W303 transformed with pKGG, pKGGΔpA, and pKGGRCS. OligodT-primed cDNA from total RNA was used as a template for quantitative PCR with KanMX4-specific primers.</p>
+        <p>(E) qRT-PCR from W303 and LM98 (<italic>pap1-5</italic>) transformed with pKGG, pKGGΔpA, and pKGGRCS and grown at 37°C for 2 hr to induce the mutation. Quantitation of mRNA was as in (D).</p>
+        <p>Quantitation in (B), (D), and (E) shows error bars based on standard deviation.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Figure 6</label>
+      <caption>
+        <p>Nab3-Binding Sites Compete with a Weak pA Signal for 3′ End Formation</p>
+        <p>(A) Diagram of <italic>GAL10-GAL7</italic> intergenic region in pKGG. Nrd1 and Nab3 sites are shown as gray boxes and pA site as a vertical line. pKGGRCS and pKGG sequences with the RCS and deleted pA signal (denoted by brackets) in pKGGΔpA are underlined. Arrows denote the 3′ ends mapped by 3′RACE in pKGG, pKGGΔpA (gray arrows), and pKGGRCS (upper sequence). Three Nab3-binding sites located upstream of pA are below the diagram. Arrowheads show the point mutations introduced in pKGGmNB3, pKGGΔpAmNB3, and pKGGRCSmNB3.</p>
+        <p>(B) qRT-PCR from W303 was transformed with pKGG, pKGGΔpA, pKGGRCS (NB3), pKGGmNB3, pKGGΔpAmNB3, or pKGGRCSmNB3 (mNB3) as in <xref rid="fig5" ref-type="fig">Figure 5</xref>D.</p>
+        <p>(C) Northern blot analysis of pKGG (pA), pKGGΔpA (ΔpA), pKGGRCS (RCS), with or without Nab3-binding sites upstream pA. Hybridization of pA-selected RNA was performed as in <xref rid="fig5" ref-type="fig">Figure 5</xref>C.</p>
+        <p>Error bars show standard deviation.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Figure 7</label>
+      <caption>
+        <p>RCS Located Downstream of NPL3 Directs Termination and RNA Degradation</p>
+        <p>(A) Chromosomal organization of <italic>NPL3-GIP17</italic>. Arrows denote promoters, hairpin the RCS, and vertical lines pA signals. ChIP probes (N1-7) and Npl3 northern probe are indicated.</p>
+        <p>(B) Northern blot analysis of <italic>NPL3</italic> transcripts in BMA64 (WT) and <italic>rnt1Δ</italic>.</p>
+        <p>(C) ChIP with anti-Rpb1 (8WG16) was performed in BMA64 (WT) and <italic>rnt1Δ</italic>. M denotes <italic>MUC11</italic> as negative control. Average of three independent experiments is shown, and error bars represent standard deviation.</p>
+        <p>(D) Northern blot analysis of BY4741 (WT), Y01777 (<italic>rrp6Δ</italic>), Y06265 (<italic>trf4Δ</italic>), Y01145 (<italic>trf5Δ</italic>), and DRY41-4A (<italic>GAL1::RRP41</italic>) strains grown in glucose, except for DRY41-4A, which was grown in galactose or glucose for 20 hr to induce exosome depletion. Total RNA was assayed as in (B). <italic>NPL3</italic> transcripts from three independent experiments were quantified and normalized to the amount of sCR1. The average of the three values is represented in gray and the readthrough transcript (upper band in the gel) in white. Error bars show standard deviation.</p>
+        <p>(E) Northern blot of W303 (WT), LM 88 (<italic>rna14-1</italic>), LM91 (<italic>rna15-1</italic>), and LM98 (<italic>pap1-5</italic>) grown at 25°C or shifted 2 hr at 37°C.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+  </floats-wrap>
+</article>

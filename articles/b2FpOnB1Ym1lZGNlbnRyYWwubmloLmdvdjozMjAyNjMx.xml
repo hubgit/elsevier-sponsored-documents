@@ -1,0 +1,3138 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Methods</journal-id>
+      <journal-title-group>
+        <journal-title>Methods (San Diego, Calif.)</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1046-2023</issn>
+      <issn pub-type="epub">1095-9130</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3202631</article-id>
+      <article-id pub-id-type="pmid">21906678</article-id>
+      <article-id pub-id-type="publisher-id">YMETH2778</article-id>
+      <article-id pub-id-type="doi">10.1016/j.ymeth.2011.08.014</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Computational approaches to selecting and optimising targets for structural biology</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Overton</surname>
+            <given-names>Ian M.</given-names>
+          </name>
+          <email>ian.overton@hgu.mrc.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Barton</surname>
+            <given-names>Geoffrey J.</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1"><label>a</label>MRC Human Genetics Unit, Institute of Genetics and Molecular Medicine, Western General Hospital, Crewe Road, Edinburgh EH4 2XU, United Kingdom</aff>
+      <aff id="aff2"><label>b</label>College of Life Sciences, University of Dundee, Dundee DD1 5EH, United Kingdom</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Fax: +44 1314678456. <email>ian.overton@hgu.mrc.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>9</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>9</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>55</volume>
+      <issue>1</issue>
+      <fpage>3</fpage>
+      <lpage>11</lpage>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Inc.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract abstract-type="graphical">
+        <title>Highlights</title>
+        <p>► Identifies key considerations in target selection and optimisation. ► Approaches to assign useful protein features and structure/function relationships. ► Comparison of latest crystallisation propensity predictors on nonredundant data. ► Discusses single point of reference target selection/optimisation resources. ► Guidance on using the SSPF Target Optimisation Utility (TarO).</p>
+      </abstract>
+      <abstract>
+        <p>Selection of protein targets for study is central to structural biology and may be influenced by numerous factors. A key aim is to maximise returns for effort invested by identifying proteins with the balance of biophysical properties that are conducive to success at all stages (e.g. solubility, crystallisation) in the route towards a high resolution structural model. Selected targets can be optimised through construct design (e.g. to minimise protein disorder), switching to a homologous protein, and selection of experimental methodology (e.g. choice of expression system) to prime for efficient progress through the structural proteomics pipeline.</p>
+        <p>Here we discuss computational techniques in target selection and optimisation, with more detailed focus on tools developed within the Scottish Structural Proteomics Facility (SSPF); namely XANNpred, ParCrys, OB-Score (target selection) and TarO (target optimisation). TarO runs a large number of algorithms, searching for homologues and annotating the pool of possible alternative targets. This pool of putative homologues is presented in a ranked, tabulated format and results are also visualised as an automatically generated and annotated multiple sequence alignment. The target selection algorithms each predict the propensity of a selected protein target to progress through the experimental stages leading to diffracting crystals. This single predictor approach has advantages for target selection, when compared with an approach using two or more predictors that each predict for success at a single experimental stage. The tools described here helped SSPF achieve a high (21%) success rate in progressing cloned targets to diffraction-quality crystals.</p>
+      </abstract>
+      <kwd-group>
+        <title>Abbreviations</title>
+        <kwd>MSA, Multiple Sequence Alignment</kwd>
+        <kwd>PTM, Post Translational Modification</kwd>
+        <kwd>SSPF, Scottish Structural Proteomics Facility</kwd>
+        <kwd>MCC, Matthew’s correlation coefficient</kwd>
+        <kwd>AROC, Area Under the Receiver Operator Characteristic curve</kwd>
+      </kwd-group>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Target selection</kwd>
+        <kwd>Crystallisation</kwd>
+        <kwd>Structural genomics</kwd>
+        <kwd>Structural biology</kwd>
+        <kwd>Bioinformatics</kwd>
+        <kwd>Construct design</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>Of all techniques applied in molecular biology, macromolecular crystallography reveals the most exquisite details about the machines of life. Advances in X-ray sources, computational methods and cryo-techniques over the last 20 years have led to a dramatic increase in the rate at which a protein structure may be determined once diffracting crystals have been obtained. Unfortunately, expressing proteins at levels suitable for structural studies and obtaining crystals that diffract remain the major bottlenecks in most structural biology laboratories <xref rid="b0005 b0010 b0015" ref-type="bibr">[1–3]</xref>. Accordingly, computational sequence analysis and similar methods are often applied to increase the chances of success. Common strategies are to seek out related proteins that might fare better than the preferred target (e.g. orthologues, pathway members), to “optimise” the target protein in some way, or to adjust the laboratory approach (e.g. choice of expression system) <xref rid="b0015 b0020 b0025 b0030 b0035 b0040 b0045 b0050 b0055 b0060 b0065" ref-type="bibr">[3–13]</xref>. If the native protein fails to crystallise, optimisation typically starts with truncation of the protein into likely domains, or the removal of disordered regions, but may include more sophisticated engineering. These strategies rely on the application of computational tools for sequence analysis and alignment in conjunction with the structural biologist’s experience. Although a single investigator might spend days studying options to try on their protein, in a high-throughput structural proteomics environment it is necessary to streamline this process by introducing a higher degree of automation. In this article, we examine computational approaches for selecting and optimising proteins for crystallography with emphasis on those developed at the University of Dundee <xref rid="b0060 b0070 b0075 b0080" ref-type="bibr">[12,14–16]</xref> as part of the Scottish Structural Proteomics Facility (SSPF) <xref rid="b0015" ref-type="bibr">[3]</xref>. Although developed with high-throughput crystallography in mind, most of the tools described here are equally applicable to smaller-scale structural studies.</p>
+    </sec>
+    <sec id="s0010">
+      <label>2</label>
+      <title>Influence of project scope on structural proteomics target selection</title>
+      <p>The overall approach to selecting targets is dictated by the scope of the project. In the subsections below we outline a few examples of how the research aims may impact on target selection and optimisation. A common principle in target selection is to identify proteins (e.g. orthologues) that both satisfy the project aims and are relatively amenable to structural characterisation. Target optimisation is applicable to almost every project and is discussed in greater detail in Section <xref rid="s0065" ref-type="sec">6</xref> of this article. Indeed analyses enabled by the Target Optimisation Utility (TarO) <xref rid="b0060" ref-type="bibr">[12]</xref>, such as prediction of domain boundaries, are useful in any structural biology laboratory – even for work that focuses specifically on a single target. Further information on current structural proteomics projects can be obtained by exploring links from the International Structural Genomics Organisation (ISGO) list of active initiatives <xref rid="b0085" ref-type="bibr">[17]</xref>.</p>
+      <sec id="s0015">
+        <label>2.1</label>
+        <title>Structural proteomics on a specific organism</title>
+        <p>Some projects seek to provide structural coverage across the whole proteome of a particular organism, such as <italic>Thermotoga maritima</italic> <xref rid="b0090" ref-type="bibr">[18]</xref> or <italic>Saccharomyces cerevisiae</italic> <xref rid="b0050 b0095" ref-type="bibr">[10,19]</xref>. This kind of genome-wide approach rules out searching for more tractable orthologues; however, ranking targets according to their predicted success may inform experimental strategy. Optimisation of the construct sequence may also be productive, for example to minimise protein regions predicted to be disordered or to adjust codon usage <xref rid="b0055 b0060 b0100" ref-type="bibr">[11,12,20]</xref>. Such optimisation can be useful for all targets, but is more often adopted as a salvage strategy for targets that flounder with a standard approach.</p>
+      </sec>
+      <sec id="s0020">
+        <label>2.2</label>
+        <title>Structural biology projects for drug discovery and biological chemistry</title>
+        <p>Some structural proteomics projects focus on targets that might be suitable in drug discovery against a specific pathogen, for example, the <italic>Mycobacterium tuberculosis</italic> structural genomics consortium <xref rid="b0105" ref-type="bibr">[21]</xref>; even these consortia may have scope for flexibility across different targets amongst pathways and sub-networks. However, prioritisation of druggable targets with favourable properties, such as control of metabolic flux and therapeutic selectivity, limits the choice of alternative structural targets and constructs <xref rid="b0110" ref-type="bibr">[22]</xref>. Structural characterisation of a biological pathway or a particular enzyme function enjoys greater flexibility, where exploration of different orthologues and constructs (e.g. the catalytic domain) may be helpful.</p>
+      </sec>
+      <sec id="s0025">
+        <label>2.3</label>
+        <title>Mapping protein structure space</title>
+        <p>Efforts to extend protein structure space coverage (e.g. <xref rid="b0035 b0115" ref-type="bibr">[7,23]</xref>) have good scope for selecting the most favourable candidates from groups of structurally similar proteins, at least where structural relationships can be reliably inferred. Similar flexibility is available to efforts that focus on particular classes of proteins (e.g. <xref rid="b0120 b0125" ref-type="bibr">[24,25]</xref>). As noted above, target optimisation is also useful in these contexts.</p>
+      </sec>
+    </sec>
+    <sec id="s0030">
+      <label>3</label>
+      <title>Useful protein features in target selection and optimisation</title>
+      <p>In order to identify favourable targets and constructs, significant attention has been given to exploring biophysical properties and investigating protein selection strategies that correlate with success in obtaining a structure (e.g. <xref rid="b0045 b0070 b0075 b0080 b0130 b0135 b0140 b0145 b0150" ref-type="bibr">[9,14–16,26–30]</xref>). To give a few examples, properties influencing soluble expression include isoelectric point (pI), hydrophobicity, and sequence length; properties influencing production of diffraction-quality crystals from purified protein include surface entropy, disordered sequence, and protein post-translational modifications <xref rid="b0055 b0130 b0135 b0140 b0145 b0150 b0155 b0160" ref-type="bibr">[11,26–32]</xref>. Many of these features, as well as relevant algorithms and databases are summarised in <xref rid="t0005" ref-type="table">Table 1</xref>. Properties that impact on success are often correlated. For example, regions that participate in protein–protein interactions have greater hydrophobicity <xref rid="b0165 b0170" ref-type="bibr">[33,34]</xref>, and sites of post-translational modification are enriched for disordered regions <xref rid="b0155" ref-type="bibr">[31]</xref>. In addition, individual biophysical properties have been shown to significantly influence multiple pipeline stages. For example, hydrophobicity affects soluble expression, purification and crystallisation; glycosylation affects soluble expression and crystallisation; while the sequence length has an impact on cloning, soluble expression and crystallisation <xref rid="b0055 b0135" ref-type="bibr">[11,27]</xref>. Moreover, selection or engineering for success at a given experimental stage can hinder progress at other parts of the structure determination pipeline. For example, surface entropy and charge are related because several high entropy residues have charge (e.g. Lys, Glu, Arg). In general, more surface charge, and consequently higher entropy, favours solubility; on the other hand lower surface entropy, and consequently charge, favours crystallisation <xref rid="b0140 b0175" ref-type="bibr">[28,35]</xref>. Therefore, target selection and optimisation would ideally find protein chains that possess the correct balance of properties required for successful progression through all experimental stages leading to a high-resolution structural model. Indeed, algorithms have been developed with this goal in mind <xref rid="b0070 b0075 b0080 b0180" ref-type="bibr">[14–16,36]</xref>. Algorithms are also available to predict progression at a particular pipeline stage <xref rid="b0140 b0145 b0150 b0185" ref-type="bibr">[28–30,37]</xref>; for example PXS aims to predict the crystallisation of ‘well-behaved’ soluble proteins <xref rid="b0140" ref-type="bibr">[28]</xref>. Section <xref rid="s0040" ref-type="sec">5</xref>, below, gives further discussion of these and other tools.</p>
+      <p>An assessment of the existing functional annotation available to inform structure interpretation is also useful for target selection. Indeed, new structures are difficult to interpret without some functional knowledge, and so make a less immediate contribution to biological understanding in the scientific community. For example, target selection in the SSPF included a score to estimate functional annotation based on the Gene Ontology <xref rid="b0015 b0190" ref-type="bibr">[3,38]</xref>.</p>
+      <p>Correlates of success are less understood for integral membrane proteins, which represent around 25% of protein-coding genes <xref rid="b0195" ref-type="bibr">[39]</xref> but only 1% of proteins with high resolution structures <xref rid="b0200 b0205" ref-type="bibr">[40,41]</xref>. Indeed, membrane protein expression, purification and crystallisation are individually very challenging <xref rid="b0210 b0215" ref-type="bibr">[42,43]</xref>. However, membrane proteins are relatively amenable to computational characterisation, partly due to physical constraints imposed by the phospholipid bilayer. Indeed, existing approaches (e.g. TMHMM2 <xref rid="b0220" ref-type="bibr">[44]</xref>, Phobius <xref rid="b0225" ref-type="bibr">[45]</xref>) perform well in predicting membrane protein topology, including identification of cytoplasmic and extracellular regions. Current selection strategies seek to enhance membrane protein tractability by avoiding protein disorder and hetero-oligomeric complexes <xref rid="b0125" ref-type="bibr">[25]</xref>. Intrinsically disordered proteins are also thought to represent a significant proportion of protein-coding genes and are resistant to structural studies; these multifunctional proteins adopt different conformations according to protein interactions, environmental conditions (e.g. pH, temperature) and small changes in amino acid sequence <xref rid="b0230 b0235 b0240" ref-type="bibr">[46–48]</xref>. Protein complexes are also typically difficult to work with, and have been a specific focus of the European ‘SPINE2 complexes’ initiative <xref rid="b0245" ref-type="bibr">[49]</xref>. Target selection methods have been developed to identify “low-hanging fruit” for crystallography of protein complexes, however this area remains challenging <xref rid="b0025 b0065" ref-type="bibr">[5,13]</xref>. Protein interaction databases, such as MINT <xref rid="b0250" ref-type="bibr">[50]</xref> and PIPS <xref rid="b0255" ref-type="bibr">[51]</xref> enable inference of complexes, for inclusion or exclusion of candidate targets. This article does not detail approaches for these especially difficult classes of targets.</p>
+    </sec>
+    <sec id="s0035">
+      <label>4</label>
+      <title>Assignment of protein structure and function relationships</title>
+      <p>A fundamental technique in target selection is to estimate the relationships in structure and function between the target and other proteins. This approach allows alternative structural candidates to be identified (e.g. orthologues), as well as supporting efficient coverage of protein structure space <xref rid="b0035 b0115" ref-type="bibr">[7,23]</xref>. In practice, automated sequence searching is a crucial component for inferring similarity in structure and/or function across genomes <xref rid="b0260 b0265" ref-type="bibr">[52,53]</xref>. For example, sequence similarity to human proteins provides a coarse filter against unsuitable drug targets, or alternatively an inclusion criterion for targets relevant to human biology. The ‘Rost curve’ <xref rid="b0270" ref-type="bibr">[54]</xref> is a heuristic for the estimation of protein structural relationships from sequence alignments and provides a formula that combines alignment length and percentage identity/similarity. Target selection pipelines have employed the ‘Rost curve’ as a means to obtain proteins that are expected to be structurally similar to a candidate target in order to: (A) add expected structurally similar proteins to a pool of candidate targets and (B) determine if structural information already exists, leading to target deprioritisation or alternatively to suggest models for phasing by molecular replacement <xref rid="b0015 b0030 b0060" ref-type="bibr">[3,6,12]</xref>. Importantly, the ‘Rost curve’ is algorithm-dependent and therefore requires calibration, as has been done for SSEARCH <xref rid="b0030" ref-type="bibr">[6]</xref>.</p>
+      <p>Searching orthologous sequence databases (e.g. eggNOG <xref rid="b0275" ref-type="bibr">[55]</xref>, InParanoid <xref rid="b0535" ref-type="bibr">[56]</xref>) can be a productive strategy to expand the possible pool of targets available for consideration. One approach examined structural similarity to orthologous groups using the Rost thresholds in order to include the group of putative orthologues into the pool for further study <xref rid="b0060" ref-type="bibr">[12]</xref>. However, sequence homology for non-globular protein segments, such as transmembrane regions and signal peptides, requires careful consideration because sequence relationships in these regions frequently reflect convergent evolution due to physical constraints <xref rid="b0285" ref-type="bibr">[57]</xref>. Sequence-based approaches to infer relationships in protein structure and function were largely developed from studies of globular proteins and therefore may not translate appropriately to other protein classes, even when low-complexity filtering is applied <xref rid="b0285" ref-type="bibr">[57]</xref>. Visual inspection of an annotated multiple sequence alignment (MSA), including examination of sequence feature conservation, is invaluable for assessment of structural and functional similarity <xref rid="b0060" ref-type="bibr">[12]</xref>. However, construction of a MSA is not necessarily straightforward (e.g. for multi-domain proteins), and so rounds of manual interpretation and realignment may be required. Informative features for this purpose include protein disorder <xref rid="b0540 b0295 b0300" ref-type="bibr">[58–60]</xref> secondary structure <xref rid="b0305" ref-type="bibr">[61]</xref>, domains <xref rid="b0310 b0315" ref-type="bibr">[62,63]</xref>, motifs <xref rid="b0320" ref-type="bibr">[64]</xref> and post-translational modifications (e.g. <xref rid="b0325 b0330 b0335" ref-type="bibr">[65–67]</xref>).</p>
+      <p>Automatically identifying and deselecting a target when significant progress has been made by a different research group is an important aspect of structural proteomics work so that effort is not wasted <xref rid="b0040" ref-type="bibr">[8]</xref>. Information sharing is crucial in target deselection, which is typically based on regular searches of TargetDB, PepcDB and PDB <xref rid="b0340 b0345" ref-type="bibr">[68,69]</xref>. Tools with capabilities relevant to target deselection include PiMS <xref rid="b0350" ref-type="bibr">[70]</xref> and SeqAlert <xref rid="b0020" ref-type="bibr">[4]</xref>. In order to reduce duplication of effort, the USA Protein Structure Initiative production phase (PSI-2) has integrated target selection bioinformatics across its four large-scale centres <xref rid="b0115" ref-type="bibr">[23]</xref>.</p>
+    </sec>
+    <sec id="s0040">
+      <label>5</label>
+      <title>Predicting success in the structural proteomics pipeline</title>
+      <p>Having identified a pool of sequences that possess appropriate structure and function relationships according to the project scope, the next logical step is to determine promising candidates for experimental work. As noted above, successful progression of a selected target through to the stage of diffraction-quality crystals is a critical consideration. Algorithms to estimate this include XANNpred, OB-Score, ParCrys, XtalPred, PPCpred and PDPredictor <xref rid="b0070 b0075 b0080 b0180 b0355 b0360" ref-type="bibr">[14–16,36,71,72]</xref>. Approaches focused on key stages of the structural biology pipeline have also been developed, including predictors of soluble expression (e.g. PROSO <xref rid="b0145" ref-type="bibr">[29]</xref>, SOLpro <xref rid="b0185" ref-type="bibr">[37]</xref>) and crystallisation (e.g. PXS <xref rid="b0140" ref-type="bibr">[28]</xref>, SECRET <xref rid="b0150" ref-type="bibr">[30]</xref>). SECRET is limited to only accept sequences of length 46–200 residues <xref rid="b0150" ref-type="bibr">[30]</xref>. Predictors that focus on a specific experimental stage are particularly useful when protein targets have already reached the given stage in the pipeline, especially in target optimisation to propose alternative constructs; the SERp surface entropy reduction server is an example <xref rid="b0045" ref-type="bibr">[9]</xref>. Estimating overall success of selected targets with a single predictor is much more appealing than using multiple single-stage predictors. Indeed, a linear combination of multiple predictors suffers from error multiplication and makes candidate target ranking more cumbersome. Consider a strategy combining two predictors to separately estimate soluble expression and crystallisation propensity. If each predictor gave 75% accuracy individually, accuracy for progression through both stages would be only 56%. Moreover, biophysical properties that are advantageous at one stage (e.g. solubility) may conflict with properties required for success at another stage (e.g. crystallisation) <xref rid="b0055 b0140 b0175" ref-type="bibr">[11,28,35]</xref>. Accordingly, an attractive approach applies a single algorithm to select targets with the right balance of biophysical properties to successfully navigate all stages of the structural proteomics pipeline. As noted above, this strategy is available <italic>via</italic> the algorithms XANNpred <xref rid="b0080 b0365" ref-type="bibr">[16,73]</xref>, PPCpred <xref rid="b0360 b0370" ref-type="bibr">[72,74]</xref>, PDPredictor, XtalPred <xref rid="b0180 b0375 b0380" ref-type="bibr">[36,75,76]</xref> and ParCrys/OB-Score <xref rid="b0070 b0075 b0385" ref-type="bibr">[14,15,77]</xref>. Interestingly, PPCpred provides a single prediction for overall success, as well as estimating success at three individual pipeline stages <xref rid="b0360" ref-type="bibr">[72]</xref> and so informs on expected point(s) of failure. The subsections below give further discussion on the relative merits of these methods, with emphasis on those developed at the Scottish Structural Proteomics Facility (SSPF). Of the algorithms examined, XANNpred was found to be best-performing (Subsection <xref rid="s0060" ref-type="sec">5.4</xref> and <xref rid="b0080" ref-type="bibr">[16]</xref>).</p>
+      <sec id="s0045">
+        <label>5.1</label>
+        <title>The OB-Score</title>
+        <p>The OB-Score built upon findings about the correlation between hydrophobicity, isoelectric point (pI) and crystallisation success in the <italic>T. maritima</italic> proteome <xref rid="b0130" ref-type="bibr">[26]</xref>. Three clusters were identified; cluster A which contained 75% of crystallised proteins and 60% of the <italic>T. maritima</italic> proteome, cluster B (27% crystals, 20% of proteome), and cluster C (a single crystal, 10% of proteome) <xref rid="b0130" ref-type="bibr">[26]</xref>. The OB-Score provides a measure of similarity for a protein’s pI and hydrophobicity to that of previously crystallised proteins in the PDB <xref rid="b0075" ref-type="bibr">[15]</xref>. Briefly, a redundancy-filtered set of PDB structures and UniRef100 <xref rid="b0390" ref-type="bibr">[78]</xref> provided the basis for developing a Z-score matrix, and validation was performed against available information from structural proteomics consortia <xref rid="b0075" ref-type="bibr">[15]</xref>. Software to calculate the OB-Score is available for download from <xref rid="b0395" ref-type="bibr">[79]</xref> and predictions are also available from a webserver <xref rid="b0385" ref-type="bibr">[77]</xref>. Notably, the OB-Score is fast to calculate and therefore easily applied to large datasets, within a multi-criterion target selection pipeline as shown in <xref rid="f0005" ref-type="fig">Fig. 1</xref>.</p>
+      </sec>
+      <sec id="s0050">
+        <label>5.2</label>
+        <title>ParCrys</title>
+        <p>ParCrys extends the number of features considered in the OB-Score and implements them within a non-parametric statistical framework to estimate a density function from PDB structures without requirement for negative examples <xref rid="b0070" ref-type="bibr">[14]</xref>. Parameterising the density function only on a set of positive examples has the advantage of avoiding complications around defining ‘non-crystallisable’ targets. Feature selection was done with public data from structural proteomics consortia <xref rid="b0340" ref-type="bibr">[68]</xref> to identify single amino acid frequencies (S, C, G, F, Y, M) as predictive features additional to hydrophobicity and isoelectric point. Therefore, ParCrys represents a more sophisticated algorithm than the OB-Score and was found to perform well on several non-redundant blind test datasets, including specific construct sequences taken from the PepcDB database <xref rid="b0070" ref-type="bibr">[14]</xref>. ParCrys predictions and data used for training and benchmarking are available at <xref rid="b0385" ref-type="bibr">[77]</xref>.</p>
+      </sec>
+      <sec id="s0055">
+        <label>5.3</label>
+        <title>XANNpred</title>
+        <p>Structural proteomics consortia routinely apply sequence-based selection constraints on their targets, which influence the composition of the associated databases (e.g. PepcDB, TargetDB). With this in mind, a pair of algorithms named XANNpred-SG and XANNpred-PDB were respectively developed using data from PepcDB and the PDB <xref rid="b0080" ref-type="bibr">[16]</xref>. The XANNpred algorithms utilise a large number of features for prediction, including dipeptide frequencies, predicted disorder <xref rid="b0540" ref-type="bibr">[58]</xref>, transmembrane regions <xref rid="b0220" ref-type="bibr">[44]</xref> and secondary structure <xref rid="b0305" ref-type="bibr">[61]</xref>. In contrast to ParCrys <xref rid="b0070" ref-type="bibr">[14]</xref> and XtalPred <xref rid="b0180" ref-type="bibr">[36]</xref>, each of the XANNpred algorithms were robust to either predicting over data taken from the whole PDB or predicting over structural proteomics datasets (PepcDB) <xref rid="b0080" ref-type="bibr">[16]</xref>. Additionally, XANNpred can generate windowed graphs of crystallisation propensity over a protein sequence in order to assist construct design. XANNpred predictions are available from <xref rid="b0365" ref-type="bibr">[73]</xref>. Both XANNpred-SG and XANNpred-PDB were found to outperform other publicly available algorithms (PXS <xref rid="b0140" ref-type="bibr">[28]</xref>, XtalPred <xref rid="b0180" ref-type="bibr">[36]</xref>, OB-Score <xref rid="b0075" ref-type="bibr">[15]</xref>, ParCrys <xref rid="b0070" ref-type="bibr">[14]</xref>) over several non-redundant blind test datasets <xref rid="b0080" ref-type="bibr">[16]</xref>. Section <xref rid="s0060" ref-type="sec">5.4</xref>, below extends this comparison to a recently published algorithm, PPCpred <xref rid="b0360" ref-type="bibr">[72]</xref>.</p>
+      </sec>
+      <sec id="s0060">
+        <label>5.4</label>
+        <title>Evaluation of current methods to predict overall success of selected targets</title>
+        <p><xref rid="f0010" ref-type="fig">Fig. 2</xref> gives comparison of the methods XANNpred-PDB <xref rid="b0080" ref-type="bibr">[16]</xref>, XtalPred <xref rid="b0180" ref-type="bibr">[36]</xref>, PPCpred <xref rid="b0360" ref-type="bibr">[72]</xref> and OB-Score <xref rid="b0075" ref-type="bibr">[15]</xref> on a nonredundant dataset of 150 proteins that were controlled to be an independent blind test of XANNpred-PDB performance <xref rid="b0080" ref-type="bibr">[16]</xref>. Briefly, the blind test dataset includes 75 proteins from the PDB <xref rid="b0345" ref-type="bibr">[69]</xref> and 75 proteins from PepcDB that had been cloned but where work was stopped before crystals were obtained <xref rid="b0080" ref-type="bibr">[16]</xref>. Predictions for PPCpred were obtained from <xref rid="b0370" ref-type="bibr">[74]</xref>, data for the other algorithms were taken from <xref rid="b0080" ref-type="bibr">[16]</xref>. XANNpred-PDB gave Matthew’s correlation coefficient (MCC) of 0.63 and area under the receiver operator characteristic curve (AROC) of 0.854, performing significantly better than the next best algorithm PPCpred (two-tailed <italic>p</italic> &lt; 0.0091); PPCpred had AROC of 0.718 and best possible MCC of 0.37. XtalPred performs similarly to PPCpred (AROC 0.707, best possible MCC 0.37) followed by the OB-Score (AROC 0.612, best possible MCC 0.23). This test dataset was controlled by stringent approaches <xref rid="b0080" ref-type="bibr">[16]</xref> to enable an independent blind test of XANNpred-PDB performance. However, estimates for the other algorithms (PPCpred XtalPred, OB-Score) are likely inflated due to some degree of overlap between their training data and the test data studied here. Even so, XANNpred performed best and appears to be the method of choice for estimating targets’ overall success in the structural biology pipeline.</p>
+      </sec>
+    </sec>
+    <sec id="s0065">
+      <label>6</label>
+      <title>Single point of reference resource for target selection and optimisation</title>
+      <p>As discussed above, numerous computational approaches are relevant to target selection and optimisation. The task of running these calculations, as well as integration, management and visualisation of the resultant information represents a significant challenge. Single point of reference resources have been developed in order to address these issues. The Oxford Protein Analysis Linker (OPAL) <xref rid="b0020" ref-type="bibr">[4]</xref> was an early resource for this purpose, and collected information from several websites that performed individual analysis steps. However OPAL does not provide integration or storage of results. Other similar resources are also available but without a structural biology focus, such as ExPASy, Dasty3 and ANNIE <xref rid="b0400 b0405 b0410" ref-type="bibr">[80–82]</xref>; analysis with these tools becomes very laborious over large numbers of alternative targets (e.g. orthologues, constructs). The XtalPred <xref rid="b0180" ref-type="bibr">[36]</xref> website provides some level of results integration for relatively few algorithms, but does not include display of results on a multiple sequence alignment (MSA). Greater integration over a user-supplied MSA is offered by MACSIMS <xref rid="b0415" ref-type="bibr">[83]</xref> which also propagates annotations by homology inference. However, MACSIMS is not focused on structural biology and no ranking of sequences is given. Also, MACSIMS returns a limited subset of annotation types and only annotation that is amenable to display on a MSA. The Target Optimisation Utility (TarO) <xref rid="b0060" ref-type="bibr">[12]</xref>, developed within the Scottish Structural Proteomics Facility (SSPF) has advantages over the above tools in that it provides for more sophisticated analysis, integration and visualisation of a large number of results.</p>
+      <sec id="s0070">
+        <label>6.1</label>
+        <title>The Target Optimisation Utility (TarO)</title>
+        <p>TarO <xref rid="b0060 b0420" ref-type="bibr">[12,84]</xref> takes a protein sequence(s) as input, and searches for homologues to generate a pool of potential alternative targets for structural work. The input and associated homologues are analysed in several annotation steps, and the results stored in a database. The TarO website provides an interface for access to results, integrating closely with the Jalview <xref rid="b0425" ref-type="bibr">[85]</xref> program to visualise complex annotation over a multiple sequence alignment (MSA). The TarO workflow is outlined in <xref rid="f0015" ref-type="fig">Fig. 3</xref> and key features of the user interface are summarised in <xref rid="f0020" ref-type="fig">Fig. 4</xref>. A guest account is available for unrestricted access to TarO and information about obtaining a private account for academic use is given at <xref rid="b0430" ref-type="bibr">[86]</xref>. Guest queries are deleted from the server after a minimum of eight days. Login to a private account or navigating to the guest area displays a ‘Home’ page that summarises the submitted queries (<xref rid="f0020" ref-type="fig">Fig. 4</xref>). The ‘New Query’ link navigates to an easy to use web form for query submission, and a maximum of 20 sequences are accepted. The query submission form also gives the opportunity to specify the maximum number (default 100) of matched sequences included as input for MUSCLE <xref rid="b0435" ref-type="bibr">[87]</xref> to generate the MSA. Ideally the MSA would include enough sequence diversity to enable identification of conserved residues, whilst excluding sequences unrelated in evolution and so generate a meaningful alignment. When multiple input sequences are submitted to TarO, we recommend that these are related (e.g. orthologues) in order to help produce a more useful MSA. From the ‘Home’ page, clicking on the ‘Query Results’ link navigates to the ‘Input sequences’ page, which includes a table to track progress of calculations in a ‘Query Status’ table according to a traffic lights system; orange shows the step has been initialised, green indicates completion and red means that the calculation failed. The ‘Input sequences’ page also summarises results for the input sequence(s) in a table (<xref rid="f0020" ref-type="fig">Fig. 4</xref>) and gives a link to display an annotated MSA in Jalview <xref rid="b0425" ref-type="bibr">[85]</xref>. The Jalview full application enables DAS annotation lookup for the aligned sequences linking to significant additional information such as Gene Ontology terms <xref rid="b0190" ref-type="bibr">[38]</xref>. Table column headings link to relevant parts of the help documentation, which provide more explanation of the information presented. This table gives various sequence statistics (e.g. molecular weight), including summaries of BLAST <xref rid="b0440" ref-type="bibr">[88]</xref> searching TargetDB <xref rid="b0340" ref-type="bibr">[68]</xref>, PDB <xref rid="b0345" ref-type="bibr">[69]</xref> and UniProt <xref rid="b0390" ref-type="bibr">[78]</xref>. Links within this table enable display of further details including RPSBLAST search results and allow navigation to the Dasty and UniProt resources <xref rid="b0405" ref-type="bibr">[81]</xref>.</p>
+      </sec>
+      <sec id="s0075">
+        <label>6.2</label>
+        <title>Exploring alternative homologues and constructs in TarO</title>
+        <p>In order to investigate alternative targets, clicking on the link labelled ‘H’ in the ‘Input Sequences’ table (<xref rid="f0020" ref-type="fig">Fig. 4</xref>) navigates to a page of annotated putative homologues tabulated and ranked by estimated crystallisation success (ParCrys <xref rid="b0070" ref-type="bibr">[14]</xref>) and functional similarity (PSIBLAST expectation value <xref rid="b0440" ref-type="bibr">[88]</xref>). Additional information relevant to estimating success in obtaining diffracting crystals is supplied, including sequence length, predicted transmembrane segments, secondary structure, and protein disorder. Results are presented from BLAST <xref rid="b0440" ref-type="bibr">[88]</xref> searching the homologues against the PDB and TargetDB. In the results table, the “99%qcov” column shows a true/false value (i.e. 1/0) to indicate if the top BLAST hit covers 99% of the query (homologue) sequence; the “99%qcov + 99%id” column shows a true/false value (i.e. 1/0) to indicate if the query sequence has both 99% coverage and at least 99% sequence identity to the top hit. These indicators allow rapid evaluation of pre-existing work in structural genomics consortia on the target of interest, and reveal whether a high-resolution structural model has been deposited in the PDB. Annotated status of the matched target as recorded in TargetDB can be retrieved by clicking on the ‘T’ link in the results table, under the TargetDB section ‘More’ column; similar information for the PDB search is available by clicking on the ‘P’ link under the PDB Top Hit section ‘More’ column.</p>
+        <p>As part of assessing targets’ functional similarity we recommend manually inspecting the patterns of sequence annotation and conserved residues across a multiple sequence alignment (MSA). TarO generates an annotated MSA from the input sequence and top-scoring putative homologues, aligning with the MUSCLE algorithm <xref rid="b0435" ref-type="bibr">[87]</xref>. <xref rid="f0025" ref-type="fig">Fig. 5</xref> shows part of a MSA produced by TarO, and viewed in Jalview <xref rid="b0425" ref-type="bibr">[85]</xref>. Please note that in order to access the Jalview applet from TarO, a correctly installed Java Runtime Environment is required. As well as providing for assessment of functional similarity, this MSA is useful in construct design for target optimisation. Annotated features include predicted protein domains <xref rid="b0310 b0445" ref-type="bibr">[62,89]</xref>, secondary structure <xref rid="b0305" ref-type="bibr">[61]</xref>, post-translational modifications (PTMs) <xref rid="b0325 b0335 b0450" ref-type="bibr">[65,67,90]</xref>, signal peptide <xref rid="b0455" ref-type="bibr">[91]</xref>, transmembrane regions <xref rid="b0220" ref-type="bibr">[44]</xref>, and disorder <xref rid="b0540 b0295 b0300" ref-type="bibr">[58–60]</xref> (<xref rid="f0025" ref-type="fig">Fig. 5</xref>). Of course construct optimisation generally seeks to minimise unfavourable features in the target protein (e.g. disorder, signal peptide, transmembrane regions). Design of truncated constructs, for example to remove disordered N- or C-termini or to isolate a domain(s) requires careful inspection of predicted protein disorder and domain boundaries and should avoid disruption of any secondary structure element. Inspection of the MSA annotated with results from several disorder prediction algorithms enables a consensus view over the aligned sequences, which is helpful for determining construct boundaries. Where no domains are found by database searching, one practical strategy for N- or C-terminal truncation to improve crystallisation success is to conservatively remove any continuous region of predicted disordered sequence from the terminus up to the start of the first predicted secondary structure element, possibly testing several constructs with alternate boundaries. The annotated MSA is also useful as a sequence analysis tool, assisting identification of conserved functional residues.</p>
+        <p>Different visualisations of sequence features can be selected using the Jalview <xref rid="b0425" ref-type="bibr">[85]</xref> ‘Feature Settings’ window that appears when the MSA is displayed. It is important to note that the MSA display requires some initial adjustment to ensure visibility of all sequence features. For example, some fraction of annotated post-translational modifications (and signal peptide) is frequently hidden underneath other annotation (e.g. domains); therefore we strongly recommend ensuring all annotations are visible, which is done by unchecking and rechecking the ‘PTMs_ + _SignalP’ tick-box at the top of the Feature Settings window. The same is true for transmembrane regions (‘TM_regions’ tick-box). By default the MSA display initialises to show domains (Pfam <xref rid="b0310" ref-type="bibr">[62]</xref>), disorder (RONN <xref rid="b0540" ref-type="bibr">[58]</xref>), post-translational modifications (various), signal peptide (SignalP <xref rid="b0455" ref-type="bibr">[91]</xref>), and transmembrane regions (TMHMM2 <xref rid="b0220" ref-type="bibr">[44]</xref>); however, additional disorder annotations can be shown by checking the appropriate boxes in the Feature Settings window. A key practical consideration is that annotations for the most recently checked tick-box will be always be displayed on top of all other annotations. Further discussion and recommendations for the annotated MSA are given at <xref rid="b0460" ref-type="bibr">[92]</xref>. TarO also supplies information relevant to particular pipeline stages. For example frequencies of key amino acids are given, including Cys and Met which are relevant to solubility as well as phasing by anomalous dispersion. A tutorial is also available from the TarO website, please contact us (<ext-link ext-link-type="uri" xlink:href="mailto:taro@compbio.dundee.ac.uk">taro@compbio.dundee.ac.uk</ext-link>) for login details.</p>
+      </sec>
+    </sec>
+    <sec id="s0080">
+      <label>7</label>
+      <title>Concluding remarks</title>
+      <p>Some of the current approaches in target selection and optimisation were discussed, as well as how these approaches can mitigate the non-trivial task of successfully navigating the various stages in the structural proteomics pipeline. The tools TarO <xref rid="b0060" ref-type="bibr">[12]</xref> and crystallisation propensity predictors (OB-Score, ParCrys, XANNpred) <xref rid="b0070 b0075 b0080" ref-type="bibr">[14–16]</xref> were employed within the Scottish Structural Proteomics Facility (SSPF) and partly contributed to a good rate of success where 61 (21%) of the 295 targets taken into expression trials lead to diffraction-quality crystals <xref rid="b0015" ref-type="bibr">[3]</xref>. Indeed, the XANNpred predictor was found to outperform other available methods on independent blind test data <xref rid="b0080" ref-type="bibr">[16]</xref> including PPCpred <xref rid="b0360" ref-type="bibr">[72]</xref>, PXS <xref rid="b0140" ref-type="bibr">[28]</xref> and XtalPred <xref rid="b0180 b0380" ref-type="bibr">[36,76]</xref>. Combining experimental measurements and protein sequence information (e.g. <xref rid="b0465" ref-type="bibr">[93]</xref>) is an interesting approach. However experimental characterisation requires purified protein, therefore predictions would be focused on crystal growth and not available for decision-making during initial target selection. Also, we have highlighted benefits in selecting targets with a single algorithm to predict successful progression through all stages leading to a high-resolution structural model, rather than combining multiple results arising from different predictors for each key stage of the structural proteomics pipeline.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="b0005">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chruszcz</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Domagalski</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Osinski</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Wlodawer</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Minor</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>20</volume>
+          <year>2010</year>
+          <fpage>587</fpage>
+          <lpage>597</lpage>
+          <pub-id pub-id-type="pmid">20810277</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0010">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xiao</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Aramini</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Belote</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Buchwald</surname>
+              <given-names>W.A.</given-names>
+            </name>
+            <name>
+              <surname>Ciccosanti</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>J. Struct. Biol.</source>
+          <volume>172</volume>
+          <year>2010</year>
+          <fpage>21</fpage>
+          <lpage>33</lpage>
+          <pub-id pub-id-type="pmid">20688167</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0015">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oke</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Carter</surname>
+              <given-names>L.G.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>McMahon</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Yan</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <source>J. Struct. Funct. Genomics</source>
+          <volume>11</volume>
+          <year>2010</year>
+          <fpage>167</fpage>
+          <lpage>180</lpage>
+          <pub-id pub-id-type="pmid">20419351</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0020">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Albeck</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Alzari</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Andreini</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Banci</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Berry</surname>
+              <given-names>I.M.</given-names>
+            </name>
+            <name>
+              <surname>Bertini</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <source>Acta Crystallogr. D</source>
+          <volume>62</volume>
+          <year>2006</year>
+          <fpage>1184</fpage>
+          <lpage>1195</lpage>
+          <pub-id pub-id-type="pmid">17001095</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0025">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bravo</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Aloy</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>16</volume>
+          <year>2006</year>
+          <fpage>385</fpage>
+          <lpage>392</lpage>
+          <pub-id pub-id-type="pmid">16713251</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0030">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bray</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Marsden</surname>
+              <given-names>R.L.</given-names>
+            </name>
+            <name>
+              <surname>Rison</surname>
+              <given-names>S.C.G.</given-names>
+            </name>
+            <name>
+              <surname>Savchenko</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Edwards</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>20</volume>
+          <year>2004</year>
+          <fpage>2288</fpage>
+          <lpage>2295</lpage>
+          <pub-id pub-id-type="pmid">15201178</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0035">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chandonia</surname>
+              <given-names>J.-M.</given-names>
+            </name>
+            <name>
+              <surname>Brenner</surname>
+              <given-names>S.E.</given-names>
+            </name>
+          </person-group>
+          <source>Proteins</source>
+          <volume>58</volume>
+          <year>2005</year>
+          <fpage>166</fpage>
+          <lpage>179</lpage>
+          <pub-id pub-id-type="pmid">15521074</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0040">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chandonia</surname>
+              <given-names>J.-M.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S.-H.</given-names>
+            </name>
+            <name>
+              <surname>Brenner</surname>
+              <given-names>S.E.</given-names>
+            </name>
+          </person-group>
+          <source>Proteins</source>
+          <volume>62</volume>
+          <year>2006</year>
+          <fpage>356</fpage>
+          <lpage>370</lpage>
+          <pub-id pub-id-type="pmid">16276528</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0045">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goldschmidt</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Derewenda</surname>
+              <given-names>Z.S.</given-names>
+            </name>
+            <name>
+              <surname>Eisenberg</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>Protein Sci.</source>
+          <volume>16</volume>
+          <year>2007</year>
+          <fpage>1569</fpage>
+          <lpage>1576</lpage>
+          <pub-id pub-id-type="pmid">17656576</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0050">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leulliot</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Trésaugues</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Bremang</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sorel</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Ulryck</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Graille</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <volume>61</volume>
+          <year>2005</year>
+          <fpage>664</fpage>
+          <lpage>670</lpage>
+          <pub-id pub-id-type="pmid">15930617</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0055">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Manjasetty</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>Turnbull</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Panjikar</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Büssow</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Chance</surname>
+              <given-names>M.R.</given-names>
+            </name>
+          </person-group>
+          <source>Proteomics</source>
+          <volume>8</volume>
+          <year>2008</year>
+          <fpage>612</fpage>
+          <lpage>625</lpage>
+          <pub-id pub-id-type="pmid">18210369</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0060">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Overton</surname>
+              <given-names>I.M.</given-names>
+            </name>
+            <name>
+              <surname>van Niekerk</surname>
+              <given-names>C.A.J.</given-names>
+            </name>
+            <name>
+              <surname>Carter</surname>
+              <given-names>L.G.</given-names>
+            </name>
+            <name>
+              <surname>Dawson</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>D.M.A.</given-names>
+            </name>
+            <name>
+              <surname>Cameron</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>36</volume>
+          <year>2008</year>
+          <fpage>W190</fpage>
+          <lpage>W196</lpage>
+          <pub-id pub-id-type="pmid">18385152</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0065">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pache</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Aloy</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>Proteomics</source>
+          <volume>8</volume>
+          <year>2008</year>
+          <fpage>1959</fpage>
+          <lpage>1964</lpage>
+          <pub-id pub-id-type="pmid">18491310</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0070">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Overton</surname>
+              <given-names>I.M.</given-names>
+            </name>
+            <name>
+              <surname>Padovani</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Girolami</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Barton</surname>
+              <given-names>G.J.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>24</volume>
+          <year>2008</year>
+          <fpage>901</fpage>
+          <lpage>907</lpage>
+          <pub-id pub-id-type="pmid">18285371</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0075">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Overton</surname>
+              <given-names>I.M.</given-names>
+            </name>
+            <name>
+              <surname>Barton</surname>
+              <given-names>G.J.</given-names>
+            </name>
+          </person-group>
+          <source>FEBS Lett.</source>
+          <volume>580</volume>
+          <year>2006</year>
+          <fpage>4005</fpage>
+          <lpage>4009</lpage>
+          <pub-id pub-id-type="pmid">16808918</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0080">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Overton</surname>
+              <given-names>I.M.</given-names>
+            </name>
+            <name>
+              <surname>van Niekerk</surname>
+              <given-names>C.A.J.</given-names>
+            </name>
+            <name>
+              <surname>Barton</surname>
+              <given-names>G.J.</given-names>
+            </name>
+          </person-group>
+          <source>Proteins</source>
+          <volume>79</volume>
+          <year>2011</year>
+          <fpage>1027</fpage>
+          <lpage>1033</lpage>
+          <pub-id pub-id-type="pmid">21246630</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0085">
+        <label>17</label>
+        <mixed-citation publication-type="other">International Structural Genomics Organisation (ISGO) List of Structural Genomics and Proteomics Projects, &lt;<ext-link ext-link-type="uri" xlink:href="http://www.isgo.org/list/index.php">http://www.isgo.org/list/index.php</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0090">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lesley</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Kuhn</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Godzik</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Deacon</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Mathews</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Kreusch</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <volume>99</volume>
+          <year>2002</year>
+          <fpage>11664</fpage>
+          <lpage>11669</lpage>
+          <pub-id pub-id-type="pmid">12193646</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0095">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Quevillon-Cheruel</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Collinet</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>C.-Z.</given-names>
+            </name>
+            <name>
+              <surname>Minard</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Blondeau</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Henkes</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <source>J. Synchrotron Rad.</source>
+          <volume>10</volume>
+          <year>2002</year>
+          <fpage>4</fpage>
+          <lpage>8</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0100">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Angov</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Hillier</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Kincaid</surname>
+              <given-names>R.L.</given-names>
+            </name>
+            <name>
+              <surname>Lyon</surname>
+              <given-names>J.A.</given-names>
+            </name>
+          </person-group>
+          <source>PLoS One</source>
+          <volume>3</volume>
+          <year>2008</year>
+          <fpage>e2189</fpage>
+          <pub-id pub-id-type="pmid">18478103</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0105">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ioerger</surname>
+              <given-names>T.R.</given-names>
+            </name>
+            <name>
+              <surname>Sacchettini</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Opin. Microbiol.</source>
+          <volume>12</volume>
+          <year>2009</year>
+          <fpage>318</fpage>
+          <lpage>325</lpage>
+          <pub-id pub-id-type="pmid">19481971</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0110">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cascante</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Boros</surname>
+              <given-names>L.G.</given-names>
+            </name>
+            <name>
+              <surname>Comin-Anduix</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>de Atauri</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Centelles</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>P.W.-N.</given-names>
+            </name>
+          </person-group>
+          <source>Nat. Biotechnol.</source>
+          <volume>20</volume>
+          <year>2002</year>
+          <fpage>243</fpage>
+          <lpage>249</lpage>
+          <pub-id pub-id-type="pmid">11875424</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0115">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dessailly</surname>
+              <given-names>B.H.</given-names>
+            </name>
+            <name>
+              <surname>Nair</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Jaroszewski</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Fajardo</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Kouranov</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>Structure</source>
+          <volume>17</volume>
+          <year>2009</year>
+          <fpage>869</fpage>
+          <lpage>881</lpage>
+          <pub-id pub-id-type="pmid">19523904</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0120">
+        <label>24</label>
+        <mixed-citation publication-type="other">Membrane Protein Structure Initiative (MPSI) Homepage, &lt;<ext-link ext-link-type="uri" xlink:href="http://www.mpsi.ac.uk/">http://www.mpsi.ac.uk/</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0125">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Punta</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Love</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Handelman</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Hunt</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Shapiro</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Hendrickson</surname>
+              <given-names>W.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Struct. Funct. Genomics</source>
+          <volume>10</volume>
+          <year>2009</year>
+          <fpage>255</fpage>
+          <lpage>268</lpage>
+          <pub-id pub-id-type="pmid">19859826</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0130">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Canaves</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Page</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>I.A.</given-names>
+            </name>
+            <name>
+              <surname>Stevens</surname>
+              <given-names>R.C.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <volume>344</volume>
+          <year>2004</year>
+          <fpage>977</fpage>
+          <lpage>991</lpage>
+          <pub-id pub-id-type="pmid">15544807</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0135">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goh</surname>
+              <given-names>C.-S.</given-names>
+            </name>
+            <name>
+              <surname>Lan</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Douglas</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Echols</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <volume>336</volume>
+          <year>2004</year>
+          <fpage>115</fpage>
+          <lpage>130</lpage>
+          <pub-id pub-id-type="pmid">14741208</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0140">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Price</surname>
+              <given-names>W.N.</given-names>
+              <suffix>II</suffix>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Handelman</surname>
+              <given-names>S.K.</given-names>
+            </name>
+            <name>
+              <surname>Neely</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Manor</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Karlin</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Nat. Biotechnol.</source>
+          <volume>27</volume>
+          <year>2009</year>
+          <fpage>51</fpage>
+          <lpage>57</lpage>
+          <pub-id pub-id-type="pmid">19079241</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0145">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smialowski</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Martin-Galiano</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Mikolajka</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Girschick</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Holak</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Frishman</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>23</volume>
+          <year>2007</year>
+          <fpage>2536</fpage>
+          <lpage>2542</lpage>
+          <pub-id pub-id-type="pmid">17150993</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0150">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smialowski</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Cox</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kirschner</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Frishman</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>Proteins: Struct. Funct. Bioinf.</source>
+          <volume>62</volume>
+          <year>2006</year>
+          <fpage>343</fpage>
+          <lpage>355</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0155">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eisenhaber</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Eisenhaber</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Protein Pept. Sci.</source>
+          <volume>8</volume>
+          <year>2007</year>
+          <fpage>197</fpage>
+          <lpage>203</lpage>
+          <pub-id pub-id-type="pmid">17430201</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0160">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Idicula-Thomas</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Kulkarni</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Kulkarni</surname>
+              <given-names>B.D.</given-names>
+            </name>
+            <name>
+              <surname>Jayaraman</surname>
+              <given-names>V.K.</given-names>
+            </name>
+            <name>
+              <surname>Balaji</surname>
+              <given-names>P.V.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>22</volume>
+          <year>2006</year>
+          <fpage>278</fpage>
+          <lpage>284</lpage>
+          <pub-id pub-id-type="pmid">16332713</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0165">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <source>Proc. Natl. Acad. Sci.</source>
+          <volume>93</volume>
+          <year>1996</year>
+          <fpage>13</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="pmid">8552589</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0170">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tsai</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Wolfson</surname>
+              <given-names>H.J.</given-names>
+            </name>
+            <name>
+              <surname>Nussinov</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Protein Sci.</source>
+          <volume>6</volume>
+          <year>1997</year>
+          <fpage>53</fpage>
+          <lpage>64</lpage>
+          <pub-id pub-id-type="pmid">9007976</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0175">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Derewenda</surname>
+              <given-names>Z.S.</given-names>
+            </name>
+            <name>
+              <surname>Vekilov</surname>
+              <given-names>P.G.</given-names>
+            </name>
+          </person-group>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <volume>62</volume>
+          <year>2006</year>
+          <fpage>116</fpage>
+          <lpage>124</lpage>
+          <pub-id pub-id-type="pmid">16369101</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0180">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Slabinski</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Jaroszewski</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Rychlewski</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>I.A.</given-names>
+            </name>
+            <name>
+              <surname>Lesley</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Godzik</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>23</volume>
+          <year>2007</year>
+          <fpage>3403</fpage>
+          <lpage>3405</lpage>
+          <pub-id pub-id-type="pmid">17921170</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0185">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Magnan</surname>
+              <given-names>C.N.</given-names>
+            </name>
+            <name>
+              <surname>Randall</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Baldi</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>25</volume>
+          <year>2009</year>
+          <fpage>2200</fpage>
+          <lpage>2207</lpage>
+          <pub-id pub-id-type="pmid">19549632</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0190">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ball</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Blake</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Botstein</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Butler</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Cherry</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <source>Nat. Genet.</source>
+          <volume>25</volume>
+          <year>2000</year>
+          <fpage>25</fpage>
+          <lpage>29</lpage>
+          <pub-id pub-id-type="pmid">10802651</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0195">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wallin</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>von Heijne</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <source>Protein Sci.</source>
+          <volume>7</volume>
+          <year>1998</year>
+          <fpage>1029</fpage>
+          <lpage>1038</lpage>
+          <pub-id pub-id-type="pmid">9568909</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0200">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Raman</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Cherezov</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Caffrey</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Cell. Mol. Life Sci.</source>
+          <volume>63</volume>
+          <year>2006</year>
+          <fpage>36</fpage>
+          <lpage>51</lpage>
+          <pub-id pub-id-type="pmid">16314922</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0205">
+        <label>41</label>
+        <mixed-citation publication-type="other">Membrane Protein Data Bank (MPDB), &lt;<ext-link ext-link-type="uri" xlink:href="http://www.mpdb.tcd.ie/">http://www.mpdb.tcd.ie/</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0210">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>J.K.</given-names>
+            </name>
+            <name>
+              <surname>Stroud</surname>
+              <given-names>R.M.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>20</volume>
+          <year>2010</year>
+          <fpage>464</fpage>
+          <lpage>470</lpage>
+          <pub-id pub-id-type="pmid">20739007</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0215">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wagner</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Baars</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Ytterberg</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Klussmeier</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wagner</surname>
+              <given-names>C.S.</given-names>
+            </name>
+            <name>
+              <surname>Nord</surname>
+              <given-names>O.</given-names>
+            </name>
+          </person-group>
+          <source>Mol. Cell. Proteomics</source>
+          <volume>6</volume>
+          <year>2007</year>
+          <fpage>1527</fpage>
+          <lpage>1550</lpage>
+          <pub-id pub-id-type="pmid">17446557</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0220">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krogh</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Larsson</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>von Heijne</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Sonnhammer</surname>
+              <given-names>E.L.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <volume>305</volume>
+          <year>2001</year>
+          <fpage>567</fpage>
+          <lpage>580</lpage>
+          <pub-id pub-id-type="pmid">11152613</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0225">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kall</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Krogh</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Sonnhammer</surname>
+              <given-names>E.L.L.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>35</volume>
+          <year>2007</year>
+          <fpage>W429</fpage>
+          <lpage>W432</lpage>
+          <pub-id pub-id-type="pmid">17483518</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0230">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mohan</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Uversky</surname>
+              <given-names>V.N.</given-names>
+            </name>
+            <name>
+              <surname>Radivojac</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>PLoS Comput. Biol.</source>
+          <volume>5</volume>
+          <year>2009</year>
+          <fpage>e1000497</fpage>
+          <pub-id pub-id-type="pmid">19730682</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0235">
+        <label>47</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>He</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Xue</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Uversky</surname>
+              <given-names>V.N.</given-names>
+            </name>
+            <name>
+              <surname>Dunker</surname>
+              <given-names>A.K.</given-names>
+            </name>
+          </person-group>
+          <source>Cell Res.</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>929</fpage>
+          <lpage>949</lpage>
+          <pub-id pub-id-type="pmid">19597536</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0240">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dunker</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Gough</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>21</volume>
+          <year>2011</year>
+          <fpage>379</fpage>
+          <lpage>381</lpage>
+          <pub-id pub-id-type="pmid">21530236</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0245">
+        <label>49</label>
+        <mixed-citation publication-type="other">SPINE 2 – COMPLEXES from Receptor to Gene: Structures of Complexes, &lt;<ext-link ext-link-type="uri" xlink:href="http://www.spine2.eu/SPINE2/">http://www.spine2.eu/SPINE2/</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0250">
+        <label>50</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chatr-aryamontri</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Ceol</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Palazzi</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Nardelli</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Schneider</surname>
+              <given-names>M.V.</given-names>
+            </name>
+            <name>
+              <surname>Castagnoli</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>35</volume>
+          <year>2007</year>
+          <fpage>D572</fpage>
+          <lpage>D574</lpage>
+          <pub-id pub-id-type="pmid">17135203</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0255">
+        <label>51</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McDowall</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Scott</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Barton</surname>
+              <given-names>G.J.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>D651</fpage>
+          <lpage>D656</lpage>
+          <pub-id pub-id-type="pmid">18988626</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0260">
+        <label>52</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yamasaki</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Takeda</surname>
+              <given-names>Jun-ichi</given-names>
+            </name>
+            <name>
+              <surname>Habara</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Ogawa</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Noda</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Sakate</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>36</volume>
+          <year>2008</year>
+          <fpage>D793</fpage>
+          <lpage>D799</lpage>
+          <pub-id pub-id-type="pmid">18089548</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0265">
+        <label>53</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hunter</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Apweiler</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Attwood</surname>
+              <given-names>T.K.</given-names>
+            </name>
+            <name>
+              <surname>Bairoch</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Bateman</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Binns</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>D211</fpage>
+          <lpage>D215</lpage>
+          <pub-id pub-id-type="pmid">18940856</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0270">
+        <label>54</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rost</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <source>Protein Eng.</source>
+          <volume>12</volume>
+          <year>1999</year>
+          <fpage>85</fpage>
+          <lpage>94</lpage>
+          <pub-id pub-id-type="pmid">10195279</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0275">
+        <label>55</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Muller</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Szklarczyk</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Julien</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Letunic</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Roth</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kuhn</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>38</volume>
+          <year>2010</year>
+          <fpage>D190</fpage>
+          <lpage>D195</lpage>
+          <pub-id pub-id-type="pmid">19900971</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0535">
+        <label>56</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Östlund</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Schmitt</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Forslund</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Köstler</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Messina</surname>
+              <given-names>D.N.</given-names>
+            </name>
+            <name>
+              <surname>Roopra</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>38</volume>
+          <year>2010</year>
+          <fpage>D196</fpage>
+          <lpage>D203</lpage>
+          <pub-id pub-id-type="pmid">19892828</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0285">
+        <label>57</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wong</surname>
+              <given-names>W.-C.</given-names>
+            </name>
+            <name>
+              <surname>Maurer-Stroh</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Eisenhaber</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>PLoS Comput. Biol.</source>
+          <volume>6</volume>
+          <year>2010</year>
+          <fpage>e1000867</fpage>
+          <pub-id pub-id-type="pmid">20686689</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0540">
+        <label>58</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>Z.R.</given-names>
+            </name>
+            <name>
+              <surname>Thomson</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>McNeil</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Esnouf</surname>
+              <given-names>R.M.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>21</volume>
+          <year>2005</year>
+          <fpage>3369</fpage>
+          <lpage>3376</lpage>
+          <pub-id pub-id-type="pmid">15947016</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0295">
+        <label>59</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Linding</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Jensen</surname>
+              <given-names>L.J.</given-names>
+            </name>
+            <name>
+              <surname>Diella</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Bork</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Gibson</surname>
+              <given-names>T.J.</given-names>
+            </name>
+            <name>
+              <surname>Russell</surname>
+              <given-names>R.B.</given-names>
+            </name>
+          </person-group>
+          <source>Structure</source>
+          <volume>11</volume>
+          <year>2003</year>
+          <fpage>1453</fpage>
+          <lpage>1459</lpage>
+          <pub-id pub-id-type="pmid">14604535</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0300">
+        <label>60</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Linding</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Russell</surname>
+              <given-names>R.B.</given-names>
+            </name>
+            <name>
+              <surname>Neduva</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Gibson</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>31</volume>
+          <year>2003</year>
+          <fpage>3701</fpage>
+          <lpage>3708</lpage>
+          <pub-id pub-id-type="pmid">12824398</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0305">
+        <label>61</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cole</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Barber</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Barton</surname>
+              <given-names>G.J.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>36</volume>
+          <year>2008</year>
+          <fpage>W197</fpage>
+          <lpage>W201</lpage>
+          <pub-id pub-id-type="pmid">18463136</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0310">
+        <label>62</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Finn</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Mistry</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tate</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Coggill</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Heger</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pollington</surname>
+              <given-names>J.E.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>38</volume>
+          <year>2010</year>
+          <fpage>D211</fpage>
+          <lpage>222</lpage>
+          <pub-id pub-id-type="pmid">19920124</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0315">
+        <label>63</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marchler-Bauer</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Chitsaz</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Derbyshire</surname>
+              <given-names>M.K.</given-names>
+            </name>
+            <name>
+              <surname>DeWeese-Scott</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Fong</surname>
+              <given-names>J.H.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>D205</fpage>
+          <lpage>D210</lpage>
+          <pub-id pub-id-type="pmid">18984618</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0320">
+        <label>64</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Attwood</surname>
+              <given-names>T.K.</given-names>
+            </name>
+            <name>
+              <surname>Bradley</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Flower</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Gaulton</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Maudling</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Mitchell</surname>
+              <given-names>A.L.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>31</volume>
+          <year>2003</year>
+          <fpage>400</fpage>
+          <lpage>402</lpage>
+          <pub-id pub-id-type="pmid">12520033</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0325">
+        <label>65</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Julenius</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Mølgaard</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Gupta</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Brunak</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Glycobiology</source>
+          <volume>15</volume>
+          <year>2005</year>
+          <fpage>153</fpage>
+          <lpage>164</lpage>
+          <pub-id pub-id-type="pmid">15385431</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0330">
+        <label>66</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Maurer-Stroh</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Koranda</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Benetka</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Schneider</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Sirota</surname>
+              <given-names>F.L.</given-names>
+            </name>
+            <name>
+              <surname>Eisenhaber</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>PLoS Comput. Biol.</source>
+          <volume>3</volume>
+          <year>2007</year>
+          <fpage>e66</fpage>
+          <pub-id pub-id-type="pmid">17411337</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0335">
+        <label>67</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Blom</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Gammeltoft</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Brunak</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <volume>294</volume>
+          <year>1999</year>
+          <fpage>1351</fpage>
+          <lpage>1362</lpage>
+          <pub-id pub-id-type="pmid">10600390</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0340">
+        <label>68</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Oughtred</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Berman</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Westbrook</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>20</volume>
+          <year>2004</year>
+          <fpage>2860</fpage>
+          <lpage>2862</lpage>
+          <pub-id pub-id-type="pmid">15130928</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0345">
+        <label>69</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rose</surname>
+              <given-names>P.W.</given-names>
+            </name>
+            <name>
+              <surname>Beran</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Bi</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bluhm</surname>
+              <given-names>W.F.</given-names>
+            </name>
+            <name>
+              <surname>Dimitropoulos</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Goodsell</surname>
+              <given-names>D.S.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>39</volume>
+          <year>2010</year>
+          <fpage>D392</fpage>
+          <lpage>D401</lpage>
+          <pub-id pub-id-type="pmid">21036868</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0350">
+        <label>70</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morris</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Pajon</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Griffiths</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Daniel</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Savitsky</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <volume>67</volume>
+          <year>2011</year>
+          <fpage>249</fpage>
+          <lpage>260</lpage>
+          <pub-id pub-id-type="pmid">21460443</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0355">
+        <label>71</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Babnigg</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Joachimiak</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Struct. Funct. Genomics</source>
+          <volume>11</volume>
+          <year>2010</year>
+          <fpage>71</fpage>
+          <lpage>80</lpage>
+          <pub-id pub-id-type="pmid">20177794</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0360">
+        <label>72</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mizianty</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Kurgan</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>27</volume>
+          <year>2011</year>
+          <fpage>i24</fpage>
+          <lpage>i33</lpage>
+          <pub-id pub-id-type="pmid">21685077</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0365">
+        <label>73</label>
+        <mixed-citation publication-type="other">XANNpred Home Page, &lt;<ext-link ext-link-type="uri" xlink:href="http://www.compbio.dundee.ac.uk/xannpred">http://www.compbio.dundee.ac.uk/xannpred</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0370">
+        <label>74</label>
+        <mixed-citation publication-type="other">PPCpred Server Home, &lt;<ext-link ext-link-type="uri" xlink:href="http://biomine-ws.ece.ualberta.ca/PPCpred.html">http://biomine-ws.ece.ualberta.ca/PPCpred.html</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0375">
+        <label>75</label>
+        <mixed-citation publication-type="other">XtalPred Server: Home, &lt;<ext-link ext-link-type="uri" xlink:href="http://ffas.burnham.org/XtalPred-cgi/xtal.pl">http://ffas.burnham.org/XtalPred-cgi/xtal.pl</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0380">
+        <label>76</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Slabinski</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Jaroszewski</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Rodrigues</surname>
+              <given-names>A.P.C.</given-names>
+            </name>
+            <name>
+              <surname>Rychlewski</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>I.A.</given-names>
+            </name>
+            <name>
+              <surname>Lesley</surname>
+              <given-names>S.A.</given-names>
+            </name>
+          </person-group>
+          <source>Protein Sci.</source>
+          <volume>16</volume>
+          <year>2007</year>
+          <fpage>2472</fpage>
+          <lpage>2482</lpage>
+          <pub-id pub-id-type="pmid">17962404</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0385">
+        <label>77</label>
+        <mixed-citation publication-type="other">ParCrys and OB-Score Home Page, &lt;<ext-link ext-link-type="uri" xlink:href="http://www.compbio.dundee.ac.uk/xtal">http://www.compbio.dundee.ac.uk/xtal</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0390">
+        <label>78</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>The UniProt Consortium</surname>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>39</volume>
+          <year>2010</year>
+          <fpage>D214</fpage>
+          <lpage>D219</lpage>
+          <pub-id pub-id-type="pmid">21051339</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0395">
+        <label>79</label>
+        <mixed-citation publication-type="other">OB-Score Software Download, &lt;<ext-link ext-link-type="uri" xlink:href="http://www.compbio.dundee.ac.uk/obscore/">http://www.compbio.dundee.ac.uk/obscore/</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0400">
+        <label>80</label>
+        <mixed-citation publication-type="other">ExPASy Proteomics Server, &lt;<ext-link ext-link-type="uri" xlink:href="http://expasy.org/">http://expasy.org/</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0405">
+        <label>81</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Vinod</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Down</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Hackmann</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kahari</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kretschmann</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>21</volume>
+          <year>2005</year>
+          <fpage>3198</fpage>
+          <lpage>3199</lpage>
+          <pub-id pub-id-type="pmid">15905273</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0410">
+        <label>82</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ooi</surname>
+              <given-names>H.S.</given-names>
+            </name>
+            <name>
+              <surname>Kwo</surname>
+              <given-names>C.Y.</given-names>
+            </name>
+            <name>
+              <surname>Wildpaner</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sirota</surname>
+              <given-names>F.L.</given-names>
+            </name>
+            <name>
+              <surname>Eisenhaber</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Maurer-Stroh</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>W435</fpage>
+          <lpage>W440</lpage>
+          <pub-id pub-id-type="pmid">19389726</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0415">
+        <label>83</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thompson</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Muller</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Waterhouse</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Procter</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Barton</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Plewniak</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>BMC Bioinf.</source>
+          <volume>7</volume>
+          <year>2006</year>
+          <fpage>318</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0420">
+        <label>84</label>
+        <mixed-citation publication-type="other">TarO_v2.5, &lt;<ext-link ext-link-type="uri" xlink:href="http://www.compbio.dundee.ac.uk/taro/cgi-taro/v3_targpipe_input.pl">http://www.compbio.dundee.ac.uk/taro/cgi-taro/v3_targpipe_input.pl</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0425">
+        <label>85</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Waterhouse</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Procter</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>D.M.A.</given-names>
+            </name>
+            <name>
+              <surname>Clamp</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Barton</surname>
+              <given-names>G.J.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>25</volume>
+          <year>2009</year>
+          <fpage>1189</fpage>
+          <lpage>1191</lpage>
+          <pub-id pub-id-type="pmid">19151095</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0430">
+        <label>86</label>
+        <mixed-citation publication-type="other">TarO Registration Details, &lt;<ext-link ext-link-type="uri" xlink:href="http://www.compbio.dundee.ac.uk/taro/TarORegistration.htm">http://www.compbio.dundee.ac.uk/taro/TarORegistration.htm</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0435">
+        <label>87</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Edgar</surname>
+              <given-names>R.C.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>32</volume>
+          <year>2004</year>
+          <fpage>1792</fpage>
+          <lpage>1797</lpage>
+          <pub-id pub-id-type="pmid">15034147</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0440">
+        <label>88</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Altschul</surname>
+              <given-names>S.F.</given-names>
+            </name>
+            <name>
+              <surname>Madden</surname>
+              <given-names>T.L.</given-names>
+            </name>
+            <name>
+              <surname>Schäffer</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>25</volume>
+          <year>1997</year>
+          <fpage>3389</fpage>
+          <lpage>3402</lpage>
+          <pub-id pub-id-type="pmid">9254694</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0445">
+        <label>89</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Letunic</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Doerks</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Bork</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>D229</fpage>
+          <lpage>D232</lpage>
+          <pub-id pub-id-type="pmid">18978020</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0450">
+        <label>90</label>
+        <mixed-citation publication-type="other">NetNGlyc 1.0 Server, &lt;<ext-link ext-link-type="uri" xlink:href="http://www.cbs.dtu.dk/services/NetNGlyc/">http://www.cbs.dtu.dk/services/NetNGlyc/</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0455">
+        <label>91</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bendtsen</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Nielsen</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>von Heijne</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Brunak</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <volume>340</volume>
+          <year>2004</year>
+          <fpage>783</fpage>
+          <lpage>795</lpage>
+          <pub-id pub-id-type="pmid">15223320</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0460">
+        <label>92</label>
+        <mixed-citation publication-type="other">TarO Help: Annotated Multiple Sequence Alignment Section, &lt;<ext-link ext-link-type="uri" xlink:href="http://www.compbio.dundee.ac.uk/taro/TarO_help.html#MSA">http://www.compbio.dundee.ac.uk/taro/TarO_help.html#MSA</ext-link>&gt;.</mixed-citation>
+      </ref>
+      <ref id="b0465">
+        <label>93</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zucker</surname>
+              <given-names>F.H.</given-names>
+            </name>
+            <name>
+              <surname>Stewart</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>dela Rosa</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Xiao</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <source>J. Struct. Biol.</source>
+          <volume>171</volume>
+          <year>2010</year>
+          <fpage>64</fpage>
+          <lpage>73</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0470">
+        <label>94</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Davidsen</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Ganapathy</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Montgomery</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Zafar</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>Q.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>38</volume>
+          <year>2009</year>
+          <fpage>D340</fpage>
+          <lpage>D345</lpage>
+          <pub-id pub-id-type="pmid">19892825</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0475">
+        <label>95</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Walsh</surname>
+              <given-names>T.P.</given-names>
+            </name>
+            <name>
+              <surname>Webber</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Searle</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Sturrock</surname>
+              <given-names>S.S.</given-names>
+            </name>
+            <name>
+              <surname>Barton</surname>
+              <given-names>G.J.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>36</volume>
+          <year>2008</year>
+          <fpage>W25</fpage>
+          <lpage>W29</lpage>
+          <pub-id pub-id-type="pmid">18503088</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0480">
+        <label>96</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kunin</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Goldovsky</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Enright</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Ouzounis</surname>
+              <given-names>C.A.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>21</volume>
+          <year>2005</year>
+          <fpage>3429</fpage>
+          <lpage>3430</lpage>
+          <pub-id pub-id-type="pmid">15961438</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0485">
+        <label>97</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Finn</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Clements</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Eddy</surname>
+              <given-names>S.R.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>39</volume>
+          <year>2011</year>
+          <fpage>W29</fpage>
+          <lpage>W37</lpage>
+          <pub-id pub-id-type="pmid">21593126</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0490">
+        <label>98</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ponting</surname>
+              <given-names>C.P.</given-names>
+            </name>
+            <name>
+              <surname>Schultz</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Milpetz</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Bork</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>27</volume>
+          <year>1999</year>
+          <fpage>229</fpage>
+          <lpage>232</lpage>
+          <pub-id pub-id-type="pmid">9847187</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0495">
+        <label>99</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wilson</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Madera</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Vogel</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Chothia</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Gough</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>35</volume>
+          <year>2007</year>
+          <fpage>D308</fpage>
+          <lpage>D313</lpage>
+          <pub-id pub-id-type="pmid">17098927</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0500">
+        <label>100</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Birkland</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>34</volume>
+          <year>2006</year>
+          <fpage>D235</fpage>
+          <lpage>D242</lpage>
+          <pub-id pub-id-type="pmid">16381854</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0505">
+        <label>101</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jensen</surname>
+              <given-names>L.J.</given-names>
+            </name>
+            <name>
+              <surname>Kuhn</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Stark</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Chaffron</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Creevey</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Muller</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>D412</fpage>
+          <lpage>D416</lpage>
+          <pub-id pub-id-type="pmid">18940858</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0510">
+        <label>102</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wootton</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Federhen</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Comput. Chem.</source>
+          <volume>17</volume>
+          <year>1993</year>
+          <fpage>149</fpage>
+          <lpage>163</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0515">
+        <label>103</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gao</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Thelen</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Dunker</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>Mol. Cell. Proteomics</source>
+          <volume>9</volume>
+          <year>2010</year>
+          <fpage>2586</fpage>
+          <lpage>2600</lpage>
+          <pub-id pub-id-type="pmid">20702892</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0520">
+        <label>104</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McGuffin</surname>
+              <given-names>L.J.</given-names>
+            </name>
+            <name>
+              <surname>Bryson</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.T.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>16</volume>
+          <year>2000</year>
+          <fpage>404</fpage>
+          <lpage>405</lpage>
+          <pub-id pub-id-type="pmid">10869041</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0525">
+        <label>105</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stajich</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Block</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Boulez</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Brenner</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Chervitz</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Dagdigian</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>Genome Res.</source>
+          <volume>12</volume>
+          <year>2002</year>
+          <fpage>1611</fpage>
+          <lpage>1618</lpage>
+          <pub-id pub-id-type="pmid">12368254</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0530">
+        <label>106</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Olson</surname>
+              <given-names>S.A.</given-names>
+            </name>
+          </person-group>
+          <source>Brief. Bioinf.</source>
+          <volume>3</volume>
+          <year>2002</year>
+          <fpage>87</fpage>
+          <lpage>91</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was funded by the UK Biotechnology and Biological Sciences Research Council (BBSRC) Structural Proteomics of Rational Targets (SPoRT) initiative (Grant BBS/B/14434). I.O. is supported by a Royal Society of Edinburgh Scottish Government Fellowship co-funded by Marie Curie Actions and the UK Medical Research Council (MRC). Open access funding was from Wellcome Trust Strategic Award No. 083481.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>An example target selection pipeline. This figure summarises a target selection project conducted in the SSPF, starting with the Comprehensive Microbial Resource (CMR) database <xref rid="b0470" ref-type="bibr">[94]</xref> in order to identify tractable targets that were in novel structure space and structurally similar to human proteins. Circles on the left-hand side represent proteins, circles in the middle electronic analysis and rectangles give selection thresholds. The SOFA (specificity of functional annotation) scoring <xref rid="b0015" ref-type="bibr">[3]</xref> provided an estimate of available functional annotation on the candidate targets. The analyses in this pipeline were run within customised scripts developed at the SSPF. Following manual inspection, targets selected from the ranked lists were analysed using TarO.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Comparison of methods for predicting overall success in the structure determination pipeline. This figure shows receiver operator characteristic (ROC) curves for the methods XANNpred-PDB, PPCpred, XtalPred and OB-Score on a non-redundant set of 150 proteins that were developed as an independent blind test for XANNpred-PDB <xref rid="b0080" ref-type="bibr">[16]</xref>. Areas under the ROC curve are given in the bottom right-hand corner. XANNpred performs significantly better than the next best algorithm, PPCpred.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Outline of TarO workflow. This figure outlines the major steps involved in the TarO workflow. Protein input sequences provide the starting point for homologue searching. The input and all matched homologues are then annotated in the sequence characterisation step. An initial ranking is automatically provided within the user interface, but human analysis of the presented results is an important step.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="f0020">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Key features of TarO user interface. This figure shows snapshots of several TarO user interface pages. Dashed arrows (red in online figure) indicate navigation by clicking on the relevant links. The TarO guest user ’Home’ page is shown at the top, clicking on the ’New Query’ link circled (red in online figure), navigates to the new query submission form; clicking on the ’Query Results’ link, circled (red in online figure), navigates to the ’Input Sequences’ page for the relevant query. Links on the ’Input Sequences’ page enable navigation to the homologues page (’H’), circled (red in online figure), and display of the multiple sequence alignment. Please note that the tables shown in this figure are truncated, and have many additional results columns.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="f0025">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Annotated multiple sequence alignment. This figure shows a portion of an annotated multiple sequence alignment, visualised with Jalview <xref rid="b0425" ref-type="bibr">[85]</xref>. The different shades (colours in online figure) on the aligned sequences represent different annotation types. The lightest grey (lilac) corresponds to a Pfam domain. Predicted GlobPlot <xref rid="b0300" ref-type="bibr">[60]</xref> and Disembl <xref rid="b0295" ref-type="bibr">[59]</xref> disorder are show in medium greys (slate blue, light/dark orange, green). Predicted post-translational modifications (PTMs), phosphorylation <xref rid="b0335" ref-type="bibr">[67]</xref> and N-linked glycosylation <xref rid="b0450" ref-type="bibr">[90]</xref> are respectively shown in dark grey (red) and medium grey (blue). Jpred <xref rid="b0305" ref-type="bibr">[61]</xref> predicted secondary structure for the input sequence is shown on the line entitled ‘jnetpred’ that runs towards the bottom of the figure. Related annotations are grouped and may be selectively displayed in order to enable visualisation and interpretation of the information. The TarO annotation groupings are viewed inside the Jalview ‘Features Settings’ box. For example, Disembl and GlobPlot disorder are grouped together, whilst Pfam domains and RONN disorder are in a separate group. There is also a group for protein disorder predicted by Disembl and RONN. From the ‘Feature Settings’ box, the user can change the display of the various groups in order to customise the presence or absence of annotations on the MSA. The order of annotations displayed is also specified within the ‘Feature Settings’ box. For example the annotation layer for PTMs is best displayed on top of the other annotations in this figure. Therefore the medium grey (slate blue) GlobPlot disorder annotation on the sequence region ‘TGGTTG’ is displayed underneath the dark grey (red) predicted phosphorylation site annotation on the second threonine residue of the ‘TGGTTG’ sequence. The row at the bottom of the figure shows the alignment conservation and is automatically calculated by Jalview.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <table-wrap id="t0005" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Estimation of protein characteristics useful for target selection and optimisation.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>Protein characteristics</th>
+            <th>Exemplar algorithms and/or databases</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Homology relationships</td>
+            <td>Algorithms: BLAST<xref rid="b0440" ref-type="bibr">[88]</xref>, SCANPS <xref rid="b0475" ref-type="bibr">[95]</xref>, MUSCLE <xref rid="b0435" ref-type="bibr">[87]</xref>, Magicmatch <xref rid="b0480" ref-type="bibr">[96]</xref></td>
+          </tr>
+          <tr>
+            <td/>
+            <td>Databases: eggNOG <xref rid="b0275" ref-type="bibr">[55]</xref>, InParanoid <xref rid="b0535" ref-type="bibr">[56]</xref>, UniProt <xref rid="b0390" ref-type="bibr">[78]</xref></td>
+          </tr>
+          <tr>
+            <td>Matches to known structures/declared targets</td>
+            <td>PDB <xref rid="b0345" ref-type="bibr">[69]</xref>, TargetDB/PepcDB <xref rid="b0340" ref-type="bibr">[68]</xref></td>
+          </tr>
+          <tr>
+            <td>Domains</td>
+            <td>Algorithms: HMMER <xref rid="b0485" ref-type="bibr">[97]</xref>, RPSBLAST Databases: Pfam <xref rid="b0310" ref-type="bibr">[62]</xref>, CDD <xref rid="b0315" ref-type="bibr">[63]</xref>, SMART <xref rid="b0490" ref-type="bibr">[98]</xref>, Superfamily <xref rid="b0495" ref-type="bibr">[99]</xref>, Biozon <xref rid="b0500" ref-type="bibr">[100]</xref></td>
+          </tr>
+          <tr>
+            <td>Protein interactions</td>
+            <td>PIPS <xref rid="b0255" ref-type="bibr">[51]</xref>, STRING <xref rid="b0505" ref-type="bibr">[101]</xref></td>
+          </tr>
+          <tr>
+            <td>Disorder/low-complexity sequence</td>
+            <td>Disembl <xref rid="b0295" ref-type="bibr">[59]</xref>, RONN <xref rid="b0540" ref-type="bibr">[58]</xref>, GlobPlot <xref rid="b0300" ref-type="bibr">[60]</xref>, SEG <xref rid="b0510" ref-type="bibr">[102]</xref></td>
+          </tr>
+          <tr>
+            <td>Signal peptide and transmembrane regions</td>
+            <td>SignalP <xref rid="b0455" ref-type="bibr">[91]</xref>, Phobius <xref rid="b0225" ref-type="bibr">[45]</xref>, TMHMM2 <xref rid="b0220" ref-type="bibr">[44]</xref></td>
+          </tr>
+          <tr>
+            <td>Glycosylation sites</td>
+            <td>NetOGlyc <xref rid="b0325" ref-type="bibr">[65]</xref>, NetNGlyc <xref rid="b0450" ref-type="bibr">[90]</xref></td>
+          </tr>
+          <tr>
+            <td>Phosphorylation sites</td>
+            <td>NetPhos <xref rid="b0335" ref-type="bibr">[67]</xref>, Musite <xref rid="b0515" ref-type="bibr">[103]</xref></td>
+          </tr>
+          <tr>
+            <td>Secondary structure</td>
+            <td>JPred <xref rid="b0305" ref-type="bibr">[61]</xref>, PSIPRED <xref rid="b0520" ref-type="bibr">[104]</xref></td>
+          </tr>
+          <tr>
+            <td>Surface entropy</td>
+            <td>SERp <xref rid="b0045" ref-type="bibr">[9]</xref></td>
+          </tr>
+          <tr>
+            <td>Chemical properties: isoelectric point (pI), molecular weight, charge, sequence length, extinction coefficient, #Methionines, #Cysteines, #Histidines, hydrophobicity, protease sites</td>
+            <td>Bioperl <xref rid="b0525" ref-type="bibr">[105]</xref>, PEPSTATS (EMBOSS) <xref rid="b0530" ref-type="bibr">[106]</xref></td>
+          </tr>
+          <tr>
+            <td>Annotated function</td>
+            <td>Gene Ontology <xref rid="b0190" ref-type="bibr">[38]</xref></td>
+          </tr>
+          <tr>
+            <td>Overall tractability (selected to diffraction-quality crystals)</td>
+            <td>XANNPred <xref rid="b0080" ref-type="bibr">[16]</xref>, XtalPred <xref rid="b0180" ref-type="bibr">[36]</xref>, OB-Score <xref rid="b0075" ref-type="bibr">[15]</xref>, ParCrys <xref rid="b0070" ref-type="bibr">[14]</xref></td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-group>
+</article>

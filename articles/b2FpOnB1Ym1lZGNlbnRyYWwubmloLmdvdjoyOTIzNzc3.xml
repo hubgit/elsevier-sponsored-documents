@@ -1,0 +1,1565 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="brief-report">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title-group>
+        <journal-title>Neuroimage</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2923777</article-id>
+      <article-id pub-id-type="pmid">20570739</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG7376</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2010.05.076</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Technical Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Multinomial inference on distributed responses in SPM</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chumbley</surname>
+            <given-names>J.R.</given-names>
+          </name>
+          <email>jrchum@gmail.com</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Flandin</surname>
+            <given-names>G.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Seghier</surname>
+            <given-names>M.L.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>K.J.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>The Wellcome Trust Centre for Neuroimaging, UCL, UK</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. The Wellcome Trust Centre for Neuroimaging, Institute of Neurology, UCL, 12 Queen Square, London, WC1N 3BG, UK. <email>jrchum@gmail.com</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>15</day>
+        <month>10</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>10</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>53</volume>
+      <issue>1-2</issue>
+      <fpage>161</fpage>
+      <lpage>170</lpage>
+      <history>
+        <date date-type="received">
+          <day>1</day>
+          <month>12</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>11</day>
+          <month>5</month>
+          <year>2010</year>
+        </date>
+        <date date-type="accepted">
+          <day>27</day>
+          <month>5</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Inc.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>In this work, we propose statistical methods to perform inference on the spatial distribution of topological features (e.g. maxima or clusters) in statistical parametric maps (SPMs). This contrasts with local inference on the features <italic>per se</italic> (e.g., height or extent), which is well-studied (e.g. Friston et al., 1991, 1994; Worsley et al., 1992, 2003, 2004). We present a Bayesian approach to detecting experimentally-induced patterns of distributed responses in SPMs with anisotropic, non-stationary noise and arbitrary geometry. We extend the framework to accommodate fixed- and random-effects analyses at the within and between-subject levels respectively. We illustrate the method by characterising the anatomy of language at different scales of functional segregation.</p>
+      </abstract>
+      <abstract abstract-type="graphical">
+        <title>Research Highlights</title>
+        <p>►Given a fixed partition of an SPM (eg anatomical altas/independent ROIs), which regions are relatively active?►This method identifies 'active' regions as containing more events (e.g. blobs) than expected by chance►The method is sensitive to different features of an SPM, relative to conventional analyses</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>The paradigm of functional segregation in cognitive neuroscience entails differential engagement of distinct brain regions. An example is the famously problematic hypothesis that region Q is engaged and region R is not activated; i.e. functional specialisation or segregation. This segregation of specialised or functionally selective responses in the brain requires that responses are specific to certain brain regions. We will refer to this as ‘regional specificity’. Mass-univariate approaches (like SPM) cannot address regional specificity, because one can never infer R is not activated (i.e., accept the null). There is a general paucity of methods for addressing hypotheses about the specificity of distributed effects in neuroimaging. Historically, the SPM school calls on the so-called ‘topological’ rather than spatial inference, which considers topological features of statistical parametric maps like maxima or regional excursion sets, as opposed to individual voxels (e.g., <xref rid="bib5" ref-type="bibr">Chumbley et al., 2010</xref>). The present work is inherently multivariate in that it harvests statistics from different parts of the brain, and can provide an answer to the question: is region Q more engaged than region R, in terms of ‘event’ density, where ‘events’ are general data-features whose spatial distribution can be assumed under the null.</p>
+      <p>Clearly, to make an inference that one part of the brain responds more than another part, we have to consider regional responses. This takes us out of the mass-univariate (voxel-based) inference framework used by SPM and obliges us to define the regions entailed by relative regional effects. This definition relaxes the dependence on spatial smoothing that is an integral part of most conventional SPM analyses: to the extent that experimentally-induced responses are conserved spatially over subjects, they can combine to give significant group effects in between-subject SPM analyses. One motivation for smoothing is to ensure responses from each subject overlap by smearing them. This requires effects in different subjects to be close, relative to the scale of the smoothing kernel. In turn, this induces the problem of optimising the scale of the kernel and leads to the notion of scale-space searches (<xref rid="bib20 bib21 bib37" ref-type="bibr">Poline and Mazoyer, 1994a,b; Worsley et al., 1996</xref>). Here, we eschew this problem by only requiring that responses fall predominantly within pre-defined regions (e.g. Brodmann's regions). Regional summaries of per subject ‘events’ can then be assessed in relation to each other to provide inference at the spatial scale of the parcellation scheme chosen.</p>
+      <p>We focus on the special case when ‘events’ are maxima/peaks of a real-valued SPM, resulting from the estimation of a general linear model (GLM) point-wise over the brain. Assuming that randomness in the component fields (i.e. error fields) of the GLM take the form of a Gaussian-field, closed-form solutions for the rate of local maxima in the SPM exceeding some arbitrary height have been derived using random field theory (RFT: e.g. <xref rid="bib9 bib10 bib36 bib39" ref-type="bibr">Friston et al., 1991, 1994; Worsley et al., 1992, Worsley et al., 2004</xref>). This number has been shown, in the limit of high thresholds, to have a Poisson distribution (<xref rid="bib1" ref-type="bibr">Adler and Hasofer, 1981</xref>, Theorem 6.9.3, p. 1611). According to the ‘Poisson clumping heuristic’, high maxima of an SPM are distributed over space according to a Poisson process. This result is used to control family-wise error in SPMs, with the aim of identifying surprisingly high or broad excursions. We will use it here to a different end.</p>
+      <p>Other methods have been put forward to provide meta-analysis of spatially distributed local maxima/peaks (<xref rid="bib34 bib6" ref-type="bibr">Wager et al. (2009) and Eickhoff et al. (2009)</xref>). These approaches convolve observed peak locations with a kernel and examine overlap between studies. Our method replaces the free parameter of kernel width with a pre-defined parcellation of the search space into scientifically meaningful brain regions. Under different assumptions, both <xref rid="bib30 bib40" ref-type="bibr">Thirion et al. (2007) and Xu et al. (2009)</xref> both provide useful methods for inferring inter-subject effects. Our approach differs in the following way. The basic idea we pursue is simple: if the information in an SPM is contained in the local density of peaks, the variations of this density can be detected by simple counting statistics. This means we can identify experimentally-induced changes in spatial patterning over a partition or set of pre-specified regions. Here the spatial distribution of supra-threshold events can be earmarked as surprising, even when the existence of each event is not. The method is not concerned with the absolute number, the height or spatial extent of individual activations: It addresses only the spatial distribution of events over the partition as a multivariate summary statistic. The proposed approach provides a control on the relative density of ‘hits’ across the brain volume: if (say) all the brain is active, the proposed method will report regions that are more active. Thus the regional specificity control allowed by the proposed approach is a relative control.</p>
+      <p>In what follows we first introduce some definitions and define the Poisson Process upon which inference is based. We then relate these to the task of refuting chance patterning of peaks in one or more SPMs. We then show that the approach has acceptably low error using simulated data. Finally, we use real data to show that the method can be more powerful (identify more regionally specific responses) than conventional analyses using RFT.</p>
+    </sec>
+    <sec>
+      <title>Theory</title>
+      <sec>
+        <title>Set-up and preliminaries</title>
+        <p>Let an SPM be defined on <italic>A</italic> ⊆ ℜ<sup><italic>D</italic></sup>. Now partition <italic>A</italic> into regions, <italic>A</italic> = {<italic>A</italic><sub><italic>j</italic></sub>}<sub><italic>j</italic>∊1,…,<italic>n</italic></sub> and let <italic>d</italic><sub><italic>j</italic></sub> indicate the integer number of events in <italic>A</italic><sub><italic>i</italic></sub>. Under any (e.g. non-isotropic) null SPM, this number depends on the ‘statistical volume’ of <italic>A</italic><sub><italic>i</italic></sub> which we denote |<italic>A</italic><sub><italic>j</italic></sub>|..For an isotropic SPM, |<italic>A</italic><sub><italic>j</italic></sub>| is directly proportional to the physical volume of <italic>A</italic><sub><italic>j</italic></sub>. Otherwise, the measure of the <italic>j</italic>-th region |<italic>A</italic><sub><italic>j</italic></sub>| is its RESEL count and is estimated easily using conventional techniques (<xref rid="bib38 bib29" ref-type="bibr">Worsley et al., 1999; Taylor and Worsley, 2007</xref>). See <xref rid="app1" ref-type="sec">Appendix 1</xref> for details.</p>
+      </sec>
+      <sec>
+        <title>The Poisson clumping heuristic</title>
+        <p>A point-process over <italic>A</italic> is a homogenous Poisson process if and only if the joint distribution <italic>d</italic> = [<italic>d</italic><sub>1</sub>, …<italic>d</italic><sub><italic>n</italic></sub>] over any fixed partition <italic>A</italic> = {<italic>A</italic><sub>1</sub>, ..., <italic>A</italic><sub><italic>n</italic></sub>} is a mutually-independent Poisson-distributed random vector with emission rate <italic>λ</italic> &gt; 0; i.e. <italic>d</italic><sub><italic>j</italic></sub> ∼ Poisson(<italic>λ</italic>|<italic>A</italic><sub><italic>j</italic></sub>|). For our purposes, the crucial property of a homogenous Poisson process is that events fall uniformly and independently over space (see <xref rid="app2" ref-type="sec">Appendix 2</xref>). As a consequence, if we are given the total event count, <italic>d</italic><sub>1</sub> + ... + <italic>d</italic><sub><italic>n</italic></sub> = <italic>k</italic>, the joint distribution of event counts is multinomial<disp-formula id="eq1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>d</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>a</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mfrac><mml:mi>k</mml:mi><mml:mrow><mml:msub><mml:mi>d</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>!</mml:mo><mml:msub><mml:mi>d</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>!</mml:mo><mml:mo>…</mml:mo><mml:msub><mml:mi>d</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>!</mml:mo></mml:mrow></mml:mfrac><mml:mrow><mml:msubsup><mml:mo>∏</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:msubsup><mml:msubsup><mml:mi>a</mml:mi><mml:mi>j</mml:mi><mml:msub><mml:mi>d</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:msubsup></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msub><mml:mi>a</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mfenced open="|" close="|"><mml:msub><mml:mi>A</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mfenced><mml:mfenced open="|" close="|"><mml:mi>A</mml:mi></mml:mfenced></mml:mfrac><mml:mtext>.</mml:mtext></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>In resel-space, the spatial deployment of maxima follows a homogenous Poisson process (see <xref rid="bib29" ref-type="bibr">Taylor and Worsley, 2007</xref>). We therefore make heavy use of Eq. <xref rid="eq1" ref-type="disp-formula">(1)</xref> as a likelihood model for spatial patterning over a pre-specified partition of the SPM. With a likelihood model, which embodies our expectations about spatial patterning under the null, we can now disambiguate observed spatial inhomogeneity as arising from noise versus signal.</p>
+      </sec>
+      <sec>
+        <title>The likelihood model</title>
+        <p>Consider two models <italic>M</italic><sub><italic>i</italic></sub>:<italic>i</italic> ∊ 0, 1, which postulate null uniform and alternative non-uniform spatial patterns of events. <italic>M</italic><sub>0</sub> supposes that the expected proportion of events falling in region <italic>A</italic><sub><italic>j</italic></sub> is simply the relative regional resel count <italic>a</italic><sub><italic>j</italic></sub>:∑<italic>a</italic><sub><italic>j</italic></sub> = 1. In contrast, <italic>M</italic><sub>1</sub> allows experimentally-induced departures from uniformity; the expected proportion of events in <italic>A</italic><sub><italic>j</italic></sub> can be anything and is denoted by <italic>θ</italic><sub><italic>j</italic></sub>:∑<italic>θ</italic><sub><italic>j</italic></sub> = 1. Here the vector <italic>θ</italic> = [<italic>θ</italic><sub>1</sub>, …<italic>θ</italic><sub><italic>n</italic></sub>] describes the probability that a given event will fall in each of the <italic>n</italic> regions. The strategy of this paper is to represent and update beliefs about <italic>θ</italic>. Before proceeding with a Bayesian treatment, we comment in passing on classical inference using this model:</p>
+        <p>Classical decision schemes to reject the null-patterning<disp-formula><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:msub><mml:mi>H</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo>:</mml:mo><mml:mi>θ</mml:mi><mml:mo>=</mml:mo><mml:mi>a</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msub><mml:mi>H</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>:</mml:mo><mml:mi>θ</mml:mi><mml:mo>≠</mml:mo><mml:mi>a</mml:mi></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula>are easy to implement using the <italic>χ</italic><sup>2</sup> test of multinomial outcomes. This requires a moderate number of events in each region, which can be assured using a low threshold or regions with large resel counts. An interesting special case is the bipartition <italic>A</italic> = {<italic>A</italic><sub>1</sub>,<italic>A</italic><sub>2</sub>}. Imagine that some small, pre-specified region is of interest and the complement of this region (the rest of the brain) completes the partition. Knowing that there are <italic>k</italic> supra-threshold events in the whole brain, <italic>d</italic><sub>1</sub> of which observed in the small volume, we can easily calculate classical ‘<italic>p</italic>-values’ for the observed pattern, under the null:<disp-formula><label>(3)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>d</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>H</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mi>d</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow><mml:mi>k</mml:mi></mml:munderover><mml:mrow><mml:mi>B</mml:mi><mml:mi>i</mml:mi><mml:mi>n</mml:mi><mml:mi>o</mml:mi><mml:mi>m</mml:mi><mml:mi>i</mml:mi><mml:mi>a</mml:mi><mml:mi>l</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>i</mml:mi><mml:mo>;</mml:mo><mml:mi>k</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>a</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+        <p>Extensive simulations (not reported here) reveal this <italic>p</italic>-value tends to be slightly less conservative than set-level inference (<xref rid="bib11" ref-type="bibr">Friston et al., 1996</xref>) on the small volume <italic>A</italic><sub>1</sub>. Set-level <italic>p</italic>-values are based on random field theory and report the probability of observing a given number of ‘events’ <italic>k</italic>, above some pre-specified height and size threshold in a volume of measure |<italic>A</italic>|. We now turn to the Bayesian inference, which allows us to develop hierarchical models with a wider domain of application.</p>
+      </sec>
+      <sec>
+        <title>Bayesian inference</title>
+        <p>We are initially agnostic about the null and alternative models <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic>(<italic>M</italic><sub><italic>i</italic></sub>) = ½:<italic>i</italic> ∈ 0, 1</textual-form><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:msub><mml:mi>M</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mfenced><mml:mo>=</mml:mo><mml:mstyle scriptlevel="+1"><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac></mml:mstyle><mml:mo>:</mml:mo><mml:mi>i</mml:mi><mml:mo>∈</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:math></alternatives></inline-formula> and use Bayes theorem to update their relative credibility <italic>a posteriori</italic> to observing the SPM. Here, <italic>p</italic>(<italic>M</italic><sub><italic>i</italic></sub>) is the <italic>a priori</italic> belief that <italic>M</italic><sub><italic>i</italic></sub> is the correct model and the posterior is:<disp-formula><label>(4)</label><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>M</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:mi>d</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>d</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>M</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:msub><mml:mi>M</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mfenced></mml:mrow><mml:mrow><mml:munder><mml:mo>∑</mml:mo><mml:mi>i</mml:mi></mml:munder><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>M</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:mi>d</mml:mi></mml:mrow></mml:mfenced></mml:mrow></mml:mrow></mml:mfrac><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+        <p>This update requires the integrated likelihood or evidence:<disp-formula id="eq2"><label>(5)</label><alternatives><textual-form specific-use="jats-markup"><italic>p</italic>(<italic>d</italic>|<italic>M</italic><sub><italic>i</italic></sub>) = ∫<italic>p</italic>(<italic>θ</italic>, <italic>d</italic>|<italic>M</italic><sub><italic>i</italic></sub>)<italic>d</italic><italic>θ</italic> = ∫<italic>p</italic>(<italic>d</italic>|<italic>θ</italic>)<italic>p</italic>(<italic>θ</italic>|<italic>M</italic><sub><italic>i</italic></sub>)<italic>d</italic><italic>θ</italic></textual-form><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>d</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>M</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mrow><mml:mo>∫</mml:mo><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>θ</mml:mi><mml:mo>,</mml:mo><mml:mi>d</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>M</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mi>d</mml:mi><mml:mi>θ</mml:mi></mml:mrow></mml:mrow><mml:mo>=</mml:mo><mml:mrow><mml:mo>∫</mml:mo><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>d</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>θ</mml:mi></mml:mrow></mml:mfenced><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>θ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>M</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mi>d</mml:mi><mml:mi>θ</mml:mi></mml:mrow></mml:mrow></mml:mrow></mml:math></alternatives></disp-formula>which penalises complexity and ensures that <italic>M</italic><sub>1</sub> is not unfairly advantaged (e.g. <xref rid="bib23" ref-type="bibr">Rasmussen and Ghahramani, 2000</xref> — and see below). Under the Poisson clumping heuristic, we take the likelihood to be (cf Eq. <xref rid="eq1" ref-type="disp-formula">(1)</xref>):<disp-formula><label>(6)</label><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>d</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>θ</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi>k</mml:mi><mml:mrow><mml:msubsup><mml:mo>∏</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:msubsup><mml:mfrac><mml:msubsup><mml:mi>θ</mml:mi><mml:mi>j</mml:mi><mml:msub><mml:mi>d</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:msubsup><mml:mrow><mml:msub><mml:mi>d</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>!</mml:mo></mml:mrow></mml:mfrac></mml:mrow><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+        <p>And the priors are determined by the model:<disp-formula><label>(7)</label><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>θ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>M</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>δ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>a</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>θ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>M</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>D</mml:mi><mml:mi>i</mml:mi><mml:mi>r</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>c</mml:mi><mml:mi>m</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mtext>.</mml:mtext></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>Here <italic>δ</italic>(⋅) is a degenerate distribution, zero everywhere but for its argument. This specialises Eq. <xref rid="eq2" ref-type="disp-formula">(5)</xref> to Eq. <xref rid="eq1" ref-type="disp-formula">(1)</xref>. <italic>Dir</italic>(<italic>cm</italic>) denotes the Dirichlet prior on <italic>θ</italic> where <italic>m</italic> gives the prior mean and <italic>c</italic> relates to the prior precision (see below for more details on the Dirichlet). In the present context we specify an uninformative Jeffries Dirichlet prior in which each element of this <italic>n</italic>-vector is set equal to 1/2 (<xref rid="bib14 bib15" ref-type="bibr">Jeffreys, 1946, 1961</xref>). This uninformative Dirichlet does not favour any particular pattern over any other in contrast to the informed null model, which assumes one pattern (i.e. <italic>θ</italic> = <italic>a</italic>). These models therefore have different implications for predicted observations <italic>d</italic> (Eq. <xref rid="eq2" ref-type="disp-formula">(5)</xref>: the ‘prior's prediction’). Intuitively, the uninformative prior distributes probability mass diffusely over the set of possible patterns. By contrast, the informative prior apportions high probability to any observed data pattern <italic>d</italic> close to <italic>a</italic> at the expense of patterns far away. This is the mechanism behind [Bayesian] Occam's Razor: informed models are less surprised by data near <italic>a</italic>, relative to data that deviate from <italic>a</italic>.</p>
+        <p>To see this concretely, consider a bipartition (e.g., over brain hemispheres) and two mean-<italic>a</italic> priors, one with highly concentrated prior mass <italic>c</italic> = <italic>∞</italic> (i.e., the null model <italic>M</italic><sub>0</sub>) and one with lower concentration <italic>c</italic> ≪ <italic>∞</italic>. It can be shown that under our priors, the dispersion of the distribution given in Eq. <xref rid="eq2" ref-type="disp-formula">(5)</xref> is:<disp-formula><label>(8)</label><mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:mrow><mml:mo>var</mml:mo><mml:mfenced open="(" close=")"><mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mo stretchy="true">|</mml:mo></mml:mrow><mml:mi>a</mml:mi><mml:mo>,</mml:mo><mml:mi>c</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi>k</mml:mi><mml:mi>a</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mi>a</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mfenced open="(" close=")"><mml:mrow><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mi>k</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>c</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+        <p>The first (null) model thus has competitive advantage over the alternative (i.e. attributes higher probability in Eq. <xref rid="eq2" ref-type="disp-formula">(5)</xref>) for any data consistent with the prior expectation <italic>a</italic>. This implements Occam's razor. In this example, model selection reduces to comparing two distributions with equal means and different variances, so that the null model is preferred when the data fits the model, while the converse model is preferred otherwise. A more general result for the predictive variance–covariance of the Dirichlet-multinomial is given in <xref rid="bib31" ref-type="bibr">Tripsiannis et al. (2002)</xref>.</p>
+        <p>This scheme provides a simple way to make inferences on models and test hypotheses. Model evidence however is a gross measure: strong evidence for non-uniform patterning can arise from an excess of events in just one (or more) region of the partition. The success of the alternate model, as judged by its higher evidence (i.e. a large Bayes factor) can further be explained by examining the posterior density on its parameters: <italic>p</italic>(<italic>θ</italic>|<italic>d</italic>,<italic>M</italic><sub>1</sub>) ∝ <italic>p</italic>(<italic>d</italic>|<italic>θ</italic>,<italic>M</italic><sub>1</sub>)<italic>p</italic>(<italic>θ</italic>|<italic>M</italic><sub>1</sub>), which encode each region's relative propensity to emit an ‘event’. Inference on regional parameters can be finessed with appropriate adjustments to posterior confidence, if we infer on a large number of parameters (see below). In what follows, we consider Bayesian inference on single SPMs and multiple SPMs acquired from different subjects under the same conditions.</p>
+      </sec>
+      <sec>
+        <title>Multi-subject models</title>
+        <p>So far, we have only considered inference on a single SPM (e.g. from one subject). The strategy for multi-subject analyses depends on one's belief about between-subject variation. If all between-subject variation in spatial patterning arises from noise (i.e. the form of any structured inhomogeneity is conserved over subjects), a fixed-effects strategy is appropriate. This motivates pooling of data (i.e., regional event counts) over subjects, because the subject index is not informative of true variation. Alternatively, if we believe there is true inter-subject variation in regional patterning, one can pursue a random-effects (RFX) strategy. In this case, pooling must be more qualified: subject indices carry information about true variation and inference focuses on the population mean. We first generalise the formulation above to accommodate subject-specific indices. We then describe two schemes that are suitable in the fixed and random-effects cases.</p>
+        <p>Let <italic>A</italic><sub><italic>i</italic></sub> = {<italic>A</italic><sub><italic>i</italic>1</sub>, ..., <italic>A</italic><sub><italic>in</italic></sub>}:<italic>i</italic> = 1, …,<italic>I</italic> now represent the partition of the <italic>i</italic>-th subject. As above, under <italic>M</italic><sub>0</sub>, the <italic>A</italic><sub><italic>ij</italic></sub> govern the probability that a given event in the <italic>i</italic>-th subject will fall in region <italic>j</italic> or, equivalently, the expected fraction of events falling in region <italic>j</italic>. Under <italic>M</italic><sub>1</sub>, the corresponding probability is <italic>θ</italic><sub><italic>ij</italic></sub> : ∑ <sub><italic>j</italic></sub><italic>θ</italic><sub><italic>ij</italic></sub> = 1; the vector <italic>θ</italic><sub><italic>i</italic></sub> now describes, for the <italic>i-</italic>th subject, the probability of a given event falling in each of the <italic>j</italic> = 1,…,<italic>n</italic> regions, assuming there is experimentally-induced patterning. Notationally, the <italic>i</italic>-th subject data now yields data <italic>d</italic><sub><italic>i</italic></sub>. Henceforth, we redefine <italic>d</italic> = [<italic>d</italic><sub>1</sub>, ...., <italic>d</italic><sub><italic>n</italic></sub>] to denote the entire data-set over subjects.</p>
+      </sec>
+      <sec>
+        <title>Fixed-effects models</title>
+        <p>Under fixed effects (FFX), subject-specific indices are uninformative regarding putative patterning and can be ignored. Pooling over uninformative subject-specific indices, we can define <italic>A</italic><sub><italic>j</italic></sub> = ∪ <sub><italic>i</italic></sub><italic>A</italic><sub><italic>ij</italic></sub>. Inference on this ‘hyper-subject’ now reduces to the scheme described above, by simply pooling regional resel and event counts over subjects. (The values <italic>d</italic><sub><italic>ij</italic></sub> are summed over <italic>j</italic> to yield a ‘summation subject’, in which between-region effects can be detected.)</p>
+      </sec>
+      <sec>
+        <title>Random-effects models</title>
+        <p>If we believe that there is real between-subject variation in patterning, we can use our random sample of subjects to infer on the population from which they came. It is convenient to assume a parametric form for the population. Here, we assume they are distributed according to a Dirichlet, whose parameters we aim to infer. The parameter vector <italic>θ</italic><sub><italic>i</italic></sub> = [<italic>θ</italic><sub><italic>i</italic>1</sub>, …, <italic>θ</italic><sub><italic>in</italic></sub>], which characterises the pattern of the <italic>i</italic>-th subject is therefore sampled from:<disp-formula><label>(9)</label><mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>θ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:mi>c</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>Γ</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:mrow><mml:mi>c</mml:mi><mml:msub><mml:mi>m</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:msubsup><mml:mo>∏</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:msubsup><mml:mrow><mml:mi>Γ</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>c</mml:mi><mml:msub><mml:mi>m</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mrow></mml:mfrac><mml:mfenced open="(" close=")"><mml:mrow><mml:msubsup><mml:mo>∏</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>n</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup><mml:msubsup><mml:mi>θ</mml:mi><mml:mi mathvariant="italic">ij</mml:mi><mml:mrow><mml:mi>c</mml:mi><mml:msub><mml:mi>m</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:mfenced><mml:msup><mml:mfenced open="(" close=")"><mml:mrow><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>n</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:munderover><mml:msub><mml:mi>θ</mml:mi><mml:mi mathvariant="italic">ij</mml:mi></mml:msub></mml:mrow></mml:mrow></mml:mfenced><mml:mrow><mml:mi>c</mml:mi><mml:msub><mml:mi>m</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msub><mml:mi>m</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mi>E</mml:mi><mml:mfenced open="(" close=")"><mml:msub><mml:mi>θ</mml:mi><mml:mi mathvariant="italic">ij</mml:mi></mml:msub></mml:mfenced><mml:mo>:</mml:mo><mml:mrow><mml:mo>∑</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msubsup><mml:mo>∑</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:msubsup><mml:msub><mml:mi>θ</mml:mi><mml:mi mathvariant="italic">ij</mml:mi></mml:msub></mml:mrow><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>:</mml:mo><mml:mo>∀</mml:mo><mml:mi>i</mml:mi><mml:mtext>.</mml:mtext></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>Where Γ is the gamma function and <italic>θ</italic><sub><italic>ij</italic></sub> &gt; 0:∀<italic>i</italic>, <italic>j</italic>. The components of <italic>m</italic> = [<italic>m</italic><sub>1</sub>, …, <italic>m</italic><sub><italic>n</italic></sub>] define the proportion of events in each region, expected over subjects in the population. Here, <italic>m</italic><sub><italic>j</italic></sub> is the regional population mean we seek, around which subjects vary according to a Dirichlet whose variance is controlled by <italic>c</italic> &gt; 0. Again, if there was no systematic, experimentally-induced spatial patterning at the group level, <italic>m</italic> = <italic>a</italic> is simply equal to the relative resel counts, by the preceding arguments. For Bayesian inference on these quantities, we represent our <italic>a priori</italic> uncertainty about the population parameters with <italic>p</italic>(<italic>m</italic>,<italic>c</italic>).</p>
+        <p>Model comparison is more problematic in the random-effects case. In particular, the integrated likelihood has no analytic solution. For convenience, we restrict inference to the population means <italic>m</italic><sub><italic>j</italic></sub> rather than models <italic>M</italic><sub><italic>i</italic></sub>. As we shall see, this does not pose an obstacle to useful inference at the population level. Under RFX models, we can ask whether, on average, individuals deviate from null-patterning, for any region as follows. First, we consider the set of marginal distributions <italic>p</italic>(<italic>m</italic><sub><italic>j</italic></sub>|<italic>d</italic>) = ∫ <italic>p</italic>(<italic>m</italic>,<italic>c</italic>|<italic>d</italic>)<italic>dcdm</italic><sub>∼ <italic>j</italic></sub>, where <italic>m</italic><sub>∼ <italic>j</italic></sub> is the vector of population means, except for region <italic>j</italic>. We can obtain a stochastic approximation to this integral (to arbitrary precision) via well-understood methods (see <xref rid="app3" ref-type="sec">Appendix 3</xref>). From these we can derive confidence intervals; e.g. <italic>CS</italic><sub>95</sub>(<italic>m</italic><sub><italic>j</italic></sub>) that can be penalised for multiple inferences, as described next. This permits us to identify regions with an unusual density of events. We note that classical RFX analysis, under the same Dirichlet assumptions about the population, may be achieved via frequentist results found in <xref rid="bib19" ref-type="bibr">Paul et al. (2005)</xref>.</p>
+      </sec>
+      <sec>
+        <title>Inference on regional parameters</title>
+        <p>When making separate inferences about regional parameters, we encounter a multiple comparisons problem, if we use a high posterior confidence that <italic>m</italic><sub><italic>j</italic></sub> ≠ <italic>a</italic><sub><italic>j</italic></sub> (or <italic>θ</italic><sub><italic>j</italic></sub> ≠ <italic>a</italic><sub><italic>j</italic></sub>) to declare a region ‘significant’. Note when we compare models there is no multiplicity problem. There is only one model comparison and the integrated likelihood is automatically penalised in relation to the number of free regional parameters. From one perspective, parameters play an auxiliary role in quantifying why the null pattern has been rejected by model comparison; in this view, parameter inference <italic>per se</italic> is unnecessary. However, from the perspective of inference on parameters (under a selected model), it may be desirable to seek some form of control at the parameter level if each parameter is reported in relation to its marginal posterior. This is particularly important if no omnibus test (e.g., Bayes factor) is available and there are many parameters.</p>
+        <p>With this in mind, recall that an ‘<italic>x</italic>% Bayesian confidence interval’ summarises where <italic>x</italic>% of our posterior belief in the true parameter lies. Under our RFX model, the posteriors <italic>p</italic>(<italic>m</italic>|<italic>d</italic>) and <italic>p</italic>(<italic>m</italic><sub><italic>j</italic></sub>|<italic>d</italic>) are unimodal (the Dirichlet distribution is a convex function of <italic>m</italic> because it is in the exponential family); this also applies to our FFX model. Therefore, we use central confidence intervals for both FFX and RFX models. With two regions (with one degree of freedom because regional parameters must sum to one), these confidence intervals exclude extreme tails attributed with <italic>ε</italic> = (1 − <italic>x</italic>) net credibility. Consequently, we choose to penalise (increase) confidence intervals according to the number of regions minus one by enforcing <italic>ε</italic> = (1 − <italic>x</italic>)/(<italic>n</italic> − 1). We do not want to justify a Bayesian approach in terms of frequentist error control, which would be inappropriate. However, as we will show, under the conditions of our simulation, our approach incidentally provides frequentist control of false detections.Unless otherwise stated, we use <italic>x</italic> = 99%.</p>
+      </sec>
+      <sec>
+        <title>A note on informed models</title>
+        <p>In the preceding sections, we described schemes for evaluating the mismatch between an observed pattern and that estimated under vague prior assumptions. In some situations, one may have a precise alternative model or hypothesis. This could be derived from the spatial profile <italic>m</italic><sub>1</sub> observed in an independently replicated experiment. Precise or informed alternative models are easily accommodated in the FFX analysis by substituting a degenerate Dirac delta for the prior: <italic>p</italic>(<italic>θ</italic>|<italic>M</italic><sub>1</sub>) = <italic>δ</italic>(<italic>m</italic><sub>1</sub>) (assuming high confidence about <italic>m</italic><sub>1</sub>). With RFX models, precise priors <italic>p</italic>(<italic>θ</italic>|<italic>m</italic>,<italic>M</italic><sub>1</sub>) = <italic>δ</italic>(<italic>m</italic><sub>1</sub>) finesse the complications in evaluating the integrated likelihood and enable straightforward RFX model comparison: having specified <italic>m</italic> under the null and alternative hypotheses, the model evidence obtains by integrating the likelihood with respect to the population means (trivial by exploiting Dirichlet-multinomial conjugacy) and the scalar <italic>c</italic> (integrated with any simple numerical scheme). Note, by definition, the parameters of an informed model (such as the null) are specified by the hypothesis. There is therefore no component-wise inference on their parameters; inference is between two hypothetical patterns. We will explore the applications of informed model comparison in future work.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Simulations</title>
+      <sec>
+        <title>Frequency evaluations</title>
+        <p>Bayesian error control, imposed by integrating the data-likelihood under vague priors, does not aim to satisfy Frequentist criteria (e.g. control the false-positive rate). It is nevertheless interesting to examine how strongly the results depend on the inferential scheme. In this section, we simulate experimental data and evaluate the Frequentist behaviour of our Bayesian scheme. We explore this behaviour in the absence of experimentally-induced patterning, by generating data with no signal. For each of 84 volumes in the simulated experiment, independent unit-variance Gaussian noise was introduced onto a 64 × 64 × 64 regular lattice. We induced non-stationarity with piecewise constant smoothing over twenty random regions; obtained through a Voronoi parcellation diagram with random seeds (<xref rid="bib8" ref-type="bibr">Flandin et al., 2002</xref>). Each region was smoothed independently with its own full width half maximum FWHM drawn uniformly on the interval [4, 10] mm. To preclude sharp transitions at regional boundaries, we then smoothed the entire image again with a Gaussian kernel (FWHM of 2 mm). This was repeated 1000 times to create surrogate data under the null hypothesis. We then fitted GLMs with a simple mean effect and collected the ensuing <italic>t</italic>-fields or SPMs.</p>
+        <p>We randomly sampled <italic>L</italic> = 150 groups of 20 simulated subjects from our corpus. For each of these simulated experiments and ensuing SPMs, we defined ‘regions of interest’ by randomly selecting a fixed number of <italic>N</italic> regions from the AAL anatomical parcellation scheme (<xref rid="bib32" ref-type="bibr"><italic>Tzourio-Mazoyer et al., 2002</italic></xref>). <italic>N</italic> ∊ {5,10,15,20}. We used the union of the remaining regions in the AAL parcellation (i.e., the rest of the brain) as our final ‘region’. We calculated the regional resel counts of each ‘region’ and the corresponding number of events above a height threshold of three. We then assessed the Frequentist properties of fixed- and random-effects inference.</p>
+      </sec>
+      <sec>
+        <title>Fixed effects</title>
+        <p>All rational decisions (e.g. ‘tests’) require some subjective notion of utility/loss. Conventional decision thresholds are somewhat arbitrary (e.g. set such that alpha = 0.05). A threshold of 20 is the convention for Bayesian decisions based on relative evidence (given a Bayes factor). To begin, we defined a Bayes factor of twenty (i.e., very strong evidence) as the threshold for accepting the alternative model. We found that no Bayes factor from any of the simulated groups attained this threshold for any <italic>N</italic> ∊ {5,10,15,20} regions. This indicates that under our decision threshold and the conditions of our simulation, our Bayesian procedure incidentally implies a low false-positive rate in terms of model selection.</p>
+        <p>For inference on parameters, we estimated of the Frequentist Family-Wise Error Rate (FWER) using <inline-formula><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:mrow><mml:mi>P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>V</mml:mi><mml:mo>≥</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>I</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>N</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>≈</mml:mo><mml:mstyle scriptlevel="+1"><mml:mfrac><mml:mn>1</mml:mn><mml:mi>L</mml:mi></mml:mfrac></mml:mstyle><mml:mrow><mml:msubsup><mml:mo>∑</mml:mo><mml:mrow><mml:mi>l</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>L</mml:mi></mml:msubsup><mml:mrow><mml:msub><mml:mi>I</mml:mi><mml:mi>l</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>N</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:math></inline-formula>. Here <italic>I</italic>(<italic>N</italic>), <italic>I</italic><sub><italic>l</italic></sub>(<italic>N</italic>), ..., <italic>I</italic><sub><italic>L</italic></sub>(<italic>N</italic>) are identically distributed: the approximate equality <inline-formula><mml:math id="M12" altimg="si12.gif" overflow="scroll"><mml:mrow><mml:mi>E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>I</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>N</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>≈</mml:mo><mml:mstyle scriptlevel="+1"><mml:mfrac><mml:mn>1</mml:mn><mml:mi>L</mml:mi></mml:mfrac></mml:mstyle><mml:mrow><mml:msubsup><mml:mo>∑</mml:mo><mml:mrow><mml:mi>l</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>L</mml:mi></mml:msubsup><mml:mrow><mml:msub><mml:mi>I</mml:mi><mml:mi>l</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>N</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:math></inline-formula> says that expectation of interest is approximated by the empirical average over <italic>L</italic> realised observations. Here the random variable <italic>V</italic> denotes the expected number of frequentist errors in an experiment, the indicator <italic>I</italic>(<italic>N</italic>) = 1:<italic>V</italic> &gt; 0 (i.e. with one or more regions whose penalised confidence intervals were inconsistent with the null) and 0 otherwise. <italic>L</italic> is the number of simulated replications over which we take the empirical expectation. We observed no FWER greater than 0.05 for any <italic>N</italic> ∊ {5,10,15,20} regions. FWER on regional parameters were {0.013, 0.013, 0.046, 0.033} respectively. These findings indicate that our procedure incidentally limits false-positive decisions on regional parameters to a small rate.</p>
+      </sec>
+      <sec>
+        <title>Random effects</title>
+        <p>In the context of random-effects models, we restrict our analysis to inferring parameters (not models). We used the RFX scheme to infer regional parameters for the same set of null experiments. Again, for each experiment, we counted the number of SPMs with one or more parameters, whose penalised confidence intervals were inconsistent with the null. We observed no FWER greater than 0.05, for any <italic>N</italic> ∊ {5,10,15,20} regions: the observed values were {0.006, 0.000, 0.043, 0.043} respectively.</p>
+      </sec>
+      <sec>
+        <title>Supplementary analyses of parcellation and data smoothing</title>
+        <p>The preceding validations consider partitions with a relatively small number of areas. In some situations, we may have no priors on the functional anatomy and prefer a more exploratory approach. It is easy to validate the FFX procedure for many regions. We performed the same simulation procedure described above, but with <italic>N</italic> = 116; i.e., the entire set of regions in the AAL. Our empirical estimate of the FWER on regional parameters was 0.04, validating the method for open-ended exploratory use.</p>
+        <p>Strictly speaking, data smoothing should have no effect on the robustness of the scheme because we effectively work in RESEL space (where the effects of smoothness are removed). More precisely, our null model conditions on the RESEL count associated with each region. This means the model does not depend on the degree of smoothing. Nevertheless, smoothness will affect the production of maxima in each individual SPM and therefore affect regional counting statistics. To illustrate that the approach is robust to different levels of data smoothing, we simulated 1000 SPMs using data smoothed with an 8 mm Gaussian kernel. Using the above procedure and under the conditions of this simulation, we found a regional FWE of 0.003 and no false model comparisons.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Applications: the regional anatomy of language</title>
+      <sec>
+        <title>Motivation</title>
+        <p>A reliable measure of language laterality is important for both basic and clinical research. Furthermore, lateralisation represents a canonical example of a functional pattern one might want to make inferences about. Language laterality in fMRI is usually assessed by computing a Laterality Index (LI) that compares the relative contribution of both hemispheres, during a given language task. However, several methodological issues may confound the LI in healthy and diseased populations; for a critical review see <xref rid="bib25" ref-type="bibr">Seghier (2008)</xref>. All previous studies have assessed LI values based on either extent (e.g. size of left or right activated regions that survived a pre-defined threshold) or height (e.g. grouping statistical scores within a region of interest). Our pattern perspective aims to infer the spatial profile of local maxima, bypassing inference on extent or height of local activations. This perspective may be more fitting, particularly for laterality measures, in that it assesses the relative spatial distribution of events. Laterality is a rather coarse characterisation of functional localization. We therefore proceed to ask which specific language areas, within a more fine-grained parcellation of the brain, show laterality effects.</p>
+      </sec>
+      <sec>
+        <title>The task and data</title>
+        <p>We demonstrate our method on a data-set from previous work (<xref rid="bib27" ref-type="bibr">Seghier and Price, 2009</xref>). These data were obtained from 24 healthy subjects (9 males, 15 females, age: 36 ± 18 years). All subjects were native English speakers, had normal or corrected-to-normal vision, with no history of neurological or psychiatric disorders; and were right-handed as assessed with the Edinburgh questionnaire (<xref rid="bib18" ref-type="bibr">Oldfield, 1971</xref>). Over the block paradigm design experiment there were 16 blocks presenting written object names and 8 blocks presenting strings of unfamiliar Greek symbols, each lasting 18.8 s with an additional 12 blocks of 14.4 s fixation every two stimulus blocks. All stimuli were presented as triads (three visual stimuli, with one target above and two choices below). Subjects were asked to press a button indicating whether; (i) the stimulus on the lower-left or lower-right was more semantically related to the target above (e.g. is ‘truck’ or ‘ship’ most closely related to ‘anchor’) or (ii) the unfamiliar symbols on the lower-left or lower-right were visually identical to the target. All subjects performed well on this matching task (performance = 92 ± 7%).</p>
+        <p>Data were acquired on a 1.5 T Siemens system (Siemens Medical Systems, Erlangen, Germany). Functional imaging used an EPI GRE sequence (TR = 3600 ms, TE = 50 ms, Flip = 90°, FOV = 192 mm, matrix = 64 × 64, 40 axial slices with 3 × 3 × 3 mm voxel size). Data processing and statistical analyses were carried out with the Statistical Parametric Mapping SPM5 software package (Wellcome Trust Centre for Neuroimaging, London, UK, <ext-link ext-link-type="uri" xlink:href="http://www.fil.ion.ucl.ac.uk/spm/">http://www.fil.ion.ucl.ac.uk/spm/</ext-link>). All functional volumes were spatially realigned, un-warped, normalised to the MNI space, and smoothed with an isotropic 6-mm FWHM Gaussian kernel, with a resulting voxel size of 2 × 2 × 2 mm. The pre-processed functional volumes for each subject were then submitted to a conventional fixed-effects SPM analysis, using a general linear model at each voxel. Each stimulus onset (except fixation) was modelled as an event encoded in condition-specific ‘stick-functions’. The resulting stimulus functions were convolved with a canonical hemodynamic response function to form regressors for the linear model. Our contrast of interest was the main effect of semantic matching on words, relative to perceptual matching on unfamiliar symbols. More details about this analysis and the main effect of interest during semantic matching can be found elsewhere (see <xref rid="bib27" ref-type="bibr">Seghier and Price, 2009</xref>). Our task is used routinely in clinics and reliably identifies language areas and functional laterality (e.g. <xref rid="bib26" ref-type="bibr">Seghier et al., 2004</xref>).</p>
+      </sec>
+      <sec>
+        <title>Data analysis</title>
+        <p>Our FFX model can be thought of as a limiting case of the RFX model. In particular, as the between-subject variability decreases, subject-specific spatial patterns fluctuate around a single ‘fixed’ value. We therefore deliberately chose a data-set with relatively low between-subject variability, so that we can plausibly consider both FFX and RFX models on the same data. To ensure this homogeneity, we conditioned the sample on right-handedness, a covariate known to induce important between-subject variability (<xref rid="bib22 bib28" ref-type="bibr">Pujol et al., 1999; Szaflarski et al., 2002</xref>). As we shall see, the inferences under RFX and FFX were very similar. In general, the latter expects, and accounts for, more sources of variability. Therefore posterior inference is less confident: i.e., it returns a smaller set of ‘significant’ regions. For all the analyses below, we counted peaks above a height threshold of <italic>t</italic> = 3. These event counts served as the data-features of interest.</p>
+      </sec>
+      <sec>
+        <title>Fixed effects</title>
+        <p>We began by defining two regions for the entire right and left hemispheres; excluding the cerebellum due to the crossed cerebellar representation of laterality; and the mesial cortex near to inter-hemispheric fissure (for more details see <xref rid="bib25" ref-type="bibr">Seghier, 2008</xref>). Using this hemispheric partition we obtained a Bayes factor of 2 × 10<sup>11</sup> in favour of language lateralisation. At the level of parameters, we found that the confidence interval for the average proportion of ‘events’ in the left hemisphere, <italic>CI</italic>(<italic>θ</italic><sub>1</sub>) = [0.525, 0.553], was inconsistent with, that expected by chance 0.4962; i.e. that based on resel counts. On applying RFX analysis, we again found that the confidence interval for the estimated average fraction of events in the left hemisphere, <italic>CI</italic>(<italic>m</italic><sub>1</sub>) = [0.521, 0.565], was inconsistent with that expected by chance alone (0.4962). From either of these we conclude that there is evidence for left-lateralization of language.</p>
+        <p>We then defined nine language-related regions in the left hemisphere, based on previous meta-analysis studies (e.g. <xref rid="bib3 bib33" ref-type="bibr">Cabeza and Nyberg, 2000; Vigneau et al., 2006</xref>) and their homologous regions in the right hemisphere. These are shown in <xref rid="tbl1" ref-type="table">Table 1</xref>, in the AAL parcellation scheme (<xref rid="bib32" ref-type="bibr"><italic>Tzourio-Mazoyer et al., 2002</italic></xref>).</p>
+        <p>We used these regions to partition the brain into 19 areas (9 language bilateral regions and the remaining brain volume) to see whether we could characterise lateralisation with greater regional precision. Under FFX assumptions, we again found evidence for a non-uniform pattern, with a Bayes factor of 1.149 × 10<sup>22</sup>. To understand this result, we turned to the parameters. <xref rid="tbl2" ref-type="table">Table 2</xref> lists those regions that were surprising, in terms of the relative number of high peaks observed using both FFX and RFX models.</p>
+        <p>Note that there is overlap between the regions returned by the both analyses. As expected, high activity tends to be in the left hemisphere and low activity tends to be in the right hemisphere.</p>
+        <p>To visualise the basis for these inferences about regional specificity shown in <xref rid="tbl2" ref-type="table">Table 2</xref>, <xref rid="fig1" ref-type="fig">Fig. 1</xref> illustrates the marginal confidence intervals. These intervals pertain to the nine regions listed <xref rid="tbl2" ref-type="table">Table 2</xref>, bilaterally. The blues lines correspond to the corrected 99% confidence intervals for each region. (They are joined simply for ease of graphical inspection.) The green dots are the relative RESEL count for each region. The left panel corresponds to FFX analysis on <italic>θ</italic>, while the right panel corresponds to RFX analysis on <italic>m</italic>. We can see from these plots that some of the confidence intervals exclude the null (green dots). For ease of visual inspection, we highlight such regions with embolded confidence bounds (thick dots).</p>
+      </sec>
+      <sec>
+        <title>Exploratory analysis</title>
+        <p>For illustration, we then assumed nothing about the functional anatomy engaged by the task comparison and use a more exploratory approach, which is useful when there is little <italic>a priori</italic> knowledge of the functional anatomy. In particular, we choose all regions, excluding the vermis and cerebellum, as our partition. <xref rid="tbl3" ref-type="table">Table 3</xref> and <xref rid="fig2" ref-type="fig">Fig. 2</xref> report the results. As before, there is a preponderance of left-hemispheric regions that are relatively rich in events. Conversely, right-hemispheric regions tend to be relatively sparser in high peaks. The majority of these areas have been associated with language function in other studies (e.g. <xref rid="bib26 bib33" ref-type="bibr">Seghier et al., 2004; Vigneau et al., 2006</xref>).</p>
+      </sec>
+      <sec>
+        <title>Supplementary null and comparative analyses</title>
+        <p>As a final check on our model assumptions we analysed SPMs based on real data that conformed to the null hypothesis: if our null Poisson Process model is not tenable for real data, the fraction of events found in each region should not be approximated by the relative RESEL count. For each of 15 subjects we calculated an SPM testing for the effects of a random covariate (independent draws from the normal distribution). The results are null SPMs by construction. We repeated this procedure ten times and were never able to reject the null model, according to the decision procedures used above.</p>
+        <p>Finally, we compared the results from pattern inference with two conventional whole-brain approaches based on the height and extent of SPM excursion sets. To do this we computed an SPM of the <italic>t</italic>-statistic, using the 24 subject-specific contrasts of parameter estimates above. For both FWE adjusted thresholds, we catalogued all AAL regions containing at least one supra-threshold voxel. Pattern inference identified relative regional effects in five regions not identified by either conventional SPM analysis:<list list-type="simple"><list-item><label>•</label><p>‘Frontal_Sup_Orb_L’,</p></list-item><list-item><label>•</label><p>‘Frontal_Mid_Orb_R’,</p></list-item><list-item><label>•</label><p>‘Frontal_Sup_Orb_R’,</p></list-item><list-item><label>•</label><p>‘ParaHippocampal_R’,</p></list-item><list-item><label>•</label><p>‘Temporal_Pole_Sup_R’</p></list-item></list></p>
+        <p>Conversely, FWE procedures identified regions that were active in absolute — but not relative — terms. Four regions were identified using peak height (two of which showed regionally specific effects based on pattern inference). Inference based on spatial extent identified 29 regions (of which nine showed regionally specific responses). This emphasises that inference about relative vs absolute responses are distinct. In other words, inferring that a region has responded does not necessarily mean the response is regionally specific (i.e., not more than other regions).</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>We have introduced a new method, which can identify experimentally-induced changes in spatial patterning over a set of pre-specified regions. Here, inference is on the spatial organisation of events (high peaks) rather than their absolute number or the attributes (e.g., height or extent) of individual activations. A positive decision about region Q means that region Q is relatively sparse or rich in events, <italic>relative to the rest of the search volume</italic>. Note that the interpretation is inherently relative. The rest of the brain may or may not be activated in absolute terms i.e. as determined by conventional peak or cluster-extent methods. It is in this sense that the method infers <italic>patterns —</italic> attributes of the SPM that are distributed over whole search volume. It therefore differs qualitatively from existing methods, and is complementary to them. While we have focused on patterns in SPMs of functional images, the method is clearly applicable to structural (e.g. VBM) analyses, for which there is also a clear null hypothesis (<xref rid="bib2" ref-type="bibr">Ashburner and Friston, 2000</xref>). We have emphasised that pattern inference is on a region's response relative to average the activity of other regions. Therefore, it will not detect regions when there is a uniformly high <italic>absolute</italic> peak rate (e.g. as inferred via set-level inference). In such conditions, rejecting a regionally nonspecific (global uniform) hypothesis is more conservative than rejecting a (global null) hypothesis that no region has responded.</p>
+      <p>Note that the model underlying pattern inference does not, strictly speaking, assume independence of counts across regions: given the total count, components of a multinomial random vector have negative covariance. For region-wise tests, this negative dependence means that falsely inferring an event excess in one region increases the chance of inferring event dearth in the remaining regions. Our simulations indicate that the <italic>n</italic> − 1 penalty furnishes appropriate control, despite this dependence. Its success is not surprising, given the formal similarity of this penalty to Bonferroni-correction, which holds under arbitrary dependence.</p>
+      <p>To assess the evidence for experimentally-induced spatial patterning over a set of pre-specified regions, we must account for two confounding explanations: (i) spatial inhomogeneity in the SPM and (ii) the relative volume of cells. We exploit an established measure of ‘statistical’ volume (the resels-per-voxel image) to attain a volume measure that effectively removes local variations in the geometry of statistical dependencies, under the null. We use this in conjunction with the Poisson clumping heuristic to elaborate a hierarchical pattern model, which affords inference on both model and parameter (pattern) space; at the within or between-subject level.</p>
+      <p>As an illustration, we applied the method to ask whether a language task influences the pattern of event in the ensuing SPMs. We identified specific regions of a language network that had a surprisingly low or high proportion of events, given their volume. In particular, left-hemisphere regions tended to be relatively rich in events, and right-hemisphere regions were relatively sparse. It is noteworthy that there was close agreement between RFX and FFX inferences. This is partly because our FFX is naturally robust to <italic>local</italic> (within region) functional heterogeneity over subjects; it sees only the regional count. Only heterogeneity between different regions would benefit from an explicit random-effects model. Additional factors limiting functional heterogeneity (e.g. when considering functionally conserved brain systems or conditioning on relevant covariates) should bolster the suitability of FFX analyses. This is fortunate for practical reasons; the analytic FFX solution is quick, benefits from an exact model evidence, and is more suitable for exploratory (high-dimensional) analyses.</p>
+      <p>As we have demonstrated, pattern inferences can be used for hypothesis-driven as well as exploratory analyses. In the former case, the motivation for choosing a specific parcellation derives primarily from the scientific question. The approach we have illustrated started with building blocks, defined within an existing parcellation scheme (i.e., AAL), and aggregating regions when desirable. Regions can be grouped according to prior knowledge of the functional neuroanatomy. For example, one may ask whether bilateral frontal <italic>vs</italic> bilateral temporal regions are more engaged in a task. Here, one would distinguish lobes while pooling across hemispheres into a two-region partition (three if considering the complement of the brain). Note that each partition embodies a different (null and alternative) hypothesis. This means one can address the same SPM with different hypotheses, framed in terms of different partitions. We have tried to illustrate this anecdotally by using different partitions above, when charactering language activations. One can imagine step-down applications of this approach; where a cell from a ‘significant’ partition is itself partitioned and the process repeated recursively, until no further functional segregation can be inferred. We will pursue this in elsewhere. In a hypothesis-driven approach, partitions are informed by known functional neuroanatomy. Previous research provides <italic>a priori</italic>, constraints on the inference: known functional anatomy can be used to restrict the search to a small number of regions. This empowers inference, because reducing the number of regions reduces the implicit penalty imposed by the integrated likelihood or multiplicity-controlled confidence intervals.</p>
+      <p>We emphasise that our inference about spatially structured responses is no more than that (i.e., a test of departure from the null hypothesis of uniform or non-segregated effects). The regional specificity of this inference is determined by the nature of the partition. The partition can have a small number of large regions (e.g., right vs. left hemisphere); in which, case the inference will have little regional specificity but good sensitivity to effects that are not conserved spatially over subjects. Conversely, the partition can have a large number of small cells, in which case the inference and <italic>post-hoc</italic> interpretation of the pattern will be regionally specific. Sensitivity here depends on any responses being expressed within the same cells. It is interesting to think about the limiting case in which the partition includes the set of all voxels and how this relates to standard topological inference. In a subsequent paper, we will look at optimising the partition with respect to sensitivity and the implicit dependence on the spatial scale at which activations are conserved over subjects.</p>
+      <p>Beyond the effects of the spatial prior, implicit in the partition, the quantity of data available may also influence the choice of partition. Information about regional parameters will increase with the number of data-features, and hence with the number of subjects and size of the regions. Additionally, as applied to peaks of an SPM, our proposed scheme also depends on two pre-processing specifications, which influence the number of data-features (events). First, the number of events depends (inversely) on the degree of spatial smoothing. In this respect, our method is most powerful with relatively low smoothing, e.g. FWHM of 2–3 times the voxel size (cf the pattern classification approach in <xref rid="bib12" ref-type="bibr">Hassabis et al., 2009</xref>). Second, these features depend on a height threshold, which local peaks much transcend in order to qualify as ‘events’. Attempts to finesse this dependence have been made when inferring cluster-extent (<xref rid="bib24" ref-type="bibr">Smith and Nichols, 2009</xref>). We have resolved this by choosing a low threshold; in this work we use <italic>t</italic> = 3. This is roughly the lower bound required for valid set-level inference (<xref rid="bib11" ref-type="bibr">Friston et al., 1996</xref>). Recall that our proposed method uses (supra-threshold) peak location but not height. For very low thresholds, the fraction of events arising from the noise process alone will increase. For very high thresholds, the absolute number of events will become small. In either case, sensitivity will be compromised. Note that chance excursions above a higher threshold will have one local maxima per blob, so the position of the peak is a reasonable summary of spatial location. At lower thresholds, there may be multiple local maxima per blob (clustered closely in space). Here it is less clear how to spatially index the excursion, and spatial independence may be less tenable. In general one may resolve this by defining an ‘event’ as the highest local peak in an excursion.</p>
+      <p>The assumption that fixed-effects models are more appropriate than models that allow for random effects over subjects is clearly questionable in many contexts. Generally, fixed-effect assumptions will tighten the confidence intervals on the model's parameters, boosting the significance of the results. This is important in the current setting, because fixed-effects analyses are only tenable when between-subject variations in the expression of responses fall within — rather than between — regions of the partition. Future work will develop tools which require much weaker assumptions; i.e., non-parametric random effects — when this assumption is not tenable. Such models may provide benchmarks for justifying simpler models and enable formal model selection.</p>
+      <p>We have presented the simplest possible examples from a rich class of spatial patterning methods, which seek to understand patterns over pre-specified partitions of the brain. In future work we will describe another parametric patterning method for inferring the influence of subject-level covariates on spatial patterning. In a second line, we will elaborate on flexible non-parametric models for characterising patterned data.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Adler</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Hasofer</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>The Geometry of Random Fields</chapter-title>
+          <year>1981</year>
+          <publisher-name>Wiley</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Voxel-based morphometry — the methods</article-title>
+          <source>NeuroImage</source>
+          <volume>11</volume>
+          <year>2000</year>
+          <fpage>805</fpage>
+          <lpage>821</lpage>
+          <pub-id pub-id-type="pmid">10860804</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cabeza</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Nyberg</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Imaging cognition II: an empirical review of 275 PET and fMRI studies</article-title>
+          <source>J. Cogn. Neurosci.</source>
+          <volume>12</volume>
+          <year>2000</year>
+          <fpage>1</fpage>
+          <lpage>47</lpage>
+          <pub-id pub-id-type="pmid">10769304</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chumbley</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Topological FDR for neuroimaging</article-title>
+          <source>NeuroImage</source>
+          <volume>49</volume>
+          <issue>4</issue>
+          <year>2010</year>
+          <fpage>3057</fpage>
+          <lpage>3064</lpage>
+          <pub-id pub-id-type="pmid">19944173</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eickhoff</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Laird</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Grefkes</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>L.E.</given-names>
+            </name>
+            <name>
+              <surname>Zilles</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Fox</surname>
+              <given-names>P.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coordinate-based activation likelihood estimation meta-analysis of neuroimaging data: a random-effects approach based on empirical estimates of spatial uncertainty</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>30</volume>
+          <issue>9</issue>
+          <year>2009</year>
+          <fpage>2907</fpage>
+          <lpage>2926</lpage>
+          <pub-id pub-id-type="pmid">19172646</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Flitney</surname>
+              <given-names>D.E.</given-names>
+            </name>
+            <name>
+              <surname>Jenkinson</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Cluster analysis revisited</chapter-title>
+          <source>Tech. rept. Oxford Centre for Functional Magnetic Resonance Imaging of the Brain, Department of Clinical Neurology, Oxford University, Oxford, UK. TR00DF1</source>
+          <year>2000</year>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Kherif</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Pennec</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Malandain</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Ayache</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.-B.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Improved detection sensitivity in functional MRI data using a brain parcelling technique</chapter-title>
+          <source>Medical Image Computing and Computer-Assisted Intervention (MICCAI'02), volume 2488 of LNCS</source>
+          <year>2002</year>
+          <fpage>467</fpage>
+          <lpage>474</lpage>
+          <comment>Tokyo, Japan</comment>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Liddle</surname>
+              <given-names>P.F.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparing functional (PET) images: the assessment of significant change</article-title>
+          <source>J. Cereb. Blood Flow Metab.</source>
+          <volume>11</volume>
+          <issue>4</issue>
+          <year>1991</year>
+          <fpage>690</fpage>
+          <lpage>699</lpage>
+          <pub-id pub-id-type="pmid">2050758</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.J.</given-names>
+            </name>
+            <name>
+              <surname>Mazziotta</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessing the significance of focal activations using their spatial extent</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>1</volume>
+          <year>1994</year>
+          <fpage>214</fpage>
+          <lpage>220</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting activations in PET and fMRI: levels of inference and power</article-title>
+          <source>NeuroImage</source>
+          <volume>4</volume>
+          <issue>3 Pt 1</issue>
+          <year>1996</year>
+          <fpage>223</fpage>
+          <lpage>235</lpage>
+          <comment>Dec</comment>
+          <pub-id pub-id-type="pmid">9345513</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib41">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gelman</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Carlin</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Stern</surname>
+              <given-names>H.S.</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>D.B.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Bayesian Data Analysis</chapter-title>
+          <edition>second ed</edition>
+          <year>2004</year>
+          <publisher-name>Chapman and Hall/CRC</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hassabis</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Chu</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Rees</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Weiskopf</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Molyneux</surname>
+              <given-names>P.D.</given-names>
+            </name>
+            <name>
+              <surname>Maguire</surname>
+              <given-names>E.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Decoding neuronal ensembles in the human hippocampus</article-title>
+          <source>Curr. Biol.</source>
+          <volume>19</volume>
+          <issue>7</issue>
+          <year>2009</year>
+          <fpage>546</fpage>
+          <lpage>554</lpage>
+          <pub-id pub-id-type="pmid">19285400</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib14">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jeffreys</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>An invariant form for the prior probability in estimation problems</article-title>
+          <source>Proc. R. Soc. Lond. Ser. A, Math. Phys. Sci.</source>
+          <volume>186</volume>
+          <issue>1007</issue>
+          <year>1946</year>
+          <fpage>453</fpage>
+          <lpage>461</lpage>
+          <pub-id pub-id-type="pmid">20998741</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib15">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jeffreys</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>The Theory of Probability</chapter-title>
+          <year>1961</year>
+          <publisher-name>The Oxford University Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="bib42">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robust smoothness estimation in statistical parametric maps using standardized residuals from the general linear model</article-title>
+          <source>NeuroImage</source>
+          <volume>10</volume>
+          <issue>6</issue>
+          <year>1999</year>
+          <fpage>756</fpage>
+          <lpage>766</lpage>
+          <pub-id pub-id-type="pmid">10600421</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib16">
+        <mixed-citation publication-type="other">Kilner JM and Friston KJ (2010) Topological inference for EEG and MEG<italic>. Ann. Applied Stat</italic>. under review.</mixed-citation>
+      </ref>
+      <ref id="bib18">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oldfield</surname>
+              <given-names>R.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>The assessment and analysis of handedness: the Edinburgh inventory</article-title>
+          <source>Neuropsychologia</source>
+          <volume>9</volume>
+          <year>1971</year>
+          <fpage>97</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="pmid">5146491</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib19">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Paul</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Balasooriya</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Banerjee</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fisher information matrix of the Dirichlet-multinomial distribution</article-title>
+          <source>Biomet. J.</source>
+          <volume>47</volume>
+          <issue>2</issue>
+          <year>2005</year>
+          <fpage>230</fpage>
+          <lpage>236</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib20">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.-B.</given-names>
+            </name>
+            <name>
+              <surname>Mazoyer</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Enhanced detection in activation maps using a multi-filtering approach</article-title>
+          <source>J. Cereb. Blood Flow Metab.</source>
+          <volume>14</volume>
+          <year>1994</year>
+          <fpage>690</fpage>
+          <lpage>699</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib21">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.-B.</given-names>
+            </name>
+            <name>
+              <surname>Mazoyer</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of individual brain activation maps using hierarchical description and multiscale detection</article-title>
+          <source>IEEE Trans. Med. Imaging</source>
+          <volume>13</volume>
+          <issue>4</issue>
+          <year>1994</year>
+          <fpage>702</fpage>
+          <lpage>710</lpage>
+          <pub-id pub-id-type="pmid">18218548</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib22">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pujol</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Deus</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Losilla</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Capdevila</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cerebral lateralization of language in normal left-handed people studied by functional MRI</article-title>
+          <source>Neurology</source>
+          <volume>52</volume>
+          <year>1999</year>
+          <fpage>1038</fpage>
+          <lpage>1043</lpage>
+          <pub-id pub-id-type="pmid">10102425</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib23">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rasmussen</surname>
+              <given-names>C.E.</given-names>
+            </name>
+            <name>
+              <surname>Ghahramani</surname>
+              <given-names>Z.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Occam's Razor</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Leen</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Dietterich</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Tresp</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <source>
+            <italic>Advances in Neural Information Processing Systems 13</italic>
+          </source>
+          <year>2000</year>
+          <publisher-name>MIT Press</publisher-name>
+          <comment>(2001)</comment>
+        </element-citation>
+      </ref>
+      <ref id="bib24">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Threshold-free cluster enhancement: addressing problems of smoothing, threshold dependence and localisation in cluster inference</article-title>
+          <source>NeuroImage</source>
+          <volume>44</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <fpage>83</fpage>
+          <lpage>98</lpage>
+          <pub-id pub-id-type="pmid">18501637</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib25">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seghier</surname>
+              <given-names>M.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Laterality index in functional MRI: methodological issues</article-title>
+          <source>Magn. Res. Imaging</source>
+          <volume>26</volume>
+          <year>2008</year>
+          <fpage>594</fpage>
+          <lpage>601</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib26">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seghier</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Lazeyras</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Pegna</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Annoni</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Zimine</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Mayer</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Michel</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Khateb</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variability of fMRI activation during a phonological and semantic language task in healthy subjects</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>23</volume>
+          <year>2004</year>
+          <fpage>140</fpage>
+          <lpage>155</lpage>
+          <pub-id pub-id-type="pmid">15449358</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib27">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seghier</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dissociating functional brain networks by decoding the between-subject variability</article-title>
+          <source>Neuroimage</source>
+          <volume>45</volume>
+          <year>2009</year>
+          <fpage>349</fpage>
+          <lpage>359</lpage>
+          <pub-id pub-id-type="pmid">19150501</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib28">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Szaflarski</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Binder</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Possing</surname>
+              <given-names>E.T.</given-names>
+            </name>
+            <name>
+              <surname>McKiernan</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Ward</surname>
+              <given-names>B.D.</given-names>
+            </name>
+            <name>
+              <surname>Hammeke</surname>
+              <given-names>T.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Language lateralization in left-handed and ambidextrous people: fMRI data</article-title>
+          <source>Neurology</source>
+          <volume>59</volume>
+          <year>2002</year>
+          <fpage>238</fpage>
+          <lpage>244</lpage>
+          <pub-id pub-id-type="pmid">12136064</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib29">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting sparse cone alternatives for Gaussian random fields, with an application to brain mapping</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <volume>102</volume>
+          <year>2007</year>
+          <fpage>913</fpage>
+          <lpage>928</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib30">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thirion</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Pinel</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Tucholka</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Roche</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Ciuciu</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Mangin</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural analysis of fMRI data revisited: improving the sensitivity and reliability of fMRI group studies</article-title>
+          <source>IEEE Trans. Med. Imaging</source>
+          <volume>26</volume>
+          <issue>9</issue>
+          <year>2007</year>
+        </element-citation>
+      </ref>
+      <ref id="bib31">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tripsiannis</surname>
+              <given-names>G.A.</given-names>
+            </name>
+            <name>
+              <surname>Philippou</surname>
+              <given-names>A.N.</given-names>
+            </name>
+            <name>
+              <surname>Papathanasiou</surname>
+              <given-names>A.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Communications in statistics</article-title>
+          <source>Theory Methods</source>
+          <volume>31</volume>
+          <issue>11</issue>
+          <year>2002</year>
+          <fpage>1899</fpage>
+          <lpage>1912</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib32">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tzourio-Mazoyer</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Landeau</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Papathanassiou</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Crivello</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Etard</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Delcroix</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Mazoyer</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Joliot</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated anatomical labeling of activations in SPM using a macroscopic anatomical parcellation of the MNI MRI single-subject brain</article-title>
+          <source>NeuroImage</source>
+          <volume>15</volume>
+          <issue>1</issue>
+          <year>2002</year>
+          <fpage>273</fpage>
+          <lpage>289</lpage>
+          <pub-id pub-id-type="pmid">11771995</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib33">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vigneau</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Beaucousin</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Herve</surname>
+              <given-names>P.Y.</given-names>
+            </name>
+            <name>
+              <surname>Duffau</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Crivello</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Houde</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Mazoyer</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Tzourio-Mazoyer</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Meta-analyzing left hemisphere language areas: phonology, semantics, and sentence processing</article-title>
+          <source>Neuroimage</source>
+          <volume>30</volume>
+          <year>2006</year>
+          <fpage>1414</fpage>
+          <lpage>1432</lpage>
+          <pub-id pub-id-type="pmid">16413796</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib34">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wager</surname>
+              <given-names>T.D.</given-names>
+            </name>
+            <name>
+              <surname>Lindquist</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Kober</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Van Snellenberg</surname>
+              <given-names>J.X.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evaluating the consistency and specificity of neuroimaging data using meta-analysis</article-title>
+          <source>NeuroImage</source>
+          <volume>45</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <fpage>S210</fpage>
+          <lpage>S221</lpage>
+          <comment>Supplement 1</comment>
+          <pub-id pub-id-type="pmid">19063980</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib36">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Marrett</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Neelin</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>A three-dimensional statistical analysis for CBF activation studies in human brain</article-title>
+          <source>J. Cereb. Blood Flow Metab.</source>
+          <volume>12</volume>
+          <year>1992</year>
+          <fpage>900</fpage>
+          <lpage>918</lpage>
+          <pub-id pub-id-type="pmid">1400644</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib37">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Marrett</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Neelin</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Searching scale space for activation in PET images</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>4</volume>
+          <issue>1</issue>
+          <year>1996</year>
+          <fpage>74</fpage>
+          <lpage>90</lpage>
+          <pub-id pub-id-type="pmid">20408187</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib38">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Andermann</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Koulis</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>MacDonald</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting changes in nonisotropic images</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>8</volume>
+          <year>1999</year>
+          <fpage>98</fpage>
+          <lpage>101</lpage>
+          <pub-id pub-id-type="pmid">10524599</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib39">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Tomaiuolo</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Lerch</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Unified univariate and multivariate random field theory</article-title>
+          <source>NeuroImage</source>
+          <volume>23</volume>
+          <issue>Suppl 1</issue>
+          <year>2004</year>
+          <fpage>S189</fpage>
+          <lpage>S195</lpage>
+          <pub-id pub-id-type="pmid">15501088</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib40">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xu</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>T.D.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Nee</surname>
+              <given-names>D.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modeling inter-subject variability in fMRI activation location: a Bayesian hierarchical spatial model</article-title>
+          <source>Biometrics</source>
+          <volume>65</volume>
+          <year>2009</year>
+          <fpage>1041</fpage>
+          <lpage>1051</lpage>
+          <pub-id pub-id-type="pmid">19210732</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec id="app1">
+      <label>Appendix 1</label>
+      <p><italic>Resel counts</italic>: A resel or ‘resolution element’ is a measure of ‘statistical’ volume that generalises the Lipschitz–Killing curvature and is invariant under different spatial dependencies among the component fields (Worsley and Taylor, 2007). Following <xref rid="bib38" ref-type="bibr">Worsley et al. (1999)</xref>, we use the estimate<disp-formula id="eq3"><label>(A1.1)</label><alternatives><textual-form specific-use="jats-markup">|<italic>A</italic><sub><italic>j</italic></sub>| = ∫<sub><italic>s</italic> ∈ <italic>S</italic><sub><italic>j</italic></sub></sub><italic>R</italic><italic>P</italic><italic>V</italic>(<italic>s</italic>)<italic>d</italic><italic>s</italic></textual-form><mml:math id="M13" altimg="si13.gif" overflow="scroll"><mml:mrow><mml:mfenced open="|" close="|"><mml:msub><mml:mi>A</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mfenced><mml:mo>=</mml:mo><mml:mrow><mml:msub><mml:mo>∫</mml:mo><mml:mrow><mml:mi>s</mml:mi><mml:mo>∈</mml:mo><mml:msub><mml:mi>S</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow></mml:msub><mml:mrow><mml:mi>R</mml:mi><mml:mi>P</mml:mi><mml:mi>V</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>s</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mi>d</mml:mi><mml:mi>s</mml:mi></mml:mrow></mml:mrow></mml:mrow></mml:math></alternatives></disp-formula>(or the equivalent sum for discretised images; e.g., <italic>finite</italic> voxel lattice approximations; see <xref rid="bib16" ref-type="bibr">Kilner and Friston, 2010</xref> for details). The scalar image RPV:<italic>S</italic> → ℜ measures ‘resels per voxel’ and is based on the covariance matrix of spatial derivatives estimated from the normalised residuals of the GLM at each point <italic>s</italic> ∈∊ <italic>S</italic>. Eq. <xref rid="eq3" ref-type="disp-formula">(A1.1)</xref> just says that the effective volume in an SPM is not simply the number of voxels but the number of resolution elements. For readers who are not familiar with the formalism of SPM and random field theory, RPV can be thought of as an image which encodes the spatial roughness of underlying random terms. A voxel with a large number of resels per voxel contributes more to the statistical volume because it has the potential to emit more events. The RPV image is based on standard (if deep) results from random field theory (see <xref rid="bib29" ref-type="bibr">Taylor and Worsley, 2007</xref> for a technical summary).</p>
+      <p>Two related estimators of RPV(<italic>s</italic>) are described in (<xref rid="bib42" ref-type="bibr">Kiebel et al., 1999</xref>) and (<xref rid="bib7" ref-type="bibr">Flitney and Jenkinson, 2000</xref>). We use the former, as implemented in the SPM software. This computation measures roughness in terms of the variance or dispersion of the spatial differences among neighbouring voxels. It is important that we have reasonably accurate estimates of statistical volume |<italic>A</italic><sub><italic>j</italic></sub>|, to ensure the expected number of events under the null hypothesis is estimated properly (i.e. as a benchmark against which to assess experimentally-induced patterns). Strictly speaking, the estimates are random but with sufficient degrees of freedom in the GLM, they can be treated as known quantities.</p>
+    </sec>
+    <sec id="app2">
+      <label>Appendix 2</label>
+      <p><italic>If we have a fixed bipartition A</italic> = {<italic>A</italic><sub>1</sub>, <italic>A</italic><sub>2</sub>} <italic>and are told that there has been one local maxima, N</italic>(<italic>A</italic>) = 1<italic>, then p</italic>(<italic>N</italic>(<italic>A</italic><sub>1</sub>) = 1|<italic>N</italic>(<italic>A</italic>) = 1) = <italic>a</italic><sub>1</sub><italic>.</italic></p>
+      <p>Proof:<disp-formula><label>(A2.1)</label><mml:math id="M14" altimg="si14.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mfenced><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">|</mml:mo><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mi>A</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mfenced><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mi>A</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mi>A</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mfenced><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>A</mml:mi><mml:mo>∩</mml:mo><mml:msubsup><mml:mi>A</mml:mi><mml:mn>1</mml:mn><mml:mi>C</mml:mi></mml:msubsup></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mi>A</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>λ</mml:mi><mml:mfenced open="|" close="|"><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mfenced><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mfenced open="|" close="|"><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mfenced></mml:mrow></mml:msup><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mfenced open="|" close="|"><mml:mrow><mml:mi>A</mml:mi><mml:mo>∩</mml:mo><mml:msubsup><mml:mi>A</mml:mi><mml:mn>1</mml:mn><mml:mi>C</mml:mi></mml:msubsup></mml:mrow></mml:mfenced></mml:mrow></mml:msup></mml:mrow><mml:mrow><mml:mi>λ</mml:mi><mml:mfenced open="|" close="|"><mml:mi>A</mml:mi></mml:mfenced><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mfenced open="|" close="|"><mml:mi>A</mml:mi></mml:mfenced></mml:mrow></mml:msup></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mfrac><mml:mfenced open="|" close="|"><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mfenced><mml:mfenced open="|" close="|"><mml:mi>A</mml:mi></mml:mfenced></mml:mfrac><mml:mo>=</mml:mo><mml:msub><mml:mi>a</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+      <p>The corresponding result in the case of <italic>N</italic>(<italic>A</italic>) = <italic>k</italic> is binomial<disp-formula><label>(A2.2)</label><alternatives><textual-form specific-use="jats-markup"><italic>p</italic>(<italic>d</italic><sub><italic>j</italic></sub>) = <italic>B</italic><italic>i</italic><italic>n</italic><italic>o</italic><italic>m</italic><italic>i</italic><italic>a</italic><italic>l</italic>(<italic>d</italic><sub><italic>j</italic></sub>; <italic>k</italic>, <italic>a</italic><sub>1</sub>).</textual-form><mml:math id="M15" altimg="si15.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:msub><mml:mi>d</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mfenced><mml:mo>=</mml:mo><mml:mi>B</mml:mi><mml:mi>i</mml:mi><mml:mi>n</mml:mi><mml:mi>o</mml:mi><mml:mi>m</mml:mi><mml:mi>i</mml:mi><mml:mi>a</mml:mi><mml:mi>l</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>d</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>;</mml:mo><mml:mi>k</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>a</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mrow></mml:mfenced><mml:mtext>.</mml:mtext></mml:mrow></mml:math></alternatives></disp-formula></p>
+      <p>A multinomial likelihood arises as a natural generalisation of the above.</p>
+    </sec>
+    <sec id="app3">
+      <label>Appendix 3</label>
+      <p>For computational convenience, we work with the transformed variables (<italic>cm</italic>) → <italic>α</italic> = <italic>cm</italic>: i.e. <italic>c</italic> = ∑ <sub><italic>j</italic></sub><italic>α</italic><sub><italic>j</italic></sub> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>m</italic><sub><italic>j</italic></sub> = <italic>α</italic><sub><italic>j</italic></sub>(∑ <sub><italic>j</italic></sub><italic>α</italic><sub><italic>j</italic></sub>)<sup> − 1</sup></textual-form><mml:math id="M16" altimg="si16.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>m</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:msup><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:msub><mml:msub><mml:mi>α</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>. We exploited prior-likelihood conjugacy to integrate the complete likelihood with respect to <italic>θ</italic><sub><italic>i</italic></sub> — the multinomial parameters — leaving a dependence of hyperparameters <italic>α</italic> on the data <italic>d</italic>.<disp-formula><label>(A3.1)</label><mml:math id="M17" altimg="si17.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>d</mml:mi><mml:mo>,</mml:mo><mml:mi>α</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mrow><mml:munder><mml:mo>∫</mml:mo><mml:mi>θ</mml:mi></mml:munder><mml:mrow><mml:mfenced open="(" close=")"><mml:mstyle><mml:msubsup><mml:mo>∏</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>I</mml:mi></mml:msubsup><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>d</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>θ</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>θ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:mi>α</mml:mi></mml:mrow></mml:mfenced></mml:mrow></mml:mstyle></mml:mfenced><mml:mi>d</mml:mi><mml:mi>θ</mml:mi></mml:mrow></mml:mrow></mml:mrow></mml:math></disp-formula></p>
+      <p>Rather than optimising <italic>α</italic> (i.e. ‘empirical’ Bayes), we defined placed an independent ‘uninformative’ exponential prior on each component of the vector <italic>α</italic> governed by a rate of 0.01 — exp(<italic>α</italic>|0.01) — and drew samples from its posterior <italic>p</italic>(<italic>α</italic>|<italic>d</italic>). Specifically, we allowed a Metropolis Hastings process on <italic>p</italic>(<italic>α</italic>|<italic>d</italic>) ∝ <italic>p</italic>(<italic>d</italic>|<italic>α</italic>)<italic>p</italic>(<italic>α</italic>) to reach equilibrium over one million iterations. Note that with enough subjects, inferences do not depend on the particular choice of prior (<xref rid="bib41" ref-type="bibr">Gelman et al., 2004</xref> p 547).</p>
+      <p>We then exploited the relation <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic> = ∑ <sub><italic>j</italic></sub><italic>α</italic><sub><italic>j</italic></sub></textual-form><mml:math id="M18" altimg="si18.gif" overflow="scroll"><mml:mrow><mml:mi>c</mml:mi><mml:mo>=</mml:mo><mml:mstyle><mml:msub><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:msub><mml:msub><mml:mi>α</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mstyle></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>m</italic><sub><italic>j</italic></sub> = <italic>α</italic><sub><italic>j</italic></sub>(∑ <sub><italic>j</italic></sub><italic>α</italic><sub><italic>j</italic></sub>)<sup> − 1</sup></textual-form><mml:math id="M19" altimg="si19.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>m</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:msup><mml:mfenced open="(" close=")"><mml:mstyle><mml:msub><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:msub><mml:msub><mml:mi>α</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mstyle></mml:mfenced><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>to acquire posterior samples of <italic>m</italic>(via deterministic transform of the sampled <italic>α</italic>).</p>
+      <p>The Markov dynamics were governed by an independent Gamma-distributed transition Kernel parameterised in terms of Gamma mean and variance <italic>μ</italic> = <bold>a</bold> × <bold>b</bold>; <italic>σ</italic><sup>2</sup> = <bold>a</bold> × <bold>b</bold><sup>2</sup> (where <bold>a</bold>, <bold>b</bold> are the Gamma shape and scale parameters). Thus, the proposed location of the process at each time-point in the algorithm's evolution was <italic>μ</italic>. The variance parameter <italic>σ</italic><sup>2</sup> (central to the convergence properties of the process) was adaptively updated during a burn-in epoch.</p>
+    </sec>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>CoMPLEX and The Wellcome Trust funded this work. We would also like to thank our anonymous reviews for substantial help in presenting and refining this work.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Exploratory FFX analysis assuming a parcellation that includes all areas in the AAL, except cerebellum (see text). These 28 axial slices report regions deemed relatively rich (sparse) in local peaks in red (green). In most slices, there is a relative preponderance of activations in the left hemisphere and deactivations in the right hemisphere.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>This plot gives corrected confidence bounds (blue lines) and the null (relative RESEL count) setting for each of the 18 regions assessed. For ease of inspection, we highlight — with thick solid dots — regional confidence intervals that exclude the null. The figure shows that several regions substantially deviate from null expectations. The regions are: left/right ‘Precentral’ (1,2), left/right ‘Frontal_Mid’ (3,4), left/right ‘Frontal_Inf_Oper’ (5,6), left/right ‘Frontal_Inf_Tri’ (7,8), left/right ‘Frontal_Inf_Orb’ (9,10), left/right ‘Fusiform’ (11,12), left/right ‘Angular’ (13,14), left/right ‘Temporal_Sup’ (15,16), left/right ‘Temporal_Mid’ (17,18).</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <table-wrap id="tbl1" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Language regions, over which we considered the patterning of events.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">Region</th>
+            <th align="left">Abbreviated name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">Precentral gyrus</td>
+            <td align="left">‘Precentral’</td>
+          </tr>
+          <tr>
+            <td align="left">Middle frontal gyrus F2</td>
+            <td align="left">‘Frontal_Mid’</td>
+          </tr>
+          <tr>
+            <td align="left">Inferior frontal gyrus, opercular part F3OP</td>
+            <td align="left">‘Frontal_Inf_Oper’</td>
+          </tr>
+          <tr>
+            <td align="left">Inferior frontal gyrus, triangular part</td>
+            <td align="left">‘Frontal_Inf_Tri’</td>
+          </tr>
+          <tr>
+            <td align="left">Inferior frontal gyrus, orbital part</td>
+            <td align="left">‘Frontal_Inf_Orb’</td>
+          </tr>
+          <tr>
+            <td align="left">Fusiform gyrus</td>
+            <td align="left">‘Fusiform’</td>
+          </tr>
+          <tr>
+            <td align="left">Angular gyrus AG</td>
+            <td align="left">‘Angular’</td>
+          </tr>
+          <tr>
+            <td align="left">Superior temporal gyrus</td>
+            <td align="left">‘Temporal_Sup’</td>
+          </tr>
+          <tr>
+            <td align="left">Middle temporal gyrus T2</td>
+            <td align="left">‘Temporal_Mid’</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap id="tbl2" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>This table reports which regions, from those outlined in <xref rid="tbl1" ref-type="table">Table 1</xref>, were surprisingly short of events or surprisingly rich in events using fixed and random-effects models. In this, and subsequent tables, we only report regions whose regional parameter was greater than expected by chance (with 99% posterior confidence).</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th/>
+            <th align="left">Relatively sparse in peaks</th>
+            <th align="left">Relatively rich in peaks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">FFX</td>
+            <td align="left">‘Angular_R’</td>
+            <td align="left">‘Frontal_Mid_L’ ‘Frontal_Inf_Oper_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">‘Temporal_Sup_R’</td>
+            <td align="left">‘Frontal_Inf_Tri_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">‘Temporal_Mid_R’</td>
+            <td align="left">‘Frontal_Inf_Orb_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Frontal_Inf_Orb_R’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Fusiform_L’</td>
+          </tr>
+          <tr>
+            <td align="left">RFX</td>
+            <td align="left">‘Temporal_Mid_R’</td>
+            <td align="left">‘Frontal_Inf_Oper_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Frontal_Inf_Tri_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Frontal_Inf_Orb_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Frontal_Inf_Orb_R’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Fusiform_L’</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap id="tbl3" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Surprising regions identified by an exploratory analysis.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th/>
+            <th align="left">Relatively sparse in peaks</th>
+            <th align="left">Relatively rich in peaks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">FFX</td>
+            <td align="left">‘Postcentral_L’</td>
+            <td align="left">‘Frontal_Sup_Orb_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">‘Postcentral_R’</td>
+            <td align="left">‘Frontal_Sup_Orb_R’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">‘Parietal_Inf_R’</td>
+            <td align="left">‘Frontal_Mid_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">‘SupraMarginal_R’</td>
+            <td align="left">‘Frontal_Mid_Orb_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">‘Precuneus_L’</td>
+            <td align="left">‘Frontal_Mid_Orb_R’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">‘Temporal_Sup_R’</td>
+            <td align="left">‘Frontal_Inf_Oper_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">‘Temporal_Mid_R’</td>
+            <td align="left">‘Frontal_Inf_Tri_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Frontal_Inf_Orb_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Frontal_Inf_Orb_R’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘ParaHippocampal_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘ParaHippocampal_R’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Amygdala_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Fusiform_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Temporal_Pole_Sup_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Temporal_Pole_Sup_R’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Temporal_Pole_Mid_L’</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td align="left">‘Temporal_Inf_L’</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-group>
+</article>

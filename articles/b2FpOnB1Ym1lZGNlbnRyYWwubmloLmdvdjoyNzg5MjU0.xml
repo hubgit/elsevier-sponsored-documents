@@ -1,0 +1,997 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Trends Cell Biol</journal-id>
+      <journal-title>Trends in Cell Biology</journal-title>
+      <issn pub-type="ppub">0962-8924</issn>
+      <issn pub-type="epub">1879-3088</issn>
+      <publisher>
+        <publisher-name>Elsevier Science Publishers</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2789254</article-id>
+      <article-id pub-id-type="pmid">19833518</article-id>
+      <article-id pub-id-type="publisher-id">TICB642</article-id>
+      <article-id pub-id-type="doi">10.1016/j.tcb.2009.08.007</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Opinion</subject>
+          <subj-group>
+            <subject>Special Issue–Imaging Cell Biology</subject>
+          </subj-group>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Open source bioimage informatics for cell biology</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Swedlow</surname>
+            <given-names>Jason R.</given-names>
+          </name>
+          <email>jason@lifesci.dundee.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Eliceiri</surname>
+            <given-names>Kevin W.</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">2</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>1</sup>Wellcome Trust Centre for Gene Regulation and Expression, College of Life Sciences, University of Dundee, Dundee, Scotland DD1 5EH, UK</addr-line>
+      </aff>
+      <aff id="aff2">
+        <addr-line><sup>2</sup>Laboratory for Optical and Computational Instrumentation, Departments of Molecular Biology and Biomedical Engineering, Graduate School, University of Wisconsin at Madison, Madison, WI 53706, USA</addr-line>
+      </aff>
+      <pub-date pub-type="ppub">
+        <month>11</month>
+        <year>2009</year>
+      </pub-date>
+      <volume>19</volume>
+      <issue>11-3</issue>
+      <fpage>656</fpage>
+      <lpage>660</lpage>
+      <history/>
+      <permissions>
+        <copyright-statement>© 2009 Elsevier Ltd.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Significant technical advances in imaging, molecular biology and genomics have fueled a revolution in cell biology, in that the molecular and structural processes of the cell are now visualized and measured routinely. Driving much of this recent development has been the advent of computational tools for the acquisition, visualization, analysis and dissemination of these datasets. These tools collectively make up a new subfield of computational biology called bioimage informatics, which is facilitated by open source approaches. We discuss why open source tools for image informatics in cell biology are needed, some of the key general attributes of what make an open source imaging application successful, and point to opportunities for further operability that should greatly accelerate future cell biology discovery.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Bioimage Informatics as a discovery tool in cell biology</title>
+      <p>Imaging is used as a tool for discovery throughout basic life science, and biomedical and clinical research. In these domains, advances in light and electron microscopy have transformed biological discovery, enabling visualization of mechanism and dynamics across scales of nanometers to millimeters and picoseconds to many days. Fluorescent protein (FP)-tagged fusions can be used as reporters of biomolecular interactions in cultured living cells <xref rid="bib1" ref-type="bibr">[1]</xref>, and the same reporter can reveal the localization and growth of a tumor in a living animal <xref rid="bib2 bib3" ref-type="bibr">[2,3]</xref>. In short, the last 20 years have provided us with a wealth of sophisticated biological reporters and image data acquisition tools for biomedical research. Many of these imaging and instrumentation developments have been driven by partnerships between academic laboratories that invent and prototype new technology and commercial entities that develop and market them as commercial products. This development and delivery pipeline of commercial imaging instrumentation and software has been quite successful, having delivered the laser scanning confocal <xref rid="bib4 bib5" ref-type="bibr">[4,5]</xref>, spinning disc confocal <xref rid="bib6 bib7" ref-type="bibr">[6,7]</xref>, wide-field deconvolution <xref rid="bib8 bib9" ref-type="bibr">[8,9]</xref> and multiphoton microscopes <xref rid="bib10" ref-type="bibr">[10]</xref> that are engines of discovery in cell and developmental biology.</p>
+      <p>All of these methodologies produce complex, multi-dimensional data sets that must be transformed into reduced representations that scientists can manipulate, analyze, share with colleagues, and ultimately understand. Despite the diversity of applications of imaging in biology, there are common unifying challenges such as displaying a multi-gigabyte time-lapse movie on a laptop screen, or identifying, tracking, and measuring the objects in that movie and presenting the resulting measurements in a graph that reveals the mechanisms that drive their movements. These requirements have spawned the new field of bioimage informatics <xref rid="bib11" ref-type="bibr">[11]</xref>, which aims to deliver tools for data visualization, management, storage, and analysis. While still a relatively young field, bioimage informatics has already had a major impact in cell biology particularly in the area of quantitative cell imaging where advanced feature recognition, segmentation, annotation and data mining approaches are used regularly <xref rid="bib12 bib13 bib14 bib15 bib16 bib17 bib18 bib19 bib20" ref-type="bibr">[12–20]</xref>.</p>
+      <p>Almost all commercially provided image acquisition systems include software tools that provide sophisticated image visualization and analysis functions for the images recorded by the instrument they control. However, in recent years, many non-commercial projects have appeared, almost always based in research laboratories that require functionality not available in commercial products. Here, we discuss the application of bioimage informatics in cell biology and focus specifically on the development of open source solutions for bioimage informatics that have emerged over the last few years.</p>
+    </sec>
+    <sec>
+      <title>What are the informatics challenges in quantitative cell biology imaging?</title>
+      <p>Given the rapid development in image acquisition systems in the last 20 years, it is worth considering why a corresponding rapid development of informatics tools has occurred only recently. Certainly, one of the barriers to providing universal tools for bioimage informatics is the diversity of data structures and experimental applications that produce imaging data. In optical microscopy alone there are a substantial number of different types of imaging modalities and, indeed, a method like fluorescence microscopy encapsulates a huge and rapidly growing field of image acquisition approaches <xref rid="bib21" ref-type="bibr">[21]</xref>. Informatics tools that support this range of methods must be capable of capturing the raw data (the individual pixels) and the metadata around the acquisition methodology itself, including instrument settings, exposure details etc. This diversity of data structures makes delivering common informatics solutions difficult, and this complexity is multiplied by the large number of commercial imaging systems that use individually specified, and often proprietary, file formats for data storage. Our current estimates are that there are approximately 80 proprietary file formats for optical microscopy alone (and not including other common imaging techniques) that must be supported by any bioimage informatics tool that aims to provide a generalizable solution. In short, the lack of standardized access to data makes the generation of informatics tools quite difficult.</p>
+      <p>A deeper challenge resides in each individual laboratory that uses imaging as part of its experimental repertoire. The sheer size of the raw data sets and the rate of production mean that individual researchers can easily generate many tens of gigabytes of data per day. This means that large laboratories or departmental imaging facilities generate many hundreds of gigabytes to terabytes per week, and are now enterprise-level data production facilities. However, the expertise for developing enterprise software tools or even simply running the hardware necessary for this scale of data management and analysis rarely exists in individual laboratories. In short, the sophisticated systems and development expertise that are used to deliver genomics databases and applications are required in individual imaging laboratories and facilities. The delivery of tools that provide access to a broad range of data types, manage and analyze large sets of data, and help run the systems that store and process this data is the challenge that bioimage informatics seeks to address.</p>
+    </sec>
+    <sec>
+      <title>Why are open source approaches essential?</title>
+      <p>A critical development in the field of bioimage informatics has been the introduction of many open source projects in the last few years <xref rid="bib11 bib22 bib23 bib24 bib25 bib26 bib27 bib28 bib29 bib30" ref-type="bibr">[11,22–30]</xref>. These projects range from being open source distributions where the code is available but new development is not specifically encouraged, to open development projects that are community-driven projects that actively encourage the help and participation of projects for the support and addition of new features. Therefore, before we proceed, it is worth considering what constitutes open source and open development efforts and why they are valuable or even necessary for bioimage informatics.</p>
+      <p>Open source software is a well-established movement with strong paradigms in many very successful projects such as Linux (<ext-link xlink:href="http://www.linuxfoundation.org/" ext-link-type="uri">http://www.linuxfoundation.org/</ext-link>), Java (<ext-link xlink:href="http://java.sun.com/" ext-link-type="uri">http://java.sun.com/</ext-link>), MySQL (<ext-link xlink:href="http://www.mysql.com/products/database/" ext-link-type="uri">http://www.mysql.com/products/database/</ext-link>), and Apache (<ext-link xlink:href="http://www.apache.org/" ext-link-type="uri">http://www.apache.org/</ext-link>). A fundamental tenet of open source software projects is that the copyright holder (usually the software developer or his/her employer) determines the software license, which defines how the software is distributed and what end-users may do with the software. For open source software, the original source code is made available under the terms of this license. An open source license usually allows end-users to use the software for any purpose, make changes to the software source code or link their own software to it and, if they desire, distribute those ‘derivative works. However, the software license also defines under what terms and license derivative works may be distributed. <xref rid="tbl1" ref-type="table">Table 1</xref> gives some examples of commonly used open source software licenses and summarizes their terms. For any users or developers, these details are important and must be understood given the great implications for development and deployment.</p>
+      <p>The ability to see and make changes to the work of another developer is a critical component of open source software. The attractive aspect of this approach for science is that users and developers can directly see, evaluate, and use another's work (really, their intellectual property) and, if necessary, build upon it. This is a key and often overlooked part of open source software. Successful open source software development projects are dynamic, evolving enterprises allowing input, feedback, and often contributions from their community.</p>
+      <p>This evolving, adaptable aspect makes open source software particularly useful for scientific discovery and, more specifically, for the rapidly evolving and diverse set of imaging applications used in biological research. Commercial and closed source applications have certainly supported many significant advances in imaging. However, an essential part of bioimaging data analysis is the ability to easily try new methodology and approaches or even to combine existing ones to generate a derivative result based on the combination of two approaches. Open source approaches make this possible. As such, there is a natural fit between open source software and the process of scientific discovery. In addition, a consequence of the growth of the open source community is a de facto establishment of standardized documentation methods (<ext-link xlink:href="http://java.sun.com/j2se/javadoc/" ext-link-type="uri">http://java.sun.com/j2se/javadoc/</ext-link>) and software specifications (<ext-link xlink:href="http://java.sun.com/products/ejb/docs.html" ext-link-type="uri">http://java.sun.com/products/ejb/docs.html</ext-link>). These specifications ensure that developers can understand and use each other's code and, most importantly, that two independent software packages can use a specified, common interface. This software ‘interoperability’, enforced by the community either formally or informally, is a general hallmark of open source software, and perhaps one of its most underappreciated strengths. Because standardization is so well established in the open source community, open source software has a critical role in providing the specifications and tools for common file formats or common interfaces that enable two otherwise incompatible packages to communicate their input and output data to one another. This type of interoperability is critical to support the rapidly evolving needs of bioimage informatics. For all these reasons, many of the recent developments in bioimage informatics are based on an open source foundation.</p>
+      <p>Recently, a subclass of open source project know as ‘open development’ has been defined (<ext-link xlink:href="http://www.oss-watch.ac.uk/resources/odm.xml" ext-link-type="uri">http://www.oss-watch.ac.uk/resources/odm.xml</ext-link>). Open development projects take the open source concepts and add a significant role for the community in the development process. In truth, community interaction and feedback was a component of most initial open source projects, but as open source projects have expanded, not all have included efforts to engage and respond to their user community. Community interaction and support is expensive, it takes precious developer time and often requires the use of forums, mailing lists, and other resources to manage the interactions with the project's community. However, open source, and open development approaches in particular, have proven to be particularly attractive for funding agencies supporting biomedical research. They provide a way to measure the success of the project, by providing measures of uptake and participation. As the community grows around an open development project, it provides a measure of protection for the research investment and sustainability of the software past the duration of the initial award. Many agencies are now requiring that applicants have a software sharing plan in their grant application and, if an open source approach is not possible, justify this decision. In our opinion, the value for the developers, the community and the funding investment will be maximized if open development models are also followed.</p>
+    </sec>
+    <sec>
+      <title>Open source tools for data acquisition, visualization, analysis, and dissemination</title>
+      <p>It is beyond the scope of this article to provide a comprehensive review of all available open source tools in image informatics and features and applications. Many other papers <xref rid="bib20 bib27 bib28 bib29 bib30 bib31 bib32 bib33 bib34 bib35 bib36" ref-type="bibr">[20,27–36]</xref> have reviewed particular applications in depth. Instead, we list representative ones (<xref rid="tbl2" ref-type="table">Table 2</xref>) to help illustrate the current impact and future potential of open source tools in biological imaging.</p>
+    </sec>
+    <sec>
+      <title>Supporting open source software</title>
+      <p>Open source software drives further innovation by allowing the free exchange of code and algorithms. Commercial applications are largely driven by market demand for a specific function or feature, so proprietary software has to be economically viable and thus must have feature limitations, code access restrictions and design parameters focused on a particular user base. Open source software complements these commercial packages and allows for new scientific ventures where a desired feature or code addition may not be commercially viable to develop.</p>
+      <p>Any open project must be viable, it must deliver valuable products to its community, and it must be sustainable and have a strategy for long-term funding. In academic science, many projects receive grant funding to initiate their work, but it is common for software development to require more than three years to achieve a fully developed product that can be distributed and used by the community. Sustaining these efforts exclusively through grants is possible, but requires convincing demonstration of the software's utility, and must accept the reality that continued funding is subject to variations in availability of funding and the priorities of funding organizations. As they mature, most open source software efforts develop a non-profit foundation (e.g. Apache Software Foundation, <ext-link xlink:href="http://www.apache.org/" ext-link-type="uri">http://www.apache.org</ext-link>) or a commercial arm (e.g. <ext-link xlink:href="http://www.kitware.com/" ext-link-type="uri">http://www.kitware.com</ext-link> and <ext-link xlink:href="http://glencoesoftware.com/" ext-link-type="uri">http://glencoesoftware.com</ext-link>) that can directly access funding from user communities through licensing and customization fees that support the targeted customer base and help finance additional code development and maintenance for the open source package. However, there are still few examples of this maturation in scientific software. An important question for the scientific community is what priority funding agencies should place on the continued funding of software development tools for its use. If continued funding is to be considered, the application and reviewing processes will need to be modified to properly capture and assess the value of these projects. In our opinion, in exchange for periodic review and consideration for sustained funding, publicly funded scientific software projects should be required to follow open development models, where engagement and support for the community is required. This can occur only if funding for support and community engagement is available, and if career development and evaluation include publication record and delivery of useful tools to and engagement with the community.</p>
+      <p>In comparing open source and commercial software products, one of the biggest differences is support for the software itself. In general, commercial software packages are supported with instructions, manuals, and direct user support, and this is a key advantage of using commercial software. The cost of such support is either included in the original purchase price or paid for by purchase of a software maintenance agreement. Covering the costs of user support is difficult for open source projects because there is no corresponding fee structure to cover such support costs and, often, the academic grants that fund open source projects cover only the innovative research components and do not support the personnel or infrastructure needed. This is gradually changing with funding agencies and scientists alike realizing the importance of producing innovative and feature-rich code but ensuring that it is well supported and maintained. There are well-established standards and tools in the open source community for support, mailing lists, user forums, screencast demos, and wiki-based user documentation, that all contribute to making software successful. Within our own Open Microscopy Environment Consortium (<ext-link xlink:href="http://openmicroscopy.org/" ext-link-type="uri">http://openmicroscopy.org</ext-link>), we use project management tools such as Subversion (<ext-link xlink:href="http://subversion.tigris.org/" ext-link-type="uri">http://subversion.tigris.org/</ext-link>) to manage our source code repository, Trac (<ext-link xlink:href="http://trac.edgewall.org/" ext-link-type="uri">http://trac.edgewall.org/</ext-link>) for all project management and issue and revision tracking, Jabber (<ext-link xlink:href="http://www.jabber.org/" ext-link-type="uri">http://www.jabber.org</ext-link>) for real-time communication, Hudson (<ext-link xlink:href="https://hudson.dev.java.net/" ext-link-type="uri">https://hudson.dev.java.net/</ext-link>) for continuous integration, Plone for managing our web site (<ext-link xlink:href="http://plone.org/" ext-link-type="uri">http://plone.org/</ext-link>), and PHPBB for running our user forums (<ext-link xlink:href="http://www.phpbb.com/" ext-link-type="uri">http://www.phpbb.com/</ext-link>). In addition to these tools, we hold annual user meetings to assess progress and define roadmaps for future works. We participate as presenters or exhibitors in large meetings of the community in order to capture as much feedback as possible. These tools and activities help support and engage a very broad user and developer community and are an important part of ensuring community wide adoption, but installing, running, and maintaining these tools, as well as answering queries and moderating discussions, requires time and resources (both people and money). Many successful open source packages have shown the importance of transforming the conventional user base into an additional support mechanism where the user community interacts with the original developers and with each other for support and new code developments. Users and developers that are new to the project are often supported by the community, and not just the main development team. This transformation takes some time and investment because it results from releasing useful software and investing a moderate amount of resources in support. However, we strongly advocate that direct funding of support personnel and tools be made available for research-based open source software development. In our experience, many of our academic colleagues hesitate to release their software because of the burden of supporting use of their software, thus preventing the synergies that should occur within the scientific community.</p>
+      <p>While many of these arguments are in support of open source software for scientific research in general, there are specific advantages for biological imaging. Bioimaging is inherently interdisciplinary and covers a wide range of technical and biological applications. Given this great heterogeneity of its technology and applications, bioimaging needs the open exchange of techniques and principles for further innovation. There has always been a rich tradition of this from the physical instrumentation side of bioimaging development; many current emerging imaging technologies were first developed in other fields (e.g., adaptive optics <xref rid="bib37" ref-type="bibr">[37]</xref> was first developed in astronomy). Open source software development builds upon this collaborative instrumentation approach to allow for further innovation by sharing specific algorithms or leveraging specific code for data acquisition, visualization or data sharing.</p>
+    </sec>
+    <sec>
+      <title>Partnering commercial and open source efforts</title>
+      <p>Most of the imaging systems in biological laboratories are commercially developed and provided, and thus driven by commercially licensed, closed software. These powerful tools are the workhorses of modern biological research. There are many examples of companies using open source specifications to increase the functionality and value of their products, including major vendors such as Red Hat and IBM. In addition, the expertise and know-how in commercial companies is valuable, and open source projects are often aided by commercial partners working as supporters and as active developers. We therefore strongly advocate partnerships between commercial providers and open source software projects. With the appropriate licensing models, companies can be actively involved in open source imaging software for the benefit of all. Micromanager (<ext-link xlink:href="http://www.micro-manager.org/" ext-link-type="uri">http://www.micro-manager.org/</ext-link>) and the Open Microscopy Environment <xref rid="bib20 bib28 bib38" ref-type="bibr">[20,28,38]</xref> are two prominent examples of this where commercial providers have made significant contributions and played active roles in software development. Academic and commercial partnerships are vital to the long-term success and innovation in bioimage informatics, just as this same arrangement has facilitated new innovation in imaging hardware development.</p>
+    </sec>
+    <sec>
+      <title>Summary</title>
+      <p>The rapid innovation in imaging technology for biomolecules, cells, and tissues requires a parallel development in software tools for managing visualizing and analyzing image data. Open source software has an important role in this development, as open code development and sharing enable rapid exchange and experimentation with new tools and ideas. As open source software tools become more sophisticated, funding mechanisms that enable laboratories to provide long-term support to a broad user and developer community must be made a priority by funding bodies. The open community is very interactive and evaluates performance based on merit; i.e. good software is used by its target audience. Thus, further funding can be tied to feedback from and uptake by the community. Our experience is that academic software should follow an open development model, even if this approach deviates from the standard models used for academic research. It is important that any funded open source program be managed efficiently and integrate previous efforts and community specifications. Finally, the community must understand that a development project does ‘develop’; it grows, matures, and ultimately, if properly run and integrated with its user community, delivers useful tools. The community's comments and feedback during this growth is critical. This process is slow and iterative, but the paradigms are well established and can be used to deliver successful tools and ultimately new discoveries.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>Work in the laboratory of J.R.S. on OME is supported by the Wellcome Trust (Ref 085982), BBSRC (BB/G022585/1), and EPSRC (EP/D050014/1). The OME work in the laboratory of K.W.E. is supported by NIH grants R03EB008516 and R01EB005157.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>1</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ward</surname>
+              <given-names>T.H.</given-names>
+            </name>
+            <name>
+              <surname>Lippincott-Schwartz</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The uses of green fluorescent protein in mammalian cells</article-title>
+          <source>Methods Biochem. Anal.</source>
+          <year>2006</year>
+          <volume>47</volume>
+          <fpage>305</fpage>
+          <lpage>337</lpage>
+          <pub-id pub-id-type="pmid">16335719</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <label>2</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Condeelis</surname>
+              <given-names>J.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Imaging of cancer invasion and metastasis using green fluorescent protein</article-title>
+          <source>Eur. J. Cancer</source>
+          <year>2000</year>
+          <volume>36</volume>
+          <fpage>1671</fpage>
+          <lpage>1680</lpage>
+          <pub-id pub-id-type="pmid">10959053</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <label>3</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Farina</surname>
+              <given-names>K.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cell motility of tumor cells visualized in living intact primary tumors using green fluorescent protein</article-title>
+          <source>Cancer Res.</source>
+          <year>1998</year>
+          <volume>58</volume>
+          <fpage>2528</fpage>
+          <lpage>2532</lpage>
+          <pub-id pub-id-type="pmid">9635573</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <label>4</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>White</surname>
+              <given-names>J.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>An evaluation of confocal versus conventional imaging of biological structures by fluorescence light microscopy</article-title>
+          <source>J. Cell Biol.</source>
+          <year>1987</year>
+          <volume>105</volume>
+          <fpage>41</fpage>
+          <lpage>48</lpage>
+          <pub-id pub-id-type="pmid">3112165</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <label>5</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van Meer</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sorting of sphingolipids in epithelial (Madin-Darby canine kidney) cells</article-title>
+          <source>J. Cell Biol.</source>
+          <year>1987</year>
+          <volume>105</volume>
+          <fpage>1623</fpage>
+          <lpage>1635</lpage>
+          <pub-id pub-id-type="pmid">3667693</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <label>6</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Petran</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>A tandem-scanning relected-light microscope</article-title>
+          <source>J. Opt. Soc. Amer.</source>
+          <year>1968</year>
+          <volume>58</volume>
+          <fpage>661</fpage>
+          <lpage>664</lpage>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <label>7</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nakano</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spinning-disk confocal microscopy -- a cutting-edge tool for imaging of membrane traffic</article-title>
+          <source>Cell Struct. Funct.</source>
+          <year>2002</year>
+          <volume>27</volume>
+          <fpage>349</fpage>
+          <lpage>355</lpage>
+          <pub-id pub-id-type="pmid">12502889</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <label>8</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Agard</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optical sectioning microscopy: cellular architecture in three dimensions</article-title>
+          <source>Annu. Rev. Biophys. Bioeng.</source>
+          <year>1984</year>
+          <volume>13</volume>
+          <fpage>191</fpage>
+          <lpage>219</lpage>
+          <pub-id pub-id-type="pmid">6742801</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <label>9</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hiraoka</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>The use of a charge-coupled device for quantitative optical microscopy of biological structures</article-title>
+          <source>Science</source>
+          <year>1987</year>
+          <volume>238</volume>
+          <fpage>36</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="pmid">3116667</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <label>10</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Denk</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Two-photon laser scanning fluorescence microscopy</article-title>
+          <source>Science</source>
+          <year>1990</year>
+          <volume>248</volume>
+          <fpage>73</fpage>
+          <lpage>76</lpage>
+          <pub-id pub-id-type="pmid">2321027</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <label>11</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peng</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bioimage informatics: a new area of engineering biology</article-title>
+          <source>Bioinformatics</source>
+          <year>2008</year>
+          <volume>24</volume>
+          <fpage>1827</fpage>
+          <lpage>1836</lpage>
+          <pub-id pub-id-type="pmid">18603566</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <label>12</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhou</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards automated cellular image segmentation for RNAi genome-wide screening</article-title>
+          <source>Med. Image Comput. Comput. Assist. Interv. Intl Conf. Med. Image Comput. Comput. Assist. Interv.</source>
+          <year>2005</year>
+          <volume>8</volume>
+          <fpage>885</fpage>
+          <lpage>892</lpage>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <label>13</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Luck</surname>
+              <given-names>B.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>An image model and segmentation algorithm for reflectance confocal images of in vivo cervical tissue</article-title>
+          <source>IEEE Trans. Image Process.</source>
+          <year>2005</year>
+          <volume>14</volume>
+          <fpage>1265</fpage>
+          <lpage>1276</lpage>
+          <pub-id pub-id-type="pmid">16190463</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <label>14</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moss</surname>
+              <given-names>V.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated image segmentation and serial section reconstruction in microscopy</article-title>
+          <source>J. Microsc.</source>
+          <year>1990</year>
+          <volume>158</volume>
+          <fpage>187</fpage>
+          <lpage>196</lpage>
+          <pub-id pub-id-type="pmid">2370651</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <label>15</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ahrens</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Image analysis of Nissl-stained neuronal perikarya in the primary visual cortex of the rat: automatic detection and segmentation of neuronal profiles with nuclei and nucleoli</article-title>
+          <source>J. Microsc.</source>
+          <year>1990</year>
+          <volume>157</volume>
+          <fpage>349</fpage>
+          <lpage>365</lpage>
+          <pub-id pub-id-type="pmid">2332885</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <label>16</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Delhaas</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantification of cytoskeletal deformation in living cells based on hierarchical feature vector matching</article-title>
+          <source>Am. J. Physiol. Cell Physiol.</source>
+          <year>2002</year>
+          <volume>283</volume>
+          <fpage>C639</fpage>
+          <lpage>C645</lpage>
+          <pub-id pub-id-type="pmid">12107074</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <label>17</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nattkemper</surname>
+              <given-names>T.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automatic segmentation of digital micrographs: a survey</article-title>
+          <source>Stud. Health Technol. Inform.</source>
+          <year>2004</year>
+          <volume>107</volume>
+          <fpage>847</fpage>
+          <lpage>851</lpage>
+          <pub-id pub-id-type="pmid">15360932</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <label>18</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Megason</surname>
+              <given-names>S.G.</given-names>
+            </name>
+            <name>
+              <surname>Fraser</surname>
+              <given-names>S.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Digitizing life at the level of the cell: high-performance laser-scanning microscopy and image analysis for in toto imaging of development</article-title>
+          <source>Mech. Dev.</source>
+          <year>2003</year>
+          <volume>120</volume>
+          <fpage>1407</fpage>
+          <lpage>1420</lpage>
+          <pub-id pub-id-type="pmid">14623446</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <label>19</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lehmann</surname>
+              <given-names>T.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computer-assisted quantification of axo-somatic boutons at the cell membrane of motoneurons</article-title>
+          <source>IEEE Trans. Biomed. Eng.</source>
+          <year>2001</year>
+          <volume>48</volume>
+          <fpage>706</fpage>
+          <lpage>717</lpage>
+          <pub-id pub-id-type="pmid">11396600</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <label>20</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Swedlow</surname>
+              <given-names>J.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bioimage informatics for experimental biology</article-title>
+          <source>Annu. Rev. Biophys.</source>
+          <year>2009</year>
+          <volume>38</volume>
+          <fpage>327</fpage>
+          <lpage>346</lpage>
+          <pub-id pub-id-type="pmid">19416072</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <label>21</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pawley</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Handbook of Biological Confocal Microscopy</article-title>
+          <year>2006</year>
+          <publisher-name>Springer</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <label>22</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marceglia</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Education in biomedical informatics: learning by doing bioimage archiving</article-title>
+          <source>Conf. Proc. IEEE Eng. Med. Biol. Soc.</source>
+          <year>2007</year>
+          <volume>2007</volume>
+          <fpage>5924</fpage>
+          <lpage>5928</lpage>
+          <pub-id pub-id-type="pmid">18003362</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <label>23</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>de Alarcon</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A framework for querying a database for structural information on 3D images of macromolecules: a web-based query-by-content prototype on the BioImage macromolecular server</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>1999</year>
+          <volume>125</volume>
+          <fpage>112</fpage>
+          <lpage>122</lpage>
+          <pub-id pub-id-type="pmid">10222268</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <label>24</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carazo</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Stelzer</surname>
+              <given-names>E.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>The BioImage Database Project: organizing multidimensional biological images in an object-relational database</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>1999</year>
+          <volume>125</volume>
+          <fpage>97</fpage>
+          <lpage>102</lpage>
+          <pub-id pub-id-type="pmid">10222266</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <label>25</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carazo</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Organising multi-dimensional biological image information: the BioImage Database</article-title>
+          <source>Nucleic Acids Res.</source>
+          <year>1999</year>
+          <volume>27</volume>
+          <fpage>280</fpage>
+          <lpage>283</lpage>
+          <pub-id pub-id-type="pmid">9847201</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <label>26</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Diaspro</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Studies on the structure of sperm heads of Eledone cirrhosa by means of CLSM linked to bioimage-oriented devices</article-title>
+          <source>Microsc. Res. Tech.</source>
+          <year>1997</year>
+          <volume>36</volume>
+          <fpage>159</fpage>
+          <lpage>164</lpage>
+          <pub-id pub-id-type="pmid">9080405</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <label>27</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schiffmann</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Open microscopy environment and findspots: integrating image informatics with quantitative multidimensional image analysis</article-title>
+          <source>Biotechniques</source>
+          <year>2006</year>
+          <volume>41</volume>
+          <fpage>199</fpage>
+          <lpage>208</lpage>
+          <pub-id pub-id-type="pmid">16925022</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <label>28</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goldberg</surname>
+              <given-names>I.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Open Microscopy Environment (OME) Data Model and XML file: open tools for informatics and quantitative analysis in biological imaging</article-title>
+          <source>Genome Biol.</source>
+          <year>2005</year>
+          <volume>6</volume>
+          <fpage>R47</fpage>
+          <pub-id pub-id-type="pmid">15892875</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <label>29</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eliceiri</surname>
+              <given-names>K.W.</given-names>
+            </name>
+            <name>
+              <surname>Rueden</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tools for visualizing multidimensional images from living specimens</article-title>
+          <source>Photochem. Photobiol.</source>
+          <year>2005</year>
+          <volume>81</volume>
+          <fpage>1116</fpage>
+          <lpage>1122</lpage>
+          <pub-id pub-id-type="pmid">15807634</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <label>30</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Collins</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>ImageJ for microscopy</article-title>
+          <source>Biotechniques</source>
+          <year>2007</year>
+          <volume>43</volume>
+          <fpage>25</fpage>
+          <lpage>30</lpage>
+          <pub-id pub-id-type="pmid">17936939</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <label>31</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rueden</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>VisBio: a computational tool for visualization of multidimensional biological image data</article-title>
+          <source>Traffic</source>
+          <year>2004</year>
+          <volume>5</volume>
+          <fpage>411</fpage>
+          <lpage>417</lpage>
+          <pub-id pub-id-type="pmid">15117315</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <label>32</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rueden</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>VisBio as a biological visualization tool</article-title>
+          <source>Comput. Graph.</source>
+          <year>2003</year>
+          <volume>37</volume>
+          <fpage>5</fpage>
+          <lpage>7</lpage>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <label>33</label>
+        <citation citation-type="other">Rueden, C.T. and Eliceiri, K.W. (2007). Visualization approaches for multidimensional biological image data. <italic>Biotechniques</italic> 43, 31, 33–36</citation>
+      </ref>
+      <ref id="bib34">
+        <label>34</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yan</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Applications of combined spectral lifetime microscopy for biology</article-title>
+          <source>Biotechniques</source>
+          <year>2006</year>
+          <volume>41</volume>
+          <fpage>249</fpage>
+          <comment>251, 253 passim</comment>
+          <pub-id pub-id-type="pmid">16989084</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <label>35</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eliceiri</surname>
+              <given-names>K.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of multidimensional biological image data</article-title>
+          <source>Biotechniques</source>
+          <year>2002</year>
+          <volume>33</volume>
+          <fpage>1268</fpage>
+          <lpage>1273</lpage>
+          <pub-id pub-id-type="pmid">12503311</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <label>36</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Swedlow</surname>
+              <given-names>J.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Informatics and quantitative analysis in biological imaging</article-title>
+          <source>Science</source>
+          <year>2003</year>
+          <volume>300</volume>
+          <fpage>100</fpage>
+          <lpage>102</lpage>
+          <pub-id pub-id-type="pmid">12677061</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <label>37</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marsh</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Practical implementation of adaptive optics in multiphoton microscopy</article-title>
+          <source>Opt. Express.</source>
+          <year>2003</year>
+          <volume>11</volume>
+          <fpage>1123</fpage>
+          <lpage>1130</lpage>
+          <pub-id pub-id-type="pmid">19465977</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <label>38</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moore</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Open tools for storage and management of quantitative image data</article-title>
+          <source>Methods Cell Biol.</source>
+          <year>2008</year>
+          <volume>85</volume>
+          <fpage>555</fpage>
+          <lpage>570</lpage>
+          <pub-id pub-id-type="pmid">18155479</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <table-wrap position="float" id="tbl1">
+      <label>Table 1</label>
+      <caption>
+        <p>List of features of common open source licenses.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">Open source licenses</th>
+            <th align="left">Website</th>
+            <th align="left">Key features</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">Public domain</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.copyright.gov/title17/92chap1.html" ext-link-type="uri">http://www.copyright.gov/title17/92chap1.html</ext-link>
+              <ext-link xlink:href="http://en.wikipedia.org/wiki/Public_domain" ext-link-type="uri">http://en.wikipedia.org/wiki/Public_domain</ext-link>
+            </td>
+            <td align="left">Software distributed in this way has no license or any restrictions based on its use, modification, or distribution. The software is not subject to any copyright protection</td>
+          </tr>
+          <tr>
+            <td align="left">Apache license</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.apache.org/licenses/" ext-link-type="uri">http://www.apache.org/licenses/</ext-link>
+            </td>
+            <td align="left">Allows for commercial use and allows for modified code to be distributed freely under any license. Considered one of the most liability-resistant open source licenses due to clear language in the license</td>
+          </tr>
+          <tr>
+            <td align="left">BSD license</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.linfo.org/bsdlicense.html" ext-link-type="uri">http://www.linfo.org/bsdlicense.html</ext-link>
+            </td>
+            <td align="left">Allows for unrestricted distribution as long as copyright and warranty notices are included</td>
+          </tr>
+          <tr>
+            <td align="left">GNU general public license (GPL)</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.gnu.org/licenses/gpl-3.0.txt" ext-link-type="uri">http://www.gnu.org/licenses/gpl-3.0.txt</ext-link>
+            </td>
+            <td align="left">All derived works must use the same license. Notably less permissive than BSD</td>
+          </tr>
+          <tr>
+            <td align="left">GNU lesser General public audience (LGPL)</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.gnu.org/copyleft/lesser.html" ext-link-type="uri">http://www.gnu.org/copyleft/lesser.html</ext-link>
+            </td>
+            <td align="left">More permissive version of GPL that allows programs that just link with LGPL code to not be LGPL.</td>
+          </tr>
+          <tr>
+            <td align="left">Mozilla public license</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.mozilla.org/MPL/MPL-1.1.html" ext-link-type="uri">http://www.mozilla.org/MPL/MPL-1.1.html</ext-link>
+            </td>
+            <td align="left">Hybrid of GPL and BSD requiring all used and modified code to stay under license. Has several key additions, including allowing executables to use different licenses and explicit clause on patent rights</td>
+          </tr>
+          <tr>
+            <td align="left">Common development and distribution license</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.sun.com/cddl/" ext-link-type="uri">http://www.sun.com/cddl/</ext-link>
+            </td>
+            <td align="left">Free license developed by Sun but considered incompatible with GPL. Based on the Mozilla license, it has several key additions to ease commercial use including patentability adoption and notice of use.</td>
+          </tr>
+          <tr>
+            <td align="left">Common public license</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.opensource.org/licenses/cpl1.0.php" ext-link-type="uri">http://www.opensource.org/licenses/cpl1.0.php</ext-link>
+            </td>
+            <td align="left">Must make source code available but allows for proprietary programs to use without being same license type</td>
+          </tr>
+          <tr>
+            <td align="left">MIT license (also called X11 license)</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.opensource.org/licenses/mit-license.php" ext-link-type="uri">http://www.opensource.org/licenses/mit-license.php</ext-link>
+            </td>
+            <td align="left">GPL compatible license that is permissive allowing for proprietary software use</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap position="float" id="tbl2">
+      <label>Table 2</label>
+      <caption>
+        <p>Representative survey of open source bioimage tools</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">Software tool</th>
+            <th align="left">Main feature set</th>
+            <th align="left">License type</th>
+            <th align="left">Website</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">ImageJ</td>
+            <td align="left">Image processing</td>
+            <td align="left">Public domain</td>
+            <td align="left">
+              <ext-link xlink:href="http://rsbweb.nih.gov/ij/" ext-link-type="uri">http://rsbweb.nih.gov/ij/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">OME</td>
+            <td align="left">Database and image informatics</td>
+            <td align="left">GPL</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.openmicroscopy.org/" ext-link-type="uri">www.openmicroscopy.org</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">Bio-Formats</td>
+            <td align="left">Metadata interchange library</td>
+            <td align="left">GPL</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.loci.wisc.edu/ome/formats.html" ext-link-type="uri">www.loci.wisc.edu/ome/formats.html</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">CellProfiler</td>
+            <td align="left">Automated identification of features in cells</td>
+            <td align="left">GPL</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.cellprofiler.org/" ext-link-type="uri">www.cellprofiler.org/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">VisBio</td>
+            <td align="left">Multidimensional image analysis</td>
+            <td align="left">GPL</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.loci.wisc.edu/visbio" ext-link-type="uri">www.loci.wisc.edu/visbio</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">Bisque</td>
+            <td align="left">Database system for semantic analysis</td>
+            <td align="left">GPL</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.bioimage.ucsb.edu/" ext-link-type="uri">www.bioimage.ucsb.edu/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">PSLID</td>
+            <td align="left">Subcellular localization data model</td>
+            <td align="left">GPL</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.murphylab.web.cmu.edu/services/PSLID/" ext-link-type="uri">murphylab.web.cmu.edu/services/PSLID/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">Micromanager</td>
+            <td align="left">Microscopy control</td>
+            <td align="left">BSD</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.micro-manager.org/" ext-link-type="uri">www.micro-manager.org/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">ITK</td>
+            <td align="left">Set of extensive tools for image analysis, including segmentation and registration</td>
+            <td align="left">BSD</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.itk.org/" ext-link-type="uri">www.itk.org/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">FARSIGHT</td>
+            <td align="left">Toolkit for associative image analysis</td>
+            <td align="left">BSD</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.farsight-toolkit.org/" ext-link-type="uri">www.farsight-toolkit.org</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">Osirix</td>
+            <td align="left">Multidimensional medical image viewer</td>
+            <td align="left">GPL</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.osirix-viewer.com/" ext-link-type="uri">www.osirix-viewer.com/</ext-link>
+            </td>
+          </tr>
+          <tr>
+            <td align="left">BioImageXD</td>
+            <td align="left">Python package that leverages ITK for image processing and volume rendering</td>
+            <td align="left">GPL</td>
+            <td align="left">
+              <ext-link xlink:href="http://www.bioimagexd.net/" ext-link-type="uri">www.bioimagexd.net/</ext-link>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-wrap>
+</article>

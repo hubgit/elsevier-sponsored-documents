@@ -1,0 +1,967 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Theor Comp Sci</journal-id>
+      <journal-title-group>
+        <journal-title>Theoretical Computer Science</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0304-3975</issn>
+      <publisher>
+        <publisher-name>Elsevier BV, North-Holland, 1970-</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3191501</article-id>
+      <article-id pub-id-type="pmid">22031790</article-id>
+      <article-id pub-id-type="publisher-id">TCS7951</article-id>
+      <article-id pub-id-type="doi">10.1016/j.tcs.2010.08.001</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>The Asynchronous Bounded-Cycle model<sup><xref ref-type="fn" rid="d30e14">☆</xref></sup></article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Robinson</surname>
+            <given-names>Peter</given-names>
+          </name>
+          <email>robinson@ecs.tuwien.ac.at</email>
+          <xref rid="cor000005" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schmid</surname>
+            <given-names>Ulrich</given-names>
+          </name>
+          <email>s@ecs.tuwien.ac.at</email>
+        </contrib>
+      </contrib-group>
+      <aff id="af000005">Technische Universität Wien, Embedded Computing Systems Group (E182/2), Treitlstrasse 1-3, A-1040 Vienna, Austria</aff>
+      <author-notes>
+        <corresp id="cor000005"><label>⁎</label>Corresponding author. Tel.: +43 158801 18253; fax: +43 158801 18297. <email>robinson@ecs.tuwien.ac.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>16</day>
+        <month>9</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>16</day>
+        <month>9</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>412</volume>
+      <issue>40</issue>
+      <fpage>5580</fpage>
+      <lpage>5601</lpage>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier B.V.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>This paper shows how synchrony conditions can be added to the purely asynchronous model in a way that avoids any reference to message delays and computing step times, as well as system-wide constraints on execution patterns and network topology. Our Asynchronous Bounded-Cycle (ABC) model just bounds the ratio of the number of forward- and backward-oriented messages in certain (“relevant”) cycles in the space–time diagram of an asynchronous execution. We show that clock synchronization and lock-step rounds can be implemented and proved correct in the ABC model, even in the presence of Byzantine failures. Furthermore, we prove that any algorithm working correctly in the partially synchronous <italic>Θ</italic>-Model also works correctly in the ABC model. In our proof, we first apply a novel method for assigning certain message delays to asynchronous executions, which is based on a variant of Farkas’ theorem of linear inequalities and a non-standard cycle space of graphs. Using methods from point-set topology, we then prove that the existence of this delay assignment implies model indistinguishability for time-free safety and liveness properties. We also introduce several weaker variants of the ABC model, and relate our model to the existing partially synchronous system models, in particular, the classic models of Dwork, Lynch and Stockmayer and the query–response model by Mostefaoui, Mourgaya, and Raynal. Finally, we discuss some aspects of the ABC model’s applicability in real systems, in particular, in the context of VLSI Systems-on-Chip.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Fault-tolerant distributed algorithms</kwd>
+        <kwd>Partially synchronous models</kwd>
+        <kwd>Clock synchronization</kwd>
+        <kwd>VLSI</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="br000005">
+        <label>1</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aguilera</surname>
+              <given-names>Marcos K.</given-names>
+            </name>
+            <name>
+              <surname>Delporte-Gallet</surname>
+              <given-names>Carole</given-names>
+            </name>
+            <name>
+              <surname>Fauconnier</surname>
+              <given-names>Hugues</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>Sam</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Consensus with Byzantine failures and little system synchrony</chapter-title>
+          <source>DSN ’06: Proceedings of the International Conference on Dependable Systems and Networks</source>
+          <year>2006</year>
+          <publisher-name>IEEE Computer Society</publisher-name>
+          <publisher-loc>Washington, DC, USA</publisher-loc>
+          <fpage>147</fpage>
+          <lpage>155</lpage>
+          <comment>ISBN 0-7695-2607-1</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000010">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aguilera</surname>
+              <given-names>Marcos K.</given-names>
+            </name>
+            <name>
+              <surname>Delporte-Gallet</surname>
+              <given-names>Carole</given-names>
+            </name>
+            <name>
+              <surname>Fauconnier</surname>
+              <given-names>Hugues</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>Sam</given-names>
+            </name>
+          </person-group>
+          <article-title>On implementing omega in systems with weak reliability and synchrony assumptions</article-title>
+          <source>Distributed Computing</source>
+          <volume>21</volume>
+          <issue>4</issue>
+          <year>2008</year>
+        </element-citation>
+      </ref>
+      <ref id="br000015">
+        <label>3</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aguilera</surname>
+              <given-names>Marcos Kawazoe</given-names>
+            </name>
+            <name>
+              <surname>Delporte-Gallet</surname>
+              <given-names>Carole</given-names>
+            </name>
+            <name>
+              <surname>Fauconnier</surname>
+              <given-names>Hugues</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>Sam</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Stable leader election</chapter-title>
+          <source>DISC’01: Proceedings of the 15th International Conference on Distributed Computing</source>
+          <year>2001</year>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <fpage>108</fpage>
+          <lpage>122</lpage>
+          <comment>ISBN 3-540-42605-1</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000020">
+        <label>4</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aguilera</surname>
+              <given-names>Marcos Kawazoe</given-names>
+            </name>
+            <name>
+              <surname>Delporte-Gallet</surname>
+              <given-names>Carole</given-names>
+            </name>
+            <name>
+              <surname>Fauconnier</surname>
+              <given-names>Hugues</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>Sam</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Communication-efficient leader election and consensus with limited link synchrony</chapter-title>
+          <source>Proceedings of the 23th ACM Symposium on Principles of Distributed Computing</source>
+          <conf-name>PODC’04</conf-name>
+          <year>2004</year>
+          <publisher-name>ACM Press</publisher-name>
+          <publisher-loc>St. John’s, Newfoundland, Canada</publisher-loc>
+          <fpage>328</fpage>
+          <lpage>337</lpage>
+          <comment>ISBN 1-58113-802-4</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000025">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alpern</surname>
+              <given-names>Bowen</given-names>
+            </name>
+            <name>
+              <surname>Schneider</surname>
+              <given-names>Fred B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Defining liveness</article-title>
+          <source>Information Processing Letters</source>
+          <volume>21</volume>
+          <issue>4</issue>
+          <year>1985</year>
+          <fpage>181</fpage>
+          <lpage>185</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000030">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Anceaume</surname>
+              <given-names>Emmanuelle</given-names>
+            </name>
+            <name>
+              <surname>Fernández</surname>
+              <given-names>Antonio</given-names>
+            </name>
+            <name>
+              <surname>Mostéfaoui</surname>
+              <given-names>Achour</given-names>
+            </name>
+            <name>
+              <surname>Neiger</surname>
+              <given-names>Gil</given-names>
+            </name>
+            <name>
+              <surname>Raynal</surname>
+              <given-names>Michel</given-names>
+            </name>
+          </person-group>
+          <article-title>A necessary and sufficient condition for transforming limited accuracy failure detectors</article-title>
+          <source>Journal of Computer and System Sciences</source>
+          <volume>68</volume>
+          <issue>1</issue>
+          <year>2004</year>
+          <fpage>123</fpage>
+          <lpage>133</lpage>
+          <comment>ISSN 0022-0000</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000035">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Attiya</surname>
+              <given-names>Hagit</given-names>
+            </name>
+            <name>
+              <surname>Dwork</surname>
+              <given-names>Cynthia</given-names>
+            </name>
+            <name>
+              <surname>Lynch</surname>
+              <given-names>Nancy</given-names>
+            </name>
+            <name>
+              <surname>Stockmeyer</surname>
+              <given-names>Larry</given-names>
+            </name>
+          </person-group>
+          <article-title>Bounds on the time to reach agreement in the presence of timing uncertainty</article-title>
+          <source>Journal of the ACM</source>
+          <volume>41</volume>
+          <issue>1</issue>
+          <year>1994</year>
+          <fpage>122</fpage>
+          <lpage>152</lpage>
+          <comment>ISSN 0004-5411</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000040">
+        <label>8</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Biely</surname>
+              <given-names>Martin</given-names>
+            </name>
+            <name>
+              <surname>Widder</surname>
+              <given-names>Josef</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Optimal message-driven implementation of Omega with mute processes</chapter-title>
+          <source>Proceedings of the Eighth International Symposium on Stabilization, Safety, and Security of Distributed Systems</source>
+          <conf-name>SSS 2006</conf-name>
+          <series>LNCS</series>
+          <volume>vol. 4280</volume>
+          <year>2006</year>
+          <publisher-name>Springer Verlag</publisher-name>
+          <publisher-loc>Dallas, TX, USA</publisher-loc>
+          <fpage>110</fpage>
+          <lpage>121</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000045">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Biely</surname>
+              <given-names>Martin</given-names>
+            </name>
+            <name>
+              <surname>Widder</surname>
+              <given-names>Josef</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimal message-driven implementations of omega with mute processes</article-title>
+          <source>ACM Transactions on Autonomous and Adaptive Systems</source>
+          <volume>4</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <comment>Article 4, 22 pages</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000050">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carver</surname>
+              <given-names>Walter B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Systems of linear inequalities</article-title>
+          <source>Annals of Mathematics</source>
+          <volume>23</volume>
+          <year>1921</year>
+          <fpage>212</fpage>
+          <lpage>220</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000055">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chandra</surname>
+              <given-names>Tushar Deepak</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>Sam</given-names>
+            </name>
+          </person-group>
+          <article-title>Unreliable failure detectors for reliable distributed systems</article-title>
+          <source>Journal of the ACM</source>
+          <volume>43</volume>
+          <issue>2</issue>
+          <year>1996</year>
+          <fpage>225</fpage>
+          <lpage>267</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000060">
+        <label>12</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Charron-Bost</surname>
+              <given-names>Bernadette</given-names>
+            </name>
+            <name>
+              <surname>Guerraoui</surname>
+              <given-names>Rachid</given-names>
+            </name>
+            <name>
+              <surname>Schiper</surname>
+              <given-names>André</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Synchronous system and perfect failure detector: solvability and efficiency issues</chapter-title>
+          <source>Proceedings of the IEEE Int. Conf. on Dependable Systems and Networks</source>
+          <conf-name>DSN’00</conf-name>
+          <year>2000</year>
+          <publisher-name>IEEE Computer Society</publisher-name>
+          <publisher-loc>New York, USA</publisher-loc>
+          <fpage>523</fpage>
+          <lpage>532</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000065">
+        <label>13</label>
+        <mixed-citation publication-type="other">Bernadette Charron-Bost, Shlomi Dolev, Jo Ebergen, and Ulrich Schmid (Eds.), Fault-Tolerant Distributed Algorithms on VLSI Chips, Schloss Dagstuhl, Germany, September 2008. <ext-link ext-link-type="uri" xlink:href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus%3D1927" id="ir000005">http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=1927</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="br000070">
+        <label>14</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Diestel</surname>
+              <given-names>Reinhard</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Graph Theory</chapter-title>
+          <edition>3rd ed.</edition>
+          <year>2006</year>
+          <publisher-name>Springer</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="br000075">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dolev</surname>
+              <given-names>Danny</given-names>
+            </name>
+            <name>
+              <surname>Halpern</surname>
+              <given-names>Joseph Y.</given-names>
+            </name>
+            <name>
+              <surname>Raymond Strong</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the possibility and impossibility of achieving clock synchronization</article-title>
+          <source>Journal of Computer and System Sciences</source>
+          <volume>32</volume>
+          <year>1986</year>
+          <fpage>230</fpage>
+          <lpage>250</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000080">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dolev</surname>
+              <given-names>Danny</given-names>
+            </name>
+          </person-group>
+          <article-title>Cynthia Dwork, and Larry Stockmeyer. On the minimal synchronism needed for distributed consensus</article-title>
+          <source>Journal of the ACM</source>
+          <volume>34</volume>
+          <issue>1</issue>
+          <year>1987</year>
+          <fpage>77</fpage>
+          <lpage>97</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000085">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dwork</surname>
+              <given-names>Cynthia</given-names>
+            </name>
+            <name>
+              <surname>Lynch</surname>
+              <given-names>Nancy</given-names>
+            </name>
+            <name>
+              <surname>Stockmeyer</surname>
+              <given-names>Larry</given-names>
+            </name>
+          </person-group>
+          <article-title>Consensus in the presence of partial synchrony</article-title>
+          <source>Journal of the ACM</source>
+          <volume>35</volume>
+          <issue>2</issue>
+          <year>1988</year>
+          <fpage>288</fpage>
+          <lpage>323</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000090">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ebergen</surname>
+              <given-names>Jo C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A formal approach to designing delay-insensitive circuits</article-title>
+          <source>Distributed Computing</source>
+          <volume>5</volume>
+          <year>1991</year>
+          <fpage>107</fpage>
+          <lpage>119</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000095">
+        <label>19</label>
+        <mixed-citation publication-type="other">Markus Ferringer, Gottfried Fuchs, Andreas Steininger, Gerald Kempf, VLSI implementation of a fault-tolerant distributed clock generation, in: IEEE International Symposium on Defect and Fault-Tolerance in VLSI Systems, DFT2006, October 2006, pp. 563–571.</mixed-citation>
+      </ref>
+      <ref id="br000100">
+        <label>20</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fetzer</surname>
+              <given-names>Christof</given-names>
+            </name>
+          </person-group>
+          <chapter-title>The message classification model</chapter-title>
+          <source>Proceedings of the Seventeenth Annual ACM Symposium on Principles of Distributed Computing</source>
+          <year>1998</year>
+          <publisher-name>ACM Press</publisher-name>
+          <publisher-loc>Puerto Vallarta, Mexico</publisher-loc>
+          <fpage>153</fpage>
+          <lpage>162</lpage>
+          <comment>ISBN 0-89791-977-7</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000105">
+        <label>21</label>
+        <mixed-citation publication-type="other">Christof Fetzer, Ulrich Schmid, Brief announcement: on the possibility of consensus in asynchronous systems with finite average response times, in: Proceedings of the 23th ACM Symposium on Principles of Distributed Computing, PODC’04, Boston, Massachusetts, 2004, p. 402.</mixed-citation>
+      </ref>
+      <ref id="br000110">
+        <label>22</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fetzer</surname>
+              <given-names>Christof</given-names>
+            </name>
+            <name>
+              <surname>Schmid</surname>
+              <given-names>Ulrich</given-names>
+            </name>
+            <name>
+              <surname>Süßkraut</surname>
+              <given-names>Martin</given-names>
+            </name>
+          </person-group>
+          <chapter-title>On the possibility of consensus in asynchronous systems with finite average response times</chapter-title>
+          <source>Proceedings of the 25th International Conference on Distributed Computing Systems</source>
+          <conf-name>ICDCS’05</conf-name>
+          <year>2005</year>
+          <publisher-name>IEEE Computer Society</publisher-name>
+          <publisher-loc>Washington, DC, USA</publisher-loc>
+          <fpage>271</fpage>
+          <lpage>280</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000115">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fischer</surname>
+              <given-names>Michael J.</given-names>
+            </name>
+            <name>
+              <surname>Lynch</surname>
+              <given-names>Nancy A.</given-names>
+            </name>
+            <name>
+              <surname>Paterson</surname>
+              <given-names>M.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Impossibility of distributed consensus with one faulty process</article-title>
+          <source>Journal of the ACM</source>
+          <volume>32</volume>
+          <issue>2</issue>
+          <year>1985</year>
+          <fpage>374</fpage>
+          <lpage>382</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000120">
+        <label>24</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fuegger</surname>
+              <given-names>Matthias</given-names>
+            </name>
+            <name>
+              <surname>Schmid</surname>
+              <given-names>Ulrich</given-names>
+            </name>
+            <name>
+              <surname>Fuchs</surname>
+              <given-names>Gottfried</given-names>
+            </name>
+            <name>
+              <surname>Kempf</surname>
+              <given-names>Gerald</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Fault-tolerant distributed clock generation in VLSI systems-on-chip</chapter-title>
+          <source>Proceedings of the Sixth European Dependable Computing Conference</source>
+          <conf-name>EDCC-6</conf-name>
+          <year>2006</year>
+          <publisher-name>IEEE Computer Society Press</publisher-name>
+          <fpage>87</fpage>
+          <lpage>96</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000125">
+        <label>25</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hadzilacos</surname>
+              <given-names>Vassos</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>Sam</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Fault-tolerant broadcasts and related problems</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Mullender</surname>
+              <given-names>Sape</given-names>
+            </name>
+          </person-group>
+          <source>Distributed Systems</source>
+          <edition>2nd ed.</edition>
+          <year>1993</year>
+          <publisher-name>Addison-Wesley</publisher-name>
+          <fpage>97</fpage>
+          <lpage>145</lpage>
+          <comment>(Chapter~5)</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000130">
+        <label>26</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hutle</surname>
+              <given-names>Martin</given-names>
+            </name>
+            <name>
+              <surname>Malkhi</surname>
+              <given-names>Dahlia</given-names>
+            </name>
+            <name>
+              <surname>Schmid</surname>
+              <given-names>Ulrich</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>Lidong</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Brief announcement: chasing the weakest system model for implementing omega and consensus</chapter-title>
+          <source>Proceedings Eighth International Symposium on Stabilization, Safety, and Security of Distributed Systems</source>
+          <conf-name>SSS 2006</conf-name>
+          <series>LNCS</series>
+          <year>2006</year>
+          <publisher-name>Springer Verlag</publisher-name>
+          <publisher-loc>Dallas, USA</publisher-loc>
+          <fpage>576</fpage>
+          <lpage>577</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000135">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hutle</surname>
+              <given-names>Martin</given-names>
+            </name>
+            <name>
+              <surname>Malkhi</surname>
+              <given-names>Dahlia</given-names>
+            </name>
+            <name>
+              <surname>Schmid</surname>
+              <given-names>Ulrich</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>Lidong</given-names>
+            </name>
+          </person-group>
+          <article-title>Chasing the weakest system model for implementing omega and consensus</article-title>
+          <source>IEEE Transactions on Dependable and Secure Computing</source>
+          <volume>6</volume>
+          <issue>October–December</issue>
+          <year>2009</year>
+          <fpage>269</fpage>
+          <lpage>281</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000140">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lamport</surname>
+              <given-names>Leslie</given-names>
+            </name>
+          </person-group>
+          <article-title>Time, clocks, and the ordering of events in a distributed system</article-title>
+          <source>Communications of ACM</source>
+          <volume>21</volume>
+          <issue>7</issue>
+          <year>1978</year>
+          <fpage>558</fpage>
+          <lpage>565</lpage>
+          <comment>ISSN 0001-0782</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000145">
+        <label>29</label>
+        <mixed-citation publication-type="other">Gérard Le Lann, Ulrich Schmid, How to implement a timer-free perfect failure detector in partially synchronous systems. Technical Report 183/1-127, Department of Automation, Technische Universität Wien, January 2003 (Replaced by Research Report 28/2005, Institut für Technische Informatik, TU Wien, 2005).</mixed-citation>
+      </ref>
+      <ref id="br000150">
+        <label>30</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Malkhi</surname>
+              <given-names>Dahlia</given-names>
+            </name>
+            <name>
+              <surname>Oprea</surname>
+              <given-names>Florin</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>Lidong</given-names>
+            </name>
+          </person-group>
+          <chapter-title><italic>Ω</italic> meets paxos: leader election and stability without eventual timely links</chapter-title>
+          <source>Proceedings of the 19th Symposium on Distributed Computing</source>
+          <conf-name>DISC’05</conf-name>
+          <series>LNCS</series>
+          <volume>vol. 3724</volume>
+          <year>2005</year>
+          <publisher-name>Springer Verlag</publisher-name>
+          <publisher-loc>Cracow, Poland</publisher-loc>
+          <fpage>199</fpage>
+          <lpage>213</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000155">
+        <label>31</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mattern</surname>
+              <given-names>Friedemann</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Virtual time and global states of distributed systems</chapter-title>
+          <source>Parallel and Distributed Algorithms</source>
+          <year>1989</year>
+          <publisher-name>North-Holland</publisher-name>
+          <fpage>215</fpage>
+          <lpage>226</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000160">
+        <label>32</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mattern</surname>
+              <given-names>Friedemann</given-names>
+            </name>
+          </person-group>
+          <chapter-title>On the relativistic structure of logical time in distributed systems</chapter-title>
+          <source>Parallel and Distributed Algorithms</source>
+          <year>1992</year>
+          <publisher-name>Elsevier Science Publishers B.V</publisher-name>
+          <fpage>215</fpage>
+          <lpage>226</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000165">
+        <label>33</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moser</surname>
+              <given-names>Heinrich</given-names>
+            </name>
+            <name>
+              <surname>Schmid</surname>
+              <given-names>Ulrich</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Optimal clock synchronization revisited: upper and lower bounds in real-time systems</chapter-title>
+          <source>Proceedings of the International Conference on Principles of Distributed Systems</source>
+          <conf-name>OPODIS</conf-name>
+          <series>LNCS</series>
+          <volume>vol. 4305</volume>
+          <year>2006</year>
+          <publisher-name>Springer Verlag</publisher-name>
+          <publisher-loc>Bordeaux &amp; Saint-Emilion, France</publisher-loc>
+          <fpage>95</fpage>
+          <lpage>109</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000170">
+        <label>34</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mostéfaoui</surname>
+              <given-names>Achour</given-names>
+            </name>
+            <name>
+              <surname>Raynal</surname>
+              <given-names>Michel</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Solving consensus using Chandra–Toueg’s unreliable failure detectors: a general quorum-based approach</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Jayanti</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>Distributed Computing: 13th International Symposium</source>
+          <conf-name>DISC’99</conf-name>
+          <series>Lecture Notes in Computer Science</series>
+          <volume>vol. 1693</volume>
+          <year>1999</year>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <publisher-loc>Bratislava, Slovak Republic</publisher-loc>
+          <fpage>49</fpage>
+          <lpage>63</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000175">
+        <label>35</label>
+        <mixed-citation publication-type="other">Achour Mostefaoui, Eric Mourgaya, Michel Raynal, Asynchronous implementation of failure detectors, in: Proceedings of the International Conference on Dependable Systems and Networks, DSN’03, San Francisco, CA, June 22–25, 2003.</mixed-citation>
+      </ref>
+      <ref id="br000180">
+        <label>36</label>
+        <mixed-citation publication-type="other">Stephen Ponzio, Ray Strong, Semisynchrony and real time, in: Proceedings of the 6th International Workshop on Distributed Algorithms, WDAG’92, Haifa, Israel, November 1992, pp. 120–135.</mixed-citation>
+      </ref>
+      <ref id="br000185">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sutherland</surname>
+              <given-names>Ivan E.</given-names>
+            </name>
+            <name>
+              <surname>Ebergen</surname>
+              <given-names>Jo</given-names>
+            </name>
+          </person-group>
+          <article-title>Computers without clocks</article-title>
+          <source>Scientific American</source>
+          <volume>287</volume>
+          <issue>2</issue>
+          <year>2002</year>
+          <fpage>62</fpage>
+          <lpage>69</lpage>
+          <pub-id pub-id-type="pmid">12140955</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br000190">
+        <label>38</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vitányi</surname>
+              <given-names>Paul~M.B.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Distributed elections in an archimedean ring of processors</chapter-title>
+          <source>Proceedings of the Sixteenth Annual ACM Symposium on Theory of Computing</source>
+          <year>1984</year>
+          <publisher-name>ACM Press</publisher-name>
+          <fpage>542</fpage>
+          <lpage>547</lpage>
+          <comment>ISBN 0-89791-133-4</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000195">
+        <label>39</label>
+        <mixed-citation publication-type="other">Paul M.B. Vitányi, Time-driven algorithms for distributed control. Report CS-R8510, C.W.I., May 1985.</mixed-citation>
+      </ref>
+      <ref id="br000200">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Widder</surname>
+              <given-names>Josef</given-names>
+            </name>
+            <name>
+              <surname>Schmid</surname>
+              <given-names>Ulrich</given-names>
+            </name>
+          </person-group>
+          <article-title>The theta-model: achieving synchrony without clocks</article-title>
+          <source>Distributed Computing</source>
+          <volume>22</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <fpage>29</fpage>
+          <lpage>47</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000205">
+        <label>41</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Widder</surname>
+              <given-names>Josef</given-names>
+            </name>
+            <name>
+              <surname>Le~Lann</surname>
+              <given-names>Gérard</given-names>
+            </name>
+            <name>
+              <surname>Schmid</surname>
+              <given-names>Ulrich</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Failure detection with booting in partially synchronous systems</chapter-title>
+          <source>Proceedings of the 5th European Dependable Computing Conference</source>
+          <conf-name>EDCC-5</conf-name>
+          <series>LNCS</series>
+          <volume>vol. 3463</volume>
+          <year>2005</year>
+          <publisher-name>Springer Verlag</publisher-name>
+          <publisher-loc>Budapest, Hungary</publisher-loc>
+          <fpage>20</fpage>
+          <lpage>37</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <fn-group>
+      <fn id="d30e14">
+        <label>☆</label>
+        <p>This research is supported by the Austrian Science Foundation (FWF) projectsP17757 and P20529. A preliminary version of this paper (Robinson and Schmid (2008)) received the best paper award at SSS’08.</p>
+      </fn>
+    </fn-group>
+  </back>
+</article>

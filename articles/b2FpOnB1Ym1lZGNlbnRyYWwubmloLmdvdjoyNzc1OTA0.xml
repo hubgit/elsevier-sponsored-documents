@@ -1,0 +1,1618 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title>Neuroimage</journal-title>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2775904</article-id>
+      <article-id pub-id-type="pmid">19682587</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG6490</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2009.08.010</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Improved shimming for fMRI specifically optimizing the local BOLD sensitivity</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Balteau</surname>
+            <given-names>Evelyne</given-names>
+          </name>
+          <email>e.balteau@ulg.ac.be</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="aff2" ref-type="aff">b</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hutton</surname>
+            <given-names>Chloe</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Weiskopf</surname>
+            <given-names>Nikolaus</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>a</sup>Cyclotron Research Centre, Liège University, Belgium</addr-line>
+      </aff>
+      <aff id="aff2">
+        <addr-line><sup>b</sup>Wellcome Trust Centre for Neuroimaging, University College London, UK</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Cyclotron Research Centre (B30), Allée du 6 Août, 8, B-4000 Liège, Belgium. Fax: +32 4 366 29 46. <email>e.balteau@ulg.ac.be</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>01</day>
+        <month>1</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>49</volume>
+      <issue>1</issue>
+      <fpage>327</fpage>
+      <lpage>336</lpage>
+      <history>
+        <date date-type="received">
+          <day>13</day>
+          <month>4</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>22</day>
+          <month>6</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>5</day>
+          <month>8</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Inc.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>In functional MRI, magnetic field inhomogeneities due to air-tissue susceptibility differences may lead to severe signal dropouts and geometric distortions in echo-planar images. Therefore, the inhomogeneities in the field are routinely minimized by shimming prior to imaging. However in fMRI, the Blood Oxygen Level Dependent (BOLD) effect is the measure of interest, so the BOLD sensitivity (BS) should be optimized rather than the magnetic field homogeneity. The analytical expression for an estimate of the BOLD sensitivity has been recently developed, allowing for the computation of BOLD sensitivity maps from echo-planar images and field maps. This report describes a novel shimming procedure that optimizes the local BOLD sensitivity over a region of interest. The method is applied <italic>in vivo</italic> and compared to a standard global shimming procedure. A breath-holding experiment was carried out and demonstrated that the BS-based shimming significantly improved the detection of activation in a target region of interest, the medial orbitofrontal cortex.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>BOLD sensitivity</kwd>
+        <kwd>Shimming</kwd>
+        <kwd>fMRI</kwd>
+        <kwd>EPI</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>In functional magnetic resonance imaging (fMRI), magnetic field inhomogeneities due to air-tissue susceptibility differences can lead to severe signal dropouts and geometric distortions in echo-planar images (EPI). Therefore the optimization of the field homogeneity, so-called shimming, is an important step preceding the imaging process, and various shimming techniques using linear and higher-order resistive shim coils have been developed (<xref rid="bib4 bib7 bib15 bib23 bib27 bib28 bib36 bib40" ref-type="bibr">Blamire et al., 1996; de Graaf et al., 2003; Gruetter, 1993; Kim et al., 2002; Poole and Bowtell, 2008; Prammer et al., 1988; Webb and Macovski, 1991; Wilson et al., 2002</xref>). The common overall goal of current approaches is to calculate the corrective shim currents in order to compensate for field inhomogeneities over a region of interest (ROI) by minimizing the spatial standard deviation of the magnetic field. Global shimming methods use this approach to perform an optimization over the whole brain before data acquisition (<xref rid="bib15 bib23 bib28 bib36" ref-type="bibr">Gruetter, 1993; Kim et al., 2002; Prammer et al., 1988; Webb and Macovski, 1991</xref>). Based on the same approach, the automated shimming technique by <xref rid="bib40" ref-type="bibr">Wilson et al. (2002</xref>) goes towards a more localized strategy by preferentially optimizing the field homogeneity in specified areas according to the experimental hypothesis. With dynamic shimming, the concept of localized optimization is extended by calculating the optimal correction separately for each slice and updating the shim currents in real time for each slice (<xref rid="bib4 bib7" ref-type="bibr">Blamire et al., 1996; de Graaf et al., 2003</xref>). A variant has been proposed recently that divides the optimization problem into a series of sub-volumes rather than into slices, and calculates corrective shim currents separately for each sub-volume (<xref rid="bib27" ref-type="bibr">Poole and Bowtell, 2008</xref>).</p>
+      <p>In fMRI, the measure of interest is the Blood Oxygen Level Dependent (BOLD) effect. Therefore shimming should ensure a high BOLD contrast-to-noise ratio or BOLD sensitivity (BS). The BOLD sensitivity is only indirectly related to the spatial variation of the magnetic field, i.e. the field homogeneity (FH). Although a high field homogeneity provides a high signal intensity and a subsequently high BOLD sensitivity, the BS also depends on the local TE (including both the nominal echo time and echo time shifts due to local field gradients in the phase-encoding direction), which is non-linearly related to the field homogeneity (<xref rid="bib9" ref-type="bibr">Deichmann et al., 2002</xref>, <xref rid="bib10" ref-type="bibr">2003</xref>; <xref rid="bib37" ref-type="bibr">Weiskopf et al., 2006</xref><xref rid="bib39" ref-type="bibr">, 2007b</xref>). The analytical expression for an estimate of the BOLD sensitivity has been previously developed, allowing for the computation of BOLD sensitivity maps from EPI data and field maps (<xref rid="bib9" ref-type="bibr">Deichmann et al., 2002</xref>, <xref rid="bib10" ref-type="bibr">2003</xref>). The effect of through-plane and in-plane field variations on the BS have been investigated and strategies for BS optimization have been proposed (<xref rid="bib8" ref-type="bibr">De Panfilis and Schwarzbauer, 2005</xref>; <xref rid="bib9" ref-type="bibr">Deichmann et al., 2002</xref>, <xref rid="bib10" ref-type="bibr">2003</xref>; <xref rid="bib37" ref-type="bibr">Weiskopf et al., 2006</xref><xref rid="bib39" ref-type="bibr">, 2007b</xref>). The choice of optimal compensation gradients, spatial resolution and slice tilt allows for signal recovery from areas affected by signal loss. However, if the parameters are optimized for one specific region of interest (ROI) only, the optimization may even lead to a reduction in the BS for other areas (<xref rid="bib37" ref-type="bibr">Weiskopf et al., 2006</xref>), potentially limiting its use for experiments targeting various brain areas.</p>
+      <p>In this paper, we describe a shimming technique that optimizes the BOLD sensitivity locally over an ROI, while ensuring sufficient overall field homogeneity in order to limit geometric distortion and signal loss across the whole brain. To our knowledge it is the first shimming technique that (a) directly optimizes the BOLD sensitivity and (b) performs the BS optimization locally by taking advantage of the full range of available first- and second-order shim gradients. The method is applied <italic>in vivo</italic> and compared to a standard global shimming procedure. The BS improvement is assessed by measuring the theoretical BS after shimming and by comparing the performance of both procedures in detecting signal changes resulting from a breath-holding challenge. Furthermore, in order to demonstrate the general applicability of the BS optimization procedure, we present the results of simulations which were performed for different sets of EPI acquisition parameters.</p>
+    </sec>
+    <sec sec-type="methods">
+      <title>Methods</title>
+      <sec>
+        <title>Theory of BOLD sensitivity</title>
+        <p>In fMRI experiments based on the BOLD effect, the theoretical local BOLD sensitivity (BS) is proportional to the effective local echo time and the local intensity in a T<sub>2</sub>⁎-weighted image (<xref rid="bib9" ref-type="bibr">Deichmann et al., 2002</xref>). Although a high field homogeneity provides a high signal intensity and a subsequently high BOLD sensitivity, optimal FH does not necessarily provide the best BS due to the non-linear relation between field homogeneity, local TE and BS, as shown in Eqs. (1)–(3) below. In the following, a blipped echo-planar imaging (EPI) sequence is assumed with a positive phase encoding gradient for prephasing and negative gradient blips for stepping through <italic>k</italic>-space. As described in detail by <xref rid="bib9" ref-type="bibr">Deichmann et al. (2002</xref>, <xref rid="bib10" ref-type="bibr">2003</xref>), <xref rid="bib8" ref-type="bibr">De Panfilis and Schwarzbauer (2005</xref>) and <xref rid="bib37" ref-type="bibr">Weiskopf et al. (2006</xref>, <xref rid="bib39" ref-type="bibr">2007b</xref>), field gradients related to susceptibility variations may alter both the effective echo time and the image intensity locally and therefore affect the local BS. The BS can be expressed as a product of three factors corresponding to the effect of field gradients in the three orthogonal imaging directions: BS = BS<sub>0</sub> · <italic>α</italic><sub>PE</sub> · <italic>α</italic><sub>RO</sub> · <italic>α</italic><sub>SS</sub> where BS<sub>0</sub> is the BOLD sensitivity in the absence of field gradients (BS<sub>0</sub> = 100%), <italic>α</italic><sub>PE</sub> and <italic>α</italic><sub>RO</sub> are the factors corresponding to the in-plane field gradients <italic>G</italic><sub>PE</sub> and <italic>G</italic><sub>RO</sub> in the phase encoding and readout directions respectively, and <italic>α</italic><sub>SS</sub> is the through-plane factor corresponding to field gradients in the slice selection direction <italic>G</italic><sub>SS</sub>. Using the formalism developed previously (<xref rid="bib9" ref-type="bibr">Deichmann et al., 2002</xref>, <xref rid="bib10" ref-type="bibr">2003</xref>; <xref rid="bib39" ref-type="bibr">Weiskopf et al., 2007b</xref>), these factors can be written as follows:<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mrow><mml:mo stretchy="true">{</mml:mo><mml:mrow><mml:mtable columnalign="left"><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mtext>PE</mml:mtext></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msup><mml:mi>Q</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mfrac><mml:mo>⋅</mml:mo><mml:mi mathvariant="normal">exp</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mi>T</mml:mi><mml:mi>E</mml:mi><mml:mo>−</mml:mo><mml:mi>T</mml:mi><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msubsup><mml:mi>T</mml:mi><mml:mn>2</mml:mn><mml:mo>*</mml:mo></mml:msubsup></mml:mrow></mml:mfrac></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mtext>if</mml:mtext><mml:mspace width="0.35em" height="0.3ex"/><mml:mi>T</mml:mi><mml:mi>C</mml:mi><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mi>T</mml:mi><mml:mi>A</mml:mi></mml:mrow><mml:mn>2</mml:mn></mml:mfrac><mml:mo>≤</mml:mo><mml:mi>T</mml:mi><mml:mi>E</mml:mi><mml:mo>≤</mml:mo><mml:mi>T</mml:mi><mml:mi>C</mml:mi><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mi>T</mml:mi><mml:mi>A</mml:mi></mml:mrow><mml:mn>2</mml:mn></mml:mfrac><mml:mtext>,</mml:mtext></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mtext>PE</mml:mtext></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mtext>otherwise</mml:mtext></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mrow></mml:mrow></mml:math></disp-formula>with <mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mi>Q</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mfrac><mml:mi>γ</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>π</mml:mi></mml:mrow></mml:mfrac><mml:mi mathvariant="normal">Δ</mml:mi><mml:mi>t</mml:mi><mml:mo>⋅</mml:mo><mml:mtext>FoV</mml:mtext><mml:mo>⋅</mml:mo><mml:msub><mml:mi>G</mml:mi><mml:mrow><mml:mtext>PE</mml:mtext></mml:mrow></mml:msub></mml:mrow></mml:math> and <mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mtext>TE=</mml:mtext><mml:mfrac><mml:mrow><mml:mtext>TC</mml:mtext></mml:mrow><mml:mi>Q</mml:mi></mml:mfrac><mml:mo>,</mml:mo></mml:mrow></mml:math> where TC is the nominal echo time in the absence of field gradients (entered in the scanner's user interface), TE is the effective local echo time (including echo time shifts due to local gradients in the PE direction), TA is the duration of the acquisition window, <italic>γ</italic> is the gyromagnetic ratio, Δ<italic>t</italic> is the echo spacing and FoV is the field of view.<disp-formula id="fd2"><label>(2)</label><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:mrow><mml:mo stretchy="true">{</mml:mo><mml:mrow><mml:mtable columnalign="left"><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mtext>RO</mml:mtext></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mtext>if </mml:mtext><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi>γ</mml:mi><mml:mo>⋅</mml:mo><mml:msub><mml:mi>G</mml:mi><mml:mrow><mml:mtext>RO</mml:mtext></mml:mrow></mml:msub><mml:mo>⋅</mml:mo><mml:mi>T</mml:mi><mml:mi>E</mml:mi></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow><mml:mo>&gt;</mml:mo><mml:mfrac><mml:mi>π</mml:mi><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>x</mml:mi></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mtext>RO</mml:mtext></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="left"><mml:mrow><mml:mtext>otherwise</mml:mtext></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mrow></mml:mrow></mml:math></disp-formula>where Δ<italic>x</italic> is the voxel size in the readout direction.<disp-formula id="fd3"><label>(3)</label><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mrow><mml:mtext>SS</mml:mtext></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mtext>exp</mml:mtext><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:msup><mml:mi>Ψ</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mspace width="0.35em" height="0.3ex"/><mml:mtext>with</mml:mtext><mml:mspace width="0.35em" height="0.3ex"/><mml:mi>Ψ</mml:mi><mml:mo>=</mml:mo><mml:mi>γ</mml:mi><mml:mo>⋅</mml:mo><mml:msub><mml:mi>G</mml:mi><mml:mrow><mml:mtext>SS</mml:mtext></mml:mrow></mml:msub><mml:mo>⋅</mml:mo><mml:mi>T</mml:mi><mml:mi>E</mml:mi><mml:mo>⋅</mml:mo><mml:mfrac><mml:mrow><mml:mi mathvariant="normal">Δ</mml:mi><mml:mi>z</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:msqrt><mml:mrow><mml:mi>ln</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msqrt></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula>where Δ<italic>z</italic> is the slice thickness (full width at half maximum or FWHM) for a Gaussian shaped RF excitation pulse. In principle, the slice profile, position and thickness may be affected by field inhomogeneities if <italic>G</italic><sub>SS</sub> adds to the slice selection gradient. However, due to the large RF pulse bandwidth commonly used for excitation (1022 Hz in this experiment), the amplitude of the slice selection gradient (∼ 12 mT/m) is much larger than the susceptibility gradient <italic>G</italic><sub>SS</sub> (≤ 60 μT/m) and the effect is negligible.</p>
+      </sec>
+      <sec>
+        <title>Shimming procedures</title>
+        <p>Two shimming procedures were implemented and compared. The first procedure is a standard procedure optimizing the global field homogeneity (FH-based procedure), i.e. minimizing the spatial standard deviation of the magnetic field, as described by <xref rid="bib23" ref-type="bibr">Kim et al. (2002</xref>). It makes use of calibrated field maps for each shim coil to estimate the optimal shim currents in terms of the field homogeneity. The second shimming procedure aims at optimizing the local BOLD sensitivity (BS-based procedure), i.e. the parameter of interest in fMRI. This procedure makes use of the same calibrated field maps as the standard procedure. The field gradients are estimated by numerical differentiation from the field maps acquired prior to the fMRI experiment. The BS is estimated using Eqs. (1)–(3) above and the shim currents are optimized to maximize the BS over the ROI. The optimization and all simulations unless otherwise specified use the imaging parameters of the EPI sequence employed in this study (see below) and a value of T<sub>2</sub>⁎ = 45 ms (<xref rid="bib35" ref-type="bibr">Wansapura et al., 1999</xref>). To solve this non-linear optimization problem, an iterative conjugate gradient technique is applied. Since shim gradients opposing the phase-encoding (PE) gradient (here, in the <italic>y</italic> direction) lead to an increase of the local TE and therefore of the BS (Eq. (1)), the optimization of the BS is expected to favor a high <italic>G</italic><sub>PE</sub> component in the shim field. Therefore, the BS optimization requires further regularization in order to avoid excessive geometric distortions. To this end, a large background region was defined that included most of the brain, which should be on average well shimmed—in the following referred to as WSA. The regularization was ensured by optimizing the BS over the given ROI, while constraining the field homogeneity and especially the <italic>G</italic><sub>PE</sub> component in the WSA. The first step of the constrained BS-based procedure consists in optimizing the field homogeneity over the WSA, excluding the ROI, by using the standard FH-based procedure. Then the BS is optimized over the ROI, while ensuring that the magnetic field standard deviation over the WSA (including the ROI) is not greater than 180% of its initial value and the mean <italic>G</italic><sub>PE</sub> not greater than 2.5 Hz/pixel. The latter constraint limits the geometric distortions in the EPI image to approximately 5% compression (for the PE bandwidth = 47.35 Hz/pixel used in this study).</p>
+        <p>For both the FH-based and the BS-based procedures, hardware limits for the shim currents are taken into account. If the result exceeds the limits for one or more shim currents, the exceeding value is replaced by its maximum and kept constant, while the other shim currents are re-adjusted. However, this situation was never encountered when shimming with either procedure on our scanner.</p>
+        <p>The shimming procedures were implemented in C++ using the open-source libraries ITK (Insight Toolkit (<xref rid="bib18" ref-type="bibr">Ibanez et al., 2003</xref>)), VTK (the Visualization Toolkit (<xref rid="bib30" ref-type="bibr">Schroeder et al., 1998</xref>)) and FLTK (the Fast Light Toolkit, <ext-link xlink:href="http://www.fltk.org" ext-link-type="uri">www.fltk.org</ext-link>) for image processing, visualization and creation of a user interface allowing for the selection of the ROI and the definition of the WSA for the BS-based shimming procedure. The ROI and WSA can be defined as rectangular or ellipsoidal volumes to fit the experimental requirements. The optimization runs as an automated procedure, limiting user input to the definition of the ROI and providing the optimal shim currents as outputs. These outputs are then copied by the user to the manufacturer's scanner interface.</p>
+      </sec>
+      <sec>
+        <title>Breath-holding experiment to assess improvement in BOLD sensitivity</title>
+        <p>Although the BOLD sensitivity may be theoretically estimated from field maps, a breath-holding experiment was conducted (<xref rid="bib22" ref-type="bibr">Kastrup et al., 2001</xref>) in order to empirically determine whether and to what extent the predicted improvement in BS is translated into a higher functional sensitivity in an actual fMRI experiment. For example, the predicted increase in BS could theoretically be masked by an increase in temporal noise that is not considered in the above BS model. Breath holding as a hypercapnic challenge reliably increases the cerebral blood flow and the BOLD signal, and is comparable to CO<sub>2</sub> inhalation, as shown in previous studies (<xref rid="bib22" ref-type="bibr">Kastrup et al., 2001</xref>). It has been recently used to assess BOLD sensitivity changes related to TE and spatial resolution in standard EPI (<xref rid="bib39" ref-type="bibr">Weiskopf et al., 2007b</xref>) and <italic>z</italic>-shimming in spiral EPI (<xref rid="bib33" ref-type="bibr">Truong and Song, 2008</xref>).</p>
+        <p>The breath-holding experiment comprised four sessions. Each session consisted of four blocks of breath holding after expiration (duration = 30 s) alternating with blocks of free breathing (duration = 45 s), beginning and ending with free breathing. The subject was cued at the beginning of each block by visual display. Relatively long breath holding/free breathing periods were chosen to maximize the BOLD signal changes (<xref rid="bib21" ref-type="bibr">Kastrup et al., 1998</xref>) and to allow a steady breathing state to be reached. The sessions were acquired with either the FH-based technique (session A) or BS-based shimming technique (session B), following either an ABBA or BAAB acquisition order to avoid order and time effects. For each volunteer the ROI (average volume = 70 cm<sup>3</sup>) was defined to approximately cover the medial orbitofrontal cortex while the WSA (average volume = 1470 cm<sup>3</sup>) encompassed the whole brain (see ROI and WSA contours in <xref rid="fig2 fig4" ref-type="fig">Figs. 2 and 4</xref>). The BS-based shimming procedure optimized the BOLD sensitivity over the ROI with field homogeneity and <italic>y</italic>-gradient constraints over the WSA (including the ROI), while the FH-based shimming procedure optimized the field homogeneity over the WSA (including the ROI). The volunteers (<italic>n</italic> = 4, age 28–39 years, one female) gave written informed consent according to the guidelines of the local ethics committee.</p>
+      </sec>
+      <sec>
+        <title>MRI data acquisition and analysis</title>
+        <p>The experiments were carried out on a 3 T head-only scanner (Magnetom Allegra, Siemens Medical Solutions, Erlangen, Germany) operated with the standard transmit-receive quadrature head coil. Shimming was performed with the three first-order gradients (<italic>X</italic>, <italic>Y</italic> and <italic>Z</italic>) and five second-order shims (<italic>Z</italic><sup>2</sup>, <italic>ZX</italic>, <italic>ZY</italic>, <italic>X</italic><sup>2</sup>–<italic>Y</italic><sup>2</sup> and <italic>XY</italic>). Functional MRI data were acquired with a blipped EPI sequence with the following parameters: TR = 2080 ms, TE = 30 ms, FoV = 192 × 192 mm<sup>2</sup>, 64×64 matrix, 32 transverse slices with 2 mm thickness and 1 mm inter-slice gap, flip angle = 90°, echo-spacing = 330 μs. These EPI acquisition parameters are standard parameters, routinely used in fMRI studies at 3 T (<xref rid="bib2 bib6 bib25 bib32" ref-type="bibr">Bach et al., 2009; Corney et al., 2009; Krüger et al., 2001; Triantafyllou et al., 2005</xref>) and in previous studies related to BOLD sensitivity optimization (<xref rid="bib37" ref-type="bibr">Weiskopf et al., 2006</xref>). Images were reconstructed using a generalized reconstruction method based on the measured EPI k-space trajectory for minimal ghosting (<xref rid="bib20" ref-type="bibr">Josephs et al., 2000</xref>). A gradient-recalled sequence was applied to acquire two complex images with different echo times (TE = 4.92 and 7.38 ms respectively) and generate field maps. The difference between echo times was equal to one period of the water and lipid chemical shift difference at 3 T to reduce chemical shift effects. The other acquisition parameters were TR = 517 ms, FoV = 256 × 256 mm<sup>2</sup>, 64 × 64 matrix, 48 transverse slices with 4 mm thickness, flip angle = 90°, bandwidth = 260 Hz/pixel. Three field maps were acquired for each volunteer. In addition to an initial field map acquired for the calculation of the shim currents, two field maps acquired with either the BS-optimized or the FH-optimized shim currents were recorded at the end of the experiment for distortion correction of EPI data and calculation of the BS and effective TE maps after shimming. For each volunteer, the respiration was monitored with a breathing belt during the whole experiment and recorded using Spike2 and a CED 1401 interface (Cambridge Electronic Design, Cambridge, UK). In a separate session, a high resolution T<sub>1</sub>-weighted MDEFT image (<xref rid="bib11" ref-type="bibr">Deichmann et al., 2004</xref>) was acquired for reference and creation of a gray matter mask for each volunteer.</p>
+        <p>All data analyses were performed using SPM5 (Wellcome Trust Centre for Neuroimaging, London, UK), the Brain Extraction Tool (BET, (<xref rid="bib31" ref-type="bibr">Smith, 2002</xref>)), custom-made scripts in Matlab (The MathWorks, Natick, MA) and C++ implementation using the Insight Toolkit open-source library (<xref rid="bib18" ref-type="bibr">Ibanez et al., 2003</xref>). EPI time series were corrected for motion and distortion using Realign and Unwarp (<xref rid="bib1" ref-type="bibr">Andersson et al., 2001</xref>) together with the FieldMap toolbox (<xref rid="bib17" ref-type="bibr">Hutton et al., 2002</xref>) in SPM5. For each volunteer all images (including field maps and T<sub>1</sub>-weighted MDEFT images) were coregistered, resliced and smoothed with a Gaussian kernel of FWHM = 5 mm. The time series of each voxel was high-pass filtered with a cut-off period of 150 s. A general linear model (GLM) was applied to the time series of each voxel (<xref rid="bib41" ref-type="bibr">Worsley and Friston, 1995</xref>). Breath-holding blocks were modeled as a boxcar reference function derived from the respiration data and convolved with a Gaussian function (<italic>σ</italic> = 7.48 s) to account for the delayed and dispersed blood flow response (<xref rid="bib39" ref-type="bibr">Weiskopf et al., 2007b</xref>). In order to reduce artifacts caused by head motion, covariates derived from head motion parameters were included in the GLM (<xref rid="bib13" ref-type="bibr">Friston et al., 1996</xref>) as effects of no interest. Temporal autocorrelations were modeled by a first order autoregressive model. Voxels activated by the breath-holding challenge were determined by testing for significant positive correlation of the measured signal with the modeled response. <italic>T</italic> statistics were estimated for each voxel and activations passing a fixed voxel-wise threshold of <italic>t </italic>&gt; 3.11 were considered significant (<italic>p</italic> &lt; 0.001 uncorrected). Regression parameters of the GLM for the breath-holding effect were compared between BS-based shim sessions and FH-based shim sessions. Voxels showing a significant increase for the BS-based shim sessions compared to the FH-based shim sessions were determined using <italic>T</italic> statistics (<italic>p</italic> &lt; 0.001 uncorrected).</p>
+        <p>BS maps and TE maps were estimated from the field maps. Changes in FH, BS and TE in the ROI and the WSA were analyzed. The improvement in BS was calculated as the relative difference in BS: 2⁎(BS<sub>BS-based</sub> − BS<sub>FH-based</sub>)/(BS<sub>BS-based</sub> + BS<sub>FH-based</sub>). Significance of the improvement in BS was determined by a Friedman's test (non-parametric repeated measures comparisons (<xref rid="bib12" ref-type="bibr">Friedman, 1937</xref>)) comparing the data acquired using the BS-based and the FH-based shim. The FH, BS and TE changes predicted by the shim procedure were compared to the actual FH, BS and TE values achieved after shimming as determined from the field maps. For further exploration of the data, descriptive means and standard deviations (s.d.) were determined for each parameter across the ROI and WSA. In order to focus on gray matter voxels only and avoid partial volume effects, all maps (including statistical maps from the EPI time series analysis) were masked using a gray matter mask generated from the T<sub>1</sub>-weighted images.</p>
+      </sec>
+      <sec>
+        <title>Simulations</title>
+        <p>In contrast to FH-based shimming, the BS-based procedure is influenced by the selected EPI acquisition parameters. Therefore, to explore a larger range of factors affecting the optimization and to demonstrate the general applicability of the technique, we performed simulations to assess the effect of varying the regularization constraints for different sets of EPI acquisition parameters and for ROIs defined in other regions of the brain (in particular in the left and right orbitofrontal cortices characterized by a unipolar <italic>G</italic><sub>RO</sub> gradient field, unlike the medial orbitofrontal cortex). The optimization was performed on real data acquired on subject #1, using Eqs. (1) to (3). The results of the simulations were analyzed in terms of predicted field homogeneity (including <italic>G</italic><sub>PE</sub>, <italic>G</italic><sub>RO</sub>, and <italic>G</italic><sub>SS</sub>), BOLD sensitivity and effective TE. The standard EPI parameters were compared with alternative values for the nominal echo time (TC), echo spacing (Δ<italic>t</italic>), field of view (FoV) and slice thickness (Δ<italic>z</italic>). The behavior of the BS-based shimming was assessed by calculating the change in shim currents with respect to those obtained with the FH-based procedure.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results</title>
+      <sec>
+        <title>BOLD sensitivity estimated from field maps</title>
+        <p>The BS-based shim significantly increased the BOLD sensitivity (BS) compared to the FH-based shim for all subjects (Friedman's test, <italic>p</italic> &lt; 0.001). An increase between 8.1% and 10.8% was observed in the ROI and a global increase between 5.4% and 7.2% was observed in the WSA (including the ROI, <xref rid="fig1" ref-type="fig">Fig. 1</xref>a). The BS-based shim improved the field homogeneity in the ROI (field standard deviation reduced by 1.0% to 16.4% across the group) but decreased it in the WSA (including the ROI, field standard deviation increased by 83% to 103% across the group). An overall increase of the echo time of approximately 2 ms was observed with the BS-based technique compared to the FH-based technique. The FH, BS and TE maps theoretically predicted by the optimization procedure (before adjusting the shim currents) were in close agreement with the FH, BS and TE maps determined from the measured field maps after shimming (mean error less than 1%).</p>
+      </sec>
+      <sec>
+        <title>BOLD sensitivity improvement assessed by a breath-holding experiment</title>
+        <p><xref rid="fig2" ref-type="fig">Fig. 2</xref> shows the EPI images acquired with both shimming techniques before and after undistortion. Images acquired after BS-shimming are slightly compressed (<xref rid="fig2" ref-type="fig">Fig. 2</xref>b), with less than 5% compression. No significant differences in geometry were observed between both undistorted sets (<xref rid="fig2" ref-type="fig">Figs. 2</xref>c and d). The constraints on the field homogeneity and the <italic>G</italic><sub>PE</sub> shim component therefore guarantee the quality of the images. The breath-holding response overlaid on the T<sub>1</sub>-weighted MDEFT image is shown in <xref rid="fig3" ref-type="fig">Fig. 3</xref> for subject #4. The overall breath-holding effect for both shimming methods was highly significant for all subjects (threshold <italic>t</italic> &gt; 3.11, <italic>p</italic> &lt; 0.001 uncorrected). The relative increase in BS and <italic>T</italic> statistics for the improvement in detecting a breath-holding response with BS-based shimming are displayed in <xref rid="fig4" ref-type="fig">Fig. 4</xref>. The relative increase in BS was more pronounced in the ROI as expected for a local optimization method (<xref rid="fig1 fig4" ref-type="fig">Figs. 1a and 4a</xref>). Only a few voxels at the inferior edge of the ROI showed a relative decrease in BS (less than 5% of the voxels in the ROI in three out of four subjects and 9.7% in subject #2). For subjects #1–#3 the increase in detected activation during BS-based shimmed sessions compared to FH-based shimmed sessions proved significant (<italic>p</italic> &lt; 0.001, <italic>t</italic>-values &gt; 3.11) in 13% to 20% of the gray matter voxels in the ROI (<xref rid="fig1 fig4" ref-type="fig">Figs. 1b and 4b</xref>). The number of voxels showing a significantly decreased activation did not exceed 0.5% in the ROI or 1.1% in the WSA for any subject. In subject #4, the BS-based shim did not lead to an improved detection of the breath-holding response.</p>
+        <p>Analysis of the respiratory data showed that the respiratory rate and breath-holding periods did not significantly vary between sessions and blocks for all subjects. The respiratory rates of subjects #1–#3 were close to their spontaneous breathing frequency (between 0.2 and 0.3 Hz) with breath-holding periods close to 30 s. However, subject #4 showed an unusually low breathing frequency (down to 0.09 Hz) when performing the task with significantly shorter breath-holding periods (20 s instead of 30 s).</p>
+      </sec>
+      <sec>
+        <title>Simulations</title>
+        <p><xref rid="fig5" ref-type="fig">Fig. 5</xref> illustrates the effect of varying the regularization constraints for different sets of EPI parameters. In this figure the simulation results were based on the data from subject #1, using the same ROI and WSA as in the breath-holding experiment. No constraint on <italic>G</italic><sub>PE</sub> was applied. The graphs show how the estimated mean BS obtained in the ROI and the mean <italic>G</italic><sub>PE</sub> observed in the WSA change as the constraint on the field standard deviation is varied. The figure demonstrates that for this parameter space, there is a monotonic dependency of the optimal BS on both the field homogeneity constraint and on <italic>G</italic><sub>PE</sub>, confirming that boundary conditions are required to avoid excessive image distortion and signal loss outside the ROI.</p>
+        <p><xref rid="tbl1" ref-type="table">Table 1</xref> shows the change in the shim currents simulated for the BS-based shimming relative to those obtained for the FH-based shimming for different sets of EPI parameters. The table shows simulation results based on the data from subject #1 using the same ROI and WSA as in the breath-holding experiment and allows the behavior of the BS-based shimming procedure to be characterized. For example, an increase of the TC from the standard value of 30 to 40 ms led to a larger change in the <italic>Z</italic> shim term and a smaller change in the <italic>Y</italic> shim term. This behavior can be explained by the increase of the influence of the factor <italic>α</italic><sub>SS</sub> on the optimization (from Eq. (3)) which leads to an increase in the <italic>Z</italic> shim term to reduce <italic>G</italic><sub>SS</sub> and a smaller change in the <italic>Y</italic> term which is related to <italic>G</italic><sub>PE</sub>. Also as a result of increasing TC, there is more through-plane dephasing and hence the BS reduction is more pronounced. Equally, an increase of the slice thickness increased the impact of the <italic>Z</italic> shim. The change of the field of view or echo spacing did not have such a pronounced effect, but it affected which of the two boundary conditions (on field homogeneity or <italic>G</italic><sub>PE</sub>) regularized the optimization.</p>
+        <p>The results of the simulations for different anatomical ROIs also demonstrated how the different field gradients within the ROI, <italic>G</italic><sub>PE</sub>, <italic>G</italic><sub>RO</sub> and <italic>G</italic><sub>SS</sub>, influenced the balance between the three BS factors <italic>α</italic><sub>PE</sub>, <italic>α</italic><sub>RO</sub> and <italic>α</italic><sub>SS</sub> and hence the resulting BS (in particular in the WSA). As an example, the left orbitofrontal cortex exhibited a unipolar <italic>G</italic><sub>RO</sub> gradient which led to a larger contribution of <italic>α</italic><sub>RO</sub> in the BS optimization, and a larger contribution of the <italic>G</italic><sub>RO</sub> components in the resulting shim currents (data not shown). The BS gain estimated in the ROI was similar to the one observed with the medial orbitofrontal cortex but was smaller in the WSA due to the <italic>G</italic><sub>RO</sub> contribution.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>This study introduces a novel approach to setting the shim currents for fMRI, directly optimizing the BOLD sensitivity (BS) instead of the field homogeneity (FH) as is conventionally done. The theory and implementation of the BS-based shimming technique is presented and validated using estimated BS maps and a breath-holding experiment. The use of first and second-order shim coils in the optimization process allows for a local optimization of the BOLD sensitivity. The ROI can be defined easily in an interactive user interface as rectangular or ellipsoidal volumes to fit the experimental requirements. The BS-based shimming technique significantly increases the BOLD sensitivity in the target ROI (the medial orbitofrontal in this study). Furthermore, it does not significantly decrease the sensitivity in any other brain area.</p>
+      <sec>
+        <title>Comparison with existing methods</title>
+        <p>Various techniques have been proposed previously to compensate for susceptibility artifacts in EPI and directly or indirectly optimize the BOLD sensitivity. By minimizing the field standard deviation and especially its through-plane component, the standard shimming techniques (<xref rid="bib15 bib23 bib28 bib36" ref-type="bibr">Gruetter, 1993; Kim et al., 2002; Prammer et al., 1988; Webb and Macovski, 1991</xref>) reduce signal loss and indirectly increase the BS, even though the BS is not explicitly the target parameter. To our knowledge, this work incorporates for the first time the direct optimization of BS as the objective in shimming and thus outperforms the conventional shimming approaches for fMRI. Compared to existing methods for BS optimization that optimize the slice tilt (<xref rid="bib10" ref-type="bibr">Deichmann et al., 2003</xref>), spatial resolution (<xref rid="bib39" ref-type="bibr">Weiskopf et al., 2007b</xref>), phase-encoding direction (<xref rid="bib8 bib37" ref-type="bibr">De Panfilis and Schwarzbauer, 2005; Weiskopf et al., 2006</xref>) or <italic>z</italic>-shimming gradient (<xref rid="bib5 bib10 bib14 bib26 bib37 bib43" ref-type="bibr">Constable and Spencer, 1999; Deichmann et al., 2003; Glover, 1999; Merboldt et al., 2000; Weiskopf et al., 2006; Yang et al., 1997</xref>), the BS-based shimming method compensates susceptibility-induced gradients rather locally using higher-order shim coils. Since the conventional BS optimization methods use only linear compensation gradients and global strategies to compensate field gradients in the target ROI, they may exacerbate BS losses in non-target areas (<xref rid="bib37" ref-type="bibr">Weiskopf et al., 2006</xref>). The constraints applied to the BS-based optimization presented here prevent this from happening.</p>
+        <p>Localized FH-based shimming techniques may also lead to severe signal loss and image distortions in areas outside the target ROI (<xref rid="bib29" ref-type="bibr">Schneider and Glover, 1991</xref>). However, <xref rid="bib40" ref-type="bibr">Wilson et al. (2002</xref>) have developed an automated shimming procedure that optimizes the FH preferentially over a target ROI while ensuring sufficient field homogeneity in the whole brain. Although this local FH-based optimization procedure led to an increase in BS in the target ROI, the optimization specifically targets the FH and improves the BS only indirectly. Since the BS depends non-linearly on the FH (<xref rid="bib9 bib39" ref-type="bibr">Deichmann et al., 2002; Weiskopf et al., 2007b</xref>), the average BS in a region of interest may not be optimal even when the average field homogeneity is optimized as done by FH-based shimming. A comparison of the presented local BS-based optimization with a local FH-based optimization as described by <xref rid="bib40" ref-type="bibr">Wilson et al. (2002</xref>) would be interesting but is out of the scope of the current study which focuses on the novel BS optimization itself.</p>
+        <p>The BS-based shim would benefit from dynamically updating the shim currents, in order to achieve a better global BS optimization from locally optimized shim currents (<xref rid="bib4 bib7" ref-type="bibr">Blamire et al., 1996; de Graaf et al., 2003</xref>). With dynamic shimming the shim currents for each slice acquired are updated in real-time. Since the brain can be divided into subvolumes including voxels of similar field gradients which require similar compensations for an optimal BS (<xref rid="bib37" ref-type="bibr">Weiskopf et al., 2006</xref>), the BS-based shimming would especially benefit from the recent concept of parcellated dynamic shimming (<xref rid="bib27" ref-type="bibr">Poole and Bowtell, 2008</xref>) where the shim currents are optimized for each subvolume separately. Dynamic shimming requires hardware and software modifications that are not readily available for standard clinical MRI scanners. However, this limitation mainly applies to second-order shim terms. The linear <italic>X</italic>, <italic>Y</italic> and <italic>Z</italic> shim terms can generally be dynamically updated on standard MRI scanners. A dynamic update of these components, even for a simple slice-based parcellation of the volume, is expected to improve the BS gain based on a recent study using slice-dependent <italic>z</italic>-shim which was optimized using the BS model presented here (<xref rid="bib38" ref-type="bibr">Weiskopf et al., 2007a</xref>).</p>
+        <p>In general the improvement in BOLD sensitivity due to the BS-based shimming technique can readily be combined with other BS optimization methods, such as <italic>z</italic>-shimming, optimized slice tilt, and optimized phase-encoding direction (<xref rid="bib10 bib9 bib37" ref-type="bibr">Deichmann et al., 2003; Deichmann et al., 2002; Weiskopf et al., 2006</xref><xref rid="bib39" ref-type="bibr">, 2007b</xref>), to improve even further the BS in areas suffering from susceptibility artifacts.</p>
+      </sec>
+      <sec>
+        <title>Considerations</title>
+        <p>The BS-based shimming procedure yields a local effect on the ROI but also a more wide-spread effect on the WSA. An important qualitative difference between the regions and between the shimming procedures results from the optimization of the <italic>G</italic><sub>PE</sub> to increase the local BS and its interaction with the optimization constraints. Compared to FH-based shimming, the BS optimization will usually lead to an increased <italic>G</italic><sub>PE</sub>, as theoretically predicted from Eq. (1) (<italic>α</italic><sub>PE</sub>) and observed in this study (<xref rid="tbl1" ref-type="table">Table 1</xref>). This increase in <italic>G</italic><sub>PE</sub> causes a relative increase of the local TE and a compression of the imaging voxel. Indeed, such an increase was observed in the orbitofrontal cortex ROI, bringing the local TE close to the nominal TE value (TC) and reducing the susceptibility-induced stretching of the voxels in this area while increasing the BS by ∼ 9% (<xref rid="fig1" ref-type="fig">Fig. 1</xref>a). For example in subject 1, compared to the FH-based shimming which yielded a 7.8% stretching in the ROI and TE = 27.1 ms, the BS-based shimming yielded only a 1.2% stretching in the ROI and TE = 29.4 ms, efficiently compensating for local susceptibility gradients (by use of first- and second-order shims, <xref rid="tbl1" ref-type="table">Table 1</xref>).</p>
+        <p>Further to this local ROI effect, we also observed a small but wide-spread voxel compression (∼ 4.1% in experimental data and simulations on subject #1, <xref rid="fig2 fig5" ref-type="fig">Figs. 2 and 5</xref> respectively) and an increase of TE (from TE = 29.6 ms with the FH-based procedure to TE = 31.2 ms with the BS-based procedure) in the WSA. This change should theoretically increase the BS by ∼ 5% in areas without field inhomogeneities and may explain a significant amount of the BS increase observed in the WSA. Note that the same increase could also be achieved in perfectly shimmed areas by increasing the nominal TE and FoV in the PE direction. It is not surprising that a global change of these parameters can increase the BS in the WSA, since the nominal TC = 30 ms and voxel dimension of 3 mm is a trade-off between EPI parameters for perfectly shimmed areas and areas affected by susceptibility-induced gradients (<xref rid="bib37" ref-type="bibr">Weiskopf et al., 2006</xref>), i.e. it is slightly sub-optimal for relatively well-shimmed areas such as the WSA. Although the BS increase is desired, the accompanying voxel compression needs to be limited in order to maintain a high spatial fidelity. Therefore, the optimization is regularized by ensuring that relative voxel dimension changes do not exceed 5%.</p>
+        <p>The regularization not only avoids excessive image distortion but also signal loss in areas not included in the ROI. Extensive simulations revealed that for the given susceptibility-induced field inhomogeneities and EPI parameters the BS is a monotonic function that increases when increasing the constraint related to the field standard deviation (<xref rid="fig5" ref-type="fig">Fig. 5</xref>). As previously reported (<xref rid="bib3" ref-type="bibr">Balteau and Weiskopf, 2008</xref>), a tight constraint may overly limit the BS improvement, while no constraint leads to severe distortion and signal loss. Therefore, the constraints play an essential role and must be carefully chosen based on external criteria. The field standard deviation was limited to a relative increase of 180%, since this variation was commonly observed and accepted under global shimming conditions across a defined set of regions of interest (<xref rid="bib40" ref-type="bibr">Wilson et al., 2002</xref>). The constraint on <italic>G</italic><sub>PE</sub> was chosen to allow distortion of no more than 5% in the phase encoding direction. Although we strongly recommend that undistortion is applied in the post-processing, we consider this level of overall compression/stretching to be just acceptable in standard group studies using typical spatial smoothing kernels. It should be emphasized that the BS-based optimization targets the mean of the estimated BS over the ROI. As a result, a few voxels in the ROI showed a relative decrease in BS. Alternative optimization schemes could be used that minimize any BS decrease even in single voxels using a different objective function (e.g. weighted mean).</p>
+        <p>The breath-holding experiment used to assess the increase of functional sensitivity reflects closely an fMRI experiment but still differs slightly. In particular, it is difficult to control for the breath-holding performance of the subjects, since extensive breath-holding periods are required. Here, one of the four subjects performed rather poorly, leading to short and variable breath-holding periods. This may explain why no significant increase in the breath-holding response was observed after BS-based shimming, although an improved BS was predicted by the shim procedure. Further, the challenging breath-holding task leads to head motion patterns that may be different from patterns typically observed in fMRI, affecting the temporal noise.</p>
+        <p>The ROI and WSA are defined by the user with the graphical user interface. This may lead to some variation of the anatomical definition and consequently shim performance across subjects in a multi-subject study. However, the ROI/WSA are usually relatively large, making the shim optimization rather insensitive to small mis-alignments/mis-definitions. Further, the current approach could be combined with an automatic registration and segmentation of the brain in pre-defined regions of interest (<xref rid="bib40" ref-type="bibr">Wilson et al., 2002</xref>) to reduce the user-related variability in the shim. For example, a set of named problematic regions of interest could be defined independently on a template and subsequently selected by the user and included or excluded from the BS optimization.</p>
+        <p>There are a few situations where the BS-based procedure may not be preferable to a standard FH-based shimming procedure for fMRI studies. First, the BS-based method should not be used for fMRI studies requiring a high resolution and spatial accuracy if no image undistortion is applied, since the localization of the BOLD response may be incorrect due to increased <italic>G</italic><sub>PE</sub> values. However, in group studies that usually include spatial normalization and significant spatial smoothing, this may be of less concern. Second, to our knowledge, there is no established integrative model for estimating physiological noise in areas affected by susceptibility artifacts. As an approximation, our BS model does not take into account the effect of the physiological noise on the BS estimate and our results show that this approximation is effective in increasing the BS for the particular EPI parameters and field strength used here. However, as a precaution, we would recommend not to use this model without additional testing at higher SNR (resulting from e.g. larger voxel size or higher field strength) due to the relatively higher physiological noise component that would affect the accuracy of the BS estimate (refer also to following discussion on an integrative BS model). Third, the BS optimization is a non-linear problem, making it more sensitive to noise in the field maps and convergence to local minima. In particular, the size of the ROI should be large enough to achieve low noise estimates for the BS. With a small ROI and noisy field map data, discontinuities in the BS cost function can appear and the iterative conjugate gradient optimization method may fail. An alternative optimization algorithm like simulated annealing (<xref rid="bib16 bib19" ref-type="bibr">Haddock and Mittenthal, 1992; Ikonomidou et al., 2005</xref>) may improve the convergence in these cases.</p>
+        <p>Although the optimization algorithm is fast (less than 2 min on the scanner console; Intel Xeon, 3.6 GHz, 4 cores, 2 GB RAM), several time-consuming steps could be modified to reduce the duration of the shimming procedure. Faster MRI sequences (e.g. EPI) could be used to acquire the initial field map, while 3D acquisition techniques would increase the signal-to-noise ratio. Currently, the optimized shim values must be copied manually to the manufacturer's user interface. Time would be saved and errors would be avoided if these values were directly applied to the system.</p>
+      </sec>
+      <sec>
+        <title>Implementation on other systems</title>
+        <p>Although the technique has been implemented on a specific system and for a particular set of acquisition parameters, it can be readily adapted to other systems and other EPI protocols. Moreover the effect of changing the EPI acquisition parameters was investigated in this study using simulations based on the BS model. The results provide a qualitative description of the model behavior. In practice, the implementation of the technique on another system requires (1) the acquisition of a set of reference field maps characterizing the scanner's shim coils and (2) specifying the EPI sequence and system parameters, namely: nominal echo time (TC), spatial resolution, echo spacing, PE bandwidth and T<sub>2</sub>⁎ of the brain tissue. The reference field maps are acquired and pre-processed once and used by the optimization procedure to predict the effect of the shim currents. The reference set is system-dependent and a new reference set should be acquired if a major software or hardware upgrade is applied to the system. The other EPI and system-specific parameters are stored in a text file and can be easily adapted. The procedure can run on computers with relatively low specifications (a minimum of 1.66 GHz CPU and 1 GB RAM is recommended) and requires no additional software. Note that for a local optimization, second- or even higher-order shim coils should be available on the system.</p>
+      </sec>
+      <sec>
+        <title>An integrative BOLD sensitivity model: perspectives</title>
+        <p>At 3 T, the physiological noise can dominate the other noise components and affect the gain in SNR expected at higher field strength (<xref rid="bib24 bib25 bib32 bib34 bib42" ref-type="bibr">Krüger and Glover, 2001; Krüger et al., 2001; Triantafyllou et al., 2005; Van de Moortele et al., 2008; Wu and Li, 2005</xref>). The BS model used in this experiment assumes a simplified, constant noise model independent from the optimization parameters. However, recent noise models show that the relative physiological noise contribution depends on the thermal SNR and thus on field strength, signal intensity and TE (<xref rid="bib24 bib25 bib32 bib34 bib42" ref-type="bibr">Krüger and Glover, 2001; Krüger et al., 2001; Triantafyllou et al., 2005; Van de Moortele et al., 2008; Wu and Li, 2005</xref>). Since the physiological noise increases when increasing the local TE and the signal intensity, it will be affected by shimming. So far these models are not directly applicable to BS shim optimization, since they do not take susceptibility and off-resonance effects into account. In the future, the accuracy of the BS estimate may benefit from an integrative approach combining models of all noise sources and susceptibility-related BS changes.</p>
+        <p>With the EPI parameters used in this experiment (3 × 3 × 2 mm<sup>3</sup> resolution, 90° flip angle) thermal noise dominates over the physiological noise with a physiological-to-thermal noise ratio of approximately 0.89 (<xref rid="bib32" ref-type="bibr">Triantafyllou et al., 2005</xref>). In this regime dominated by thermal noise, our results suggest that the simplified noise model used for BS optimization is still a good approximation and would also work for higher spatial resolution and lower flip angle (i.e., lower SNR). However, neglecting the physiological noise still affects the accuracy of the BS estimate. Qualitatively, an increase of the local TE and/or signal intensity leads to a relative increase of the physiological noise and limits the maximally achievable BS. In particular, the physiological noise is expected to penalize an excessive compression in the image (increase in voxel size) due to the increase in the <italic>G</italic><sub>PE</sub> field gradient component (decrease of the factor <italic>Q</italic>, increase of the factor <italic>α</italic><sub>PE</sub>) and lead to a stronger contribution from the factors <italic>α</italic><sub>RO</sub> and <italic>α</italic><sub>SS</sub>. The resulting BS gain is expected to be smaller than estimated in this study. This refinement of the BS model may be particularly relevant for high SNR EPI acquisitions (large voxels, ultra high fields, etc.) and further developments of the technique are under investigation. In practice, the implementation and use of an integrative BS model require the estimation of the noise components' standard deviation and correlation factors (<xref rid="bib42" ref-type="bibr">Wu and Li, 2005</xref>). These parameters are system- and sequence-dependent, but seem to be relatively consistent across a group of healthy volunteers, and can be estimated from a multi-echo fMRI experiment as described by (<xref rid="bib42" ref-type="bibr">Wu and Li, 2005</xref>). Either single-subject estimates from a pre-scan experiment or group mean values could be used, the latter reducing the duration of the procedure.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Conclusion</title>
+      <p>We have presented and validated a method for improved shimming in fMRI. It directly optimizes the BOLD sensitivity, unlike previous approaches targeting the field homogeneity. The method is fast and operator-independent and can be readily combined with other methods for BOLD sensitivity recovery in areas affected by susceptibility-induced field inhomogeneities.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>We thank Oliver Josephs for very helpful discussions during the preparation of the manuscript. This study was supported by the <italic>Wellcome Trust</italic> (United Kingdom) and by grants of the Belgian <italic>Fonds National de la Recherche Scientifique</italic> (F.N.R.S.) and the <italic>Royal Society</italic> (European Science Exchange Programme) to EB.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Andersson</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Hutton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modeling geometric deformations in EPI time series</article-title>
+          <source>Neuroimage</source>
+          <year>2001</year>
+          <volume>13</volume>
+          <fpage>903</fpage>
+          <lpage>919</lpage>
+          <pub-id pub-id-type="pmid">11304086</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bach</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Seymour</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural activity associated with the passive prediction of ambiguity and risk for aversive events</article-title>
+          <source>J. Neurosci.</source>
+          <year>2009</year>
+          <volume>29</volume>
+          <fpage>1648</fpage>
+          <lpage>1656</lpage>
+          <pub-id pub-id-type="pmid">19211872</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Balteau</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Weiskopf</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>A shimming procedure for fMRI, optimizing the local BOLD sensitivity</article-title>
+          <source>Proceedings of the ISMRM 16th Scientific Meeting and Exhibition</source>
+          <year>2008</year>
+          <fpage>2455</fpage>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Blamire</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Rothman</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Nixon</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic shim updating: a new approach towards optimized whole brain shimming</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1996</year>
+          <volume>36</volume>
+          <fpage>159</fpage>
+          <lpage>165</lpage>
+          <pub-id pub-id-type="pmid">8795035</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Constable</surname>
+              <given-names>R.T.</given-names>
+            </name>
+            <name>
+              <surname>Spencer</surname>
+              <given-names>D.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Composite image formation in z-shimmed functional MR imaging</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1999</year>
+          <volume>42</volume>
+          <fpage>110</fpage>
+          <lpage>117</lpage>
+          <pub-id pub-id-type="pmid">10398956</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Corney</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Haynes</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Rees</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Lotto</surname>
+              <given-names>R.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>The brightness of colour</article-title>
+          <source>PLoS ONE</source>
+          <year>2009</year>
+          <volume>4</volume>
+          <fpage>e5091</fpage>
+          <pub-id pub-id-type="pmid">19333398</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>de Graaf</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>P.B.</given-names>
+            </name>
+            <name>
+              <surname>McIntyre</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Rothman</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Nixon</surname>
+              <given-names>T.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic shim updating (DSU) for multislice signal acquisition</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>2003</year>
+          <volume>49</volume>
+          <fpage>409</fpage>
+          <lpage>416</lpage>
+          <pub-id pub-id-type="pmid">12594742</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>De Panfilis</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Schwarzbauer</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Positive or negative blips? The effect of phase encoding scheme on susceptibility-induced signal losses in EPI</article-title>
+          <source>Neuroimage</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>112</fpage>
+          <lpage>121</lpage>
+          <pub-id pub-id-type="pmid">15734348</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Hutton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Corfield</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Compensation of susceptibility-induced BOLD sensitivity losses in echo-planar fMRI imaging</article-title>
+          <source>Neuroimage</source>
+          <year>2002</year>
+          <volume>15</volume>
+          <fpage>120</fpage>
+          <lpage>135</lpage>
+          <pub-id pub-id-type="pmid">11771980</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Gottfried</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Hutton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimized EPI for fMRI studies of the orbitofrontal cortex</article-title>
+          <source>Neuroimage</source>
+          <year>2003</year>
+          <volume>19</volume>
+          <fpage>430</fpage>
+          <lpage>441</lpage>
+          <pub-id pub-id-type="pmid">12814592</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Schwarzbauer</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimisation of the 3D MDEFT sequence for anatomical brain imaging: technical implications at 1.5 and 3 T</article-title>
+          <source>Neuroimage</source>
+          <year>2004</year>
+          <volume>21</volume>
+          <fpage>757</fpage>
+          <lpage>767</lpage>
+          <pub-id pub-id-type="pmid">14980579</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friedman</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The use of ranks to avoid the assumption of normality implicit in the analysis of variance</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <year>1937</year>
+          <volume>32</volume>
+          <fpage>675</fpage>
+          <lpage>701</lpage>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Howard</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Movement-related effects in fMRI time-series</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1996</year>
+          <volume>35</volume>
+          <fpage>346</fpage>
+          <lpage>355</lpage>
+          <pub-id pub-id-type="pmid">8699946</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glover</surname>
+              <given-names>G.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>3D z-shim method for reduction of susceptibility effects in BOLD fMRI</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1999</year>
+          <volume>42</volume>
+          <fpage>290</fpage>
+          <lpage>299</lpage>
+          <pub-id pub-id-type="pmid">10440954</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gruetter</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automatic, localized in vivo adjustment of all first- and second-order shim coils</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1993</year>
+          <volume>29</volume>
+          <fpage>804</fpage>
+          <lpage>811</lpage>
+          <pub-id pub-id-type="pmid">8350724</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Haddock</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Mittenthal</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Simulation optimization using simulated annealing</article-title>
+          <source>Comput. Ind. Eng.</source>
+          <year>1992</year>
+          <volume>22</volume>
+          <fpage>387</fpage>
+          <lpage>395</lpage>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hutton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bork</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Image distortion correction in fMRI: a quantitative evaluation</article-title>
+          <source>Neuroimage</source>
+          <year>2002</year>
+          <volume>16</volume>
+          <fpage>217</fpage>
+          <lpage>240</lpage>
+          <pub-id pub-id-type="pmid">11969330</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ibanez</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Schroeder</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Ng</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Cates</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The ITK Software Guide</article-title>
+          <year>2003</year>
+          <publisher-name>Kitware, Inc</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ikonomidou</surname>
+              <given-names>V.N.</given-names>
+            </name>
+            <name>
+              <surname>van Gelderen</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>de Zwart</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Fukunaga</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Duyn</surname>
+              <given-names>J.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimizing brain tissue contrast with EPI: a simulated annealing approach</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>2005</year>
+          <volume>54</volume>
+          <fpage>373</fpage>
+          <lpage>385</lpage>
+          <pub-id pub-id-type="pmid">16032676</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Trajectory measurement and generalised reconstruction in rectilinear EPI</article-title>
+          <source>Proceedings of the ISMRM 8th Scientific Meeting and Exhibition</source>
+          <year>2000</year>
+          <fpage>1517</fpage>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kastrup</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>T.Q.</given-names>
+            </name>
+            <name>
+              <surname>Takahashi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Glover</surname>
+              <given-names>G.H.</given-names>
+            </name>
+            <name>
+              <surname>Moseley</surname>
+              <given-names>M.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional magnetic resonance imaging of regional cerebral blood oxygenation changes during breath holding</article-title>
+          <source>Stroke</source>
+          <year>1998</year>
+          <volume>29</volume>
+          <fpage>2641</fpage>
+          <lpage>2645</lpage>
+          <pub-id pub-id-type="pmid">9836778</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kastrup</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kruger</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Neumann-Haefelin</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Moseley</surname>
+              <given-names>M.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessment of cerebrovascular reactivity with functional magnetic resonance imaging: comparison of CO(2) and breath holding</article-title>
+          <source>Magn. Reson. Imaging.</source>
+          <year>2001</year>
+          <volume>19</volume>
+          <fpage>13</fpage>
+          <lpage>20</lpage>
+          <pub-id pub-id-type="pmid">11295341</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>D.H.</given-names>
+            </name>
+            <name>
+              <surname>Adalsteinsson</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Glover</surname>
+              <given-names>G.H.</given-names>
+            </name>
+            <name>
+              <surname>Spielman</surname>
+              <given-names>D.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Regularized higher-order in vivo shimming</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>2002</year>
+          <volume>48</volume>
+          <fpage>715</fpage>
+          <lpage>722</lpage>
+          <pub-id pub-id-type="pmid">12353290</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krüger</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Glover</surname>
+              <given-names>G.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Physiological noise in oxygenation-sensitive magnetic resonance imaging</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>2001</year>
+          <volume>46</volume>
+          <fpage>631</fpage>
+          <lpage>637</lpage>
+          <pub-id pub-id-type="pmid">11590638</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krüger</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Kastrup</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Glover</surname>
+              <given-names>G.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroimaging at 1.5 T and 3.0 T: comparison of oxygenation-sensitive magnetic resonance imaging</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>2001</year>
+          <volume>45</volume>
+          <fpage>595</fpage>
+          <lpage>604</lpage>
+          <pub-id pub-id-type="pmid">11283987</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Merboldt</surname>
+              <given-names>K.D.</given-names>
+            </name>
+            <name>
+              <surname>Finsterbusch</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Frahm</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reducing inhomogeneity artifacts in functional MRI of human brain activation—thin sections vs. gradient compensation</article-title>
+          <source>J. Magn. Reson.</source>
+          <year>2000</year>
+          <volume>145</volume>
+          <fpage>184</fpage>
+          <lpage>191</lpage>
+          <pub-id pub-id-type="pmid">10910686</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poole</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Bowtell</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Volume parcellation for improved dynamic shimming</article-title>
+          <source>Magma</source>
+          <year>2008</year>
+          <volume>21</volume>
+          <fpage>31</fpage>
+          <lpage>40</lpage>
+          <pub-id pub-id-type="pmid">18180969</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Prammer</surname>
+              <given-names>M.G.</given-names>
+            </name>
+            <name>
+              <surname>Haselgrove</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Shinnar</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Leigh</surname>
+              <given-names>J.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new approach to automatic shimming</article-title>
+          <source>J. Magn. Reson.</source>
+          <year>1988</year>
+          <volume>77</volume>
+          <fpage>40</fpage>
+          <lpage>52</lpage>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schneider</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Glover</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Rapid in vivo proton shimming</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1991</year>
+          <volume>18</volume>
+          <fpage>335</fpage>
+          <lpage>347</lpage>
+          <pub-id pub-id-type="pmid">2046515</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schroeder</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Lorensen</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Visualization Toolkit</article-title>
+          <year>1998</year>
+          <publisher-name>Prentice Hall PTR</publisher-name>
+          <publisher-loc>Upper Saddle River, New Jersey</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast robust automated brain extraction</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2002</year>
+          <volume>17</volume>
+          <fpage>143</fpage>
+          <lpage>155</lpage>
+          <pub-id pub-id-type="pmid">12391568</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Triantafyllou</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Hoge</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Krueger</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Wiggins</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Potthast</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wiggins</surname>
+              <given-names>G.C.</given-names>
+            </name>
+            <name>
+              <surname>Wald</surname>
+              <given-names>L.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparison of physiological noise at 1.5 T, 3 T and 7 T and optimization of fMRI acquisition parameters</article-title>
+          <source>Neuroimage</source>
+          <year>2005</year>
+          <volume>26</volume>
+          <fpage>243</fpage>
+          <lpage>250</lpage>
+          <pub-id pub-id-type="pmid">15862224</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Truong</surname>
+              <given-names>T.K.</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>A.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Single-shot dual-z-shimmed sensitivity-encoded spiral-in/out imaging for functional MRI with reduced susceptibility artifacts</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>2008</year>
+          <volume>59</volume>
+          <fpage>221</fpage>
+          <lpage>227</lpage>
+          <pub-id pub-id-type="pmid">18050341</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Van de Moortele</surname>
+              <given-names>P.F.</given-names>
+            </name>
+            <name>
+              <surname>Ugurbil</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Lehericy</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Is T2⁎ always the optimum echo time in BOLD fMRI? Challenging a common concept with a new contrast to noise ratio BOLD model</article-title>
+          <source>Proceedings of the ISMRM 16th Scientific Meeting and Exhibition</source>
+          <year>2008</year>
+          <fpage>2464</fpage>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wansapura</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Holland</surname>
+              <given-names>S.K.</given-names>
+            </name>
+            <name>
+              <surname>Dunn</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Ball</surname>
+              <given-names>W.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>NMR relaxation times in the human brain at 3.0 tesla</article-title>
+          <source>J. Magn. Reson. Imaging</source>
+          <year>1999</year>
+          <volume>9</volume>
+          <fpage>531</fpage>
+          <lpage>538</lpage>
+          <pub-id pub-id-type="pmid">10232510</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Webb</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Macovski</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Rapid, fully automatic, arbitrary-volume in vivo shimming</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1991</year>
+          <volume>20</volume>
+          <fpage>113</fpage>
+          <lpage>122</lpage>
+          <pub-id pub-id-type="pmid">1943653</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Weiskopf</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Hutton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimal EPI parameters for reduction of susceptibility-induced BOLD sensitivity losses: a whole-brain analysis at 3 T and 1.5 T</article-title>
+          <source>Neuroimage</source>
+          <year>2006</year>
+          <volume>33</volume>
+          <fpage>493</fpage>
+          <lpage>504</lpage>
+          <pub-id pub-id-type="pmid">16959495</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Weiskopf</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Hutton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated slice-dependent z-shim for fMRI: user-independent reduction of BOLD sensitivity losses</article-title>
+          <source>Proceedings of the ISMRM 15th Scientific Meeting and Exhibition</source>
+          <year>2007</year>
+          <fpage>3314</fpage>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Weiskopf</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Hutton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimized EPI for fMRI studies of the orbitofrontal cortex: compensation of susceptibility-induced gradients in the readout direction</article-title>
+          <source>Magma</source>
+          <year>2007</year>
+          <volume>20</volume>
+          <fpage>39</fpage>
+          <lpage>49</lpage>
+          <pub-id pub-id-type="pmid">17268781</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wilson</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Jenkinson</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>de Araujo</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Kringelbach</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Rolls</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Jezzard</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast, fully automated global and local magnetic field optimization for fMRI of the human brain</article-title>
+          <source>Neuroimage</source>
+          <year>2002</year>
+          <volume>17</volume>
+          <fpage>967</fpage>
+          <pub-id pub-id-type="pmid">12377170</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of fMRI time-series revisited—again</article-title>
+          <source>Neuroimage</source>
+          <year>1995</year>
+          <volume>2</volume>
+          <fpage>173</fpage>
+          <lpage>181</lpage>
+          <pub-id pub-id-type="pmid">9343600</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wu</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>S.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Theoretical noise model for oxygenation-sensitive magnetic resonance imaging</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>2005</year>
+          <volume>53</volume>
+          <fpage>1046</fpage>
+          <lpage>1054</lpage>
+          <pub-id pub-id-type="pmid">15844094</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>Q.X.</given-names>
+            </name>
+            <name>
+              <surname>Dardzinski</surname>
+              <given-names>B.J.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Eslinger</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>M.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multi-gradient echo with susceptibility inhomogeneity compensation (MGESIC): demonstration of fMRI in the olfactory cortex at 3.0 T</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1997</year>
+          <volume>37</volume>
+          <fpage>331</fpage>
+          <lpage>335</lpage>
+          <pub-id pub-id-type="pmid">9055220</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>(a) BS percent increase (mean ± s.d.) observed with the BS-based shimming technique compared to the FH-based shimming technique. (b) Percentage of voxels showing a significant increase in sensitivity to the breath-holding activation with the BS-based shimming technique compared to the FH-based technique. All values estimated from gray matter voxels significantly activated by the breath-holding challenge only.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Transverse EPI slices from subject #1 acquired during the first FH-based shimming session (a, c) and the first BS-based session (b, d). Slices are displayed before (a, b) and after (c, d) undistortion. The ROI is overlaid in red on the undistorted images. Images are windowed identically.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Statistical map of significant signal changes due to breath holding pooled across shimming methods (<italic>t </italic>&gt; 3.11, <italic>p</italic> &lt; 0.001 uncorrected, subject #4). The map is overlaid on the T<sub>1</sub>-weighted MDEFT image.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Local improvement of the estimated BS and the sensitivity to a breath-holding experiment with BS-based shimming. (a) Percent increase of the BOLD sensitivity in gray matter areas estimated from the field maps using the BS-based shimming compared to the FH-based shimming. (b) Statistical maps displaying gray matter areas that show significantly higher activation using the BS-based shimming compared to the FH-based shimming. The maps are displayed over the T<sub>1</sub>-weighted MDEFT image of each subject (#1–#4) and overlaid with the corresponding ROI (red) and WSA (green).</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Effect of varying the EPI parameters and the optimization constraints. The mean BS achievable in the ROI and the mean <italic>G</italic><sub>PE</sub> observed in the WSA are reported as a function of the constraint on the field standard deviation. BS values are relative to BS<sub>0</sub> = 100% in the absence of any field gradients. The standard EPI parameters were TC = 30 ms, Δ<italic>t</italic> = 330 μs, FoV = 192 mm and Δ<italic>z</italic> = 2 mm. Changing these parameters affected the result of the optimization, leading to relative change in the contributions of <italic>X</italic>, <italic>Y</italic> and <italic>Z</italic> shim components (<xref rid="tbl1" ref-type="table">Table 1</xref>) and in the maximally achievable BS. As an example, an increase of the FoV up to 256 mm (voxel size Δ<italic>x</italic> = 4 mm) will affect <italic>α</italic><sub>RO</sub> and <italic>α</italic><sub>PE</sub> with opposite effect. Simulations showed that the decrease in <italic>α</italic><sub>RO</sub> was almost exactly balanced by the increase in <italic>α</italic><sub>PE</sub>. As a result, no BS improvement is observed compared to the standard EPI sequence.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <table-wrap position="float" id="tbl1">
+      <label>Table 1</label>
+      <caption>
+        <p>Relative variation in the shim currents obtained with the BS-based procedure compared to the FH-based procedure.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th valign="top"/>
+            <th align="center" valign="top">
+              <italic>X</italic>
+              <hr/>
+            </th>
+            <th align="center" valign="top">
+              <italic>Y</italic>
+              <hr/>
+            </th>
+            <th align="center" valign="top">
+              <italic>Z</italic>
+              <hr/>
+            </th>
+            <th align="center" valign="top">
+              <italic>Z</italic>
+              <sup>2</sup>
+              <hr/>
+            </th>
+            <th align="center" valign="top">
+              <italic>ZX</italic>
+              <hr/>
+            </th>
+            <th align="center" valign="top">
+              <italic>ZY</italic>
+              <hr/>
+            </th>
+            <th align="center" valign="top"><italic>X</italic><sup>2</sup> –<italic>Y</italic><sup>2</sup><hr/></th>
+            <th align="center" valign="top">
+              <italic>XY</italic>
+              <hr/>
+            </th>
+            <th align="center" valign="top">BS<xref rid="tblfn1" ref-type="table-fn">⁎</xref></th>
+            <th align="center" valign="top">std(F)</th>
+            <th align="center" valign="top">
+              <italic>G</italic>
+              <sub>RO,<italic>X</italic></sub>
+              <hr/>
+            </th>
+            <th align="center" valign="top">
+              <italic>G</italic>
+              <sub>PE,<italic>Y</italic></sub>
+              <hr/>
+            </th>
+            <th align="center" valign="top">
+              <italic>G</italic>
+              <sub>SS,<italic>Z</italic></sub>
+              <hr/>
+            </th>
+            <th align="center" valign="top">TE</th>
+          </tr>
+          <tr>
+            <th align="center" valign="top"/>
+            <th colspan="3" align="center" valign="top">(μT/m)</th>
+            <th colspan="5" align="center" valign="top">(μT/m<sup>2</sup>)</th>
+            <th align="center" valign="top">(%)</th>
+            <th align="center" valign="top">(Hz)</th>
+            <th colspan="3" align="center" valign="top">(Hz/mm)</th>
+            <th align="center" valign="top">(ms)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="15" valign="top">
+              <italic>FH-based shimming</italic>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Standard EPI</td>
+            <td align="center" valign="top">–</td>
+            <td align="center" valign="top">–</td>
+            <td align="center" valign="top">–</td>
+            <td align="center" valign="top">–</td>
+            <td align="center" valign="top">–</td>
+            <td align="center" valign="top">–</td>
+            <td align="center" valign="top">–</td>
+            <td align="center" valign="top">–</td>
+            <td align="center" valign="top">77.3</td>
+            <td align="center" valign="top">36.1</td>
+            <td align="center" valign="top">0.13</td>
+            <td align="center" valign="top">-1.23</td>
+            <td align="center" valign="top">-2.05</td>
+            <td valign="top">27.7</td>
+          </tr>
+          <tr>
+            <td valign="top">Δ<italic>t</italic> = 500 μs</td>
+            <td valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top">78.9</td>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top">26.9</td>
+          </tr>
+          <tr>
+            <td valign="top">Δ<italic>z</italic> = 4 mm</td>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top">68.8</td>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top">27.6</td>
+          </tr>
+          <tr>
+            <td align="center" valign="top">FoV = 256 mm</td>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top">77.3</td>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top">27.1</td>
+          </tr>
+          <tr>
+            <td valign="top">TC = 40 ms</td>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top">75.5</td>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top"/>
+            <td align="center" valign="top">37.0</td>
+          </tr>
+          <tr>
+            <td colspan="15" valign="top"/>
+          </tr>
+          <tr>
+            <td colspan="15" valign="top">
+              <italic>BS-based shimming</italic>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Standard EPI</td>
+            <td align="center" valign="top">-0.0</td>
+            <td align="center" valign="top">22.5</td>
+            <td valign="top">-7.9</td>
+            <td align="center" valign="top">-1.0</td>
+            <td align="center" valign="top">1.7</td>
+            <td align="center" valign="top">24.1</td>
+            <td align="center" valign="top">-32.3</td>
+            <td align="center" valign="top">0.7</td>
+            <td align="center" valign="top">88.6</td>
+            <td align="center" valign="top">31.2</td>
+            <td align="center" valign="top">0.13</td>
+            <td align="center" valign="top">-0.19</td>
+            <td align="center" valign="top">-1.78</td>
+            <td align="center" valign="top">29.4</td>
+          </tr>
+          <tr>
+            <td valign="top">Δ<italic>t</italic> = 500 μs</td>
+            <td align="center" valign="top">-0.3</td>
+            <td align="center" valign="top">23.3</td>
+            <td valign="top">-4.8</td>
+            <td align="center" valign="top">-1.2</td>
+            <td align="center" valign="top">1.7</td>
+            <td align="center" valign="top">24.3</td>
+            <td align="center" valign="top">-32.4</td>
+            <td align="center" valign="top">0.8</td>
+            <td align="center" valign="top">89.0</td>
+            <td align="center" valign="top">32.3</td>
+            <td align="center" valign="top">0.11</td>
+            <td align="center" valign="top">-0.15</td>
+            <td align="center" valign="top">-1.91</td>
+            <td align="center" valign="top">30.2</td>
+          </tr>
+          <tr>
+            <td valign="top">Δ<italic>z</italic> = 4 mm</td>
+            <td valign="top">0.5</td>
+            <td align="center" valign="top">15.1</td>
+            <td align="center" valign="top">-22.4</td>
+            <td valign="top">0.1</td>
+            <td align="center" valign="top">1.7</td>
+            <td align="center" valign="top">23.1</td>
+            <td align="center" valign="top">-32.0</td>
+            <td align="center" valign="top">0.4</td>
+            <td align="center" valign="top">79.2</td>
+            <td align="center" valign="top">26.6</td>
+            <td align="center" valign="top">0.15</td>
+            <td align="center" valign="top">-0.50</td>
+            <td align="center" valign="top">-1.17</td>
+            <td align="center" valign="top">28.9</td>
+          </tr>
+          <tr>
+            <td align="center" valign="top">FoV = 256 mm</td>
+            <td valign="top">0.5</td>
+            <td align="center" valign="top">23.1</td>
+            <td valign="top">-5.6</td>
+            <td align="center" valign="top">-1.6</td>
+            <td align="center" valign="top">1.7</td>
+            <td align="center" valign="top">23.7</td>
+            <td align="center" valign="top">-32.3</td>
+            <td align="center" valign="top">1.7</td>
+            <td align="center" valign="top">86.2</td>
+            <td align="center" valign="top">32</td>
+            <td align="center" valign="top">0.15</td>
+            <td align="center" valign="top">-0.16</td>
+            <td align="center" valign="top">-1.88</td>
+            <td align="center" valign="top">29.7</td>
+          </tr>
+          <tr>
+            <td valign="top">TC = 40 ms</td>
+            <td align="center" valign="top">-0.5</td>
+            <td align="center" valign="top">18.6</td>
+            <td align="center" valign="top">-17.1</td>
+            <td align="center" valign="top">-0.6</td>
+            <td align="center" valign="top">1.7</td>
+            <td align="center" valign="top">23.3</td>
+            <td align="center" valign="top">-31.8</td>
+            <td align="center" valign="top">0.3</td>
+            <td align="center" valign="top">82.5</td>
+            <td align="center" valign="top">28.1</td>
+            <td align="center" valign="top">0.11</td>
+            <td align="center" valign="top">-0.36</td>
+            <td align="center" valign="top">-1.39</td>
+            <td align="center" valign="top">39.0</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>The effect of changing the EPI parameters is illustrated. The predicted field standard deviation, BOLD sensitivity, field gradients and effective TE are reported in each case (mean over the ROI). The BS and the effective TE estimates depend on the EPI parameters. The standard EPI parameters were TC = 30 ms, Δ<italic>t</italic> = 330 μs, FoV = 192 mm and slice thickness Δ<italic>z</italic> = 2 mm.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="tblfn1">
+          <label>⁎</label>
+          <p>BS values are relative to BS<sub>0</sub> = 100% in the absence of any field gradients.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-wrap>
+</article>

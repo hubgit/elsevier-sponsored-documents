@@ -1,0 +1,1387 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="review-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Methods</journal-id>
+      <journal-title-group>
+        <journal-title>Methods (San Diego, Calif.)</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1046-2023</issn>
+      <issn pub-type="epub">1095-9130</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2954320</article-id>
+      <article-id pub-id-type="pmid">20541015</article-id>
+      <article-id pub-id-type="publisher-id">YMETH2611</article-id>
+      <article-id pub-id-type="doi">10.1016/j.ymeth.2010.06.004</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Review Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Genomic SELEX: A discovery tool for genomic aptamers</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zimmermann</surname>
+            <given-names>Bob</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bilusic</surname>
+            <given-names>Ivana</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lorenz</surname>
+            <given-names>Christina</given-names>
+          </name>
+          <xref rid="fn1" ref-type="fn">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schroeder</surname>
+            <given-names>Renée</given-names>
+          </name>
+          <email>renee.schroeder@univie.ac.at</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff>Department of Biochemistry and Cell Biology, Max F. Perutz Laboratories, University of Vienna, Austria</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Fax: +43 1 4277 53099. <email>renee.schroeder@univie.ac.at</email></corresp>
+        <fn id="fn1">
+          <label>1</label>
+          <p>Present address: CureVac GmbH, Tübingen, Germany.</p>
+        </fn>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>10</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>10</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>52</volume>
+      <issue>2-2</issue>
+      <fpage>125</fpage>
+      <lpage>132</lpage>
+      <history>
+        <date date-type="accepted">
+          <day>3</day>
+          <month>6</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Inc.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder/>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Genomic SELEX is a discovery tool for genomic aptamers, which are genomically encoded functional domains in nucleic acid molecules that recognize and bind specific ligands. When combined with genomic libraries and using RNA-binding proteins as baits, Genomic SELEX used with high-throughput sequencing enables the discovery of genomic RNA aptamers and the identification of RNA–protein interaction networks. Here we describe how to construct and analyze genomic libraries, how to choose baits for selections, how to perform the selection procedure and finally how to analyze the enriched sequences derived from deep sequencing. As a control procedure, we recommend performing a “Neutral” SELEX experiment in parallel to the selection, omitting the selection step. This control experiment provides a background signal for comparison with the positively selected pool. We also recommend deep sequencing the initial library in order to facilitate the final <italic>in silico</italic> analysis of enrichment with respect to the initial levels. Counter selection procedures, using modified or inactive baits, allow strengthening the binding specificity of the winning selected sequences.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <label>1</label>
+      <title>Introduction</title>
+      <sec>
+        <label>1.1</label>
+        <title>Genomic aptamers</title>
+        <p>Genomic aptamers are defined as functional domains within genomically encoded RNA or DNA molecules that recognize and bind ligands such as various small molecules, metal ions or proteins. The term “aptamer” was initially used for short synthetic RNA molecules, which were selected <italic>in vitro</italic> starting from pools of random sequences <xref rid="bib1" ref-type="bibr">[1]</xref>. With the discovery of naturally occurring aptamers within bacterial riboswitches, the term aptamer was extended and now includes all the metabolite-binding domains within these regulatory modules <xref rid="bib2" ref-type="bibr">[2]</xref>. The term “genomic aptamer” further includes a very broad spectrum of regulatory domains within RNA molecules, which sense signals as diverse as temperature, salts, metabolites, peptides and proteins. These mostly structured domains also recognize target RNAs, RNA polymerases, ribosomes, spliceomes and many other components of the gene expression machinery <xref rid="bib3" ref-type="bibr">[3]</xref>. It is very probable that many more genomic aptamers with affinity for very diverse ligands exist. As a consequence, it became necessary to develop methods for the <italic>de novo</italic> discovery of aptamers encoded within genomes.</p>
+      </sec>
+      <sec>
+        <label>1.2</label>
+        <title>Genomic SELEX</title>
+        <p>“Systematic Evolution of Ligands with EXponential enrichment”, or SELEX, is a method that was used in the 90’s to analyze RNA–protein or DNA–protein interactions <xref rid="bib4 bib5" ref-type="bibr">[4,5]</xref>. SELEX was originally developed for the isolation of nucleic acid molecules with high-affinity to small molecules such as amino acids, enzyme cofactors, antibiotics or proteins <xref rid="bib5" ref-type="bibr">[5]</xref>. In RNA aptamer selections, a DNA pool containing random sequences is typically synthesized artificially, which are subsequently transcribed to give the starting RNA population. The major difference between SELEX and Genomic SELEX is the starting pool used for the selection. SELEX begins with a library of synthetically derived random DNA molecules. Genomic SELEX starts from libraries derived from genomic DNA. As a consequence, only naturally occurring aptamers encoded in the screened genome will be identified. High-affinity binding RNAs are enriched from the initial pool through multiple rounds of binding of the RNAs to a given ligand (<xref rid="fig1" ref-type="fig">Fig. 1</xref>). The winning molecules can be cloned and sequenced individually if only a limited number of sequences are expected. However, depending on the bait used for the selection, a large number of sequences can be expected, making high-throughput sequencing the method of choice.</p>
+        <p>In the past decades, many functional RNAs have been discovered serendipitously or via strategic screens. The strategies employed for the discovery of functional RNAs most often involved computational predictions with subsequent demonstration of the existence of the predicted RNAs, or experimental approaches including massive sequencing of cDNAs or genetic screens <xref rid="bib6 bib7 bib8" ref-type="bibr">[6–8]</xref>. These approaches have been very successful, but they have their limitations. Computational predictions rely primarily on conservation and structural stability as signal for an active molecule, thus constraining the range of possible predictions <xref rid="bib9" ref-type="bibr">[9]</xref>. Sequencing of cDNAs requires the searched RNAs be expressed during the conditions used for RNA extraction. Genomic SELEX, combined with high-throughput sequencing, can bypass both limitations and allows the discovery of new types of RNA molecules independent of their expression levels. The availability of genomic sequences and high-throughput sequencing transforms this technique into a discovery tool for genomic aptamers.</p>
+      </sec>
+      <sec>
+        <label>1.3</label>
+        <title>When to use Genomic SELEX</title>
+        <p>Genomic SELEX is both alternative and complementary to <italic>in vivo</italic> and <italic>in silico</italic> approaches. When using Genomic SELEX, the enriched sequences will not represent a full size functional RNA, but the ligand-binding domain, or “aptamer”, within the putative transcript. Genomic SELEX is most useful when searching for RNAs that might be seldom expressed, such as transcripts from silenced domains in heterochromatic regions of the genome or RNAs that are only transiently expressed during distinct phases of development. It is also often used to detect DNA sequences recognized, for example, by transcription factors <xref rid="bib10" ref-type="bibr">[10]</xref>. Additionally, SELEX was applied to select RNA aptamers targeting RNA molecules to foster the understanding of RNA–RNA interactions. Interestingly, the most competitive aptamers were not binding through sense/antisense pairings, but instead through 3D, non-Watson–Crick interactions <xref rid="bib11 bib12" ref-type="bibr">[11,12]</xref>. Genomic SELEX is the method of choice for screening entire genomes for DNA or RNA aptamers that bind to global regulator proteins, or any other ligands that are common targets for cellular nucleic acid interactions.</p>
+      </sec>
+      <sec>
+        <label>1.4</label>
+        <title>Choice of bait</title>
+        <p>The success of a Genomic SELEX experiment depends on the choice of bait. These can be small molecules or peptides or larger proteins. The most common baits used for Genomic SELEX are nucleic acid-binding proteins with diverse affinities and specificities. Promoter regions have often been characterized by performing <italic>in vitro</italic> selection with DNA-binding transcription factors <xref rid="bib13" ref-type="bibr">[13]</xref>. Recently, though, new roles of RNA at all levels of gene regulation are rapidly being discovered, and we are aware of only few targets of RNA-binding proteins. Some examples which have been associated with regulatory non-coding RNAs include proteins that are involved in chromatin remodeling, transcriptional and post-transcriptional silencing, and components of machines that participate in RNA processing, transport and translation <xref rid="bib14 bib15 bib16 bib17" ref-type="bibr">[14–17]</xref>. The use of these proteins as bait truly exploits the potential of Genomic SELEX to analyze RNA–protein interaction networks.</p>
+        <p>For the discovery of novel riboswitch aptamers via SELEX, the choice of bait, and especially the immobilization method, might pose problems. The high-resolution structures of several riboswitch aptamers in complex with their ligands revealed that these metabolites are completely surrounded by the RNA making it almost impossible to immobilize the ligand via a linker <xref rid="bib18" ref-type="bibr">[18]</xref>. This has to be taken into account when using small molecules as bait.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>2</label>
+      <title>Procedure</title>
+      <p>In this section, we will outline the procedure and point out some of the crucial points for a successful Genomic SELEX screen. For a detailed, step-by-step protocol, see the Lorenz et al. Nature Protocol <xref rid="bib19" ref-type="bibr">[19]</xref> and for more information on library construction, see Singer et al. <xref rid="bib20" ref-type="bibr">[20]</xref>.</p>
+      <sec>
+        <label>2.1</label>
+        <title>Required material</title>
+        <sec>
+          <label>2.1.1</label>
+          <title>Bait</title>
+          <p>As discussed in 1.4, different types of proteins can be used as bait in Genomic SELEX. Since Genomic SELEX is a method designed to identify aptamers that are specifically bound by a given bait, its purity is of crucial importance. Enrichment of aptamers binding any contaminants is to be avoided. Hence, special effort should be put into preparation of the pure protein. The protein of interest can be used in full-length or in mutated forms.</p>
+          <p>Translational fusion to different tags (e.g. His, Flag or GST) can facilitate purification of the bait and offer alternative approaches to the selection step. In this case, however, additional considerations in terms of controls and counter selection have to be taken into account in order to avoid artifactual enrichment. Another important aspect of protein purification is maintenance of its activity. Thus, appropriate storage and binding buffer that also allow proper RNA folding must be utilized. In most cases, it is desirable to have the protein in its active conformation. Therefore, assays to verify its activity in the buffer conditions given should be performed, when available. If no information of the required buffer for your protein of interest is available, near physiological conditions represent a safe starting point.</p>
+        </sec>
+        <sec>
+          <label>2.1.2</label>
+          <title>Source DNA</title>
+          <p>The initial stage of preparing the library for Genomic SELEX is obtaining genomic DNA. The organism encoding for potential targets is selected depending on bait and physiology context. However, to allow mapping and further analysis of the many sequences resulting from high-throughput sequencing, it is important to use DNA of an organism or a strain that is fully sequenced. A number of protocols for the isolation of genomic DNA applicable to different organisms are established and can be used for this purpose. In addition, genomic DNA for commonly used model organisms is nowadays commercially available and can be used, if preferred. In general, any source or desired protocol can be used for genomic DNA isolation, as long as the resulting DNA is of high quality and reliably represents the genome of interest.</p>
+        </sec>
+        <sec>
+          <label>2.1.3</label>
+          <title>Primers</title>
+          <p>In Genomic SELEX, two pairs of primers called “hyb”- and “fix”-primers are used (<xref rid="fig2" ref-type="fig">Fig. 2</xref>A). When designing primers for SELEX, standard guidelines should be followed: primer dimer formation and self-complementarity should be avoided, and the melting temperatures of the primers should be similar. Additionally, primer design for SELEX requires somewhat special considerations that are discussed below.</p>
+          <p>The first part of the library construction consists of first- and second-strand Klenow synthesis, in which hybREV and hybFOR primers are used, respectively. Both hyb-primers consist of a unique constant sequence region that is absent in the genome, followed by ∼9 randomized nucleotides at the 3′ terminus (<xref rid="fig2" ref-type="fig">Fig. 2</xref>). These randomized regions serve to pick random genomic regions for inclusion in the library. In order to amplify the library, fix-primers are used. The fix-primers correspond perfectly to the 5′ constant regions of respective hyb-primers (18nt FOR, 17nt REV), with addition of the T7 promoter at the 5′ end of the fixFOR primer.</p>
+          <p>Introduction of flanking sequences can potentially lead to artifacts during the selection procedure. When using short libraries, the flanking primers can become part of the structural motif of the aptamer. This issue was addressed by Shtatland et al. <xref rid="bib21" ref-type="bibr">[21]</xref>. Oligonucleotides complementary to flanking regions can be annealed prior to the selection step, thereby blocking the formation of an artificial structure. The same work describes another approach of switching flanking sequences every few SELEX cycles. Alternatively, primer-free Genomic SELEX was developed in which primers are removed prior to each selection step and reintroduced prior to the amplification step <xref rid="bib22" ref-type="bibr">[22]</xref>. Such alternatives of SELEX complicate and prolong the process, and can be excessive. However, in an attempt to select for short binding motifs (20–40nt), we strongly recommend using this expanded protocol, since selection for shorter sequences may increase the chances of incorporating flanking regions as a part of the binding motif.</p>
+          <p>Several factors can contribute to differences between the recovered high-throughput sequences and the reference genomic sequence, including genotype, PCR error and sequencing error. For this reason, correct primer sequences flanking the insert are essential for filtering correct, full-length sequences. The protocol by Lorenz et al. <xref rid="bib19" ref-type="bibr">[19]</xref> shows hyb-primers containing the restriction sites for switching the flanking sequence described by Shtatland et al. <xref rid="bib21" ref-type="bibr">[21]</xref> (see previous paragraph), however these are not included in the fix-primers. This lead to pronounced degeneracy of the recognition sequences and complications of the analysis of our deep sequencing result. Thus, we recommend using fix-primers that include the entire fixed region of the hyb-primers, to ensure the fidelity of the final primers and proper alignment of the whole insert.</p>
+        </sec>
+      </sec>
+      <sec>
+        <label>2.2</label>
+        <title>Preparation of the library</title>
+        <p>In Genomic SELEX, the primary aim of constructing a genomic library is to give every potential genomic aptamer region equal candidacy for selection, and therefore have complete coverage of the genome and amplify it evenly. Additionally, the lengths of the fragments should correspond to those of the type of genomic aptamers being targeted. For example, in an attempt to identify novel non-coding RNAs of <italic>Escherichia coli</italic> binding to Hfq, Lorenz and colleagues aimed for selection of molecules ranging from 50 to 500nt in size, lengths corresponding to the range of known ncRNAs in <italic>E. coli</italic> <xref rid="bib23" ref-type="bibr">[23]</xref>.</p>
+        <p>After obtaining high quality genomic DNA, Klenow reactions follow (<xref rid="fig2" ref-type="fig">Fig. 2</xref>). The first strand is synthesized with the hybREV primer, which is annealed to the genomic DNA, preceding the extension reaction. In order to minimize the number of fragments flanked with the same sequence on both sides, the excess of hybREV should be thoroughly removed prior to second-strand synthesis with hybFOR. Size selection follows, according to the desired fragment lengths, usually via extraction of fragments of the desired size range from polyacrylamide gels. Preparation of the genomic library finishes with the introduction of the T7 promoter or other desirable promoter through PCR amplification using the fix-primers.</p>
+        <p>The genomic library used in Genomic SELEX should be representative of the genome. It is therefore advisable to test the quality of the library prior to the first SELEX cycle by performing a PCR with several primer pairs giving amplicons that correspond to the length of fragments in the library (<xref rid="fig3" ref-type="fig">Fig. 3</xref>A). The presence of any genomic region can be tested, however single-copy regions are easiest to evaluate. In addition, size variation can be checked by performing PCR using fixREV or fixFOR in combination with a gene specific primer (<xref rid="fig3" ref-type="fig">Fig. 3</xref>B and C). In a high quality library, such PCRs should result in a set of products covering a large range of sizes with single-nucleotide resolution. The library quality can also be confirmed by high-throughput sequencing and should be sequenced together with the enriched pools, as discussed later.</p>
+        <p>Some artifacts from the library construction will arise. For one, while the length distribution is ostensibly determined by the gel excision step, it should be noted that the fragments become shorter with subsequent rounds of selection. In the above-mentioned selection for Hfq-binding aptamers, the final pool averaged 65nt in length, owing to the fact that it is faster to amplify shorter inserts <xref rid="bib24" ref-type="bibr">[24]</xref>. Additionally, since genomes are not random, random priming will result in overrepresentation of regions whose flanking <italic>n</italic>-mers (<italic>n</italic> representing the length of the random region) are less frequent in the genome.</p>
+        <p>We also found in our <italic>E. coli</italic> genomic library that the <italic>in silico</italic> predicted melting temperatures were on average slightly lower than random primers, irrespective of the genome content (<xref rid="fig4" ref-type="fig">Fig. 4</xref>). This could be due to the preferred incorporation of more stable DNA–DNA interactions. As a result of biased priming, we saw differences in nucleotide content and stability of sequences as compared to the genomic average. The data nonetheless indicate that the genome was completely covered, although some regions were better covered than others. Therefore, in order for the results to have demonstrative significance, only thoroughly enriched sequences should be considered, and the enrichment should be measured as relative to the genomic library.</p>
+      </sec>
+      <sec id="sec1">
+        <label>2.3</label>
+        <title>Genomic SELEX procedure</title>
+        <p>The first step of each round of Genomic SELEX is the construction of the RNA pool by <italic>in vitro</italic> transcription of the DNA library. This should be done with one radiolabeled nucleotide to track the quantities of RNA before and after selection. It is crucial that the template DNA is eliminated by thorough DNase treatment to avoid selection and subsequent enrichment of DNA fragments. Next, the selection, or binding step, follows. The exact condition in which binding is performed varies and is to be optimized for each protein. Moreover, it is possible to aim for a certain binding affinity through introduction of a known binder as a competitor, varying the RNA-to-protein ratio (10:1 is a good starting point), time of incubation and temperature of the binding reaction. The salt concentration of the buffer should still maintain proper activity of the bait protein.</p>
+        <p>Formed RNA–protein complexes are usually separated from unbound species through nitrocellulose membrane filtration <xref rid="bib19 bib21" ref-type="bibr">[19,21]</xref>. There are also other methods to separate complexes and unbound nucleic acids, such as chromatographic separation or gel shift assays <xref rid="bib22" ref-type="bibr">[22]</xref>. An antibody can also be used to immobilize the bait. Similarly, an immobilization matrix coupled to an appropriate ligand can be used to separate complexes, if the bait protein is fused to a tag (Olga Bannikova and Andrea Barta, pers. comm.).</p>
+        <p>Following each round of selection, the recovery rate of RNA should be measured with scintillation counting <xref rid="bib19" ref-type="bibr">[19]</xref>. The amount of RNA recovered is an indicator of enrichment of binding species in the pool. If very competitive aptamers are desired, the stringency should be increased, for example by lowering the concentration of both RNA and protein in the buffer. As shown in <xref rid="fig5" ref-type="fig">Fig. 5</xref>, increasing stringency will not only homogenize the pool, but also provide a pronounced stratification of the binding species.</p>
+        <p>To avoid recovery of any unspecific aptamers, it is beneficial to introduce a counter selection step prior to the selection step. This refers to preclearing of the nucleic acid pool by applying it to the immobilization matrix (e.g. nitrocellulose, column, matrix coupled to ligands) to avoid enriching nucleic acid sequences that bind to the matrix. Additionally, performing a counter selection against inactive forms of the bait enables the detection of more specific aptamers and to increase the discriminatory potential of aptamers (see theophilline, streptomycin <xref rid="bib25 bib26" ref-type="bibr">[25,26]</xref>). Counter selection steps will be useful when analyzing antagonistic baits.</p>
+        <p>After the separation of binding and non-binding sequences, the recovered RNAs are reverse transcribed. To minimize the loss of structured aptamers in pools, initial denaturation step via melting should not be omitted and the reaction should be performed at elevated temperatures. Accordingly, the enzyme of choice should maintain its activity at temperatures between 50 and 60 °C. If the experimental design suggests selection of longer aptamers, reverse transcription conditions should be adjusted in such way that the synthesis of long and structured cDNA is possible and effective.</p>
+        <p>Each cycle of SELEX concludes with the amplification of the selected pool using the fixREV and fixFOR primers. PCR can, due to imperfect fidelity of the polymerase, introduce mutations which can, in further selection steps, be favored over initial sequences <xref rid="bib27" ref-type="bibr">[27]</xref>. Enrichment of such artificial aptamers should be avoided in Genomic SELEX. Therefore, in order to minimize artificially introduced divergence among pools of different cycles, it is recommended that the polymerase has pronounced proofreading activity. In order to obtain a product amount optimal for subsequent cycles of SELEX, 7–10 cycles of PCR are recommended. Too many cycles should be avoided because the heterogeneity of the pool can result in dimerization of incomplete products when the primer-to-template ratio decreases, resulting in extended, chimerical products.</p>
+        <p>It is highly desirable to perform parallel repetitions of Genomic SELEX using the same selection method, and possibly several different methods of selection and immobilization of nucleic acid–protein complexes. The intersection of these multiple data sets will result in a more reliable aptamer pool. Optionally, parallel screens can be performed using different mutant forms of baits.</p>
+        <p>It was shown that the amplification steps of SELEX (<italic>in vitro</italic> transcription, reverse transcription and PCR, that is, everything but selection itself) introduce some additional requirements on the sequences <xref rid="bib24" ref-type="bibr">[24]</xref>. These constraints were evaluated by performing a Neutral SELEX experiment, in which the selection steps are excluded. Beginning with the same <italic>E. coli</italic> genomic library used to select for Hfq-binding sequences <xref rid="bib23" ref-type="bibr">[23]</xref>, 10 rounds of Neutral SELEX were performed, and the pools from each round were subjected to <italic>454</italic> sequencing. In comparison to the initial library, the sequences shifted towards higher free energy, suggesting that highly structured RNAs are at a disadvantage. There was also a trend towards a decrease in guanosines and an increase in adenosines. This experiment can easily be performed in parallel to any Genomic SELEX experiment in order to facilitate the subsequent analysis of signal vs. noise in the sequences.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>3</label>
+      <title>Analysis</title>
+      <sec>
+        <label>3.1</label>
+        <title>Sequencing</title>
+        <p>When performing Genomic SELEX with global regulator proteins, the final pool should contain genomic aptamers originating from many regions of the genome. The most interesting readouts of the experiment are the levels of enrichment of each aptamer, and how they compare to that of the initial pool. In order to fully accomplish this, high-throughput sequencing is necessary. Given that this is a pricey undertaking, it is best to first clone and sequence some of the pool to ensure that the pool is diverse (i.e. the strongest binder did not compete away all other aptamers) and the sequences were not significantly contaminated. If the final pool appears too homogenous, a previous round of selection may suffice.</p>
+        <p>In addition to sequencing the final pool, it can be useful to sequence the initial genomic library. This information, along with sequence data from Neutral SELEX (see Section <xref rid="sec1" ref-type="sec">2.3</xref>), can be used directly to determine the background nucleotide distributions and possible biases towards enrichment at particular positions or sequence regions (repetitive sequences, for example) <xref rid="bib24" ref-type="bibr">[24]</xref>.</p>
+        <p><italic>454</italic> sequencing has been used <xref rid="bib23" ref-type="bibr">[23]</xref>, with the primary advantage over Illumina sequencing being its ability to recover full-length sequences <xref rid="bib28" ref-type="bibr">[28]</xref>. The common approach to the Illumina short read problem is to find pairs of “peaks”, regions containing several short reads, presumably representing the ends of an experimental sequence. When a natural transcript is pulled down from an <italic>in vivo</italic> situation, one can annotate the peaks with the nearest known relevant genomic feature <xref rid="bib28 bib29" ref-type="bibr">[28,29]</xref>. This is unsatisfactory for Genomic SELEX, since the sequences are not originating from natural transcripts. Additionally, many full-length sequences will have varying endpoints, which can provide interesting analyses, e.g. <italic>in silico</italic> boundary mapping of minimal required motifs (<xref rid="fig6" ref-type="fig">Fig. 6</xref>A). However, newer Illumina machines now support in situ reversal of templates to generate paired-end reads, potentially allowing full-length annotation of sequences in the analysis, offering orders-of-magnitude higher coverage at a good price.</p>
+      </sec>
+      <sec id="sec2">
+        <label>3.2</label>
+        <title>Mapping</title>
+        <p>Mapping of high-throughput sequences to the corresponding genome should be done with a suffix array- or Burows–Wheeler-based aligner. These algorithms are both faster and more sensitive than the popular BLAT <xref rid="bib30" ref-type="bibr">[30]</xref>. vmatch <xref rid="bib31" ref-type="bibr">[31]</xref> has been used <xref rid="bib23" ref-type="bibr">[23]</xref>, however, new short read alignment programs are being developed at a dizzying pace due to high demand. Many of these have been thoroughly reviewed by Flicek and Birney <xref rid="bib32" ref-type="bibr">[32]</xref>. Since <italic>454</italic> matches are of highly varying lengths, <italic>e</italic>-value matching statistics should be used to filter good matches. On the other hand, Illumina reads can be mapped without full alignment, for example with bowtie <xref rid="bib33" ref-type="bibr">[33]</xref> or BWA <xref rid="bib34" ref-type="bibr">[34]</xref>. The impressive element of these last two programs is that there is no need for extensive compute power: a full lane can be mapped on a single desktop machine in hours.</p>
+        <p>Clusters of sequences should then be generated. The most straightforward approach is to include any sequence in a group, based on overlap. When ranking the sequences by enrichment, it may suffice to simply use the read count for each cluster, however, in cases where repetitive sequences are counted, or reads are not mapped uniquely, some thought needs to be put into the ranking. The best solution is to sequence and map the genomic library and/or Neutral SELEX pools and compare the relative enrichment of the aptamers.</p>
+      </sec>
+      <sec id="sec3">
+        <label>3.3</label>
+        <title>Characterization</title>
+        <p>Specific RNA-binding is dependent on both sequence and structure of the folded molecule. Interactions can often take place as a result of direct hydrogen bonding with Watson–Crick groups of the aptamer with the ligand. Motif finding can provide insight into whether the SELEX pool has been enriched as the result of such sequence recognition. The problem of motif finding has been given quite a bit of attention for decades, however, motif finding remains a complicated task <xref rid="bib35" ref-type="bibr">[35]</xref>. Aside from the minutia of parameter tweaking, most algorithms are not designed to handle high-throughput quantities of sequences. Therefore, it is only practical to use the clustered sequences, and furthermore to limit the sequences to ones showing some enrichment. Most motif finders also allow the input of weights for each of the sequences, and absolute enrichment would be a good way to account for overrepresentation of motifs.</p>
+        <p>Another interesting statistic of genomic aptamers is their location with respect to genomic features. It is also important to take into account enrichment level. However, enrichment profiles of clusters are not always even. An outlying sequence can overlap a cluster by chance, extending it into a perhaps insignificant region of the sequence. A good trick to speeding up these analyses is to include an “enrichment sequence” parallel to each cluster (sometimes called a “signal map”), indicating the number of reads aligned at each position of each cluster (<xref rid="fig6" ref-type="fig">Fig. 6</xref>). This can be helpful in other analyses, such as finding enrichment of regions surrounding gene starts and stops, or finding maximally enriched subsequences of clusters. When annotating the clusters, for example, it is best to count base-by-base the enrichment depth within each feature, and annotate with the feature containing the majority of the enrichment depth.</p>
+        <p>When comparing relative levels of enrichment for specific genes, gene types or repeats, normalization is essential, since it is more likely for a read to map to a longer gene by chance than a shorter one. A normalization analysis was developed for the RNASeq method <xref rid="bib29 bib36" ref-type="bibr">[29,36]</xref>. This was further developed in the Cufflinks automated alignment to assembly program <xref rid="bib37" ref-type="bibr">[37]</xref>. It is not hard to envision extending this into feature types, such as introns, exons, repeat regions and so on.</p>
+        <p>While many analyses can be automatically run, visualization can be priceless (<xref rid="fig6" ref-type="fig">Fig. 6</xref>). The clusters can be neatly displayed in a genome browser, easiest being UCSC <xref rid="bib38" ref-type="bibr">[38]</xref>, however, a custom browser can be constructed relatively easily with a package such as GBROWSE <xref rid="bib39 bib40" ref-type="bibr">[39,40]</xref>.</p>
+        <p>To verify the biological significance of the sequences enriched by Genomic SELEX, further characterization of aptamers of interest follows. Since many novel transcripts will potentially be identified, thorough characterization of such transcripts using common biochemical methods is necessary. The main question is whether the isolated motifs are contained within expressed transcripts. This might be difficult to determine, as the period of expression might be difficult to find. It is helpful to test whether the sequences are conserved in related organisms and to search for promoters in the vicinity. If an antibody for the bait is available, co-immunoprecipitation is good to test their expression and interaction <italic>in vivo</italic>. To determine the precise interaction site between the selected aptamer and the bait, chemical probing and footprinting will give reliable results <xref rid="bib23" ref-type="bibr">[23]</xref>.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>4</label>
+      <title>Summary/conclusions</title>
+      <p>Genomic SELEX is a valuable approach when screening for RNA domains that are targeted by nucleic acid-binding proteins with a broad range of binding partners. In the ongoing campaign to discover the many roles of RNA in regulatory networks, we envision that this technique will be a key player. The crucial advantage of Genomic SELEX is that it enables the discovery of transiently expressed RNAs that may be either self-regulating or under tight regulation due to their potency. Discovering several of these genomic aptamers would require painstaking preparations and many expensive runs of high-throughput sequencing in an <italic>in vivo</italic> context, if they can be pulled down at all.</p>
+      <p>Performing Genomic SELEX with an artificial genomic library is essential to reap the <italic>in vitro</italic> advantage, because preparations of total RNA will have an expression-level bias. Importantly, though, this means that sequences pulled down are not naturally generated. For this reason, the combined use of Genomic SELEX with an <italic>in vivo</italic> analog such as HITS–CLIP <xref rid="bib41" ref-type="bibr">[41]</xref> can be symbiotic: CLIP sequences that overlap SELEX genomic aptamers are immediately confirmed as an <italic>in vivo</italic> binding partner, and SELEX genomic aptamers that overlap CLIP sequences help determine the competitiveness of the binding and also a potential binding subsequence.</p>
+      <p>There have been an incredible number of optimizations to the SELEX protocol in recent years <xref rid="bib42" ref-type="bibr">[42]</xref>, and nearly all of them are applicable to the Genomic SELEX method. However, since Genomic SELEX drastically decreases the diversity of the initial library, many of these biases will not play such a critical role in selectivity. Future optimizations for Genomic SELEX will be most fruitful in experimenting with selection assays, such as alternative immobilization and additional counter selection techniques, as well as differential analysis of multiple parallel selections against related proteins.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ellington</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Szostak</surname>
+              <given-names>J.W.</given-names>
+            </name>
+          </person-group>
+          <source>Nature</source>
+          <volume>346</volume>
+          <year>1990</year>
+          <fpage>818</fpage>
+          <lpage>822</lpage>
+          <pub-id pub-id-type="pmid">1697402</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mandal</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Breaker</surname>
+              <given-names>R.R.</given-names>
+            </name>
+          </person-group>
+          <source>Nature Reviews Molecular Cell Biology</source>
+          <volume>5</volume>
+          <year>2004</year>
+          <fpage>451</fpage>
+          <lpage>463</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Henkin</surname>
+              <given-names>T.M.</given-names>
+            </name>
+          </person-group>
+          <source>Genes and Development</source>
+          <volume>22</volume>
+          <year>2008</year>
+          <fpage>3383</fpage>
+          <lpage>3390</lpage>
+          <pub-id pub-id-type="pmid">19141470</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tuerk</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Gold</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <source>Science</source>
+          <volume>249</volume>
+          <year>1990</year>
+          <fpage>505</fpage>
+          <lpage>510</lpage>
+          <pub-id pub-id-type="pmid">2200121</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gold</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Polisky</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Uhlenbeck</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Yarus</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Annual Review of Biochemistry</source>
+          <volume>64</volume>
+          <year>1995</year>
+          <fpage>763</fpage>
+          <lpage>797</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eddy</surname>
+              <given-names>S.R.</given-names>
+            </name>
+          </person-group>
+          <source>Cell</source>
+          <volume>109</volume>
+          <year>2002</year>
+          <fpage>137</fpage>
+          <lpage>140</lpage>
+          <pub-id pub-id-type="pmid">12007398</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hüttenhofer</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Vogel</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Research</source>
+          <volume>34</volume>
+          <year>2006</year>
+          <fpage>635</fpage>
+          <lpage>646</lpage>
+          <pub-id pub-id-type="pmid">16436800</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wassarman</surname>
+              <given-names>K.M.</given-names>
+            </name>
+            <name>
+              <surname>Rosenow</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Tjaden</surname>
+              <given-names>B.C.</given-names>
+            </name>
+            <name>
+              <surname>Storz</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Gottesman</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Molecular Microbiology</source>
+          <volume>50</volume>
+          <year>2003</year>
+          <fpage>1111</fpage>
+          <lpage>1124</lpage>
+          <pub-id pub-id-type="pmid">14622403</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dinger</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>Pang</surname>
+              <given-names>K.C.</given-names>
+            </name>
+            <name>
+              <surname>Mercer</surname>
+              <given-names>T.R.</given-names>
+            </name>
+            <name>
+              <surname>Mattick</surname>
+              <given-names>J.S.</given-names>
+            </name>
+          </person-group>
+          <source>PLoS Computational Biology</source>
+          <volume>4</volume>
+          <year>2008</year>
+          <fpage>e1000176</fpage>
+          <pub-id pub-id-type="pmid">19043537</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Teramoto</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Yoshimura</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Takeyasu</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Ishihama</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Research</source>
+          <year>2010</year>
+          <comment>(Advanced Access Published on February 15) 1–14.</comment>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Costa</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Michel</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>EMBO Journal</source>
+          <volume>14</volume>
+          <year>1995</year>
+          <fpage>1276</fpage>
+          <lpage>1285</lpage>
+          <pub-id pub-id-type="pmid">7720718</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Watrin</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Von Pelchrzim</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Dausse</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Schroeder</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Toulmé</surname>
+              <given-names>J.-J.</given-names>
+            </name>
+          </person-group>
+          <source>Biochemistry</source>
+          <volume>48</volume>
+          <year>2009</year>
+          <fpage>6278</fpage>
+          <lpage>6284</lpage>
+          <pub-id pub-id-type="pmid">19496624</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shimada</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Fujita</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Maeda</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ishihama</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>Genes to Cells</source>
+          <volume>10</volume>
+          <year>2005</year>
+          <fpage>907</fpage>
+          <lpage>918</lpage>
+          <pub-id pub-id-type="pmid">16115199</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Khalil</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Guttman</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Huarte</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Garber</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Raj</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Rivea Morales</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Presser</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>B.E.</given-names>
+            </name>
+            <name>
+              <surname>van Oudenaarden</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Regev</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lander</surname>
+              <given-names>E.S.</given-names>
+            </name>
+            <name>
+              <surname>Rinn</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+          <volume>106</volume>
+          <year>2009</year>
+          <fpage>11667</fpage>
+          <lpage>11672</lpage>
+          <pub-id pub-id-type="pmid">19571010</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zaratiegui</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Irvine</surname>
+              <given-names>D.V.</given-names>
+            </name>
+            <name>
+              <surname>Martienssen</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <source>Cell</source>
+          <volume>128</volume>
+          <year>2007</year>
+          <fpage>763</fpage>
+          <lpage>776</lpage>
+          <pub-id pub-id-type="pmid">17320512</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Halic</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Beckmann</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Current Opinion in Structural Biology</source>
+          <volume>15</volume>
+          <year>2005</year>
+          <fpage>116</fpage>
+          <lpage>125</lpage>
+          <pub-id pub-id-type="pmid">15718142</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eddy</surname>
+              <given-names>S.R.</given-names>
+            </name>
+          </person-group>
+          <source>Current Opinion in Genetics and Development</source>
+          <volume>9</volume>
+          <year>1999</year>
+          <fpage>695</fpage>
+          <lpage>699</lpage>
+          <pub-id pub-id-type="pmid">10607607</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Montange</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Batey</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Annual Reviews</source>
+          <volume>37</volume>
+          <year>2008</year>
+          <fpage>117</fpage>
+          <lpage>133</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib19">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lorenz</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>von Pelchrzim</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Schroeder</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Nature Protocols</source>
+          <volume>1</volume>
+          <year>2006</year>
+          <fpage>2204</fpage>
+          <lpage>2212</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Singer</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Shtatland</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Gold</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Research</source>
+          <volume>25</volume>
+          <year>1997</year>
+          <fpage>781</fpage>
+          <lpage>786</lpage>
+          <pub-id pub-id-type="pmid">9016629</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shtatland</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Gill</surname>
+              <given-names>S.C.</given-names>
+            </name>
+            <name>
+              <surname>Javornik</surname>
+              <given-names>B.E.</given-names>
+            </name>
+            <name>
+              <surname>Johansson</surname>
+              <given-names>H.E.</given-names>
+            </name>
+            <name>
+              <surname>Singer</surname>
+              <given-names>B.S.</given-names>
+            </name>
+            <name>
+              <surname>Uhlenbeck</surname>
+              <given-names>O.C.</given-names>
+            </name>
+            <name>
+              <surname>Zichi</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Gold</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Research</source>
+          <volume>28</volume>
+          <year>2000</year>
+          <fpage>E93</fpage>
+          <pub-id pub-id-type="pmid">11058143</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wen</surname>
+              <given-names>J.-D.</given-names>
+            </name>
+            <name>
+              <surname>Gray</surname>
+              <given-names>D.M.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Research</source>
+          <volume>32</volume>
+          <year>2004</year>
+          <fpage>e182</fpage>
+          <pub-id pub-id-type="pmid">15601993</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib23">
+        <label>23</label>
+        <mixed-citation publication-type="other">C. Lorenz, T. Gesell, B. Zimmermann, U. Schoeberl, I. Bilusic, L. Rajkowitsch, C. Waldsich, A. Von Haeseler, R. Schroeder, Nucleic Acids Research (2010) (Advanced Access published on March 26) 1–15.</mixed-citation>
+      </ref>
+      <ref id="bib24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zimmermann</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Gesell</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Lorenz</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Schroeder</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>PLoS ONE</source>
+          <volume>5</volume>
+          <year>2010</year>
+          <fpage>e9169</fpage>
+          <pub-id pub-id-type="pmid">20161784</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jenison</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Gill</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Pardi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Polisky</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <source>Science</source>
+          <volume>263</volume>
+          <year>1994</year>
+          <fpage>1425</fpage>
+          <lpage>1429</lpage>
+          <pub-id pub-id-type="pmid">7510417</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wallace</surname>
+              <given-names>S.T.</given-names>
+            </name>
+            <name>
+              <surname>Schroeder</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>RNA</source>
+          <volume>4</volume>
+          <year>1998</year>
+          <fpage>112</fpage>
+          <lpage>123</lpage>
+          <pub-id pub-id-type="pmid">9436913</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eckert</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Kunkel</surname>
+              <given-names>T.A.</given-names>
+            </name>
+          </person-group>
+          <source>Genome Research</source>
+          <volume>1</volume>
+          <year>1991</year>
+          <fpage>17</fpage>
+          <lpage>24</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barski</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <source>Journal of Cellular Biochemistry</source>
+          <volume>107</volume>
+          <year>2009</year>
+          <fpage>11</fpage>
+          <lpage>18</lpage>
+          <pub-id pub-id-type="pmid">19173299</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib29">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pepke</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Wold</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Mortazavi</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>Nature Methods</source>
+          <volume>6</volume>
+          <year>2009</year>
+          <fpage>S22</fpage>
+          <lpage>S32</lpage>
+          <pub-id pub-id-type="pmid">19844228</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kent</surname>
+              <given-names>W.J.</given-names>
+            </name>
+          </person-group>
+          <source>Genome Research</source>
+          <volume>12</volume>
+          <year>2002</year>
+          <fpage>656</fpage>
+          <lpage>664</lpage>
+          <pub-id pub-id-type="pmid">11932250</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abouelhoda</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kurtz</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ohlebusch</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <source>Journal of Discrete Algorithms</source>
+          <volume>2</volume>
+          <year>2004</year>
+          <fpage>53</fpage>
+          <lpage>86</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib32">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Flicek</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Birney</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <source>Nature Methods</source>
+          <volume>6</volume>
+          <year>2009</year>
+          <fpage>S6</fpage>
+          <lpage>S12</lpage>
+          <pub-id pub-id-type="pmid">19844229</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib33">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Langmead</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Trapnell</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Pop</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Salzberg</surname>
+              <given-names>S.L.</given-names>
+            </name>
+          </person-group>
+          <source>Genome Biology</source>
+          <volume>10</volume>
+          <year>2009</year>
+          <fpage>R25</fpage>
+          <pub-id pub-id-type="pmid">19261174</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib34">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Durbin</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Bioinformatics</source>
+          <volume>25</volume>
+          <year>2009</year>
+          <fpage>1754</fpage>
+          <lpage>1760</lpage>
+          <pub-id pub-id-type="pmid">19451168</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib35">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Das</surname>
+              <given-names>M.K.</given-names>
+            </name>
+            <name>
+              <surname>Dai</surname>
+              <given-names>H.-K.</given-names>
+            </name>
+          </person-group>
+          <source>BMC Bioinformatics</source>
+          <volume>8</volume>
+          <issue>Suppl. 7</issue>
+          <year>2007</year>
+          <fpage>S21</fpage>
+          <pub-id pub-id-type="pmid">18047721</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib36">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mortazavi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>McCue</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Schaeffer</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <source>Nature Methods</source>
+          <volume>5</volume>
+          <year>2008</year>
+          <fpage>621</fpage>
+          <lpage>628</lpage>
+          <pub-id pub-id-type="pmid">18516045</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib37">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Trapnell</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>Pertea</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Mortazavi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kwan</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>van Baren</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Salzberg</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Wold</surname>
+              <given-names>B.J.</given-names>
+            </name>
+            <name>
+              <surname>Pachter</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <source>Nature Biotechnology</source>
+          <volume>28</volume>
+          <year>2010</year>
+          <fpage>511</fpage>
+          <lpage>515</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib38">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kent</surname>
+              <given-names>W.J.</given-names>
+            </name>
+            <name>
+              <surname>Sugnet</surname>
+              <given-names>C.W.</given-names>
+            </name>
+            <name>
+              <surname>Furey</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Roskin</surname>
+              <given-names>K.M.</given-names>
+            </name>
+            <name>
+              <surname>Pringle</surname>
+              <given-names>T.H.</given-names>
+            </name>
+            <name>
+              <surname>Zahler</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Haussler</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>Genome Research</source>
+          <volume>12</volume>
+          <year>2002</year>
+          <fpage>996</fpage>
+          <lpage>1006</lpage>
+          <pub-id pub-id-type="pmid">12045153</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib39">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stein</surname>
+              <given-names>L.D.</given-names>
+            </name>
+            <name>
+              <surname>Mungall</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Shu</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Caudy</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Mangone</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Day</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Nickerson</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Stajich</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Harris</surname>
+              <given-names>T.W.</given-names>
+            </name>
+            <name>
+              <surname>Arva</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lewis</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Genome Research</source>
+          <volume>12</volume>
+          <year>2002</year>
+          <fpage>1599</fpage>
+          <lpage>1610</lpage>
+          <pub-id pub-id-type="pmid">12368253</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib40">
+        <label>40</label>
+        <mixed-citation publication-type="other">M.J. Donlin, Current Protocols in Bioinformatics (2009) Unit 9.9 (Chapter 9).</mixed-citation>
+      </ref>
+      <ref id="bib41">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Licatalosi</surname>
+              <given-names>D.D.</given-names>
+            </name>
+            <name>
+              <surname>Mele</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Fak</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Ule</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kayikci</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Chi</surname>
+              <given-names>S.W.</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Schweitzer</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Blume</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Darnell</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Darnell</surname>
+              <given-names>R.B.</given-names>
+            </name>
+          </person-group>
+          <source>Nature</source>
+          <volume>456</volume>
+          <year>2008</year>
+          <fpage>464</fpage>
+          <lpage>469</lpage>
+          <pub-id pub-id-type="pmid">18978773</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib42">
+        <label>42</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Strehlitz</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Stoltenburg</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Aptamers in Bioanalysis</source>
+          <year>2009</year>
+          <publisher-name>Wiley Interscience</publisher-name>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>Work in our laboratory is funded by the Austrian Science Fund FWF Grant Z-72 to R.S., the doctoral program in RNA Biology W1207 to B.Z. and the Austrian GEN-AU Project D-110421-11 to R.S.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Schematic representation of the SELEX procedure. Genomic aptamers are selected via multiple rounds of selection and amplification. The procedure starts by transcribing a genomic DNA library into an RNA pool (1). The RNA pool can optionally be used for counter selection against unspecific ligands (2) and is then incubated with the bait under appropriate conditions to form the desired RNA–protein complex (3). Bait-binding RNAs are selected via filter binding or another chromatographic separation method and separated from non-binding species, which are discarded (4). The binding RNAs are then recovered, proteins are removed with PCI and urea is removed with ethanol precipitation (5). Finally, the pool is reverse transcribed and amplified via PCR, generating a new pool (6). This cycle is repeated until an appropriate amount of RNAs is enriched. The winning sequences can be cloned and sequenced, or alternatively, when a large number of sequences are expected deep-sequenced (7). In the Neutral SELEX control experiment, the selection step is omitted, and the cycle proceeds directly from transcription to reverse transcription (red arrow).</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Schematic representation of the <italic>E. coli</italic> genomic library. (A) Isolated DNA is used for the construction of the desired genomic library. Two hybrid primers, consisting of nine random nucleotides (red) followed by a specific sequence (light and dark blue), are used to synthesize the strands of the library. The hybrid primers anneal at 25 °C and are extended by the Klenow fragment of DNA polymerase I. After synthesis of both strands, reaction products are size-selected by denaturing gel electrophoresis. The fraction that contains library fragments of the desired size range is eluted and amplified by PCR with the fix-primer pair. The T7 promoter (dashed) for transcription of the library into RNA is introduced through the fixFOR primer. (B) Library fragments are overlapping and displaying a continuous endpoint distribution.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Quality control of the <italic>E. coli</italic> genomic library. The genomic library pictured was size-selected for lengths between 50 and 500 bp. (A) PCR analysis of single-copy genes. Different genomic segments, ranging from 133 to 368nt in length, were amplified with genome-specific primers from both <italic>E. coli</italic> genomic library (L) and genomic DNA (+). Products represent sections from the <italic>sodB</italic>, <italic>ompF</italic>, <italic>rpsB</italic> and <italic>rpoB</italic> genes. (B) Schematic representation of products resulting from PCR with one <italic>E. coli</italic> genome-specific and one library endpoint specific (fixFOR or fixREV) primer. (C) Analysis of size variation and endpoint distribution. PCR products of varying lengths result from amplification with different combinations of <italic>E. coli</italic> genome-specific (<italic>dam</italic>FOR and <italic>dam</italic>REV) and library specific (fixFOR and fixREV) primers.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Melting temperatures of incorporated primers from the genomic library construction. The hyb-primers contain a fixed region and a randomized region, the latter of which binds the genomic DNA during the Klenow reactions. We evaluated the randomness of the library priming by repositioning the library primers at random positions in the genome, at the same distance apart from each other. As compared to this <italic>in silico</italic>-randomized library (yellow bars), the melting temperatures of the library primers (brown bars) are slightly lower, possibly due to the preference for stable DNA–DNA complexes in the reaction.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Recovery and the resulting enrichment of genomic aptamers. The results of a deep-sequenced Genomic SELEX experiment for Hfq-binding aptamers in <italic>E. coli</italic> are shown here as an example. (A) Recovery rates of RNA after each cycle of Genomic SELEX steadily increase. Since the RNA was always in 10-fold excess to the protein, a recovery rate of 3.63% (H8) is relatively high. To increase stringency and further enrich the binding sequences after the 5th round of selection, the amount of RNA and protein were both reduced. (B) The enrichment levels drastically changed after increasing the stringency. The chart shows the cumulative frequency (<italic>y</italic>-axis) of bases at increasing enrichment depths (<italic>x</italic>-axis). The bar labeled “1” represents the fraction of bases in the enriched regions that have enrichment depth of 1 or greater (so it is 1.0), “2” represents 2 or greater, and so on. No sequences from H5 were enriched at a depth greater than 15, barely clearing the background levels from the library, which had a maximum depth of 10. In just 4 more rounds of selection with increased stringency, the maximum enrichment depth leapt up to 384. This provides a much clearer stratification of the tightly binding from the less competitive species.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Using the enrichment sequence to facilitate visual interpretation and <italic>in silico</italic> boundary mapping. The enrichment sequences for two different clusters from the same deep-sequenced final pool of Hfq Genomic SELEX are visualized here (see Sections <xref rid="sec2 sec3" ref-type="sec">3.2 and 3.3</xref> for description of the analysis). Each read from deep sequencing represents a full-length aptamer recovered from the experiment. (A) The positional enrichment depth can be summarized using an “enrichment sequence”, a sequence of numbers representing the number of high-throughput reads aligned to each base position. Here we see a visualization of one such sequence, represented as a histogram. The first 15 bases occur in four reads, the next two, seven reads, and so on. The escalating number of reads at each position can give clues as to where the consensus sequence lies. In this case, the highest plateau of enrichment in this cluster, underlined in red, contains an instance of a winning motif from the Hfq Genomic SELEX experiment, which was 5′-AAYAAYAA-3′ <xref rid="bib23" ref-type="bibr">[23]</xref>. This can be seen as an <italic>in silico</italic> version of the boundary mapping technique, previously used to find the minimal aptamer required for binding <xref rid="bib26" ref-type="bibr">[26]</xref>. (B) The visualization of read alignments from high-throughput sequencing can take up more space than a screen can hold and is often difficult to interpret. Incorporating the enrichment sequence histogram into a genome browser compacts the visualization, as shown for Cluster 1238 rendered here by GBROWSE <xref rid="bib39" ref-type="bibr">[39]</xref>. Additionally, the 2D analysis gives better insight into the genomic location of the cluster. In this example, we see the ygcN gene, whose start codon is at the left end of the beige bar, a cluster, represented with a green arrow and its corresponding enrichment sequence, visualized with a histogram. In a regular 1D analysis, the underlying region of the cluster would be deemed to be primarily upstream of the open reading frame. However, by comparing the areas under the histogram within and upstream of the open reading frame, the mass of the enrichment is clearly favoring the open reading frame, and furthermore is quite sharply increasing just downstream of the start codon.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+  </floats-group>
+</article>

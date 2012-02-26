@@ -1,0 +1,3779 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Methods</journal-id>
+      <journal-title>Methods (San Diego, Calif.)</journal-title>
+      <issn pub-type="ppub">1046-2023</issn>
+      <issn pub-type="epub">1095-9130</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2431124</article-id>
+      <article-id pub-id-type="pmid">17967698</article-id>
+      <article-id pub-id-type="publisher-id">YMETH2143</article-id>
+      <article-id pub-id-type="doi">10.1016/j.ymeth.2007.02.004</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Molecular dynamics simulations and their application to four-stranded DNA</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Šponer</surname>
+            <given-names>Jiří</given-names>
+          </name>
+          <email>sponer@ncbr.chemi.muni.cz</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Špačková</surname>
+            <given-names>Nad’a</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>
+        <addr-line>Institute of Biophysics, Academy of Sciences of the Czech Republic, v.v.i., Královopolská 135, 612 65 Brno, Czech Republic</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Fax: +420 541 212 179. <email>sponer@ncbr.chemi.muni.cz</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2007</year>
+      </pub-date>
+      <volume>43</volume>
+      <issue>4</issue>
+      <fpage>278</fpage>
+      <lpage>290</lpage>
+      <history>
+        <date date-type="accepted">
+          <day>14</day>
+          <month>2</month>
+          <year>2007</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2007 Elsevier Inc.</copyright-statement>
+        <copyright-year>2007</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>This review provides a critical assessment of the advantages and limitations of modeling methods available for guanine quadruplex (G-DNA) molecules. We characterize the relations of simulations to the experimental techniques and explain the actual meaning and significance of the results. The following aspects are discussed: pair-additive approximation of the empirical force fields, sampling limitations stemming from the simulation time and accuracy of description of base stacking, H-bonding, sugar-phosphate backbone and ions by force fields. Several methodological approaches complementing the classical explicit solvent molecular dynamics simulations are commented on, including enhanced sampling methods, continuum solvent methods, free energy calculations and gas phase simulations. The successes and pitfalls of recent simulation studies of G-DNA are demonstrated on selected results, including studies of cation interactions and dynamics of G-DNA stems, studies of base substitutions (inosine, thioguanine and mixed tetrads), analysis of possible kinetic intermediates in folding pathway of a G-DNA stem and analysis of loop regions of G-DNA molecules.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Molecular dynamics simulations</kwd>
+        <kwd>Guanine quadruplex</kwd>
+        <kwd>Empirical force field</kwd>
+        <kwd>Quadruplex formation</kwd>
+        <kwd>Force field approximations</kwd>
+        <kwd>Channel cations</kwd>
+        <kwd>Quadruplex loops</kwd>
+        <kwd>i-DNA</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <label>1</label>
+      <title>Introduction</title>
+      <p>Guanine quadruplex DNA (G-DNA) molecules are considered to be the most interesting non-canonical DNA systems <xref rid="bib1 bib2 bib3 bib4 bib5 bib6 bib7 bib8 bib9 bib10" ref-type="bibr">[1–10]</xref>. Besides experiments, G-DNA molecules were subjected to computational studies <xref rid="bib11 bib12 bib13 bib14 bib15 bib16 bib17 bib18 bib19 bib20 bib21 bib22 bib23 bib24 bib25 bib26 bib27 bib28 bib29 bib30" ref-type="bibr">[11–30]</xref>, mainly using explicit solvent molecular dynamics (MD) simulations <xref rid="bib31 bib32 bib33 bib34 bib35 bib36 bib37" ref-type="bibr">[31–37]</xref>.</p>
+      <p>MD simulation is a single-molecule atomistic <italic>in silico</italic> technique limited by the 1–100+ ns simulation time scale and quality of the force fields <xref rid="bib37" ref-type="bibr">[37]</xref>. Opinions about MD simulations range from rejection of everything that is calculated to indiscriminate applications of computational methods to problems that are far beyond their applicability. Both extreme views are inappropriate. Modeling has its scope, limitations and error margins. Computers always provide numbers and structures and therefore abusing computations is quite easy. Unrealistic application of simulations provides misleading data while wisely applied simulations can rationalize the experimental results and sometimes provide important missing pieces of information not obtainable by other means. Qualitative applications of computational methods are more appropriate than quantitative studies.</p>
+      <p>When assessing the meaning of the simulation results, we should <italic>exactly understand</italic> what this technique does. The method deals literally with just a single molecule which has a defined <italic>starting geometry</italic> and subsequently undergoes 300 K <italic>solution dynamics</italic> on a time scale 1–100+ ns. This is a considerable difference compared with experiments that deal with assemblies of molecules and mostly under equilibration conditions. The simulations are stochastic and 10-ns-scale simulations are capable to overcome free energy barriers of ∼5–7 kcal/mol. The “computer experiment” typically samples the conformational states just around the starting geometries. The molecule does not unfold even if unfolding would occur in equilibrium solution experiments. Simulation provides detail information about the ps-scale <italic>time development</italic> of all aspects of the 3D structure of the single simulated molecule including exact dynamical positions of all solvent and ion molecules. There is no experimental technique that would exactly mirror this and thus a comparison of MD with experiments should not be done in a groveling manner. The most intimately related experiment is X-ray crystallography, since it provides the best starting structures, represents the best validation and also inspires computational analyses. It is vital to critically confront computations with all available experiments, keeping in mind that experiments also have error margins that can contribute to the experiment vs. theory discrepancies. On the other side, it is unfair to invalidate computational analysis only because there is no relevant experiment that could be strictly reproduced by the computations. The primary aim of making computations is not to reproduce something that is already known but to learn something new about the studied molecules. It is entirely legitimate to use computations to fill gaps in the experimental data when important features of the studied systems are not accessible by measurements. Computations can also be instrumental in providing explanations of experiments and may prevent incorrect interpretation of experiments. What, however, must be requested from computational studies is a careful consideration of the limitations, not pushing the computations beyond their accuracy limits and avoiding to oversell the results.</p>
+      <p>The task is to propose a wise set of single molecule simulations with distinct starting conditions to learn as much as possible about the studied system on the affordable time scale which typically remains below 1 μs per paper. Albeit control simulations are useful, it is not necessary to repeat exactly the same simulation over and over again. The researcher should literally play with the molecule and ask one question after another. The convergence and reproducibility of the results can be fairly well deduced from a behavior of a set of diverse simulations.</p>
+      <p>The MD method is not capable to find the correct topology of the molecule on its own. Essentially only good quality X-ray structures and in some cases NMR data provide viable starts for simulations. On the other hand, if the starting structures contain errors then MD is often capable to detect them. Force field limitations may introduce errors from negligible ones up to complete failures depending on the simulation task. Investigators with a proper expertise should be capable to fairly well assess the force field limitations while running simulations in a black-box manner is a recipe to get poor results. Sometimes the developers of computational codes contribute indirectly to the abuses, as they obviously try to provide as much method options as possible. The codes then contain options of variable applicability and reliability and inexperienced users can easily make crazy computations. The users bear the ultimate responsibility to use appropriate methods.</p>
+    </sec>
+    <sec sec-type="methods">
+      <label>2</label>
+      <title>Methods</title>
+      <sec>
+        <label>2.1</label>
+        <title>General considerations</title>
+        <p>In explicit solvent simulations, the solute molecules are immersed in a sufficiently large (extending at least 10 Å from the studied molecule) box of explicit water molecules and ions. The box is periodically extended in all directions (periodic boundary conditions). The molecules are described by simple pair-additive atomistic potentials (force fields) that treat atoms as Lennard-Jones van der Waals spheres with partial <italic>constant</italic> point charges localized at the individual atomic centers, linked by harmonic springs supplemented by simple valence angle and torsion profiles mimicking the covalent structure.</p>
+        <p>The pair-additive approximation means that no polarization and charge transfer effects are included, such as polarization of solute by solvent, variation of charge distributions with conformational changes, etc. Interaction of three particles is described just as a sum of three pairwise interactions while real systems are non-additive, i.e., the interaction between two particles is to a certain extent influenced by other particles (cooperativity or anticooperativity, i.e., many-body effects). The dynamical explicit solvent properly accounts for the permittivity. Compared to high-quality quantum chemical (QM) methods <xref rid="bib38" ref-type="bibr">[38]</xref> the force field is less physically complete (and usually less accurate) but allows to study large solvated systems. This is particularly important for G-DNA where, due to the unique balance of contrasting molecular interactions, model systems smaller than complete and solvated G-DNA stems with ions have a limited significance.</p>
+      </sec>
+      <sec>
+        <label>2.2</label>
+        <title>Long-range electrostatics</title>
+        <p>Before 1995, the major limitation was the treatment of long-range electrostatic forces. In order to make simulations feasible long-range electrostatic forces must be somehow truncated. All earlier cut-off methods resulted in cumulation of brutal errors along the simulation trajectories. Such errors are particularly large for charged nucleic acids (NA) and especially for the G-DNA with its profound electrostatic interactions. This was the actual cause of a swift expulsion of the cations from the G-DNA channel and collapse of the structure reported in the first MD simulation <xref rid="bib17" ref-type="bibr">[17]</xref>. The introduction of the particle mesh Ewald (PME) treatment of electrostatics <xref rid="bib39 bib40" ref-type="bibr">[39,40]</xref> in 1995 eliminated this fundamental problem. The inherent periodicity of PME method could overstabilize the simulated systems <xref rid="bib41 bib42" ref-type="bibr">[41,42]</xref> but this problem should be rather marginal compared to sampling and force field limitations.</p>
+      </sec>
+      <sec>
+        <label>2.3</label>
+        <title>Sampling limitations</title>
+        <p>The time scale of real events is much longer than the affordable simulation time scales which results in limited conformational sampling. Faster computers would improve the sampling but longer simulations may also expose force field deficiencies that have cumulative effects over time. Sampling limitation can be reduced by running multiple simulations with smart choices of starting structures or by using enhanced sampling methods (see Section <xref rid="sec3" ref-type="sec">2.12</xref>). The likelihood of structural changes in simulations is nevertheless enhanced as the simulation is not fully equilibrated after its start.</p>
+      </sec>
+      <sec>
+        <label>2.4</label>
+        <title>Force field approximations</title>
+        <p>The force field is (and will likely remain in the near future for a variety of reasons) so simple that it cannot capture accurately all energy contributions simultaneously, especially when using multipurpose biomolecular force fields. Tuning the force field to reproduce a given feature can increase errors elsewhere. For example, polar hydrogens have small apparent radii when interacting with polar groups but quite large ones when they contact non-polar groups, so the fixed radius in a simulation is a compromise. The force field atomic radii are anyway fictive adjustable parameters optimized to achieve a meaningful overall force field performance.</p>
+      </sec>
+      <sec>
+        <label>2.5</label>
+        <title>Base stacking, pairing and atomic charges</title>
+        <p>The AMBER force field <xref rid="bib43" ref-type="bibr">[43]</xref> provides a balanced description of base stacking and base pairing <xref rid="bib44 bib45 bib46" ref-type="bibr">[44–46]</xref>. Atomic charge distributions are necessarily arbitrary, as there is no quantum mechanical operator for atomic charges <xref rid="bib38" ref-type="bibr">[38]</xref>. There is no experiment (even a hypothetical one) to determine atomic charges. Partial atomic charges (even those that would be derived from experimental electron densities) do not correspond to any real physicochemical quantity. Thus, charge distributions can be greatly manipulated by changing the way they are derived. This should be considered when assessing molecular interactions based on the individual atomic charges, as there obviously are no ultimate “correct” charges. (So called Mulliken population analysis shows huge method and basis set dependence and should never be used.) It makes no sense to compare individual atomic charges in different force fields. What matters is how the whole set of charges performs in interaction energy calculations. AMBER derives the charges to reproduce the electrostatic potential (ESP) around the molecules <xref rid="bib47 bib48" ref-type="bibr">[47,48]</xref>. ESP is a measurable (real) quantity which in addition determines the electrostatic part of the biomolecular interactions. No out-of-plane charges are needed for nucleobases and the van der Waals term is also well balanced.</p>
+      </sec>
+      <sec>
+        <label>2.6</label>
+        <title>Non-planarity of amino groups</title>
+        <p>Amino groups of NA bases tend to be non-planar due to a partial sp<sup>3</sup> hybridization <xref rid="bib38 bib49 bib50" ref-type="bibr">[38,49,50]</xref>. Non-planar amino groups affect stabilization of bifurcated H-bonds, close amino group contacts, non-planar G/A base pairs and some other specific interactions <xref rid="bib38" ref-type="bibr">[38]</xref>. The force fields, in contrast, assume purely sp<sup>2</sup> amino nitrogen. This should be sufficient for most interactions, as primary H-bonds stabilize the sp<sup>2</sup> electronic structure. Parametrization of a force field that flexibly modulates the amino group nitrogen hybridization (including its lone pair in amino-acceptor interactions) in response to the environment would not be straightforward.</p>
+      </sec>
+      <sec>
+        <label>2.7</label>
+        <title>Description of the backbone</title>
+        <p>The sugar-phosphate backbone is considerably more difficult to deal with for two reasons: (i) it is flexible and thus the <italic>constant</italic> point charges do not reproduce the electrostatic potential equally well for distinct backbone substates (geometry-dependent charges would be needed, and most likely it would be desirable to go beyond the approximation of atom-centered charges) <xref rid="bib47 bib48 bib51" ref-type="bibr">[47,48,51]</xref>, (ii) it is a highly polarizable anion, with a complicated electronic structure that changes with solvation and conformational dynamics. These contributions are neglected by the non-polarizable atom–atom pair-additive force fields.</p>
+        <p>Recent studies <xref rid="bib52 bib53 bib54" ref-type="bibr">[52–54]</xref> detected a stunning failure in longer (10+ ns) AMBER MD simulations of B-DNA using both parm94 <xref rid="bib43" ref-type="bibr">[43]</xref> and parm99 <xref rid="bib55" ref-type="bibr">[55]</xref> (two slightly different variants of the AMBER force field). There has been an accumulation of irreversible g+/t and g−/t α/γ backbone substates (instead of the canonical g−/g+ substate) followed by severe distorsions of the double helix. When using simple force field we rely on a mutual compensation of errors of the individual force field terms and this B-DNA degradation is a textbook example what happens when the compensation fails in a certain application. Fortunately, the α/γ B-DNA degradation can be considered as an extreme problem and for most applications the simulations are not biased to such extent.</p>
+        <p>A viable correction of the α/γ DNA backbone profile (parmbsc0) <xref rid="bib56" ref-type="bibr">[56]</xref> was recently introduced.</p>
+        <p>The α/γ imbalance contributed to poor G-DNA loop behavior (see Section <xref rid="sec6" ref-type="sec">3.5</xref>) <xref rid="bib16" ref-type="bibr">[16]</xref>. Our preliminary data suggest that with parmbsc0 the loop description is visibly improved but not fully corrected. The imbalances in description of G-DNA loops are caused not only by the tuning of the α/γ torsional terms in parm94/99 but also by other problems which remain to be tackled. Modeling of single-stranded NA regions is one of the most challenging problems where force field errors are quite likely to be exposed <xref rid="bib37" ref-type="bibr">[37]</xref>.</p>
+        <p>The G-DNA stem simulations are not markedly affected by the α/γ problem and thus the older results remain valid. Similarly, the α/γ imbalance does not disturb RNA simulations and the overall RNA performance of the AMBER parm94/99 force field is amazing <xref rid="bib37 bib57 bib58" ref-type="bibr">[37,57,58]</xref>. For DNA, the parmbsc0 is strongly preferred although it perhaps may introduce a small bias towards canonical backbone topologies.</p>
+      </sec>
+      <sec id="sec1">
+        <label>2.8</label>
+        <title>Cations and anions</title>
+        <p>Performance of force fields for monovalent cations is reasonable and they sample quite well already in 25+ ns simulations <xref rid="bib52 bib59 bib60" ref-type="bibr">[52,59,60]</xref>. Simulations well capture the overall effect of the channel ions on the G-DNA stabilization. However, both standard K<sup>+</sup> and Na<sup>+</sup> ions are little oversized (they look little too large). For Na<sup>+</sup> the in-plane (tetrad) positions are considerably under-populated and K<sup>+</sup> can even pop out of the channel. Reduction of the monovalent ion radii considerably improves the sampling inside the channel <xref rid="bib11 bib12" ref-type="bibr">[11,12]</xref> albeit it may bias for example ion solvation energies which could affect free energy calculations. The direct binding strength between the ion and the O6 atom of guanine is underestimated by several kcal/mol when compared to QM calculations <xref rid="bib11 bib14" ref-type="bibr">[11,14]</xref> (<xref rid="fig1" ref-type="fig">Fig. 1</xref>a). Simulations with Na<sup>+</sup> often give bifurcated topology of some G-quartets (<xref rid="fig1" ref-type="fig">Fig. 1</xref>b) which likely is another consequence of the lack of polarization <xref rid="bib11" ref-type="bibr">[11]</xref>. The force field description of the Na<sup>+</sup> vs. K<sup>+</sup> difference may be imperfect and studies aimed to capture the Na<sup>+</sup> vs. K<sup>+</sup> difference should be done with a care. We were not able to reproduce experimental <xref rid="bib61 bib62" ref-type="bibr">[61,62]</xref> monovalent cation binding sites at the G-DNA stem-loop junctions <xref rid="bib16" ref-type="bibr">[16]</xref>.</p>
+        <p>Very deficient is the description of divalent cations associated with large polarization and charge transfer. The Mg<sup>2+</sup>⋯N7(guanine) interaction energy term is ∼210 kcal/mol, while the force field accounts for only ∼150 kcal/mol. Non-additivity in the first ligand shell of Mg<sup>2+</sup> is ∼70 kcal/mol, mainly due to inter-ligand polarization repulsion <xref rid="bib63" ref-type="bibr">[63]</xref>. In reality, the first-shell water molecules are heavily polarized by the ion and their H-bonding properties are very different from those of bulk water molecules <xref rid="bib64" ref-type="bibr">[64]</xref>. The force fields can be biased towards direct (inner-shell) binding of Mg<sup>2+</sup> to solute. The sampling of divalent ions is entirely insufficient in affordable simulations. In most cases it is wise to avoid divalents in simulations.</p>
+        <p>Anions have electrons localized far from their atomic centers and are thus highly polarizable, requiring polarizable force fields <xref rid="bib65" ref-type="bibr">[65]</xref>. Formation of artifact KCl clusters with standard AMBER force field parameters was reported and such high-salt simulations may possibly expose some artifacts due to periodicity of the PME method <xref rid="bib66" ref-type="bibr">[66]</xref>. Thus, the common approach of running simulations containing just neutralizing monovalent cations (∼0.2 M) is rather justified.</p>
+      </sec>
+      <sec>
+        <label>2.9</label>
+        <title>Protein force fields</title>
+        <p>Simulations of protein–DNA complexes require that protein and DNA force fields are mutually consistent. The latest version of AMBER protein force field is parm99SB which is considerably improved over parm99 <xref rid="bib67" ref-type="bibr">[67]</xref>. Another recent protein force field is ff03 but it has no NA counterpart <xref rid="bib68" ref-type="bibr">[68]</xref>.</p>
+      </sec>
+      <sec id="sec2">
+        <label>2.10</label>
+        <title>Ligand force fields and non-standard residues</title>
+        <p>The DNA force fields emerged after years of a careful development and testing. Thus, a major attention should be paid to make any drug force field <xref rid="bib69" ref-type="bibr">[69]</xref>. This requires parametrization using high quality QM potential energy surfaces and testing. Many ligands are complex molecules and many of them also are non-neutral. Troubling are flexible parts of the ligands and the associated torsional profiles. Most authors prefer, however, to get their ligand force fields without much investment. One common approach is to create the force field “on analogy with the existing parameters”, which is an <italic>ad hoc</italic> parametrization. AMBER code allows an automated derivation of the force fields. Atomic charges are obtained consistently with the rest of the force field while the remaining parameters are assigned using GAFF (generalized AMBER force field) method <xref rid="bib70" ref-type="bibr">[70]</xref>. However, GAFF is still approximate and the resulting force field is advised to be verified and tuned, using QM calculations and test dynamical runs. Simple ligand force fields could be very useful for some qualitative tasks <xref rid="bib23" ref-type="bibr">[23]</xref> but are not suitable for any quantitative modeling or free energy calculations. Equally difficult would be to properly modify the backbone. Modified nucleobases (thioguanine and inosine) are easy to parametrize since the bases are planar rigid systems without torsional flexibility.</p>
+      </sec>
+      <sec>
+        <label>2.11</label>
+        <title>CHARMM and other force fields</title>
+        <p>Another major force field is CHARMM <xref rid="bib71 bib72" ref-type="bibr">[71,72]</xref>, which has basically the same functional form but a different philosophy of derivation. CHARMM has not yet been used for four-stranded DNAs while its performance for B-DNA is very good. Instability of CHARMM27 trajectories for folded RNAs has been reported <xref rid="bib73" ref-type="bibr">[73]</xref>. The recent GROMOS force field <xref rid="bib74" ref-type="bibr">[74]</xref> was not yet independently tested for DNA. One should avoid using force fields that were not specifically parametrized for nucleic acids. It is unlikely that these would incidentally work for DNA.</p>
+        <p>New generation of force fields should explicitly consider polarization and will be more physically complete <xref rid="bib75 bib76 bib77" ref-type="bibr">[75–77]</xref>. Polarization force fields are successfully used, e.g., for ion solvation studies <xref rid="bib78 bib79" ref-type="bibr">[78,79]</xref>. However, to parametrize a biomolecular polarization force field for NA is a tremendous task. It is not possible to simply add polarization terms to the existing non-polarizable force fields and the whole parametrization should start from the scratch. It remains to be seen when such force fields will be available and it is not <italic>a priori</italic> guaranteed that they will achieve a considerably improved accuracy. It might be quite difficult to achieve the desirable balance of all the individual terms and the appropriate cancellation of errors. Note that even such force field would not capture all non-additive effects (e.g., charge transfer associated with divalent cations) <xref rid="bib80" ref-type="bibr">[80]</xref>.</p>
+      </sec>
+      <sec id="sec3">
+        <label>2.12</label>
+        <title>Enhanced sampling methods</title>
+        <p>Explicit solvent MD simulations can be combined with enhanced sampling techniques: locally enhanced sampling (LES), replica exchange (RE) and targeted MD. All these methods introduce additional approximations.</p>
+        <p>LES <xref rid="bib81 bib82" ref-type="bibr">[81,82]</xref> splits a selected part of the molecule (e.g., a loop) into N (3–5) copies that move independently while the rest of the molecule is simulated in the standard manner. The height of conformational free energy barriers between distinct substates is reduced roughly by 1/N. LES was applied to studies of the single-stranded loops of G-DNA <xref rid="bib16 bib20" ref-type="bibr">[16,20]</xref>. In REMD <xref rid="bib83 bib84" ref-type="bibr">[83,84]</xref> several non-interacting copies (replicas) are simulated independently at different temperatures (e.g., 300–500 K). In contrast to LES, each replica is a copy of the whole system in standard REMD. Conformations of the individual simulated systems are exchanged using Metropolis-like formulae considering probability of sampling of each conformation at the alternate temperature.</p>
+        <p>Targeted simulation forces the sampled structure to be at a given RMSd from some reference geometry by a harmonic penalty <xref rid="bib85" ref-type="bibr">[85]</xref>. By changing smoothly the target RMSd one can approach or separate the molecule from reference geometries. Major caution is necessary in case of complex conformational transitions as such transitions will be typically outside applicability of the method (despite that low RMSd is enforced the transitions and structures can be entirely senseless) <xref rid="bib86" ref-type="bibr">[86]</xref>.</p>
+        <p>Elevating the temperature (to, e.g., 400 K) is another crude way to overcome barriers. However, the pair-additive potential is tuned for room temperature simulations and adverse effects such as empty cavities in the bulk solvent may occur.</p>
+      </sec>
+      <sec>
+        <label>2.13</label>
+        <title>Continuum solvent methods</title>
+        <p>Costly explicit solvent calculations can be replaced by continuum (implicit) solvent methods <xref rid="bib87 bib88 bib89 bib90" ref-type="bibr">[87–90]</xref> using Poisson–Boltzmann (PB) or more approximate generalized Born (GB) approaches, together with a surface area (SA) term which is usually obtained by scaling the solvent accessible surface area by an appropriate surface tension. These methods allow assessment of hydration and free energies that cannot be derived from explicit solvent models, thus providing relation between structures and energies. Unfortunately, these approaches introduce additional substantial approximations, require parameterization, and their results are very sensitive to parameters such as the atomic radii used to define the solute cavity. The GB/SA approach can be used to run continuum solvent MD simulations, but the range of applicability of GB/SA MD has yet to be established <xref rid="bib91" ref-type="bibr">[91]</xref>. It shows faster sampling because of the absence of friction between solute and solvent, but the method may also significantly over-stabilize folded structures. There is no reason to use GB/SA dynamics when the computational task can be achieved by explicit solvent simulation.</p>
+        <p>Another approach is to perform standard explicit solvent MD simulations and subsequently apply the continuum solvent method (post-processing of the trajectory), by removing the explicit solvent and periodicity and averaging the energies over a sufficient number of snapshots (static frames) <xref rid="bib89 bib90" ref-type="bibr">[89,90]</xref>. This is known as MM-GBSA or MM-PBSA free energy methods. As free energy is a state function, one can evaluate free energy differences between distinct substates without simulating the transition. MM-PBSA calculations of G-DNA require explicit inclusion of the channel ions and were instructive in comparing different substates of G-DNA stem <xref rid="bib15" ref-type="bibr">[15]</xref>. MM-PBSA failed to predict the absolute values of DAPI binding to B-DNA <xref rid="bib69" ref-type="bibr">[69]</xref>. For a recent assessment of the technique see <xref rid="bib92" ref-type="bibr">[92]</xref>. To estimate the ligand-binding energies one can use either single or multiple trajectory approaches <xref rid="bib89" ref-type="bibr">[89]</xref>. In the multiple trajectory approach, the free energy difference is evaluated using three separate simulations (trajectories) of the complex, receptor and ligand. In the single trajectory approach all data are derived from the single trajectory of the complex, i.e., it is assumed that the free energy (conformational dynamics) of the ligand and receptor would be identical in the simulation of the complex and in the separate ligand/receptor simulations. Thus any induced fit effect is neglected. However, the single trajectory approach may be more robust by canceling sampling errors in the intramolecular terms. These errors may be very significant when the sampling of solute substates in the separate trajectories is mutually inconsistent, which is a likely scenario <xref rid="bib69" ref-type="bibr">[69]</xref>. Explicit inclusion of a subset of water molecules around the binding site could improve the binding free energy predictions <xref rid="bib69" ref-type="bibr">[69]</xref>.</p>
+        <p>In summary, continuum solvent approaches can provide useful insights into the molecular interactions but accuracy of such calculations is rather modest. An order of magnitude change of the ligand-binding equilibrium constant corresponds to just ∼1.4 kcal/mol free energy difference at 300 K. Quantitative accuracy is not achievable with the contemporary computational methods unless the method is specifically trained for a given system using known experimental data.</p>
+      </sec>
+      <sec>
+        <label>2.14</label>
+        <title>Free energy perturbation, thermodynamics integration, potential of mean force and umbrella sampling</title>
+        <p>Free energy perturbation (FEP) and thermodynamic integration (TI) are capable to determine the free energy difference (Δ<italic>G</italic>) between two states (characterized by values of a perturbation parameter 0 and 1) in the course of explicit solvent simulations. ΔG is calculated as a step by step transition connecting states 0 and 1. For example, guanine can be “mutated” to thioguanine. Although this is an unphysical transition process it is legitimate in computations as free energy is a state function and one can use thermodynamics cycle (<xref rid="fig2" ref-type="fig">Fig. 2</xref>). TI was used to study free energy changes due to guanine to 6-thioguanine substitution in duplexes, triplexes and G-DNA with a good agreement with available experiments <xref rid="bib13" ref-type="bibr">[13]</xref>. An overview of free energy calculation methods is available in <xref rid="bib93 bib94" ref-type="bibr">[93,94]</xref>. FEP and TI are more accurate compared with the continuum solvent methods. However, the simulated changes and transitions must respect the limits of the available sampling. Thus, purine to pyrimidine substitution is a manageable albeit not easy task for TI. Inserting an intercalator into a duplex DNA is beyond the applicability limit.</p>
+        <p>The change in free energy between the initial and final states can be expressed as a function of a spatial coordinate (i.e., an internal coordinate of the system or a coordinate in Cartesian space). Simply saying, the change in free energy corresponds to the average force acting along the chosen coordinate and is thus referred to as a potential of mean force (PMF). PMF calculations are useful for studying conformational changes, molecular associations and chemical reactions. The standard method to determine PMF along the coordinate is the umbrella sampling method <xref rid="bib95" ref-type="bibr">[95]</xref>, which applies an artificial biasing potential to the system to extend the range of sampling that may not be explored extensively via regular MD simulations. Umbrella sampling simulations were applied to studies of base pair opening in B-DNA albeit the results appear to be force field dependent <xref rid="bib96 bib97" ref-type="bibr">[96,97]</xref>.</p>
+      </sec>
+      <sec>
+        <label>2.15</label>
+        <title>QM calculations on tetrads</title>
+        <p><italic>Ab initio</italic> QM studies of nucleobase quartets <xref rid="bib98 bib99 bib100" ref-type="bibr">[98–100]</xref> are more physically complete than force field calculations. They, however, dissect exclusively the intra-tetrad (or partly inter-tetrad) interactions and neglect the interplay of forces in G-DNA which mainly stems from long-range electrostatics and solvation. Note that while G-quartets without ions are stable in gas phase they are not stable in solution. Meyer and co-workers found that a quartet stack sandwiching the Na<sup>+</sup> with square antiprismatic coordination was by almost 10 kcal/mol more stable than a cubic coordination <xref rid="bib101" ref-type="bibr">[101]</xref>. While the calculations likely nicely capture the correct trend the calculated energy difference is enormous, which may be due to the <italic>in vacuo</italic> environment or some other limitations (see below).</p>
+        <p>QM calculations of single quartets are straightforward. There are, however, numerous problems when calculating two quartets simultaneously even when attempting just single point energy estimates. The usual DFT (density functional theory) methods are very good for H-bonding and cation–base interactions, superior to force fields. However, DFT notoriously fails for stacking, thus the vertical interactions between guanines cannot be described in a realistic way. For stacking, AMBER force field is superior to medium cost QM methods. DFT is typically neglecting the dispersion energy entirely. Accurate calculations of stacking require MP2 method with large basis set of atomic orbitals or even expansion to the basis set limit, further followed by exceptionally costly coupled cluster correction which scales computer requirements with ca. sixth power of the number of atoms included. The largest system for which such data is available is guanine dimer <xref rid="bib44" ref-type="bibr">[44]</xref>. DFT methods augmented by empirical dispersion term <xref rid="bib102" ref-type="bibr">[102]</xref> could in future be used for stacked G-quartets.</p>
+        <p>Gradient optimization of a two-quartet structure would be further affected by two additional uncertainties. The first problem is the mathematical artifact known as the basis set superposition error (BSSE). BSSE originates in the incompleteness of the basis set of atomic orbitals and causes an artefactual stabilization of molecular complexes. It can be easily corrected for single-point calculations on fixed geometries but remains uncorrected in the course of optimizations. Although BSSE could compensate for the missing dispersion in DFT calculations the degree of the compensations of these two big errors is uncertain. The second problem is the lack of the environment that certainly would exert a non-negligible effect on the system. For further details about the <italic>ab initio</italic> QM methodology see <xref rid="bib103 bib104" ref-type="bibr">[103,104]</xref>.</p>
+      </sec>
+      <sec id="sec4">
+        <label>2.16</label>
+        <title>Gas phase simulations</title>
+        <p>Recent studies <xref rid="bib27 bib28 bib29" ref-type="bibr">[27–29]</xref> indicate that many cation-stabilized G-DNA structures may survive with only modest perturbations up to 1 μs gas phase (<italic>in vacuo</italic>) simulations <xref rid="bib27" ref-type="bibr">[27]</xref>. Such simulations are aimed to complement mass spectrometry experiments. A possible weakness is that the AMBER force field has been designed for condensed phase studies. Further, and more importantly, in the course of electrospray ionization mass spectrometry (ESI-MS) experiment, the DNA molecules are transferred to the gas phase with an unnatural charge of −3 to −8e. This charge should be somehow distributed along the molecules while its exact spread or localization is unknown. When deviating from the natural charge of −1 per phosphate the electronic structure of the DNA changes and this would require an overall reparametrization. The lack of any structural experimental data precludes further assessment of such simulations and one should be very careful to not over-interpret these otherwise interesting results. Evaluation based on cross sections might be of a limited value for something as spherical as G-DNA <xref rid="bib27" ref-type="bibr">[27]</xref>. Note also that the actual process of taking the molecule from solution to the gas phase is not modeled and thus the starting structures taken, e.g., from X-ray may be non-relevant. Actually, one of these studies <xref rid="bib105" ref-type="bibr">[105]</xref> suggested quadruplex stems to be present in solution without the stabilizing ions, i.e., that the ions are not needed for G-DNA structure to survive. This speculation contradicts solution and X-ray experiments. Further, solution simulations unambiguously show that a vacant G-DNA stem is a ns-scale unstable structure and can be ruled out in solution <xref rid="bib11 bib15" ref-type="bibr">[11,15]</xref>. Vacant stem either captures swiftly ions from the bulk solvent or collapses entirely. We see no force that could prevent the ions to jump into a vacant stem.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>3</label>
+      <title>Representative MD simulations and their results</title>
+      <sec>
+        <label>3.1</label>
+        <title>Simulations of G-DNA stem</title>
+        <p>MD simulations of parallel d(G<sub>4</sub>)<sub>4</sub> stem (<xref rid="fig3" ref-type="fig">Fig. 3</xref>a) <xref rid="bib11" ref-type="bibr">[11]</xref> starting from the 0.95 Å resolution X-ray structure <xref rid="bib5" ref-type="bibr">[5]</xref> nicely reproduced (kept stable) all its basic structural features, including bistability of the phosphate groups (<xref rid="fig4" ref-type="fig">Fig. 4</xref>). The high-resolution X-ray structure, however, allowed to discern local imbalances in the quartet–cation interactions (see Section <xref rid="sec1" ref-type="sec">2.8</xref>). RMSd between the X-ray and simulated structures was below 1 Å, less than in common NA simulations. Thus, simulations show that G-DNA stem is exceptionally rigid. Note, nevertheless, that RMSd is an uninformative metric for MD studies for a variety of reasons. RMSd between simulated and X-ray structure is larger than between two X-ray structures since for example standard bond lengths and angles subtly differ from the X-ray dictionaries. Larger simulated NA molecules with RMSd 2–5+ Å can still well agree with the target structures, as judged by inspection of H-bonds, stacks etc. In addition, one can evaluate either RMSd for <italic>averaged MD structure</italic> or time development of <italic>instantaneous RMSd</italic> along the trajectory. For intrinsically dynamical molecules the instantaneous RMSd may be quite large while RMSd of the averaged structure may still drop to 1–2 Å. Simulations provided stable trajectories for the diagonal loop NMR structure of d(G<sub>4</sub>T<sub>4</sub>G<sub>4</sub>)<sub>2</sub> <xref rid="bib4" ref-type="bibr">[4]</xref> (<xref rid="fig3" ref-type="fig">Fig. 3</xref>c) while the lateral (edge) loop variant based on X-ray structure <xref rid="bib106" ref-type="bibr">[106]</xref> (<xref rid="fig3" ref-type="fig">Fig. 3</xref>d) resulted in substantial initial relaxation of both the stem and loops, indicating errors in the experimental structure.</p>
+        <p>MD simulations were applied to studies of complexes between G-DNA and ligands (including, e.g., anthraquinones, acridines and porphyrins) to complement various experimental data lacking atomic resolution (i.e., diffraction experiments, gel mobility shifts, FRET, etc.) <xref rid="bib22 bib23 bib24 bib107" ref-type="bibr">[22–24,107]</xref> (see cautionary comments in Section <xref rid="sec2" ref-type="sec">2.10</xref>). Possible arrangements for the G-DNA–ligand complex include two basic binding modes: an external binding, when ligand is stacked at the end of the quadruplex stem, and an intercalated binding, when ligand is sandwiched between two adjacent quartets. Several studies <xref rid="bib22 bib23 bib107" ref-type="bibr">[22,23,107]</xref> revealed the preference for the external binding mode over the intercalation one. External binding does not require conformational changes in the quadruplex stem and is also consistent with the relatively rapid kinetics observed for the complex <xref rid="bib23" ref-type="bibr">[23]</xref>. Very crude free energy estimates from MD simulations of G-DNA–porphyrin complexes <xref rid="bib22" ref-type="bibr">[22]</xref> indicate that Δ<italic>G</italic> for external binding mode is driven by an enthalpy term Δ<italic>H</italic> (with a small unfavorable entropy term <italic>T</italic>Δ<italic>S</italic>) while Δ<italic>G</italic> for intercalation is driven by a large <italic>T</italic>Δ<italic>S</italic> (complemented by a small Δ<italic>H</italic>).</p>
+      </sec>
+      <sec>
+        <label>3.2</label>
+        <title>How many cations are needed in G-DNA stem?</title>
+        <p>The parallel four-tetrad quadruplex remains entirely stable with two cations in the channel, confirming that the stem is capable to achieve smooth equilibrium exchange of cations with the bulk solvent, experimentally observed on the hundreds of microseconds to millisecond time scale for the central ions <xref rid="bib108" ref-type="bibr">[108]</xref>. The rigidity of the quadruplex is immediately lost when ions are absent in the channel <xref rid="bib11 bib19 bib30" ref-type="bibr">[11,19,30]</xref>. Waters quite swiftly move into the channel but are not able to sufficiently stabilize the stem. Rearrangements involving vertical slippage of one strand (“strand walking”) were reported for four-quartet stem leading to temporary formation of a “slipped” molecule (<xref rid="fig5" ref-type="fig">Fig. 5</xref>). This slipped stem can be stabilized by placing cations back into the channel, leading to a stable cation-stabilized slipped quadruplex. MD simulations of longer vacant stems (containing up to 24 quartets) are more stable and indicate that increased number of quartets improves the stability of the G-DNA structure <xref rid="bib30" ref-type="bibr">[30]</xref>.</p>
+        <p>The vacant quadruplex spontaneously intercepts and incorporates bulk cations <xref rid="bib12 bib19 bib30" ref-type="bibr">[12,19,30]</xref> (<xref rid="fig6" ref-type="fig">Fig. 6</xref>). The ion first arrives to the channel entrance while the channel cavity is occupied by water molecule. Then, the positions of the water and the ion are exchanged. The very first cation provides visible stabilization for the stem and the stem is capable to re-shuffle the ion towards the center. Thus, the lifetime of a G-DNA stem with a vacant channel could be 1–10 ns. In one recent simulation the stem disintegrated after the ion capture, so more data would be needed to have statistics <xref rid="bib27" ref-type="bibr">[27]</xref>.</p>
+        <p>In summary, the G-DNA stems are never left vacant by cations and their stability in water results from cations associated with the tetrads. These qualitative results are assumed to be unaffected by the force field approximations, since they stem from balance of well-described nucleobase interactions and electrostatics. Vacant G-DNA stems in solution suggested recently by some ESI-MS experiments (see Section <xref rid="sec4" ref-type="sec">2.16</xref>) are in a striking disagreement with theoretical data.</p>
+      </sec>
+      <sec>
+        <label>3.3</label>
+        <title>GCGC quartets, inosine and 6-thioguanine</title>
+        <p>Mixed quadruplexes with GCGC quartets were studied by NMR <xref rid="bib109 bib110 bib111" ref-type="bibr">[109–111]</xref>. In simulations <xref rid="bib12" ref-type="bibr">[12]</xref>, the GCGC quartets adopt two distinct conformations, termed “closed” and “sheared” in good agreement with NMR. Stability of mixed quadruplexes is due to the cation-stabilized guanine quartets while a stem formed exclusively by GCGC quartets is unstable. G-DNA like quadruplexes lacking the G-quartets should not exist because of their genuine instability.</p>
+        <p>Inosine is capable to form cation-stabilized all-inosine quadruplex stem that is primarily stabilized by the quartet–cation interactions, which are very similar for inosine and guanine due to the similarity of their electronic structures (orientation of dipole moments) <xref rid="bib38" ref-type="bibr">[38]</xref>. However, the inosine quadruplex (in contrast to the guanine quadruplex) with a vacant channel disintegrates within the first nanosecond of simulation having no time to catch any cation <xref rid="bib14" ref-type="bibr">[14]</xref>. In absence of ions, the lack of the amino group is immediately visible. The difference between guanine and inosine H-bonding capability may affect the folding process of the quadruplexes by destabilizing intermediates that rely on base pairing (see Section <xref rid="sec5" ref-type="sec">3.4</xref>).</p>
+        <p>Thioguanine destabilizes the quadruplex structure <xref rid="bib112" ref-type="bibr">[112]</xref>. Although a single thioguanine is tolerated in simulations <xref rid="bib13 bib14" ref-type="bibr">[13,14]</xref>, its presence in G-DNA is penalized by the free energy difference of ∼4.4 kcal/mol. All-thioguanine quartet is visibly stressed while full thioguanine stem collapses immediately. The thiogroup has favorable interaction with Na<sup>+</sup> cations and in addition is rather poorly hydrated, so its burial inside the structure could be convenient. However, this group is just too bulky for G-DNA.</p>
+      </sec>
+      <sec id="sec5">
+        <label>3.4</label>
+        <title>Quadruplex stem formation—insight beyond the experiments</title>
+        <p>Formation of G-DNA structures is a slow process with a complex kinetics <xref rid="bib113 bib114" ref-type="bibr">[113,114]</xref>. Most basic questions remain unclear, such as at what stage are the monovalent cations integrated into the structure and what is the atomic-level structure of the intermediates?</p>
+        <p>Parallel d(G<sub>4</sub>)<sub>4</sub> quadruplex was selected as the model system for computational analysis <xref rid="bib15" ref-type="bibr">[15]</xref>. Various four-stranded, three-stranded and duplex assemblies were designed (<xref rid="fig7" ref-type="fig">Fig. 7</xref>) and simulated. Stable structures were suggested as possible intermediates of the quadruplex formation. Other structures that disintegrate on the ns-scale are unlikely to be involved in G-DNA formation.</p>
+        <p>Possible intermediates are four-stranded structures with mutually slipped strands with a reduced number of guanine quartets. “Spiral stem” is a structure with each strand shifted by one layer with only one guanine quartet in the center. The structure is stable on the ns-scale (<xref rid="fig8" ref-type="fig">Fig. 8</xref>a), is stabilized by one ion associated with the central quartet while the outer parts of the structure are stabilized by guanine self-pairing (here the guanine to inosine substitution would matter). In elevated temperature simulation the spiral rearranges towards the native G-DNA stem. Thus, later stages of quadruplex stem formation may involve a set of slipped structures with progressive reduction of the strand slippage. The final rearrangements from 3 to 4 quartets may be quite slow since cation-stabilized intermediates with several quartets are assumed to be already rather stable and rigid. The final slip could occur during the exchange of cations between solute and bulk solvent. <xref rid="fig9" ref-type="fig">Fig. 9</xref> summarizes relative (quite approximate) MM-PBSA free energies for selected four-stranded G-DNA structures <xref rid="bib15" ref-type="bibr">[15]</xref>. The native G-DNA stabilized by cations represents the free energy minimum and any strand slippage leads to the free energy increase. In comparison with the native G-DNA, the vacant quadruplex is significantly destabilized.</p>
+        <p>Neither “edge” nor “diagonal” straight d(GGGG)<sub>2</sub> duplexes are stable but “cross-like” d(GGGG)<sub>2</sub> structures (<xref rid="fig8" ref-type="fig">Fig. 8</xref>b) formed by two perpendicular strands with non-planar interbase hydrogen bonding could be suitable early stage intermediates. The “cross-like” structures are not stabilized by ions. Straight three-stranded structure (G-DNA stem with one strand removed) disintegrates swiftly but there is a stable d(GGGG)<sub>3</sub> “coil-like” structure (<xref rid="fig8" ref-type="fig">Fig. 8</xref>c) formed by the above “cross-like” duplex interacting with the third strand via a cation.</p>
+        <p>The simulations allow hypothesize about the following single molecule scenario of formation of four-quartet parallel-stranded stems. The initial intermediates could involve the basepair-stabilized cross-like duplexes. Such structures can further associate in three- or four-stranded “coils” still primarily relying on base–base interactions but already involving transiently associated ions. The next step could be formation of partly structured stems. Once the first tetrad occurs it would be immediately stabilized by a cation. Such structure could be capable to step by step (by reducing the strand slippage) convert to the native stem. Long-lived intermediates might have been captured in recent FRET experiments though the experiments give no structural insight and likely do not capture all intermediates <xref rid="bib115" ref-type="bibr">[115]</xref>.</p>
+      </sec>
+      <sec id="sec6">
+        <label>3.5</label>
+        <title>Guanine quadruplex loops—when simulations fail</title>
+        <p>Modeling of single-stranded loops is challenging due to (i) inherent difficulty to mimic the backbone electronic structure, (ii) substantial exposure of the loops to the solvent which increases the requirements for proper balance of solute–solvent interactions, (iii) competing substates and (iv) interactions of loops with cations.</p>
+        <p>Standard simulations starting from the experimental diagonal loop geometries of d(G<sub>4</sub>T<sub>4</sub>G<sub>4</sub>)<sub>2</sub> were stable <xref rid="bib16" ref-type="bibr">[16]</xref>. However, the ion binding site at the stem-loop junction was lost within 1–3 ns. Subsequent LES (see Section <xref rid="sec3" ref-type="sec">2.12</xref>) simulations reproducibly localized the global minimum of the loops <xref rid="bib16" ref-type="bibr">[16]</xref>. Unfortunately, the predicted geometry is very different from the experimental one obtained independently by NMR and X-ray <xref rid="bib4 bib61 bib62" ref-type="bibr">[4,61,62]</xref> with variable ions and crystal packing (all experimental geometries are very similar). MM-PBSA shows that the LES-predicted topologies have the lowest free energies, so that LES and MM-PBSA calculations are mutually consistent. Thus, it was suggested that the parm94/99 force field predicts incorrect loop topology as the free energy minimum. Preliminary simulations of the parallel-stranded human telomeric quadruplex with groove loops (<xref rid="fig3" ref-type="fig">Fig. 3</xref>b) (unpublished data) are equally unsatisfactory, and the loops deviate from the experimental geometries even during conventional simulations. Hazel et al. carried out extended loop simulations <xref rid="bib20 bib21" ref-type="bibr">[20,21]</xref> but in light of our results these structures could also be biased although they could properly reflect crude geometrical constraints stemming from the loop length.</p>
+      </sec>
+      <sec>
+        <label>3.6</label>
+        <title>The i-DNA stacking lesson. Is the base stacking always attractive?</title>
+        <p>Finally, let us comment on i-DNA tetraplex <xref rid="bib116" ref-type="bibr">[116]</xref> (<xref rid="fig10" ref-type="fig">Fig. 10</xref>). The i-DNA stem consists of several consecutive protonated cytosine–cytosine homopairs. Such protonation stabilizes the planar base pairing. However, each base pair has charge of +1 which should be associated with enormous vertical electrostatic repulsion. The +1 charge is neatly redistributed over the cytosine rings, but the vertical <italic>in vacuo</italic> stacking between the consecutive base pairs is +25 to +30 kcal/mol, contrasting attractive stacking of −10 to −15 kcal/mol in B-DNA <xref rid="bib117" ref-type="bibr">[117]</xref>. Despite this, fully protonated i-DNA stays beautifully stable in simulations <xref rid="bib118" ref-type="bibr">[118]</xref>. The vertical repulsion between consecutive protonated base pairs in i-DNA is counterbalanced (over-corrected) by solvent screening, modulated by the overall topology of the i-DNA tetraplex. Thus i-DNA indeed has, in contrast to all other DNA conformational classes, repulsive intrinsic <italic>in vacuo</italic> stacking energy terms. The stability is due to common electrostatics, as the force field does not include any polarization, exocyclic group–aromatic ring interactions, resonance contributions, etc. Without computations, we would be left in a darkness regarding the origin of the vertical stabilization in i-DNA.</p>
+        <p>Strikingly contrasting is behavior of consecutive protonated cytosines in C<sup>+</sup>–G.C triples of Pyr-Pur.Pyr triplexes <xref rid="bib119" ref-type="bibr">[119]</xref>. Consecutive protonated cytosines would be needed to recognize consecutive guanines in the second strand, resulting in arrangement of (C<sup>+</sup>–G)<italic><sub>n</sub></italic> basepair stacks very similar to the (C<sup>+</sup>–C)<italic><sub>n</sub></italic> basepair stacks in i-DNA. However, this sharply destabilizes the DNA triplex because the overall balance of forces results in less efficient screening of the vertical electrostatic repulsion compared with i-DNA. Thus sometimes we cannot easily transfer experience concerning molecular interactions between two DNA conformational classes. This underlines the complexity and promiscuity of molecular interactions in nucleic acids. Thus, advanced computations are often necessary to fully understand how the interactions really work.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>4</label>
+      <title>Concluding remarks</title>
+      <p>Quadruplex simulation studies provide an instructive example of the successes and failures of contemporary MD studies of nucleic acids. When a qualitative task was properly formulated, the simulations were capable to provide unique insights into the properties of G-DNA and i-DNA stems. On the other side, attempts to carry out an in-depth study of the loop region of G-DNA molecules failed.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by Wellcome Trust Grant GR067507; Grant Agency Grants GA203/05/0009 and GA203/05/0388; Internal Grant Agency Grants 1QS500040581 and IAA400550701 and Ministry of Education, Youth, and Sports Grant AVOZ50040507. We wish to thank Tom Cheatham for many discussions, help and cooperation regarding the applicability of computational methods over the past 6 years.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>[1]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Burge</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Parkinson</surname>
+              <given-names>G.N.</given-names>
+            </name>
+            <name>
+              <surname>Hazel</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Todd</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Neidle</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <year>2006</year>
+          <volume>34</volume>
+          <fpage>5402</fpage>
+          <lpage>5415</lpage>
+          <pub-id pub-id-type="pmid">17012276</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <label>[2]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Davis</surname>
+              <given-names>J.T.</given-names>
+            </name>
+          </person-group>
+          <source>Angew. Chem.-Int. Edit.</source>
+          <year>2004</year>
+          <volume>43</volume>
+          <fpage>668</fpage>
+          <lpage>698</lpage>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <label>[3]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Parkinson</surname>
+              <given-names>G.N.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>M.P.H.</given-names>
+            </name>
+            <name>
+              <surname>Neidle</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Nature</source>
+          <year>2002</year>
+          <volume>417</volume>
+          <fpage>876</fpage>
+          <lpage>880</lpage>
+          <pub-id pub-id-type="pmid">12050675</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <label>[4]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schultze</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>F.W.</given-names>
+            </name>
+            <name>
+              <surname>Feigon</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Structure</source>
+          <year>1994</year>
+          <volume>2</volume>
+          <fpage>221</fpage>
+          <lpage>233</lpage>
+          <pub-id pub-id-type="pmid">8069635</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <label>[5]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Phillips</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Dauter</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Murchie</surname>
+              <given-names>A.I.H.</given-names>
+            </name>
+            <name>
+              <surname>Lilley</surname>
+              <given-names>D.M.J.</given-names>
+            </name>
+            <name>
+              <surname>Luisi</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <year>1997</year>
+          <volume>273</volume>
+          <fpage>171</fpage>
+          <lpage>182</lpage>
+          <pub-id pub-id-type="pmid">9367755</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <label>[6]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mergny</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Riou</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Mailliet</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Teulade-Fichou</surname>
+              <given-names>M.P.</given-names>
+            </name>
+            <name>
+              <surname>Gilson</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <year>2002</year>
+          <volume>30</volume>
+          <fpage>839</fpage>
+          <lpage>865</lpage>
+          <pub-id pub-id-type="pmid">11842096</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <label>[7]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rezler</surname>
+              <given-names>E.M.</given-names>
+            </name>
+            <name>
+              <surname>Bearss</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Hurley</surname>
+              <given-names>L.H.</given-names>
+            </name>
+          </person-group>
+          <source>Annu. Rev. Pharmacol. Toxicol.</source>
+          <year>2003</year>
+          <volume>43</volume>
+          <fpage>359</fpage>
+          <lpage>379</lpage>
+          <pub-id pub-id-type="pmid">12540745</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <label>[8]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hardin</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Perry</surname>
+              <given-names>A.G.</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <source>Biopolymers</source>
+          <year>2000</year>
+          <volume>56</volume>
+          <fpage>147</fpage>
+          <lpage>194</lpage>
+          <pub-id pub-id-type="pmid">11745110</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <label>[9]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Correia</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Trent</surname>
+              <given-names>J.O.</given-names>
+            </name>
+            <name>
+              <surname>Chaires</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <year>2005</year>
+          <volume>33</volume>
+          <fpage>4649</fpage>
+          <lpage>4659</lpage>
+          <pub-id pub-id-type="pmid">16106044</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <label>[10]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alberti</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Bourdoncle</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Sacca</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Lacroix</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Mergny</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <source>Org. Biomol. Chem.</source>
+          <year>2006</year>
+          <volume>4</volume>
+          <fpage>3383</fpage>
+          <lpage>3391</lpage>
+          <pub-id pub-id-type="pmid">17036128</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <label>[11]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Berger</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1999</year>
+          <volume>121</volume>
+          <fpage>5519</fpage>
+          <lpage>5534</lpage>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <label>[12]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Berger</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>2001</year>
+          <volume>123</volume>
+          <fpage>3295</fpage>
+          <lpage>3307</lpage>
+          <pub-id pub-id-type="pmid">11457065</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <label>[13]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Cubero</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Orozco</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>2004</year>
+          <volume>126</volume>
+          <fpage>14642</fpage>
+          <lpage>14650</lpage>
+          <pub-id pub-id-type="pmid">15521784</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <label>[14]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stefl</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Berger</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Koca</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Biophys. J.</source>
+          <year>2001</year>
+          <volume>80</volume>
+          <fpage>455</fpage>
+          <lpage>468</lpage>
+          <pub-id pub-id-type="pmid">11159416</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <label>[15]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stefl</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Fadrna</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Berger</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Koca</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Biophys. J.</source>
+          <year>2003</year>
+          <volume>85</volume>
+          <fpage>1787</fpage>
+          <lpage>1804</lpage>
+          <pub-id pub-id-type="pmid">12944293</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <label>[16]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fadrna</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Stefl</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Koca</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Biophys. J.</source>
+          <year>2004</year>
+          <volume>87</volume>
+          <fpage>227</fpage>
+          <lpage>242</lpage>
+          <pub-id pub-id-type="pmid">15240460</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <label>[17]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ross</surname>
+              <given-names>W.S.</given-names>
+            </name>
+            <name>
+              <surname>Hardin</surname>
+              <given-names>C.C.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1994</year>
+          <volume>116</volume>
+          <fpage>6070</fpage>
+          <lpage>6080</lpage>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <label>[18]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chowdhury</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bansal</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Biomol. Struct. Dyn.</source>
+          <year>2000</year>
+          <volume>18</volume>
+          <fpage>11</fpage>
+          <lpage>28</lpage>
+          <pub-id pub-id-type="pmid">11021649</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <label>[19]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chowdhury</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bansal</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <year>2001</year>
+          <volume>105</volume>
+          <fpage>7572</fpage>
+          <lpage>7578</lpage>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <label>[20]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hazel</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Parkinson</surname>
+              <given-names>G.N.</given-names>
+            </name>
+            <name>
+              <surname>Neidle</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <year>2006</year>
+          <volume>34</volume>
+          <fpage>2117</fpage>
+          <lpage>2127</lpage>
+          <pub-id pub-id-type="pmid">16641317</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <label>[21]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hazel</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Huppert</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Balasubramanian</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Neidle</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>2004</year>
+          <volume>126</volume>
+          <fpage>16405</fpage>
+          <lpage>16415</lpage>
+          <pub-id pub-id-type="pmid">15600342</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <label>[22]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Han</surname>
+              <given-names>H.Y.</given-names>
+            </name>
+            <name>
+              <surname>Langley</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Rangan</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hurley</surname>
+              <given-names>L.H.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>2001</year>
+          <volume>123</volume>
+          <fpage>8902</fpage>
+          <lpage>8913</lpage>
+          <pub-id pub-id-type="pmid">11552797</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <label>[23]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Read</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Neidle</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Biochemistry</source>
+          <year>2000</year>
+          <volume>39</volume>
+          <fpage>13422</fpage>
+          <lpage>13432</lpage>
+          <pub-id pub-id-type="pmid">11063579</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <label>[24]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moore</surname>
+              <given-names>M.J.B.</given-names>
+            </name>
+            <name>
+              <surname>Schultes</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Cuesta</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Cuenca</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Gunaratnam</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Tanious</surname>
+              <given-names>F.A.</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Neidle</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>J. Med. Chem.</source>
+          <year>2006</year>
+          <volume>49</volume>
+          <fpage>582</fpage>
+          <lpage>599</lpage>
+          <pub-id pub-id-type="pmid">16420044</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <label>[25]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Clay</surname>
+              <given-names>E.H.</given-names>
+            </name>
+            <name>
+              <surname>Gould</surname>
+              <given-names>I.R.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Graph.</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>138</fpage>
+          <lpage>146</lpage>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <label>[26]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ourliac-Garnier</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Elizondo-Riojas</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Redon</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Farrell</surname>
+              <given-names>N.P.</given-names>
+            </name>
+            <name>
+              <surname>Bombard</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Biochemistry</source>
+          <year>2005</year>
+          <volume>44</volume>
+          <fpage>10620</fpage>
+          <lpage>10634</lpage>
+          <pub-id pub-id-type="pmid">16060671</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <label>[27]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rueda</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Luque</surname>
+              <given-names>F.J.</given-names>
+            </name>
+            <name>
+              <surname>Orozco</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>2006</year>
+          <volume>128</volume>
+          <fpage>3608</fpage>
+          <lpage>3619</lpage>
+          <pub-id pub-id-type="pmid">16536534</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <label>[28]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gabelica</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Rosu</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Witt</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Baykut</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>De Pauw</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <source>Rapid Commun. Mass Spectrom.</source>
+          <year>2005</year>
+          <volume>19</volume>
+          <fpage>201</fpage>
+          <lpage>208</lpage>
+          <pub-id pub-id-type="pmid">15593253</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <label>[29]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gidden</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Baker</surname>
+              <given-names>E.S.</given-names>
+            </name>
+            <name>
+              <surname>Ferzoco</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Bowers</surname>
+              <given-names>M.T.</given-names>
+            </name>
+          </person-group>
+          <source>Int. J. Mass Spectrom.</source>
+          <year>2005</year>
+          <volume>240</volume>
+          <fpage>183</fpage>
+          <lpage>193</lpage>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <label>[30]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cavallari</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Calzolari</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Garbesi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Di Felice</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <year>2006</year>
+          <volume>110</volume>
+          <fpage>26337</fpage>
+          <lpage>26348</lpage>
+          <pub-id pub-id-type="pmid">17181293</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <label>[31]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lankas</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>Computational Studies of RNA and DNA</source>
+          <source>Challenges and Advances in Computational Chemistry and Physics, vol. 2</source>
+          <year>2006</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>The Netherlands</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <label>[32]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Case</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Darden</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Gohlke</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Luo</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Merz</surname>
+              <given-names>K.M.</given-names>
+            </name>
+            <name>
+              <surname>Onufriev</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Simmerling</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Woods</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>2005</year>
+          <volume>26</volume>
+          <fpage>1668</fpage>
+          <lpage>1688</lpage>
+          <pub-id pub-id-type="pmid">16200636</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <label>[33]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Young</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <source>Biopolymers</source>
+          <year>2000</year>
+          <volume>56</volume>
+          <fpage>232</fpage>
+          <lpage>256</lpage>
+          <pub-id pub-id-type="pmid">11754338</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <label>[34]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <source>Annu. Rev. Phys. Chem.</source>
+          <year>2000</year>
+          <volume>51</volume>
+          <fpage>435</fpage>
+          <lpage>471</lpage>
+          <pub-id pub-id-type="pmid">11031289</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <label>[35]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beveridge</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>McConnell</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <year>2000</year>
+          <volume>10</volume>
+          <fpage>182</fpage>
+          <lpage>196</lpage>
+          <pub-id pub-id-type="pmid">10753816</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <label>[36]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Orozco</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Perez</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Noy</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Luque</surname>
+              <given-names>F.J.</given-names>
+            </name>
+          </person-group>
+          <source>Chem. Soc. Rev.</source>
+          <year>2003</year>
+          <volume>32</volume>
+          <fpage>350</fpage>
+          <lpage>364</lpage>
+          <pub-id pub-id-type="pmid">14671790</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <label>[37]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McDowell</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Walter</surname>
+              <given-names>N.G.</given-names>
+            </name>
+          </person-group>
+          <source>Biopolymers</source>
+          <year>2006</year>
+          <volume>85</volume>
+          <fpage>169</fpage>
+          <lpage>184</lpage>
+          <pub-id pub-id-type="pmid">17080418</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <label>[38]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Leszczynski</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>Biopolymers</source>
+          <year>2001</year>
+          <volume>61</volume>
+          <fpage>3</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="pmid">11891626</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <label>[39]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>York</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Darden</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Pedersen</surname>
+              <given-names>L.G.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Phys.</source>
+          <year>1993</year>
+          <volume>99</volume>
+          <fpage>8345</fpage>
+          <lpage>8348</lpage>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <label>[40]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Fox</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Darden</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1995</year>
+          <volume>117</volume>
+          <fpage>4193</fpage>
+          <lpage>4194</lpage>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <label>[41]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hunenberger</surname>
+              <given-names>P.H.</given-names>
+            </name>
+            <name>
+              <surname>McCammon</surname>
+              <given-names>J.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Phys.</source>
+          <year>1999</year>
+          <volume>110</volume>
+          <fpage>1856</fpage>
+          <lpage>1872</lpage>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <label>[42]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kastenholz</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Hunenberger</surname>
+              <given-names>P.H.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <year>2004</year>
+          <volume>108</volume>
+          <fpage>774</fpage>
+          <lpage>788</lpage>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <label>[43]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cornell</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Cieplak</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Bayly</surname>
+              <given-names>C.I.</given-names>
+            </name>
+            <name>
+              <surname>Gould</surname>
+              <given-names>I.R.</given-names>
+            </name>
+            <name>
+              <surname>Merz</surname>
+              <given-names>K.M.</given-names>
+            </name>
+            <name>
+              <surname>Ferguson</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Spellmeyer</surname>
+              <given-names>D.C.</given-names>
+            </name>
+            <name>
+              <surname>Fox</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Caldwell</surname>
+              <given-names>J.W.</given-names>
+            </name>
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1995</year>
+          <volume>117</volume>
+          <fpage>5179</fpage>
+          <lpage>5197</lpage>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <label>[44]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Jurecka</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Marchan</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Luque</surname>
+              <given-names>F.J.</given-names>
+            </name>
+            <name>
+              <surname>Orozco</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>Chem.-Eur. J.</source>
+          <year>2006</year>
+          <volume>12</volume>
+          <fpage>2854</fpage>
+          <lpage>2865</lpage>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <label>[45]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Jurecka</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>2004</year>
+          <volume>126</volume>
+          <fpage>10142</fpage>
+          <lpage>10151</lpage>
+          <pub-id pub-id-type="pmid">15303890</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib46">
+        <label>[46]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Kabelac</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Mejzlik</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Vondrasek</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>1997</year>
+          <volume>18</volume>
+          <fpage>1136</fpage>
+          <lpage>1150</lpage>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <label>[47]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cieplak</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Cornell</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Bayly</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>1995</year>
+          <volume>16</volume>
+          <fpage>1357</fpage>
+          <lpage>1377</lpage>
+        </citation>
+      </ref>
+      <ref id="bib48">
+        <label>[48]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bayly</surname>
+              <given-names>C.I.</given-names>
+            </name>
+            <name>
+              <surname>Cieplak</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Cornell</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem.</source>
+          <year>1993</year>
+          <volume>97</volume>
+          <fpage>10269</fpage>
+          <lpage>10280</lpage>
+        </citation>
+      </ref>
+      <ref id="bib49">
+        <label>[49]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>Int. J. Quantum Chem.</source>
+          <year>1996</year>
+          <volume>57</volume>
+          <fpage>959</fpage>
+          <lpage>970</lpage>
+        </citation>
+      </ref>
+      <ref id="bib50">
+        <label>[50]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Luisi</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Orozco</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Luque</surname>
+              <given-names>F.J.</given-names>
+            </name>
+            <name>
+              <surname>Shakked</surname>
+              <given-names>Z.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <year>1998</year>
+          <volume>279</volume>
+          <fpage>1123</fpage>
+          <lpage>1136</lpage>
+          <pub-id pub-id-type="pmid">9642089</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib51">
+        <label>[51]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reynolds</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Essex</surname>
+              <given-names>J.W.</given-names>
+            </name>
+            <name>
+              <surname>Richards</surname>
+              <given-names>W.G.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1992</year>
+          <volume>114</volume>
+          <fpage>9075</fpage>
+          <lpage>9079</lpage>
+        </citation>
+      </ref>
+      <ref id="bib52">
+        <label>[52]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Varnai</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Zakrzewska</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <year>2004</year>
+          <volume>32</volume>
+          <fpage>4269</fpage>
+          <lpage>4280</lpage>
+          <pub-id pub-id-type="pmid">15304564</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib53">
+        <label>[53]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beveridge</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Barreiro</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Byun</surname>
+              <given-names>K.S.</given-names>
+            </name>
+            <name>
+              <surname>Case</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Dixit</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Giudice</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Lankas</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Lavery</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Maddocks</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Osman</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Seibert</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Sklenar</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Stoll</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Thayer</surname>
+              <given-names>K.M.</given-names>
+            </name>
+            <name>
+              <surname>Varnai</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Young</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <source>Biophys. J.</source>
+          <year>2004</year>
+          <volume>87</volume>
+          <fpage>3799</fpage>
+          <lpage>3813</lpage>
+          <pub-id pub-id-type="pmid">15326025</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib54">
+        <label>[54]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barone</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Lankas</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Karran</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Bignami</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Mazzei</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>Biophys. Chem.</source>
+          <year>2005</year>
+          <volume>118</volume>
+          <fpage>31</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="pmid">16039038</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib55">
+        <label>[55]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Cieplak</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Biomol. Struct. Dyn.</source>
+          <year>1999</year>
+          <volume>16</volume>
+          <fpage>845</fpage>
+          <lpage>862</lpage>
+          <pub-id pub-id-type="pmid">10217454</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib56">
+        <label>[56]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Perez</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Marchan</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Svozil</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Laughton</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Orozco</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Biophys. J.</source>
+          <year>2007</year>
+        </citation>
+      </ref>
+      <ref id="bib57">
+        <label>[57]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reblova</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Lankas</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Razga</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Krasovska</surname>
+              <given-names>M.V.</given-names>
+            </name>
+            <name>
+              <surname>Koca</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Biopolymers</source>
+          <year>2006</year>
+          <volume>82</volume>
+          <fpage>504</fpage>
+          <lpage>520</lpage>
+          <pub-id pub-id-type="pmid">16538608</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib58">
+        <label>[58]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krasovska</surname>
+              <given-names>M.V.</given-names>
+            </name>
+            <name>
+              <surname>Sefcikova</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Reblova</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Schneider</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Walter</surname>
+              <given-names>N.G.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Biophys. J.</source>
+          <year>2006</year>
+          <volume>91</volume>
+          <fpage>626</fpage>
+          <lpage>638</lpage>
+          <pub-id pub-id-type="pmid">16617077</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib59">
+        <label>[59]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ponomarev</surname>
+              <given-names>S.Y.</given-names>
+            </name>
+            <name>
+              <surname>Thayer</surname>
+              <given-names>K.M.</given-names>
+            </name>
+            <name>
+              <surname>Beveridge</surname>
+              <given-names>D.L.</given-names>
+            </name>
+          </person-group>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2004</year>
+          <volume>101</volume>
+          <fpage>14771</fpage>
+          <lpage>14775</lpage>
+          <pub-id pub-id-type="pmid">15465909</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib60">
+        <label>[60]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reblova</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Stefl</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Csaszar</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Koca</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Leontis</surname>
+              <given-names>N.B.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Biophys. J.</source>
+          <year>2003</year>
+          <volume>84</volume>
+          <fpage>3564</fpage>
+          <lpage>3582</lpage>
+          <pub-id pub-id-type="pmid">12770867</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib61">
+        <label>[61]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Haider</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Parkinson</surname>
+              <given-names>G.N.</given-names>
+            </name>
+            <name>
+              <surname>Neidle</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <year>2002</year>
+          <volume>320</volume>
+          <fpage>189</fpage>
+          <lpage>200</lpage>
+          <pub-id pub-id-type="pmid">12079378</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib62">
+        <label>[62]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Horvath</surname>
+              <given-names>M.P.</given-names>
+            </name>
+            <name>
+              <surname>Schultz</surname>
+              <given-names>S.C.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <year>2001</year>
+          <volume>310</volume>
+          <fpage>367</fpage>
+          <lpage>377</lpage>
+          <pub-id pub-id-type="pmid">11428895</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib63">
+        <label>[63]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Burda</surname>
+              <given-names>J.V.</given-names>
+            </name>
+            <name>
+              <surname>Sabat</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Leszczynski</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. A</source>
+          <year>1998</year>
+          <volume>102</volume>
+          <fpage>5951</fpage>
+          <lpage>5957</lpage>
+        </citation>
+      </ref>
+      <ref id="bib64">
+        <label>[64]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sabat</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Gorb</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Leszczynski</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lippert</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <year>2000</year>
+          <volume>104</volume>
+          <fpage>7535</fpage>
+          <lpage>7544</lpage>
+        </citation>
+      </ref>
+      <ref id="bib65">
+        <label>[65]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dang</surname>
+              <given-names>L.X.</given-names>
+            </name>
+            <name>
+              <surname>Chang</surname>
+              <given-names>T.M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <year>2002</year>
+          <volume>106</volume>
+          <fpage>235</fpage>
+          <lpage>238</lpage>
+        </citation>
+      </ref>
+      <ref id="bib66">
+        <label>[66]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <year>2004</year>
+          <volume>14</volume>
+          <fpage>360</fpage>
+          <lpage>367</lpage>
+          <pub-id pub-id-type="pmid">15193317</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib67">
+        <label>[67]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hornak</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Abel</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Okur</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Strockbine</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Roitberg</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Simmerling</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>Proteins</source>
+          <year>2006</year>
+          <volume>65</volume>
+          <fpage>712</fpage>
+          <lpage>725</lpage>
+          <pub-id pub-id-type="pmid">16981200</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib68">
+        <label>[68]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Duan</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Chowdhury</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Xiong</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Cieplak</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Luo</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Caldwell</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>2003</year>
+          <volume>24</volume>
+          <fpage>1999</fpage>
+          <lpage>2012</lpage>
+          <pub-id pub-id-type="pmid">14531054</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib69">
+        <label>[69]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Ryjacek</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Lankas</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>van Meervelt</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>2003</year>
+          <volume>125</volume>
+          <fpage>1759</fpage>
+          <lpage>1769</lpage>
+          <pub-id pub-id-type="pmid">12580601</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib70">
+        <label>[70]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Wolf</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Caldwell</surname>
+              <given-names>J.W.</given-names>
+            </name>
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Case</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>2004</year>
+          <volume>25</volume>
+          <fpage>1157</fpage>
+          <lpage>1174</lpage>
+          <pub-id pub-id-type="pmid">15116359</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib71">
+        <label>[71]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mackerell</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Wiorkiewicz-Kuczera</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Karplus</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1995</year>
+          <volume>117</volume>
+          <fpage>11946</fpage>
+          <lpage>11975</lpage>
+        </citation>
+      </ref>
+      <ref id="bib72">
+        <label>[72]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Foloppe</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>MacKerell</surname>
+              <given-names>A.D.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>2000</year>
+          <volume>21</volume>
+          <fpage>86</fpage>
+          <lpage>104</lpage>
+        </citation>
+      </ref>
+      <ref id="bib73">
+        <label>[73]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Van Wynsberghe</surname>
+              <given-names>A.W.</given-names>
+            </name>
+            <name>
+              <surname>Cui</surname>
+              <given-names>Q.</given-names>
+            </name>
+          </person-group>
+          <source>Biophys. J.</source>
+          <year>2005</year>
+          <volume>89</volume>
+          <fpage>2939</fpage>
+          <lpage>2949</lpage>
+          <pub-id pub-id-type="pmid">16100266</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib74">
+        <label>[74]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Soares</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Hunenberger</surname>
+              <given-names>P.H.</given-names>
+            </name>
+            <name>
+              <surname>Kastenholz</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Krautler</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Lenz</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Lins</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Oostenbrink</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Van Gunsteren</surname>
+              <given-names>W.F.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>2005</year>
+          <volume>26</volume>
+          <fpage>725</fpage>
+          <lpage>737</lpage>
+          <pub-id pub-id-type="pmid">15770662</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib75">
+        <label>[75]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Anisimov</surname>
+              <given-names>V.M.</given-names>
+            </name>
+            <name>
+              <surname>Lamoureux</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Vorobyov</surname>
+              <given-names>I.V.</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Roux</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>MacKerell</surname>
+              <given-names>A.D.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Theory Comput.</source>
+          <year>2005</year>
+          <volume>1</volume>
+          <fpage>153</fpage>
+          <lpage>168</lpage>
+        </citation>
+      </ref>
+      <ref id="bib76">
+        <label>[76]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Halgren</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Damm</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <year>2001</year>
+          <volume>11</volume>
+          <fpage>236</fpage>
+          <lpage>242</lpage>
+          <pub-id pub-id-type="pmid">11297934</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib77">
+        <label>[77]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Patel</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Brooks</surname>
+              <given-names>C.L.</given-names>
+            </name>
+          </person-group>
+          <source>Mol. Simulat.</source>
+          <year>2006</year>
+          <volume>32</volume>
+          <fpage>231</fpage>
+          <lpage>249</lpage>
+        </citation>
+      </ref>
+      <ref id="bib78">
+        <label>[78]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jungwirth</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Tobias</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <year>2002</year>
+          <volume>106</volume>
+          <fpage>6361</fpage>
+          <lpage>6373</lpage>
+        </citation>
+      </ref>
+      <ref id="bib79">
+        <label>[79]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lamoureux</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Roux</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <year>2006</year>
+          <volume>110</volume>
+          <fpage>3308</fpage>
+          <lpage>3322</lpage>
+          <pub-id pub-id-type="pmid">16494345</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib80">
+        <label>[80]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gresh</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Leszczynski</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <year>2003</year>
+          <volume>107</volume>
+          <fpage>8669</fpage>
+          <lpage>8681</lpage>
+        </citation>
+      </ref>
+      <ref id="bib81">
+        <label>[81]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Simmerling</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1998</year>
+          <volume>120</volume>
+          <fpage>7149</fpage>
+          <lpage>7155</lpage>
+        </citation>
+      </ref>
+      <ref id="bib82">
+        <label>[82]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Elber</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Karplus</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1990</year>
+          <volume>112</volume>
+          <fpage>9161</fpage>
+          <lpage>9175</lpage>
+        </citation>
+      </ref>
+      <ref id="bib83">
+        <label>[83]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheng</surname>
+              <given-names>X.L.</given-names>
+            </name>
+            <name>
+              <surname>Cui</surname>
+              <given-names>G.L.</given-names>
+            </name>
+            <name>
+              <surname>Hornak</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Sinnnerling</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <year>2005</year>
+          <volume>109</volume>
+          <fpage>8220</fpage>
+          <lpage>8230</lpage>
+          <pub-id pub-id-type="pmid">16851961</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib84">
+        <label>[84]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kelso</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Simmerling</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lankas</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>Computational Studies of RNA and DNA</source>
+          <source>Challenges and Advances in Computational Chemistry and Physics, vol. 2</source>
+          <year>2006</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>The Netherlands</publisher-loc>
+          <fpage>95</fpage>
+          <lpage>119</lpage>
+        </citation>
+      </ref>
+      <ref id="bib85">
+        <label>[85]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schlitter</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Engels</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kruger</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Graph.</source>
+          <year>1994</year>
+          <volume>12</volume>
+          <fpage>84</fpage>
+          <lpage>89</lpage>
+          <pub-id pub-id-type="pmid">7918256</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib86">
+        <label>[86]</label>
+        <citation citation-type="other">A. Noy, A. Perez, C.A. Laughton, M. Orozco, Nucleic Acids Res., in press.</citation>
+      </ref>
+      <ref id="bib87">
+        <label>[87]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zacharias</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lankas</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>Computational Studies of RNA and DNA</source>
+          <source>Challenges and Advances in Computational Chemistry and Physics, vol. 2</source>
+          <year>2006</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>The Netherlands</publisher-loc>
+          <fpage>95</fpage>
+          <lpage>119</lpage>
+        </citation>
+      </ref>
+      <ref id="bib88">
+        <label>[88]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bashford</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Case</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <source>Annu. Rev. Phys. Chem.</source>
+          <year>2000</year>
+          <volume>51</volume>
+          <fpage>129</fpage>
+          <lpage>152</lpage>
+          <pub-id pub-id-type="pmid">11031278</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib89">
+        <label>[89]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Massova</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Reyes</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kuhn</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Huo</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Chong</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Duan</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Donini</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Cieplak</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Srinivasan</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Case</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+          </person-group>
+          <source>Acc. Chem. Res.</source>
+          <year>2000</year>
+          <volume>33</volume>
+          <fpage>889</fpage>
+          <lpage>897</lpage>
+          <pub-id pub-id-type="pmid">11123888</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib90">
+        <label>[90]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Srinivasan</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Cheatham</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Cieplak</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Case</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1998</year>
+          <volume>120</volume>
+          <fpage>9401</fpage>
+          <lpage>9409</lpage>
+        </citation>
+      </ref>
+      <ref id="bib91">
+        <label>[91]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roe</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Okur</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wickstrom</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Hornak</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Simmerling</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <year>2007</year>
+          <volume>111</volume>
+          <fpage>1846</fpage>
+          <lpage>1857</lpage>
+          <pub-id pub-id-type="pmid">17256983</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib92">
+        <label>[92]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Page</surname>
+              <given-names>C.S.</given-names>
+            </name>
+            <name>
+              <surname>Bates</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>2006</year>
+          <volume>27</volume>
+          <fpage>1990</fpage>
+          <lpage>2007</lpage>
+          <pub-id pub-id-type="pmid">17036304</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib93">
+        <label>[93]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kollman</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>Chem. Rev.</source>
+          <year>1993</year>
+          <volume>93</volume>
+          <fpage>2395</fpage>
+          <lpage>2417</lpage>
+        </citation>
+      </ref>
+      <ref id="bib94">
+        <label>[94]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rodinger</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Pomes</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <year>2005</year>
+          <volume>15</volume>
+          <fpage>164</fpage>
+          <lpage>170</lpage>
+          <pub-id pub-id-type="pmid">15837174</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib95">
+        <label>[95]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roux</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <source>Comput. Phys. Commun.</source>
+          <year>1995</year>
+          <volume>91</volume>
+          <fpage>275</fpage>
+          <lpage>282</lpage>
+        </citation>
+      </ref>
+      <ref id="bib96">
+        <label>[96]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Giudice</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Varnai</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Lavery</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <year>2003</year>
+          <volume>31</volume>
+          <fpage>2703</fpage>
+        </citation>
+      </ref>
+      <ref id="bib97">
+        <label>[97]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Banavali</surname>
+              <given-names>N.K.</given-names>
+            </name>
+            <name>
+              <surname>MacKerell</surname>
+              <given-names>A.D.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <year>2002</year>
+          <volume>319</volume>
+          <fpage>141</fpage>
+          <lpage>160</lpage>
+          <pub-id pub-id-type="pmid">12051942</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib98">
+        <label>[98]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meyer</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Steinke</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Brandl</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Suhnel</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>2001</year>
+          <volume>22</volume>
+          <fpage>109</fpage>
+          <lpage>124</lpage>
+        </citation>
+      </ref>
+      <ref id="bib99">
+        <label>[99]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gu</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Leszczynski</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. A</source>
+          <year>2002</year>
+          <volume>106</volume>
+          <fpage>529</fpage>
+          <lpage>532</lpage>
+        </citation>
+      </ref>
+      <ref id="bib100">
+        <label>[100]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gu</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Leszczynski</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. A</source>
+          <year>2000</year>
+          <volume>104</volume>
+          <fpage>6308</fpage>
+          <lpage>6313</lpage>
+        </citation>
+      </ref>
+      <ref id="bib101">
+        <label>[101]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meyer</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Hocquet</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Suhnel</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>2005</year>
+          <volume>26</volume>
+          <fpage>352</fpage>
+          <lpage>364</lpage>
+          <pub-id pub-id-type="pmid">15648098</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib102">
+        <label>[102]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jurecka</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Cerny</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Salahub</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <year>2007</year>
+          <volume>28</volume>
+          <fpage>555</fpage>
+          <lpage>569</lpage>
+          <pub-id pub-id-type="pmid">17186489</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib103">
+        <label>[103]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Leszczynski</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Struct.—Theochem.</source>
+          <year>2001</year>
+          <volume>573</volume>
+          <fpage>43</fpage>
+          <lpage>53</lpage>
+        </citation>
+      </ref>
+      <ref id="bib104">
+        <label>[104]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Jurecka</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lankas</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>Computational Studies of RNA and DNA</source>
+          <source>Challenges and Advances in Computational Chemistry and Physics, vol. 2</source>
+          <year>2006</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>The Netherlands</publisher-loc>
+          <fpage>343</fpage>
+          <lpage>388</lpage>
+        </citation>
+      </ref>
+      <ref id="bib105">
+        <label>[105]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baker</surname>
+              <given-names>E.S.</given-names>
+            </name>
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Gabelica</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>De Pauw</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Bowers</surname>
+              <given-names>M.T.</given-names>
+            </name>
+          </person-group>
+          <source>Int. J. Mass Spectrom.</source>
+          <year>2006</year>
+          <volume>253</volume>
+          <fpage>225</fpage>
+          <lpage>237</lpage>
+        </citation>
+      </ref>
+      <ref id="bib106">
+        <label>[106]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kang</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X.H.</given-names>
+            </name>
+            <name>
+              <surname>Ratliff</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Moyzis</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Rich</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>Nature</source>
+          <year>1992</year>
+          <volume>356</volume>
+          <fpage>126</fpage>
+          <lpage>131</lpage>
+          <pub-id pub-id-type="pmid">1545863</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib107">
+        <label>[107]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Read</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Romagnoli</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Tanious</surname>
+              <given-names>F.A.</given-names>
+            </name>
+            <name>
+              <surname>Gowan</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Reszka</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Kelland</surname>
+              <given-names>L.R.</given-names>
+            </name>
+            <name>
+              <surname>Neidle</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2001</year>
+          <volume>98</volume>
+          <fpage>4844</fpage>
+          <lpage>4849</lpage>
+          <pub-id pub-id-type="pmid">11309493</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib108">
+        <label>[108]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hud</surname>
+              <given-names>N.V.</given-names>
+            </name>
+            <name>
+              <surname>Schultze</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Sklenar</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Feigon</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <year>1999</year>
+          <volume>285</volume>
+          <fpage>233</fpage>
+          <lpage>243</lpage>
+          <pub-id pub-id-type="pmid">9878402</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib109">
+        <label>[109]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bouaziz</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Kettani</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Patel</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <year>1998</year>
+          <volume>282</volume>
+          <fpage>637</fpage>
+          <lpage>652</lpage>
+          <pub-id pub-id-type="pmid">9737927</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib110">
+        <label>[110]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kettani</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kumar</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Patel</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <year>1995</year>
+          <volume>254</volume>
+          <fpage>638</fpage>
+          <lpage>656</lpage>
+          <pub-id pub-id-type="pmid">7500339</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib111">
+        <label>[111]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kettani</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Bouaziz</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gorin</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Zhao</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Patel</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <year>1998</year>
+          <volume>282</volume>
+          <fpage>619</fpage>
+          <lpage>636</lpage>
+          <pub-id pub-id-type="pmid">9737926</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib112">
+        <label>[112]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marathias</surname>
+              <given-names>V.M.</given-names>
+            </name>
+            <name>
+              <surname>Sawicki</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Bolton</surname>
+              <given-names>P.H.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <year>1999</year>
+          <volume>27</volume>
+          <fpage>2860</fpage>
+          <lpage>2867</lpage>
+          <pub-id pub-id-type="pmid">10390526</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib113">
+        <label>[113]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hardin</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Corregan</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Lieberman</surname>
+              <given-names>D.V.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>B.A.</given-names>
+            </name>
+          </person-group>
+          <source>Biochemistry</source>
+          <year>1997</year>
+          <volume>36</volume>
+          <fpage>15428</fpage>
+          <lpage>15450</lpage>
+          <pub-id pub-id-type="pmid">9398273</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib114">
+        <label>[114]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mergny</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>De Cian</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Ghelab</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Sacca</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Lacroix</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <year>2005</year>
+          <volume>33</volume>
+          <fpage>81</fpage>
+          <lpage>94</lpage>
+          <pub-id pub-id-type="pmid">15642696</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib115">
+        <label>[115]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>J.Y.</given-names>
+            </name>
+            <name>
+              <surname>Okumus</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>D.S.</given-names>
+            </name>
+            <name>
+              <surname>Ha</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>18938</fpage>
+          <lpage>18943</lpage>
+          <pub-id pub-id-type="pmid">16365301</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib116">
+        <label>[116]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gehring</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Leroy</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Gueron</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Nature</source>
+          <year>1993</year>
+          <volume>363</volume>
+          <fpage>561</fpage>
+          <lpage>565</lpage>
+          <pub-id pub-id-type="pmid">8389423</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib117">
+        <label>[117]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Leszczynski</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Vetterl</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Hobza</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <source>J. Biomol. Struct. Dyn.</source>
+          <year>1996</year>
+          <volume>13</volume>
+          <fpage>695</fpage>
+          <lpage>706</lpage>
+          <pub-id pub-id-type="pmid">8906890</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib118">
+        <label>[118]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Spackova</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Berger</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Egli</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sponer</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1998</year>
+          <volume>120</volume>
+          <fpage>6147</fpage>
+          <lpage>6151</lpage>
+        </citation>
+      </ref>
+      <ref id="bib119">
+        <label>[119]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Soliva</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Laughton</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Luque</surname>
+              <given-names>F.J.</given-names>
+            </name>
+            <name>
+              <surname>Orozco</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <year>1998</year>
+          <volume>120</volume>
+          <fpage>11226</fpage>
+          <lpage>11233</lpage>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Limited accuracy of a non-polarizable force field for cation–solute interactions. (a) Dependence of the interaction energy between O6(G) and K<sup>+</sup> in a G-DNA-like geometry. Force field (radius 2.6580 Å and well depth 0.000328 kcal/mol) and reference QM data are in gray and black, respectively <xref rid="bib37" ref-type="bibr">[37]</xref>. (b) Inner guanine quartet geometries in the parallel G-DNA–X-ray geometry (left) and bifurcated geometry often seen in MD simulations <xref rid="bib11" ref-type="bibr">[11]</xref> (right).</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Thermodynamic cycle for guanine to thioguanine (tG) substitution in a G-DNA stem <xref rid="bib13" ref-type="bibr">[13]</xref>. The vertical processes Δ<italic>G</italic>(1) and Δ<italic>G</italic>(2) are those computed by TI method.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Guanine quadruplex structures: (a) parallel without loops, (b) parallel with groove loops, (c) and (d) antiparallel with diagonal and lateral loops, respectively. Open and gray boxes indicate syn and anti conformation of guanine residues.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Stereo overlay of the final averaged simulated structure <xref rid="bib11" ref-type="bibr">[11]</xref> (gray) and the initial X-ray coordinates (black). A phosphate group adopting a bistable conformation is indicated by an asterisk.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Vertical strand slippage observed in simulation of a vacant stem <xref rid="bib11" ref-type="bibr">[11]</xref>. Strands are labeled A–D and guanines are shown as boxes.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Spontaneous interception of a bulk cation by the initially vacant stem <xref rid="bib12" ref-type="bibr">[12]</xref>. The middle figure shows the ion waiting at the channel entrance while the channel cavity is occupied by the water molecule.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Starting structures of investigated intermediates <xref rid="bib15" ref-type="bibr">[15]</xref>: (a) native stem, (b) stem with one strand shifted, (c) and (d) stem with two adjacent strands shifted down and up, (e) spiral stem, (f) triplex, (g) parallel edge duplex, and (h) parallel diagonal duplex.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig8">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Stereo view of averaged structures of key simulated intermediates <xref rid="bib15" ref-type="bibr">[15]</xref>: (a) spiral stem with one cation coordinated in the guanine quartet, (b) “cross-like” duplex and (c) “coil-like” triplex.</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="fig9">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Relative MM-PBSA free energies. From the left to the right: native stem, slipped stem, spiral stem and vacant stem. Data adapted from Ref. <xref rid="bib15" ref-type="bibr">[15]</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+    <fig id="fig10">
+      <label>Fig. 10</label>
+      <caption>
+        <p>i-DNA (a) scheme, (b) 3D structure and (c) stacking of two hemiprotonated C–C<sup>+</sup> base pairs in i-DNA.</p>
+      </caption>
+      <graphic xlink:href="gr10"/>
+    </fig>
+  </floats-wrap>
+</article>

@@ -1,0 +1,1884 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Comput Biol Chem</journal-id>
+      <journal-title-group>
+        <journal-title>Computational Biology and Chemistry</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1476-9271</issn>
+      <issn pub-type="epub">1476-928X</issn>
+      <publisher>
+        <publisher-name>Elsevier</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3145973</article-id>
+      <article-id pub-id-type="pmid">21704264</article-id>
+      <article-id pub-id-type="publisher-id">CBAC6173</article-id>
+      <article-id pub-id-type="doi">10.1016/j.compbiolchem.2011.04.008</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Research Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Exploring the limits of fold discrimination by structural alignment: A large scale benchmark using decoys of known fold</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hollup</surname>
+            <given-names>Siv Midtun</given-names>
+          </name>
+          <xref rid="aff0005" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sadowski</surname>
+            <given-names>Michael I.</given-names>
+          </name>
+          <email>msadows@nimr.mrc.ac.uk</email>
+          <xref rid="aff0010" ref-type="aff">b</xref>
+          <xref rid="cor0005" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Jonassen</surname>
+            <given-names>Inge</given-names>
+          </name>
+          <xref rid="aff0005" ref-type="aff">a</xref>
+          <xref rid="aff0015" ref-type="aff">c</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Taylor</surname>
+            <given-names>William R.</given-names>
+          </name>
+          <xref rid="aff0005" ref-type="aff">a</xref>
+          <xref rid="aff0010" ref-type="aff">b</xref>
+          <xref rid="aff0015" ref-type="aff">c</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff0005"><label>a</label>Department of Informatics, University of Bergen, Bergen, Norway</aff>
+      <aff id="aff0010"><label>b</label>Division of Mathematical Biology, MRC National Institute for Medical Research, London NW71AA, UK</aff>
+      <aff id="aff0015"><label>c</label>Computational Biology Unit, University of Bergen, Bergen, Norway</aff>
+      <author-notes>
+        <corresp id="cor0005"><label>⁎</label>Corresponding author. Tel.: +44 0 208 816 2587. <email>msadows@nimr.mrc.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>6</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>6</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>35</volume>
+      <issue>3</issue>
+      <fpage>174</fpage>
+      <lpage>188</lpage>
+      <history>
+        <date date-type="received">
+          <day>21</day>
+          <month>1</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>23</day>
+          <month>4</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Ltd.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract abstract-type="graphical">
+        <sec>
+          <title>Graphical abstract</title>
+          <p>
+            <fig id="fig0005" position="anchor">
+              <graphic xlink:href="fx1"/>
+            </fig>
+          </p>
+        </sec>
+        <sec>
+          <title>Highlights</title>
+          <p>► Structure alignment methods are used to assign proteins to fold groups. ► The accuracy of this procedure is difficult to test as the definition of folds can be debated. ► By defining folds topologically and building decoys with defined fold the accuracy of fold assignments can be tested. ► Protein structure alignments decoys of different fold can be assigned a high significance, leading to errors in fold classification. ► This observation can be extended to comparisons between decoy models and real protein structures.</p>
+        </sec>
+      </abstract>
+      <abstract>
+        <p>Protein structure comparison by pairwise alignment is commonly used to identify highly similar substructures in pairs of proteins and provide a measure of structural similarity based on the size and geometric similarity of the match. These scores are routinely applied in analyses of protein fold space under the assumption that high statistical significance is equivalent to a meaningful relationship, however the truth of this assumption has previously been difficult to test since there is a lack of automated methods which do not rely on the same underlying principles. As a resolution to this we present a method based on the use of topological descriptions of global protein structure, providing an independent means to assess the ability of structural alignment to maintain meaningful structural correspondances on a large scale.</p>
+        <p>Using a large set of decoys of specified global fold we benchmark three widely used methods for structure comparison, SAP, TM-align and DALI, and test the degree to which this assumption is justified for these methods. Application of a topological edit distance measure to provide a scale of the degree of fold change shows that while there is a broad correlation between high structural alignment scores and low edit distances there remain many pairs of highly significant score which differ by core strand swaps and therefore are structurally different on a global level. Possible causes of this problem and its meaning for present assessments of protein fold space are discussed.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Protein structure comparison</kwd>
+        <kwd>Protein fold</kwd>
+        <kwd>Protein structure alignment</kwd>
+        <kwd>SAP</kwd>
+        <kwd>DALI</kwd>
+        <kwd>TM-align</kwd>
+        <kwd>TM-score</kwd>
+        <kwd>Decoy model</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>The concept of the “fold” of a protein structure is widely used when discussing broad features of protein structure space, however no universally agreed, consistent definition of the term exists (<xref rid="bib0075 bib0210 bib0275 bib0190 bib0020" ref-type="bibr">Harrison et al., 2003; Sippl, 2009; Valas et al., 2009; Sadreyev et al., 2009; Csaba et al., 2009</xref>). In general the most common meanings given to the term can be reduced to two: (i) the global structure of the protein and (ii) the structure of a “core” which is broadly conserved through evolution but may accumulate moderate changes and become substantially decorated by embellishments.</p>
+      <p>Of these two, definition (i) is essentially the meaning of the term as used by structural biologists while definition (ii) is closer to that used by the major classifications of structure, SCOP and CATH (<xref rid="bib0115 bib0085 bib0130 bib0055 bib0025" ref-type="bibr">Murzin et al., 1995; Hubbard et al., 1997; Orengo et al., 1997; Greene et al., 2007; Cuff et al., 2008</xref>). In describing core structures both classifications make some use of topological description as a means to organise structural data. In this formalism structural details are abstracted out in favour of a definition which describes the arrangement of elements of secondary structure in terms of relative positions and orientations (<xref rid="bib0170 bib0175 bib0035 bib0280 bib0045" ref-type="bibr">Richardson, 1977, 1985; Flores et al., 1994; Westhead et al., 1998; Gilbert et al., 1999</xref>). For many domains this core topological description may correspond to the entire structure but for others which have experienced substantial embellishments the core may only be a relatively small fraction of the structure or might be obscured by substantial rearrangements such as circular permutations (<xref rid="bib0005 bib0100 bib0140 bib0160 bib0060 bib0070 bib0015" ref-type="bibr">Andreeva and Murzin, 2006; Krishna and Grishin, 2005; Pan and Bardwell, 2006; Reeves et al., 2006; Grishin, 2001; Harrison et al., 2002; Chaudhuri et al., 2008</xref>). Eventually the accumulation of many changes of this sort may lead to adoption of a globally different topology (<xref rid="bib0060 bib0145 bib0100 bib0240" ref-type="bibr">Grishin, 2001; Peisajovich et al., 2006; Krishna and Grishin, 2005; Taylor, 2007</xref>) with a different core, which would be considered a change of fold in either of the two senses defined above.</p>
+      <p>This evolutionary difficulty in classifying proteins structurally can be avoided if we are prepared to separate the question of evolutionary relatedness from structural similarity, however the question of whether proteins can be meaningfully classified into discrete groups has been debated for some time (<xref rid="bib0205 bib0070" ref-type="bibr">Shindyalov and Bourne, 2001; Harrison et al., 2002</xref>) based purely on the results of structure comparison. Studies of structural classifications have shown that although there are many broad agreements the existence of many proteins in some groups such as the “superfolds” (<xref rid="bib0125" ref-type="bibr">Orengo et al., 1994</xref>) causes particular difficulty in consistent classification (<xref rid="bib0065 bib0030 bib0200 bib0020 bib0185" ref-type="bibr">Hadley and Jones, 1995; Day et al., 2003; Sam et al., 2006; Csaba et al., 2009; Sadowski and Taylor, 2010</xref>). Several recent studies in particular have questioned whether the idea of the “fold” as a discrete entity describing protein structure is meaningful (<xref rid="bib0095 bib0150 bib0215 bib0155" ref-type="bibr">Kolodny et al., 2006; Petrey et al., 2009; Skolnick et al., 2009; Petrey and Honig, 2009</xref>), based on the observation of significant structural similarities between proteins with different global structure. However these observations depend crucially on the meaning of statistical significance when applied to pairwise protein structure comparison and whether the rarity of a comparison score compared to the assumed background distribution accurately reflects interesting structural similarity.</p>
+      <p>Normalization of pairwise scores for structure comparison remains an area of active research (<xref rid="bib0255 bib0285 bib0290" ref-type="bibr">Taylor et al., 2006; Wrabl and Grisin, 2008; Xu and Zhang, 2010</xref>). Substructure comparisons are dominated by recurring fragments on a variety of length scales (<xref rid="bib0265 bib0120 bib0135 bib0195 bib0040" ref-type="bibr">Taylor and Thornton, 1984; Orengo et al., 1993; Orengo and Thornton, 1993; Salem et al., 1999; Friedberg and Godzik, 2005</xref>). Globally the overall tendency of proteins to be compact produces a length-dependency as a consequence of the relationship between radius of gyration and chain length (<xref rid="bib0110 bib0165 bib0010 bib0295" ref-type="bibr">Maiorov and Crippen, 1994; Reva et al., 1998; Betancourt and Skolnick, 2001; Zhang and Skolnick, 2004</xref>). Adding gaps into the comparison complicates matters significantly by adding another parameter which needs to be considered in the background distribution: too few gaps means the alignment will invariably miss significant similarities but allowing too many provides optimization procedures used by structure alignment methods with loopholes to exploit, leading to results of questionable significance such as when a strand and a helix can be aligned to one another.</p>
+      <p>On this basis it is important to ask whether findings of “significant” similarities between structure pairs necessarily maintain a correspondance between core structures in the face of a significantly similar fragment. To determine how well structure comparison captures this trade-off it is necessary to objectively benchmark methods but this is not a simple issue. Firstly most methods tend to use similar scores: although their implementations and normalizations do vary they are typically based on the same overall framework. Structure classifications attempt to classify global structure using core similarities but there is a risk of circularity since these are largely based on similar methods to those under scrutiny; where differences are found these are often a reflection of subjective choices based on evolutionary and functional relationships which do not necessarily cohere with structural changes (<xref rid="bib0065 bib0030 bib0270 bib0200 bib0020 bib0185" ref-type="bibr">Hadley and Jones, 1995; Day et al., 2003; Theobald and Wuttke, 2006; Sam et al., 2006; Csaba et al., 2009; Sadowski and Taylor, 2010</xref>).</p>
+      <p>To explore this issue we have benchmarked three major structure comparison methods (SAP, TM-align, DALI) using decoys with a three-layer alpha/beta/alpha sandwich structure generated by a structure prediction method capable of exploring a large fraction of topologically distinct folds given an alignment of homologous sequences. Using an edit distance to measure changes on the topological level we distinguish larger from smaller fold changes related to changes in sheet topology and show that all three methods can fail to distinguish strand swaps in the centres of beta sheets at scores which would be deemed of high significance (e.g. TM-score 0.5 or greater (<xref rid="bib0290" ref-type="bibr">Xu and Zhang, 2010</xref>)). Decoy-native comparisons shows the same results and these are used to show that as expected these problems also occur for comparison of real structures.</p>
+    </sec>
+    <sec sec-type="methods" id="sec0010">
+      <label>2</label>
+      <title>Methods</title>
+      <sec id="sec0015">
+        <label>2.1</label>
+        <title>Decoy model generation</title>
+        <p>Decoy models were built using a method based on the ideal lattice frameworks (“forms”) (<xref rid="bib0250" ref-type="bibr">Taylor et al., 2008</xref>) taken from a periodic table (like) arrangement (<xref rid="bib0230" ref-type="bibr">Taylor, 2002</xref>). The forms describe lattices of secondary structure elements (SSEs) in compact arrangments and guide the assembly of global structure based on known principles of packing observed in a large proportion of proteins.</p>
+        <p>Decoys were generated from the sequence alignments of four small βα-class proteins: 1coz 126 residues, glycerol-3P cytidyl-transferase; 1di0 148 residues, lumazine synthase; 1f4p 147 residues, flavodoxin (Rossman-like fold); 3chy 128 residues, bacterial chemotaxis Y protein (Rossman-like fold). For each of these probe proteins, we generated ten different multiple alignments, each containing different members of sequences from the same family. Some additional variation was also introduced by the use of two different secondary structure prediction methods. All SSE variations that had sufficient elements to map onto an ideal form were permuted over each form and the resulting folds filtered to remove unfavorable features including left-handed connections in a β-sheet and loop crossings. This resulted in, typically, several thousand folds. These ideal folds were built into α-carbon models, incorporating the variation in secondary structure lengths linked by pseudo-random loop conformations (also of variable lengths taken from the predictions).</p>
+        <p>The original multiple alignment was then threaded back onto the template fold resulting in some additional shift of the structure away from its idealized origin (<xref rid="bib0255" ref-type="bibr">Taylor et al., 2006</xref>). This was repeated ten times for each fold giving rise to minor structural variation through stochastic components in both the alignment and model construction methods. The threading method also returns a score of how well the alignment fits the model and this was used to rank the models within each distinct fold type. The best model for each fold was retained resulting in a collection of nearly 6000 models. Of these, over 2000 have unique folds with the reduction resulting through the same fold being derived from different starting probe proteins. Interestingly, most of these do not occur in the PDB (<xref rid="bib0220" ref-type="bibr">Taylor et al., 2009</xref>).</p>
+      </sec>
+      <sec id="sec0020">
+        <label>2.2</label>
+        <title>Geometry-based comparison</title>
+        <sec id="sec0025">
+          <label>2.2.1</label>
+          <title>Selected comparison methods</title>
+          <p>Three comparison methods were used that each have a distinctive feature that allowed us to view the comparison of structures from different aspects as summarized: SAP (<xref rid="bib0225" ref-type="bibr">Taylor, 1999</xref>) an iterated alignment method. (Originally called SSAP (<xref rid="bib0260" ref-type="bibr">Taylor and Orengo, 1989</xref>) and used to generate the CATH database); DALI (<xref rid="bib0080" ref-type="bibr">Holm and Sander, 1993</xref>) substructure matching used widely in searches; TMalign (<xref rid="bib0300" ref-type="bibr">Zhang and Skolnick, 2005</xref>) structural alignment to optimise the TM-score.</p>
+          <p>Each of these methods have their own differing intrinsic scoring schemes: DALI calculates an estimated Z-score, TM-align uses its TM-score while SAP uses a complex multi-feature score. As well as considering these scores, we will concentrate on a simpler evaluation of the data based on the unweighted RMSD in combination with the number of residues matched which provides a common ground for the different methods.</p>
+          <p>The raw SAP score we use is not that calculated by the program but is instead a normalization of RMSD and alignment length that was used previously (<xref rid="bib0235" ref-type="bibr">Taylor, 2006</xref>). This is based on a simple square-root function of the number of matched residues damped by a Gaussian function at short lengths to avoid the higher chance similarity of super-secondary structure:<disp-formula id="eq0005"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mi>r</mml:mi><mml:mo>=</mml:mo><mml:msqrt><mml:mi>n</mml:mi></mml:msqrt><mml:mfenced open="(" close=")"><mml:mrow><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mi>exp</mml:mi><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mi>n</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mrow><mml:msup><mml:mi>σ</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced><mml:mtext>,</mml:mtext></mml:mrow></mml:math></disp-formula>where <italic>r</italic> is the RMSD value and <italic>n</italic> the number of matched residues. This function has been shown to to be a good approximation of the limit over which comparisons can be considered random. If the Gaussian part of the equation described a normal distribution (half bell curve), then <italic>σ</italic> would correspond to the standard deviation. A value of <italic>σ</italic> = 60 had been used previously but here a slight increase to 70 was used which is a better range for assessing the results obtained below.</p>
+        </sec>
+        <sec id="sec0030">
+          <label>2.2.2</label>
+          <title>Pairwise difference scores</title>
+          <p>The two values: RMSD (<italic>r</italic>) and number of matched residues (<italic>n</italic>) can be combined into a single value based on a number of possible scoring schemes to give a pairwise difference score. The first score we considered was simply the alignment length divided by the RMSD (<italic>n</italic>/<italic>r</italic>). The second was the alignment length squared over RMSD (<italic>n</italic><sup>2</sup>/<italic>r</italic>), which will favour longer alignments. A third score was devised to give prominence to those pairs that have a similarity lying in the boxed region in <xref rid="fig0010" ref-type="fig">Fig. 1</xref>. Rather than use a box, we formulated a partition curve as the square-root of <italic>n</italic> combined with an exponential switch-function (replacing the less flexible Gaussian function in Eq. <xref rid="eq0005" ref-type="disp-formula">(1)</xref>:<disp-formula id="eq0010"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mi>r</mml:mi><mml:mo>=</mml:mo><mml:mi>a</mml:mi><mml:msqrt><mml:mi>n</mml:mi></mml:msqrt><mml:mfenced open="(" close=")"><mml:mrow><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mi>exp</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi>b</mml:mi><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mi>c</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac><mml:mo>/</mml:mo><mml:mi>d</mml:mi></mml:mrow></mml:mfenced><mml:mtext>,</mml:mtext></mml:mrow></mml:math></disp-formula>where <italic>n</italic> is the length of the match and <italic>N</italic> is the maximum number of matched residues. The parameter <italic>a</italic> scales the height of the curve and <italic>d</italic> controls the steepness of the function at its switch point which occurs at length <italic>bN</italic> + <italic>c</italic>.</p>
+          <p>This function generates a smooth box-like boundary that can also be used as the basis for a score by finding value of <italic>a</italic> that causes the curve to pass through any given point in the plot. This is similar to the Gaussian damped square-root function used previously (<xref rid="bib0235" ref-type="bibr">Taylor, 2006</xref>) (Eq. <xref rid="eq0005" ref-type="disp-formula">(1)</xref>).</p>
+        </sec>
+      </sec>
+      <sec id="sec0035">
+        <label>2.3</label>
+        <title>Topology based comparison</title>
+        <sec id="sec0040">
+          <label>2.3.1</label>
+          <title>Topology string definition</title>
+          <p>The topology strings that define the folds were derived from a simplified coordinate system that describes the chain path through the secondary structure lattice (<xref rid="bib0090 bib0245 bib0220" ref-type="bibr">Johannissen and Taylor, 2004; Taylor and Aszódi, 2005; Taylor et al., 2009</xref>). The letters “A”, “B” and “C” designate three secondary structure layers (α, β, α, respectively) and a number specifies the relative position of the SSE in the layer with the remaining dimension requiring only two values, “+” or “−”, to indicate direction. The first SSE to enter a layer is assigned position 0 and the first strand in the sheet takes the positive orientation, giving “+B+0” in the string. The first α-helix then sets the top/bottom orientation by assigning its layer as “A”.</p>
+          <p>It should be noted that this description is slightly more general than a straightforward list of the nodes occupied by the chain as the relative numbering in the helical layers (“A” and “C”) admits the possibility of unoccupied nodes between two occupied positions so that helices +1 and +2 in layer A, for example, are not necessarily spatially adjacent in the structure. In general, the helices are free to ‘shift’ within a their layer but not to swap positions. This does not apply to a β-sheet layer as no gaps are allowed within the sheet. In practice this means that two structures with the same topology string can have differing twists, bends and shears in the location of their secondary structure positions as well as differing lengths for each SSE. The strings thus capture the topological, as distinct from the geometric, nature of the match.</p>
+        </sec>
+        <sec id="sec0045">
+          <label>2.3.2</label>
+          <title>True/false fold match partition</title>
+          <p>As well as providing a score, the partition curve (Eq. <xref rid="eq0010" ref-type="disp-formula">(2)</xref>) can be scaled to find the best separation between matches that have the same fold (T, true) and matches with different folds (F, false). True matches have a topological distance of zero, false matches any other value.</p>
+          <p>True matches below the curve are designated “positive” (P) and above “negative” (N). “TP” then represents the number of true positives and “TN” the number of true negatives while the false matches below the curve are false positives (FP). The simple scoring scheme:<disp-formula id="eq0015"><label>(3)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mi>s</mml:mi><mml:mo>=</mml:mo><mml:mn>100</mml:mn><mml:mfrac><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mtext>TP</mml:mtext><mml:mo>−</mml:mo><mml:mi>w</mml:mi><mml:mtext>FP</mml:mtext><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mtext>TP</mml:mtext><mml:mo>+</mml:mo><mml:mtext>FN</mml:mtext><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula></p>
+          <p>provides a score (<italic>s</italic>) that does not use the TN count as this can be very large and variable between different data sets and is sometimes artificially truncated. The value of <italic>s</italic> was maximised by variation of the parameters <italic>a</italic>, <italic>b</italic>, <italic>c</italic>, <italic>d</italic> in Eq. <xref rid="eq0010" ref-type="disp-formula">(2)</xref>. A weighting factor, <italic>w</italic>, of 0.5 was applied to the FPs giving more weight to the less abundant TP data. The value of this factor determines how many TPs lie below the optimised curve and a value of 0.5 resulted in a curve that enclosed typically 80% of the TPs. The exact scaling of the curve (the value of <italic>a</italic>) is less important than its shape as this is used to rank the matches and should be based on a fit that encloses a large fraction of true matches.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="sec0050">
+      <label>3</label>
+      <title>Results</title>
+      <sec id="sec0055">
+        <label>3.1</label>
+        <title>Decoy/decoy comparisons</title>
+        <sec id="sec0060">
+          <label>3.1.1</label>
+          <title>Overview of pair comparisons</title>
+          <p>The 6000 decoy models that resulted from the construction protocol outlined in Section <xref rid="sec0010" ref-type="sec">2</xref> were compared to each other using SAP, TM-align and DALI. To illustrate the differing behaviours of these comparison methods we have taken the pooled decoy-native comparison data and plotted RMSD against the number of matched residues (<xref rid="fig0010" ref-type="fig">Fig. 1</xref>). The two sub-structure based methods (DALI and TMalign) both return low RMSD values but at the expense of the number of aligned residues. When assessing databank hits or model/native similarity, towards which the two methods are (respectively) directed, this is completely appropriate behaviour. By contrast, the SAP methods returns more matched residues at the expense of RMSD. The SAP method employs what is now known as a global–local alignment algorithm in which terminal indels are not penalised but otherwise it attempts to align as much of the two structures as possible based on semi-local structural similarity rather than overall RMSD.</p>
+          <p>Since we are interested in how match scores relate to global structural features, only pairs for which the alignment covered the majority of both proteins were considered. This requirement is roughly indicated on the plots by a box in the lower right corner which encloses alignments that have both more than 90 matched residues (typically 80–90% of the shorter protein) with a RMSD under 9 Å. It might appear that very few comparisons lie in this region but as the plots include several million comparisons, even the blue density comprises many pairs.</p>
+          <p>The comparison of the models that have resulted from any pair of starting probe proteins generate alignments that, clearly, cannot exceed the length of the shorter protein. Conveniently, both 3chy and 1coz have almost the same length which means that the comparisons of both these sets with each other and the two larger proteins 1f4p and 1di0 all have the same maximum length (126 residues). This provides five sets of comparisons that can be analysed before the complicating factor of length variation need be considered. However of these, one set contained only two common folds and was omitted. The four remaining sets of comparisons for both comparison methods (SAP and TM-align) are shown in <xref rid="fig0015 fig0020" ref-type="fig">Figs. 2 and 3</xref>, respectively. In these plots, it is clear that comparisons between decoys with identical folds (green) lie towards the lower right corner of the plot, having a low RMSD over close to the maximum number of residues aligned, compared to the body of points (red) where the folds differ.</p>
+          <p>What is also clear from these plots is that there are a significant number of matching folds that fall well away from the lower right corner, especially with the 3chy + 1f4p decoy sets (Figs. <xref rid="fig0015" ref-type="fig">2</xref>a and <xref rid="fig0020" ref-type="fig">3</xref>a), and more so with the SAP comparison method. This is the consequence of the structural latitude between proteins with identical topology: different element lengths, positions and packing angles can all contribute to large geometric distances for the same topology.</p>
+          <p>Also of note is the observation that a considerable number of pairs with different folds lie towards the bottom right corner, apparently having a quality of match that is comparable to other pairs with the same fold. These pairs of structures may include those that have “easy” fold transitions in which, say, a loop region has shifted towards an α-helix or β-strand conformation. To investigate this requires that the quality of match is quantified and the comparisons ranked and to do this we used the scores described in Section <xref rid="sec0010" ref-type="sec">2</xref> that transform the RMSD (<italic>r</italic>) and number of matched residues (<italic>n</italic>) into a single value, along with the intrinsic scores calculated by each comparison method.</p>
+        </sec>
+        <sec id="sec0065">
+          <label>3.1.2</label>
+          <title>Finding the best partition curve</title>
+          <p>The optimal form for the partition curve that encloses the lower-right corner of good matches in <xref rid="fig0015 fig0020" ref-type="fig">Figs. 2 and 3</xref> (blue line) was found by varying the four parameters of the curve (<italic>a</italic>, <italic>b</italic>, <italic>c</italic>, <italic>d</italic> in Eq. <xref rid="eq0010" ref-type="disp-formula">(2)</xref>) to optimise the value of <italic>s</italic> in Eq. <xref rid="eq0015" ref-type="disp-formula">(3)</xref>. The absolute scale (<italic>a</italic>) of this curve is not important as it is used only to score each comparison by the value of <italic>a</italic> that causes the curve to pass through each data point on the plots. Ranked by this value, the data can be re-plotted showing the growth of true matches (same fold) against the growth of false matches (different folds) as the ranked list is traversed. These curves are compared for each of the two comparison methods along with the fold ranking based on their own scoring values and the simpler reciprocal RMSD-based score described in Section <xref rid="sec0010" ref-type="sec">2</xref> (<xref rid="fig0025" ref-type="fig">Fig. 4</xref>).</p>
+          <p>It was found that the raw SAP score is a poor basis for discrimination, largely due to the incorporation of many shorter alignments. When re-ranked by the partition curve, discrimination improves markedly as these shorter alignments are now down-weighted. The raw TM-align score provides a good discrimination and improves only slightly with re-ranking based on the partition curve (bold green curves in <xref rid="fig0025" ref-type="fig">Fig. 4</xref>). Although this TM-align-based ranking was never the best in any individual comparison data-set, it had a good enough overall performance to allow us to avoid the use of separate scoring schemes and methods for each comparison dataset and will be used in the analysis of decoy matches below.</p>
+        </sec>
+      </sec>
+      <sec id="sec0070">
+        <label>3.2</label>
+        <title>Decoy to native comparisons</title>
+        <p>Using topology strings derived by applying a match procedure to the SCOP database (<xref rid="bib0230 bib0105" ref-type="bibr">Taylor, 2002; MacDonald et al., 2010</xref>) we assessed whether comparisons between decoy structures and real proteins suffered from the same problems.</p>
+        <p>We divided our results decoys with topologies which were not found in any known structure (<xref rid="bib0220" ref-type="bibr">Taylor et al., 2009</xref>) by searching the set of all substrings derived from form fits to the SCOP database (Section <xref rid="sec0010" ref-type="sec">2</xref>) for the string corresponding to the decoy. This allows a decoy to be classified as a decoy of unknown fold (DUF) or a decoy with observed fold (DOF).</p>
+        <p>In the current analysis, the category of matches that is most interesting are those pairs in which there is a good α-carbon correspondence but with different folds (defined as “false positives” in the previous section). If a decoy model has a good match to a known protein at the residue level (positive) and the decoy does not correspond topologically to any known fold (false), then the match must be a false positive since no known domain has a corresponding topology. This is not to say that the matches between DOFs and real proteins with good scores are necessarily correct, but it provides a basis for an initial ranking.</p>
+        <sec id="sec0075">
+          <label>3.2.1</label>
+          <title>Analysis of the comparisons</title>
+          <p>The 6000 decoy models were matched against 3700 domains from a high-resolution subset of SCOP10 (see Section <xref rid="sec0010" ref-type="sec">2</xref> for details) using the three comparison methods (SAP, TM-align and DALI). As an initial survey, we considered only the models derived from one dataset with the simplest score, alignment length (<italic>N</italic>) divided by RMSD (<italic>R</italic>) which, from the analysis of the decoy/decoy comparisons, had performed reasonably well. (<xref rid="fig0030" ref-type="fig">Fig. 5</xref>). In all the plots there is a distinct population of known folds at high score values (good matches) but also considerable overlap of these with unknown folds towards lower score values. The <italic>N</italic><sup>2</sup>/<italic>R</italic> score produced a similar picture. (Data not shown.)</p>
+          <p>Unlike the decoy/decoy comparisons which all involve structures of a similar size, the decoy/protein comparisons involve a larger size range for the known structures, giving rise to many spurious partial matches with higher RMSD and shorter lengths. Despite this, there is a reasonable number of good matches that involve DOFs repairing with their fold partners or a homologue and also a number of DUFs attain a good match. In the following analysis we turn to the 2D plots of RMSD against length (<xref rid="fig0035 fig0040 fig0045" ref-type="fig">Figs. 6–8</xref>) to find the best scoring scheme to distinguish correct DOF matches from the background and then use this measure to identify DUFs with similarly high-scoring RMSD matches to proteins.</p>
+        </sec>
+        <sec id="sec0080">
+          <label>3.2.2</label>
+          <title>Fold rankings</title>
+          <p>The decoy/known datasets are dominated by the large numbers of semi-random background comparisons, making it difficult to distinguish the performance of the various scoring schemes by a simple ROC-like analysis. Following Eq. <xref rid="eq0015" ref-type="disp-formula">(3)</xref>, we avoided not only the TN counts but also the FN counts and used the simple score of: (TP–FP)/(TP + FP + 100). The value of 100 in the denominator was included only to damp fluctuations at low counts. In all but one of the data sets, the SAP comparisons re-scored by the partition curve (Eq. <xref rid="eq0010" ref-type="disp-formula">(2)</xref>) performs well (<xref rid="fig0050" ref-type="fig">Fig. 9</xref>). The exception is the dataset derived from the 1coz probe which visually has a good separation of DOFs from the background (<xref rid="fig0035" ref-type="fig">Fig. 6</xref>) but many true matches are lost to the TN region through having full length alignments with a high RMSD. Rather than employ a variety of scores, the re-scored SAP comparison was taken as a reasonable consensus and the results discussed below are based on this.</p>
+        </sec>
+      </sec>
+      <sec id="sec0085">
+        <label>3.3</label>
+        <title>Example Comparisons</title>
+        <p>As much of the earlier sections have been focused on relatively abstract representations and discussion of protein folds, in this section, we provide examples of the types of comparison that is being evaluated, including decoy-to-decoy comparisons and decoy-to-native comparisons.</p>
+        <p>In all of these comparisons, we have focused on changes that can unambiguously be described as a change in fold. These do not involve any subtle change in angle between secondary structure elements or the addition and deletion of minor edge components (embellishments)—all incorporate an exchange in position between two core β-strand s. From the earliest studies (<xref rid="bib0170" ref-type="bibr">Richardson, 1977</xref>) to later analyses (<xref rid="bib0180 bib0050" ref-type="bibr">Ruczinski et al., 2002; Grainger et al., 2010</xref>), such changes have been considered to be a change of fold or topology<xref rid="fn0005" ref-type="fn">1</xref>.</p>
+        <p>In the context of the small βα-proteins considered in this work, most have a five-stranded β-sheet. If we do not consider edge strands, then we expect to see only the permutations of the three central strand positions. Labelling these 1, 2, and 3, gives only three situations: 2,1,3; 1,3,2 and 3,2,1. Note that these are positions in the sheet not strands in the sequence so the three types of strand swap can be found underlying a wider variety of topologies. If the structure is oriented with the first β-strand in the sequence approaching and the first helix above the sheet, then the two single strand swaps can be distinguished.</p>
+      </sec>
+      <sec id="sec0090">
+        <label>3.4</label>
+        <title>Decoy-to-decoy comparisons</title>
+        <p>The comparison data from <xref rid="fig0015 fig0020" ref-type="fig">Figs. 2 and 3</xref> were ranked on their TM-score and each was examined in turn for topologies that differed by swapped core strands. Adjacent strand swaps were common, with swaps involving the terminal strand being more frequent—presumably because it involves the shift of one less connecting loop. The highest scoring pair is shown in <xref rid="fig0055" ref-type="fig">Fig. 10</xref> which involves a swap of the 2,3 positions in the sheet. The TM-score for this pair was 0.59 and the SAP comparison gave an RMSD of 5.07 Å over 113 residues.</p>
+        <p>At rank 3, a strand swap involving the 1,2 positions was seen (<xref rid="fig0060" ref-type="fig">Fig. 11</xref>) with TM-score 0.58 and a SAP RMSD of 4.77/110 (Å/res.). As with the 2,3-swap, the bulk of the two models was matched with just the two swapped strands displaced. An alternative to this type of superposition was encountered at rank 13 (<xref rid="fig0065" ref-type="fig">Fig. 12</xref>), for a 2,3-swap, where the two more carboxy located strands (pink in parts c and d) retained a closer match, with the amino terminal strands (blue) being excluded from the match. The drop in TM-score to 0.54 is only slight with a corresponding drop in the number of residues matched by SAP to 4.8/85 (Å/res.).</p>
+      </sec>
+      <sec id="sec0095">
+        <label>3.5</label>
+        <title>Decoy-to-known comparisons</title>
+        <p>The data from <xref rid="fig0035 fig0040 fig0045" ref-type="fig">Figs. 6–8</xref> were ranked by TM-score and the best match of a native structure to a decoy with different topology was to the Chey-like protein with PDB code: 1ccw (ASTRAL domain: d1ccwa_). The decoy model also had a flipped edge strand and an off-lattice α-helix that formed an bridging link to this antiparallel strand, yet despite these additional topological differences, the match had a good TM-score of 0.66 and a SAP match of 4.65 Å over 125 matched α-carbon atoms. The superposition showed a good overall match, with the swapped strands lying on top of each other (<xref rid="fig0070" ref-type="fig">Fig. 13</xref>). The swapped strands lie in core positions 2 and 3 in the numbering defined above.</p>
+        <p>Native structures have a wider range of size than the decoys (generally on the larger side) which means that the superpositons do not always completely coincide. This is seen where a decoy with topology corresponding to that seen in Figs. <xref rid="fig0055" ref-type="fig">10</xref>b and <xref rid="fig0065" ref-type="fig">12</xref>b is matched within the large protein with PDB code: 1y1p, specifically the domain defined by the ASTRAL domain with code: d1y1pa1. Within this domain, the secondary structures lying on a regular lattice were automatically defined as a 3-7-4 form (a layer of 3 helices over a 7-stranded sheet over a layer of 4 helices) with the topology of an extended Rossman fold (<xref rid="fig0075" ref-type="fig">Fig. 14</xref>). The swapped strands lie deep in the core of the native structure and by reference to the decoy fold, involve positions 1 and 2 (as defined above). With a large deletion in the native structure, the corresponding parts of the native and decoy structures match well, with a TM-score of 0.61 and a SAP match of 6.96/126 (Å/res.). The superposed register of the two β-sheet s is similar to that seen in <xref rid="fig0065" ref-type="fig">Fig. 12</xref>.</p>
+        <p>An equivalent match of the same decoy fold to a “classic” Rossmann fold is found at rank 5 to the smaller protein: 1kle (ASTRAL, d1klea). The superposition of these structures has a good overall match with the two swapped strands lying over each other as in <xref rid="fig0080" ref-type="fig">Fig. 15</xref>. The match has a good TM-score of 0.60 but the less good SAP match of 7.71 Å over 128 positions. The larger RMSD value appears to come from two helices that have a match shifted by one turn.</p>
+      </sec>
+    </sec>
+    <sec id="sec0100">
+      <label>4</label>
+      <title>Discussion</title>
+      <p>For the purpose of fold discrimination, the results for the decoy/decoy matches and, to a lesser extent, for the decoy/native matches showed that there is little to choose between different comparison methods or scoring schemes, with only a few that performed markedly poorly. However, there was a general trend for those that calculate more extensive matches, covering a greater proportion of the chain, to be better at retaining the fold identity. Where the method is able to discard a significant fraction of the structures, such as DALI, and to a lesser extent TM-align, then key features of the fold can be lost. This was especially true for the decoy/native comparisons and is likely to be even more pronounced for native/native comparisons.</p>
+      <p>When the folds were ranked on the method and score that provided the best fold discrimination, it was possible to look at examples where good residue-level comparisons were obtained but with a topological mismatch. The most significant changes in terms of topology were selected in which pairs of β-strand s had “swapped” positions in the core of the proteins. Close examination of the superposition of these pairs showed that good quality could be maintained in the overall match despite the shift between the two swapped strands. This was achieved by keeping the two strands sitting in their swapped positions, giving the added RMSD associated with their strand separation (5 Å over several residues). Alternatively, discounting the contribution of one pair by an alignment indel allows an intercolation of strand positions in which each pair is displaced by less than a strand separation.</p>
+      <p>The matches observed by these topologically different structures were of a sufficiently high quality that most would be accepted as significant by the three structure comparison methods used: A TM-score over 0.5, a DALI Z-score over 5 and a normalised SAP score under 1. For one-off comparisons, topological errors would be found by visual inspection but where the process is completely automatic, as in the assessment of a large number of predicted models or in the exploration of protein fold-space, then a failure to recognise topological differences becomes important.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib0005">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Andreeva</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Murzin</surname>
+              <given-names>A.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolution of protein fold in the presence of functional constraints</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>16</volume>
+          <year>2006</year>
+          <fpage>399</fpage>
+          <lpage>408</lpage>
+          <pub-id pub-id-type="pmid">16650981</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0010">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Betancourt</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Skolnick</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Universal similarity measure for comparing protein structures</article-title>
+          <source>Biopolymers</source>
+          <volume>59</volume>
+          <year>2001</year>
+          <fpage>305</fpage>
+          <lpage>309</lpage>
+          <pub-id pub-id-type="pmid">11514933</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0015">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chaudhuri</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Soding</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>AN</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolution of the beta-propeller fold</article-title>
+          <source>Protein Struct. Funct. Genet.</source>
+          <volume>71</volume>
+          <year>2008</year>
+          <fpage>795</fpage>
+          <lpage>803</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0020">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Csaba</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Birzele</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Zimmer</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Systematic comparison of scop and cath: a new gold standard for protein structure analysis</article-title>
+          <source>BMC Struct. Biol.</source>
+          <volume>9</volume>
+          <year>2009</year>
+          <fpage>23</fpage>
+          <pub-id pub-id-type="pmid">19374763</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0025">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cuff</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Sillitoe</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Lewis</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Redfern</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Garratt</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>The cath classification revisited—architectures reviews and new ways to characterize structural divergence in superfamilies</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>37</volume>
+          <year>2008</year>
+          <fpage>310D</fpage>
+          <lpage>314D</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0030">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Day</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Armen</surname>
+              <given-names>R.V.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>A consensus view of fold space: combining scop, cath and the dali domain dictionary</article-title>
+          <source>Protein Sci.</source>
+          <volume>12</volume>
+          <year>2003</year>
+          <fpage>2150</fpage>
+          <lpage>2160</lpage>
+          <pub-id pub-id-type="pmid">14500873</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0035">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Flores</surname>
+              <given-names>T.P.</given-names>
+            </name>
+            <name>
+              <surname>Moss</surname>
+              <given-names>D.S.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>An algorithm for automatically generating protein topology cartoons</article-title>
+          <source>Protein Eng.</source>
+          <volume>7</volume>
+          <year>1994</year>
+          <fpage>31</fpage>
+          <lpage>37</lpage>
+          <pub-id pub-id-type="pmid">8140092</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0040">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friedberg</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Godzik</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Connecting the protein structure universe by using sparse recurring fragments</article-title>
+          <source>Structure</source>
+          <volume>13</volume>
+          <year>2005</year>
+          <fpage>1213</fpage>
+          <lpage>1224</lpage>
+          <pub-id pub-id-type="pmid">16084393</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0045">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gilbert</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Westhead</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Nagano</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motif-based searching in TOPS protein topology databases</article-title>
+          <source>Bioinformatics</source>
+          <volume>15</volume>
+          <year>1999</year>
+          <fpage>317</fpage>
+          <lpage>326</lpage>
+          <pub-id pub-id-type="pmid">10320400</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0050">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grainger</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Sadowski</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Re-evaluating the “rules” of protein topology</article-title>
+          <source>J. Comput. Biol.</source>
+          <year>2010</year>
+        </element-citation>
+      </ref>
+      <ref id="bib0055">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Greene</surname>
+              <given-names>L.H.</given-names>
+            </name>
+            <name>
+              <surname>Lewis</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Addou</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Cuff</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Dallman</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Dibley</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Redfern</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Pearl</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Nambudiry</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Reid</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Sillitoe</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Yeats</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The CATH domain structure database: new protocols and classification levels give a more comprehensive resource for exploring evolution</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>35</volume>
+          <year>2007</year>
+          <fpage>D271</fpage>
+          <lpage>D297</lpage>
+          <pub-id pub-id-type="pmid">17135204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0060">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grishin</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fold change in evolution of protein structures</article-title>
+          <source>J. Struct. Biol.</source>
+          <volume>134</volume>
+          <year>2001</year>
+          <fpage>167</fpage>
+          <lpage>185</lpage>
+          <pub-id pub-id-type="pmid">11551177</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0065">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hadley</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>A systematic comparison of protein structure classifications SCOP, CATH and FSSP</article-title>
+          <source>Structure</source>
+          <volume>7</volume>
+          <year>1995</year>
+          <fpage>1099</fpage>
+          <lpage>1112</lpage>
+          <pub-id pub-id-type="pmid">10508779</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0070">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harrison</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pearl</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Mott</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantifying the similarities within fold space</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>323</volume>
+          <year>2002</year>
+          <fpage>909</fpage>
+          <lpage>926</lpage>
+          <pub-id pub-id-type="pmid">12417203</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0075">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harrison</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pearl</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Sillitoe</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Slidel</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Mott</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Recognizing the fold of a protein structure</article-title>
+          <source>Bioinformatics</source>
+          <volume>19</volume>
+          <year>2003</year>
+          <fpage>1748</fpage>
+          <lpage>1759</lpage>
+          <pub-id pub-id-type="pmid">14512345</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0080">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Holm</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Sander</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein-structure comparison by alignment of distance matrices</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>233</volume>
+          <year>1993</year>
+          <fpage>123</fpage>
+          <lpage>138</lpage>
+          <pub-id pub-id-type="pmid">8377180</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0085">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hubbard</surname>
+              <given-names>T.J.P.</given-names>
+            </name>
+            <name>
+              <surname>Murzin</surname>
+              <given-names>A.G.</given-names>
+            </name>
+            <name>
+              <surname>Brenner</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Chothia</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>SCOP: a structural classification of proteins database</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>25</volume>
+          <year>1997</year>
+          <fpage>236</fpage>
+          <lpage>239</lpage>
+          <pub-id pub-id-type="pmid">9016544</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0090">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Johannissen</surname>
+              <given-names>L.O.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein fold comparison by the alignment of topological strings</article-title>
+          <source>Protein Eng.</source>
+          <volume>16</volume>
+          <year>2004</year>
+          <fpage>949</fpage>
+          <lpage>955</lpage>
+          <pub-id pub-id-type="pmid">14983074</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0095">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kolodny</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Petery</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Honig</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein structure comparison: implications for the nature of ‘fold space’, and structure and function prediction</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>16</volume>
+          <year>2006</year>
+          <fpage>393</fpage>
+          <lpage>398</lpage>
+          <pub-id pub-id-type="pmid">16678402</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0100">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krishna</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Grishin</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural drift: a possible path to protein fold change</article-title>
+          <source>Bioinformatics</source>
+          <volume>21</volume>
+          <year>2005</year>
+          <fpage>1308</fpage>
+          <lpage>1310</lpage>
+          <pub-id pub-id-type="pmid">15604105</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0105">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>MacDonald</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Maksimiak</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Sadowski</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>De novo backbone scaffolds for protein design</article-title>
+          <source>Protein Struct. Funct. Bioinform.</source>
+          <volume>78</volume>
+          <year>2010</year>
+          <fpage>1311</fpage>
+          <lpage>1325</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0110">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Maiorov</surname>
+              <given-names>V.N.</given-names>
+            </name>
+            <name>
+              <surname>Crippen</surname>
+              <given-names>G.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Significance of root-mean-square deviation in comparing three-dimensional structures of globular proteins</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>235</volume>
+          <year>1994</year>
+          <fpage>625</fpage>
+          <lpage>634</lpage>
+          <pub-id pub-id-type="pmid">8289285</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0115">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Murzin</surname>
+              <given-names>A.G.</given-names>
+            </name>
+            <name>
+              <surname>Brenner</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Hubbard</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Chothia</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>SCOP: a structural classification of proteins database for the investigation of sequences and structures</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>247</volume>
+          <year>1995</year>
+          <fpage>536</fpage>
+          <lpage>540</lpage>
+          <pub-id pub-id-type="pmid">7723011</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0120">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Flores</surname>
+              <given-names>T.P.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.T.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Recurring structural motifs in proteins with different functions</article-title>
+          <source>Curr. Biol.</source>
+          <volume>3</volume>
+          <year>1993</year>
+          <fpage>131</fpage>
+          <lpage>139</lpage>
+          <pub-id pub-id-type="pmid">15335780</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0125">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.T.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein superfaimiles and domain superfolds</article-title>
+          <source>Nature</source>
+          <volume>372</volume>
+          <year>1994</year>
+          <fpage>631</fpage>
+          <lpage>634</lpage>
+          <pub-id pub-id-type="pmid">7990952</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0130">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Michie</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.T.</given-names>
+            </name>
+            <name>
+              <surname>Swindells</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>CATH—a hierarchic classification of protein domain structures</article-title>
+          <source>Structure</source>
+          <volume>5</volume>
+          <year>1997</year>
+          <fpage>1093</fpage>
+          <lpage>1108</lpage>
+          <pub-id pub-id-type="pmid">9309224</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0135">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Alpha plus beta folds revisited: some favoured motifs</article-title>
+          <source>Structure</source>
+          <volume>1</volume>
+          <year>1993</year>
+          <fpage>105</fpage>
+          <lpage>120</lpage>
+          <pub-id pub-id-type="pmid">8069624</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0140">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pan</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Bardwell</surname>
+              <given-names>J.C.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>the origami of thioredoxin-like folds</article-title>
+          <source>Protein Sci.</source>
+          <volume>15</volume>
+          <year>2006</year>
+          <fpage>2217</fpage>
+          <lpage>2227</lpage>
+          <pub-id pub-id-type="pmid">17008712</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0145">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Peisajovich</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Rockah</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Tawfik</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolution of new protein topologies through multiestep gene rearrangements</article-title>
+          <source>Nat. Genet.</source>
+          <volume>38</volume>
+          <year>2006</year>
+          <fpage>168</fpage>
+          <lpage>174</lpage>
+          <pub-id pub-id-type="pmid">16415885</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0150">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Petrey</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Fischer</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Honig</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural relationships among proteins with different global topologies and their implications for functional annotation strategies</article-title>
+          <source>Proc. Natl. Acad. Sci. U.S.A.</source>
+          <volume>106</volume>
+          <year>2009</year>
+          <fpage>17377</fpage>
+          <lpage>17382</lpage>
+          <pub-id pub-id-type="pmid">19805138</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0155">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Petrey</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Honig</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Is protein classification necessary? Toward alternative approaches to function annotation</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>363</fpage>
+          <lpage>368</lpage>
+          <pub-id pub-id-type="pmid">19269161</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0160">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reeves</surname>
+              <given-names>G.A.</given-names>
+            </name>
+            <name>
+              <surname>Dallman</surname>
+              <given-names>T.J.</given-names>
+            </name>
+            <name>
+              <surname>Redfern</surname>
+              <given-names>O.C.</given-names>
+            </name>
+            <name>
+              <surname>Akpor</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>structural diversity of domain superfamilies in the CATH database</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>360</volume>
+          <year>2006</year>
+          <fpage>725</fpage>
+          <lpage>741</lpage>
+          <pub-id pub-id-type="pmid">16780872</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0165">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reva</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Finkelstein</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Skolnick</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>What is the probability of a chance prediction of a protein structure with an rmsd of 6 angstrom?</article-title>
+          <source>Folding Des.</source>
+          <volume>3</volume>
+          <year>1998</year>
+          <fpage>141</fpage>
+          <lpage>147</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0170">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Richardson</surname>
+              <given-names>J.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>β-Sheet topology and the relatedness of proteins</article-title>
+          <source>Nature</source>
+          <volume>268</volume>
+          <year>1977</year>
+          <fpage>495</fpage>
+          <lpage>500</lpage>
+          <pub-id pub-id-type="pmid">329147</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0175">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Richardson</surname>
+              <given-names>J.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Describing patterns of protein tertiary structure</article-title>
+          <source>Methods Enzymol.</source>
+          <volume>115</volume>
+          <year>1985</year>
+          <fpage>341</fpage>
+          <lpage>380</lpage>
+          <pub-id pub-id-type="pmid">4079792</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0180">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ruczinski</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Kooperberg</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bonneau</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Baker</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distributions of beta sheets in proteins with application to structure prediction</article-title>
+          <source>Protein Struct. Funct. Genet.</source>
+          <volume>48</volume>
+          <year>2002</year>
+          <fpage>85</fpage>
+          <lpage>97</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0185">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sadowski</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the evolutionary origins of “fold space continuity”: A study of topological convergence and divergence in mixed alpha-beta domains</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>2010</year>
+        </element-citation>
+      </ref>
+      <ref id="bib0190">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sadreyev</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>B.-H.</given-names>
+            </name>
+            <name>
+              <surname>Grishin</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Discrete-continuous duality of protein structure space</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>321</fpage>
+          <lpage>328</lpage>
+          <pub-id pub-id-type="pmid">19482467</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0195">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salem</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Hutchinson</surname>
+              <given-names>E.G.</given-names>
+            </name>
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Correlation of observed fold frequency with the occurrence of local structural motifs</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>287</volume>
+          <year>1999</year>
+          <fpage>969</fpage>
+          <lpage>981</lpage>
+          <pub-id pub-id-type="pmid">10222204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0200">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sam</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Tai</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Garnier</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gibrat</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Munson</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Roc and confusion analysis of structure comparison methods identify the main causes of divergence from manual protein classification</article-title>
+          <source>BMC Bioinform.</source>
+          <volume>7</volume>
+          <year>2006</year>
+          <fpage>206</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0205">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shindyalov</surname>
+              <given-names>I.N.</given-names>
+            </name>
+            <name>
+              <surname>Bourne</surname>
+              <given-names>P.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>An alternative view of protein fold space</article-title>
+          <source>Proteins Struct. Funct. Bioinform.</source>
+          <volume>38</volume>
+          <year>2001</year>
+          <fpage>247</fpage>
+          <lpage>260</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0210">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sippl</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fold space unlimited</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>310</fpage>
+          <lpage>311</lpage>
+          <pub-id pub-id-type="pmid">19487119</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0215">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Skolnick</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Arakaki</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Brylinski</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The continuity of protein structure space is an intrinsic property of proteins</article-title>
+          <source>Proc. Natl. Acad. Sci. U.S.A.</source>
+          <year>2009</year>
+        </element-citation>
+      </ref>
+      <ref id="bib0220">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Chelliah</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Hollup</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Macdonald</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Jonassen</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Probing the dark matter of protein fold space</article-title>
+          <source>Structure</source>
+          <volume>17</volume>
+          <year>2009</year>
+          <fpage>1244</fpage>
+          <lpage>1252</lpage>
+          <pub-id pub-id-type="pmid">19748345</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0225">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein structure alignment using iterated double dynamic programming</article-title>
+          <source>Protein Sci.</source>
+          <volume>8</volume>
+          <year>1999</year>
+          <fpage>654</fpage>
+          <lpage>665</lpage>
+          <pub-id pub-id-type="pmid">10091668</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0230">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A periodic table for protein structure</article-title>
+          <source>Nature</source>
+          <volume>416</volume>
+          <year>2002</year>
+          <fpage>657</fpage>
+          <lpage>660</lpage>
+          <pub-id pub-id-type="pmid">11948354</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0235">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Decoy models for protein structure score normalisation</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>357</volume>
+          <year>2006</year>
+          <fpage>676</fpage>
+          <lpage>699</lpage>
+          <pub-id pub-id-type="pmid">16457842</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0240">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolutionary transitions in protein fold space</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>17</volume>
+          <year>2007</year>
+          <fpage>354</fpage>
+          <lpage>361</lpage>
+          <pub-id pub-id-type="pmid">17580115</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0245">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Aszódi</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Protein Geometry, Classification, Topology and Symmetry</chapter-title>
+          <year>2005</year>
+          <publisher-name>Institute of Physics, CRC Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="bib0250">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Bartlett</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Chelliah</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Klose</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Sheldon</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Jonassen</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Prediction of protein structure from ideal forms</article-title>
+          <source>Proteins Struct. Funct. Bioinform.</source>
+          <volume>70</volume>
+          <year>2008</year>
+          <fpage>1610</fpage>
+          <lpage>1619</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0255">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Klose</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Fraternali</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Jonassen</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic domain threading</article-title>
+          <source>Proteins Struct. Funct. Bioinform.</source>
+          <volume>64</volume>
+          <year>2006</year>
+          <fpage>601</fpage>
+          <lpage>614</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0260">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Orengo</surname>
+              <given-names>C.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein structure alignment</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>208</volume>
+          <year>1989</year>
+          <fpage>1</fpage>
+          <lpage>22</lpage>
+          <pub-id pub-id-type="pmid">2769748</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0265">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Recognition of super-secondary structure in proteins</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>173</volume>
+          <year>1984</year>
+          <fpage>487</fpage>
+          <lpage>514</lpage>
+          <pub-id pub-id-type="pmid">6708107</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0270">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Theobald</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Wuttke</surname>
+              <given-names>D.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>divergent evolution within protein superfolds inferred from profile-based phylogenetics</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>354</volume>
+          <year>2006</year>
+          <fpage>722</fpage>
+          <lpage>737</lpage>
+          <pub-id pub-id-type="pmid">16266719</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0275">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Valas</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bourne</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nothing about protein structure classification makes sense except in the light of evolution</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>329</fpage>
+          <lpage>334</lpage>
+          <pub-id pub-id-type="pmid">19394812</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0280">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Westhead</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Hatton</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Thornton</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>An atlas of protein topology cartoons available on the world-wide web</article-title>
+          <source>Trends Biochem. Sci.</source>
+          <volume>23</volume>
+          <year>1998</year>
+          <fpage>35</fpage>
+          <lpage>36</lpage>
+          <pub-id pub-id-type="pmid">9478134</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0285">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wrabl</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Grisin</surname>
+              <given-names>N.V.</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistics of random protein superpositions: p-values for pairwise structure alignment</article-title>
+          <source>J. Comput. Biol.</source>
+          <volume>15</volume>
+          <year>2008</year>
+          <fpage>317</fpage>
+          <lpage>355</lpage>
+          <pub-id pub-id-type="pmid">18333756</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0290">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>How significant is a protein structure similarity with TM-score = 0.5?</article-title>
+          <source>Bioinformatics</source>
+          <volume>26</volume>
+          <year>2010</year>
+          <fpage>889</fpage>
+          <lpage>895</lpage>
+          <pub-id pub-id-type="pmid">20164152</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0295">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Skolnick</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Scoring function for automated assessment of protein structure template quality</article-title>
+          <source>Protein Struct. Funct. Bioinform.</source>
+          <volume>57</volume>
+          <year>2004</year>
+          <fpage>702</fpage>
+          <lpage>710</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0300">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Skolnick</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tm-align: a protein structure alignment algorithm based on the TM-score</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>33</volume>
+          <year>2005</year>
+          <fpage>2302</fpage>
+          <lpage>2309</lpage>
+          <pub-id pub-id-type="pmid">15849316</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgement</title>
+      <p>This article was funded by the MRC, ref U117581331 to Willie Taylor.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn0005">
+        <label>1</label>
+        <p>We use the terms fold and topology to refer to the same property which in our definition is any difference that involves a change in direction of position of a SSE on the ideal lattice. This is equivalent to stating that there is no combination of anisotropic shear, twist or scale operations that could be applied to convert one structure into the other, which captures the essence of the more mathematical use of the term “topology”.</p>
+      </fn>
+    </fn-group>
+  </back>
+  <floats-group>
+    <fig id="fig0010">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Density plots of structural alignments between decoys and PDB structures. RMSD (<italic>Y</italic>-axis) is plotted against alignment length (<italic>X</italic>-axis) for each comparison. As there are several million data points, the color indicates the number of data points in each region of the plot, with pink indicating high density. DALI does not give as many comparison results as SAP and TM-align, as it only reports a match over a built-in cutoff whereas both TM-align and SAP report a hit no matter how poor it is, giving a wider distribution of data points. The boxed corner (lower right) indicates the region in which good matches that include most of the two structures will be found. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig0015">
+      <label>Fig. 2</label>
+      <caption>
+        <p>SAP-based decoy/decoy comparisons. Each point marks the result of the comparison of a pair of decoy models, plotted as the number of matched residues (<italic>X</italic>-axis) against their RMSD value (<italic>Y</italic>-axis). The green points have identical topology strings (same fold) whereas the red points have different strings. The upper edge to the red points marks the limit beyond which comparisons were not considered. (Only up to a maximum of 10,000 of these are plotted for clarity). The blue curve is the optimised function that partitions the red and green points. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig0020">
+      <label>Fig. 3</label>
+      <caption>
+        <p>TM-align-based decoy/decoy comparisons. See legend to <xref rid="fig0015" ref-type="fig">Fig. 2</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig0025">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Decoy fold discrimination. Decoy comparisons ranked by different methods: SAP (red), TM-align (green) and DALI (blue), using the various scores described in Section <xref rid="sec0010" ref-type="sec">2</xref>. As each ranking is traversed, the number of true topological matches (<italic>Y</italic>-axis) is plotted against the number of false matches (<italic>X</italic>-axis). The best discrimination is attained by methods that have curves approaching the top-left corner. (i.e. most true hits with least false hits). Over the four data sets the renormalised TM-align score gives the best consensus performance (bold green curve). (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig0030">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Distribution of DOF and DUF matches to known structures. Upper panels plot the comparison of decoy models with native structures as RMSD (<italic>r</italic>, <italic>Y</italic>-axis) against the number of matched residues (<italic>n</italic>, <italic>X</italic>-axis). To reduce the number of points, only the best match is plotted for each decoy. If the decoy model does not have a known fold (DUF) it is marked by a black dot while those with a known fold (DOF) are red dots. Results are plotted for the three comparison methods: SAP, DALI and TM-align using the dataset of decoys derived from the protein 3chy. The lower panels show these data plotted as frequency histograms based on the value of <italic>n</italic>/<italic>r</italic> with DUFs as filled columns and DOFs open columns. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig0035">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Known folds matched to decoys using SAP. RMSD (<italic>Y</italic>-axis) is plotted against the number of aligned residues (<italic>X</italic>-axis) for proteins matching DOFs (green) and DUFs (red). The blue curve marks the upper limit for meaningful comparison and the black line is the optimised partition function with its ±20 percentiles either side. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig0040">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Known folds matched to decoys using TM-align. See legend to <xref rid="fig0035" ref-type="fig">Fig. 6</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig0045">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Known folds matched to decoys using DALI. See legend to <xref rid="fig0035" ref-type="fig">Fig. 6</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="fig0050">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Performance curves for methods and metrics. Each comparison of a decoy and a protein is scored by each method and scoring scheme combination (SAP = red, TM-align = green and DALI = blue) and the pairs placed in rank order (<italic>X</italic>-axis). For each position in the ranking, the value (TP–FP)/(TP + FP + 100) is plotted (<italic>Y</italic>-axis) as a curve. Unlike a ROC plot, these curves can drop if the number of FP counts increases faster than the TP counts. The thicker red line marks the renormalised SAP score which, except for the 1coz dataset, performed well. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+    <fig id="fig0055">
+      <label>Fig. 10</label>
+      <caption>
+        <p>Decoy/decoy 2,3-strand swap. The topologies of the two decoys are shown in parts a and b with the swapped strand positions marked blue (more amino) and red (more carboxy). The corresponding α-carbon models are shown in c and d, respectively, with the swapped strands in light-blue and pink. Other strands are green and helices are red. (The amino terminus is marked by a blue ball). Parts e and f show the superposed models coloured blue from amino to red at the carboxy terminus as a stereo pair. The swapped strands are drawn more thickly. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr10"/>
+    </fig>
+    <fig id="fig0060">
+      <label>Fig. 11</label>
+      <caption>
+        <p>Decoy/decoy 1,2-strand swap. As in <xref rid="fig0055" ref-type="fig">Fig. 10</xref>, the topologies are shown in parts a and b with swapped positions blue (amino) and red (carboxy). Corresponding α-carbon models are shown in c and d, respectively, with the swapped strands in light-blue and pink. (Other strands green, helices red and the N-terminus a blue ball). Parts e and f show the superposed models coloured blue (amino) to red (carboxy) with swapped strands are drawn more thickly. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr11"/>
+    </fig>
+    <fig id="fig0065">
+      <label>Fig. 12</label>
+      <caption>
+        <p>Decoy/decoy 2,3-strand swap (alternative match). Parts a and b show the topologies with swapped positions blue (N) and red (C) as in <xref rid="fig0055" ref-type="fig">Fig. 10</xref>. Corresponding α-carbon models are shown in c and d, respectively, with the swapped strands in light-blue and pink. (Other strands green, helices red and N-terminal blue ball). Stereo pair e and f show the superposed models coloured blue (N) to red (C) with swapped strands thicker. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr12"/>
+    </fig>
+    <fig id="fig0070">
+      <label>Fig. 13</label>
+      <caption>
+        <p>Native/decoy 1,2-strand swap. As in <xref rid="fig0055" ref-type="fig">Fig. 10</xref>, the topologies are shown in a and b with swapped positions blue (amino) and red (carboxy). The secondary structure elements (SSEs) in white have no match. Corresponding α-carbon models are shown in c and d with the swapped strands in light-blue and pink. Helices are coloured red in the decoy model but red on the top layer and orange on the lower layer for the native structure. (Other strands green and the N-terminus a blue ball). Stereo pair e and f show the superposed models coloured blue (N) to red (C) with swapped strands are drawn more thickly. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr13"/>
+    </fig>
+    <fig id="fig0075">
+      <label>Fig. 14</label>
+      <caption>
+        <p>Native/decoy 2,3-strand swap. As in <xref rid="fig0070" ref-type="fig">Fig. 13</xref>, topologies are shown in a and b with swapped positions blue (N) and red (C). The SSEs in white have no match. Corresponding α-carbon models are shown in c and d, respectively, with the swapped strands in light-blue and pink. Other strands are green, helices red (red/orange in native) and the N-terminus a blue ball. Stereo pair e and f show the superposed models coloured blue (amino) to red (carboxy) with swapped strands are drawn more thickly. Parts of the native structure that are not involved in the match are drawn as a fine trace. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr14"/>
+    </fig>
+    <fig id="fig0080">
+      <label>Fig. 15</label>
+      <caption>
+        <p>Native/decoy 2,3-strand swap. The topologies are shown in parts a and b with swapped positions blue (N) and red (C), as in <xref rid="fig0070" ref-type="fig">Fig. 13</xref>. (SSEs in white have no match). Corresponding α-carbon models are shown in c and d, respectively, with the swapped strands in light-blue and pink. Helices are coloured red (decoy) and red/orange (native) with other strands green and the N-terminus a blue ball. Stereo pairs e and f show the superposed models coloured blue (N) to red (C) with swapped strands are drawn more thickly. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr15"/>
+    </fig>
+  </floats-group>
+</article>

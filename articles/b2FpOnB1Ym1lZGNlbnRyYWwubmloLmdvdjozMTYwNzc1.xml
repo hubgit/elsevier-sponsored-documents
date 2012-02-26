@@ -1,0 +1,1205 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Comput Phys Commun</journal-id>
+      <journal-title-group>
+        <journal-title>Computer Physics Communications</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0010-4655</issn>
+      <publisher>
+        <publisher-name>North-Holland Pub. Co</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3160775</article-id>
+      <article-id pub-id-type="pmid">21969733</article-id>
+      <article-id pub-id-type="publisher-id">COMPHY4465</article-id>
+      <article-id pub-id-type="doi">10.1016/j.cpc.2011.05.004</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Testing trivializing maps in the Hybrid Monte Carlo algorithm</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Engel</surname>
+            <given-names>Georg P.</given-names>
+          </name>
+          <email>georg.engel@uni-graz.at</email>
+          <xref rid="aff001" ref-type="aff">a</xref>
+          <xref rid="cr0010" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schaefer</surname>
+            <given-names>Stefan</given-names>
+          </name>
+          <xref rid="aff002" ref-type="aff">b</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001"><label>a</label>Institut für Physik, FB Theoretische Physik, Universität Graz, A-8010 Graz, Austria</aff>
+      <aff id="aff002"><label>b</label>CERN, Physics Department, 1211 Geneva 23, Switzerland</aff>
+      <author-notes>
+        <corresp id="cr0010"><label>⁎</label>Corresponding author. <email>georg.engel@uni-graz.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>10</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>10</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>182</volume>
+      <issue>10</issue>
+      <fpage>2107</fpage>
+      <lpage>2114</lpage>
+      <history>
+        <date date-type="received">
+          <day>18</day>
+          <month>2</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>6</day>
+          <month>5</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier B.V.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>We test a recent proposal to use approximate trivializing maps in a field theory to speed up Hybrid Monte Carlo simulations. Simulating the <inline-formula><alternatives><textual-form specific-use="jats-markup">CP<sup><italic>N</italic> − 1</sup></textual-form><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="normal">CP</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> model, we find a small improvement with the leading order transformation, which is however compensated by the additional computational overhead. The scaling of the algorithm towards the continuum is not changed. In particular, the effect of the topological modes on the autocorrelation times is studied.</p>
+      </abstract>
+      <abstract abstract-type="graphical">
+        <title>Highlights</title>
+        <p>► We investigate the performance of HMC with field transformations in CPN theory. ► Autocorrelation is reduced, but the scaling towards the continuum is not improved. ► In pure HMC exponentially slow modes affect other observables in the continuum limit.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Hybrid Monte Carlo</kwd>
+        <kwd>Trivializing map</kwd>
+        <kwd>Critical slowing down</kwd>
+        <kwd>Topological charge</kwd>
+        <kwd>
+          <inline-formula>
+            <alternatives>
+              <textual-form specific-use="jats-markup">CP<sup><italic>N</italic> − 1</sup></textual-form>
+              <mml:math id="M2" altimg="si2.gif" overflow="scroll">
+                <mml:msup>
+                  <mml:mi mathvariant="normal">CP</mml:mi>
+                  <mml:mrow>
+                    <mml:mi>N</mml:mi>
+                    <mml:mo>−</mml:mo>
+                    <mml:mn>1</mml:mn>
+                  </mml:mrow>
+                </mml:msup>
+              </mml:math>
+            </alternatives>
+          </inline-formula>
+        </kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="se0010">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>In the simulation of statistical models, many Monte Carlo methods experience a significant increase in effort when approaching a continuous phase transition of the theory. This phenomenon is called critical slowing down and depends strongly on the nature of the underlying theory and the algorithm used. For some models, algorithms have been found which completely eliminate this slowing down or even lead to a speed-up when the critical line is approached. A particular type of critical slowing down is associated with the topological modes of the theories. In QCD, e.g., the topological charge of the gauge configuration is known to be particularly problematic with both single link updates <xref rid="br0010" ref-type="bibr">[1]</xref> and algorithms based on molecular dynamics <xref rid="br0020" ref-type="bibr">[2]</xref>.</p>
+      <p>Recently, a possible solution to the problem has been proposed <xref rid="br0030" ref-type="bibr">[3]</xref>, for which field transformations given by flow equations are introduced. Exactly integrating the flow equations, the theory becomes trivial and therefore also trivial to simulate. The problem is that the differential equations generating the flow are not exactly known, however, the first terms of a power series of the corresponding kernel can easily be constructed. At this point, it is unclear whether it is sufficient to just know the first order of the differential equations to sufficiently mitigate the problem. Also the accuracy to which the differential equations have to be integrated is unknown.</p>
+      <p>In this Letter, we therefore put this proposal to a test. Since it should work for any field theory, we simulate the <inline-formula><alternatives><textual-form specific-use="jats-markup">CP<sup><italic>N</italic> − 1</sup> model</textual-form><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="normal">CP</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:mtext>model</mml:mtext></mml:math></alternatives></inline-formula> for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic> = 10</textual-form><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mi>N</mml:mi><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula> using the Hybrid Monte Carlo (HMC) algorithm <xref rid="br0040" ref-type="bibr">[4]</xref>, which is an integral part of the program laid out in Ref. <xref rid="br0030" ref-type="bibr">[3]</xref>. We choose this model, because it shares some similarities with QCD like asymptotic freedom and confinement and, like in QCD, the topological modes show a much more severe critical slowing down than other observables <xref rid="br0050" ref-type="bibr">[5]</xref>. Most importantly, the accuracy achievable in this two dimensional model is much higher than in QCD and the reduced cost also allows for a better mapping of the rather high dimensional parameter space of the problem.</p>
+      <p>In Section <xref rid="se0020" ref-type="sec">2</xref> we give the details of the model and how to set up the HMC algorithm for it. After that, we discuss the trivializing map and its construction to leading order in Section <xref rid="se0050" ref-type="sec">3</xref>. Then we give the parameters of the simulation which enables us to put the approximate trivializing map to a test whose results we give in Section <xref rid="se0060" ref-type="sec">4</xref>. In the definition of the action, the observables and as a point of reference for the main quantities, we follow the paper by Campostrini, Rossi and Vicari <xref rid="br0060" ref-type="bibr">[6]</xref>.</p>
+    </sec>
+    <sec id="se0020">
+      <label>2</label>
+      <title>The <inline-formula><alternatives><textual-form specific-use="jats-markup">CP<sup><italic>N</italic> − 1</sup> model</textual-form><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="normal">CP</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:mtext>model</mml:mtext></mml:math></alternatives></inline-formula> and Hybrid Monte Carlo</title>
+      <p>We immediately give the model on a square lattice with lattice spacing <italic>a</italic> and sites <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>a</italic><italic>n</italic><sub>1</sub>, <italic>a</italic><italic>n</italic><sub>2</sub>)</textual-form><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:mi>a</mml:mi><mml:msub><mml:mi>n</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mi>a</mml:mi><mml:msub><mml:mi>n</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> with integer numbers <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub>1</sub></textual-form><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub>2</sub></textual-form><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></alternatives></inline-formula>. The fields living on the sites are complex <italic>N</italic> component unit vectors <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>z</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:msub><mml:mi>z</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula> connected by <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>U</italic>(1)</textual-form><mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mi>U</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> link variables <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>λ</italic><sub><italic>n</italic>, <italic>μ</italic></sub></textual-form><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:msub><mml:mi>λ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, which are represented by complex numbers on the unit circle. The action is then given by <xref rid="br0070" ref-type="bibr">[7]</xref><disp-formula id="fm0010"><label>(1)</label><mml:math id="M12" altimg="si12.gif" overflow="scroll"><mml:mi>S</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:mi>z</mml:mi><mml:mo>,</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mi>N</mml:mi><mml:mi>β</mml:mi><mml:munder><mml:mo>∑</mml:mo><mml:mi>n</mml:mi></mml:munder><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>μ</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mn>2</mml:mn></mml:munderover><mml:mrow><mml:mo>(</mml:mo><mml:msubsup><mml:mi>z</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover></mml:mrow><mml:mi mathvariant="normal">†</mml:mi></mml:msubsup><mml:msub><mml:mi>z</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:msub><mml:mi>λ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msubsup><mml:mi>z</mml:mi><mml:mi>n</mml:mi><mml:mi mathvariant="normal">†</mml:mi></mml:msubsup><mml:msub><mml:mi>z</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover></mml:mrow></mml:msub><mml:msubsup><mml:mi>λ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mo>⁎</mml:mo></mml:msubsup><mml:mo>−</mml:mo><mml:mn>2</mml:mn><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula> The gauge fields <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>λ</italic><sub><italic>n</italic>, <italic>μ</italic></sub></textual-form><mml:math id="M13" altimg="si13.gif" overflow="scroll"><mml:msub><mml:mi>λ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> can be integrated out analytically, thus this lattice action is expected to lie within the universality class of the <inline-formula><alternatives><textual-form specific-use="jats-markup">CP<sup><italic>N</italic> − 1</sup></textual-form><mml:math id="M14" altimg="si14.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="normal">CP</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> model.</p>
+      <p>For the Hybrid Monte Carlo algorithm as well as for the field transformation we will need derivatives with respect to the field degrees of freedom. Therefore it is convenient to treat the fields as <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>r</italic><italic>e</italic><italic>a</italic><italic>l</italic></textual-form><mml:math id="M15" altimg="si15.gif" overflow="scroll"><mml:mi>r</mml:mi><mml:mi>e</mml:mi><mml:mi>a</mml:mi><mml:mi>l</mml:mi></mml:math></alternatives></inline-formula> 2<italic>N</italic> component fields <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M16" altimg="si16.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, which live on the unit sphere in <inline-formula><alternatives><textual-form specific-use="jats-markup">ℝ<sup>2<italic>N</italic></sup></textual-form><mml:math id="M17" altimg="si17.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="double-struck">R</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi></mml:mrow></mml:msup></mml:math></alternatives></inline-formula><disp-formula id="fm0020"><label>(2)</label><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>n</italic>, 2<italic>i</italic></sub> = Re(<italic>z</italic><sub><italic>n</italic>, <italic>i</italic></sub>),  <italic>x</italic><sub><italic>n</italic>, 2<italic>i</italic> + 1</sub> = Im(<italic>z</italic><sub><italic>n</italic>, <italic>i</italic></sub>),  <italic>i</italic> = 0, …, <italic>N</italic> − 1.</textual-form><mml:math id="M18" altimg="si18.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mi>i</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi mathvariant="normal">Re</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>z</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>i</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:mspace width="2em"/><mml:msub><mml:mi>x</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mi>i</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi mathvariant="normal">Im</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>z</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>i</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:mspace width="1em"/><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo>.</mml:mo></mml:math></alternatives></disp-formula> In the following, we will make use of either <italic>z</italic> or <italic>x</italic>, such that each formula appears in its most simple form.</p>
+      <p>The <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>U</italic>(1)</textual-form><mml:math id="M19" altimg="si19.gif" overflow="scroll"><mml:mi>U</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> fields <italic>λ</italic> are naturally parametrized by the angle <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϕ</italic> ∈ [0, 2<italic>π</italic>)</textual-form><mml:math id="M20" altimg="si20.gif" overflow="scroll"><mml:mi>ϕ</mml:mi><mml:mo>∈</mml:mo><mml:mo stretchy="false">[</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mi>π</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>λ</italic> = <italic>e</italic><sup><italic>i</italic><italic>ϕ</italic></sup></textual-form><mml:math id="M21" altimg="si21.gif" overflow="scroll"><mml:mi>λ</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>ϕ</mml:mi></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>. Its action on the vectors <italic>x</italic> is then given by SO(2) <inline-formula><alternatives><textual-form specific-use="jats-markup">2<italic>N</italic>×2<italic>N</italic></textual-form><mml:math id="M22" altimg="si22.gif" overflow="scroll"><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mo>×</mml:mo><mml:mn>2</mml:mn><mml:mi>N</mml:mi></mml:math></alternatives></inline-formula> matrices <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>Λ</italic><sub><italic>n</italic>, <italic>μ</italic></sub>(<italic>ϕ</italic>)</textual-form><mml:math id="M23" altimg="si23.gif" overflow="scroll"><mml:msub><mml:mi>Λ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>, which are zero everywhere but on the diagonal <inline-formula><alternatives><textual-form specific-use="jats-markup">2×2</textual-form><mml:math id="M24" altimg="si24.gif" overflow="scroll"><mml:mn>2</mml:mn><mml:mo>×</mml:mo><mml:mn>2</mml:mn></mml:math></alternatives></inline-formula> blocks<disp-formula id="fm0030"><mml:math id="M25" altimg="si25.gif" overflow="scroll"><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>Λ</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mi>i</mml:mi></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mi>Λ</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mi>i</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>Λ</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>i</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mi>i</mml:mi></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mi>Λ</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>i</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mi>i</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi mathvariant="normal">cos</mml:mi><mml:mi>ϕ</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mo>−</mml:mo><mml:mi mathvariant="normal">sin</mml:mi><mml:mi>ϕ</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mi mathvariant="normal">sin</mml:mi><mml:mi>ϕ</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mi mathvariant="normal">cos</mml:mi><mml:mi>ϕ</mml:mi></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>,</mml:mo><mml:mspace width="1em"/><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo>.</mml:mo></mml:math></disp-formula> With these definitions, we can write the action as function of real variables only<disp-formula id="fm0040"><label>(3)</label><mml:math id="M26" altimg="si26.gif" overflow="scroll"><mml:mi>S</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mi>N</mml:mi><mml:mi>β</mml:mi><mml:munder><mml:mo>∑</mml:mo><mml:mi>n</mml:mi></mml:munder><mml:mrow><mml:mo>(</mml:mo><mml:msubsup><mml:mi>x</mml:mi><mml:mi>n</mml:mi><mml:mi>T</mml:mi></mml:msubsup><mml:msub><mml:mi>J</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mn>4</mml:mn><mml:mo>)</mml:mo></mml:mrow><mml:mo>,</mml:mo></mml:math></disp-formula> where we introduced the “spin sum” of gauge-transported nearest neighbors<disp-formula id="fm0050"><label>(4)</label><mml:math id="M27" altimg="si27.gif" overflow="scroll"><mml:msub><mml:mi>J</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>μ</mml:mi><mml:mo>=</mml:mo><mml:mo>±</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mo>±</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:munderover><mml:msubsup><mml:mi>Λ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mi>T</mml:mi></mml:msubsup><mml:msub><mml:mi>x</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mspace width="1em"/><mml:mtext>with </mml:mtext><mml:msub><mml:mi>Λ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mo>−</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>:</mml:mo><mml:mo>=</mml:mo><mml:msubsup><mml:mi>Λ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mi>T</mml:mi></mml:msubsup><mml:mo>.</mml:mo></mml:math></disp-formula> The partition function can then be easily written by embedding the unit vectors <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M28" altimg="si28.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula> into <inline-formula><alternatives><textual-form specific-use="jats-markup">ℝ<sup>2<italic>N</italic></sup></textual-form><mml:math id="M29" altimg="si29.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="double-struck">R</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>.</p>
+      <sec id="se0030">
+        <label>2.1</label>
+        <title>Observables</title>
+        <p>We will focus our study on a few, central observables. Mainly the energy density <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic> = <italic>S</italic> / (<italic>N</italic><italic>β</italic><italic>V</italic>)</textual-form><mml:math id="M30" altimg="si30.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:mo>=</mml:mo><mml:mi>S</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi>N</mml:mi><mml:mi>β</mml:mi><mml:mi>V</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>, the magnetic susceptibility <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>χ</italic><sub><italic>M</italic></sub></textual-form><mml:math id="M31" altimg="si31.gif" overflow="scroll"><mml:msub><mml:mi>χ</mml:mi><mml:mi>M</mml:mi></mml:msub></mml:math></alternatives></inline-formula> and the correlation length <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic><sub><italic>G</italic></sub></textual-form><mml:math id="M32" altimg="si32.gif" overflow="scroll"><mml:msub><mml:mi>ξ</mml:mi><mml:mi>G</mml:mi></mml:msub></mml:math></alternatives></inline-formula>. The latter two are constructed from the two point function in momentum space<disp-formula id="fm0060"><label>(5)</label><mml:math id="M33" altimg="si33.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>G</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>P</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>k</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mi>V</mml:mi></mml:mfrac><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:munder><mml:msub><mml:mrow><mml:mo stretchy="false">〈</mml:mo><mml:mi mathvariant="normal">tr</mml:mi><mml:msub><mml:mi>P</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:msub><mml:mi>P</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo stretchy="false">〉</mml:mo></mml:mrow><mml:mi mathvariant="normal">conn</mml:mi></mml:msub><mml:mi mathvariant="normal">exp</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mfrac><mml:mrow><mml:mn>2</mml:mn><mml:mi>π</mml:mi><mml:mi>i</mml:mi></mml:mrow><mml:mi>L</mml:mi></mml:mfrac><mml:mo stretchy="false">(</mml:mo><mml:mi>n</mml:mi><mml:mo>−</mml:mo><mml:mi>m</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>⋅</mml:mo><mml:mi>k</mml:mi><mml:mo>)</mml:mo></mml:mrow></mml:math></disp-formula> with <inline-formula><mml:math id="M34" altimg="si34.gif" overflow="scroll"><mml:msub><mml:mi>P</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>z</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:msubsup><mml:mi>z</mml:mi><mml:mi>n</mml:mi><mml:mi mathvariant="normal">†</mml:mi></mml:msubsup></mml:math></inline-formula>. Using these definitions, the two remaining observables are then<disp-formula id="fm0070"><label>(6)</label><mml:math id="M35" altimg="si35.gif" overflow="scroll"><mml:msub><mml:mi>χ</mml:mi><mml:mi>M</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>G</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>P</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>0</mml:mn><mml:mo stretchy="false">)</mml:mo><mml:mo>;</mml:mo><mml:mspace width="2em"/><mml:msubsup><mml:mi>ξ</mml:mi><mml:mi>G</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mn>4</mml:mn><mml:msup><mml:mi mathvariant="normal">sin</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mfrac><mml:mi>π</mml:mi><mml:mi>L</mml:mi></mml:mfrac></mml:mrow></mml:mfrac><mml:mrow><mml:mo>(</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>G</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>P</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>0</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>G</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>P</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula> The topological charge density <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>q</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M36" altimg="si36.gif" overflow="scroll"><mml:msub><mml:mi>q</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula> is given by the sum over the angles between the spins around a plaquette<disp-formula id="fm0080"><mml:math id="M37" altimg="si37.gif" overflow="scroll"><mml:msub><mml:mi>q</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mn>4</mml:mn><mml:mi>π</mml:mi></mml:mrow></mml:mfrac><mml:msub><mml:mi>ϵ</mml:mi><mml:mrow><mml:mi>μ</mml:mi><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>θ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mi>θ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mo>,</mml:mo><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>θ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mi>ν</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>θ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>ν</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mspace width="1em"/><mml:mtext>mod </mml:mtext><mml:mn>1</mml:mn><mml:mo>;</mml:mo><mml:mspace width="1em"/><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mo>&lt;</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>⩽</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac></mml:math></disp-formula> with <inline-formula><mml:math id="M38" altimg="si38.gif" overflow="scroll"><mml:msub><mml:mi>θ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi mathvariant="normal">arg</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msubsup><mml:mi>z</mml:mi><mml:mi>n</mml:mi><mml:mi mathvariant="normal">†</mml:mi></mml:msubsup><mml:msub><mml:mi>z</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula>. The topological charge is the volume integral of this quantity <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>Q</italic> = ∑ <sub><italic>n</italic></sub><italic>q</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M39" altimg="si39.gif" overflow="scroll"><mml:mi>Q</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mo>∑</mml:mo><mml:mi>n</mml:mi></mml:msub><mml:msub><mml:mi>q</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula>.</p>
+      </sec>
+      <sec id="se0040">
+        <label>2.2</label>
+        <title>Hybrid Monte Carlo</title>
+        <p>In Hybrid Monte Carlo, the fields <italic>x</italic> and <italic>ϕ</italic> are updated by introducing conjugate momenta <italic>π</italic> and <italic>ω</italic> and solving classical equations of motion associated with the Hamiltonian<disp-formula id="fm0090"><mml:math id="M40" altimg="si40.gif" overflow="scroll"><mml:mi>H</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:mi>π</mml:mi><mml:mo>,</mml:mo><mml:mi>ω</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:munder><mml:mo>∑</mml:mo><mml:mi>n</mml:mi></mml:munder><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>π</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup><mml:mo>+</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:munder><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>ω</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup><mml:mo>+</mml:mo><mml:mi>S</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:mo>.</mml:mo></mml:math></disp-formula> The momenta live in the tangent spaces of the respective field manifolds and therefore <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>π</italic><sub><italic>n</italic></sub> ∈ ℝ<sup>2<italic>N</italic></sup></textual-form><mml:math id="M41" altimg="si41.gif" overflow="scroll"><mml:msub><mml:mi>π</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>∈</mml:mo><mml:msup><mml:mi mathvariant="double-struck">R</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>π</italic><sub><italic>n</italic></sub> ⋅ <italic>x</italic><sub><italic>n</italic></sub> = 0</textual-form><mml:math id="M42" altimg="si42.gif" overflow="scroll"><mml:msub><mml:mi>π</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>⋅</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ω</italic><sub><italic>n</italic>, <italic>μ</italic></sub> ∈ ℝ</textual-form><mml:math id="M43" altimg="si43.gif" overflow="scroll"><mml:msub><mml:mi>ω</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>∈</mml:mo><mml:mi mathvariant="double-struck">R</mml:mi></mml:math></alternatives></inline-formula> without further conditions, because the manifold is flat. The Hamilton equations of motion are then<disp-formula id="fm0100"><label>(7)</label><mml:math id="M44" altimg="si44.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>π</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:mspace width="2em"/><mml:msub><mml:mover accent="true"><mml:mi>ϕ</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>ω</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo></mml:math></disp-formula><disp-formula id="fm0110"><label>(8)</label><mml:math id="M45" altimg="si45.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>π</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:msub><mml:mover accent="true"><mml:mi mathvariant="normal">∇</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:msub><mml:mi>S</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:mo>,</mml:mo><mml:mspace width="2em"/><mml:msub><mml:mover accent="true"><mml:mi>ω</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:msub><mml:mo>∂</mml:mo><mml:msub><mml:mi>ϕ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub></mml:msub><mml:mi>S</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:mo>.</mml:mo></mml:math></disp-formula> A natural derivative <inline-formula><mml:math id="M46" altimg="si46.gif" overflow="scroll"><mml:msubsup><mml:mover accent="true"><mml:mo>∂</mml:mo><mml:mo>˜</mml:mo></mml:mover><mml:mi>x</mml:mi><mml:mi>i</mml:mi></mml:msubsup></mml:math></inline-formula> of a function <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>f</italic>(<italic>x</italic>)</textual-form><mml:math id="M47" altimg="si47.gif" overflow="scroll"><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> defined on the unit sphere is the projection of the ordinary gradient <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>∇</italic><sub><italic>x</italic></sub></textual-form><mml:math id="M48" altimg="si48.gif" overflow="scroll"><mml:msub><mml:mi mathvariant="normal">∇</mml:mi><mml:mi>x</mml:mi></mml:msub></mml:math></alternatives></inline-formula> in <inline-formula><alternatives><textual-form specific-use="jats-markup">ℝ<sup>2<italic>N</italic></sup></textual-form><mml:math id="M49" altimg="si49.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="double-struck">R</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> onto the tangent space of the sphere<disp-formula id="fm0120"><label>(9)</label><mml:math id="M50" altimg="si50.gif" overflow="scroll"><mml:msubsup><mml:mover accent="true"><mml:mo>∂</mml:mo><mml:mo>˜</mml:mo></mml:mover><mml:mi>x</mml:mi><mml:mi>i</mml:mi></mml:msubsup><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mo>[</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mn mathvariant="bold">1</mml:mn><mml:mo>−</mml:mo><mml:mi>x</mml:mi><mml:msup><mml:mi>x</mml:mi><mml:mi>T</mml:mi></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:msub><mml:mi mathvariant="normal">∇</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>]</mml:mo></mml:mrow><mml:mi>i</mml:mi></mml:msub><mml:mo>.</mml:mo></mml:math></disp-formula> This corresponds to continuing the function <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>f</italic>(<italic>x</italic>)</textual-form><mml:math id="M51" altimg="si51.gif" overflow="scroll"><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> to the full <inline-formula><alternatives><textual-form specific-use="jats-markup">ℝ<sup>2<italic>N</italic></sup></textual-form><mml:math id="M52" altimg="si52.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="double-struck">R</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> via <inline-formula><mml:math id="M53" altimg="si53.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>f</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:mo stretchy="false">|</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula> and then taking ordinary derivatives. The forces in the equations of motion <xref rid="fm0110" ref-type="disp-formula">(8)</xref> then read for the action given in Eq. <xref rid="fm0040" ref-type="disp-formula">(3)</xref><disp-formula id="fm0130"><label>(10)</label><mml:math id="M54" altimg="si54.gif" overflow="scroll"><mml:msubsup><mml:mi>F</mml:mi><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msubsup><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:msub><mml:mover accent="true"><mml:mi mathvariant="normal">∇</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:msub><mml:mi>S</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mi>β</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mn mathvariant="bold">1</mml:mn><mml:mo>−</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:msubsup><mml:mi>x</mml:mi><mml:mi>n</mml:mi><mml:mi>T</mml:mi></mml:msubsup><mml:mo>)</mml:mo></mml:mrow><mml:msub><mml:mi>J</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mo>:</mml:mo><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mi>β</mml:mi><mml:msub><mml:mi>p</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>,</mml:mo></mml:math></disp-formula> where we have defined <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M55" altimg="si55.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula> as the projection of the spin sum <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>J</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M56" altimg="si56.gif" overflow="scroll"><mml:msub><mml:mi>J</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula> to the tangent space at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M57" altimg="si57.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula>. The forces <inline-formula><mml:math id="M58" altimg="si58.gif" overflow="scroll"><mml:msubsup><mml:mi>F</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mi>ϕ</mml:mi></mml:msubsup></mml:math></inline-formula> for the conjugate momenta <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ω</italic><sub><italic>n</italic>, <italic>μ</italic></sub></textual-form><mml:math id="M59" altimg="si59.gif" overflow="scroll"><mml:msub><mml:mi>ω</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> are<disp-formula id="fm0140"><label>(11)</label><mml:math id="M60" altimg="si60.gif" overflow="scroll"><mml:msubsup><mml:mi>F</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mi>ϕ</mml:mi></mml:msubsup><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:msub><mml:mo>∂</mml:mo><mml:msub><mml:mi>ϕ</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:msub><mml:mi>S</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>ψ</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mi>β</mml:mi><mml:msubsup><mml:mi>x</mml:mi><mml:mi>n</mml:mi><mml:mi>T</mml:mi></mml:msubsup><mml:mi>Γ</mml:mi><mml:msubsup><mml:mi>Λ</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>μ</mml:mi></mml:mrow><mml:mi>T</mml:mi></mml:msubsup><mml:msub><mml:mi>x</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover></mml:mrow></mml:msub><mml:mspace width="1em"/><mml:mtext>with </mml:mtext><mml:mi>Γ</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mn>1</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula> The <italic>Γ</italic> is the translation of the imaginary unit <italic>i</italic> to the language of the 2 component real vectors.</p>
+        <p>In the numerical simulations, we use a leap-frog integration scheme with a single time scale. For this, we need finite step size updates of the fields to numerically solve Eqs. <xref rid="fm0110" ref-type="disp-formula">(8)</xref>. The only nontrivial part is the update of the field <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M61" altimg="si61.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula> with momentum <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>π</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M62" altimg="si62.gif" overflow="scroll"><mml:msub><mml:mi>π</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, because also the updated variables have to fulfill the constraints <inline-formula><mml:math id="M63" altimg="si63.gif" overflow="scroll"><mml:mo stretchy="false">|</mml:mo><mml:msubsup><mml:mi>x</mml:mi><mml:mi>n</mml:mi><mml:mo>′</mml:mo></mml:msubsup><mml:mo stretchy="false">|</mml:mo><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></inline-formula> and <inline-formula><mml:math id="M64" altimg="si64.gif" overflow="scroll"><mml:msubsup><mml:mi>x</mml:mi><mml:mi>n</mml:mi><mml:mo>′</mml:mo></mml:msubsup><mml:mo>⋅</mml:mo><mml:msubsup><mml:mi>π</mml:mi><mml:mi>n</mml:mi><mml:mo>′</mml:mo></mml:msubsup><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></inline-formula>. For an infinitesimal step of size <italic>ϵ</italic>, we therefore use the map <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>Φ</italic><sub><italic>ϵ</italic></sub></textual-form><mml:math id="M65" altimg="si65.gif" overflow="scroll"><mml:msub><mml:mi>Φ</mml:mi><mml:mi>ϵ</mml:mi></mml:msub></mml:math></alternatives></inline-formula><disp-formula id="fm0150"><label>(12)</label><mml:math id="M66" altimg="si66.gif" overflow="scroll"><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msup><mml:mi>x</mml:mi><mml:mo>′</mml:mo></mml:msup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msup><mml:mi>π</mml:mi><mml:mo>′</mml:mo></mml:msup></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:msub><mml:mi>Φ</mml:mi><mml:mi>ϵ</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>π</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi mathvariant="normal">cos</mml:mi><mml:mi>α</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mo stretchy="false">|</mml:mo><mml:mi>π</mml:mi><mml:mo stretchy="false">|</mml:mo></mml:mrow></mml:mfrac><mml:mi mathvariant="normal">sin</mml:mi><mml:mi>α</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mo>−</mml:mo><mml:mo stretchy="false">|</mml:mo><mml:mi>π</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mi mathvariant="normal">sin</mml:mi><mml:mi>α</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mi mathvariant="normal">cos</mml:mi><mml:mi>α</mml:mi></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi>x</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mi>π</mml:mi></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mspace width="1em"/><mml:mtext>with </mml:mtext><mml:mi>α</mml:mi><mml:mo>=</mml:mo><mml:mi>ϵ</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mi>π</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mo>.</mml:mo></mml:math></disp-formula> It corresponds to the exact solution of the equation of motion in the absence of the forces <italic>F</italic> but subject to the constraint <inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>x</italic>| = 1</textual-form><mml:math id="M67" altimg="si67.gif" overflow="scroll"><mml:mo stretchy="false">|</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>.</p>
+      </sec>
+    </sec>
+    <sec id="se0050">
+      <label>3</label>
+      <title>Trivializing map in the <inline-formula><alternatives><textual-form specific-use="jats-markup">CP<sup><italic>N</italic> − 1</sup></textual-form><mml:math id="M68" altimg="si68.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="normal">CP</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> model</title>
+      <p>The goal of the field trivialization is to find a map ℱ in field space such that the Jacobian 𝒥 of the transformation compensates the action. For the partition function equation <xref rid="fm0010" ref-type="disp-formula">(1)</xref> this would mean a transformation <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>x</italic><sup>′</sup>, <italic>ϕ</italic><sup>′</sup>) = ℱ<sup> − 1</sup>(<italic>x</italic>, <italic>ϕ</italic>)</textual-form><mml:math id="M69" altimg="si71.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mi>x</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>,</mml:mo><mml:msup><mml:mi>ϕ</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msup><mml:mi mathvariant="script">F</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> such that<disp-formula id="fm0160"><label>(13)</label><alternatives><textual-form specific-use="jats-markup"><italic>Z</italic> = ∫[<italic>d</italic><italic>x</italic>][<italic>d</italic><italic>ϕ</italic>]<italic>e</italic><sup> − <italic>S</italic>[<italic>x</italic>, <italic>ϕ</italic>]</sup> = ∫[<italic>d</italic><italic>x</italic><sup>′</sup>][<italic>d</italic><italic>ϕ</italic><sup>′</sup>]<italic>e</italic><sup> − <italic>S</italic>[ℱ(<italic>x</italic><sup>′</sup>, <italic>ϕ</italic><sup>′</sup>)] + logdet𝒥[<italic>x</italic><sup>′</sup>, <italic>ϕ</italic><sup>′</sup>]</sup></textual-form><mml:math id="M70" altimg="si72.gif" overflow="scroll"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mo stretchy="false">[</mml:mo><mml:mi>d</mml:mi><mml:mi>x</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:mo stretchy="false">[</mml:mo><mml:mi>d</mml:mi><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mi>S</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">]</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:mo>[</mml:mo><mml:mi>d</mml:mi><mml:msup><mml:mi>x</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>]</mml:mo></mml:mrow><mml:mrow><mml:mo>[</mml:mo><mml:mi>d</mml:mi><mml:msup><mml:mi>ϕ</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>]</mml:mo></mml:mrow><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mi>S</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:mi mathvariant="script">F</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mi>x</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>,</mml:mo><mml:msup><mml:mi>ϕ</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">]</mml:mo><mml:mo>+</mml:mo><mml:mi mathvariant="normal">log</mml:mi><mml:mi mathvariant="normal">det</mml:mi><mml:mi mathvariant="script">J</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:msup><mml:mi>x</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>,</mml:mo><mml:msup><mml:mi>ϕ</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">]</mml:mo></mml:mrow></mml:msup></mml:math></alternatives></disp-formula> with the exponent equal to a constant. Since in this case all configurations in the new variables are equally likely, the molecular dynamics evolution of the HMC algorithm would not experience any forces and be very efficient. But also in the situation that one can only find an approximation to the exact trivializing map ℱ, one can expect a significant gain in the performance of the algorithm.</p>
+      <p>In our simulations, the forces associated to the <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>U</italic>(1)</textual-form><mml:math id="M71" altimg="si74.gif" overflow="scroll"><mml:mi>U</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> field <italic>λ</italic> are much smaller than those associated to the spin variables <italic>z</italic>. For all considered <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 0.7, …, 1.0</textual-form><mml:math id="M72" altimg="si75.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0.7</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mn>1.0</mml:mn></mml:math></alternatives></inline-formula> in CP<sup>9</sup>, we found the ratio of the average forces to be about ten and also for the maximal force a factor of almost four. We therefore perform the field transformation only on the <italic>x</italic>, leaving the <italic>ϕ</italic> untouched. In the remaining part of this section, we go through the major steps of the computation, following the lines of Ref. <xref rid="br0030" ref-type="bibr">[3]</xref>.</p>
+      <p>The trivializing map ℱ can be obtained by integrating a flow <italic>T</italic> from <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic> = 0</textual-form><mml:math id="M73" altimg="si77.gif" overflow="scroll"><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula> to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic> = 1</textual-form><mml:math id="M74" altimg="si78.gif" overflow="scroll"><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>. Note, however, that integration to some <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub> ⩽ 1</textual-form><mml:math id="M75" altimg="si79.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub><mml:mo>⩽</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula> will probably be a better choice for only approximate trivializing flows. A possible ansatz for the flow <italic>T</italic> is to take a gradient of an action <inline-formula><mml:math id="M76" altimg="si80.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>S</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></inline-formula><disp-formula id="fm0170"><label>(14)</label><mml:math id="M77" altimg="si81.gif" overflow="scroll"><mml:msubsup><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo>˙</mml:mo></mml:mover><mml:mi>n</mml:mi><mml:mi>i</mml:mi></mml:msubsup><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:msubsup><mml:mover accent="true"><mml:mo>∂</mml:mo><mml:mo>˜</mml:mo></mml:mover><mml:mi>n</mml:mi><mml:mi>i</mml:mi></mml:msubsup><mml:mover accent="true"><mml:mi>S</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo>[</mml:mo><mml:mi>t</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>]</mml:mo></mml:mrow><mml:mo>≡</mml:mo><mml:msubsup><mml:mi>T</mml:mi><mml:mi>n</mml:mi><mml:mi>i</mml:mi></mml:msubsup><mml:mrow><mml:mo>[</mml:mo><mml:mi>t</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>]</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula> The action <inline-formula><mml:math id="M78" altimg="si82.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>S</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></inline-formula> can be expanded in a power series in <italic>t</italic><disp-formula id="fm0180"><mml:math id="M79" altimg="si83.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>S</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="false">[</mml:mo><mml:mi>t</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow><mml:mo>∞</mml:mo></mml:munderover><mml:msup><mml:mi>t</mml:mi><mml:mi>k</mml:mi></mml:msup><mml:msup><mml:mover accent="true"><mml:mi>S</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>k</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="false">[</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">]</mml:mo></mml:math></disp-formula> for which the leading order term can be constructed easily. One result of Ref. <xref rid="br0030" ref-type="bibr">[3]</xref> is that the leading term of <inline-formula><mml:math id="M80" altimg="si84.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>S</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math></inline-formula> fulfills<disp-formula id="fm0190"><mml:math id="M81" altimg="si85.gif" overflow="scroll"><mml:mo>−</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>n</mml:mi></mml:munder><mml:msubsup><mml:mover accent="true"><mml:mo>∂</mml:mo><mml:mo>˜</mml:mo></mml:mover><mml:mi>n</mml:mi><mml:mi>i</mml:mi></mml:msubsup><mml:msubsup><mml:mover accent="true"><mml:mo>∂</mml:mo><mml:mo>˜</mml:mo></mml:mover><mml:mi>n</mml:mi><mml:mi>i</mml:mi></mml:msubsup><mml:msup><mml:mover accent="true"><mml:mi>S</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mn>0</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mi>S</mml:mi><mml:mo>+</mml:mo><mml:mi>C</mml:mi><mml:mo>.</mml:mo></mml:math></disp-formula> Using the derivative defined in Eq. <xref rid="fm0120" ref-type="disp-formula">(9)</xref>, it is easy to show that on the unit sphere<disp-formula id="fm0200"><mml:math id="M82" altimg="si86.gif" overflow="scroll"><mml:mo>−</mml:mo><mml:msup><mml:mover accent="true"><mml:mo>∂</mml:mo><mml:mo>˜</mml:mo></mml:mover><mml:mi>i</mml:mi></mml:msup><mml:msup><mml:mover accent="true"><mml:mo>∂</mml:mo><mml:mo>˜</mml:mo></mml:mover><mml:mi>i</mml:mi></mml:msup><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo><mml:mi>x</mml:mi><mml:mo>⋅</mml:mo><mml:mi mathvariant="normal">∇</mml:mi><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>−</mml:mo><mml:mi mathvariant="normal">tr</mml:mi><mml:mrow><mml:mo>[</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mi>x</mml:mi><mml:msup><mml:mi>x</mml:mi><mml:mi>T</mml:mi></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:msub><mml:mi>H</mml:mi><mml:mi>f</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>]</mml:mo></mml:mrow></mml:math></disp-formula> with the Hessian <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>H</italic><sub><italic>f</italic></sub>(<italic>x</italic>)<sub><italic>i</italic><italic>j</italic></sub> = ∂ <sub><italic>i</italic></sub>∂ <sub><italic>j</italic></sub><italic>f</italic>(<italic>x</italic>)</textual-form><mml:math id="M83" altimg="si87.gif" overflow="scroll"><mml:msub><mml:mi>H</mml:mi><mml:mi>f</mml:mi></mml:msub><mml:msub><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mo>∂</mml:mo><mml:mi>i</mml:mi></mml:msub><mml:msub><mml:mo>∂</mml:mo><mml:mi>j</mml:mi></mml:msub><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. This immediately leads to<disp-formula id="fm0210"><label>(15)</label><mml:math id="M84" altimg="si88.gif" overflow="scroll"><mml:msup><mml:mover accent="true"><mml:mi>S</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mn>0</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mn>2</mml:mn><mml:mo stretchy="false">(</mml:mo><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac><mml:mi>S</mml:mi><mml:mo>.</mml:mo></mml:math></disp-formula> The corresponding leading order trivializing flow from Eq. <xref rid="fm0170" ref-type="disp-formula">(14)</xref> reads<disp-formula id="fm0220"><label>(16)</label><mml:math id="M85" altimg="si89.gif" overflow="scroll"><mml:msubsup><mml:mi>T</mml:mi><mml:mi>n</mml:mi><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mn>0</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mi>β</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac><mml:msub><mml:mi>p</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>.</mml:mo></mml:math></disp-formula> As next step, we need a numerical integration scheme for the flow equation <xref rid="fm0170" ref-type="disp-formula">(14)</xref>. Following <xref rid="br0030" ref-type="bibr">[3]</xref>, we use an Euler integrator in which each step is similar to the finite step-size update discussed in Section <xref rid="se0040" ref-type="sec">2.2</xref><disp-formula id="fm0230"><label>(17)</label><mml:math id="M86" altimg="si90.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo>+</mml:mo><mml:msub><mml:mi>ϵ</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi mathvariant="normal">cos</mml:mi><mml:msub><mml:mi>α</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mi>x</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>+</mml:mo><mml:mi mathvariant="normal">sin</mml:mi><mml:msub><mml:mi>α</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mfrac><mml:mrow><mml:msub><mml:mi>T</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="false">|</mml:mo><mml:msub><mml:mi>T</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">|</mml:mo></mml:mrow></mml:mfrac><mml:mspace width="1em"/><mml:mtext>with </mml:mtext><mml:msub><mml:mi>α</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>ϵ</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo stretchy="false">|</mml:mo><mml:msub><mml:mi>T</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo stretchy="false">|</mml:mo><mml:mo>.</mml:mo></mml:math></disp-formula> This integrator has <inline-formula><alternatives><textual-form specific-use="jats-markup">𝒪(<italic>ϵ</italic><sub><italic>s</italic></sub>)</textual-form><mml:math id="M87" altimg="si91.gif" overflow="scroll"><mml:mi mathvariant="script">O</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>ϵ</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> errors when integrating to a fixed <italic>t</italic>, but as we see below, the method does not suffer significantly from these inaccuracies. To get the action in the transformed variables, the determinant of the Jacobian of the field transformation has to be computed, see Eq. <xref rid="fm0160" ref-type="disp-formula">(13)</xref>. Since this is too complicated if all spins are changed at once, we follow Ref. <xref rid="br0030" ref-type="bibr">[3]</xref> again and transform one spin at a time, sweeping through the lattice. This sweep is done for each step in <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>s</italic></sub></textual-form><mml:math id="M88" altimg="si92.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi>s</mml:mi></mml:msub></mml:math></alternatives></inline-formula> of the Euler integrator.</p>
+      <p>For the transformation given in Eq. <xref rid="fm0230" ref-type="disp-formula">(17)</xref>, the determinant can be easily computed. In the language of Eq. <xref rid="fm0160" ref-type="disp-formula">(13)</xref>, for a single step the primed quantities are at <italic>t</italic>, whereas the unprimed quantities at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic> + <italic>ϵ</italic><sub><italic>s</italic></sub></textual-form><mml:math id="M89" altimg="si93.gif" overflow="scroll"><mml:mi>t</mml:mi><mml:mo>+</mml:mo><mml:msub><mml:mi>ϵ</mml:mi><mml:mi>s</mml:mi></mml:msub></mml:math></alternatives></inline-formula>. This transformation only changes the angle <italic>θ</italic> between the neighbor sum <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>J</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M90" altimg="si94.gif" overflow="scroll"><mml:msub><mml:mi>J</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula> and the transformed spin <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M91" altimg="si95.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, leaving the components perpendicular to this plane untouched. Specifically, it is changed to<disp-formula id="fm0240"><mml:math id="M92" altimg="si96.gif" overflow="scroll"><mml:mi>θ</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mi>θ</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>−</mml:mo><mml:mi>α</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mi>θ</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>ϵ</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mi>N</mml:mi><mml:mi>β</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac><mml:mo stretchy="false">|</mml:mo><mml:msub><mml:mi>J</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo stretchy="false">|</mml:mo><mml:mi mathvariant="normal">sin</mml:mi><mml:msup><mml:mi>θ</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>.</mml:mo></mml:math></disp-formula> Since the integration measure for the angular component of spherical coordinates in the <inline-formula><alternatives><textual-form specific-use="jats-markup">ℝ<sup>2<italic>N</italic></sup></textual-form><mml:math id="M93" altimg="si97.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="double-struck">R</mml:mi><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> is <inline-formula><alternatives><textual-form specific-use="jats-markup">(sin <italic>θ</italic>)<sup>2<italic>N</italic> − 3</sup><italic>d</italic>cos <italic>θ</italic></textual-form><mml:math id="M94" altimg="si98.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">sin</mml:mi><mml:mspace width="0.2em"/><mml:mi>θ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>3</mml:mn></mml:mrow></mml:msup><mml:mi>d</mml:mi><mml:mi mathvariant="normal">cos</mml:mi><mml:mspace width="0.2em"/><mml:mi>θ</mml:mi></mml:math></alternatives></inline-formula> one easily obtains the Jacobi determinant as<disp-formula id="fm0250"><label>(18)</label><mml:math id="M95" altimg="si99.gif" overflow="scroll"><mml:mi mathvariant="normal">det</mml:mi><mml:msub><mml:mi mathvariant="script">J</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>ϵ</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mi>N</mml:mi><mml:mi>β</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac><mml:msubsup><mml:mi>J</mml:mi><mml:mi>n</mml:mi><mml:mi>T</mml:mi></mml:msubsup><mml:msubsup><mml:mi>x</mml:mi><mml:mi>n</mml:mi><mml:mo>′</mml:mo></mml:msubsup><mml:mo>)</mml:mo></mml:mrow><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mi mathvariant="normal">cos</mml:mi><mml:mi>α</mml:mi><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:msubsup><mml:mi>J</mml:mi><mml:mi>n</mml:mi><mml:mi>T</mml:mi></mml:msubsup><mml:msubsup><mml:mi>x</mml:mi><mml:mi>n</mml:mi><mml:mo>′</mml:mo></mml:msubsup></mml:mrow><mml:mrow><mml:mo stretchy="false">|</mml:mo><mml:msubsup><mml:mi>p</mml:mi><mml:mi>n</mml:mi><mml:mo>′</mml:mo></mml:msubsup><mml:mo stretchy="false">|</mml:mo></mml:mrow></mml:mfrac><mml:mi mathvariant="normal">sin</mml:mi><mml:mi>α</mml:mi><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo>.</mml:mo></mml:math></disp-formula> The forces corresponding to the action constructed from the smoothed fields <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic>(<italic>t</italic>)</textual-form><mml:math id="M96" altimg="si100.gif" overflow="scroll"><mml:mi>x</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>, have to be computed using the chain rule. Since this is a standard procedure, we do not describe it here in detail.</p>
+    </sec>
+    <sec id="se0060">
+      <label>4</label>
+      <title>Details of the simulation</title>
+      <p>To our knowledge, this investigation is the first using the HMC algorithm to simulate the <inline-formula><alternatives><textual-form specific-use="jats-markup">CP<sup><italic>N</italic> − 1</sup></textual-form><mml:math id="M97" altimg="si101.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="normal">CP</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> model. It is certainly not the algorithm of choice for this theory, but our objective is the study of the improvement in the algorithm brought by the leading order trivialization. For comparison with the literature, we relied heavily on Ref. <xref rid="br0060" ref-type="bibr">[6]</xref>, from which we reproduced several observables for all parameter sets we looked at. Since there is no prior experience with the HMC in this model, we have to first study it in the normal variables and can then assess the change that is brought by the field transformation. We use the acronym THMC for the HMC with field transformation in the following.</p>
+      <p>The figure of merit is the autocorrelation time of interesting observables in units of the molecular dynamics time. It is defined via the autocorrelation function<disp-formula id="fm0260"><mml:math id="M98" altimg="si102.gif" overflow="scroll"><mml:msub><mml:mi>Γ</mml:mi><mml:mi>A</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mrow><mml:mo>〈</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mi>A</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>s</mml:mi><mml:mo>+</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mi>A</mml:mi><mml:mo>¯</mml:mo></mml:mover><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mi>A</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>s</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mi>A</mml:mi><mml:mo>¯</mml:mo></mml:mover><mml:mo>)</mml:mo></mml:mrow><mml:mo>〉</mml:mo></mml:mrow><mml:mo>,</mml:mo></mml:math></disp-formula> where the average is over independent realizations of the Markov chain and <inline-formula><mml:math id="M99" altimg="si103.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>A</mml:mi><mml:mo>¯</mml:mo></mml:mover></mml:math></inline-formula> is the expectation value of the observable <italic>A</italic>. The integrated autocorrelation time is then<disp-formula id="fm0270"><label>(19)</label><mml:math id="M100" altimg="si104.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>A</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mo>+</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mo>∞</mml:mo></mml:munderover><mml:mfrac><mml:mrow><mml:msub><mml:mi>Γ</mml:mi><mml:mi>A</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msub><mml:mi>Γ</mml:mi><mml:mi>A</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mn>0</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac><mml:mo>.</mml:mo></mml:math></disp-formula> Since Monte Carlo histories are never infinitely long, the sum in Eq. <xref rid="fm0270" ref-type="disp-formula">(19)</xref> has to be truncated at some window <italic>W</italic>. For its choice, one has to balance the statistical error, which increases with larger windows, with the systematic error from neglecting the contributions beyond <italic>W</italic>. For this purpose, we use the software described in Ref. <xref rid="br0080" ref-type="bibr">[8]</xref>. In most cases, its automatic criterion turned out to be sufficient, however, due to our high statistics data, we sometimes had to increase the parameter <italic>S</italic>, which influences the relative size between the window <italic>W</italic> chosen and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub>(<italic>W</italic>)</textual-form><mml:math id="M101" altimg="si105.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>W</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. Also because of the high statistics, we are confident that the systematic error due to slow modes is under control in all our data points. In the following, all autocorrelation times are given in units of molecular dynamics time.</p>
+      <sec id="se0070">
+        <label>4.1</label>
+        <title>Tuning of the parameters</title>
+        <p>The HMC algorithm has two tuning parameters, the trajectory length <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>traj</sub></textual-form><mml:math id="M102" altimg="si106.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">traj</mml:mi></mml:msub></mml:math></alternatives></inline-formula> and the accuracy with which the molecular dynamics equations are integrated. With the field transformation, one also has to fix the integration length <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M103" altimg="si107.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> of the field transformation and its step size. Let us go through these parameters, the final values are listed in <xref rid="tl0010" ref-type="table">Table 1</xref>.</p>
+        <sec id="se0080">
+          <label>4.1.1</label>
+          <title>Trajectory length</title>
+          <p>The effect of the trajectory length on the autocorrelation times for the CP<sup>9</sup> model with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 0.7</textual-form><mml:math id="M104" altimg="si131.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0.7</mml:mn></mml:math></alternatives></inline-formula> can be found in <xref rid="fg0010" ref-type="fig">Fig. 1</xref>. The left-hand plot shows the HMC without trivialization, the right-hand side the THMC with the leading order flow integrated up to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub> = 0.47</textual-form><mml:math id="M105" altimg="si132.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0.47</mml:mn></mml:math></alternatives></inline-formula> (such that the force is minimized, as will be discussed later) with one Euler step (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 1</textual-form><mml:math id="M106" altimg="si133.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>). The step size <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic> = <italic>τ</italic> / <italic>n</italic><sub>step</sub></textual-form><mml:math id="M107" altimg="si134.gif" overflow="scroll"><mml:mi>ϵ</mml:mi><mml:mo>=</mml:mo><mml:mi>τ</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:msub><mml:mi>n</mml:mi><mml:mtext>step</mml:mtext></mml:msub></mml:math></alternatives></inline-formula> of the molecular dynamics trajectory integration is held approximately constant in all data points. (In all runs we targeted acceptance rates between 70% and 90%.) As already expected from the QCD experience, the optimal value of the trajectory length depends significantly on the observable. The energy <italic>E</italic> decorrelates fastest, with a clear minimum at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>traj</sub> ≈ 0.3</textual-form><mml:math id="M108" altimg="si135.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">traj</mml:mi></mml:msub><mml:mo>≈</mml:mo><mml:mn>0.3</mml:mn></mml:math></alternatives></inline-formula>, whereas the magnetic susceptibility exhibits a very shallow minimum starting from <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>traj</sub> ≈ 1</textual-form><mml:math id="M109" altimg="si136.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">traj</mml:mi></mml:msub><mml:mo>≈</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>. The topological charge <italic>Q</italic> can profit from even longer trajectories. This is the case for the standard HMC as well as the one including the field transformation. Considering the computational costs of effectively decorrelated configurations, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>traj</sub></textual-form><mml:math id="M110" altimg="si137.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">traj</mml:mi></mml:msub></mml:math></alternatives></inline-formula> in the range between 0.5 and 1 seems to be efficient. We therefore choose <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>traj</sub> = 1</textual-form><mml:math id="M111" altimg="si138.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">traj</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula> for all <italic>β</italic> in our main runs as a compromise. Although this might not be the optimal choice, it is a standard practice in QCD simulations.</p>
+        </sec>
+        <sec id="se0090">
+          <label>4.1.2</label>
+          <title>Integration of the flow</title>
+          <p>The second parameter to fix in our setup of the THMC is the value <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M112" altimg="si139.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> to which the flow equation <xref rid="fm0170" ref-type="disp-formula">(14)</xref> is integrated and the accuracy of the integration, which is given by the number of steps in the Euler integration. As a criterion, we use the reduction of the forces experienced in the molecular dynamics evolution, because perfect trivialization would result in forces equal to zero. The relative reduction of the force <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>R</italic> = <italic>F</italic><sub><italic>THMC</italic></sub> / <italic>F</italic><sub><italic>HMC</italic></sub></textual-form><mml:math id="M113" altimg="si140.gif" overflow="scroll"><mml:mi>R</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mi>F</mml:mi><mml:mi mathvariant="italic">THMC</mml:mi></mml:msub><mml:mo stretchy="false">/</mml:mo><mml:msub><mml:mi>F</mml:mi><mml:mi mathvariant="italic">HMC</mml:mi></mml:msub></mml:math></alternatives></inline-formula> for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 0.7</textual-form><mml:math id="M114" altimg="si141.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0.7</mml:mn></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 0.9</textual-form><mml:math id="M115" altimg="si142.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0.9</mml:mn></mml:math></alternatives></inline-formula> in the CP<sup>9</sup> model is shown in <xref rid="fg0020" ref-type="fig">Fig. 2</xref>. In both cases a reduction by about 60% can be reached at a value of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M116" altimg="si143.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> around 0.5, much smaller than the <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub> = 1</textual-form><mml:math id="M117" altimg="si144.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula> for which trivialization is reached with the exact flow. The force reduction depends very little on the accuracy of the integration: whether 1, 2, 5 or 10 steps of the Euler integrator are used hardly matters. As shown in <xref rid="fg0030" ref-type="fig">Fig. 3</xref>, the optimal value of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M118" altimg="si145.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> decreases with increasing <italic>β</italic>, however, the reduction of the force at the minimum is almost constant, at least in the range <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 0.7, …, 1.0</textual-form><mml:math id="M119" altimg="si146.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0.7</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mn>1.0</mml:mn></mml:math></alternatives></inline-formula> which we have investigated.</p>
+          <p>Besides the reduction of forces, the field transformation is also supposed to reduce the autocorrelations experienced in the simulation. In <xref rid="fg0040" ref-type="fig">Fig. 4</xref> we therefore show the integrated autocorrelation time for different flow integration lengths <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M120" altimg="si165.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> for CP<sup>9</sup> with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 1</textual-form><mml:math id="M121" altimg="si166.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 2</textual-form><mml:math id="M122" altimg="si167.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></alternatives></inline-formula>. This can also be seen as a check of the force criterion depicted in <xref rid="fg0020 fg0030" ref-type="fig">Figs. 2 and 3</xref>. As expected, the optimum <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M123" altimg="si168.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> to minimize autocorrelations depends on the observable considered. Qualitatively, we observe that the force criterion leads to a good choice of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M124" altimg="si169.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> with respect to reduction of the autocorrelation. However, while for larger values of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M125" altimg="si170.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> the force ratio becomes worse, the autocorrelation shows a fairly flat behavior. This test was done at fixed molecular dynamics step size and therefore fixed cost per trajectory. The main reason for the autocorrelation time rising for large <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M126" altimg="si171.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> is the decreasing acceptance rate. Had we kept the acceptance rate constant (meaning increased costs for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M127" altimg="si172.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> larger than the force minimum), the autocorrelation times would have decreased further, although not very much. We conclude that the force criterion is reasonable for tuning <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M128" altimg="si173.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> and we therefore used it throughout this study.</p>
+        </sec>
+        <sec id="se0100">
+          <label>4.1.3</label>
+          <title>Total cost of the simulation</title>
+          <p>The reduction in the forces by about a factor two from the field transformation allows a larger molecular dynamics step size by about the same factor. In particular for larger values of <italic>β</italic>, this leads to the same acceptance rate for HMC and THMC, see <xref rid="tl0010" ref-type="table">Table 1</xref> for details. In our implementation, an elementary leap-frog step of THMC with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 1</textual-form><mml:math id="M129" altimg="si174.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula> costs almost three times more than with HMC. More integration steps will further increase the cost. Together with the increased step size, this translates to roughly a factor of 1.5 increased cost per trajectory. In the next section, we will find a reduction of the autocorrelation times between roughly 1.5 and 1.8, depending on the observable. This means that the total cost of simulation for HMC and THMC with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 1</textual-form><mml:math id="M130" altimg="si175.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula> are about the same.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="se0110">
+      <label>5</label>
+      <title>Results</title>
+      <p>With this setup, we performed extensive runs at correlation lengths between <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 2.3</textual-form><mml:math id="M131" altimg="si176.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>2.3</mml:mn></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 16.6</textual-form><mml:math id="M132" altimg="si177.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>16.6</mml:mn></mml:math></alternatives></inline-formula>, using the plain HMC and compare it to the THMC with the flow integrated with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 1</textual-form><mml:math id="M133" altimg="si178.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula> Euler step. For the latter we use the optimal values of the flow parameter <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M134" altimg="si179.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> with respect to reduction of the force. The detailed parameters can be found in <xref rid="tl0010" ref-type="table">Table 1</xref>, expectation values of various observables in <xref rid="tl0020" ref-type="table">Table 2</xref>. The measured autocorrelation times in units of molecular dynamics time are listed in <xref rid="tl0030" ref-type="table">Table 3</xref>.</p>
+      <sec id="se0120">
+        <label>5.1</label>
+        <title>Critical behavior</title>
+        <p>This brings us to our main result, the critical slowing down of the simulations as <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> →  ∞ </textual-form><mml:math id="M135" altimg="si190.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>→</mml:mo><mml:mo>∞</mml:mo></mml:math></alternatives></inline-formula>. For large correlation length <italic>ξ</italic>, the autocorrelation times are expected to grow as<disp-formula id="fm0280"><label>(20)</label><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub>(<italic>A</italic>) ∝ <italic>ξ</italic><sup><italic>z</italic></sup></textual-form><mml:math id="M136" altimg="si191.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>A</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>∝</mml:mo><mml:msup><mml:mi>ξ</mml:mi><mml:mi>z</mml:mi></mml:msup></mml:math></alternatives></disp-formula> with <italic>z</italic> the dynamical critical exponent. It depends, of course, on the observable <italic>A</italic>. This scaling is only expected for asymptotically large <italic>ξ</italic>, however, also with our limited range we can get an estimate of the severeness of the problem and the reduction brought by the field transformation. Since we have periodic boundary conditions, topological sectors are expected to form in the continuum limit. Because of the ensuing barriers in the free energy, Ref. <xref rid="br0050" ref-type="bibr">[5]</xref> suggests for the topological charge an exponential behavior of the form<disp-formula id="fm0290"><label>(21)</label><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub>(<italic>Q</italic><sup>2</sup>) ∝ exp(<italic>c</italic><italic>ξ</italic><sup><italic>θ</italic></sup>).</textual-form><mml:math id="M137" altimg="si192.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:msup><mml:mi>Q</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:mo>∝</mml:mo><mml:mi mathvariant="normal">exp</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mi>c</mml:mi><mml:msup><mml:mi>ξ</mml:mi><mml:mi>θ</mml:mi></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></alternatives></disp-formula> However, as we will see below, the presence of such an exponentially slow mode does also have an effect on all observables which do not completely decouple from it.</p>
+        <p>In <xref rid="fg0050" ref-type="fig">Fig. 5</xref> we show the <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub></textual-form><mml:math id="M138" altimg="si193.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub></mml:math></alternatives></inline-formula> of various observables as a function of the correlation length for the HMC algorithm without field transformation. As expected, the slowing down in the topological charge is much more severe than in the other observables which in the interval <inline-formula><alternatives><textual-form specific-use="jats-markup">4 &lt; <italic>ξ</italic> &lt; 13</textual-form><mml:math id="M139" altimg="si194.gif" overflow="scroll"><mml:mn>4</mml:mn><mml:mo>&lt;</mml:mo><mml:mi>ξ</mml:mi><mml:mo>&lt;</mml:mo><mml:mn>13</mml:mn></mml:math></alternatives></inline-formula> show a behavior compatible with the power law equation <xref rid="fm0280" ref-type="disp-formula">(20)</xref>. Making statistically relevant statements about this is difficult, because the acceptance rates are not constant over all our runs. We try to compensate for that by considering <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>P</italic><sub>acc</sub><italic>τ</italic><sub>int</sub></textual-form><mml:math id="M140" altimg="si195.gif" overflow="scroll"><mml:msub><mml:mi>P</mml:mi><mml:mi mathvariant="normal">acc</mml:mi></mml:msub><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, but of course this is only a partial correction. Also the data is not expected to follow exactly the leading order scaling law; due to the high accuracy of our data next-to-leading orders might become visible. Nevertheless, fitting the data in the range of <inline-formula><alternatives><textual-form specific-use="jats-markup">4 &lt; <italic>ξ</italic> &lt; 9</textual-form><mml:math id="M141" altimg="si196.gif" overflow="scroll"><mml:mn>4</mml:mn><mml:mo>&lt;</mml:mo><mml:mi>ξ</mml:mi><mml:mo>&lt;</mml:mo><mml:mn>9</mml:mn></mml:math></alternatives></inline-formula> to Eq. <xref rid="fm0280" ref-type="disp-formula">(20)</xref>, we get <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>z</italic> = 2.0(1)</textual-form><mml:math id="M142" altimg="si197.gif" overflow="scroll"><mml:mi>z</mml:mi><mml:mo>=</mml:mo><mml:mn>2.0</mml:mn><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> for the magnetic susceptibility and for the correlation length. The errors are statistical only. The energy <italic>E</italic> exhibits a very flat behavior in <inline-formula><alternatives><textual-form specific-use="jats-markup">2 &lt; <italic>ξ</italic> &lt; 13</textual-form><mml:math id="M143" altimg="si198.gif" overflow="scroll"><mml:mn>2</mml:mn><mml:mo>&lt;</mml:mo><mml:mi>ξ</mml:mi><mml:mo>&lt;</mml:mo><mml:mn>13</mml:mn></mml:math></alternatives></inline-formula> with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>z</italic> = 0.12(1)</textual-form><mml:math id="M144" altimg="si199.gif" overflow="scroll"><mml:mi>z</mml:mi><mml:mo>=</mml:mo><mml:mn>0.12</mml:mn><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. For <italic>E</italic> and <italic>ξ</italic>, the fits have a <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>χ</italic><sup>2</sup></textual-form><mml:math id="M145" altimg="si200.gif" overflow="scroll"><mml:msup><mml:mi>χ</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:math></alternatives></inline-formula>/dof between 1 and 3.3, which is acceptable considering the simple formula and the problems discussed above. However, while the behaviors for <italic>E</italic> and <italic>ξ</italic> are compatible with a power law up to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 12.1</textual-form><mml:math id="M146" altimg="si201.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>12.1</mml:mn></mml:math></alternatives></inline-formula>, the last data point at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 16.6</textual-form><mml:math id="M147" altimg="si202.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>16.6</mml:mn></mml:math></alternatives></inline-formula>, and for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>χ</italic><sub><italic>m</italic></sub></textual-form><mml:math id="M148" altimg="si203.gif" overflow="scroll"><mml:msub><mml:mi>χ</mml:mi><mml:mi>m</mml:mi></mml:msub></mml:math></alternatives></inline-formula> also the point at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 12.1</textual-form><mml:math id="M149" altimg="si204.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>12.1</mml:mn></mml:math></alternatives></inline-formula>, show a clear deviation. We interpret this as a consequence of a correlation between these observables and the topological charge and will discuss this issue below in detail.</p>
+        <p>The square of the topological charge exhibits a much worse scaling behavior than the other observables. Fitting Eq. <xref rid="fm0280" ref-type="disp-formula">(20)</xref> to the data with <inline-formula><alternatives><textual-form specific-use="jats-markup">4 &lt; <italic>ξ</italic> &lt; 12</textual-form><mml:math id="M150" altimg="si205.gif" overflow="scroll"><mml:mn>4</mml:mn><mml:mo>&lt;</mml:mo><mml:mi>ξ</mml:mi><mml:mo>&lt;</mml:mo><mml:mn>12</mml:mn></mml:math></alternatives></inline-formula>, we get <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>z</italic> ≈ 4</textual-form><mml:math id="M151" altimg="si206.gif" overflow="scroll"><mml:mi>z</mml:mi><mml:mo>≈</mml:mo><mml:mn>4</mml:mn></mml:math></alternatives></inline-formula>, however, the agreement is not convincing and the <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>χ</italic><sup>2</sup>/dof ≈ 20</textual-form><mml:math id="M152" altimg="si207.gif" overflow="scroll"><mml:msup><mml:mi>χ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mtext>/dof</mml:mtext><mml:mo>≈</mml:mo><mml:mn>20</mml:mn></mml:math></alternatives></inline-formula> is poor. The exponential function Eq. <xref rid="fm0290" ref-type="disp-formula">(21)</xref> works much better and delivers a good description of the data in the whole region <inline-formula><alternatives><textual-form specific-use="jats-markup">2 &lt; <italic>ξ</italic> &lt; 17</textual-form><mml:math id="M153" altimg="si208.gif" overflow="scroll"><mml:mn>2</mml:mn><mml:mo>&lt;</mml:mo><mml:mi>ξ</mml:mi><mml:mo>&lt;</mml:mo><mml:mn>17</mml:mn></mml:math></alternatives></inline-formula> with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic> ≈ 4.2</textual-form><mml:math id="M154" altimg="si209.gif" overflow="scroll"><mml:mi>c</mml:mi><mml:mo>≈</mml:mo><mml:mn>4.2</mml:mn></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>θ</italic> ≈ 0.43</textual-form><mml:math id="M155" altimg="si210.gif" overflow="scroll"><mml:mi>θ</mml:mi><mml:mo>≈</mml:mo><mml:mn>0.43</mml:mn></mml:math></alternatives></inline-formula>. It has <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>χ</italic><sup>2</sup>/dof ≈ 0.25</textual-form><mml:math id="M156" altimg="si211.gif" overflow="scroll"><mml:msup><mml:mi>χ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mtext>/dof</mml:mtext><mml:mo>≈</mml:mo><mml:mn>0.25</mml:mn></mml:math></alternatives></inline-formula>, but due to the problems discussed above, this has to be taken with care.</p>
+      </sec>
+      <sec id="se0130">
+        <label>5.2</label>
+        <title>Effect of the slow modes</title>
+        <p>Having detected at least one very slow mode in the simulation raises the question to what extent the various observables are affected. The answer will depend both on the particular observable and the accuracy required in the simulation. We interpret the deviation from the power law scaling behavior of the energy, the magnetic susceptibility and the correlation length observed in <xref rid="fg0050" ref-type="fig">Fig. 5</xref> at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 16.6</textual-form><mml:math id="M157" altimg="si212.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>16.6</mml:mn></mml:math></alternatives></inline-formula> (and weakly already at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 12.1</textual-form><mml:math id="M158" altimg="si213.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>12.1</mml:mn></mml:math></alternatives></inline-formula>) to be a consequence of the correlation between the slow mode and the observables. As observed in the topological charge squared, the time constant of this mode rises exponentially and at this point its contribution is no longer sufficiently suppressed by the smallness of the overlap with the observable, and becomes noticeable.</p>
+        <p>If we identify, for a moment, the slow mode with the topological charge, one can understand the phenomenon with the following: while the simulation is trapped in one topological sector, it samples the observable restricted to that sector <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>A</italic>(<italic>Q</italic>)</textual-form><mml:math id="M159" altimg="si214.gif" overflow="scroll"><mml:mi>A</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>Q</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. If the estimate obtained before moving on to another sector after about <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic>(<italic>Q</italic>)</textual-form><mml:math id="M160" altimg="si215.gif" overflow="scroll"><mml:mi>τ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>Q</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> steps is more precise than variance <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>Δ</italic><sup>2</sup> = var<sub><italic>Q</italic></sub>(<italic>A</italic>(<italic>Q</italic>))</textual-form><mml:math id="M161" altimg="si216.gif" overflow="scroll"><mml:msup><mml:mi>Δ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>=</mml:mo><mml:msub><mml:mi mathvariant="normal">var</mml:mi><mml:mi>Q</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>A</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>Q</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>A</italic>(<italic>Q</italic>)</textual-form><mml:math id="M162" altimg="si217.gif" overflow="scroll"><mml:mi>A</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>Q</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> over topological sectors, then the autocorrelation time will have a significant contribution from the topological modes. What matters thus is the relative size of <inline-formula><mml:math id="M163" altimg="si218.gif" overflow="scroll"><mml:msqrt><mml:mrow><mml:mi mathvariant="normal">var</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>A</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>Q</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>A</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">/</mml:mo><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mi>Q</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msqrt></mml:math></inline-formula> and <italic>Δ</italic>. In our data we observe that while the former is larger than the latter for most of our data points, this ordering is reversed for the points at the largest correlation length. If one is interested in the level of accuracy given by <italic>Δ</italic>, the simulation has to run over many <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub>(<italic>Q</italic><sup>2</sup>)</textual-form><mml:math id="M164" altimg="si219.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mi>Q</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>.</p>
+        <p>As discussed in Ref. <xref rid="br0020" ref-type="bibr">[2]</xref>, the slow modes also pose a problem for the accurate determination of the autocorrelation times themselves. By restricting the sum in Eq. <xref rid="fm0270" ref-type="disp-formula">(19)</xref> to some window <italic>W</italic>, a small in amplitude but potentially long tail is neglected. To illustrate this, we show the autocorrelation function of the magnetic susceptibility at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 1</textual-form><mml:math id="M165" altimg="si221.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula> for the HMC algorithm in <xref rid="fg0060" ref-type="fig">Fig. 6</xref>. At the beginning, it falls quickly to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ρ</italic>(<italic>t</italic>) ≈ 0.01</textual-form><mml:math id="M166" altimg="si222.gif" overflow="scroll"><mml:mi>ρ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>≈</mml:mo><mml:mn>0.01</mml:mn></mml:math></alternatives></inline-formula> but then develops a very long tail, a situation already described in Ref. <xref rid="br0090" ref-type="bibr">[9]</xref>. The tail is compatible with a single exponential with a time constant equal to the exponential autocorrelation time extracted from <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ρ</italic><sub><italic>Q</italic><sup>2</sup></sub>(<italic>t</italic>)</textual-form><mml:math id="M167" altimg="si223.gif" overflow="scroll"><mml:msub><mml:mi>ρ</mml:mi><mml:msup><mml:mi>Q</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. This is indicated in the figure by the dashed lines. We can use this information for an improved estimate of the autocorrelation time <xref rid="br0020" ref-type="bibr">[2]</xref>. The usual sum of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ρ</italic>(<italic>t</italic>)</textual-form><mml:math id="M168" altimg="si224.gif" overflow="scroll"><mml:mi>ρ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> in only performed up to the point where the single exponential tail starts. The rest of the sum is substituted by the integral over the single exponential for which the largest observed time constant observed in all observables with the same parity is taken. In our situation this is <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>exp</sub>(<italic>Q</italic><sup>2</sup>)</textual-form><mml:math id="M169" altimg="si225.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">exp</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mi>Q</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. Since the HMC obeys detailed balance, this gives a strict upper bound for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub></textual-form><mml:math id="M170" altimg="si226.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, provided that there are no modes which suffer from an even slower evolution.</p>
+        <p>Also for the correlation length and at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 0.95</textual-form><mml:math id="M171" altimg="si227.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0.95</mml:mn></mml:math></alternatives></inline-formula> a similar behavior can be observed. Even though the coefficients might seem small, the slow modes still have a sizable contribution because of the very large time constant. At <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 1</textual-form><mml:math id="M172" altimg="si228.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>, this tail contributes roughly 30% to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub>(<italic>ξ</italic>)</textual-form><mml:math id="M173" altimg="si229.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>ξ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> and 50% to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub>(<italic>χ</italic><sub><italic>m</italic></sub>)</textual-form><mml:math id="M174" altimg="si230.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>χ</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>; for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 0.95</textual-form><mml:math id="M175" altimg="si231.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0.95</mml:mn></mml:math></alternatives></inline-formula> the contribution of the tail is roughly 10% and 17%, respectively. The values of the autocorrelation time from estimating the contribution of the tail in this way lie within the 1<italic>σ</italic> error of the values given in <xref rid="tl0030" ref-type="table">Table 3</xref> obtained by a summation to large values of <italic>W</italic>. In case of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub>(<italic>E</italic>)</textual-form><mml:math id="M176" altimg="si232.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>E</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>, the improved estimator is significantly higher than the value obtained from the truncated sum. The single exponential dominates from <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic> ≈ 150</textual-form><mml:math id="M177" altimg="si233.gif" overflow="scroll"><mml:mi>t</mml:mi><mml:mo>≈</mml:mo><mml:mn>150</mml:mn></mml:math></alternatives></inline-formula>, contributing roughly 10% (50%) at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 0.95</textual-form><mml:math id="M178" altimg="si234.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>0.95</mml:mn></mml:math></alternatives></inline-formula> (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>β</italic> = 1</textual-form><mml:math id="M179" altimg="si235.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>). We take the different values as upper and lower bounds and state the discrepancy as systematic error in <xref rid="tl0030" ref-type="table">Table 3</xref>. If the true value is close to the upper bound, the scaling of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub>(<italic>E</italic>)</textual-form><mml:math id="M180" altimg="si236.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>E</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> deviates from a power law already at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 12.1</textual-form><mml:math id="M181" altimg="si237.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>12.1</mml:mn></mml:math></alternatives></inline-formula>. If we assume that the exponential growth in the time constant is not compensated by the decrease in the coefficient, this contribution will be even more pronounced when <italic>β</italic> is increased further.</p>
+      </sec>
+      <sec id="se0140">
+        <label>5.3</label>
+        <title>Performance of the field transformation</title>
+        <p>We finally come to the comparison between the HMC and THMC algorithm, and we show the reduction in autocorrelation time achieved through the introduction of the field transformation. In <xref rid="fg0070" ref-type="fig">Fig. 7</xref> we plot the ratio of the autocorrelation of our observables for the two algorithms. The correlation length and the magnetic susceptibility for which we observe a 40% reduction profit most from the field transformation. For the topology roughly a 25% reduction is found, the energy is almost unaffected, however, it shows a quite short <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub></textual-form><mml:math id="M182" altimg="si238.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub></mml:math></alternatives></inline-formula> over the whole range of data. Note that for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 12.1</textual-form><mml:math id="M183" altimg="si239.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>12.1</mml:mn></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 16.6</textual-form><mml:math id="M184" altimg="si240.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>16.6</mml:mn></mml:math></alternatives></inline-formula> the reduction of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub>(<italic>E</italic>)</textual-form><mml:math id="M185" altimg="si241.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>E</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> has to be taken with care due to its systematic uncertainty. All critical exponents of the THMC algorithm extracted from the range <inline-formula><alternatives><textual-form specific-use="jats-markup">4 &lt; <italic>ξ</italic> &lt; 13</textual-form><mml:math id="M186" altimg="si242.gif" overflow="scroll"><mml:mn>4</mml:mn><mml:mo>&lt;</mml:mo><mml:mi>ξ</mml:mi><mml:mo>&lt;</mml:mo><mml:mn>13</mml:mn></mml:math></alternatives></inline-formula> agree within uncertainties with the ones of HMC. Also the deviation from the scaling law at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 12.1</textual-form><mml:math id="M187" altimg="si243.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>12.1</mml:mn></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 16.6</textual-form><mml:math id="M188" altimg="si244.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>16.6</mml:mn></mml:math></alternatives></inline-formula> is observed. The exponential behavior of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub>(<italic>Q</italic><sup>2</sup>)</textual-form><mml:math id="M189" altimg="si245.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mi>Q</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is compatible with HMC within error bars as well. We can conclude that the field transformation does not affect the scaling of these variables in the investigated region.</p>
+        <p>As commented above, the improvement factor which we find is close to the additional cost of the simulation and therefore the two algorithms perform rather similarly. These findings do not seem to depend strongly on <italic>N</italic>, since we also did limited simulations in the CP<sup>20</sup> with essentially equal results.</p>
+      </sec>
+    </sec>
+    <sec id="se0150">
+      <label>6</label>
+      <title>Summary</title>
+      <p>Whether a modification to an algorithm actually improves its performance is often very difficult to predict. It therefore needs numerical simulations to study its effects. Here we investigated recently proposed field transformations which can lead to a speed-up in HMC simulations. Unfortunately, the result is negative. Although we observe a reduction in autocorrelation times, the scaling towards the continuum limit is not improved. The reduction in the forces, which can be used to increase the step size of the molecular dynamics integration, is compensated by the computational overhead of the method. However, this conclusion does not have to be universally true for all theories. In QCD with dynamical fermions, e.g., the computational cost of the construction would be a minor part of the whole cost of the simulation.</p>
+      <p>Investigating the pure HMC algorithm serves also as an illustration that exponentially slow modes will at some point affect other observables of the theory. The deviation at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ξ</italic> ≈ 16</textual-form><mml:math id="M190" altimg="si246.gif" overflow="scroll"><mml:mi>ξ</mml:mi><mml:mo>≈</mml:mo><mml:mn>16</mml:mn></mml:math></alternatives></inline-formula> from the scaling behavior, which we observe for the observables up to a correlation length of 12, is therefore a cautionary tale for QCD simulations. Even though the slow mode observed in the topological charge might not seem to have any influence on other observables in todayʼs simulations <xref rid="br0020" ref-type="bibr">[2]</xref>, at some point, the correlation to the topological charge can also affect the scaling behavior towards the continuum limit in these channels.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="br0010">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Del Debbio</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Panagopoulos</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Vicari</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title><italic>θ</italic> dependence of <inline-formula><alternatives><textual-form specific-use="jats-markup">SU(<italic>N</italic>)</textual-form><mml:math id="M191" altimg="si247.gif" overflow="scroll"><mml:mi mathvariant="normal">SU</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>N</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> gauge theories</article-title>
+          <source>JHEP</source>
+          <volume>0208</volume>
+          <year>2002</year>
+          <fpage>044</fpage>
+          <ext-link ext-link-type="uri" xlink:href="arxiv:hep-th/0204125">arXiv:hep-th/0204125</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="br0020">
+        <label>2</label>
+        <element-citation publication-type="other">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schaefer</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Sommer</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Virotta</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Critical slowing down and error analysis in lattice QCD simulations</article-title>
+          <ext-link ext-link-type="uri" xlink:href="arxiv:1009.5228">arXiv:1009.5228</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="br0030">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lüscher</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Trivializing maps, the Wilson flow and the HMC algorithm</article-title>
+          <source>Commun. Math. Phys.</source>
+          <volume>293</volume>
+          <year>2010</year>
+          <fpage>899</fpage>
+          <lpage>919</lpage>
+          <ext-link ext-link-type="uri" xlink:href="arxiv:0907.5491">arXiv:0907.5491</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="br0040">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Duane</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Kennedy</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Pendleton</surname>
+              <given-names>B.J.</given-names>
+            </name>
+            <name>
+              <surname>Roweth</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Hybrid Monte Carlo</article-title>
+          <source>Phys. Lett. B</source>
+          <volume>195</volume>
+          <year>1987</year>
+          <fpage>216</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0050">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Del Debbio</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Manca</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Vicari</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Critical slowing down of topological modes</article-title>
+          <source>Phys. Lett. B</source>
+          <volume>594</volume>
+          <year>2004</year>
+          <fpage>315</fpage>
+          <lpage>323</lpage>
+          <ext-link ext-link-type="uri" xlink:href="arxiv:hep-lat/0403001">arXiv:hep-lat/0403001</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="br0060">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Campostrini</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Rossi</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Vicari</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Monte Carlo simulation of <inline-formula><alternatives><textual-form specific-use="jats-markup">CP<sup><italic>N</italic> − 1</sup></textual-form><mml:math id="M192" altimg="si248.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="normal">CP</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> models</article-title>
+          <source>Phys. Rev. D</source>
+          <volume>46</volume>
+          <year>March 1992</year>
+          <fpage>2647</fpage>
+          <lpage>2662</lpage>
+          <comment>35 p</comment>
+        </element-citation>
+      </ref>
+      <ref id="br0070">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rabinovici</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Samuel</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>The <inline-formula><alternatives><textual-form specific-use="jats-markup">CP<sup><italic>N</italic> − 1</sup></textual-form><mml:math id="M193" altimg="si249.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="normal">CP</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> model: a strong coupling lattice approach</article-title>
+          <source>Phys. Lett. B</source>
+          <volume>101</volume>
+          <issue>5</issue>
+          <year>1981</year>
+          <fpage>323</fpage>
+          <lpage>326</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0080">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <collab>ALPHA Collaboration</collab>
+            <name>
+              <surname>Wolff</surname>
+              <given-names>U.</given-names>
+            </name>
+          </person-group>
+          <article-title>Monte Carlo errors with less errors</article-title>
+          <source>Comput. Phys. Commun.</source>
+          <volume>156</volume>
+          <year>2004</year>
+          <fpage>143</fpage>
+          <lpage>153</lpage>
+          <ext-link ext-link-type="uri" xlink:href="arxiv:hep-lat/0306017">arXiv:hep-lat/0306017</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="br0090">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lüscher</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Topology, the Wilson flow and the HMC algorithm</article-title>
+          <source>PoS</source>
+          <volume>LATTICE2010</volume>
+          <year>2010</year>
+          <fpage>015</fpage>
+          <ext-link ext-link-type="uri" xlink:href="arxiv:1009.5877">arXiv:1009.5877</ext-link>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>The calculations have been performed on local clusters at ZID at the University of Graz. We thank the institution for providing support. We are indebted to Christof Gattringer and Martin Lüscher for very valuable comments on a previous version of the paper and to Francesco Virotta for providing us with software for the analysis of autocorrelation functions. G.P.E. is grateful for the hospitality of the Computational Physics group of the Humboldt Universität zu Berlin and acknowledges support by the Doktoratskolleg DK W1203-N08 and the DFG project SFB/TR-55.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fg0010">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Integrated autocorrelation time <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub></textual-form><mml:math id="M194" altimg="si119.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub></mml:math></alternatives></inline-formula> versus the trajectory length <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>traj</sub></textual-form><mml:math id="M195" altimg="si120.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">traj</mml:mi></mml:msub></mml:math></alternatives></inline-formula> in CP<sup>9</sup>, <italic>β</italic> = 0.7. <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub></textual-form><mml:math id="M196" altimg="si121.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub></mml:math></alternatives></inline-formula> of the topological charge <italic>Q</italic>, the magnetic susceptibility <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>χ</italic><sub><italic>M</italic></sub></textual-form><mml:math id="M197" altimg="si122.gif" overflow="scroll"><mml:msub><mml:mi>χ</mml:mi><mml:mi>M</mml:mi></mml:msub></mml:math></alternatives></inline-formula> and the energy <italic>E</italic> is shown. Left side HMC without trivialization, right side THMC with one step of Euler integration <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub></textual-form><mml:math id="M198" altimg="si123.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub></mml:math></alternatives></inline-formula> and integration of the flow to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub> = 0.47</textual-form><mml:math id="M199" altimg="si124.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0.47</mml:mn></mml:math></alternatives></inline-formula>, such that the force is minimized. For both HMC and THMC a choice of the trajectory length around one is a good compromise.</p>
+      </caption>
+      <graphic xlink:href="gr001"/>
+    </fig>
+    <fig id="fg0020">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Reduction of the force in THMC compared to the force in HMC (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>R</italic> = <italic>F</italic><sub><italic>THMC</italic></sub> / <italic>F</italic><sub><italic>HMC</italic></sub></textual-form><mml:math id="M200" altimg="si125.gif" overflow="scroll"><mml:mi>R</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mi>F</mml:mi><mml:mi mathvariant="italic">THMC</mml:mi></mml:msub><mml:mo stretchy="false">/</mml:mo><mml:msub><mml:mi>F</mml:mi><mml:mi mathvariant="italic">HMC</mml:mi></mml:msub></mml:math></alternatives></inline-formula>) depending on the integration length <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M201" altimg="si126.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> of the trivializing flow. Data are shown for CP<sup>9</sup> with 1, 2, 5 and 10 steps of the Euler integration. Left side <italic>β</italic> = 0.7, right side <italic>β</italic> = 0.9. At large <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M202" altimg="si127.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, the curves are ordered as in the legend, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 1</textual-form><mml:math id="M203" altimg="si128.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula> at the top and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 10</textual-form><mml:math id="M204" altimg="si129.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula> at the bottom. The statistical errors are too small to be seen. The improvement for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> &gt; 1</textual-form><mml:math id="M205" altimg="si130.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>&gt;</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula> is negligible.</p>
+      </caption>
+      <graphic xlink:href="gr002"/>
+    </fig>
+    <fig id="fg0030">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Force reduction <italic>R</italic> versus the flow integration length <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M206" altimg="si147.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, only 1 step of Euler integration (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 1</textual-form><mml:math id="M207" altimg="si148.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>), for several values of <italic>β</italic> in CP<sup>9</sup>. At small <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M208" altimg="si149.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, the curves are ordered as in the legend, <italic>β</italic> = 0.7 at the top and <italic>β</italic> = 1.0 at the bottom. As <italic>β</italic> increases, the minimum moves towards smaller <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M209" altimg="si150.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, however, its depth does not change dramatically.</p>
+      </caption>
+      <graphic xlink:href="gr003"/>
+    </fig>
+    <fig id="fg0040">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Integrated autocorrelation time <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>int</sub></textual-form><mml:math id="M210" altimg="si151.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">int</mml:mi></mml:msub></mml:math></alternatives></inline-formula> versus the integration length <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M211" altimg="si152.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> of the leading order trivializing flow, for CP<sup>9</sup> with <italic>β</italic> = 0.7. Left-hand side: one step of Euler integration <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 1</textual-form><mml:math id="M212" altimg="si153.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>. Right-hand side: <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 2</textual-form><mml:math id="M213" altimg="si154.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></alternatives></inline-formula>. As shown in <xref rid="fg0020" ref-type="fig">Fig. 2</xref>, maximum force reduction is obtained by <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub> = 0.47</textual-form><mml:math id="M214" altimg="si155.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0.47</mml:mn></mml:math></alternatives></inline-formula> (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 1</textual-form><mml:math id="M215" altimg="si156.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>) and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub> = 0.51</textual-form><mml:math id="M216" altimg="si157.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0.51</mml:mn></mml:math></alternatives></inline-formula> (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub> = 2</textual-form><mml:math id="M217" altimg="si158.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></alternatives></inline-formula>), respectively.</p>
+      </caption>
+      <graphic xlink:href="gr004"/>
+    </fig>
+    <fig id="fg0050">
+      <label>Fig. 5</label>
+      <caption>
+        <p>The integrated autocorrelation time of various observables for the HMC as a function of the correlation lengths. In this log–log plot, the dashed lines indicate the results of power law fits to the data for 4 &lt; <italic>ξ</italic> &lt; 13. The solid line represents the exponential form Eq. <xref rid="fm0290" ref-type="disp-formula">(21)</xref>. The error bars are smaller than the size of the symbols.</p>
+      </caption>
+      <graphic xlink:href="gr005"/>
+    </fig>
+    <fig id="fg0060">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Normalized autocorrelation function for the magnetic susceptibility for the HMC algorithm at <italic>β</italic> = 1. The dashed lines correspond to a single exponential whose time constant has been extracted from the autocorrelation function of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>Q</italic><sup>2</sup></textual-form><mml:math id="M218" altimg="si220.gif" overflow="scroll"><mml:msup><mml:mi>Q</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:math></alternatives></inline-formula>. The coefficients have been adjusted such that the two lines contain the 1<italic>σ</italic> region around <italic>t</italic> = 1000. This contribution accounts for roughly half the integrated autocorrelation time.</p>
+      </caption>
+      <graphic xlink:href="gr006"/>
+    </fig>
+    <fig id="fg0070">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Cost reduction in terms of autocorrelation time for the different observables brought by the field transformation.</p>
+      </caption>
+      <graphic xlink:href="gr007"/>
+    </fig>
+    <table-wrap id="tl0010" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Parameters of our runs in CP<sup>9</sup> with coupling <italic>β</italic> and lattices of size <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>L</italic><sup>2</sup></textual-form><mml:math id="M219" altimg="si108.gif" overflow="scroll"><mml:msup><mml:mi>L</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:math></alternatives></inline-formula>.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">
+              <italic>β</italic>
+            </th>
+            <th align="left">
+              <italic>L</italic>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>n</italic>
+                    <sub>
+                      <italic>s</italic>
+                    </sub>
+                  </textual-form>
+                  <mml:math id="M220" altimg="si109.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>n</mml:mi>
+                      <mml:mi>s</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>τ</italic>
+                    <sub>traj</sub>
+                  </textual-form>
+                  <mml:math id="M221" altimg="si110.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>τ</mml:mi>
+                      <mml:mi mathvariant="normal">traj</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>n</italic>
+                    <sub>step</sub>
+                  </textual-form>
+                  <mml:math id="M222" altimg="si111.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>n</mml:mi>
+                      <mml:mtext>step</mml:mtext>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>t</italic>
+                    <sub>
+                      <italic>T</italic>
+                    </sub>
+                  </textual-form>
+                  <mml:math id="M223" altimg="si112.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>t</mml:mi>
+                      <mml:mi>T</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>P</italic>
+                    <sub>acc</sub>
+                  </textual-form>
+                  <mml:math id="M224" altimg="si113.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>P</mml:mi>
+                      <mml:mi mathvariant="normal">acc</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">Stat. [MD time]</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0.70</td>
+            <td>42</td>
+            <td>0</td>
+            <td>1</td>
+            <td>62</td>
+            <td align="left">–</td>
+            <td>0.84</td>
+            <td>1000k</td>
+          </tr>
+          <tr>
+            <td>0.70</td>
+            <td>42</td>
+            <td>1</td>
+            <td>1</td>
+            <td>31</td>
+            <td>0.47</td>
+            <td>0.77</td>
+            <td>5000k</td>
+          </tr>
+          <tr>
+            <td>0.80</td>
+            <td>60</td>
+            <td>0</td>
+            <td>1</td>
+            <td>85</td>
+            <td align="left">–</td>
+            <td>0.85</td>
+            <td>1000k</td>
+          </tr>
+          <tr>
+            <td>0.80</td>
+            <td>60</td>
+            <td>1</td>
+            <td>1</td>
+            <td>43</td>
+            <td>0.43</td>
+            <td>0.81</td>
+            <td>4346k</td>
+          </tr>
+          <tr>
+            <td>0.85</td>
+            <td>72</td>
+            <td>0</td>
+            <td>1</td>
+            <td>97</td>
+            <td align="left">–</td>
+            <td>0.86</td>
+            <td>3682k</td>
+          </tr>
+          <tr>
+            <td>0.85</td>
+            <td>72</td>
+            <td>1</td>
+            <td>1</td>
+            <td>49</td>
+            <td>0.40</td>
+            <td>0.82</td>
+            <td>4230k</td>
+          </tr>
+          <tr>
+            <td>0.90</td>
+            <td>90</td>
+            <td>0</td>
+            <td>1</td>
+            <td>120</td>
+            <td align="left">–</td>
+            <td>0.86</td>
+            <td>2418k</td>
+          </tr>
+          <tr>
+            <td>0.90</td>
+            <td>90</td>
+            <td>1</td>
+            <td>1</td>
+            <td>60</td>
+            <td>0.37</td>
+            <td>0.85</td>
+            <td>4114k</td>
+          </tr>
+          <tr>
+            <td>0.95</td>
+            <td>120</td>
+            <td>0</td>
+            <td>1</td>
+            <td>170</td>
+            <td align="left">–</td>
+            <td>0.90</td>
+            <td>25 282k</td>
+          </tr>
+          <tr>
+            <td>0.95</td>
+            <td>120</td>
+            <td>1</td>
+            <td>1</td>
+            <td>85</td>
+            <td>0.35</td>
+            <td>0.90</td>
+            <td>13 110k</td>
+          </tr>
+          <tr>
+            <td>1.00</td>
+            <td>160</td>
+            <td>0</td>
+            <td>1</td>
+            <td>200</td>
+            <td align="left">–</td>
+            <td>0.90</td>
+            <td>32 763k</td>
+          </tr>
+          <tr>
+            <td>1.00</td>
+            <td>160</td>
+            <td>1</td>
+            <td>1</td>
+            <td>100</td>
+            <td>0.33</td>
+            <td>0.90</td>
+            <td>14 408k</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p><italic>Note</italic>. <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub></textual-form><mml:math id="M225" altimg="si114.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub></mml:math></alternatives></inline-formula> is the number of Euler integration steps, where zero corresponds to the standard HMC algorithm. <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>τ</italic><sub>traj</sub></textual-form><mml:math id="M226" altimg="si115.gif" overflow="scroll"><mml:msub><mml:mi>τ</mml:mi><mml:mi mathvariant="normal">traj</mml:mi></mml:msub></mml:math></alternatives></inline-formula> denotes the integration length of the molecular dynamics trajectory, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub>step</sub></textual-form><mml:math id="M227" altimg="si116.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mtext>step</mml:mtext></mml:msub></mml:math></alternatives></inline-formula> its discretization, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub><italic>T</italic></sub></textual-form><mml:math id="M228" altimg="si117.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi>T</mml:mi></mml:msub></mml:math></alternatives></inline-formula> the integration length of the trivializing flow and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>P</italic><sub>acc</sub></textual-form><mml:math id="M229" altimg="si118.gif" overflow="scroll"><mml:msub><mml:mi>P</mml:mi><mml:mi mathvariant="normal">acc</mml:mi></mml:msub></mml:math></alternatives></inline-formula> the Metropolis acceptance rate. The last column gives the statistics in units of molecular dynamics time.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="tl0020" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Expectation values of our runs in the CP<sup>9</sup> model, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>s</italic></sub></textual-form><mml:math id="M230" altimg="si159.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>s</mml:mi></mml:msub></mml:math></alternatives></inline-formula> is the number of Euler integration steps, further parameters are found in <xref rid="tl0010" ref-type="table">Table 1</xref>. We give results for the correlation length <italic>ξ</italic>, the energy <italic>E</italic>, the magnetic susceptibility <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>χ</italic><sub><italic>M</italic></sub></textual-form><mml:math id="M231" altimg="si160.gif" overflow="scroll"><mml:msub><mml:mi>χ</mml:mi><mml:mi>M</mml:mi></mml:msub></mml:math></alternatives></inline-formula> and the square of the topological charge <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>Q</italic><sup>2</sup></textual-form><mml:math id="M232" altimg="si161.gif" overflow="scroll"><mml:msup><mml:mi>Q</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:math></alternatives></inline-formula>.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">
+              <italic>β</italic>
+            </th>
+            <th align="left">
+              <italic>L</italic>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>n</italic>
+                    <sub>
+                      <italic>s</italic>
+                    </sub>
+                  </textual-form>
+                  <mml:math id="M233" altimg="si162.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>n</mml:mi>
+                      <mml:mi>s</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <italic>ξ</italic>
+            </th>
+            <th align="left">
+              <italic>E</italic>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>χ</italic>
+                    <sub>
+                      <italic>M</italic>
+                    </sub>
+                  </textual-form>
+                  <mml:math id="M234" altimg="si163.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>χ</mml:mi>
+                      <mml:mi>M</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">10<sup>5</sup><italic>Q</italic><sup>2</sup> / <italic>V</italic></textual-form>
+                  <mml:math id="M235" altimg="si164.gif" overflow="scroll">
+                    <mml:msup>
+                      <mml:mn>10</mml:mn>
+                      <mml:mn>5</mml:mn>
+                    </mml:msup>
+                    <mml:msup>
+                      <mml:mi>Q</mml:mi>
+                      <mml:mn>2</mml:mn>
+                    </mml:msup>
+                    <mml:mo stretchy="false">/</mml:mo>
+                    <mml:mi>V</mml:mi>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0.70</td>
+            <td>42</td>
+            <td>0</td>
+            <td>2.312(3)</td>
+            <td>0.784378(16)</td>
+            <td>10.124(3)</td>
+            <td>470.6(1.4)</td>
+          </tr>
+          <tr>
+            <td>0.70</td>
+            <td>42</td>
+            <td>1</td>
+            <td>2.3117(12)</td>
+            <td>0.784361(6)</td>
+            <td>10.1278(12)</td>
+            <td>470.6(6)</td>
+          </tr>
+          <tr>
+            <td>0.80</td>
+            <td>60</td>
+            <td>0</td>
+            <td>4.602(6)</td>
+            <td>0.667028(10)</td>
+            <td>28.088(16)</td>
+            <td>97.6(8)</td>
+          </tr>
+          <tr>
+            <td>0.80</td>
+            <td>60</td>
+            <td>1</td>
+            <td>4.595(2)</td>
+            <td>0.667023(4)</td>
+            <td>28.068(6)</td>
+            <td>96.9(3)</td>
+          </tr>
+          <tr>
+            <td>0.85</td>
+            <td>72</td>
+            <td>0</td>
+            <td>6.389(5)</td>
+            <td>0.622276(4)</td>
+            <td>46.91(2)</td>
+            <td>46.0(4)</td>
+          </tr>
+          <tr>
+            <td>0.85</td>
+            <td>72</td>
+            <td>1</td>
+            <td>6.386(4)</td>
+            <td>0.622271(4)</td>
+            <td>46.916(14)</td>
+            <td>46.2(3)</td>
+          </tr>
+          <tr>
+            <td>0.90</td>
+            <td>90</td>
+            <td>0</td>
+            <td>8.816(11)</td>
+            <td>0.583835(4)</td>
+            <td>78.40(6)</td>
+            <td>23.3(5)</td>
+          </tr>
+          <tr>
+            <td>0.90</td>
+            <td>90</td>
+            <td>1</td>
+            <td>8.837(6)</td>
+            <td>0.583834(3)</td>
+            <td>78.49(3)</td>
+            <td>23.3(3)</td>
+          </tr>
+          <tr>
+            <td>0.95</td>
+            <td>120</td>
+            <td>0</td>
+            <td>12.134(7)</td>
+            <td>0.5502611(8)</td>
+            <td>131.39(5)</td>
+            <td>11.73(16)</td>
+          </tr>
+          <tr>
+            <td>0.95</td>
+            <td>120</td>
+            <td>1</td>
+            <td>12.132(7)</td>
+            <td>0.5502626(11)</td>
+            <td>131.41(5)</td>
+            <td>11.91(19)</td>
+          </tr>
+          <tr>
+            <td>1.00</td>
+            <td>160</td>
+            <td>0</td>
+            <td>16.607(12)</td>
+            <td>0.5205860(6)</td>
+            <td>220.48(12)</td>
+            <td>6.18(18)</td>
+          </tr>
+          <tr>
+            <td>1.00</td>
+            <td>160</td>
+            <td>1</td>
+            <td>16.601(14)</td>
+            <td>0.5205872(8)</td>
+            <td>220.37(13)</td>
+            <td>6.14(20)</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap id="tl0030" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Autocorrelation times corresponding to <xref rid="tl0020" ref-type="table">Table 2</xref>. For <italic>β</italic> = 0.95 and <italic>β</italic> = 1.0, systematic errors for <italic>τ</italic>(<italic>E</italic>) account for the uncertainty in estimating the contribution of the tail of the autocorrelation function.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">
+              <italic>β</italic>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>n</italic>
+                    <sub>
+                      <italic>s</italic>
+                    </sub>
+                  </textual-form>
+                  <mml:math id="M236" altimg="si180.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>n</mml:mi>
+                      <mml:mi>s</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <italic>ξ</italic>
+            </th>
+            <th>
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup"><italic>τ</italic>(<italic>ξ</italic>)</textual-form>
+                  <mml:math id="M237" altimg="si181.gif" overflow="scroll">
+                    <mml:mi>τ</mml:mi>
+                    <mml:mo stretchy="false">(</mml:mo>
+                    <mml:mi>ξ</mml:mi>
+                    <mml:mo stretchy="false">)</mml:mo>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup"><italic>τ</italic>(<italic>E</italic>)</textual-form>
+                  <mml:math id="M238" altimg="si182.gif" overflow="scroll">
+                    <mml:mi>τ</mml:mi>
+                    <mml:mo stretchy="false">(</mml:mo>
+                    <mml:mi>E</mml:mi>
+                    <mml:mo stretchy="false">)</mml:mo>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th>
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup"><italic>τ</italic>(<italic>χ</italic><sub><italic>M</italic></sub>)</textual-form>
+                  <mml:math id="M239" altimg="si183.gif" overflow="scroll">
+                    <mml:mi>τ</mml:mi>
+                    <mml:mo stretchy="false">(</mml:mo>
+                    <mml:msub>
+                      <mml:mi>χ</mml:mi>
+                      <mml:mi>M</mml:mi>
+                    </mml:msub>
+                    <mml:mo stretchy="false">)</mml:mo>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th>
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup"><italic>τ</italic>(<italic>Q</italic>)</textual-form>
+                  <mml:math id="M240" altimg="si184.gif" overflow="scroll">
+                    <mml:mi>τ</mml:mi>
+                    <mml:mo stretchy="false">(</mml:mo>
+                    <mml:mi>Q</mml:mi>
+                    <mml:mo stretchy="false">)</mml:mo>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th>
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup"><italic>τ</italic>(<italic>Q</italic><sup>2</sup>)</textual-form>
+                  <mml:math id="M241" altimg="si185.gif" overflow="scroll">
+                    <mml:mi>τ</mml:mi>
+                    <mml:mo stretchy="false">(</mml:mo>
+                    <mml:msup>
+                      <mml:mi>Q</mml:mi>
+                      <mml:mn>2</mml:mn>
+                    </mml:msup>
+                    <mml:mo stretchy="false">)</mml:mo>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0.70</td>
+            <td>0</td>
+            <td>2.312(3)</td>
+            <td>1.181(8)</td>
+            <td>3.38(4)</td>
+            <td>1.71(2)</td>
+            <td>4.9(1)</td>
+            <td>2.10(2)</td>
+          </tr>
+          <tr>
+            <td>0.70</td>
+            <td>1</td>
+            <td>2.3117(12)</td>
+            <td>0.943(3)</td>
+            <td>1.981(8)</td>
+            <td>1.268(8)</td>
+            <td>3.86(2)</td>
+            <td>1.792(7)</td>
+          </tr>
+          <tr>
+            <td>0.80</td>
+            <td>0</td>
+            <td>4.602(6)</td>
+            <td>3.61(6)</td>
+            <td>3.60(6)</td>
+            <td>5.14(10)</td>
+            <td>35.3(1.2)</td>
+            <td>16.6(4)</td>
+          </tr>
+          <tr>
+            <td>0.80</td>
+            <td>1</td>
+            <td>4.595(2)</td>
+            <td>1.983(13)</td>
+            <td>2.99(4)</td>
+            <td>2.84(2)</td>
+            <td>27.0(4)</td>
+            <td>12.30(13)</td>
+          </tr>
+          <tr>
+            <td>0.85</td>
+            <td>0</td>
+            <td>6.389(5)</td>
+            <td>7.32(9)</td>
+            <td>3.83(6)</td>
+            <td>9.80(14)</td>
+            <td>126(4)</td>
+            <td>57.0(1.3)</td>
+          </tr>
+          <tr>
+            <td>0.85</td>
+            <td>1</td>
+            <td>6.386(4)</td>
+            <td>3.80(3)</td>
+            <td>3.62(5)</td>
+            <td>5.29(6)</td>
+            <td>95(5)</td>
+            <td>43.7(8)</td>
+          </tr>
+          <tr>
+            <td>0.90</td>
+            <td>0</td>
+            <td>8.816(11)</td>
+            <td>13.8(3)</td>
+            <td>3.86(9)</td>
+            <td>18.4(5)</td>
+            <td>527(38)</td>
+            <td>238(12)</td>
+          </tr>
+          <tr>
+            <td>0.90</td>
+            <td>1</td>
+            <td>8.837(6)</td>
+            <td>7.57(12)</td>
+            <td>3.73(4)</td>
+            <td>10.5(2)</td>
+            <td>345(17)</td>
+            <td>160(5)</td>
+          </tr>
+          <tr>
+            <td>0.95</td>
+            <td>0</td>
+            <td>12.134(7)</td>
+            <td>27.9(5)</td>
+            <td>
+              <inline-formula>
+                <mml:math id="M242" altimg="si186.gif" overflow="scroll">
+                  <mml:mn>3.86</mml:mn>
+                  <mml:msubsup>
+                    <mml:mrow>
+                      <mml:mo stretchy="false">(</mml:mo>
+                      <mml:mn>11</mml:mn>
+                      <mml:mo stretchy="false">)</mml:mo>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo>−</mml:mo>
+                      <mml:mn>0.0</mml:mn>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo>+</mml:mo>
+                      <mml:mn>0.3</mml:mn>
+                    </mml:mrow>
+                  </mml:msubsup>
+                </mml:math>
+              </inline-formula>
+            </td>
+            <td>40.5(8)</td>
+            <td>2260(120)</td>
+            <td>1080(40)</td>
+          </tr>
+          <tr>
+            <td>0.95</td>
+            <td>1</td>
+            <td>12.132(7)</td>
+            <td>16.3(4)</td>
+            <td>
+              <inline-formula>
+                <mml:math id="M243" altimg="si187.gif" overflow="scroll">
+                  <mml:mn>3.60</mml:mn>
+                  <mml:msubsup>
+                    <mml:mrow>
+                      <mml:mo stretchy="false">(</mml:mo>
+                      <mml:mn>7</mml:mn>
+                      <mml:mo stretchy="false">)</mml:mo>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo>−</mml:mo>
+                      <mml:mn>0.0</mml:mn>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo>+</mml:mo>
+                      <mml:mn>0.2</mml:mn>
+                    </mml:mrow>
+                  </mml:msubsup>
+                </mml:math>
+              </inline-formula>
+            </td>
+            <td>25.2(8)</td>
+            <td>1630(70)</td>
+            <td>800(30)</td>
+          </tr>
+          <tr>
+            <td>1.00</td>
+            <td>0</td>
+            <td>16.607(12)</td>
+            <td>67(3)</td>
+            <td>
+              <inline-formula>
+                <mml:math id="M244" altimg="si188.gif" overflow="scroll">
+                  <mml:mn>5.6</mml:mn>
+                  <mml:msubsup>
+                    <mml:mrow>
+                      <mml:mo stretchy="false">(</mml:mo>
+                      <mml:mn>4</mml:mn>
+                      <mml:mo stretchy="false">)</mml:mo>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo>−</mml:mo>
+                      <mml:mn>0.0</mml:mn>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo>+</mml:mo>
+                      <mml:mn>1.5</mml:mn>
+                    </mml:mrow>
+                  </mml:msubsup>
+                </mml:math>
+              </inline-formula>
+            </td>
+            <td>115(7)</td>
+            <td>13 400(1100)</td>
+            <td>6300(400)</td>
+          </tr>
+          <tr>
+            <td>1.00</td>
+            <td>1</td>
+            <td>16.601(14)</td>
+            <td>38(3)</td>
+            <td>
+              <inline-formula>
+                <mml:math id="M245" altimg="si189.gif" overflow="scroll">
+                  <mml:mn>4.3</mml:mn>
+                  <mml:msubsup>
+                    <mml:mrow>
+                      <mml:mo stretchy="false">(</mml:mo>
+                      <mml:mn>2</mml:mn>
+                      <mml:mo stretchy="false">)</mml:mo>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo>−</mml:mo>
+                      <mml:mn>0.0</mml:mn>
+                    </mml:mrow>
+                    <mml:mrow>
+                      <mml:mo>+</mml:mo>
+                      <mml:mn>1.9</mml:mn>
+                    </mml:mrow>
+                  </mml:msubsup>
+                </mml:math>
+              </inline-formula>
+            </td>
+            <td>70(5)</td>
+            <td>9400(800)</td>
+            <td>3860(250)</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-group>
+</article>

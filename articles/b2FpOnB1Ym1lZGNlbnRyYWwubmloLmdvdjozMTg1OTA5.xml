@@ -1,0 +1,1639 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Theor Comp Sci</journal-id>
+      <journal-title-group>
+        <journal-title>Theoretical Computer Science</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0304-3975</issn>
+      <publisher>
+        <publisher-name>Elsevier BV, North-Holland, 1970-</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3185909</article-id>
+      <article-id pub-id-type="pmid">21998490</article-id>
+      <article-id pub-id-type="publisher-id">TCS8359</article-id>
+      <article-id pub-id-type="doi">10.1016/j.tcs.2011.05.008</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Probabilistic systems coalgebraically: A survey</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sokolova</surname>
+            <given-names>Ana</given-names>
+          </name>
+          <email>anas@cs.uni-salzburg.at</email>
+          <email>sokolova.ana@gmail.com</email>
+          <email>http://cs.uni-salzburg/~anas</email>
+          <xref rid="cor000005" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="af000005">Department of Computer Sciences, University of Salzburg, Austria</aff>
+      <author-notes>
+        <corresp id="cor000005"><label>⁎</label>Tel.: +43 69913005971; fax: +43 6628044611. <email>anas@cs.uni-salzburg.at</email><email>sokolova.ana@gmail.com</email><email>http://cs.uni-salzburg/~anas</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>02</day>
+        <month>9</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>02</day>
+        <month>9</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>412</volume>
+      <issue>38</issue>
+      <fpage>5095</fpage>
+      <lpage>5110</lpage>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier B.V.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>We survey the work on both discrete and continuous-space probabilistic systems as coalgebras, starting with how probabilistic systems are modeled as coalgebras and followed by a discussion of their bisimilarity and behavioral equivalence, mentioning results that follow from the coalgebraic treatment of probabilistic systems. It is interesting to note that, for different reasons, for both discrete and continuous probabilistic systems it may be more convenient to work with behavioral equivalence than with bisimilarity.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Probabilistic systems</kwd>
+        <kwd>Coalgebra</kwd>
+        <kwd>Markov chains</kwd>
+        <kwd>Markov processes</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="br000005">
+        <label>1</label>
+        <mixed-citation publication-type="other">C. Baier, On algorithmic verification methods for probabilistic systems, Habilitationsschrift, FMI, Universitaet Mannheim, 1998.</mixed-citation>
+      </ref>
+      <ref id="br000010">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bartels</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>GSOS for probabilistic transition systems</article-title>
+          <issue-title>Proc. CMCS’02</issue-title>
+          <source>Electronic Notes in Theoretical Computer Science</source>
+          <volume>65</volume>
+          <issue>1</issue>
+          <year>2002</year>
+        </element-citation>
+      </ref>
+      <ref id="br000015">
+        <label>3</label>
+        <mixed-citation publication-type="other">F. Bartels, On generalised coinduction and probabilistic specification formats: distributive laws in coalgebraic modelling. Ph.D. Thesis, Vrije Universiteit, Amsterdam, 2004.</mixed-citation>
+      </ref>
+      <ref id="br000020">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bartels</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Sokolova</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Vink</surname>
+              <given-names>E.d.</given-names>
+            </name>
+          </person-group>
+          <article-title>A hierarchy of probabilistic system types</article-title>
+          <issue-title>Proc. CMCS’03</issue-title>
+          <source>Electronic Notes in Theoretical Computer Science</source>
+          <volume>82</volume>
+          <issue>1</issue>
+          <year>2003</year>
+        </element-citation>
+      </ref>
+      <ref id="br000025">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bartels</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Sokolova</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Vink</surname>
+              <given-names>E.d.</given-names>
+            </name>
+          </person-group>
+          <article-title>A hierarchy of probabilistic system types</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>327</volume>
+          <year>2004</year>
+          <fpage>3</fpage>
+          <lpage>22</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000030">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bellman</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A Markovian decision process</article-title>
+          <source>Journal of Mathematics and Mechanics</source>
+          <volume>6</volume>
+          <year>1957</year>
+          <fpage>679</fpage>
+          <lpage>684</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000035">
+        <label>7</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Blute</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Desharnais</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Edalat</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Panangaden</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Bisimulation for labelled Markov processes</chapter-title>
+          <source>Proc. LICS</source>
+          <year>1997</year>
+          <publisher-name>IEEE</publisher-name>
+          <fpage>149</fpage>
+          <lpage>158</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000040">
+        <label>8</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bonchi</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Bonsangue</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Rutten</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Silva</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Deriving syntax and axioms for quantitative regular behaviours</chapter-title>
+          <source>Proc. CONCUR</source>
+          <series>LNCS</series>
+          <volume>vol. 5710</volume>
+          <year>2009</year>
+          <fpage>146</fpage>
+          <lpage>162</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000045">
+        <label>9</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breugel</surname>
+              <given-names>F.v.</given-names>
+            </name>
+            <name>
+              <surname>Hermida</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Makkai</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Worrell</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>An accessible approach to behavioural pseudometrics</chapter-title>
+          <source>Proc. ICALP</source>
+          <series>LNCS</series>
+          <volume>vol. 3580</volume>
+          <year>2005</year>
+          <fpage>1018</fpage>
+          <lpage>1030</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000050">
+        <label>10</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breugel</surname>
+              <given-names>F.v.</given-names>
+            </name>
+            <name>
+              <surname>Mislove</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ouaknine</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Worrell</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>An intrinsic characterization of approximate probabilistic bisimilarity</chapter-title>
+          <source>Proc. FoSSaCS</source>
+          <series>LNCS</series>
+          <volume>vol. 2620</volume>
+          <year>2003</year>
+          <fpage>200</fpage>
+          <lpage>215</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000055">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breugel</surname>
+              <given-names>F.v.</given-names>
+            </name>
+            <name>
+              <surname>Mislove</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ouaknine</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Worrell</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Domain theory, testing and simulation for labelled Markov processes</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>333</volume>
+          <year>2005</year>
+          <fpage>2239</fpage>
+          <lpage>2259</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000060">
+        <label>12</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breugel</surname>
+              <given-names>F.v.</given-names>
+            </name>
+            <name>
+              <surname>Sharma</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Worrell</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Approximating a behavioural pseudometric without discount for probabilistic systems</chapter-title>
+          <source>Proc. FoSSaCS</source>
+          <series>LNCS</series>
+          <volume>vol. 4423</volume>
+          <year>2007</year>
+          <fpage>123</fpage>
+          <lpage>137</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000065">
+        <label>13</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breugel</surname>
+              <given-names>F.v.</given-names>
+            </name>
+            <name>
+              <surname>Worrell</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>An algorithm for quantitative verification of probabilistic transition systems</chapter-title>
+          <source>Proc. CONCUR</source>
+          <series>LNCS</series>
+          <volume>vol. 2154</volume>
+          <year>2001</year>
+          <fpage>336</fpage>
+          <lpage>350</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000070">
+        <label>14</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breugel</surname>
+              <given-names>F.v.</given-names>
+            </name>
+            <name>
+              <surname>Worrell</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Towards quantitative verification of probabilistic transition systems</chapter-title>
+          <source>Proc. ICALP</source>
+          <series>LNCS</series>
+          <volume>vol. 2076</volume>
+          <year>2001</year>
+          <fpage>421</fpage>
+          <lpage>432</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000075">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breugel</surname>
+              <given-names>F.v.</given-names>
+            </name>
+            <name>
+              <surname>Worrell</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A behavioural pseudometric for probabilistic transition systems</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>331</volume>
+          <issue>1</issue>
+          <year>2005</year>
+          <fpage>115</fpage>
+          <lpage>142</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000080">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breugel</surname>
+              <given-names>F.v.</given-names>
+            </name>
+            <name>
+              <surname>Worrell</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Approximating and computing behavioural distances in probabilistic transition systems</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>360</volume>
+          <issue>1–3</issue>
+          <year>2006</year>
+          <fpage>373</fpage>
+          <lpage>385</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000085">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cîrstea</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A modular approach to defining and characterising notions of simulation</article-title>
+          <source>Information and Computation</source>
+          <volume>204</volume>
+          <issue>4</issue>
+          <year>2006</year>
+          <fpage>469</fpage>
+          <lpage>502</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000090">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cîrstea</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modularity in coalgebra</article-title>
+          <source>Electronic Notes in Theoretical Computer Science</source>
+          <volume>164</volume>
+          <issue>1</issue>
+          <year>2006</year>
+          <fpage>3</fpage>
+          <lpage>26</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000095">
+        <label>19</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cîrstea</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kurz</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pattinson</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Schröder</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Venema</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Modal logics are coalgebraic</chapter-title>
+          <source>BCS Int. Acad. Conf.</source>
+          <year>2008</year>
+          <publisher-name>British Computer Society</publisher-name>
+          <fpage>128</fpage>
+          <lpage>140</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000100">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cîrstea</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Pattinson</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modular construction of complete coalgebraic logics</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>388</volume>
+          <issue>1–3</issue>
+          <year>2007</year>
+          <fpage>83</fpage>
+          <lpage>108</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000105">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Danos</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Desharnais</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Laviolette</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Panangaden</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bisimulation and cocongruence for probabilistic systems</article-title>
+          <source>Information and Computation</source>
+          <volume>204</volume>
+          <year>2006</year>
+          <fpage>503</fpage>
+          <lpage>523</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000110">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>D’Argenio</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Hermanns</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Katoen</surname>
+              <given-names>J.-P.</given-names>
+            </name>
+          </person-group>
+          <article-title>On generative parallel composition</article-title>
+          <issue-title>Proc. PROBMIV’98</issue-title>
+          <source>Electronic Notes in Theoretical Computer Science</source>
+          <volume>22</volume>
+          <year>1998</year>
+          <fpage>105</fpage>
+          <lpage>122</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000115">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Desharnais</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Edalat</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Panangaden</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bisimulation for labelled Markov processes</article-title>
+          <source>Information and Computation</source>
+          <volume>179</volume>
+          <year>2002</year>
+          <fpage>163</fpage>
+          <lpage>193</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000120">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Desharnais</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gupta</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Jagadeesan</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Panangaden</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Approximating labelled Markov processes</article-title>
+          <source>Information and Computation</source>
+          <volume>184</volume>
+          <issue>1</issue>
+          <year>2003</year>
+          <fpage>160</fpage>
+          <lpage>200</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000125">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Desharnais</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gupta</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Jagadeesan</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Panangaden</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Metrics for labelled markov processes</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>318</volume>
+          <issue>3</issue>
+          <year>2004</year>
+          <fpage>323</fpage>
+          <lpage>354</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000130">
+        <label>26</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Doberkat</surname>
+              <given-names>E.-E.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Semi-pulbacks and bisimulations in categories of stochastic relations</chapter-title>
+          <source>Proc. ICALP</source>
+          <series>LNCS</series>
+          <volume>vol. 2719</volume>
+          <year>2003</year>
+          <fpage>996</fpage>
+          <lpage>1070</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000135">
+        <label>27</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Doberkat</surname>
+              <given-names>E.-E.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Stochastic Relations: Foundations for Markov Transition Systems</chapter-title>
+          <year>2007</year>
+          <publisher-name>ChapmanHall, CRC</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="br000140">
+        <label>28</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Doberkat</surname>
+              <given-names>E.-E.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Stochastic Coalgebraic Logic</chapter-title>
+          <year>2010</year>
+          <publisher-name>Springer</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="br000145">
+        <label>29</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Giry</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>A categorical approach to probability theory</chapter-title>
+          <source>Categorical Aspects of Topology and Analysis</source>
+          <series>LNM</series>
+          <volume>vol. 915</volume>
+          <year>1982</year>
+          <fpage>68</fpage>
+          <lpage>85</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000150">
+        <label>30</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glabbeek</surname>
+              <given-names>R.v.</given-names>
+            </name>
+            <name>
+              <surname>Smolka</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Steffen</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Tofts</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Reactive, generative, and stratified models of probabilistic processes</chapter-title>
+          <source>Proc. LICS</source>
+          <year>1990</year>
+          <publisher-name>IEEE</publisher-name>
+          <fpage>130</fpage>
+          <lpage>141</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000155">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gumm</surname>
+              <given-names>H.-P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Copower functors</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>410</volume>
+          <year>2009</year>
+          <fpage>1129</fpage>
+          <lpage>1142</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000160">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gumm</surname>
+              <given-names>H.-P.</given-names>
+            </name>
+            <name>
+              <surname>Schröder</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Monoid-labeled transition systems</article-title>
+          <issue-title>Proc. CMCS’01</issue-title>
+          <source>Electronic Notes in Theoretical Computer Science</source>
+          <volume>44</volume>
+          <issue>1</issue>
+          <year>2001</year>
+          <fpage>185</fpage>
+          <lpage>204</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000165">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hansson</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Time and probability in formal design of distributed systems</article-title>
+          <source>Real-Time Safety Critical Systems</source>
+          <volume>1</volume>
+          <year>1994</year>
+        </element-citation>
+      </ref>
+      <ref id="br000170">
+        <label>34</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hasuo</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Generic forward and backward simulations</chapter-title>
+          <source>Proc. CONCUR</source>
+          <series>LNCS</series>
+          <volume>vol. 4137</volume>
+          <year>2006</year>
+          <fpage>406</fpage>
+          <lpage>420</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000175">
+        <label>35</label>
+        <mixed-citation publication-type="other">I. Hasuo, Tracing Anonymity with Coalgebras, Ph.D. Thesis, Radboud University Nijmegen, 2008.</mixed-citation>
+      </ref>
+      <ref id="br000180">
+        <label>36</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hasuo</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Generic forward and backward simulations II: probabilistic simulation</chapter-title>
+          <source>Proc. CONCUR</source>
+          <series>LNCS</series>
+          <volume>vol. 6269</volume>
+          <year>2010</year>
+          <fpage>447</fpage>
+          <lpage>461</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000185">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hasuo</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Jacobs</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Sokolova</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Generic trace semantics via coinduction</article-title>
+          <source>Logical Methods in Computer Science</source>
+          <volume>3</volume>
+          <issue>4:11</issue>
+          <year>2007</year>
+        </element-citation>
+      </ref>
+      <ref id="br000190">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hasuo</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Kawabe</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Sakurada</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Probabilistic anonymity via coalgebraic simulations</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>411</volume>
+          <year>2007</year>
+          <fpage>2239</fpage>
+          <lpage>2259</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000195">
+        <label>39</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hausmann</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Mossakowski</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Schröder</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Iterative circular coinduction for cocasl in isabelle/hol</chapter-title>
+          <source>Proc. FASE</source>
+          <series>LNCS</series>
+          <volume>vol. 3442</volume>
+          <year>2005</year>
+          <fpage>341</fpage>
+          <lpage>356</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000200">
+        <label>40</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Howard</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Dynamic Probabilistic Systems</chapter-title>
+          <year>1971</year>
+          <publisher-name>John Wiley &amp; Sons, Inc.</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="br000205">
+        <label>41</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jacobs</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Exercises in coalgebraic specification</chapter-title>
+          <source>Algebraic and Coalgebraic Methods in the Mathematics of Program Construction</source>
+          <series>LNCS</series>
+          <volume>vol. 2297</volume>
+          <year>2002</year>
+          <fpage>237</fpage>
+          <lpage>281</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000210">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jacobs</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coalgebraic trace semantics for combined possibilitistic and probabilistic systems</article-title>
+          <issue-title>Proc. CMCS’08</issue-title>
+          <source>Electronic Notes in Theoretical Computer Science</source>
+          <volume>203</volume>
+          <issue>5</issue>
+          <year>2008</year>
+          <fpage>131</fpage>
+          <lpage>152</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000215">
+        <label>43</label>
+        <mixed-citation publication-type="other">B.P.F. Jacobs, Probabilities, distribution monads, and convex categories, Theoretical Computer Science (2011) (<ext-link ext-link-type="doi" xlink:href="10.1016/j.tcs.2011.04.005" id="ir000005">doi:10.1016/j.tcs.2011.04.005</ext-link>).</mixed-citation>
+      </ref>
+      <ref id="br000220">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jacobs</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Rutten</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A tutorial on (co)algebras and (co)induction</article-title>
+          <source>Bulletin of the EATCS</source>
+          <volume>62</volume>
+          <year>1996</year>
+          <fpage>222</fpage>
+          <lpage>259</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000225">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jacobs</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Sokolova</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Exemplaric expressivity of modal logics</article-title>
+          <source>Journal of Logic and Computation</source>
+          <volume>20</volume>
+          <issue>5</issue>
+          <year>2010</year>
+          <fpage>1041</fpage>
+          <lpage>1068</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000230">
+        <label>46</label>
+        <mixed-citation publication-type="other">C. Jones, Probabilistic Non-determinism, Ph.D. Thesis, University of Edinburgh, 1989.</mixed-citation>
+      </ref>
+      <ref id="br000235">
+        <label>47</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jonsson</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Larsen</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Specification and refinement of probabilistic processes</chapter-title>
+          <source>Proc. LICS</source>
+          <year>1991</year>
+          <publisher-name>IEEE</publisher-name>
+          <fpage>266</fpage>
+          <lpage>277</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000240">
+        <label>48</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jonsson</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Larsen</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Yi</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Probabilistic extensions of process algebras</chapter-title>
+          <source>Handbook of Process Algebras</source>
+          <year>2001</year>
+          <publisher-name>Elsevier, North Holland</publisher-name>
+          <fpage>685</fpage>
+          <lpage>710</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000245">
+        <label>49</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kemeny</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Snell</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Finite Markov Chains</chapter-title>
+          <year>1976</year>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="br000250">
+        <label>50</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Klin</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Structural operational semantics for weighted transition systems</chapter-title>
+          <source>Semantics and Algebraic Specification, Essays Dedicated to Peter D. Mosses on the Occasion of His 60th Birthday</source>
+          <series>LNCS</series>
+          <volume>vol. 5700</volume>
+          <year>2009</year>
+          <fpage>121</fpage>
+          <lpage>139</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000255">
+        <label>51</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Klin</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bialgebras for structural operational semantics: An introduction</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>412</volume>
+          <issue>38</issue>
+          <year>2011</year>
+          <fpage>5043</fpage>
+          <lpage>5069</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000260">
+        <label>52</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Klin</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Sassone</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Structural operational semantics for stochastic process calculi</chapter-title>
+          <source>Proc. FoSSaCS</source>
+          <series>LNCS</series>
+          <volume>vol. 4962</volume>
+          <year>2008</year>
+          <fpage>428</fpage>
+          <lpage>442</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000265">
+        <label>53</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kupke</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Pattinson</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coalgebraic semantics of modal logics: An overview</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>412</volume>
+          <issue>38</issue>
+          <year>2011</year>
+          <fpage>5070</fpage>
+          <lpage>5094</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000270">
+        <label>54</label>
+        <mixed-citation publication-type="other">A. Kurz, Logics for coalgebras and applications to computer science, Ph.D. Thesis, Ludwig-Maximilians-Universität München, 2000.</mixed-citation>
+      </ref>
+      <ref id="br000275">
+        <label>55</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Larsen</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Skou</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bisimulation through probabilistic testing</article-title>
+          <source>Information and Computation</source>
+          <volume>94</volume>
+          <year>1991</year>
+          <fpage>1</fpage>
+          <lpage>28</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000280">
+        <label>56</label>
+        <mixed-citation publication-type="other">F. Lawvere, The category of probabilistic mappings, 1962, Preprint.</mixed-citation>
+      </ref>
+      <ref id="br000285">
+        <label>57</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moss</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coalgebraic logic</article-title>
+          <source>Annals of Pure and Applied Logic</source>
+          <volume>96</volume>
+          <year>1999</year>
+          <fpage>277</fpage>
+          <lpage>317</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000290">
+        <label>58</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moss</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Viglizzo</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Final coalgebras for functors on measurable spaces</article-title>
+          <source>Information and Computation</source>
+          <volume>240</volume>
+          <year>2006</year>
+          <fpage>610</fpage>
+          <lpage>636</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000295">
+        <label>59</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Panangaden</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Labelled Markov Processes</chapter-title>
+          <year>2009</year>
+          <publisher-name>Imperial College Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="br000300">
+        <label>60</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pattinson</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Schröder</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modular algorithms for heterogeneous modal logics via multi-sorted coalgebra</article-title>
+          <source>Mathematical Structures in Computer Science</source>
+          <volume>21</volume>
+          <year>2010</year>
+          <fpage>235</fpage>
+          <lpage>266</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000305">
+        <label>61</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Paz</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Introduction to Probabilistic Automata (Computer Science and Applied Mathematics)</chapter-title>
+          <year>1971</year>
+          <publisher-name>Academic Press, Inc.</publisher-name>
+          <publisher-loc>Orlando, FL, USA</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="br000310">
+        <label>62</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pnueli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Zuck</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Probabilistic verification</article-title>
+          <source>Information and Computation</source>
+          <volume>103</volume>
+          <year>1993</year>
+          <fpage>1</fpage>
+          <lpage>29</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000315">
+        <label>63</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rabin</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Probabilistic automata</article-title>
+          <source>Information and Control</source>
+          <volume>6</volume>
+          <year>1963</year>
+          <fpage>230</fpage>
+          <lpage>245</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000320">
+        <label>64</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rutten</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Universal coalgebra: a theory of systems</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>249</volume>
+          <year>2000</year>
+          <fpage>3</fpage>
+          <lpage>80</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000325">
+        <label>65</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schröder</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Expressivity of coalgebraic modal logic: the limits and beyond</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>390</volume>
+          <issue>2–3</issue>
+          <year>2008</year>
+          <fpage>230</fpage>
+          <lpage>247</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000330">
+        <label>66</label>
+        <mixed-citation publication-type="other">R. Segala, Modeling and verification of randomized distributed real-time systems, Ph.D. Thesis, MIT, 1995.</mixed-citation>
+      </ref>
+      <ref id="br000335">
+        <label>67</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Segala</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Lynch</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Probabilistic simulations for probabilistic processes</chapter-title>
+          <source>Proc. CONCUR</source>
+          <series>LNCS</series>
+          <volume>vol. 836</volume>
+          <year>1994</year>
+          <fpage>481</fpage>
+          <lpage>496</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000340">
+        <label>68</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Silva</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Bonchi</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Bonsangue</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Rutten</surname>
+              <given-names>J.J.M.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitative Kleene coalgebras</article-title>
+          <source>Information and Computation</source>
+          <volume>209</volume>
+          <issue>5</issue>
+          <year>2011</year>
+          <fpage>822</fpage>
+          <lpage>849</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000345">
+        <label>69</label>
+        <mixed-citation publication-type="other">A. Sokolova, Coalgebraic analysis of probabilistic systems, Ph.D. Thesis, Eindhoven University of Technology, 2005.</mixed-citation>
+      </ref>
+      <ref id="br000350">
+        <label>70</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sokolova</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Vink</surname>
+              <given-names>E.d.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Probabilistic automata: system types, parallel composition and comparison</chapter-title>
+          <source>Validation of Stochastic Systems: A Guide to Current Research</source>
+          <series>LNCS</series>
+          <volume>vol. 2925</volume>
+          <year>2004</year>
+          <fpage>1</fpage>
+          <lpage>43</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000355">
+        <label>71</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sokolova</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Vink</surname>
+              <given-names>E.d.</given-names>
+            </name>
+            <name>
+              <surname>Woracek</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coalgebraic weak bisimulation for action-type systems</article-title>
+          <source>Scientific Annals of Computer Science</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>93</fpage>
+          <lpage>144</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000360">
+        <label>72</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stoelinga</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>An introduction to probabilistic automata</article-title>
+          <source>Bulletin of the EATCS</source>
+          <volume>78</volume>
+          <year>2002</year>
+          <fpage>176</fpage>
+          <lpage>198</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000365">
+        <label>73</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Turi</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Plotkin</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Towards a mathematical operational semantics</chapter-title>
+          <source>Proc. LICS</source>
+          <year>1997</year>
+          <publisher-name>IEEE</publisher-name>
+          <fpage>280</fpage>
+          <lpage>291</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000370">
+        <label>74</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Turi</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Rutten</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the foundations of final coalgebra semantics</article-title>
+          <source>Mathematical Structures in Computer Science</source>
+          <volume>8</volume>
+          <issue>5</issue>
+          <year>1998</year>
+          <fpage>481</fpage>
+          <lpage>540</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000375">
+        <label>75</label>
+        <mixed-citation publication-type="other">D. Varacca, Probability, nondeterminism and concurrency: two denotational models for probabilistic computation, Ph.D. Thesis, Univ. Aarhus, 2003. BRICS Dissertation Series, DS-03-14.</mixed-citation>
+      </ref>
+      <ref id="br000380">
+        <label>76</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Varacca</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Winskel</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distributing probabililty over nondeterminism</article-title>
+          <source>Mathematical Structures in Computer Science</source>
+          <volume>16</volume>
+          <issue>1</issue>
+          <year>2006</year>
+          <fpage>87</fpage>
+          <lpage>113</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000385">
+        <label>77</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vardi</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Automatic verification of probabilistic concurrent finite state programs</chapter-title>
+          <source>Proc. FOCS</source>
+          <year>1985</year>
+          <publisher-name>IEEE</publisher-name>
+          <publisher-loc>Portland, Oregon</publisher-loc>
+          <fpage>327</fpage>
+          <lpage>338</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000390">
+        <label>78</label>
+        <mixed-citation publication-type="other">I. Viglizzo, Coalgebras on measurable spaces, Ph.D. Thesis, Indiana University, 2005.</mixed-citation>
+      </ref>
+      <ref id="br000395">
+        <label>79</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Viglizzo</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Final sequences and final coalgebras for measurable spaces</chapter-title>
+          <source>CALCO</source>
+          <series>LNCS</series>
+          <volume>vol. 3629</volume>
+          <year>2005</year>
+          <fpage>395</fpage>
+          <lpage>407</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000400">
+        <label>80</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vink</surname>
+              <given-names>E.d.</given-names>
+            </name>
+            <name>
+              <surname>Rutten</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bisimulation for probabilistic transition systems: a coalgebraic approach</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>221</volume>
+          <year>1999</year>
+          <fpage>271</fpage>
+          <lpage>293</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000405">
+        <label>81</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wolter</surname>
+              <given-names>U.</given-names>
+            </name>
+          </person-group>
+          <article-title>On corelations, cokernels, and coequations</article-title>
+          <issue-title>Proc. CMCS’00</issue-title>
+          <source>Electronic Notes in Theoretical Computer Science</source>
+          <volume>33</volume>
+          <year>2000</year>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</article>

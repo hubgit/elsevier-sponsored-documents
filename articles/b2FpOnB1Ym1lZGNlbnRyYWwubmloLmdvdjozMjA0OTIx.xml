@@ -1,0 +1,589 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Theor Comp Sci</journal-id>
+      <journal-title-group>
+        <journal-title>Theoretical Computer Science</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0304-3975</issn>
+      <publisher>
+        <publisher-name>Elsevier BV, North-Holland, 1970-</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3204921</article-id>
+      <article-id pub-id-type="pmid">22163377</article-id>
+      <article-id pub-id-type="publisher-id">TCS8439</article-id>
+      <article-id pub-id-type="doi">10.1016/j.tcs.2011.06.030</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>The analysis of Range Quickselect and related problems<sup><xref ref-type="fn" rid="d30e14">☆</xref></sup></article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Martínez</surname>
+            <given-names>Conrado</given-names>
+          </name>
+          <xref rid="af000005" ref-type="aff">a</xref>
+          <xref rid="cor000005" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Panholzer</surname>
+            <given-names>Alois</given-names>
+          </name>
+          <xref rid="af000010" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Prodinger</surname>
+            <given-names>Helmut</given-names>
+          </name>
+          <xref rid="af000015" ref-type="aff">c</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="af000005"><label>a</label>Departament de Llenguatges i Sistemes Informàtics, Unversitat Politècnica de Catalunya, E-08034 Barcelona, Spain</aff>
+      <aff id="af000010"><label>b</label>Institut für Diskrete Mathematik und Geometrie, Technische Universität Wien, Wiedner Hauptstr. 8-10/104, 1040 Wien, Austria</aff>
+      <aff id="af000015"><label>c</label>Department of Mathematics, University of Stellenbosch, 7602 Stellenbosch, South Africa</aff>
+      <author-notes>
+        <corresp id="cor000005"><label>⁎</label>Corresponding author.</corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>28</day>
+        <month>10</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>28</day>
+        <month>10</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>412</volume>
+      <issue>46-24</issue>
+      <fpage>6537</fpage>
+      <lpage>6555</lpage>
+      <history>
+        <date date-type="received">
+          <day>4</day>
+          <month>2</month>
+          <year>2011</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>2</day>
+          <month>5</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>22</day>
+          <month>6</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier B.V.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Range Quickselect, a simple modification of the well-known Quickselect algorithm for selection, can be used to efficiently find an element with rank <italic>k</italic> in a given range <inline-formula><alternatives><textual-form specific-use="jats-markup">[<italic>i</italic>..<italic>j</italic>]</textual-form><mml:math id="M1" altimg="si2.gif" display="inline" overflow="scroll"><mml:mrow><mml:mo>[</mml:mo><mml:mi>i</mml:mi><mml:mo>.</mml:mo><mml:mo>.</mml:mo><mml:mi>j</mml:mi><mml:mo>]</mml:mo></mml:mrow></mml:math></alternatives></inline-formula>, out of <italic>n</italic> given elements. We study basic cost measures of Range Quickselect by computing exact and asymptotic results for the expected number of passes, comparisons and data moves during the execution of this algorithm.</p>
+        <p>The key element appearing in the analysis of Range Quickselect is a trivariate recurrence that we solve in full generality. The general solution of the recurrence proves to be very useful, as it allows us to tackle several related problems, besides the analysis that originally motivated us.</p>
+        <p>In particular, we have been able to carry out a precise analysis of the expected number of moves of the <italic>p</italic>th element when selecting the <italic>j</italic>th smallest element with standard Quickselect, where we are able to give both exact and asymptotic results.</p>
+        <p>Moreover, we can apply our general results to obtain exact and asymptotic results for several parameters in binary search trees, namely the expected number of common ancestors of the nodes with rank <italic>i</italic> and <italic>j</italic>, the expected size of the subtree rooted at the least common ancestor of the nodes with rank <italic>i</italic> and <italic>j</italic>, and the expected distance between the nodes of ranks <italic>i</italic> and <italic>j</italic>.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Quickselect</kwd>
+        <kwd>Hoare’s Find</kwd>
+        <kwd>Moves</kwd>
+        <kwd>Range Quickselect</kwd>
+        <kwd>Binary search trees</kwd>
+        <kwd>Average-case analysis</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="br000005">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Devroye</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the probabilistic worst-case time of <sc>FIND</sc></article-title>
+          <source>Algorithmica</source>
+          <volume>31</volume>
+          <year>2001</year>
+          <fpage>291</fpage>
+          <lpage>303</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000010">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Devroye</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Neininger</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distances and finger search in random binary search trees</article-title>
+          <source>SIAM J. Comput.</source>
+          <volume>33</volume>
+          <issue>3</issue>
+          <year>2004</year>
+          <fpage>647</fpage>
+          <lpage>658</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000015">
+        <label>3</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Graham</surname>
+              <given-names>R.L.</given-names>
+            </name>
+            <name>
+              <surname>Knuth</surname>
+              <given-names>D.E.</given-names>
+            </name>
+            <name>
+              <surname>Patashnik</surname>
+              <given-names>O.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Concrete Mathematics</chapter-title>
+          <edition>2nd ed.</edition>
+          <year>1994</year>
+          <publisher-name>Addison-Wesley</publisher-name>
+          <publisher-loc>Reading, MA</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="br000020">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grübel</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Rösler</surname>
+              <given-names>U.</given-names>
+            </name>
+          </person-group>
+          <article-title>Asymptotic distribution theory for Hoare’s selection algorithm</article-title>
+          <source>Adv. Appl. Probab.</source>
+          <volume>28</volume>
+          <year>1996</year>
+          <fpage>252</fpage>
+          <lpage>269</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000025">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hoare</surname>
+              <given-names>C.A.R.</given-names>
+            </name>
+          </person-group>
+          <article-title><sc>Find</sc> (Algorithm 65)</article-title>
+          <source>Commun. ACM</source>
+          <volume>4</volume>
+          <year>1961</year>
+          <fpage>321</fpage>
+          <lpage>322</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000030">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hoare</surname>
+              <given-names>C.A.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quicksort</article-title>
+          <source>Comput. J.</source>
+          <volume>5</volume>
+          <year>1962</year>
+          <fpage>10</fpage>
+          <lpage>15</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000035">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hwang</surname>
+              <given-names>H.-K.</given-names>
+            </name>
+            <name>
+              <surname>Tsai</surname>
+              <given-names>T.-H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quickselect and the Dickman function</article-title>
+          <source>Combin. Probab. Comput.</source>
+          <volume>11</volume>
+          <year>2002</year>
+          <fpage>353</fpage>
+          <lpage>371</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000040">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kirschenhofer</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Prodinger</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparisons in Hoare’s Find algorithm</article-title>
+          <source>Combin. Probab. Comput.</source>
+          <volume>7</volume>
+          <year>1998</year>
+          <fpage>111</fpage>
+          <lpage>120</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000045">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kirschenhofer</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Prodinger</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Martínez</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of Hoare’s <sc>Find</sc> algorithm with median-of-three partition</article-title>
+          <source>Random Structures Algorithms</source>
+          <volume>10</volume>
+          <issue>1</issue>
+          <year>1997</year>
+          <fpage>143</fpage>
+          <lpage>156</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000050">
+        <label>10</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Knuth</surname>
+              <given-names>D.E.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Mathematical analysis of algorithms</chapter-title>
+          <source>Information Processing’71, Proc. of the 1971 IFIP Congress</source>
+          <year>1972</year>
+          <publisher-name>North-Holland</publisher-name>
+          <publisher-loc>Amsterdam</publisher-loc>
+          <fpage>19</fpage>
+          <lpage>27</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000055">
+        <label>11</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Knuth</surname>
+              <given-names>D.E.</given-names>
+            </name>
+          </person-group>
+          <edition>2nd ed.</edition>
+          <series>The Art of Computer Programming: Sorting and Searching</series>
+          <volume>vol. 3</volume>
+          <year>1998</year>
+          <publisher-name>Addison-Wesley</publisher-name>
+          <publisher-loc>Reading, MA</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="br000060">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kuba</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>On Quickselect, partial sorting and multiple Quickselect</article-title>
+          <source>Inform. Process. Lett.</source>
+          <volume>99</volume>
+          <issue>5</issue>
+          <year>2006</year>
+          <fpage>181</fpage>
+          <lpage>186</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000065">
+        <label>13</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mahmoud</surname>
+              <given-names>H.M.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Average-case analysis of moves in quick select</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Martínez</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Sedgewick</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Proc. of the 6th Workshop on Analytic Algorithmics and Combinatorics, ANALCO</source>
+          <year>2009</year>
+          <publisher-name>SIAM</publisher-name>
+          <fpage>35</fpage>
+          <lpage>40</lpage>
+          <comment>Available from: <ext-link ext-link-type="uri" xlink:href="http://www.siam.org/proceedings/analco/2009/anl09_006_mahmoudh.pdf" id="ir000005">http://www.siam.org/proceedings/analco/2009/anl09_006_mahmoudh.pdf</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="br000070">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mahmoud</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Modarres</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Smythe</surname>
+              <given-names>R.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of quickselect: an algorithm for order statistics</article-title>
+          <source>RAIRO, Theor. Inform. Appl.</source>
+          <volume>29</volume>
+          <issue>4</issue>
+          <year>1995</year>
+          <fpage>255</fpage>
+          <lpage>276</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000075">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mahmoud</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Neininger</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distribution of distances in random binary search trees</article-title>
+          <source>Ann. Appl. Probab.</source>
+          <volume>13</volume>
+          <year>2003</year>
+          <fpage>253</fpage>
+          <lpage>276</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000080">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Martínez</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Panario</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Viola</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Adaptive sampling strategies for quickselect</article-title>
+          <source>ACM Trans. Algorithms</source>
+          <volume>6</volume>
+          <issue>3</issue>
+          <year>2010</year>
+          <comment>53:1–53:32 + appendices (14 pages)</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000085">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Martínez</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Panholzer</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Prodinger</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the number of descendants and ascendants in random search trees</article-title>
+          <source>Electron. J. Combin.</source>
+          <volume>5</volume>
+          <issue>#R20</issue>
+          <year>1998</year>
+          <comment>Available from: <ext-link ext-link-type="uri" xlink:href="http://www.combinatorics.org" id="ir000010">http://www.combinatorics.org</ext-link></comment>
+        </element-citation>
+      </ref>
+      <ref id="br000090">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Martínez</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Prodinger</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Moves and displacements of particular elements in Quicksort</article-title>
+          <source>Theoret. Comput. Sci.</source>
+          <volume>410</volume>
+          <issue>21–23</issue>
+          <year>2009</year>
+          <fpage>2279</fpage>
+          <lpage>2284</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000095">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Prodinger</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiple Quickselect — Hoare’s Find algorithm for several elements</article-title>
+          <source>Inform. Process. Lett.</source>
+          <volume>56</volume>
+          <issue>3</issue>
+          <year>1995</year>
+          <fpage>123</fpage>
+          <lpage>129</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000100">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rösler</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Rüschendorf</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>The contraction method for recursive algorithms</article-title>
+          <source>Algorithmica</source>
+          <year>2001</year>
+          <fpage>29:3</fpage>
+          <lpage>33</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000105">
+        <label>21</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sedgewick</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Flajolet</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>An Introduction to the Analysis of Algorithms</chapter-title>
+          <year>1996</year>
+          <publisher-name>Addison-Wesley</publisher-name>
+          <publisher-loc>Reading, MA</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="br000110">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seidel</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Aragon</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Randomized search trees</article-title>
+          <source>Algorithmica</source>
+          <volume>16</volume>
+          <year>1996</year>
+          <fpage>464</fpage>
+          <lpage>497</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <fn-group>
+      <fn id="d30e14">
+        <label>☆</label>
+        <p>This work was supported by the Spanish–Austrian research agreement ‘Acciones Integradas’, grant ES 10/2008 and by the Spanish–South African research agreement ‘Acciones Integradas’, grant HS2008-0003. The first author was supported by the Spanish Min. of Science and Technology, project TIN2006-11345 (ALINEX). The second author was supported by the Austrian Science Foundation FWF, grant S9608. The third author was supported by the South African Science Foundation NRF, grant 2053748. This research was also supported by the Center for Mathematical Research (CRM), Bellaterra, Spain, while the first and the third authors held research visiting positions there.</p>
+      </fn>
+    </fn-group>
+  </back>
+</article>

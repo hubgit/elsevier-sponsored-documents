@@ -1,0 +1,543 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Int J Psychophysiol</journal-id>
+      <journal-title-group>
+        <journal-title>International Journal of Psychophysiology</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0167-8760</issn>
+      <issn pub-type="epub">1872-7697</issn>
+      <publisher>
+        <publisher-name>Elsevier</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2877881</article-id>
+      <article-id pub-id-type="pmid">20093150</article-id>
+      <article-id pub-id-type="publisher-id">INTPSY10108</article-id>
+      <article-id pub-id-type="doi">10.1016/j.ijpsycho.2010.01.005</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Modelling event-related skin conductance responses</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bach</surname>
+            <given-names>Dominik R.</given-names>
+          </name>
+          <email>d.bach@fil.ion.ucl.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Flandin</surname>
+            <given-names>Guillaume</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>Karl J.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dolan</surname>
+            <given-names>Raymond J.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>Wellcome Trust Centre for Neuroimaging, University College London, 12 Queen Square, London WC1N 3BG, United Kingdom</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Tel.: + 44 20 7833 7472. <email>d.bach@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>3</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>3</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>75</volume>
+      <issue>3</issue>
+      <fpage>349</fpage>
+      <lpage>356</lpage>
+      <history>
+        <date date-type="received">
+          <day>30</day>
+          <month>9</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>6</day>
+          <month>1</month>
+          <year>2010</year>
+        </date>
+        <date date-type="accepted">
+          <day>8</day>
+          <month>1</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier B.V.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Analytic tools for psychophysiological signals often make implicit assumptions that are unspecified. In developing a mathematical framework for analysis of skin conductance responses [SCRs], we formalise our assumptions by positing that SCRs can be regarded as the output of a linear time-invariant filter. Here, we provide an empirical test of these assumptions. Our findings indicate that a large component of the variance in SCRs can be explained by one response function per individual. We note that baseline variance (i.e. variance in the absence of evoked responses) is higher than variance that could not be explained by a linear time-invariant model of evoked responses. Furthermore, there was no evidence for nonlinear interactions among evoked responses that depended on their temporal overlap. We develop a canonical response function and show that it can be used for signals from different recording sites. We discuss the implications of these observations for model-based analysis of SCRs.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Skin conductance</kwd>
+        <kwd>SCR</kwd>
+        <kwd>Galvanic skin response</kwd>
+        <kwd>GSR</kwd>
+        <kwd>Electrodermal activity</kwd>
+        <kwd>EDA</kwd>
+        <kwd>Convolution</kwd>
+        <kwd>Deconvolution</kwd>
+        <kwd>General linear model</kwd>
+        <kwd>Linear time-invariant filter</kwd>
+        <kwd>Biophysical models</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <label>1</label>
+      <title>Introduction</title>
+      <p>The essence of psychophysiology is to infer psychological processes from measured physiological signals. Rendering such inference plausible rests on assumptions about how these signals are generated, albeit in many instances without a formal specification. For example, the amplitude of event-related skin conductance responses [SCRs] is used to infer sympathetic arousal, where we know that SCRs are generated by sweat secretion initiated by distinct bursts of sudomotor nerve activity (<xref rid="bib5" ref-type="bibr">Boucsein, 1992</xref>). These sudomotor firing bursts directly relate to autonomic arousal, but the amplitude of the ensuing SCRs is only informative if there is a (linear) mapping from sudomotor firing (and hence, arousal) to SCR amplitude. The most parsimonious biophysical system that produces such a mapping would generate SCRs that are scaled versions of a template. Also, when two responses overlap, it is frequently posited that if some baseline can be estimated for the second response, its amplitude is not affected by the preceding response (<xref rid="bib5 bib3 bib9 bib1" ref-type="bibr">Boucsein, 1992; Barry et al., 1993; Lim et al., 1997; Alexander et al., 2005</xref>). This amounts to assuming that the compound response is simply the sum of two single responses.</p>
+      <p>Model-based analysis for SCR has been proposed for responses that occur in rapid succession (<xref rid="bib3 bib9 bib1 bib2 bib4" ref-type="bibr">Barry et al., 1993; Lim et al., 1997; Alexander et al., 2005; Bach et al., 2009; Benedek and Kaernbach, in press</xref>). The use of explicit mathematical models (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>) makes it necessary to formalise the underlying assumptions. The advantage of such explicit models is that assumptions underlying both classical and model-based methods are fully specified and can thus be tested. Here, we provide a test of the aforementioned assumptions about SCRs in order to show the validity of our model-based approach. Although similar assumptions have been made in previous approaches, they have not been tested formally.</p>
+      <p>We assume that SCRs are generated by a linear time-invariant [LTI] system (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>), a standard concept in signal processing. Time-invariance in this context corresponds to saying that within any individual and experimental condition, SCRs are scaled versions of a template. Linearity means that the response to any number of events equals to the sum of responses to each individual event. To substantiate these assumptions, we have shown that (a) under the linearity assumption, SCRs can be deconvolved even at inter stimulus intervals [ISIs] as short as 3 s, and (b) that in non-overlapping responses, about 75% of the total signal variance can be explained by one impulse response function, where the residual variance incorporates noise and spontaneous fluctuations. Finding (a) suggests that violations of the linearity assumption do not necessarily compromise analysis but does not provide a rigorous test of linearity. Likewise, while finding (b) suggests that the impulse response function can be regarded as largely time-invariant, it does not provide a quantitative estimate of violations of time-invariance. This is because the residual variance could not be partitioned into noise and variations in the response function per se. Furthermore, we have suggested that the time-invariance property generalises to a stereotyped response across individuals and stimulus types; thus making the use of a canonical response function feasible. We have however only tested two stimulus classes, that is, aversive white noise and negative, arousing (i.e. aversive) pictures, and used recordings from one electrode site (thenar/hypothenar). Here, we test linear and time-invariance assumptions in a more rigorous way by (a) quantifying resting-state signal variance in relation to residual variance in event-related responses; (b) testing the time-invariance assumption for more classes of stimuli; (c) testing linearity by presenting paired stimuli and comparing repetition effects at different ISIs; and (d) generalising these findings to other recording sites.</p>
+      <p>Event-related SCRs in various experimental contexts are summarised in <xref rid="bib5" ref-type="bibr">Boucsein (1992)</xref> and can be grouped into different classes: (a) phasic orienting responses to simple stimuli, often elicited by white noise sounds with loudness between 20 dB and 100 dB, usually requiring a motor reaction; (b) defensive reactions to potentially harmful stimuli, e.g. elicited by sounds around 100 dB loudness; and (c) responses to stimuli requiring more complex information processing and reflecting stimulus significance, e.g. by experimental instructions, or per se, for example when viewing emotional pictures. We have previously tested the time-invariance of responses to simple loud noises [category (a)] and emotional picture viewing [category (c)]. Here, we sought to test potentially harmful stimuli that fall into category (b), and responses to stimuli that are rendered significant by experimental instructions. Therefore, we measured responses to electric shocks slightly below the pain threshold, and to targets in an auditory oddball and a visual detection paradigm. We report data from these experiments, together with responses to single white noise bursts and compare them with responses from two experiments published previously (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>).</p>
+      <p>As we sought to quantify baseline variance of the skin conductance signal we needed a context where baseline responses are comparable to spontaneous fluctuations during evoked responses. In pilot experiments, we observed that baseline activity decreases rapidly when no stimulus is present for more than 30–40 s. Therefore, to obtain a comparable estimate of spontaneous fluctuations in the presence and absence of evoked responses, we chose to measure these in the visual detection paradigm; where a continuous stream of stimuli is presented, only one of which is to be attended. During the baseline period, the distractor stimuli were presented, but no target occurred. We hoped to show that spontaneous fluctuations (as indexed by variance in the absence of target stimuli) were a sufficient explanation for the residuals of a time-invariant model of evoked responses. In other words, we hoped to show that the baseline variance was equal or greater than the residual variance, under the assumption that the shape of the evoked responses did not vary from trial to trial.</p>
+      <p>In order to test the linearity assumption, we presented two stimuli with an inter stimulus interval [ISI] of 2, 5.5, or 9 s. Expected responses were estimated from responses to single stimuli during separate trials. Nonlinear responses imply that the SCR to the second stimulus depends on the response to the first, provided they occur sufficiently close together. This attenuation of the second response as a function of the first depends on the elapsed time (ISI) between them. Thus, it represents a repetition × ISI interaction. We expected to see a simple repetition effect (that can be attributed to adaptation of the underlying neuronal response) but were more interested in the interaction with ISI, which should be negligible under linear (i.e., superposition) models.</p>
+      <p>To ensure that the results obtained in these tests are not confined to palmar (thenar/hypothenar) recordings, we conducted a further experiment with simultaneous recordings from palm, fingers, and foot, in order to compare explained variance and the response function across recording sites.</p>
+      <p>In addition to testing model assumptions, we were able to develop a refined canonical response function (CRF), based on 1278 SCRs from 64 individuals, and analytically modelled as an exponentially modified Gaussian function. Similar functions have been used previously for example in modelling chromatographic peaks (for a review see e.g. <xref rid="bib6" ref-type="bibr">DiMarco and Bombi, 2001</xref>) and nutrient uptake in mammary glands (<xref rid="bib10" ref-type="bibr">Qiao et al., 2005</xref>). This synthetic CRF is now included in the functions scr_bf_crf and scr_bf_infbs in the Matlab software <italic>SCRalyze</italic> that has been released under the <italic>GNU General Public License</italic> and is obtainable from <ext-link ext-link-type="uri" xlink:href="http://scralyze.sourceforge.net">http://scralyze.sourceforge.net</ext-link><italic>.</italic></p>
+    </sec>
+    <sec sec-type="methods">
+      <label>2</label>
+      <title>Methods</title>
+      <sec>
+        <label>2.1</label>
+        <title>Participants</title>
+        <p>We recruited healthy unmedicated participants from the general population who all received monetary compensation for participation. Twenty individuals (10 male, 10 female, mean age ± standard deviation: 21.8 ± 3.3 years, range 19–30 years) took part in experiments 1 and 2, and 22 individuals (11 male, 11 female, mean age ± standard deviation: 24.7 ± 4.5 years, range 19–34 years) participated in experiments 3 and 4. Both subject samples were independent of each other and those in previous experiments (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>). Twenty-six participants, partly overlapping with previous experiments, took part in experiment 5 (12 male, 14 female, mean age ± standard deviation: 24.4 ± 4.9 years, range 19–35 years). All participants gave written informed consent, and the study was approved by the local ethics committee.</p>
+      </sec>
+      <sec>
+        <label>2.2</label>
+        <title>Stimuli and apparatus</title>
+        <sec>
+          <label>2.2.1</label>
+          <title>Experiment 1</title>
+          <p>We used 10 uncomfortable electric shocks to elicit SCRs, delivered via a pin-cathode/ring-anode configuration attached to the dominant forearm as a 500 Hz current train with individual square pulse width of 0.5 ms, varying current amplitudes (mean ± SD: 0.78 mA ± 0.43 mA) for 100 ms. Before the experiment, discomfort and pain thresholds were assessed with increasing stimulation intensity, with stimulation intensity being set as just below the pain threshold. Two epochs from one participant were missing due to a faulty trigger. This experiment always preceded experiment 2 in order to avoid spontaneous responses associated with prolonged anticipation of electric shocks.</p>
+        </sec>
+        <sec>
+          <label>2.2.2</label>
+          <title>Experiment 2</title>
+          <p>This experiment used an auditory oddball task with 10 oddball stimuli. Every second, one of two sine tones (50 ms length; 10 ms ramp; ∼ 75 dB; 440 or 660 Hz, respectively) was delivered via headphones (PX-660 Pro Luxe, Fujikon, Hong-Kong, China). The participant was instructed to press a computer key on hearing the oddball tone, the pitch of which was balanced across participants.</p>
+        </sec>
+        <sec>
+          <label>2.2.3</label>
+          <title>Experiment 3</title>
+          <p>In this visual detection task, a white letter was flashed on a black screen for 200 ms with 800 ms blank intervals. A red cross target stimulus was embedded in this stream and participants were asked to press a computer key when they detected the target. An additional baseline period of 60 s without targets was added to the beginning or end of the experiment (balanced across participants). To habituate participants to the distractor stimuli, each part of the experiment was preceded by 20 distractor stimuli. This experiment always preceded experiment 4, which we thought would be less prone to habituation.</p>
+        </sec>
+        <sec>
+          <label>2.2.4</label>
+          <title>Experiment 4</title>
+          <p>This experiment involved white noise sounds in four experimental conditions: single stimuli and double stimuli with an ISI of 2 s, 5.5 s, or 9 s. To avoid different subjective expectations about subsequent stimuli (between the first and the second stimulus), we additionally presented triple stimuli with ISIs randomly determined to be 2 s, 5.5 s, or 9 s. These trials were not analysed. For each experimental condition and for the triple stimuli, 10 trials were realised, summing to 50 trials in randomised order, and 100 sound stimuli. These were white noise sounds of 1 s length (10 ms onset and offset ramp, ∼ 85 dB sound pressure level), delivered via headphones (PX-660 Pro Luxe). Participants were instructed to press a button on a computer keyboard as quickly as possible when they heard a sound. A fixation cross was visible on the screen all the time. The first trial was preceded by 2 s of silence, and the last stimulus of each trial was followed by 30, 35, or 40 s of silence.</p>
+        </sec>
+        <sec>
+          <label>2.2.5</label>
+          <title>Experiment 5</title>
+          <p>The same stimulus type and equipment as in experiment 4 were used. Participants heard 20 single white noise bursts over headphones, and participants were asked to make a response to each sound with a pedal for the dominant foot.</p>
+        </sec>
+        <sec>
+          <label>2.2.6</label>
+          <title>Common settings</title>
+          <p>For experiments 1–3 and 5, ISI was randomly chosen to be 29 s, 34 s, or 29 s, with a mean of 34 s for each participant. All experiments were programmed in Cogent (Version 2000v1.25; <ext-link ext-link-type="uri" xlink:href="http://www.vislab.ucl.ac.uk/Cogent">www.vislab.ucl.ac.uk/Cogent</ext-link>) on Matlab 6.5 (MathWorks; Natick MA; USA), and run on a personal computer with a Pentium 4 processor and a SoundMax soundcard (Analog Devices, Norwood MA, USA).</p>
+          <p>Skin conductance was recorded on the thenar/hypothenar of the non-dominant hand using 8 mm Ag/AgCl cup electrodes (EL258, Biopac Systems., Goleta CA, USA) and 0.5%-NaCl electrode paste (GEL101; Biopac Systems). In experiment 5, additional recordings were made from the volar middle phalanx of the dominant 2nd/3rd finger, and the medial plantar surface of the non-dominant foot as described in <xref rid="bib5" ref-type="bibr">Boucsein (1992, p.99)</xref> Recordings were conducted in a magnetically shielded room (MSR), using a custom-built constant voltage coupler (2.5 V), based on a differential amplifier and DC-powered by a 12 V battery to minimise electromagnetic noise. The output of the coupler was converted into an optical pulse frequency. This varies sampling rate over time, such that the effective time resolution is determined by the lowest transmission frequency. The lowest sampling rates encountered in any participant were 93.9 Hz, 68.7 Hz, 24.0 Hz, 2.7 Hz, and 16.1 Hz, respectively for the five experiments (note that for the 5 participants with sampling rates smaller than 10 Hz in experiment 4, some aliasing might have been introduced during A/D conversion). This pulse signal was transmitted using fibre optics, digitally converted outside the MSR with 2 μs time resolution (Micro1401, Cambridge Electronic Design, Cambridge, UK), and recorded (Spike2, Cambridge Electronic Design, Cambridge, UK). Stimulus onset was signalled by TTL pulses of 10 ms length via the stimulus computer's parallel port, and recorded simultaneously with the same time resolution. Temperature and relative humidity of the experimental room were between 18–21.6 °C and 31–51% (experiments 1–2), 20.0–26.0 °C and 31–64% (experiment 3–4), and 21.6–27.6 °C and 45–68% (experiment 5).</p>
+        </sec>
+      </sec>
+      <sec>
+        <label>2.3</label>
+        <title>Data analysis</title>
+        <p>Data analysis was carried out in Matlab 7.4 using custom code that is available from the authors. Prior to analysis, skin conductance data were converted back to a waveform signal with 100 Hz time resolution, filtered with a bidirectional first-order Butterworth bandpass filter and cut-off frequencies of 5 Hz, and 0.0159 Hz (corresponding to a time constant of 10 s), respectively, and down-sampled to 10 Hz sampling rate. The time series was then <italic>z</italic>-transformed to account for between-subjects variance in SCR amplitude, which can be due to peripheral factors such as skin properties (note that <italic>z</italic>-transformation for experiment 3 included both event-related and baseline responses). The 30 s following each event onset was extracted and analysed. In experiment 5, 14 out of 520 epochs were excluded due to recording equipment malfunction (i.e. periods where no data was recorded). To ensure a conservative estimate of residual variance, we did not exclude potential artefacts or non-responses. Note that this does not influence the shape of the estimated response function, as unsystematic noise would not be represented in the first principal component used to characterise the response function. Despite filtering, skin conductance level can differ between trials and consequently data from each trial was mean-centred. Baseline responses in experiment 3 was extracted during 60 s, divided into two periods of 30 s and analysed similarly. ANOVAs of parameter estimates were conducted in SPSS 14.0 (Chicago IL, USA). We report <italic>ε</italic>- and corrected <italic>p</italic>-values according to Greenhouse–Geisser.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>3</label>
+      <title>Results</title>
+      <sec>
+        <label>3.1</label>
+        <title>Test of the time-invariance assumptions</title>
+        <p>For each experiment and each participant, we performed a principal component analysis [PCA] of SCRs to determine the response function that explained the maximum variance, and quantify unexplained residuals. Results are summarised in <xref rid="fig1" ref-type="fig">Fig. 1</xref>. Across all experimental paradigms, the variance explained was above 60%, albeit with considerable between-subjects differences, as evident in the box plots. Thus, for some participants, almost all variance could be explained by one response function, whereas for others, the residual variance was as high as 70%. Across the group, baseline variance in the visual detection experiment amounted to 64% of the total variance during evoked responses, well above the corresponding residual variance.</p>
+        <p>The same procedure was then applied to the combined responses from all participants in each experiment. This enabled us to quantify the between-subject variance in response shape (note that this does not speak to the time-invariance assumption but quantifies how stereotyped the responses were across individuals). These response functions explained more than 40% of total variance for each experiment. The response functions are depicted in the lower panel of <xref rid="fig1" ref-type="fig">Fig. 1</xref> and look similar, with the exception of a later peak for the aversive picture viewing experiment and a broader peak for the visual detection and auditory oddball experiment.</p>
+        <p>By combining all data, we created a canonical response function (CRF) based on 1278 SCRs from 64 participants, and a basis set, accounting for interindividual differences. The procedure is similar to the one used in <xref rid="bib2" ref-type="bibr">Bach et al. (2009)</xref> and is described in <xref rid="sec1" ref-type="sec">Appendix A</xref>. The three basis functions of this set depicted in <xref rid="fig2" ref-type="fig">Fig. 2</xref> explained 48.4%, 10.6%, and 5.0%, respectively, of the total variance, leaving 36.0% residual variance.</p>
+        <p>One issue to consider is how the high-pass filter influences the apparent response. High-pass filtering is necessary as we assume a finite response, but the raw skin conductance signal does not necessarily return to zero after an SCR. We therefore explored how the cut-off frequency of the high-pass filter impacts the explained variance within participants and experimental conditions. By applying filter frequencies between 0 and 0.025 Hz in 0.005 Hz steps, we show that across the whole group, the explained variance was estimated at 70% if no filter was applied and decreased, almost linearly, to 67.5% at the highest filter frequency. This shows that the filtering does not have an appreciable impact on the modelling of responses.</p>
+      </sec>
+      <sec>
+        <label>3.2</label>
+        <title>Test of the linearity assumptions</title>
+        <p>For each participant from experiment 4, we determined a response function by performing PCA on responses to single stimuli. The first PCA component was then fitted to trials with double events by convolving it with two stick functions for each event onset, and combining this with a constant component. Parameter estimates controlling the height of the two stick functions are depicted in <xref rid="fig3" ref-type="fig">Fig. 3</xref> and present the amplitude of the fixed-form responses for each trial type. Responses to the first (i.e. 30–40 s after the last stimulus) were larger than responses to the second sound, regardless of ISI; an effect that reached trend-level significance in a 2 (repetition) × 3 (ISI)-ANOVA (<italic>F</italic><sub>1, 21</sub> = 3.29; <italic>ε</italic> = 1; <italic>p</italic> = 0.08). When controlling for individual responsiveness by entering (mean-centred) single-response parameter estimates as a covariate, this effect was still significant at the trend level (<italic>F</italic><sub>1, 20</sub> = 3.89; <italic>ε</italic> = 1; <italic>p</italic> = 0.06). Additionally, individuals with higher responses to single stimuli had a higher repetition difference (<italic>F</italic><sub>1, 20</sub> = 4.82; <italic>ε</italic> = 1; <italic>p</italic> &lt; 0.05). However, there was no main effect of ISI (all <italic>F</italic>s &lt; 1.2) or interaction involving ISI (all <italic>F</italic>s &lt; 1) in any of the analyses. This suggests that we were observing repetition suppression that did not depend on ISI or nonlinear interactions among stimulus-specific SCRs.</p>
+        <p>It is conceivable that within an individual, a refractory period scales with the amplitude of the first response, or in other words, that the second response is suppressed more when the first response is bigger. We tested this for each ISI separately and for all ISIs together by computing within-subjects regression slopes between the first and second response. A stronger suppression of the second after a bigger first response would imply negative regression slopes. The regression slopes were however positive across all ISIs (<italic>t</italic><sub>21</sub> = 4.4; <italic>p</italic> &lt; 0.001). In other words, when the first response was relatively larger, the second was also increased. Within single ISIs, none of the regression slopes was significantly negative across subjects (all <italic>p</italic> &gt; 0.80). There was no linear (<italic>p</italic> &gt; 0.50) or quadratic (<italic>p</italic> &gt; 0.05) relationship of the regression slope with ISI. Therefore, if there is any relation between first and second response within individuals, it is consistently positive, thus arguing against an amplitude-dependent refractory period.</p>
+        <p>In our previous study (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>), we deconvolved the response function using an uninformed finite impulse response model. Parameter estimates from this model showed a time × ISI interaction, which might indicate a different response shape at different ISIs, but also overfitting of the data. In the present study, there was no indication of different response shape at different ISIs, such that our previous results can most likely be regarded as stemming from overfitting. <xref rid="fig3" ref-type="fig">Fig. 3</xref> shows predicted and observed responses from the model described above. There is a systematic residual in the fit of the response peaks, but this does not differ between the first and the second response.</p>
+      </sec>
+      <sec>
+        <label>3.3</label>
+        <title>Generalisation to other recording sites</title>
+        <p>For experiment 5, we assessed time-lagged correlations between different recording sites across the complete unfiltered time series. Averaged across participants, palmar and finger recordings shared 50.3% variance at a time lag of 0.4 s, and palmar and foot recordings shared 30.4% at a time lag of 1.3 s. After filtering, PCA revealed similar within and between-subjects variance estimates and similar response functions for the recording sites as shown in <xref rid="fig4" ref-type="fig">Fig. 4</xref>. The mean peak latencies of the response functions were 3.9 s for palmar, 4.3 s for finger and 5.0 s for plantar recordings, thus closely resembling the lag values obtained for the whole, unfiltered time series. Across subjects, the latency differences between recording sites were significantly related to the distance between head and recording site. Between-subjects differences in this distance however had no effect on individual peak latencies into the predicted direction for any of the recording sites. Thus, it is not possible to predict the peak latency in one person's response function from the individual head/recording site distance.</p>
+        <p>The aforementioned CRF could explain on the average 50.0%, 53.7%, and 48.9% of the variance for palmar, finger, and foot recordings. The whole basis set explained 68.9%, 67.3%, and 66.0%. Adjusting the CRF to account for longer peak latencies in finger and foot recordings did not improve the amount of explained variance, possibly due to the fact that it was built from different experimental conditions, some of which already involved longer peak latencies than the ones obtained with white noise sounds. The estimated response amplitude was highest for palm recordings, followed by the finger (factor 0.60) and the foot (factor 0.33).</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>4</label>
+      <title>Discussion</title>
+      <p>In this paper, we tested the time-invariance and linearity of SCRs as these constitute two central assumptions for SCR analysis both in classical methods (<xref rid="bib5" ref-type="bibr">Boucsein, 1992</xref>) and in model-based strategies, for example in a general linear convolution framework (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>). We conclude that the time-invariance assumption seems to be met. While there was trend-level evidence for repetition suppression even at ISIs of 9 s, we found no evidence that this suppression depended on ISI and therefore no convincing evidence for nonlinear interactions among overlapping SCRs, although CNS mechanisms might lead to repetition suppression independent of peripheral factors.</p>
+      <p>We previously reported residual variance between 20% and 40% on orienting responses to loud noise and aversive pictures, and could extend this now to defensive reactions and responses to events that are rendered salient by experimental instruction alone. In a visual detection task, we included a baseline period without target stimuli that was used to estimate baseline fluctuations. This exceeded the residual variance during evoked responses by almost a factor two. That is, it appears that spontaneous fluctuations are suppressed when SCRs are elicited by external events. This suggests that a major component of residual variance during evoked responses stems from spontaneous fluctuations (i.e. the components that contribute to baseline variance). In other words, spontaneous or non-specific fluctuations are more than a sufficient explanation for variability in evoked SCRs, and the time-invariance assumption can be regarded as met for practical purposes. This generalises to recordings from foot and middle phalanx of the fingers where very similar results were obtained.</p>
+      <p>Across participants, the estimated response functions looked comparable in different experimental paradigms. On this basis, we were able to estimate a canonical response function (CRF), derived from 1278 SCRs from 64 individuals. This was extended to form an informed basis set that can account for between-subject differences in response shape, and for between-condition differences; such as slightly later responses to aversive pictures (see <xref rid="fig2" ref-type="fig">Fig. 2</xref>). In comparison with previously reported response functions (<xref rid="bib9 bib1" ref-type="bibr">Lim et al., 1997; Alexander et al., 2005</xref>) our CRF has a much longer recovery time (see <xref rid="fig2" ref-type="fig">Fig. 2</xref>). It is however encouraging to note that our onset latency and peak are comparable with <xref rid="bib9" ref-type="bibr">Lim et al. (1997)</xref>. This is particularly important because their data were sampled at a fixed interval and adequately over-sampled, whereas we used a suboptimal (variable) sampling rate. The much shorter latency of the response function proposed by <xref rid="bib1" ref-type="bibr">Alexander et al. (2005)</xref> is due to the fact that their function does not include the time due to sensory processing and sudomotor transmission (which occurs prior to the measurable SCR response). It is worth noting that our CRF can also be used for foot and finger recordings without compromising model fit, indicating that the between-subject variance in response shape within one recording site dominates over the variance caused by latency differences between recording sites. Finger and foot recordings might be advantageous as thenar/hypothenar recordings are prone to movement artefacts. Recordings from distal phalanges of the fingers have been reported in the literature, and although we only acquired data from the middle phalanx, one might tentatively speculate that the time-invariance property and the canonical response function also apply at the distal phalanx.</p>
+      <p>Also, we found the linearity principle seems to hold, providing one allows for categorical differences in the underlying neuronal response to an initial stimulus, relative to subsequent stimuli. Between 3 s and 10 s after an event onset, responses to a second event of the same type were attenuated. Although this effect was not statistically significant, it speaks to a classical repetition suppression that may be useful to model in some designs (see below). Crucially, however, there was no effect of ISI, suggesting that the SCR to the second stimulus does not depend on the overlap with the SCR to the first. This is consistent with a linear model, provided the model incorporates simple repetition effects. It seems plausible that this kind of repetition effect reflects central adaption to the stimulus (for an overview see <xref rid="bib5" ref-type="bibr">Boucsein, 1992</xref>) but it could also be due to peripheral (e.g. sympathetic nerve) adaptation. Previous work (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>) suggested that the response shape might be different at different ISIs but we could not confirm this in the present study. This does not rule out non-linearities in the SCR response function, but they are probably difficult to detect without a clear hypothesis about their form.</p>
+      <p>Repetition effects could be an issue for any form of SCR analysis, be it semi-visual or mathematical. Here, we suggest how they can be dealt with in the framework of a linear convolution model (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>). If events engage a responsive system that has systematic variability, such that distinct levels of repetition are associated with different response amplitude, these levels can be encoded in different regressors (or, in classical analysis, in distinct levels of the experimental factor) (see <xref rid="bib7" ref-type="bibr">Friston et al., 1998</xref> for a discussion in the context of fMRI responses). Second, if there are systematic non-linearities in the responsiveness of the system, one can explicitly model these within the linear convolution framework using a Volterra series. Here, non-linearities are parameterised as coefficients of second and higher order Volterra kernels; together with the coefficients of the standard response function (first-order kernels). However, this is only necessary for more complex paradigms where there is no experimental control over repetition effects, or if we are specifically interested in such non-linearities, such as in studies of peripheral adaptation. Further work is needed to validate such models for the analysis of SCR and can be motivated by the fact that response habituation implies that the system we are modelling has memory.</p>
+      <p>An interesting possibility arises from the individual response functions depicted in <xref rid="fig1" ref-type="fig">Fig. 1</xref>, where aversive pictures evoke responses slightly later than other stimulus classes. There is no reason why the peripheral output system should exhibit a different response to one stimulus class than to any other. Given that images contain much more information than any other of the studied stimuli, this longer latency may reflect longer processing time in the central nervous system. The twist is that it might be possible to estimate characteristics of central nervous function by deconvolving the observed signal given a canonical response function. Recently proposed deconvolution/decomposition methods (<xref rid="bib1 bib4" ref-type="bibr">Alexander et al., 2005; Benedek and Kaernbach, in press</xref>) have addressed this issue by attempting to recover the sudomotor time series; however they did not provide a model for how this sudomotor activity relates to processes in the CNS. We will pursue this in future work.</p>
+      <p>We emphasise that the present approach not only assists in analysis of SCRs, but also connects to the broader literature on psychophysiological responses and sets out a framework of how analysis assumptions and research questions can be formulated mathematically. For example, it has been proposed that a higher rate of biphasic as opposed to monophasic SCRs might differentiate defensive from orienting responses (<xref rid="bib11" ref-type="bibr">Uno and Grings, 1965</xref>). In order to test this assumption, instead of visually scoring and counting responses (see <xref rid="bib5" ref-type="bibr">Boucsein, 1992</xref>), the present framework allows one to parameterise condition-specific response functions and test for their differences.</p>
+      <p>In conclusion, we have investigated two central assumptions of SCR analysis that are usually not made explicit, but which are entailed for example in a general linear convolution framework (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>). The time-invariance assumption could be supported, and there was no evidence for a violation of the linearity assumption, given repetition suppression is modelled. We suggest that repetition suppression does not preclude SCR analysis; indeed, non-linear methods can be incorporated into the linear framework, even if we do not have control over ISI. Thus, explicit modelling methods appear to be more powerful for SCR analysis than classical, semi-visual methods. Our findings pertain to many models that could be used for SCR. Indeed one might anticipate more refined models in the future, which might even relax the need for filtering the data prior to analysis. As noted by one of our reviewers, an interesting challenge here is to accommodate fluctuations in tonic skin conductance level, which can be substantially larger in amplitude than the SCR itself.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alexander</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Trengove</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Johnston</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>August</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Gordon</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Separating individual skin conductance responses in a short interstimulus-interval paradigm</article-title>
+          <source>J. Neurosci. Methods</source>
+          <volume>146</volume>
+          <year>2005</year>
+          <fpage>116</fpage>
+          <lpage>123</lpage>
+          <pub-id pub-id-type="pmid">15935228</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bach</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Time-series analysis for rapid event-related skin conductance responses</article-title>
+          <source>J. Neurosci. Methods</source>
+          <volume>184</volume>
+          <year>2009</year>
+          <fpage>224</fpage>
+          <lpage>234</lpage>
+          <pub-id pub-id-type="pmid">19686778</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barry</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Feldmann</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gordon</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Cocker</surname>
+              <given-names>K.I.</given-names>
+            </name>
+            <name>
+              <surname>Rennie</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Elicitation and habituation of the electrodermal orienting response in a short interstimulus interval paradigm</article-title>
+          <source>Int. J. Psychophysiol.</source>
+          <volume>15</volume>
+          <year>1993</year>
+          <fpage>247</fpage>
+          <lpage>253</lpage>
+          <pub-id pub-id-type="pmid">8119843</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <mixed-citation publication-type="other">Benedek, M., Kaernbach, C., in press. Decomposition of skin conductance data by means of nonnegative deconvolution. Psychophysiology.</mixed-citation>
+      </ref>
+      <ref id="bib5">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boucsein</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>Electrodermal Activity</source>
+          <year>1992</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>Berlin</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>DiMarco</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Bombi</surname>
+              <given-names>G.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mathematical functions for the representation of chromatographic peaks</article-title>
+          <source>J. Chromatogr. A</source>
+          <volume>931</volume>
+          <year>2001</year>
+          <fpage>1</fpage>
+          <lpage>30</lpage>
+          <pub-id pub-id-type="pmid">11695512</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Rees</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlinear event-related responses in fMRI</article-title>
+          <source>Magn. Reson. Med.</source>
+          <volume>39</volume>
+          <year>1998</year>
+          <fpage>41</fpage>
+          <lpage>52</lpage>
+          <pub-id pub-id-type="pmid">9438436</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lan</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Jorgenson</surname>
+              <given-names>J.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>A hybrid of exponential and gaussian functions as a simple model of asymmetric chromatographic peaks</article-title>
+          <source>J. Chromatogr. A</source>
+          <volume>915</volume>
+          <year>2001</year>
+          <fpage>1</fpage>
+          <lpage>13</lpage>
+          <pub-id pub-id-type="pmid">11358238</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lim</surname>
+              <given-names>C.L.</given-names>
+            </name>
+            <name>
+              <surname>Rennie</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Barry</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Bahramali</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Lazzaro</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Manor</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Gordon</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Decomposing skin conductance into tonic and phasic components</article-title>
+          <source>Int. J. Psychophysiol.</source>
+          <volume>25</volume>
+          <year>1997</year>
+          <fpage>97</fpage>
+          <lpage>109</lpage>
+          <pub-id pub-id-type="pmid">9101335</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Qiao</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Trout</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Quinton</surname>
+              <given-names>V.M.</given-names>
+            </name>
+            <name>
+              <surname>Cant</surname>
+              <given-names>J.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>A compartmental capillary, convolution integration model to investigate nutrient transport and metabolism in vivo from paired indicator/nutrient dilution curves</article-title>
+          <source>J. Appl. Physiol</source>
+          <volume>99</volume>
+          <year>2005</year>
+          <fpage>788</fpage>
+          <lpage>798</lpage>
+          <pub-id pub-id-type="pmid">15649875</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Uno</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Grings</surname>
+              <given-names>W.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Autonomic components of orienting behavior</article-title>
+          <source>Psychophysiology</source>
+          <volume>1</volume>
+          <year>1965</year>
+          <fpage>311</fpage>
+          <lpage>321</lpage>
+          <pub-id pub-id-type="pmid">5828004</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec id="sec1">
+      <label>Appendix A</label>
+      <p>In a previous paper, the canonical response function (CRF) was modelled as a Gaussian smoothed probability density function of a Gamma distribution (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>). It turns out with the present dataset that the polynomial part of this function is estimated to be one, such that the CRF can be more parsimoniously described by a Gaussian smoothed exponential function, or exponentially modified Gaussian function. Using a bi-exponential function provided better fit across all single experiments and for the combined dataset than a mono-exponential function or other related functions, such as the exponential-Gaussian hybrid function used in chromatography (<xref rid="bib8" ref-type="bibr">Lan and Jorgenson, 2001</xref>), or a (smoothed) sigmoid-exponential function as proposed by <xref rid="bib9" ref-type="bibr">Lim et al. (1997)</xref>. We now phenomenologically define the CRF as:<disp-formula><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mtext>can</mml:mtext></mml:msub><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>⊗</mml:mo><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>E</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>+</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mrow><mml:mo>∫</mml:mo><mml:msubsup><mml:mrow/><mml:mrow><mml:mo>−</mml:mo><mml:mi>∞</mml:mi></mml:mrow><mml:mrow><mml:mo>+</mml:mo><mml:mi>∞</mml:mi></mml:mrow></mml:msubsup></mml:mrow><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mi>τ</mml:mi></mml:mrow></mml:mfenced><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>E</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mfenced open="(" close=")"><mml:mi>τ</mml:mi></mml:mfenced><mml:mo>+</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mfenced open="(" close=")"><mml:mi>τ</mml:mi></mml:mfenced></mml:mrow></mml:mfenced><mml:mi>d</mml:mi><mml:mi>τ</mml:mi></mml:mrow></mml:math></disp-formula>where  ⊗  denotes the linear convolution operator<italic>, N</italic>(<italic>t</italic>) is a Gaussian function with standard deviation <italic>σ</italic>, centred at <italic>τ</italic><disp-formula><mml:math id="M2" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:msqrt><mml:mrow><mml:mn>2</mml:mn><mml:mi>π</mml:mi><mml:mi>σ</mml:mi></mml:mrow></mml:msqrt></mml:mfrac><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:msup><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mi>τ</mml:mi></mml:mrow></mml:mfenced><mml:mn>2</mml:mn></mml:msup><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:msup><mml:mi>σ</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:msup></mml:mrow></mml:math></disp-formula>and <italic>E</italic>(<italic>t</italic>) are exponential functions of the form<disp-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic><sub>1</sub>(<italic>t</italic>) = <italic>e</italic><sup> − <italic>λ</italic><sub>1</sub><italic>t</italic></sup>; <italic>E</italic><sub>2</sub>(<italic>t</italic>) = <italic>e</italic><sup> − <italic>λ</italic><sub>2</sub><italic>t</italic></sup></textual-form><mml:math id="M3" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>E</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi>λ</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mi>t</mml:mi></mml:mrow></mml:msup><mml:mo>;</mml:mo><mml:msub><mml:mi>E</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi>λ</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mi>t</mml:mi></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></disp-formula></p>
+      <p>The parameters of this analytical form of the CRF are estimated using the full dataset from this and a previous paper (<xref rid="bib2" ref-type="bibr">Bach et al., 2009</xref>) with a least-square approach and gradient search. The estimated parameters are:<disp-formula><mml:math id="M4" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:mo>{</mml:mo><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:mover accent="true"><mml:mi>τ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:mn>3.0745</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mover accent="true"><mml:mi>σ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:mn>0.7013</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>λ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>0.3176</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>λ</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mn>2</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>0.0708</mml:mn></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+      <p>Note that the parameters have an approximate biophysical meaning, in the sense that <italic>τ</italic> defines the event-to-peak time, <italic>σ</italic> relates to the rise time, and the two exponential constants approximately define the decay.</p>
+      <p>We define an <italic>informed basis set</italic> {h̃<sub>inf</sub><sup><italic>i</italic></sup> (<italic>t</italic>)}<sub><italic>i</italic> = 1…<italic>N</italic></sub>, given that the CRF does not fit all individuals equally well. This basis set is generated by performing a multivariate first-order Taylor expansion of the CRF along time and dispersion parameters. Thus, for the construction of the temporal derivative <inline-formula><mml:math id="M5" altimg="si6.gif" overflow="scroll"><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mtext>can</mml:mtext></mml:msub></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac></mml:math></inline-formula>, the canonical function is differentiated with respect to time. The dispersion derivative <inline-formula><mml:math id="M6" altimg="si7.gif" overflow="scroll"><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mtext>can</mml:mtext></mml:msub></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:mi>σ</mml:mi></mml:mrow></mml:mfrac></mml:math></inline-formula> is obtained by computing the difference between the original CRF and the same one convolved with a Gaussian function of greater variance (<italic>σ</italic>′ = 1.2623).</p>
+      <p>The <italic>informed basis set</italic> capturing the CRF is therefore:<disp-formula><mml:math id="M7" altimg="si8.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mfenced open="{" close="}"><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo>inf</mml:mo><mml:mi>i</mml:mi></mml:msubsup><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced></mml:mrow></mml:mfenced><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>…</mml:mo><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfenced open="{" close="}"><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mtext>can</mml:mtext></mml:msub><mml:mo>,</mml:mo><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mtext>can</mml:mtext></mml:msub></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>,</mml:mo><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mtext>can</mml:mtext></mml:msub></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:mi>σ</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula></p>
+      <p>This basis set was orthogonalised using a serial Gram–Schmidt process as implemented in the SPM software (spm_orth.m). The CRF is included in the <italic>SCRalyze</italic> software as function scr_bf_crf.m, and the basis set as scr_bf_infbs.m. The dataset on which this parameterisation was built is also included in the software distribution package.</p>
+    </sec>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>The authors wish to thank Peter Dayan who provided valuable comments on this work, Alfonso Reid who constructed the voltage coupler, and David Bradbury and Eric Featherstone for further technical support. All experiments were programmed using Cogent 2000 and Cogent Graphics, developed at University College London by the Cogent 2000 team and by John Romaya. This research was funded by a Programme Grant to RJD from the Wellcome Trust and by a Personal Grant to DRB from the Swiss National Science Foundation.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Variance partitioning and response functions were estimated for different stimulus classes. Top panel: bar charts show variance components across subjects; that is, variance explained by one common response function (black), between-subjects variance (grey) and residual variance (white) for each experiment. Light grey: baseline variance in the absence of evoked responses for the visual detection experiment. Box plots depict explained variance within subjects, showing median (line), quartiles (box), and range (whiskers). Outliers (values outside the 1.5 × interquartile range) are shown as individual dots; whiskers then represent the data within the interquartile range. Bottom panel: empirical (PCA) response functions across participants for the different experiments.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>A canonical response function was derived from observed responses (shown as the first PCA component ± standard deviation across all observations), and was described analytically as an exponentially modified Gaussian function (top panel). Time and dispersion derivatives were constructed to account for differences in response shape between participants and experimental conditions (middle panel); the complete basis set could explain 64.0% of the total variance. Latency and rise time are comparable to the function proposed by <xref rid="bib9" ref-type="bibr">Lim et al. (1997)</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>The linearity assumption was tested by presenting either single white noise sounds, or a sequence of two sounds with differing ISIs, separated by silent periods of 30–40 s. For each individual, a response function was estimated from their responses to single events, and responses to double events were estimated under time-invariance assumptions. It turns out that responses to second events are smaller than to the first event in each sequence, regardless of ISI (2–9 s); however, there is no evidence for dependency of the repetition suppression on ISI. Averaged residuals are similar for the first and second event, thus indicating no systematic alterations of response shape at different ISIs.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Variance portioning and response functions for hand (thenar/hypothenar), finger (volar surface, 2nd/3rd finger, middle phalanx), and medial foot (medial plantar) recordings. The ratio of explained variance is similar, and the response functions mainly differ in peak latency. Note that the canonical response function depicted in <xref rid="fig2" ref-type="fig">Fig. 2</xref> can explain responses from all three recording sites almost equally well.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+  </floats-group>
+</article>

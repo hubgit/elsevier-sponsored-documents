@@ -1,0 +1,1604 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title>Neuroimage</journal-title>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2330066</article-id>
+      <article-id pub-id-type="pmid">18325790</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG5203</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2008.01.027</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Voxel-based cortical thickness measurements in MRI</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hutton</surname>
+            <given-names>Chloe</given-names>
+          </name>
+          <email>chutton@fil.ion.ucl.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>De Vita</surname>
+            <given-names>Enrico</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ashburner</surname>
+            <given-names>John</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Deichmann</surname>
+            <given-names>Ralf</given-names>
+          </name>
+          <xref rid="aff3" ref-type="aff">c</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Turner</surname>
+            <given-names>Robert</given-names>
+          </name>
+          <xref rid="aff4" ref-type="aff">d</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>a</sup>Wellcome Trust Centre for Neuroimaging, Institute of Neurology, UCL, London, UK</addr-line>
+      </aff>
+      <aff id="aff2">
+        <addr-line><sup>b</sup>Department of Medical Physics and Bioengineering, UCL Hospitals NHS Foundation Trust, London, UK</addr-line>
+      </aff>
+      <aff id="aff3">
+        <addr-line><sup>c</sup>University Hospital, ZNN, Brain Imaging Center, Frankfurt, Germany</addr-line>
+      </aff>
+      <aff id="aff4">
+        <addr-line><sup>d</sup>Max Planck Institute for Human Cognitive and Brain Sciences, Leipzig, Germany</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Wellcome Trust Centre for Neuroimaging, Institute of Neurology, UCL, 12 Queen Square, London WC1N 3BG, UK. Fax: +44 207 813 1420. <email>chutton@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>01</day>
+        <month>5</month>
+        <year>2008</year>
+      </pub-date>
+      <volume>40</volume>
+      <issue>4</issue>
+      <fpage>1701</fpage>
+      <lpage>1710</lpage>
+      <history>
+        <date date-type="received">
+          <day>28</day>
+          <month>6</month>
+          <year>2005</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>21</day>
+          <month>12</month>
+          <year>2007</year>
+        </date>
+        <date date-type="accepted">
+          <day>9</day>
+          <month>1</month>
+          <year>2008</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2008 Elsevier Inc.</copyright-statement>
+        <copyright-year>2008</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>The thickness of the cerebral cortex can provide valuable information about normal and abnormal neuroanatomy. High resolution MRI together with powerful image processing techniques has made it possible to perform these measurements automatically over the whole brain. Here we present a method for automatically generating voxel-based cortical thickness (VBCT) maps. This technique results in maps where each voxel in the grey matter is assigned a thickness value. Sub-voxel measurements of thickness are possible using sub-sampling and interpolation of the image information. The method is applied to repeated MRI scans of a single subject from two MRI scanners to demonstrate its robustness and reproducibility. A simulated data set is used to show that small focal differences in thickness between two groups of subjects can be detected. We propose that the analysis of VBCT maps can provide results that are complementary to other anatomical analyses such as voxel-based morphometry.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Measuring the thickness of the human cerebral cortex is of great interest in studies of both normal and abnormal neuroanatomy. The average thickness over the whole brain is around 2.5 to 3 mm and within individual brains varies from about 2 mm at its thinnest in the calcarine cortex up to 4 mm and over in the thicker regions of the precentral gyrus, superior frontal lobes and superior temporal lobes (<xref rid="bib37" ref-type="bibr">Zilles, 1990</xref>). These variations relate to differences in cell types (<xref rid="bib13" ref-type="bibr">Geyer et al., 1999</xref>) and may also be associated with functionally distinct areas (<xref rid="bib7 bib34" ref-type="bibr">Brodmann , 1908; Von Economo and Koskinas, 1925</xref>). Studies have also shown that the cortex is thicker at the gyral ridges and thinner at the fundi of the sulci. Although cortical thickness varies between individuals, abnormally thick or thin cortex may be associated with changes in gray matter that correlate with specific neuropathologies and neurological conditions such as Alzheimer’s disease, schizophrenia and epilepsy. The thickness of the cortex can be a useful measure for understanding disease progression, for identifying affected brain regions and possibly for assessing treatment. It can also be an interesting metric for studying how the normal brain develops and ages.</p>
+      <p>Using current magnetic resonance imaging techniques, it is possible to measure cortical thickness in-vivo. Anatomical images can be acquired routinely with 1 mm<sup>3</sup> resolution and optimal contrast between grey and white matter using specially tailored sequences e.g. (<xref rid="bib9 bib8" ref-type="bibr">Deichmann et al., 2000; Deichmann et al., 2004</xref>).With such images the cortical sheet can be clearly identified and the thickness measured manually on image slices. However, since the cortex has a complex three-dimensional structure this task is tricky and labor-intensive. The emergence of image processing methods to automatically calculate cortical thickness over the whole brain in MRI is therefore not surprising (<xref rid="bib11 bib19 bib23 bib25 bib36" ref-type="bibr">Fischl and Dale, 2000; Jones et al., 2000; MacDonald et al., 2000; Miller et al., 2000; Zeng et al., 1999</xref>).With such techniques, it has become more feasible to study large populations of subjects and make comparisons between patients and controls. For example, studies using automated thickness measurements have demonstrated regional patterns of age-associated cortical thinning (<xref rid="bib29" ref-type="bibr">Salat et al., 2004</xref>) and longitudinal changes in cortical thickness in children (<xref rid="bib30" ref-type="bibr">Sowell et al., 2004</xref>). Automated methods have also been used to improve detection of focal cortical dysplasia lesions (<xref rid="bib1" ref-type="bibr">Antel et al., 2002</xref>), to study Huntingdon’s Disease (<xref rid="bib27" ref-type="bibr">Rosas et al., 2002</xref>), schizophrenia (<xref rid="bib20 bib26" ref-type="bibr">Kuperberg et al., 2003; Narr et al., 2005</xref>), multiple sclerosis (<xref rid="bib28" ref-type="bibr">Sailer et al., 2003</xref>), and Alzheimer’s disease (<xref rid="bib22" ref-type="bibr">Lerch et al., 2004</xref>).</p>
+      <p>Automated methods for measuring cortical thickness in MRI may be categorized as either surface-based, voxel-based or a mixture of the two. In general, surface-based techniques involve the generation of one or two surface models that are driven by image information and surface geometry to fit the grey and white matter surfaces of the image (<xref rid="bib11 bib19 bib23 bib25 bib36" ref-type="bibr">Fischl and Dale, 2000; Jones et al., 2000; MacDonald et al., 2000; Miller et al., 2000; Zeng et al., 1999</xref>). The thickness of the cortex is then defined at surface points or vertices and is given by some measure of the distance between them. Another type of approach involves extracting only the surface between the grey and white matter, then the thickness values that are determined volumetrically by calculating the normal distance from voxels in the cortex to the surface, are mapped towards the surface (e.g. <xref rid="bib21 bib31" ref-type="bibr">Lerch and Evans, 2005; Thompson et al., 2005</xref>). A variation of this approach involves the construction of image intensity-based metrics as a function of normal distance from the extracted surface from which cortical thickness can be quantified (<xref rid="bib25 bib24" ref-type="bibr">Miller et al., 2000; Miller et al., 2003</xref>). This idea has been extended further by stochastically modeling image intensity as a function of normal distance with cortical thickness being one of the model parameters (<xref rid="bib6" ref-type="bibr">Barta et al., 2005</xref>).</p>
+      <p>For methods involving surfaces, the comparison of thickness between subjects usually involves matching the corresponding cortical surfaces. In (<xref rid="bib12" ref-type="bibr">Fischl et al., 1999</xref>), the modeled surfaces have the topology of a sphere which allows the surfaces from different subjects to be matched in a spherical surface-based coordinate system in which thickness comparisons can be made.</p>
+      <p>Voxel-based cortical thickness measurements do not require the construction of a three-dimensional surface model. Grey and white matter boundaries are instead defined on the basis of whole voxel information (<xref rid="bib18 bib19 bib35" ref-type="bibr">Hutton et al., 2002; Jones et al., 2000; Yezzi and Prince, 2003</xref>). The cortical thickness is then calculated at every volumetric point within the cortex and is based on the length of the trajectory from one boundary to another.</p>
+      <p>Here we investigate a method for generating voxel-based cortical thickness (VBCT) maps from anatomical MRI. This technique results in maps where each voxel in the grey matter is assigned a thickness value. If required, the VBCT maps from different images and different subjects can be transformed into a standardized space using linear or non-linear spatial normalization procedures such as those implemented in SPM2 (<xref rid="bib4 bib2" ref-type="bibr">Ashburner and Friston, 1999; Ashburner and Friston, 2005</xref>). Regionally specific differences in cortical thickness between subjects or changes in cortical thickness over time can then be compared on a voxel-by-voxel basis. This general approach for comparing VBCT measures across different brain images can be considered to be a complementary technique to voxel-based morphometry (VBM) (<xref rid="bib3 bib15" ref-type="bibr">Ashburner and Friston, 2000; Good et al., 2001</xref>), which compares local grey matter concentration or volume. VBCT maps may be particularly advantageous for the analysis of conditions that are associated with cortical thinning, such as dementia, because the local topography of the grey matter is used to assign an absolute metric to grey matter voxels. In contrast, with VBM local grey matter density or volume will be confounded by how convoluted the brain is in a given region.</p>
+      <p>In brief, our method takes grey matter (GM), white matter (WM) and cerebrospinal fluid (CSF) probability maps resulting from segmented MR images. Morphological operators are used to extract grey matter whilst preserving the topological details of the sulci. The method for calculating thickness by solving Laplace’s equation for the cortical volume (<xref rid="bib19" ref-type="bibr">Jones et al., 2000</xref>) has been extended by applying it to sublayers of voxels within the cortex to identify regions of buried cortex ensuring that the thickness of grey matter within sulci is not over-estimated. The Laplace equation is then solved for all voxels in the cortex excluding the ones identified as being within sulci and the directions of trajectories connecting one border to the other are assigned to these voxels. The thickness value at each voxel is then calculated as the sum of the distances from that voxel to the inner and outer borders of the grey matter taking into account sulcal voxels where necessary. Although grey and white matter borders are defined on the basis of whole voxel information, sub-voxel measurements of thickness are possible using sub-sampling and interpolation of the image information.</p>
+      <p>In this paper, the robustness and reproducibility of the method is investigated by applying it to repeated MRI scans of a single subject from two MRI scanners of different field strengths. The method is also applied to a publicly available simulated data set (<xref rid="bib21" ref-type="bibr">Lerch and Evans, 2005</xref>), in which the right superior temporal gyri (rSTG) of half of the subjects has been artificially thinned, to show that small focal differences in thickness between two groups of subjects can be detected.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec2">
+      <title>Materials and methods</title>
+      <p>The following four sections describe (i) how thickness is defined and calculated, (ii) the procedure used to create the VBCT maps, (iii) the analysis of VBCT maps calculated from repeated MRI scans of a single subject from two MRI scanners and (iv) VBCT analysis of a simulated data set.</p>
+      <sec>
+        <title>Measuring thickness</title>
+        <p>A variety of distance metrics for measuring cortical thickness have been proposed in the literature (for a comparison, see (<xref rid="bib21" ref-type="bibr">Lerch and Evans, 2005</xref>)). Mostly these are straight line metrics connecting the inner and outer surfaces of the grey matter for example by the shortest path or the path normal to one of the surfaces. In this work the non-straight line distance proposed by (<xref rid="bib19" ref-type="bibr">Jones et al., 2000</xref>) is used. This method solves Laplace’s equation to construct trajectories passing through the cortical sheet connecting one surface to the other. A particular advantage of this approach is that for any path or trajectory there is mutual correspondence between the points on the two surfaces regardless of the trajectory’s starting point (<xref rid="fig1" ref-type="fig">Fig. 1</xref>a). This cannot be guaranteed when using a straight line distance measure.</p>
+        <p>The method works by assigning voxels within the GM an arbitrary starting value <italic>B</italic> while voxels on the inner and outer surfaces of the volume are assigned two different boundary conditions or potentials, <italic>B</italic>1 and <italic>B</italic>2 where <italic>B</italic>1 &lt; <italic>B</italic> &lt; <italic>B</italic>2. Laplace’s equation (<xref rid="fd1" ref-type="disp-formula">Eq. 1</xref>) is solved for each point within the volume to calculate the scalar field <italic>V</italic>.<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mo>∇</mml:mo><mml:mn>2</mml:mn></mml:msup><mml:mi>V</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mo>∂</mml:mo><mml:mn>2</mml:mn></mml:msup><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:msup><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mo>∂</mml:mo><mml:mn>2</mml:mn></mml:msup><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:msup><mml:mi>y</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mo>∂</mml:mo><mml:mn>2</mml:mn></mml:msup><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:msup><mml:mi>z</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:math></disp-formula></p>
+        <p>Due to the boundary conditions (<italic>V</italic> equals <italic>B</italic>1 and <italic>B</italic>2 on the inner and outer surfaces respectively), there is a unique solution to this equation which can be found iteratively using a standard relaxation method such as the one described in (<xref rid="bib19" ref-type="bibr">Jones et al., 2000</xref>). The resulting scalar field makes a smooth transition from one surface to the other. The gradient of the scalar field at each point can then be normalized to produce a tangential vector field <bold>N</bold> (Eq. <xref rid="fd2" ref-type="disp-formula">2</xref>).<disp-formula id="fd2"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mi mathvariant="bold">N</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mo>∇</mml:mo><mml:mi>V</mml:mi></mml:mrow><mml:mrow><mml:mrow><mml:mo>||</mml:mo><mml:mrow><mml:mo>∇</mml:mo><mml:mi>V</mml:mi></mml:mrow><mml:mo>||</mml:mo></mml:mrow></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula></p>
+        <p>Integrating in the direction defined by <bold>N</bold> at any point in the volume, from one boundary to the other, provides the length of the trajectory and hence the cortical thickness (as illustrated in <xref rid="fig1" ref-type="fig">Fig. 1</xref>a and in steps 3 and 4 of <xref rid="fig2" ref-type="fig">Fig. 2</xref>).</p>
+      </sec>
+      <sec>
+        <title>Generating VBCT maps</title>
+        <sec>
+          <title>Tissue segmentation</title>
+          <p>The first step is to segment the MR images into grey matter (GM), white matter (WM) and cerebrospinal fluid (CSF). In this work, two slightly different segmentation methods are performed. The first method is a Bayesian approach combining tissue classification with intensity correction for image inhomogeneities (<xref rid="bib5" ref-type="bibr">Ashburner and Friston, 1997</xref>) and is implemented in SPM2 (<ext-link xlink:href="http://www.fil.ion.ucl.ac.uk/spm/software/spm2" ext-link-type="uri">http://www.fil.ion.ucl.ac.uk/spm/software/spm2</ext-link>). This segmentation approach is used in the analysis of the simulated data set. The second method, which is used for within-subject analysis, with repeated MRI scans, is a recent extension of the former segmentation method that also combines a Bayesian tissue classification with intensity correction but performs non-linear tissue probability template matching (<xref rid="bib2" ref-type="bibr">Ashburner and Friston, 2005</xref>). This method alternates between classification, correction for intensity variations (usually caused by <italic>B</italic>1 inhomogeneity associated with the radio frequency head coil) and non-linear registration to a set of tissue probability templates. With both segmentation methods, voxels in the input MR image are classified according to the intensity value and position with respect to the matched templates. Both methods result in maps of belonging probabilities for GM, WM and CSF in the space of the input data (<xref rid="fig2" ref-type="fig">Fig. 2</xref>, step 1). The sum of the tissue probabilities at each voxel adds up to one.</p>
+        </sec>
+        <sec>
+          <title>Extraction of GM and WM</title>
+          <p>The GM, WM and CSF probability maps are discretised by assigning to each voxel the tissue class with the greatest probability. To exclude the cerebellum from the analysis, an image of a cutting plane that cuts through the brain stem of the WM probability template image is transformed into the space of the input data and multiplied by the WM probability map separating the WM in the cerebellum from the rest of the brain. The largest connected components resulting from connected component analyses (<xref rid="bib32" ref-type="bibr">Thurfjell et al., 1992</xref>) of the GM and WM images are selected as the initial maps of GM and WM voxels respectively.</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Preserving cortical topography</title>
+        <p>If the CSF spaces between narrow sulci are not well resolved, regions of cortex can appear to be ‘buried’ so that the thickness in these regions may be overestimated. This is illustrated in <xref rid="fig1" ref-type="fig">Fig. 1</xref>b where the thickness may be incorrectly estimated from the bottom of the sulci at the boundary between WM and GM up to the boundary between GM and CSF. The initial map of grey matter voxels, GM, will include voxels within buried cortex. These need to be identified to preserve the topography of the cortical sheet and ensure that the thickness is not overestimated in these regions. The following section together with <xref rid="fig1" ref-type="fig">Fig. 1</xref>c describes this process.</p>
+        <p>Starting from the initial WM map (<xref rid="fig1" ref-type="fig">Fig. 1</xref>c, left panel), layers of isotropic voxels are successively added to surround the WM (<xref rid="fig1" ref-type="fig">Fig. 1</xref>c, middle panel). The expected thickness of each single layer of voxels is <italic>T</italic>, where <italic>T</italic> is determined by the voxel size. For example, a single layer of 1 mm<sup>3</sup> isotropic voxels will result in a layer of thickness ranging from 1 mm up to <mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:msqrt><mml:mn>3</mml:mn></mml:msqrt></mml:mrow></mml:math> mm depending on the orientation of the layer. Each layer is labeled as GM and its thickness is then calculated by solving Laplace’s equation within the layer, computing the scalar field <italic>V</italic> (Eq. <xref rid="fd1" ref-type="disp-formula">1</xref>) and the tangential vector field <bold>N</bold> (Eq. <xref rid="fd2" ref-type="disp-formula">2</xref>). For each single layer, the calculated thickness is compared with the expected thickness <italic>T</italic>. In <xref rid="fig1" ref-type="fig">Fig. 1</xref>c, middle panel, the first two GM layers will not contain any voxels with a thickness greater than <italic>T</italic>. However, as can also be seen in <xref rid="fig1" ref-type="fig">Fig. 1</xref>c, middle panel, the thickness calculated for voxels in the third GM layer that also run along the middle of the sulcus will be much greater than <italic>T</italic>. These voxels are labeled as sulcal voxels (<xref rid="fig1" ref-type="fig">Fig. 1</xref>c, right panel, voxels highlighted in middle of sulcus). This is because these voxels are in contact with GM voxels within the same layer but from an opposite sulcal bank (<xref rid="fig1" ref-type="fig">Fig. 1</xref>b and <xref rid="fig1" ref-type="fig">Fig. 1</xref>c right panel). As can be seen in <xref rid="fig1" ref-type="fig">Fig. 1</xref>c, the location of the CSF space within the sulcus is ambiguous. It is therefore considered as being in the centre of the sulcal voxels (black dotted line in <xref rid="fig1" ref-type="fig">Fig. 1</xref>c, right panel). Sulcal voxels are used to indicate where the boundary is between GM and CSF and are therefore excluded from the GM map at this stage. However, in the final integration step which calculates the VBCT maps, the path through the sulcal voxels is included in the thickness calculation as described in <italic>Calculation of VBCT maps</italic>.</p>
+        <p>Layers are added to the WM until the outer limit of the GM is reached or a maximum number of layers have been added. The maximum number of layers prevents too many layers growing into the brain stem and sub-cortical structures. In this work, the maximum number of layers has been empirically defined to be the number of voxel layers not exceeding approximately 10 mm and is a maximum value which is reasonable to ensure that all cortical GM was included (since cortical thickness should not exceed around 5 mm). These steps result in a map identifying which voxels are in narrow sulci and a final map of GM formed by combining the processed GM layers for which the thickness can be calculated (<xref rid="fig2" ref-type="fig">Fig. 2</xref>, step 2).</p>
+        <sec>
+          <title>Calculation of VBCT maps</title>
+          <p>The VBCT maps are calculated for the final maps of GM (i.e. excluding the sulcal voxels). This is achieved by solving Laplace’s equation at every point in the final GM map to calculate the normal direction <bold>N</bold> for every voxel in the GM (<xref rid="fig2" ref-type="fig">Fig. 2</xref>, step 3). The next step is to calculate the total length of the path between two boundaries of the GM, by integrating along the trajectories described by <bold>N</bold> for each voxel in the GM. This is achieved by considering each voxel in turn as a start point P1 along the trajectory, with coordinates (<italic>x, y, z</italic>). From the start point, a step of length <italic>stepsize</italic> is taken in the direction defined by the normal at P1, i.e. <bold>N</bold>(<italic>x, y, z</italic>). The new position along the trajectory will then be point P2 with coordinates (<italic>x</italic> + Δ<italic>x,y</italic> + Δ<italic>y, z</italic> + Δ<italic>z</italic>) where Δ<italic>x</italic> = <bold>N</bold><sub><italic>x</italic></sub>(<italic>x, y, z</italic>) × <italic>stepsize</italic>, Δ<italic>y</italic> = <bold>N</bold><sub><italic>y</italic></sub>(<italic>x, y, z</italic>) × stepsize and Δ<italic>z</italic> = <bold>N</bold><sub><italic>z</italic></sub>(<italic>x, y, z</italic>) × <italic>stepsize</italic>. At point P2, the normal direction has a new value given by <bold>N</bold>(<italic>x</italic> + Δ<italic>x,y</italic> + Δ<italic>y,z</italic> + Δ<italic>z</italic>). This process continues until a boundary or sulcal voxel is reached. It is then repeated for <italic>stepsize</italic> multiplied by −1, starting from point P1, to integrate along the trajectory in the opposite direction. The resulting path length is the total sum of the steps from each voxel to both boundaries. For sulcal voxels, <bold>N</bold> has not been defined therefore the normal direction through the preceding voxel is used and the additional path length through this voxel is added on to the total path length. The resulting VBCT maps can be displayed volumetrically or on a surface reconstruction (<xref rid="fig2" ref-type="fig">Fig. 2</xref>, step 4).</p>
+        </sec>
+        <sec>
+          <title>Smoothing and thresholding VBCT maps</title>
+          <p>There are several reasons for smoothing VBCT maps. Firstly, an estimate of cortical thickness is calculated for every voxel in the grey matter resulting in relatively noisy values because Laplace’s equation is solved on a discrete grid with a finitely sized integration step. Smoothing the VBCT maps will therefore improve the signal to noise ratio and make any subsequent voxel-by-voxel analysis comparable to a region of interest approach because each voxel in the smoothed VBCT maps will contain the average thickness around the voxel. If comparing VBCT maps from different subjects, smoothing compensates for residual anatomical variability after spatial normalization and renders the data more normally distributed increasing the validity of any statistical parametric test. The size of the smoothing kernel should be chosen to reflect these points and when possible it should be comparable to the size of the expected regional differences. In more general terms, the reasons for smoothing are similar to those for smoothing grey matter probability maps when doing VBM (<xref rid="bib3" ref-type="bibr">Ashburner and Friston, 2000</xref>). However, when investigating within subject cortical thickness, it is also important to keep smoothing to a minimum so that any abrupt changes in thickness that may occur at the boundaries between cortical areas are not obscured.</p>
+          <p>A cortical thickness value is estimated for all voxels classified as GM so sub-cortical structures such as basal ganglia and extra-cortical tissue such as meninges may be included in the VBCT maps. However, only voxels in the grey matter sheet are of interest, therefore means and standard deviations are calculated after thresholding the smoothed VBCT maps at 5 mm. This threshold value was chosen as the upper limit for cortical thickness values reported in the literature.</p>
+        </sec>
+        <sec>
+          <title>Implementation and display</title>
+          <p>The routines described above are fully 3-dimensional, automated and implemented in Matlab 6.5 (The Mathworks Inc., Natick, MA) and C. After segmentation, tissue probability maps can be sub-sampled for the subsequent steps involved in the calculation of VBCT maps. This increases processing time but allows smaller structures, particularly narrow CSF spaces, to be resolved. The integration used to calculate thickness can also be performed with a sub-voxel step-size. The final VBCT maps are written out in the same space and at the same resolution as the original input data.</p>
+          <p>The VBCT maps can be viewed as three-dimensional volumes or used to colour a surface rendering of the brain. In this paper, the surface renderings have been generated in Matlab by extracting the isosurface representing the mid-point of the <italic>GM</italic>. The same <italic>GM</italic> mid-point has also been inflated using BrainVoyager 2000 (Brain Innovation, Maastricht, The Netherlands). The smoothed VBCT maps are then sampled at each of the resulting surface vertices and used to colour the surface renderings.</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Within Subject Comparison of VBCT maps</title>
+        <p>The purpose of this study was to investigate the robustness and reproducibility of VBCT analyses for repeated MRI scans of the same subject from two different MRI scanners.</p>
+        <sec>
+          <title>Data acquisition</title>
+          <p>Anatomical images of one healthy volunteer were acquired on two different Siemens MRI scanners (Siemens Medical Systems, Erlangen, Germany). Six image volumes were acquired on a 3 T Allegra head only scanner with head coil for transmission and reception. Two days later, six images were acquired on a 1.5-T Sonata whole body scanner with a whole body coil for transmission and an eight channel phased-array head coil for signal reception. On both scanners, not all of the images were acquired within the same session so much care was taken to position the subject in the same way for each scan.</p>
+          <p>On both scanners, the 3D MDEFT sequence was used (<xref rid="bib33" ref-type="bibr">Ugurbil et al., 1993</xref>) with asymmetric positioning of the inversion pulse within the preparation part of the sequence (<xref rid="bib8" ref-type="bibr">Deichmann et al., 2004</xref>). For the following sets of acquisition parameters, TI is the total duration of the preparation part, τ1 is the delay between the saturation and the inversion. At 1.5 T, the acquisition parameters were: TR/TE/TI = 12.24/3.56/530 ms, bandwidth = 106 Hz/Pixel, flip angle = 23°, τ1/TI = 42%. At 3 T, the acquisition parameters were: TR/TE/TI = 7.92/2.4/910 ms, bandwidth = 195 Hz/Pixel, flip angle = 15°, τ1/TI = 50%. The acquisition parameters common to both scanners were matrix = 256 × 224, FOV = 256 × 224 mm, number of slices = 176, acquisition orientation = sagittal, slice thickness = 1.0 mm, voxel size = 1.0 mm<sup>3</sup>, total duration = 12 min.</p>
+        </sec>
+        <sec>
+          <title>Calculation and comparison of VBCT maps</title>
+          <p>The MRI volumes were segmented using the combined method for Bayesian tissue classification and non-linear tissue template matching (<xref rid="bib2" ref-type="bibr">Ashburner and Friston, 2005</xref>). The segmented data (with 1 mm voxel resolution) were sub-sampled at 0.5 mm and VBCT maps were calculated for each MRI volume as described above. An integration step-size of half the sub-sampled voxel size, i.e. 0.25 mm, was used to calculate the thickness.</p>
+          <p>The segmentation method also yields the non-linear spatial transformation parameters matching the input image to the tissue probability templates. These were applied to the calculated VBCT maps to transform them into MNI space (<xref rid="bib10" ref-type="bibr">Evans et al., 1993</xref>). In this step, nearest neighbour interpolation was used to preserve the calculated thickness values.</p>
+          <p>The spatially normalised VBCT maps were smoothed using a three-dimensional Gaussian smoothing kernel with FWHM = 3 mm. A smoothing kernel of this size was chosen to reflect the average thickness of the cortex and to account for any small discrepancies in spatial normalisation. Gaussian smoothing slightly reduces the values in the VBCT maps because it performs a weighted averaging over all voxels included by the Gaussian kernel and the values of some of those voxels are zero if they do not consist of grey matter. This effect was corrected for by dividing the smoothed VBCT maps by a binary mask of each VBCT map which has had the same smoothing applied.</p>
+          <p>Maps of the mean and standard deviation of the VBCT maps (smoothed, normalised and corrected for smoothing effects), across the six scans for each scanner were calculated and displayed on renderings of the cortical surface and the inflated cortical surface. A standard deviation map was also calculated across all twelve VBCT maps. Histograms of cortical thickness values were generated for each VBCT map. A statistical comparison of the VBCT maps calculated for each scanner was performed using a two-sample <italic>t</italic>-test in SPM5 (<ext-link xlink:href="http://www.fil.ion.ucl.ac.uk/spm/software/spm5/" ext-link-type="uri">http://www.fil.ion.ucl.ac.uk/spm/software/spm5/</ext-link>). <italic>T</italic>-scores were calculated and p-values generated on the basis of a family-wise error correction for multiple comparisons. Voxels with <italic>p</italic> &lt; 0.05 were defined to have a significantly different thickness calculated for one scanner compared with the other.</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>VBCT analysis of a simulated population</title>
+        <p>The purpose of this study was to determine whether the VBCT analysis was able to detect a small regional change in thickness in a simulated population study.</p>
+        <sec>
+          <title>Simulated data</title>
+          <p>The publicly available simulated population data comprises 50 MRI image volumes which have already been transformed into stereotactic space and segmented into different tissue types (<xref rid="bib21" ref-type="bibr">Lerch and Evans, 2005</xref>). In this dataset, the right superior temporal gyri (rSTG) of 25 of the images have been artificially thinned to create a patient group. The authors describe that one layer of voxels in the rSTG was removed which should result in approximately 1 mm difference between the cortical thickness of the two groups in this region.</p>
+        </sec>
+        <sec>
+          <title>Calculation of VBCT maps</title>
+          <p>The simulated data were already segmented but required further segmentation to separate the brain from extra-cortical tissue and the cerebellum. Segmentation based on (<xref rid="bib5" ref-type="bibr">Ashburner and Friston, 1997</xref>) was used rather than the more recent method (<xref rid="bib2" ref-type="bibr">Ashburner and Friston, 2005</xref>) for two reasons. Firstly, the simulated data were already transformed into stereotactic space, so that the spatial normalization step of the more recent segmentation algorithm was redundant. Secondly, the voxel values of the segmented simulated data were not normally distributed, rendering this data invalid for the more recent segmentation approach.</p>
+          <p>After the additional segmentation, VBCT maps were calculated as described above for the 50 data-sets. The segmented data were analysed at the resolution of the input data, (i.e. 1 mm) and the integration step-size for calculating the thickness was 0.5 mm. Three-dimensional Gaussian smoothing with FWHM = 12 mm was applied to each VBCT map. A kernel size of 12 mm was chosen as a trade-off between looking for changes in cortical thickness, of the order of a few millimetres, while allowing for anatomical variability which can be between 1 and 2 cm.</p>
+        </sec>
+        <sec>
+          <title>Statistical comparison of VBCT maps</title>
+          <p>To identify voxels for inclusion in the statistical analysis and to determine the number of multiple comparisons, a smooth GM mask of the brain was created by performing a logical ‘OR’ over the VBCT maps followed by morphological opening (<xref rid="bib14" ref-type="bibr">Gonzalez and Woods, 1992</xref>), smoothing and thresholding. A group comparison of the smoothed VBCT maps was performed using a simple linear regression model in SPM2. <italic>T</italic>-scores were calculated for the model fit and p-values generated on the basis of a family-wise error correction for multiple comparisons over the GM. Regions of the cortex comprising voxels with <italic>p</italic> &lt; 0.05 were defined to be significantly thinner in one group compared with the other. The significantly thinner region was used to define a region of interest within which the mean and standard deviation of the difference between the means of the two groups of data were calculated.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results</title>
+      <sec>
+        <title>Within-subject comparison of VBCT maps</title>
+        <p><xref rid="fig3" ref-type="fig">Fig. 3</xref> shows surface renderings of the mean of the six VBCT maps from the 3 T scanner (a), and the 1.5 T scanner (b). The colouring of the surfaces corresponds to the mean thickness in millimetres as indicated by the colour scale. The mean VBCT maps from the two different scanners both show an overall increase in thickness from the posterior to the anterior regions of the brain. The thinnest regions are around the occipital area and within the central sulcus. The thickest regions are the superior frontal area and around the temporal lobes. The inflated surfaces indicate that thickness is greater at gyral ridges than within the sulci. This spatial organization of thickness is consistent with the literature (<xref rid="bib37" ref-type="bibr">Zilles, 1990</xref>) with the exception of the anterior bank of the central sulcus which is reported to be much thicker than the posterior bank (<xref rid="bib7 bib34" ref-type="bibr">Brodmann , 1908; Von Economo and Koskinas, 1925</xref>). In these results, both the anterior and posterior banks of the central sulcus are amongst the thinnest regions of the brain, and this is more apparent in the 1.5 T VBCT maps. This is addressed in the <xref rid="sec21" ref-type="sec">Discussion</xref>.</p>
+        <p><xref rid="fig4" ref-type="fig">Fig. 4</xref> shows surface renderings of the standard deviation of the six VBCT maps from the 3 T scanner (a), the 1.5 T scanner (b) and over all twelve VBCT maps (c). The colouring of the surfaces corresponds to the standard deviation of thickness in millimetres as indicated by the colour scale. The within-scanner standard deviation of the VBCT maps (<xref rid="fig4" ref-type="fig">Figs. 4</xref>, a and b) show that over most of the brain, the standard deviation is less than 0.25 mm. Regions of higher standard deviation (up to 0.4 mm) appear to be randomly scattered or correspond to thicker regions such as the superior frontal area and the insular cortex. The standard deviation of the VBCT maps from both scanners (<xref rid="fig4" ref-type="fig">Fig. 4</xref>c) indicates higher values in the region of the central sulcus, the superior frontal area and around the temporal lobes corresponding to the variation in thickness between the means for the two scanners as seen in <xref rid="fig3" ref-type="fig">Fig. 3</xref>. <xref rid="fig4" ref-type="fig">Fig. 4</xref>d shows the results of the statistical comparison between the VBCT maps calculated for each scanner. The maps of <italic>T</italic>-scores were thresholded at a value of ± 11.295 which corresponds to a corrected p-value of 0.05. Positive <italic>T</italic>-scores (in red) correspond to voxels where the thickness is significantly greater for images from the 3 T compared with the 1.5 T scanner. These voxels occur in the region of the left and right central sulcus and the left occipital pole. Voxels with a significantly greater thickness for images from the 1.5 T compared with the 3 T scanner (negative <italic>T</italic>-scores in blue) are located in superior frontal and temporal regions. These results are in concordance with the differences observed in the mean and standard deviation maps.</p>
+        <p><xref rid="fig5" ref-type="fig">Fig. 5</xref> shows histograms of cortical thickness values for the 3 T scanner (red) and the 1.5 T scanner (blue) where numbers of voxels are shown as a percentage of the total number of voxels having thickness values up to 10 mm. Around 85% of the voxels have thickness values less than 5 mm. There is clear consistency between the two sets of six within-scanner VBCT map histograms but discrepancy between the results for the 1.5 T and 3 T scanners. The mean thickness over the brain (calculated to include only voxels with thickness less than 5 mm) is 3.1 mm for both 1.5 T and 3 T images. The mean of the standard deviation map calculated for the within-scanner VBCT maps is 0.2 mm for both scanners. The mean of the standard deviation map calculated for VBCT maps from both scanners is 0.3 mm. <xref rid="fig6" ref-type="fig">Fig. 6</xref> shows a slice through a VBCT map showing an example of regions where the cortical thickness is greater than 5 mm. In this slice, these regions mostly correspond to sub-cortical structures and voxels in the insular and cingulate cortex.</p>
+      </sec>
+      <sec>
+        <title>VBCT analysis of a simulated population</title>
+        <p><xref rid="fig7" ref-type="fig">Fig. 7</xref> shows the map of <italic>T</italic>-scores indicating which voxels are significantly thinner in the group of data for which the rSTG had been artificially thinned (thresholded at <italic>p</italic> &lt; 0.05 corrected for multiple comparisons). In the top row, the maximum intensity projection of the <italic>T</italic>-scores is shown on the glass brain and in the bottom row, sagittal and coronal sections through the <italic>T</italic>-scores are overlaid on the MNI/ICBM canonical brain image (<xref rid="bib10" ref-type="bibr">Evans et al., 1993</xref>). 8726 voxels within the rSTG survived a family-wise error correction over the grey matter of <italic>p</italic> &lt; 0.05. No voxels were significantly thicker in the artificially thinned rSTG group. The mean(standard deviation) of the difference in thickness between the two groups of VBCT maps within the significantly thinner rSTG region = 0.68(0.43) mm.</p>
+      </sec>
+    </sec>
+    <sec id="sec21">
+      <title>Discussion</title>
+      <p>In this work we have investigated a method for generating VBCT maps, to determine its robustness, reproducibility, and ability to detect differences in cortical thickness between two groups of subjects. To do this, VBCT analyses were performed in a series of repeated MRI scans from a single subject acquired on two MRI scanners and in a simulated population study.</p>
+      <sec>
+        <title>VBCT versus surface-based methods</title>
+        <p>Currently, the majority of published studies using automated methods for measuring cortical thickness have been carried out using surface-based techniques for which the reliability has been demonstrated (<xref rid="bib16 bib21" ref-type="bibr">Han et al., 2006; Lerch and Evans, 2005</xref>). With these methods, the thickness is calculated at each point on the extracted cortical surface and surface-based smoothing is applied to the results. The benefit of this type of smoothing should be that it prevents the problem of averaging across different banks of sulci and gyri. However, this can only be ensured if the surface has been accurately extracted. Depending on the constraints associated with the method, it may be difficult to correctly fit a deformable surface model into deep sulci or buried cortex. Furthermore, such constraints may confound the analyses of abnormally structured brains. In this work, isotropic Gaussian smoothing has been applied to the cortical volume. Although this is a simple, practical way to improve the signal-to-noise ratio of the cortical thickness measurements and to account for anatomical variability, it is also disadvantageous due to the highly curved nature of the cortex. Performing anisotropic smoothing on the volume, for example in the direction orthogonal to the normal trajectories through the cortex, could provide a more natural representation of the cortical mantle and should be an area of further work.</p>
+        <p>An advantage of the VBCT method presented here is that topological constraints are imposed using a layer-growing process. In areas of the brain where there are thin regions of CSF between the sulcal banks, skeletonizing (<xref rid="bib14" ref-type="bibr">Gonzalez and Woods, 1992</xref>) the CSF may be an interesting alternative method for identifying deep sulci. However, the method presented here attempts to account for buried cortex and touching sulcal banks for sulci of sub-voxel width, even when there is no information about where the CSF lies. The voxel-based process means that a thickness value is calculated at every voxel in the cortex resulting in more than one measure of thickness for each trajectory or path connecting one surface to the other. These multiple measurements could be used to provide an indication of the signal to noise ratio which may be advantageous when comparing thickness across different scans. However, there are some clear advantages to surface-based comparisons of cortical thickness compared to volumetric comparisons. First, assuming that the surface has been accurately extracted, one can be sure that one point in the cortex is being compared with another. In contrast, when comparing volumes this feature is dependent on how well the data has been spatially normalized. Secondly, using volumetric comparisons, thicker areas of cortex will contain more voxels with a given thickness value so that comparisons in these regions will be inherently biased. Finally, since there are fewer vertices in a cortical surface compared with voxels in a cortical volume, the number of multiple comparisons is reduced. These last two points may be tackled by performing smoothing or averaging within the volume so that VBCT analyses are based on a smaller number of multiple comparisons.</p>
+        <p>Since all voxels classified as grey matter are included in the analysis, sub-cortical and extra-cortical structures may be included. Although calculating the thickness of such structures is not necessarily meaningful since they do not have the sheet-like structure of the cortex, this does not affect the results of voxel-wise comparisons of thickness in the cortex. If required, a volumetric atlas could be used to exclude the unwanted structures and a deformable surface model could be incorporated into the VBCT framework to impose further topological constraints.</p>
+      </sec>
+      <sec>
+        <title>Within-subject comparison of VBCT maps</title>
+        <p>Cortical thickness values reported in the literature mostly range from a mean thickness over the whole brain of around 2.5 mm up to 3 mm. For the subject studied in this experiment, we estimated a mean thickness over the brain of 3.1 mm. When comparing mean thickness over the brain calculated using different methods (in vivo and post mortem) it is important to consider several things. Firstly, the amount of cortical and non-cortical GM included in the calculation should be known. In this work, the approach has been to calculate the mean of voxels with a thickness value less than 5 mm. Secondly, current opinion seems to suggest that thickness measurements made on post-mortem brains are not directly comparable with in vivo techniques using MRI because stained brain sections exhibit different structural properties from in vivo brain MR images. Furthermore, it has been demonstrated that thickness values are dependent on the metric used to estimate them (<xref rid="bib21" ref-type="bibr">Lerch and Evans, 2005</xref>). The VBCT maps reported in this study lean slightly towards the higher end of reported values. This is attributed to using the method based on solving Laplace’s equation, which gives larger values since it calculates a non-straight line distance (<xref rid="bib19 bib21" ref-type="bibr">Jones et al., 2000; Lerch and Evans, 2005</xref>). In general, other factors that will affect the magnitude of the estimated cortical thickness in MRI are the quality of the original MRI, the reliability of the segmentation method and the amount of smoothing applied to the thickness measurements.</p>
+        <p>In the results presented here the anterior bank of the central sulcus is one of the thinnest regions of the brain which is inconsistent with histological studies indicating that it is one of the thickest (<xref rid="bib7 bib34" ref-type="bibr">Brodmann , 1908; Von Economo and Koskinas, 1925</xref>). There is also a significant difference between the results for the two scanners in the central sulcal region, with the thickness calculated for 3 T being greater than that for 1.5 T. There are several factors which may contribute to this disagreement. Firstly, the thickness calculation requires an accurate map of the boundaries of grey and white matter. These boundaries are determined by discretising probability maps resulting from a tissue segmentation step. On closer inspection of the segmentation results, particularly from the 1.5 T data, it could be observed that some voxels in the anterior bank of the central sulcus were assigned a higher probability of being white matter than grey matter. This ambiguity may be due to the difficulty of imaging this particular part of the brain towards the top of the head. This region is most likely to suffer from inhomogeneities of the radio-frequency (RF) coil in both transmit mode, giving rise to different image intensity scaling, and receive mode which can affect tissue contrast. This problem, which can be particularly apparent in images acquired using a phased-array head coil, has been reported in (<xref rid="bib8" ref-type="bibr">Deichmann et al., 2004</xref>). Further more, the bright fat signal from the scalp can lead to artefacts in the presence of subject motion (<xref rid="bib17" ref-type="bibr">Howarth et al., 2006</xref>). Therefore alternative MR image acquisition sequences or segmentation methods may be required to accurately delineate the cortex in this part of the brain. Over the rest of the brain, the spatial pattern of thickness is consistent with the literature and the mean of the between-scan, within-scanner standard deviation is 0.2 mm. The standard deviation over the VBCT maps from the two scanners together is higher (up to 0.4 mm) in the central sulcus, insular cortex and inferior temporal lobes. This indicates that although the same acquisition sequence was used on each MRI scanner, there are small but significant differences in the segmented versions of the 1.5 T and 3 T images.</p>
+      </sec>
+      <sec>
+        <title>VBCT analysis of a simulated population</title>
+        <p>A further purpose of this study was to determine whether a voxel-based approach for measuring cortical thickness could detect a small (∼ 1 mm) regional change in thickness in a simulated population study. The VBCT analysis was able to detect a large contiguous area within the rSTG (<italic>p</italic> &lt; 0.05 corrected) with a mean difference in thickness of 0.68 mm. These results were attained using a Gaussian smoothing kernel of 12 mm, which was chosen to account for anatomical variability. However, since the data are simulated, it would in general be possible to determine the best smoothing kernel for this data set given a precise map of the artificially thinned region. The data were analysed without any sub-sampling suggesting that it may be possible to detect a smaller difference (&lt; 1 mm) with sub-sampled data.</p>
+        <p>The analysis of this population data set differs from that of the repeated MRI scans, because the input data had previously been spatially registered and segmented using different methods as described by the dataset authors. In the presented method for measuring VBCT, an important factor is that the thickness is calculated on images in their native space and spatial transformations to the VBCT maps are made subsequently. We therefore do not make any comparisons between the single subject results and the simulated population results, but we do intend to pursue a similar group analysis on our own MRI data.</p>
+      </sec>
+      <sec>
+        <title>VBCT analysis versus VBM</title>
+        <p>For comparative brain morphometry, we propose that VBCT evaluations be considered as an analysis methodology that is complementary to VBM analysis of structural image data. With VBM, spatially normalized probability maps of grey and white matter are statistically compared. During spatial normalization, the volumes of certain brain regions may be stretched or shrunk. To account for this, a modulation step is performed that involves multiplying the normalized grey matter by the relative regional volume before and after normalization so that the total amount of grey matter signal in the normalized region is preserved. This is commonly referred to as optimized VBM (<xref rid="bib15" ref-type="bibr">Good et al., 2001</xref>). The analysis of data after performing this modulation step tests for regional differences in grey matter volume, whereas without the modulation step differences in grey matter concentration are being tested. In contrast, VBCT maps are calculated using segmented MR images in the native space of the subject’s original MRI assigning an absolute measure of cortical thickness to each grey matter voxel. When the VBCT maps are spatially normalized these absolute thickness values do not change. It is therefore possible to detect absolute differences in thickness using VBCT analyses. The relationship between thickness and local grey matter density or volume has not been established and will probably depend on the pathology or state associated with the morphometric changes being studied. For example, changes in local cortical atrophy may be more clearly defined using VBCT maps than VBM in regions of the brain where the cortex is more convoluted. A comparison between VBM and the analysis of VBCT maps will be the focus of further studies.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Conclusion</title>
+      <p>This work demonstrates the feasibility of using a voxel-based method to automatically calculate the cortical thickness over the whole brain. The calculated thickness values fall within the range of values reported in the literature using different techniques. The spatial relationship between the thicknesses of different regions is also consistent with the literature except in the region of the central sulcus. For single subject images acquired on the same scanner, the VBCT method has proved to be robust. The results of the simulated population study show that a difference in thickness of the order of 1 mm can be detected easily suggesting that the analysis of VBCT maps is a useful morphometric tool.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgment</title>
+      <p>This work was funded by the Wellcome Trust.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>Antel et al., 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Antel</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Bernasconi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Bernasconi</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Collins</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Kearney</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Shinghal</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Arnold</surname>
+              <given-names>D.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational models of MRI characteristics of focal cortical dysplasia improve lesion detection</article-title>
+          <source>Neuroimage</source>
+          <year>2002</year>
+          <volume>17</volume>
+          <fpage>1755</fpage>
+          <lpage>1760</lpage>
+          <pub-id pub-id-type="pmid">12498749</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <label>Ashburner and Friston, 1997</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multimodal image coregistration and partitioning–a unified framework</article-title>
+          <source>Neuroimage</source>
+          <year>1997</year>
+          <volume>6</volume>
+          <fpage>209</fpage>
+          <lpage>217</lpage>
+          <pub-id pub-id-type="pmid">9344825</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <label>Ashburner and Friston, 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlinear spatial normalization using basis functions</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>1999</year>
+          <volume>7</volume>
+          <fpage>254</fpage>
+          <lpage>266</lpage>
+          <pub-id pub-id-type="pmid">10408769</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <label>Ashburner and Friston, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Voxel-based morphometry–the methods</article-title>
+          <source>Neuroimage</source>
+          <year>2000</year>
+          <volume>11</volume>
+          <fpage>805</fpage>
+          <lpage>821</lpage>
+          <pub-id pub-id-type="pmid">10860804</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <label>Ashburner and Friston, 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Unified segmentation</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>26</volume>
+          <fpage>839</fpage>
+          <lpage>851</lpage>
+          <pub-id pub-id-type="pmid">15955494</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <label>Barta et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barta</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Anqi</surname>
+              <given-names>Q.</given-names>
+            </name>
+          </person-group>
+          <article-title>A stochastic model for studying the laminar structure of cortex from MRI. Medical Imaging</article-title>
+          <source>IEEE Transactions on</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>728</fpage>
+          <lpage>742</lpage>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <label>Brodmann, 1908</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brodmann</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Uber Rindenmessungen</article-title>
+          <source>Zentralbl. Nervenheilkd. Psychiatr.</source>
+          <year>1908</year>
+          <fpage>781</fpage>
+          <lpage>798</lpage>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <label>Deichmann et al., 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Good</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimization of 3-D MP-RAGE sequences for structural brain imaging</article-title>
+          <source>Neuroimage</source>
+          <year>2000</year>
+          <volume>12</volume>
+          <fpage>112</fpage>
+          <lpage>127</lpage>
+          <pub-id pub-id-type="pmid">10875908</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <label>Deichmann et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Schwarzbauer</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimisation of the 3D MDEFT sequence for anatomical brain imaging: technical implications at 1.5 and 3 T</article-title>
+          <source>Neuroimage</source>
+          <year>2004</year>
+          <volume>21</volume>
+          <fpage>757</fpage>
+          <lpage>767</lpage>
+          <pub-id pub-id-type="pmid">14980579</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <label>Evans et al., 1993</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Collins</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Mills</surname>
+              <given-names>S.R.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>E.D.</given-names>
+            </name>
+            <name>
+              <surname>Kelly</surname>
+              <given-names>R.L.</given-names>
+            </name>
+            <name>
+              <surname>Peters</surname>
+              <given-names>T.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>3D statistical neuroanatomical models from 305 MRI volumes</article-title>
+          <source>IEEE Nucl. Sci. Symp. Med. Imag. Conf.</source>
+          <year>1993</year>
+          <fpage>1813</fpage>
+          <lpage>1817</lpage>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <label>Fischl and Dale, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fischl</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Measuring the thickness of the human cerebral cortex from magnetic resonance images</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>2000</year>
+          <volume>97</volume>
+          <fpage>11050</fpage>
+          <lpage>11055</lpage>
+          <pub-id pub-id-type="pmid">10984517</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <label>Fischl et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fischl</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Sereno</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Tootell</surname>
+              <given-names>R.B.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>High-resolution intersubject averaging and a coordinate system for the cortical surface</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>1999</year>
+          <volume>8</volume>
+          <fpage>272</fpage>
+          <lpage>284</lpage>
+          <pub-id pub-id-type="pmid">10619420</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <label>Geyer et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Geyer</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Schleicher</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Zilles</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Areas 3a, 3b, and 1 of human primary somatosensory cortex</article-title>
+          <source>Neuroimage</source>
+          <year>1999</year>
+          <volume>10</volume>
+          <fpage>63</fpage>
+          <lpage>83</lpage>
+          <pub-id pub-id-type="pmid">10385582</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <label>Gonzalez and Woods, 1992</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gonzalez</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Woods</surname>
+              <given-names>R.E.</given-names>
+            </name>
+          </person-group>
+          <source>Representation and Description. Digital Image Processing</source>
+          <year>1992</year>
+          <publisher-name>Addison-Wesley Publishing Company</publisher-name>
+          <fpage>483</fpage>
+          <lpage>566</lpage>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <label>Good et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Good</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Johnsrude</surname>
+              <given-names>I.S.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.N.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>A voxel-based morphometric study of ageing in 465 normal adult human brains</article-title>
+          <source>NeuroImage</source>
+          <year>2001</year>
+          <volume>14</volume>
+          <fpage>21</fpage>
+          <lpage>36</lpage>
+          <pub-id pub-id-type="pmid">11525331</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <label>Han et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Han</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Jovicich</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Salat</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>van der</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Quinn</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Czanner</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Busa</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Pacheco</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Albert</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Killiany</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Maguire</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Rosas</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Makris</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Dickerson</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Fischl</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reliability of MRI-derived measurements of human cerebral cortical thickness: the effects of field strength, scanner upgrade and manufacturer</article-title>
+          <source>Neuroimage</source>
+          <year>2006</year>
+          <volume>32</volume>
+          <fpage>180</fpage>
+          <lpage>194</lpage>
+          <pub-id pub-id-type="pmid">16651008</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <label>Howarth et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Howarth</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Hutton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Improvement of the image quality of T1-weighted anatomical brain scans</article-title>
+          <source>Neuroimage</source>
+          <year>2006</year>
+          <volume>29</volume>
+          <fpage>930</fpage>
+          <lpage>937</lpage>
+          <pub-id pub-id-type="pmid">16153861</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <label>Hutton et al., 2002</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hutton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>De Vita</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sulcal Segmentation for Cortical Thickness Measurements</article-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Dohi</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kikinis</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Medical Image Computing and Computer-Assisted Intervention - MICCAI 2002: 5th International Conference, Tokyo, Japan, September 25-28, 2002, Proceedings, Part I, Lecture Notes in Computer Science</source>
+          <year>2002</year>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <publisher-loc>Heidelburg</publisher-loc>
+          <fpage>443</fpage>
+          <lpage>450</lpage>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <label>Jones et al., 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Buchbinder</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Aharon</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Three-dimensional mapping of cortical thickness using Laplace’s equation</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2000</year>
+          <volume>11</volume>
+          <fpage>12</fpage>
+          <lpage>32</lpage>
+          <pub-id pub-id-type="pmid">10997850</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <label>Kuperberg et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kuperberg</surname>
+              <given-names>G.R.</given-names>
+            </name>
+            <name>
+              <surname>Broome</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>McGuire</surname>
+              <given-names>P.K.</given-names>
+            </name>
+            <name>
+              <surname>David</surname>
+              <given-names>A.S.</given-names>
+            </name>
+            <name>
+              <surname>Eddy</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ozawa</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Goff</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>West</surname>
+              <given-names>W.C.</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>S.C.</given-names>
+            </name>
+            <name>
+              <surname>van der Kouwe</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Salat</surname>
+              <given-names>D.H.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Fischl</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Regionally localized thinning of the cerebral cortex in schizophrenia</article-title>
+          <source>Arch. Gen. Psychiatry</source>
+          <year>2003</year>
+          <volume>60</volume>
+          <fpage>878</fpage>
+          <lpage>888</lpage>
+          <pub-id pub-id-type="pmid">12963669</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <label>Lerch and Evans, 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lerch</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cortical thickness analysis examined through power analysis and a population simulation</article-title>
+          <source>Neuroimage</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>163</fpage>
+          <lpage>173</lpage>
+          <pub-id pub-id-type="pmid">15588607</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <label>Lerch et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lerch</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Pruessner</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Zijdenbos</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hampel</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Teipel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Focal Decline of Cortical Thickness in Alzheimer’s Disease Identified by Computational Neuroanatomy</article-title>
+          <source>Cereb.Cortex</source>
+          <year>2004</year>
+          <volume>15</volume>
+          <fpage>995</fpage>
+          <lpage>1001</lpage>
+          <pub-id pub-id-type="pmid">15537673</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <label>MacDonald et al., 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>MacDonald</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Kabani</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Avis</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated 3-D extraction of inner and outer surfaces of cerebral cortex from MRI</article-title>
+          <source>Neuroimage</source>
+          <year>2000</year>
+          <volume>12</volume>
+          <fpage>340</fpage>
+          <lpage>356</lpage>
+          <pub-id pub-id-type="pmid">10944416</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <label>Miller et al., 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Miller</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Massie</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Ratnanather</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Botteron</surname>
+              <given-names>K.N.</given-names>
+            </name>
+            <name>
+              <surname>Csernansky</surname>
+              <given-names>J.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian construction of geometrically based cortical thickness metrics</article-title>
+          <source>Neuroimage</source>
+          <year>2000</year>
+          <volume>12</volume>
+          <fpage>676</fpage>
+          <lpage>687</lpage>
+          <pub-id pub-id-type="pmid">11112399</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <label>Miller et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Miller</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Hosakere</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Barker</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Priebe</surname>
+              <given-names>C.E.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Ratnanather</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Gado</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Csernansky</surname>
+              <given-names>J.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Labeled cortical mantle distance maps of the cingulate quantify differences between dementia of the Alzheimer type and healthy aging</article-title>
+          <source>Proc. Natl. Acad. Sci.</source>
+          <year>2003</year>
+          <volume>100</volume>
+          <fpage>15172</fpage>
+          <lpage>15177</lpage>
+          <pub-id pub-id-type="pmid">14657370</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <label>Narr et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Narr</surname>
+              <given-names>K.L.</given-names>
+            </name>
+            <name>
+              <surname>Bilder</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Toga</surname>
+              <given-names>A.W.</given-names>
+            </name>
+            <name>
+              <surname>Woods</surname>
+              <given-names>R.P.</given-names>
+            </name>
+            <name>
+              <surname>Rex</surname>
+              <given-names>D.E.</given-names>
+            </name>
+            <name>
+              <surname>Szeszko</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Sevy</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gunduz-Bruce</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y.P.</given-names>
+            </name>
+            <name>
+              <surname>Deluca</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>P.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mapping cortical thickness and gray matter concentration in first episode schizophrenia</article-title>
+          <source>Cereb.Cortex</source>
+          <year>2005</year>
+          <volume>15</volume>
+          <fpage>708</fpage>
+          <lpage>719</lpage>
+          <pub-id pub-id-type="pmid">15371291</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <label>Rosas et al., 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rosas</surname>
+              <given-names>H.D.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Hersch</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Glessner</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ferrante</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Salat</surname>
+              <given-names>D.H.</given-names>
+            </name>
+            <name>
+              <surname>van der</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Jenkins</surname>
+              <given-names>B.G.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Fischl</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Regional and progressive thinning of the cortical ribbon in Huntington’s disease</article-title>
+          <source>Neurology</source>
+          <year>2002</year>
+          <volume>58</volume>
+          <fpage>695</fpage>
+          <lpage>701</lpage>
+          <pub-id pub-id-type="pmid">11889230</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <label>Sailer et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sailer</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Fischl</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Salat</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Tempelmann</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Schonfeld</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Busa</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Bodammer</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Heinze</surname>
+              <given-names>H.J.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Focal thinning of the cerebral cortex in multiple sclerosis</article-title>
+          <source>Brain</source>
+          <year>2003</year>
+          <volume>126</volume>
+          <fpage>1734</fpage>
+          <lpage>1744</lpage>
+          <pub-id pub-id-type="pmid">12805100</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <label>Salat et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salat</surname>
+              <given-names>D.H.</given-names>
+            </name>
+            <name>
+              <surname>Buckner</surname>
+              <given-names>R.L.</given-names>
+            </name>
+            <name>
+              <surname>Snyder</surname>
+              <given-names>A.Z.</given-names>
+            </name>
+            <name>
+              <surname>Greve</surname>
+              <given-names>D.N.</given-names>
+            </name>
+            <name>
+              <surname>Desikan</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Busa</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Fischl</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Thinning of the cerebral cortex in aging</article-title>
+          <source>Cereb.Cortex</source>
+          <year>2004</year>
+          <volume>14</volume>
+          <fpage>721</fpage>
+          <lpage>730</lpage>
+          <pub-id pub-id-type="pmid">15054051</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <label>Sowell et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sowell</surname>
+              <given-names>E.R.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>Leonard</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Welcome</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Kan</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Toga</surname>
+              <given-names>A.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Longitudinal mapping of cortical thickness and brain growth in normal children</article-title>
+          <source>J. Neurosci.</source>
+          <year>2004</year>
+          <volume>24</volume>
+          <fpage>8223</fpage>
+          <lpage>8231</lpage>
+          <pub-id pub-id-type="pmid">15385605</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <label>Thompson et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thompson</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Dutton</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Geaga</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Hayashi</surname>
+              <given-names>K.M.</given-names>
+            </name>
+            <name>
+              <surname>Eckert</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Bellugi</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Galaburda</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Korenberg</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Mills</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Toga</surname>
+              <given-names>A.W.</given-names>
+            </name>
+            <name>
+              <surname>Reiss</surname>
+              <given-names>A.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Abnormal cortical complexity and thickness profiles mapped in Williams syndrome</article-title>
+          <source>J. Neurosci.</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>4146</fpage>
+          <lpage>4158</lpage>
+          <pub-id pub-id-type="pmid">15843618</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <label>Thurfjell et al., 1992</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thurfjell</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Bengtsson</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Nordin</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new three-dimensional connected components labeling algorithm with simultaneous object feature extraction capability</article-title>
+          <source>CVGIP, Graph. Models Image Process.</source>
+          <year>1992</year>
+          <volume>54</volume>
+          <fpage>357</fpage>
+          <lpage>364</lpage>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <label>Ugurbil et al., 1993</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ugurbil</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Garwood</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ellermann</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hendrich</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Hinke</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Hu</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Menon</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Merkle</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Ogawa</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Salmi</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Imaging at high magnetic fields: initial experiences at 4 T</article-title>
+          <source>Magn. Reson. Q.</source>
+          <year>1993</year>
+          <volume>9</volume>
+          <fpage>259</fpage>
+          <lpage>277</lpage>
+          <pub-id pub-id-type="pmid">8274375</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <label>Von Economo and Koskinas, 1925</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Von Economo</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Koskinas</surname>
+              <given-names>G.N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Die Cytoarchitektonik der Hirnrinde des erwachsenen Menschen</article-title>
+          <year>1925</year>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <publisher-loc>Berlin</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <label>Yezzi and Prince, 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yezzi</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Prince</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>An Eulerian PDE approach for computing tissue thickness</article-title>
+          <source>IEEE Trans. Med. Imag.</source>
+          <year>2003</year>
+          <volume>22</volume>
+          <fpage>1332</fpage>
+          <lpage>1339</lpage>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <label>Zeng et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zeng</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Staib</surname>
+              <given-names>L.H.</given-names>
+            </name>
+            <name>
+              <surname>Schultz</surname>
+              <given-names>R.T.</given-names>
+            </name>
+            <name>
+              <surname>Duncan</surname>
+              <given-names>J.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Segmentation and measurement of the cortex from 3-D MR images using coupled-surfaces propagation</article-title>
+          <source>IEEE Trans. Med. Imag.</source>
+          <year>1999</year>
+          <volume>18</volume>
+          <fpage>927</fpage>
+          <lpage>937</lpage>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <label>Zilles, 1990</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zilles</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Human Nervous System</article-title>
+          <year>1990</year>
+          <publisher-name>Academic Press</publisher-name>
+          <publisher-loc>San Diego, CA</publisher-loc>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>(a) Non-straight line measure of thickness. Laplace's equation is solved for each point between the two surfaces (or boundaries), S1 and S2, resulting in a scalar field describing the smooth transition between them. From this scalar field, the direction of any trajectory from S1 to S2 can be computed. Integrating along any trajectory results in a thickness measure, e.g. from A to B (or B to A) and from C to D (or D to C). (b) Buried cortex where the CSF between the sulci is not resolved. Single layers of GM voxels are successively processed to identify voxels that are within the same layer, but from opposite sulcal banks. These are voxels that have a calculated thickness greater than the expected thickness <italic>T</italic> of a single layer of voxels. (c) Illustration of the steps required to identify buried cortex. Left panel: Schematic representing ‘buried’ cortex and starting point for adding GM layers. Middle panel: GM layers are illustrated in different shades of grey. The thickness calculated for voxels in the third GM layer that also run along the middle of the sulcus will be much greater than the expected thickness <italic>T</italic>. Right panel: Voxels with a calculated thickness greater than <italic>T</italic> are labelled as sulcal voxels.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>The steps involved in the calculation of VBCT maps.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Mean cortical thickness over the six VBCT maps calculated for images acquired on the 3 T scanner (a), and on the 1.5 T scanner (b). In the second and fourth rows, the mean thickness is shown on the cortical surface after inflation. The surface colouring corresponds to the mean thickness in mm. (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of this article.)</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Standard deviation of the cortical thickness over the six VBCT maps calculated for images acquired on the 3 T scanner (a), on the 1.5 T scanner (b) and over all twelve scans (c). The surface colouring corresponds to the standard deviation of the thickness in mm. (d) Statistical comparison between VBCT maps calculated for 3 T greater than 1.5 T scanner (positive T-scores in red) and 1.5 T greater than 3 T (negative T-scores in blue). T-scores are thresholded at ± 11.295 which corresponds to a corrected p-value of 0.05. (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of this article.)</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Histograms of cortical thickness values where numbers of voxels are shown as a percentage of the total number of voxels having thickness values up to 10 mm. Data from the 3 T scanner are shown in red and from the 1.5 T scanner in blue. (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of this article.)</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Slice through MRI (a) and corresponding VBCT map (b). The VBCT map slice shows regions where the thickness values are greater than 5 mm. These regions correspond to sub-cortical structures and some voxels in the insular and cingulate cortex.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Map of <italic>T</italic>-scores indicating voxels that are significantly thinner in the group where the rSTG had been artificially thinned (<italic>p</italic> &lt; 0.05 corrected). The top row shows a maximum intensity projection of the <italic>T</italic>-scores. In the bottom row the <italic>T</italic>-scores are overlaid on the MNI/ICBM canonical brain image.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+  </floats-wrap>
+</article>

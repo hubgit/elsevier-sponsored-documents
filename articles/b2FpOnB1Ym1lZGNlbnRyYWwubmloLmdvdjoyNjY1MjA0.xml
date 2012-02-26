@@ -1,0 +1,1170 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Med Image Anal</journal-id>
+      <journal-title>Medical Image Analysis</journal-title>
+      <issn pub-type="ppub">1361-8415</issn>
+      <issn pub-type="epub">1361-8423</issn>
+      <publisher>
+        <publisher-name>Elsevier</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2665204</article-id>
+      <article-id pub-id-type="pmid">19081285</article-id>
+      <article-id pub-id-type="publisher-id">MEDIMA419</article-id>
+      <article-id pub-id-type="doi">10.1016/j.media.2008.10.007</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>A quality-guided displacement tracking algorithm for ultrasonic elasticity imaging</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chen</surname>
+            <given-names>Lujie</given-names>
+          </name>
+          <email>lc420@eng.cam.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Treece</surname>
+            <given-names>Graham M.</given-names>
+          </name>
+          <email>gmt11@eng.cam.ac.uk</email>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lindop</surname>
+            <given-names>Joel E.</given-names>
+          </name>
+          <email>jel35@eng.cam.ac.uk</email>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gee</surname>
+            <given-names>Andrew H.</given-names>
+          </name>
+          <email>ahg@eng.cam.ac.uk</email>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Prager</surname>
+            <given-names>Richard W.</given-names>
+          </name>
+          <email>rwp@eng.cam.ac.uk</email>
+        </contrib>
+      </contrib-group>
+      <aff>
+        <addr-line>Department of Engineering, University of Cambridge, Trumpington Street, Cambridge CB2 1PZ, UK</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Tel.: +44 0 1223 332754; fax: +44 0 1223 332662. <email>lc420@eng.cam.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>4</month>
+        <year>2009</year>
+      </pub-date>
+      <volume>13</volume>
+      <issue>2</issue>
+      <fpage>286</fpage>
+      <lpage>296</lpage>
+      <history>
+        <date date-type="received">
+          <day>9</day>
+          <month>1</month>
+          <year>2008</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>10</day>
+          <month>7</month>
+          <year>2008</year>
+        </date>
+        <date date-type="accepted">
+          <day>24</day>
+          <month>10</month>
+          <year>2008</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2009 Elsevier B.V.</copyright-statement>
+        <copyright-year>2008</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>Displacement estimation is a key step in the evaluation of tissue elasticity by quasistatic strain imaging. An efficient approach may incorporate a tracking strategy whereby each estimate is initially obtained from its neighbours’ displacements and then refined through a localized search. This increases the accuracy and reduces the computational expense compared with exhaustive search. However, simple tracking strategies fail when the target displacement map exhibits complex structure. For example, there may be discontinuities and regions of indeterminate displacement caused by decorrelation between the pre- and post-deformation radio frequency (RF) echo signals. This paper introduces a novel displacement tracking algorithm, with a search strategy guided by a data quality indicator. Comparisons with existing methods show that the proposed algorithm is more robust when the displacement distribution is challenging.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Ultrasound</kwd>
+        <kwd>Elastography</kwd>
+        <kwd>Strain imaging</kwd>
+        <kwd>Tracking</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <label>1</label>
+      <title>Introduction</title>
+      <p>After over 20 years of research and development, ultrasound elasticity imaging is gradually demonstrating its ability to characterize the mechanical properties of tissue. Research activity has progressed from simulation and laboratory experiments to clinical trials (<xref rid="bib4" ref-type="bibr">Burnside et al., 2007</xref>). This trend is supported by ongoing development of signal processing methods and hardware innovation.</p>
+      <p>Some sort of deformation estimation is required by all elasticity imaging methods. For example, transient shear wave deformation induced externally (<xref rid="bib22 bib2" ref-type="bibr">Sandrin et al., 2002; Bercoff et al., 2003</xref>) or by the acoustic radiation force (<xref rid="bib24 bib15 bib3" ref-type="bibr">Sugimoto et al., 1990; Nightingale et al., 2001; Bercoff et al., 2004</xref>) can be used to obtain a two-dimensional map of the tissue’s mechanical properties. Depending on the magnitude of the deformation involved, some of these techniques may benefit from the displacement tracking algorithm that we describe in this paper. However, our focus is on the quasistatic approach to elasticity imaging (<xref rid="bib16" ref-type="bibr">Ophir et al., 1991</xref>), where deformation is introduced by pressing on the probe. Two radio frequency (RF) ultrasound frames are acquired pre- and post-deformation. Some indication of the tissue elasticity is provided by the axial strain, which is usually retrieved in two steps<xref rid="fn1" ref-type="fn">1</xref>: <italic>displacement estimation</italic>, by matching pre-deformation RF data windows with post-deformation windows; and <italic>strain estimation</italic>, by differentiating the displacement field. The speed and accuracy of the strain imaging system depends heavily on the displacement estimation algorithm in the first step.</p>
+      <p>Among several techniques for displacement estimation (<xref rid="bib11 bib27" ref-type="bibr">Langeland et al., 2003; Viola and Walker, 2003</xref>), correlation maximization was the first to be proposed (<xref rid="bib16" ref-type="bibr">Ophir et al., 1991</xref>) and remains the most widely used. The pre-deformation RF frame is divided into an axial–lateral grid of small windows, which are associated with corresponding windows in the post-deformation frame by searching for the highest correlation match. Tissue displacement is then given by the shift between the pre- and post-deformation windows. Efforts have been made to adapt the correlation algorithm to provide subsample accuracy (<xref rid="bib5" ref-type="bibr">Céspedes et al., 1995</xref>). Moreover, standard correlation, and its variants such as the sum of absolute differences and the sum of squared differences, have been integrated with multi-level or multi-scale schemes to improve the estimation stability (<xref rid="bib7 bib29 bib19 bib23" ref-type="bibr">Chaturvedi et al., 1998; Yeung et al., 1998; Pellot-Barakat et al., 2004; Shi and Varghese, 2007</xref>). As an alternative to exhaustive search, <xref rid="bib31" ref-type="bibr">Zhu and Hall (2002)</xref> proposed a tracking strategy that takes the displacement in each row of the grid as an initial guess for the next row. This allows a smaller search range and hence a reduction in the computational expense.</p>
+      <p>A second approach to displacement estimation is based on the phase of the RF data. <xref rid="bib17 bib18" ref-type="bibr">O’Donnell et al. (1991, 1994)</xref> showed that the phase of the complex correlation between baseband signal windows is related to the relative displacement of the two windows. In particular, the correlation peak corresponds to zero phase, while a nonzero phase can be used to estimate the location of the peak without further search. Based on their work, <xref rid="bib20" ref-type="bibr">Pesavento et al. (1999)</xref> proposed an improved method that calculates the displacement by tracking the zero phase location from point to point.<xref rid="fn2" ref-type="fn">2</xref> The efficiency of this tracking approach lies in the way the displacement map is accumulated. A point’s displacement is initialized according to the value of a neighbour’s previously calculated displacement. Phase zero search at the new point then refines the accuracy of this initial guess. If the guess is close to the actual value, the correlation phase can be used to estimate the zero phase location with minimal further computation.</p>
+      <p>Although they employ different techniques for the point-wise displacement estimation, <xref rid="bib31 bib20" ref-type="bibr">Zhu and Hall (2002) and Pesavento et al. (1999)</xref> both rely on a tracking strategy to advance the estimation process from one point to the next. This strategy sits on top of the low-level displacement estimation process, and controls the accumulation of the displacement map for the whole frame. As well as row-to-row tracking, there has been work on column-to-column (<xref rid="bib10" ref-type="bibr">Jiang and Hall, 2007</xref>) and diagonal (<xref rid="bib30" ref-type="bibr">Zahiri-Azar and Salcudean, 2006</xref>) strategies. Moreover, displacement tracking can be formulated as an optimization problem and solved by dynamic programming (<xref rid="bib9 bib21" ref-type="bibr">Jiang and Hall, 2006; Rivaz et al., 2008</xref>). The main difficulty with all such schemes, however, is the implicit assumption that the displacement field is continuous. In practice, different layers of biological tissue have a tendency to slip over each other under mechanical load. Consequently, real displacement maps often exhibit several disjoint regions, with displacement continuity only within each region. Moreover, RF echo decorrelation is commonplace when scanning <italic>in vivo</italic>, producing regions of indeterminate displacement where continuity cannot be assumed. These factors present important challenges for displacement tracking algorithms.</p>
+      <p>When the continuity assumption is violated, a tracking algorithm might not only fail to find the correct displacement at any particular point, but also propagate this incorrect estimate into other parts of the image, producing so-called <italic>drop-outs</italic>. To guard against this, incorrect displacement estimates can be detected and replaced by values interpolated from nearby points, before they get a chance to propagate (<xref rid="bib31 bib10" ref-type="bibr">Zhu and Hall, 2002; Jiang and Hall, 2007</xref>). Alternatively, a tracking algorithm might bypass poor estimates by allowing point initialisation within a larger, more flexible neighbourhood, as in the two-pass drop-out correction method of <xref rid="bib14 bib25 bib26" ref-type="bibr">Lindop et al. (2008b), Treece et al. (2006, 2008)</xref>. In the first tracking pass (from the top of the frame to the bottom), every point’s displacement is initialised from a seed point in the previous row. The algorithm examines a fixed-length lateral span in the previous row, centred on the current point, to locate the best seed point. In this context, ‘best’ is defined in terms of the correlation between the previously matched pre- and post-deformation RF windows. The second pass of tracking (from the bottom to the top) uses a similar seeding strategy and corrects remaining errors by comparing the correlations between the two passes: better correlated matches found in the second pass overwrite poorer matches discovered in the first pass.</p>
+      <p>One limiting factor of all current displacement tracking strategies is that the propagation direction, be it up–down, left–right or diagonal, is constrained. Some tracking errors might be avoidable by propagating the displacement estimates not from the predetermined fixed direction, where there might happen to be poor data, but from some other direction, where the data might be of better quality. In this paper, we develop this hypothesis into a novel, quality-guided displacement tracking algorithm for ultrasonic strain imaging. Its basis is a propagation scheme that is not constrained to any particular set of directions, but is instead guided by the quality of the data. The algorithm can be seeded at a single location or, for greater robustness, at multiple points. The quality measure that guides the algorithm can be any suitable metric calculated from the RF data. The paper includes a series of experiments that demonstrate the new method’s robustness in comparison with alternative approaches. Specifically, the quality-guided algorithm is able to track through geometrically irregular and disjoint regions, and copes well with regions of poorly correlated RF data.</p>
+    </sec>
+    <sec>
+      <label>2</label>
+      <title>Quality-guided displacement tracking</title>
+      <sec id="sec1">
+        <label>2.1</label>
+        <title>Seed initialization</title>
+        <p>The proposed quality-guided tracking algorithm comes in single-seed and multiple-seed variants. The former demonstrates the fundamental structure of the tracking strategy, while the latter is a significant extension that adds robustness when there are decorrelated regions and displacement discontinuities. For both versions, the first stage is seed initialization.</p>
+        <p>The seed initialization method used in this study is based on a simple grid test. On an RF frame, a grid of <italic>N</italic> regularly spaced points are tested as seed candidates. At each test point, a window is defined with the point at its centre. The magnitude of the complex cross-correlation is used to measure the similarity between the corresponding windows in RF frames recorded before and after deformation:<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mo stretchy="false">|</mml:mo><mml:mi>C</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:msub><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>y</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">|</mml:mo><mml:mo>=</mml:mo><mml:mrow><mml:mfenced open="|" close="|"><mml:mrow><mml:mfrac><mml:mrow><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mtext>,</mml:mtext><mml:mi>y</mml:mi><mml:mo>∈</mml:mo><mml:mi>W</mml:mi></mml:mrow></mml:munder><mml:msub><mml:mrow><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mtext>,</mml:mtext><mml:mi>y</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:msubsup><mml:mrow><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mo>∗</mml:mo></mml:mrow></mml:msubsup><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:mi>y</mml:mi><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>y</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msqrt><mml:mrow><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mtext>,</mml:mtext><mml:mi>y</mml:mi><mml:mo>∈</mml:mo><mml:mi>W</mml:mi></mml:mrow></mml:munder><mml:mo stretchy="false">|</mml:mo><mml:msub><mml:mrow><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mtext>,</mml:mtext><mml:mi>y</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">|</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>x</mml:mi><mml:mtext>,</mml:mtext><mml:mi>y</mml:mi><mml:mo>∈</mml:mo><mml:mi>W</mml:mi></mml:mrow></mml:munder><mml:mo stretchy="false">|</mml:mo><mml:msub><mml:mrow><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>x</mml:mi></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:mi>y</mml:mi><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>y</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">|</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:msqrt></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula>where <italic>C</italic>(<italic>d</italic><sub><italic>x</italic></sub>, <italic>d</italic><sub><italic>y</italic></sub>) is the correlation coefficient at axial displacement <italic>d</italic><sub><italic>y</italic></sub> and lateral displacement <italic>d</italic><sub><italic>x</italic></sub>, <italic>a</italic><sub>1</sub> and <italic>a</italic><sub>2</sub> are analytic RF signals obtained before and after deformation respectively, <mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mo>∗</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:math> is the complex conjugate of <italic>a</italic><sub>2</sub>, and <italic>W</italic> is the window size. A brute force search that varies (<italic>d</italic><sub><italic>x</italic></sub>, <italic>d</italic><sub><italic>y</italic></sub>) within the maximum expected displacement identifies the best match. The corresponding correlation coefficient magnitude and displacement are recorded for each test point. The search has a precision of one sample axially and one line laterally. After all grid points have been processed, the one with the highest correlation is chosen as the seed for the single-seed tracking algorithm. For the multiple-seed tracking algorithm, all of the grid points are used as seeds.</p>
+        <p>It remains to discuss the choice of an appropriate value for <italic>N</italic>, which is the algorithms’ only user-defined parameter. For the single-seed algorithm, the larger the value of <italic>N</italic>, the greater the chance of discovering a good seed. For the multiple-seed algorithm, <italic>N</italic> can be thought of as a natural scale parameter. With small <italic>N</italic>, the algorithm can seed and subsequently recover the displacement in a small number of large, disjoint regions. Should the user require greater sensitivity to smaller, disjoint regions, <italic>N</italic> should be increased. In the experiments reported in Section <xref rid="sec4" ref-type="sec">3</xref>, we set <italic>N</italic> to 20, at which level the algorithm is capable of seeding regions occupying around 5% of the frame (the precise number depends on the regions’ shape, so this is just a rule of thumb). At this order of magnitude, we shall see that seeding has little impact on the overall computational load, which is dominated by the subsequent displacement tracking stage.</p>
+      </sec>
+      <sec>
+        <label>2.2</label>
+        <title>Single-seed, quality-guided tracking</title>
+        <p>The proposed tracking strategy requires a quality indicator to determine each point’s reliability before it is used to initialize a neighbouring point. A number of criteria may be used as quality indicators, including phase gradient variance and correlation coefficient. In this paper, all studies make use of the complex correlation coefficient between aligned pre- and post-deformation RF windows, as given in Eq. <xref rid="fd1" ref-type="disp-formula">(1)</xref>. The quality map may be represented as <italic>Q</italic>(<italic>x</italic>, <italic>y</italic>), where <italic>y</italic> and <italic>x</italic> are indices in the axial and lateral directions respectively. The tracking algorithm maintains a set <italic>S</italic> which contains points that have been initialized and are ready for processing. At the start of the first step, <italic>S</italic><sub>1</sub> (1 is the index of the step) contains the one seed, <italic>p</italic><sub>1</sub> = (<italic>x</italic><sub>0</sub>, <italic>y</italic><sub>0</sub>). As <italic>p</italic><sub>1</sub> is the only point ready for processing, it is selected and fed into any suitable displacement estimation method (<xref rid="bib16 bib17 bib18 bib20 bib11 bib27" ref-type="bibr">Ophir et al., 1991; O’Donnell et al., 1991, 1994; Pesavento et al., 1999; Langeland et al., 2003; Viola and Walker, 2003</xref>) to calculate the displacement at this point. If using a correlation-based quality indicator, the calculated displacement (<italic>d</italic><sub><italic>x</italic></sub>, <italic>d</italic><sub><italic>y</italic></sub>) is then used to determine <italic>Q</italic>(<italic>x</italic><sub>0</sub>, <italic>y</italic><sub>0</sub>) according to Eq. <xref rid="fd1" ref-type="disp-formula">(1)</xref>.</p>
+        <p>In the second step, the point set is updated by removing <italic>p</italic><sub>1</sub> from <italic>S</italic> and adding its four neighbours, whose initial displacement estimates and qualities are assigned according to <italic>p</italic><sub>1</sub>’s values:<disp-formula><label>(2)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mo stretchy="false">{</mml:mo><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>5</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">}</mml:mo></mml:math></disp-formula>where <italic>p</italic><sub>2</sub> = (<italic>x</italic><sub>0</sub> + 1, <italic>y</italic><sub>0</sub>), <italic>p</italic><sub>3</sub> = (<italic>x</italic><sub>0</sub> − 1, <italic>y</italic><sub>0</sub>), <italic>p</italic><sub>4</sub> = (<italic>x</italic><sub>0</sub>, <italic>y</italic><sub>0</sub> + 1), and <italic>p</italic><sub>5</sub> = (<italic>x</italic><sub>0</sub>, <italic>y</italic><sub>0</sub> − 1). Since there are now four points ready for processing, the next point to be processed is selected according to the maximum quality criterion:<disp-formula><label>(3)</label><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="italic">Pt</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi mathvariant="normal">arg</mml:mi><mml:mrow><mml:mi mathvariant="normal">max</mml:mi></mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>Q</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mtext>,</mml:mtext><mml:mi>Q</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mtext>,</mml:mtext><mml:mi>Q</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mtext>,</mml:mtext><mml:mi>Q</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>5</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:math></disp-formula>where <italic>Pt</italic><sub>2</sub> refers to the current point to be processed (2 denotes the index of the step), and the arg max( ) operator extracts the point with the maximum quality value from <italic>S</italic>. If there is a tie, as there will inevitably be at step 2, any one of the tied points is selected at random. Subsequently, <italic>Pt</italic><sub>2</sub> is processed by a displacement estimation method, and during this procedure both its displacement and quality are refined.</p>
+        <p>Similarly, in the third step, <italic>Pt</italic><sub>2</sub> is removed from the point set <italic>S</italic>. Its neighbours that have not yet been encountered are initialized with <italic>Pt</italic><sub>2</sub>’s displacement and quality, and added to <italic>S</italic>. A new current point is then selected, according to the maximum quality criterion. This recursive process continues and can be described as<disp-formula><label>(4)</label><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mtext>Neighbour</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="italic">Pt</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="italic">Pt</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:math></disp-formula><disp-formula><label>(5)</label><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="italic">Pt</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi mathvariant="normal">arg</mml:mi><mml:mrow><mml:mi mathvariant="normal">max</mml:mi></mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>Q</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">|</mml:mo><mml:mi>p</mml:mi><mml:mo>∈</mml:mo><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></disp-formula>where the Neighbour( ) operator extracts a point’s 4-way neighbours that are not in <italic>S</italic> and have not yet been processed. For any neighbour that is already in <italic>S</italic>, a comparison is made between its quality value and that of the current point. If the current point’s quality is greater, the neighbour’s initial displacement estimate is replaced by the current point’s displacement. This simply reflects the fact that a better displacement estimate is now available. The algorithm terminates when the point set <italic>S</italic> is empty, which indicates that all points in the RF frame have been processed.</p>
+        <p>This strategy ensures that high quality regions are processed first, while low quality regions are avoided at an early stage – see <xref rid="fig1" ref-type="fig">Fig. 1</xref>. Accurate displacement estimates in high quality regions are propagated to other points, while the inevitably poor estimates in lower quality regions are prevented from spreading. Note, however, that there is no guarantee that points are processed in order of quality: a high quality point will not be processed until the tracking path reaches it. Nevertheless, since there is no constraint on the direction of propagation, the algorithm is able to process a region with an arbitrary geometrical shape. <xref rid="fig2" ref-type="fig">Fig. 2</xref> shows a flowchart for the single-seed, quality-guided tracking strategy with the correlation quality indicator.</p>
+      </sec>
+      <sec id="sec2">
+        <label>2.3</label>
+        <title>Multiple-seed, quality-guided tracking</title>
+        <p>There are two common situations that may cause the single-seed tracking algorithm to fail, retrieving only a partially correct displacement map. Firstly, there may be two high quality regions separated by a region of poorly correlated RF data. Whichever region provides the initial seed, it is unlikely that the tracking algorithm will be able to maintain accurate estimation as it traverses the poor quality region. Tracking in the second high quality region will not be correctly initialized and displacement estimation will fail. Secondly, the correct displacement map may be discontinuous, as is often encountered when imaging arterial elasticity (<xref rid="bib23" ref-type="bibr">Shi and Varghese, 2007</xref>) or, more generally, when there are slip boundaries. When the tracking path reaches a discontinuity where there is a dramatic change in the true displacement, initialization across the boundary is not appropriate and subsequent displacement estimation will fail.</p>
+        <p>A multiple-seed variant of the quality-guided tracking strategy is proposed to overcome these problems. As with the single-seed version, seed initialization is by the grid point test (Section <xref rid="sec1" ref-type="sec">2.1</xref>), but in this case all the grid points are used as seeds and are added to the point set in the first step:<disp-formula id="fd3"><label>(6)</label><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mo stretchy="false">{</mml:mo><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:mo>…</mml:mo><mml:mtext>,</mml:mtext><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mi>N</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">}</mml:mo></mml:math></disp-formula>Eq. <xref rid="fd3" ref-type="disp-formula">(6)</xref> describes a point set <italic>S</italic> containing <italic>N</italic> seeds. The seeds are not all processed in the first step: instead, only the one with the maximum quality is selected as the current point <italic>Pt</italic><sub>1</sub><disp-formula><label>(7)</label><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="italic">Pt</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi mathvariant="normal">arg</mml:mi><mml:mrow><mml:mi mathvariant="normal">max</mml:mi></mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>Q</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mtext>,</mml:mtext><mml:mi>Q</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mtext>,</mml:mtext><mml:mi>Q</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mtext>,</mml:mtext><mml:mo>…</mml:mo><mml:mtext>,</mml:mtext><mml:mi>Q</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mi>N</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:math></disp-formula>and fed into the displacement estimation procedure. All subsequent processing – displacement estimation on the current point, initializing the current points’ neighbours, updating the point set, and generating a new current point – is identical to the single-seed version (<xref rid="fig2" ref-type="fig">Fig. 2</xref>). If at least one good seed is planted in each disjoint region, all regions should be propagated individually and successfully. This is because the quality at a region’s boundary is relatively low, either because of signal decorrelation or because of discontinuity-induced tracking failure. Hence, when a seed propagates to a region boundary, it stops growing and other seeds get a chance to proceed. Eventually, regions of poorly correlated data, or points at the boundaries between discontinuous regions, are processed at the last stage of tracking. Inevitable estimation errors are confined to these small localities and not propagated elsewhere.</p>
+        <p>An issue that arises with the use of multiple seeds is the correction of tracking errors caused by bad seeds. Bad seeds arise because the standard cross-correlation metric used for seed initialization can easily pick up an incorrect best match, especially when the window is small or the signal is noisy (<xref rid="bib28" ref-type="bibr">Walker and Trahey, 1995</xref>): this is known as <italic>peak hopping</italic>. A distinct feature of such seeds is that they are only able to propagate into a small area. The quality at the boundary drops rapidly, and subsequent points are processed by good quality estimates propagating from other seeds. The resulting displacement map, however, contains small regions of incorrect displacement data surrounding the initial poor seeds.</p>
+        <p>The bad-seed defect can be addressed by re-initializing any problematic regions using good quality points at their boundaries, and repeating the tracking procedure – see <xref rid="fig3" ref-type="fig">Fig. 3</xref>. Regions in need of this treatment are identified using a threshold on the number of points propagated from any individual seed: small regions, below the threshold, are labelled as requiring reprocessing. Then, the multiple-seed algorithm is re-run, but this time discarding the seeds that grew the small regions. During this second pass of tracking, displacement estimation is performed only on the labelled regions. This simple method avoids considerable redundant reprocessing and obviates the need to explicitly locate the boundary points of the troublesome regions.</p>
+        <p>The threshold referred to in the previous paragraph needs to be set to as large a value as possible without running the risk of eliminating valid regions grown from good seeds. Developing this line of reasoning, the threshold can be related to the number of seeds <italic>N</italic> that determines the algorithm’s natural scale. For example, with 20 seeds, we are already conceding that the algorithm cannot be relied on to recover the displacement in disjoint regions occupying less than around 5% of the frame, since such regions are unlikely to be seeded. 5% would therefore be a justifiable threshold for seed elimination too. We accept that regions smaller than this will not be correctly processed, either because they do not contain a seed, or because they are subsequently eliminated before the second tracking pass. If finer scale processing is required, <italic>N</italic> can be increased and the seed elimination threshold reduced by the corresponding amount.</p>
+      </sec>
+      <sec id="sec3">
+        <label>2.4</label>
+        <title>Implementation details</title>
+        <p>Efficient implementation of the quality-guided tracking algorithm requires each point’s attributes (location, membership of <italic>S</italic>, displacement and quality) to be stored in two separate data structures. The first, a simple two-dimensional array indexed by <italic>x</italic> and <italic>y</italic>, is used to quickly identify neighbours. However, this data structure is unsuitable for one important stage of the algorithm, namely identifying the maximum quality point in the set <italic>S</italic>. Linear search of the two-dimensional array has algorithmic complexity <mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:mrow><mml:mi mathvariant="script">O</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math> at each tracking step, where <italic>n</italic> is the number of points.</p>
+        <p>Thus, the active point set <italic>S</italic> is also maintained as a one-dimensional list, sorted according to quality. The tracking algorithm then need only pick the first point from <italic>S</italic> at each step, with no searching required. When the current point’s neighbours are added to the list, they are inserted at the appropriate location according to their quality, thus maintaining the integrity of the sorted list. Binary search, with complexity <mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mrow><mml:mi mathvariant="script">O</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">log</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math>, is used to find the insertion indices, significantly reducing the computational load. In such an implementation, the tracking overhead is small compared with the cost of the underlying displacement estimation, even with efficient phase zero search estimation techniques.</p>
+      </sec>
+    </sec>
+    <sec id="sec4">
+      <label>3</label>
+      <title>Results and discussion</title>
+      <p>Field II (<xref rid="bib8" ref-type="bibr">Jensen, 1996</xref>) simulations and an <italic>in vivo</italic> scan were used to evaluate the quality-guided tracking algorithm. The simulations comprised two RF frames (256 lines, 3464 samples, centre frequency 6.5 MHz, sampling rate 66.67 MHz) with a uniform 1% strain field. Artificially introduced white noise corrupted certain regions of the RF data. Displacement was estimated using windows 10 RF cycles long by five lines wide, spaced at intervals of three RF cycles axially and two lines laterally. The <italic>in vivo</italic> scan of a human carotid artery was recorded using a Terason<xref rid="fn3" ref-type="fn">3</xref> T3000 ultrasound system with a 6.25 MHz linear array transducer. The RF sampling frequency was 35.776 MHz, with each frame comprising 128 lines of 2395 samples. Displacement was estimated using windows 10 RF cycles long by three lines wide, spaced at intervals of three RF cycles axially and one line laterally.</p>
+      <p>In all the studies, we used complex cross-correlation-based exhaustive search, within the maximum expected displacement range, for seed initialization at 20 evenly spaced locations; correlation coefficient as the quality indicator; and phase zero search (<xref rid="bib20" ref-type="bibr">Pesavento et al., 1999</xref>), with logarithmic compressed signal amplitude, for axial displacement estimation. Lateral displacement was also estimated, by sub-line correlation maximization, within a search range of ±2 lines. Five algorithms were tested, namely exhaustive search without tracking, tracking along A-lines (<xref rid="bib20" ref-type="bibr">Pesavento et al., 1999</xref>), drop-out correction (<xref rid="bib14 bib25 bib26" ref-type="bibr">Lindop et al., 2008b; Treece et al., 2006, 2008</xref>) with a lateral search range of nine windows, and both variants of the quality-guided tracking algorithm.</p>
+      <sec>
+        <label>3.1</label>
+        <title>Tracking of geometrically irregular regions</title>
+        <p><xref rid="fig4" ref-type="fig">Fig. 4</xref>a shows a B-mode image of the first simulated data set. The signal in the arc-shaped region is completely masked by white noise, providing a test of the algorithms’ ability to track across decorrelated regions. Noise is also introduced outside the arc-shaped region, with a higher signal-to-noise ratio (SNR) at the centre than at the top and the bottom.</p>
+        <p>The displacement distribution obtained by exhaustive search is shown in <xref rid="fig4" ref-type="fig">Fig. 4</xref>b. Clearly, it is not possible to recover the displacement in the totally decorrelated arc-shaped region. Where the SNR is low (top and bottom of the frame), exhaustive search picks up a large number of false matches and produces erroneous displacement estimates. Results obtained by tracking top-to-bottom along A-lines, starting with an assumed displacement of zero at the top, are shown in <xref rid="fig4" ref-type="fig">Fig. 4</xref>c. When the tracking algorithm encounters the uncorrelated data, the displacement estimates inevitably become inaccurate. Since these incorrect estimates are used to initialise the phase zero search at subsequent points, correct displacement tracking is not re-established, even outside the arc-shaped region. The outcome is that tracking errors are propagated from the arc-shaped region downwards. However, it is interesting to note that, except for these understandable tracking errors, the simple A-line tracking strategy performs better than exhaustive search in low SNR regions at the top and bottom of the frame. This illustrates the advantage of exploiting displacement continuity inherent to all tracking approaches.</p>
+        <p>The single-seed, quality-guided tracking algorithm retrieves a plausible deformation distribution without any gross errors outside the arc-shaped region – see <xref rid="fig5" ref-type="fig">Fig. 5</xref>a. The propagation sequence in <xref rid="fig5" ref-type="fig">Fig. 5</xref>b–j exhibits the behaviour anticipated in <xref rid="fig1" ref-type="fig">Fig. 1</xref>, with high quality data in the central band processed first, then the lower quality data at the top and bottom, and finally the noisy arc itself. Here, estimation errors are inevitable, but they are prevented from propagating into other regions of the frame. Without constraints on the propagation direction, the quality-guided tracking algorithm is capable of retrieving the displacement distribution of a geometrically irregular region in one pass, while minimizing the effects of estimation errors.</p>
+        <p>While the single-seed variant has performed flawlessly in this case, it is nevertheless instructive to examine the multiple-seed variant as well. In particular, we will see in practice why this algorithm requires two passes to counter the effects of peak hopping errors at the seed initialization stage. <xref rid="fig6" ref-type="fig">Fig. 6</xref>a shows the displacement distribution obtained by the first pass. The distribution is mostly correct and errors inside the arc are not propagated. However, a very small patch above the arc has not been correctly processed. The final propagation map (<xref rid="fig6" ref-type="fig">Fig. 6</xref>f) shows how this corresponds to a bad seed, whose growth is first evident in <xref rid="fig6" ref-type="fig">Fig. 6</xref>e. The bad seed can be traced back to a false correlation peak chosen by the brute force search. Since the correlation peak was nevertheless rather high, the seed had a chance to grow a little before fizzling out as the quality at its boundaries dropped.</p>
+        <p>The second pass of the multiple-seed algorithm fixes the problem with minimal extra computation. A correct displacement distribution is retrieved, as shown in <xref rid="fig7" ref-type="fig">Fig. 7</xref>a. The second pass repeats the displacement estimation process on points grown from seeds that form an area smaller than a threshold, in this case 5% of the whole frame.<xref rid="fn4" ref-type="fn">4</xref> Initial displacement estimates for these reprocessed regions are obtained at their boundaries using information propagated from other seeds, as illustrated in <xref rid="fig3" ref-type="fig">Fig. 3</xref>e. For this particular data set, the 5% test eliminates all but three of the original 20 seeds. <xref rid="fig7" ref-type="fig">Fig. 7</xref>b–f show the progress of the second pass: note how the surviving three seeds propagate regions previously processed by the discarded seeds. While <xref rid="fig7" ref-type="fig">Fig. 7</xref>b–f hint at similar computational expense to the first pass, this is not in fact the case. The tracking is indeed repeated in its entirety, albeit from a reduced seed set, but the expensive displacement calculations are performed only in the small regions flagged for reprocessing. As explained in Section <xref rid="sec3" ref-type="sec">2.4</xref>, time spent on tracking can be safely ignored in an efficient implementation. The second pass, therefore, is responsible for only a small part of the overall computational cost, as shown in <xref rid="tbl1" ref-type="table">Table 1</xref>.</p>
+      </sec>
+      <sec>
+        <label>3.2</label>
+        <title>Tracking of disjoint regions</title>
+        <p>In the second Field II simulation (<xref rid="fig8" ref-type="fig">Fig. 8</xref>a), the noisy arc was extended sideways to partition the well-correlated data into two disjoint regions. Such a situation is not uncommon when scanning <italic>in vivo</italic>, as we shall see in Section <xref rid="sec5" ref-type="sec">3.3</xref>. To succeed, a tracking algorithm will need to recover the displacements in the two regions separately. The single-seed, quality-guided algorithm finds the correct displacement distribution above the arc (where the seed was planted) but is unable to propagate good displacement estimates across the arc and into the lower region – see <xref rid="fig8" ref-type="fig">Fig. 8</xref>b. The drop-out correction method chances upon a good solution in this case (<xref rid="fig8" ref-type="fig">Fig. 8</xref>c), since one of the spurious displacement estimates at the bottom edge of the arc just happens to be within a wavelength of the correct value. This good estimate is then propagated downwards and sideways in the first pass, and most of the remaining poor estimates are corrected in the second pass. However, erroneous displacement estimates remain at the bottom left corner of the frame.</p>
+        <p>A multiple-seed approach is necessary for reliable tracking in such situations. <xref rid="fig9" ref-type="fig">Fig. 9</xref>a shows the displacement distribution retrieved by the first pass of the multiple-seed tracking algorithm. Accurate displacement estimates are obtained throughout the two well-correlated regions. The seed propagation map in <xref rid="fig9" ref-type="fig">Fig. 9</xref>c shows how spurious seeds inside the noisy region get a chance to grow towards the end of the tracking process, producing the bright patches in <xref rid="fig9" ref-type="fig">Fig. 9</xref>a.</p>
+        <p>These white patches fall below the 5% threshold and are therefore among the regions reprocessed in the second pass of the multiple-seed algorithm (<xref rid="fig9" ref-type="fig">Fig. 9</xref>b), which starts from just three seeds (<xref rid="fig9" ref-type="fig">Fig. 9</xref>d). Although in this case reprocessing is not absolutely necessary, in general the second pass does help to correct discontinuous regions grown from bad seeds. Comparing the propagation maps of the two passes, it is apparent that the three seeds used in the second pass have invaded some of each other’s territory, as well as that of the eliminated seeds. However, the displacement is only recalculated in those small regions flagged for reprocessing. Doing otherwise – for example, overwriting good quality displacements on a per-point basis with better quality displacements – would not only slow down the algorithm but also introduce unwanted, small discontinuities in otherwise continuously tracked regions.</p>
+      </sec>
+      <sec id="sec5">
+        <label>3.3</label>
+        <title><italic>In vivo</italic> displacement tracking</title>
+        <p><xref rid="fig10" ref-type="fig">Fig. 10</xref>a shows a B-mode image of a human carotid artery. The artery separates well-correlated data into two regions. Inside the artery, the scattering is weak and blood flow causes significant decorrelation between the pre- and post-deformation frames. A further challenge to displacement estimation is the pulsation of the arterial wall, which produces a discontinuous deformation distribution in its vicinity. Both these factors point to the need for a robust tracking algorithm. Neither the single-seed algorithm (<xref rid="fig10" ref-type="fig">Fig. 10</xref>b) nor the drop-out correction method (<xref rid="fig10" ref-type="fig">Fig. 10</xref>c) succeed in this case. While one would not expect good displacement estimation within the artery or in the noisy region at the bottom of the frame, the single-seed algorithm has failed to recover the displacement above the artery (since the seed was below it), while the drop-out correction method clearly fails in a small region at the right of the frame, just below half way down.</p>
+        <p>The first pass of the multiple-seed tracking algorithm produces promising results, with plausible displacements both above and below the artery – see <xref rid="fig11" ref-type="fig">Fig. 11</xref>a. However, there is a visible error – a tiny bright dot – below the artery in <xref rid="fig11" ref-type="fig">Fig. 11</xref>a, just to the right of centre. This is the result of a bad seed, which managed to grow a little in the later tracking stages when most of the high quality data had been exhausted. <xref rid="fig11" ref-type="fig">Fig. 11</xref>b shows how this error is corrected, at small computational expense (<xref rid="tbl1" ref-type="table">Table 1</xref>), by the second pass. <xref rid="fig11" ref-type="fig">Fig. 11</xref>c shows the resulting strain image, with a blue colour wash obscuring regions where the correlation falls below a user-defined threshold.</p>
+      </sec>
+      <sec>
+        <label>3.4</label>
+        <title>The effect of SNR and window length</title>
+        <p>It remains to compare the various tracking strategies in terms of their robustness to different SNR levels and different RF window lengths. For any given amount of strain and SNR, there are lower and upper bounds on the RF window lengths that allow accurate displacement estimation (<xref rid="bib14" ref-type="bibr">Lindop et al., 2008b</xref>). Too short a window and the correct match will have much the same correlation as incorrect matches one or more RF cycles away: this is especially evident at low SNR. Conversely, too long a window and intra-window deformation will lower the correlation of the correct match, making it less distinguishable from incorrect matches: this is especially evident at high strain.<xref rid="fn5" ref-type="fn">5</xref> We demonstrate in this section that the tracking algorithm plays its part too: more sophisticated approaches allow a wider range of window lengths for any given strain and SNR.</p>
+        <p>Two RF frames were simulated with uniform echo amplitude and a 1% strain field. Random white noise was added at five SNR levels (4 dB, 2 dB, 0 dB, −2 dB and −4 dB) to evaluate the tracking capability. Unlike the previous tests, there is no completely decorrelated region and the SNR is uniform across each frame. The experiment can therefore focus on the core ability of each tracking algorithm to recover a continuous displacement field in the presence of noise, without the extra challenges of severe, local data decorrelation and displacement discontinuity.</p>
+        <p>At each SNR level, four tracking strategies were tested: tracking along A-lines, the drop-out correction method, the single-seed, quality-guided algorithm and the multiple-seed, quality-guided algorithm. The RF window length of the underlying displacement estimation algorithm (phase zero search) was varied between 1 and 50 cycles. We deemed each experiment a success if more than 90% of the displacement estimates were correct, where ‘correct’ means within a quarter cycle of the known, true value. Although arbitrary, this criterion allows a meaningful comparison of the various tracking algorithms. As expected, at each noise level, there were clear upper and lower bounds on the window lengths that allowed successful recovery of the displacement field. These bounds are plotted in <xref rid="fig12" ref-type="fig">Fig. 12</xref>. The area enclosed by the lower and upper bounds provides a measure of each algorithm’s robustness to different SNRs and window lengths. We call this area the <italic>effective tracking range</italic>. Although the results in <xref rid="fig12" ref-type="fig">Fig. 12</xref> are based on 1% strain, other strain levels produced similar patterns, as did other success thresholds (we tried 75% and 95%).</p>
+        <p>The simplest strategy, tracking along A-lines, has the smallest effective tracking range. If an estimation error occurs, the method has no mechanism to prevent it from propagating. The single-seed algorithm performs poorly as well. At low SNR levels (below 0 dB), the single seed is often bad, even though it has the highest quality amongst all the grid points. When this happens, tracking fails immediately and never recovers. This is an obvious brittleness of the single seed approach that we have deferred mentioning until now.</p>
+        <p>Although the single-seed algorithm is superior to the drop-out correction method in tracking a geometrically irregular region, its weakness lies in its poor tolerance of noise. The latter, on the other hand, is more robust against noise because it searches several previously processed points for the best initial guess at each new point. The fragility of the single-seed algorithm is overcome in its multiple-seed variant. If the region grown from one seed goes wrong, others can still proceed correctly. The multiple-seed algorithm has a comparable effective tracking range to that of the drop-out correction method, with the advantage that it can process disjoint and irregularly shaped regions.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>4</label>
+      <title>Conclusion</title>
+      <p>Displacement tracking is an algorithmic procedure implicit in the data processing pipelines of all ultrasonic strain imaging systems. Despite playing a large part in the efficiency and stability of the displacement estimation process, previous work on tracking has been tightly interwoven with particular displacement estimation techniques. In this paper, a generic, quality-guided tracking framework has been proposed. It can be integrated with a wide variety of displacement estimation techniques, including correlation maximization and phase zero search. The single-seed algorithm demonstrates the fundamental working mechanism of the quality-guided tracking strategy. The multiple-seed variant greatly enhances the algorithm’s robustness to noise and data discontinuity.</p>
+      <p>Further research on displacement tracking should explore alternative quality indicators. The measure used in this study, the complex cross-correlation coefficient, was generally effective but less so at low SNR. Alternative approaches, perhaps including a continuity element, might perform better in high noise situations. Another area for further research concerns the size of the RF windows. Sophisticated tracking strategies allow the use of shorter RF windows, and some classes of post-filtering methods (for strain estimation and noise rejection) promise to work particularly well with short windows (<xref rid="bib13" ref-type="bibr">Lindop et al., 2008a</xref>). Finally, the multiple-seed version of the quality-guided tracking algorithm produces, as a by-product, an approximate segmentation of the frame into regions of continuous displacement. This segmentation could be refined and then used to improve the subsequent calculation of strain. Specifically, differentiation across displacement discontinuities could be avoided, thus eliminating some of the artefacts that commonly affect strain images.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This work was funded by Translation Award 081511/Z/06/Z from the Wellcome Trust. The authors would like to thank the anonymous referees, whose constructive comments helped to improve the original version of the manuscript.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1">
+        <label>1</label>
+        <p>An alternative approach is direct strain estimation (<xref rid="bib1" ref-type="bibr">Alam et al., 1998</xref>).</p>
+      </fn>
+      <fn id="fn2">
+        <label>2</label>
+        <p>Hereafter, we shall refer loosely to each RF window as a <italic>point</italic>. Displacement is estimated at these points, then differentiated to obtain strain. A displacement tracking algorithm propagates displacement estimates from point to point.</p>
+      </fn>
+      <fn id="fn3">
+        <label>3</label>
+        <p><ext-link xlink:href="http://www.terason.com" ext-link-type="uri">www.terason.com</ext-link>.</p>
+      </fn>
+      <fn id="fn4">
+        <label>4</label>
+        <p>This is not an arbitrary threshold, but tied to the number of seeds (20, in this case) that determines the algorithm’s natural scale, as explained in Section <xref rid="sec2" ref-type="sec">2.3</xref>.</p>
+      </fn>
+      <fn id="fn5">
+        <label>5</label>
+        <p>While this effect can be ameliorated by adaptive stretching (<xref rid="bib6" ref-type="bibr">Céspedes et al., 1993</xref>), this comes at a high computational cost. Moreover, there is strong evidence to suggest that such an approach is not necessary for high accuracy displacement estimation (<xref rid="bib12" ref-type="bibr">Lindop et al., 2007</xref>).</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>Alam et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alam</surname>
+              <given-names>S.K.</given-names>
+            </name>
+            <name>
+              <surname>Ophir</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Konofagou</surname>
+              <given-names>E.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>An adaptive strain estimator for elastography</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>1998</year>
+          <volume>45</volume>
+          <fpage>461</fpage>
+          <lpage>472</lpage>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <label>Bercoff et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bercoff</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Chaffai</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Tanter</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Catheline</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Fink</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Gennisson</surname>
+              <given-names>J.-L.</given-names>
+            </name>
+            <name>
+              <surname>Meunier</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>In vivo breast tumour detection using transient elastography</article-title>
+          <source>Ultrasound in Medicine and Biology</source>
+          <year>2003</year>
+          <volume>29</volume>
+          <issue>10</issue>
+          <fpage>1387</fpage>
+          <lpage>1396</lpage>
+          <pub-id pub-id-type="pmid">14597335</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <label>Bercoff et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bercoff</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tanter</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Fink</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Supersonic shear imaging: a new technique for soft tissue elasticity mapping</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>2004</year>
+          <volume>51</volume>
+          <fpage>396</fpage>
+          <lpage>409</lpage>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <label>Burnside et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Burnside</surname>
+              <given-names>E.S.</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>T.J.</given-names>
+            </name>
+            <name>
+              <surname>Sommer</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Hesley</surname>
+              <given-names>G.K.</given-names>
+            </name>
+            <name>
+              <surname>Sisney</surname>
+              <given-names>G.A.</given-names>
+            </name>
+            <name>
+              <surname>Svensson</surname>
+              <given-names>W.E.</given-names>
+            </name>
+            <name>
+              <surname>Fine</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Jiang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hangiandreou</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Differentiating benign from malignant solid breast masses with us strain imaging</article-title>
+          <source>Radiology</source>
+          <year>2007</year>
+          <volume>245</volume>
+          <issue>2</issue>
+          <fpage>401</fpage>
+          <lpage>410</lpage>
+          <pub-id pub-id-type="pmid">17940302</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <label>Céspedes et al., 1995</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Céspedes</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Ophir</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Spratt</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Methods for estimation of subsample time delays of digitized echo signals</article-title>
+          <source>Ultrasonic Imaging</source>
+          <year>1995</year>
+          <volume>17</volume>
+          <fpage>142</fpage>
+          <lpage>171</lpage>
+          <pub-id pub-id-type="pmid">7571208</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <label>Céspedes et al., 1993</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Céspedes</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Ophir</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reduction of image noise in elastography</article-title>
+          <source>Ultrasonic Imaging</source>
+          <year>1993</year>
+          <volume>15</volume>
+          <issue>2</issue>
+          <fpage>89</fpage>
+          <lpage>102</lpage>
+          <pub-id pub-id-type="pmid">8346613</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <label>Chaturvedi et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chaturvedi</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Insana</surname>
+              <given-names>M.F.</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>2-D companding for noise reduction in strain imaging</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>1998</year>
+          <volume>45</volume>
+          <fpage>179</fpage>
+          <lpage>191</lpage>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <label>Jensen, 1996</label>
+        <citation citation-type="other">Jensen, J.A., 1996. Field: A program for simulating ultrasound systems. In: Proceedings of the 10th Nordic-Baltic Conference on Biomedical Imaging. Tampere, pp. 351–353.</citation>
+      </ref>
+      <ref id="bib9">
+        <label>Jiang and Hall, 2006</label>
+        <citation citation-type="other">Jiang, J., Hall, T.J., 2006. A regularized real-time motion tracking algorithm using dynamic programming for ultrasonic strain imaging. In: Proceedings of the IEEE Ultrasonics Symposium, pp. 606–609.</citation>
+      </ref>
+      <ref id="bib10">
+        <label>Jiang and Hall, 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jiang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A parallelizable real-time motion tracking algorithm with applications to ultrasonic strain imaging</article-title>
+          <source>Physics in Medicine and Biology</source>
+          <year>2007</year>
+          <volume>52</volume>
+          <fpage>3773</fpage>
+          <lpage>3790</lpage>
+          <pub-id pub-id-type="pmid">17664576</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <label>Langeland et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Langeland</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>d’Hooge</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Torp</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Bijnens</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Suetens</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparison of time-domain displacement estimators for two-dimensional RF tracking</article-title>
+          <source>Ultrasound in Medicine and Biology</source>
+          <year>2003</year>
+          <volume>29</volume>
+          <fpage>1177</fpage>
+          <lpage>1186</lpage>
+          <pub-id pub-id-type="pmid">12946520</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <label>Lindop et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lindop</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Treece</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Gee</surname>
+              <given-names>A.H.</given-names>
+            </name>
+            <name>
+              <surname>Prager</surname>
+              <given-names>R.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Estimation of displacement location for enhanced strain imaging</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>2007</year>
+          <volume>54</volume>
+          <issue>9</issue>
+          <fpage>1751</fpage>
+          <lpage>1771</lpage>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <label>Lindop et al., 2008a</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lindop</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Treece</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Gee</surname>
+              <given-names>A.H.</given-names>
+            </name>
+            <name>
+              <surname>Prager</surname>
+              <given-names>R.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>The general properties including accuracy and resolution of linear-filtering methods for strain estimation</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>2008</year>
+          <volume>55</volume>
+          <issue>11</issue>
+          <fpage>2363</fpage>
+          <lpage>2368</lpage>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <label>Lindop et al., 2008b</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lindop</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Treece</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Gee</surname>
+              <given-names>A.H.</given-names>
+            </name>
+            <name>
+              <surname>Prager</surname>
+              <given-names>R.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Phase-based ultrasonic deformation estimation</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>2008</year>
+          <volume>55</volume>
+          <issue>1</issue>
+          <fpage>94</fpage>
+          <lpage>111</lpage>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <label>Nightingale et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nightingale</surname>
+              <given-names>R.K.</given-names>
+            </name>
+            <name>
+              <surname>Palmeri</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Nightingale</surname>
+              <given-names>R.W.</given-names>
+            </name>
+            <name>
+              <surname>Trahey</surname>
+              <given-names>G.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the feasibility of remote palpation using acoustic radiation force</article-title>
+          <source>Journal of the Acoustical Society of America</source>
+          <year>2001</year>
+          <volume>110</volume>
+          <fpage>625</fpage>
+          <lpage>634</lpage>
+          <pub-id pub-id-type="pmid">11508987</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <label>Ophir et al., 1991</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ophir</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Céspedes</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Ponnekanti</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Yazdi</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>Elastography: a quantitative method for imaging the elasticity of biological tissues</article-title>
+          <source>Ultrasonic Imaging</source>
+          <year>1991</year>
+          <volume>13</volume>
+          <fpage>111</fpage>
+          <lpage>134</lpage>
+          <pub-id pub-id-type="pmid">1858217</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <label>O’Donnell et al., 1991</label>
+        <citation citation-type="other">O’Donnell, M., Skovoroda, A.R., Shapo, B.M., 1991. Measurement of arterial wall motion using Fourier based speckle tracking algorithms. In: Proceedings of the IEEE Ultrasonics Symposium, pp. 1101–1104.</citation>
+      </ref>
+      <ref id="bib18">
+        <label>O’Donnell et al., 1994</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>O’Donnell</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Skovoroda</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Shapo</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Emelianov</surname>
+              <given-names>S.Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Internal displacement and strain imaging using ultrasonic speckle tracking</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>1994</year>
+          <volume>41</volume>
+          <fpage>314</fpage>
+          <lpage>325</lpage>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <label>Pellot-Barakat et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pellot-Barakat</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Frouin</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Insana</surname>
+              <given-names>M.F.</given-names>
+            </name>
+            <name>
+              <surname>Herment</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ultrasound elastography based on multiscale estimations of regularized displacement fields</article-title>
+          <source>IEEE Transactions on Medical Imaging</source>
+          <year>2004</year>
+          <volume>23</volume>
+          <fpage>153</fpage>
+          <lpage>163</lpage>
+          <pub-id pub-id-type="pmid">14964561</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <label>Pesavento et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pesavento</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Perrey</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Krueger</surname>
+              <given-names>M.H.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A time efficient and accurate strain estimation concept for ultrasonic elastography using iterative phase zero estimation</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>1999</year>
+          <volume>46</volume>
+          <issue>5</issue>
+          <fpage>1057</fpage>
+          <lpage>1067</lpage>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <label>Rivaz et al., 2008</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rivaz</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Boctor</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Foroughi</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Zellars</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Fichtinger</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Hager</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ultrasound elastography: a dynamic programming approach</article-title>
+          <source>IEEE Transactions on Medical Imaging</source>
+          <year>2008</year>
+          <volume>27</volume>
+          <issue>10</issue>
+          <fpage>1373</fpage>
+          <lpage>1377</lpage>
+          <pub-id pub-id-type="pmid">18815089</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <label>Sandrin et al., 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sandrin</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Tanter</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Catheline</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Fink</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Shear modulus imaging with 2-D transient elastography</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>2002</year>
+          <volume>49</volume>
+          <issue>4</issue>
+          <fpage>426</fpage>
+          <lpage>435</lpage>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <label>Shi and Varghese, 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shi</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Varghese</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Two-dimensional multi-level strain estimation for discontinuous tissue</article-title>
+          <source>Physics in Medicine and Biology</source>
+          <year>2007</year>
+          <volume>52</volume>
+          <fpage>389</fpage>
+          <lpage>401</lpage>
+          <pub-id pub-id-type="pmid">17202622</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <label>Sugimoto et al., 1990</label>
+        <citation citation-type="other">Sugimoto, T., Ueha, S., Itoh, K., 1990. Tissue hardness measurement using the radiation force of focused ultrasound. In: Proceedings of IEEE Ultrasonics Symposium 1990, vol.3, pp. 1377–1380.</citation>
+      </ref>
+      <ref id="bib25">
+        <label>Treece et al., 2006</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Treece</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Lindop</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Gee</surname>
+              <given-names>A.H.</given-names>
+            </name>
+            <name>
+              <surname>Prager</surname>
+              <given-names>R.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Efficient elimination of dropouts in displacement tracking</article-title>
+          <source>Proceedings of the Fifth International Conference on the Ultrasonic Measurement and Imaging of Tissue Elasticity</source>
+          <year>2006</year>
+          <publisher-name>sage</publisher-name>
+          <publisher-loc>Utah</publisher-loc>
+          <fpage>68</fpage>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <label>Treece et al., 2008</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Treece</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Lindop</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Gee</surname>
+              <given-names>A.H.</given-names>
+            </name>
+            <name>
+              <surname>Prager</surname>
+              <given-names>R.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Freehand ultrasound elastography with a 3-D probe</article-title>
+          <source>Ultrasound in Medicine and Biology</source>
+          <year>2008</year>
+          <volume>34</volume>
+          <issue>3</issue>
+          <fpage>463</fpage>
+          <lpage>474</lpage>
+          <pub-id pub-id-type="pmid">17993244</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <label>Viola and Walker, 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Viola</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Walker</surname>
+              <given-names>W.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>A comparison of the performance of time-delay estimators in medical ultrasound</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>2003</year>
+          <volume>50</volume>
+          <fpage>392</fpage>
+          <lpage>401</lpage>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <label>Walker and Trahey, 1995</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Walker</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Trahey</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A fundamental limit on delay estimation using partially correlated speckle signals</article-title>
+          <source>IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control</source>
+          <year>1995</year>
+          <volume>42</volume>
+          <fpage>301</fpage>
+          <lpage>308</lpage>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <label>Yeung et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yeung</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Levinson</surname>
+              <given-names>S.F.</given-names>
+            </name>
+            <name>
+              <surname>Parker</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multilevel and motion model-based ultrasonic speckle tracking algorithms</article-title>
+          <source>Ultrasound in Medicine and Biology</source>
+          <year>1998</year>
+          <volume>24</volume>
+          <fpage>427</fpage>
+          <lpage>441</lpage>
+          <pub-id pub-id-type="pmid">9587997</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <label>Zahiri-Azar and Salcudean, 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zahiri-Azar</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Salcudean</surname>
+              <given-names>S.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motion estimation in ultrasound images using time domain cross correlation with prior estimates</article-title>
+          <source>IEEE Transactions on Biomedical Engineering</source>
+          <year>2006</year>
+          <volume>53</volume>
+          <fpage>1990</fpage>
+          <lpage>2000</lpage>
+          <pub-id pub-id-type="pmid">17019863</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <label>Zhu and Hall, 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A modified block matching method for real-time freehand strain imaging</article-title>
+          <source>Ultrasonic Imaging</source>
+          <year>2002</year>
+          <volume>24</volume>
+          <fpage>161</fpage>
+          <lpage>176</lpage>
+          <pub-id pub-id-type="pmid">12503771</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Illustration of the single-seed, quality-guided tracking algorithm. The frame contains a region of decorrelated data (grey), not untypical when scanning <italic>in vivo</italic>. (a) A single-seed (red) is selected from the <italic>N</italic> alternatives (blue) based on the correlation of the matched windows, as found by brute force search. (b) This seed is used to initialise neighbouring points, whose displacements are then refined. The active point set <italic>S</italic> is shown in red, processed points in green. (c) <italic>S</italic> does not grow into decorrelated region, since the match quality <italic>Q</italic> is low at its boundary, and <italic>S</italic> is processed in order of decreasing <italic>Q</italic>. (d) <italic>S</italic> finds its way around the decorrelated region, unlike row- or column-based approaches, which would need to traverse it. (e) With all the well-correlated data exhausted, <italic>S</italic> will now penetrate the decorrelated region, but the unavoidably poor displacement estimates will not affect the rest of the frame. (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of this article.)</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Flowchart of the single-seed quality-guided tracking algorithm.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Illustration of the multiple-seed, quality-guided tracking algorithm. The frame contains a band of decorrelated data (grey), that separates the good quality data into two disjoint regions. (a) Only four seeds are shown for clarity: in practice, there will typically be more. Suppose that the green, gold and blue seeds are good, while the cyan seed is bad, even though the correlation is high. (b) The bad seed does not propagate very far, since neighbouring windows do not match well at the incorrect displacement. The three good seeds grow as usual, though they do not penetrate the poorly correlated region. The active point set <italic>S</italic> is shown in red. (c) Towards the end of tracking, all the good quality data has been processed: all that remains is for the green, gold and blue fronts to penetrate the decorrelated region. (d) At the start of the second pass, the bad seed is eliminated, since it grew only a small region in the first pass: this region is flagged for reprocessing (cyan). (e) The green, gold and blue seeds propagate a second time, but no new displacement estimates are calculated in most of the frame: instead, the values found in the first pass are retained. The exception is the small, dark green region, where the first pass displacements are updated using values propagated from the green seed. (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of this article.)</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>(a) B-mode image of the simulated data. The arc-shaped region contains only noise. Outside the arc-shaped region, white noise is superimposed on the RF signal, with less noise at the centre than at the axial extremities. Displacement obtained by (b) exhaustive search and (c) tracking along A-lines. The units displayed on the right are RF cycles.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Same data as in <xref rid="fig4" ref-type="fig">Fig. 4</xref>a. (a) Displacement obtained by the single-seed quality-guided tracking algorithm. (b) Early displacement propagation from the single-seed. Dark pixels indicate points that have had their displacement estimated by phase zero search, while bright pixels indicate unprocessed points. (c)–(e) Further displacement propagation into the high quality region enclosed by the arc. (f)–(h) Subsequent propagation into remaining high quality regions, reached around the bottom of the arc. (i) When all high quality regions are exhausted, displacement estimates are propagated into the lower quality regions at the top and bottom of the frame, and finally (j) into the noisy arc itself.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Same data as in <xref rid="fig4" ref-type="fig">Fig. 4</xref>a. (a) Displacement obtained by the first pass of the multiple-seed algorithm. (b) Early displacement propagation from two seeds (orange and blue), which were placed in regions of more highly correlated data than the other 18 seeds. (c)–(d) All high quality regions are subsequently propagated from the orange and blue seeds, and a third (green) seed, which grew from a fairly well-correlated region towards the left. (e)–(f) When all high quality data is exhausted, invalid seeds within the arc start to grow. (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of this article.)</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Same data as in <xref rid="fig4" ref-type="fig">Fig. 4</xref>a. (a) Displacement obtained by the second pass of the multiple-seed algorithm. (b)–(c) All but three of the original 20 seeds are eliminated since they failed to grow sizable regions in the first pass. (d)–(f) These three seeds propagate across the entire frame, but the displacement is only recalculated in the small regions grown in the first pass from the 17 eliminated seeds. (For interpretation to colours in this figure, the reader is referred to the web version of this paper.)</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig8">
+      <label>Fig. 8</label>
+      <caption>
+        <p>(a) B-mode image of the simulated data. The Ω-shaped region contains only noise. Outside the Ω-shaped region, white noise is superimposed on the RF signal, with less noise at the centre than at the axial extremities. Displacement obtained by (b) the single-seed algorithm and (c) the drop-out correction method.</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="fig9">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Same data as in <xref rid="fig8" ref-type="fig">Fig. 8</xref>a. Displacement obtained by the first (a) and second (b) passes of the multiple-seed algorithm. Seed propagation maps from the (c) first and (d) second passes. (For interpretation to colours in this figure, the reader is referred to the web version of this paper.)</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+    <fig id="fig10">
+      <label>Fig. 10</label>
+      <caption>
+        <p>(a) B-mode image of the carotid artery scan. Displacement obtained by (b) the single-seed algorithm and (c) the drop-out correction method.</p>
+      </caption>
+      <graphic xlink:href="gr10"/>
+    </fig>
+    <fig id="fig11">
+      <label>Fig. 11</label>
+      <caption>
+        <p>Same data as in <xref rid="fig10" ref-type="fig">Fig. 10</xref>. (a) Displacement obtained by the first (a) and second (b) passes of the multiple-seed algorithm. (c) Strain image derived from (b), with black and white representing 0% and 0.5% strain respectively. The blue mask suppresses display of strain in low quality regions. (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of this article.)</p>
+      </caption>
+      <graphic xlink:href="gr11"/>
+    </fig>
+    <fig id="fig12">
+      <label>Fig. 12</label>
+      <caption>
+        <p>Effective tracking range. The plot shows upper and lower bounds on window lengths for effective tracking at a number of noise levels. The ±1 standard deviation error bars are based on 20 repetitions.</p>
+      </caption>
+      <graphic xlink:href="gr12"/>
+    </fig>
+    <table-wrap position="float" id="tbl1">
+      <label>Table 1</label>
+      <caption>
+        <p>Execution time of the multiple-seed displacement tracking algorithm, running single-threaded on a 2.4 GHz Intel Core 6600 processor. The simulations were slower since they employed twice as many RF lines and wider windows for displacement estimation. The timings for each pass are divided into tracking (choosing the next point to be processed and maintaining the data structures described in Section <xref rid="sec3" ref-type="sec">2.4</xref>) and displacement estimation (in this case by phase zero search).</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th rowspan="2">Component</th>
+            <th colspan="2" align="center">Time (ms)<hr/></th>
+          </tr>
+          <tr>
+            <th>Simulation</th>
+            <th>
+              <italic>In vivo</italic>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Preprocessing (compute baseband analytic signal)</td>
+            <td>46</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td>Seed initialization</td>
+            <td>0.5</td>
+            <td>0.5</td>
+          </tr>
+          <tr>
+            <td>First pass tracking</td>
+            <td>5</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>First pass displacement estimation</td>
+            <td>46</td>
+            <td>23</td>
+          </tr>
+          <tr>
+            <td>Second pass tracking</td>
+            <td>5</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>Second pass displacement estimation</td>
+            <td>2</td>
+            <td>2</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-wrap>
+</article>

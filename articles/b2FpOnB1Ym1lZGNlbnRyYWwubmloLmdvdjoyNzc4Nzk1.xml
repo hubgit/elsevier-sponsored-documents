@@ -1,0 +1,2650 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="review-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Behav Brain Res</journal-id>
+      <journal-title>Behavioural Brain Research</journal-title>
+      <issn pub-type="ppub">0166-4328</issn>
+      <issn pub-type="epub">1872-7549</issn>
+      <publisher>
+        <publisher-name>Elsevier/North-Holland Biomedical Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2778795</article-id>
+      <article-id pub-id-type="pmid">19720086</article-id>
+      <article-id pub-id-type="publisher-id">BBR6110</article-id>
+      <article-id pub-id-type="doi">10.1016/j.bbr.2009.08.031</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Review</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Structure learning in action</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Braun</surname>
+            <given-names>Daniel A.</given-names>
+          </name>
+          <email>dab54@cam.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mehring</surname>
+            <given-names>Carsten</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wolpert</surname>
+            <given-names>Daniel M.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>a</sup>Computational and Biological Learning Lab, Department of Engineering, University of Cambridge, UK</addr-line>
+      </aff>
+      <aff id="aff2">
+        <addr-line><sup>b</sup>Bernstein Center for Computational Neuroscience, Freiburg, Germany</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Tel.: +44 1223748512; fax: +44 1223332662. <email>dab54@cam.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>20</day>
+        <month>1</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>206</volume>
+      <issue>2</issue>
+      <fpage>157</fpage>
+      <lpage>165</lpage>
+      <history>
+        <date date-type="received">
+          <day>28</day>
+          <month>7</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>24</day>
+          <month>8</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier B.V.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>‘Learning to learn’ phenomena have been widely investigated in cognition, perception and more recently also in action. During concept learning tasks, for example, it has been suggested that characteristic features are abstracted from a set of examples with the consequence that learning of similar tasks is facilitated—a process termed ‘learning to learn’. From a computational point of view such an extraction of invariants can be regarded as learning of an underlying structure. Here we review the evidence for structure learning as a ‘learning to learn’ mechanism, especially in sensorimotor control where the motor system has to adapt to variable environments. We review studies demonstrating that common features of variable environments are extracted during sensorimotor learning and exploited for efficient adaptation in novel tasks. We conclude that structure learning plays a fundamental role in skill learning and may underlie the unsurpassed flexibility and adaptability of the motor system.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Structure learning</kwd>
+        <kwd>Adaptive motor control</kwd>
+        <kwd>Learning-to-learn</kwd>
+        <kwd>Visuomotor learning</kwd>
+        <kwd>Dimensionality reduction</kwd>
+        <kwd>Variability</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <label>1</label>
+      <title>The structural learning hypothesis</title>
+      <p>Consider operating a machine with a hundred dials that you can turn, each of which controls a single parameter (<xref rid="fig1" ref-type="fig">Fig. 1</xref>A shows just two of the 100 parameters). The machine is performing well at a particular task (red setting) and you want to adjust it for a new task. How could you adjust the hundred dials to find the setting for the new task (blue setting)? This is the problem the nervous system faces during learning, except there are not 100 dials but often several hundreds (e.g. muscles) or millions (e.g. synaptic strengths). One solution is to use optimization techniques to adjust each parameter, thereby exploring the entire 100-dimensional space. However, through experience you might find that for a set of related tasks the final settings of the dials have a certain fixed (or probabilistic) and possibly non-linear relation (thick black line). This would allow us to build a new meta-dial (with setting <italic>μ</italic>) that controls and restricts all the other dials to move along a lower dimensional structure in parameter space (<xref rid="fig1" ref-type="fig">Fig. 1</xref>B). Therefore, when presented with a new task on the same structure, the search is restricted to a subspace of the full parameter space, and all you need to do is adjust a single meta-dial thereby speeding up learning. This is the essence of structural learning (which we use synonymous with structure learning).</p>
+      <p>In a biological organism, controlling the dials corresponds to controlling internal parameters that determine the way in which sensory inputs are transformed into motor outputs. Changing these internal parameters leads to changes in the input–output mapping—that is learning <xref rid="bib1" ref-type="bibr">[1]</xref>. From a theoretical point of view, the problems of how to construct the meta-dial and how to adjust it correspond to ‘structural learning’ and ‘parametric learning’ respectively. In structural learning, what is learned is the general form of the rules that govern a set of tasks, whereas parametric learning involves selecting the particular mapping that governs the current task.</p>
+      <p>Structural learning <xref rid="bib2 bib3 bib4 bib5 bib6 bib7 bib8" ref-type="bibr">[2–8]</xref> essentially reduces the dimensionality of the space that the learning organism has to search to adapt to novel tasks. Such dimensionality reduction can be regarded as an extraction of invariants between different input–output mappings. Extracting such invariants and reducing the dimensionality of the search space will improve the efficiency of any learning algorithm <xref rid="bib9" ref-type="bibr">[9]</xref> leading to faster learning for problems sharing a similar structure. Thus, structural learning could provide a mechanism for ‘learning to learn’ and transfer between tasks with the same task structure. While structural learning is expected to speed-up learning, not all ‘learning to learn’ effects require structural learning. For example, non-specifically increasing the rate at which all parameters change could speed-up learning but would not be specific to a particular set of tasks <xref rid="bib10" ref-type="bibr">[10]</xref>. In the following we will focus on ‘learning to learn’ phenomena induced by structure learning.</p>
+    </sec>
+    <sec>
+      <label>2</label>
+      <title>Structure learning in animal cognition</title>
+      <p>Some of the earliest accounts of facilitated transfer between tasks with a similar structure were in the cognitive domain where monkeys had to choose one of two stimulus-objects (e.g. a cube or a cylinder), only one of which would lead to a reward. The same pair of stimulus-objects was repeatedly presented presented in randomized locations (i.e. left or right) for a block of trials. At the start of a new block two new stimulus-objects were used. Initially, the monkeys took many trials to learn the correct response, but in later blocks Harlow observed a greater than 95% success rate on the second trial of each block <xref rid="bib11" ref-type="bibr">[11]</xref>. This suggests that the animals had learned the structure of the task that is the abstract rule that one stimulus receives a reward and the other does not. In this task ‘parametric learning’ within each block corresponds to identifying which stimulus is rewarded. The speed-up in learning over the blocks arises through the learning of the structure and the rapid increase in success rate within the first few trials of a block arises through parametric adaptation. Such a speed-up in learning was termed ‘learning to learn’ and now has a long tradition in experimental psychology.</p>
+      <p>Harlow noted that most animal experiments had studied learning as an isolated episode on a single task and, therefore, did not reflect learning in everyday life which involves experience over many tasks <xref rid="bib12" ref-type="bibr">[12]</xref>. According to Harlow's hypothesis, animals learn slowly by trial and error when they are faced with a novel task but once they have had experience with a set of related tasks they can generalize to solve novel tasks within this class, leading to apparently insightful behaviour. Harlow defined this ‘learning to learn’ or ‘meta-learning’ as the formation of a ‘learning set’. Thus, the ‘learning set’ hypothesis of ‘learning to learn’ <italic>“describes the ability of animals to slowly learn a general rule which can then be applied in order to rapidly solve new problem sets”</italic> <xref rid="bib13" ref-type="bibr">[13]</xref>. Historically, Harlow used the term ‘learning sets’ as a concept to bridge the gap between the behaviourists’ theory of learning by trial and error and the more insightful and discontinuous forms of learning suggested by Gestalt psychologists <xref rid="bib13 bib14" ref-type="bibr">[13,14]</xref>. The concept of ‘learning sets’ is still employed in contemporary studies on animal learning, e.g. <xref rid="bib15 bib16" ref-type="bibr">[15,16]</xref>.</p>
+      <p>Further investigations showed how the features of the training sets determined learning rates. Substantial facilitation was reported for <italic>intra-dimensional</italic> shifts compared to <italic>extra-dimensional</italic> shifts in learning problems <xref rid="bib17 bib18 bib19 bib20" ref-type="bibr">[17–20]</xref>. For example, pigeons exposed to coloured shapes, in which the colour was predictive of the reward, rapidly adjusted to novel colours (intra-dimensional shift) but not when the shape became predictive of the reward (extra-dimensional shift) <xref rid="bib17 bib21" ref-type="bibr">[17,21]</xref>. The ability to solve intra-dimensional problems more quickly has been interpreted as learning of abstract dimensions such as colour or shape rather than particular physical instantiations like red or triangular.</p>
+      <p>Animals have also been shown to learn more complex rules by mastering conditional discriminations that depend on the presence of contextual stimuli <xref rid="bib21 bib22 bib23 bib24 bib25" ref-type="bibr">[21–25]</xref>. For example, chimpanzees can be trained to discriminate between stimuli based on shape if the stimuli are presented on white background and by colour if the stimuli are presented on a black background <xref rid="bib13" ref-type="bibr">[13]</xref>. In categorisation tasks animals have learnt discrimination rules that depend on abstract concepts like ‘same’ or ‘different’ <xref rid="bib26 bib27 bib28" ref-type="bibr">[26–28]</xref>, ‘triangularity’ <xref rid="bib29" ref-type="bibr">[29]</xref>, ‘symmetry’ <xref rid="bib30" ref-type="bibr">[30]</xref> or ‘people’ versus ‘no-people’ <xref rid="bib31" ref-type="bibr">[31]</xref> and ‘food’ versus ‘non-food’ <xref rid="bib32 bib33 bib34" ref-type="bibr">[32–34]</xref>. Apes have even been reported to exploit abstract concepts for analogical reasoning <xref rid="bib35" ref-type="bibr">[35]</xref>.</p>
+    </sec>
+    <sec>
+      <label>3</label>
+      <title>Structure learning in cognitive neuroscience</title>
+      <p>‘Learning to learn’ has also been reported in both children and adults <xref rid="bib36 bib37 bib38 bib39" ref-type="bibr">[36–39]</xref>. However, only very few studies have related ‘learning to learn’ effects to the structure of the tasks. For example, in one study, participants were exposed to pairs of symbols one of which represented an initial state and the other an operator on that state which determined a third symbol (the final state). Subjects were then required to predict end-states given the initial-state and operator <xref rid="bib39" ref-type="bibr">[39]</xref>. The participants showed transfer to problems with the same structure thereby demonstrating that structural coherence had a powerful effect on learning. Similarly, structural learning has been used to explain how humans generalize based on limited information, for example, when judging similarity between animals or numbers <xref rid="bib40 bib41 bib42" ref-type="bibr">[40–42]</xref>. In addition, there have been investigations of structural learning in perceptual tasks <xref rid="bib43" ref-type="bibr">[43]</xref>. However, the majority of studies of structural learning in cognitive science have not focussed on the issue of speeding up learning for novel tasks, but on the inference of causal structures between different observed variables <xref rid="bib44 bib45 bib46 bib47 bib48" ref-type="bibr">[44–48]</xref>. For example, if we observe the three variables of pressure, barometer reading and the occurrence of storms, there is a strong correlation between the readings of the barometer and the probability of a storm occurring. However, this statistical co-variation does not imply a causal relationship (i.e. the barometer causing a storm). Mathematically, causal relationships are typically represented by graphical models <xref rid="bib2 bib49" ref-type="bibr">[2,49]</xref> such as a directed graph consisting of nodes that represent the variables of interest (e.g. pressure, barometer and storm in <xref rid="fig2" ref-type="fig">Fig. 2</xref>A) and arrows that represent which variables have a causal influence on other variables and which variables are causally independent (e.g. both barometer and storm are independent conditional on pressure). Thus, there are two things that need to be learned in causal induction: (1) the causal structure (i.e. which variables are connected by arrows—<xref rid="fig2" ref-type="fig">Fig. 2</xref>A shows 4 possible structures) and (2) the strength of causal relations (e.g. what is the probability of a storm occurring given that the pressure is high? <xref rid="fig2" ref-type="fig">Fig. 2</xref>B shows a possible parameterisation given a particular structure). The first problem is the problem of structure learning, the second problem is the problem of learning the parameters of the structural model. In a number of experiments it has been found that humans have great difficulty inferring the causal structure of a set of variables from correlational data alone <xref rid="bib47 bib50 bib51" ref-type="bibr">[47,50,51]</xref>. Conditional independence relations are hard to find because even very simple cases require subjects to track concurrent changes in several variables—e.g. three variables in the example above. The number of possible dependencies expands rapidly with the number of variables involved. This leads to a substantial computational load and even the most sophisticated statistical methods do not guarantee that a unique causal structure can be found. This is because when making inferences from correlational data, there will usually be several ‘Markov equivalent’ structures that explain the co-variations in the data equally well <xref rid="bib49" ref-type="bibr">[49]</xref>. It is therefore not surprising that humans have been shown to use additional cues to identify causal dependencies like temporal order <xref rid="bib52" ref-type="bibr">[52]</xref> and active interventions <xref rid="bib47 bib50 bib51" ref-type="bibr">[47,50,51]</xref>—for example, by manipulating the barometer and testing whether this has an influence on the probability of a storm occurring. Structural learning and uncertainty over different structures have even been reported to explain human decision making in more complex sequential decision tasks that have previously been interpreted as exposing suboptimal behaviour on the part of the human decision makers <xref rid="bib53" ref-type="bibr">[53]</xref>.</p>
+    </sec>
+    <sec>
+      <label>4</label>
+      <title>Structural learning in motor control</title>
+      <p>In sensorimotor control it is natural to think of regularities between motor output and sensory inputs. These are imposed by both the physical properties of the body and the regularities in the environment or set of task to be performed. Structural learning could exploit these regularities to facilitate learning.</p>
+      <sec>
+        <label>4.1</label>
+        <title>Adaptive control theory</title>
+        <p>Adaptive control is a branch of control theory aimed at problems in which some of the properties of the system that we wish to control are unknown. This approach uses two levels of analysis: ‘structural adaptive control’ and ‘parametric adaptive control’ <xref rid="bib4 bib54" ref-type="bibr">[4,54]</xref>. In <italic>parametric</italic> adaptive control, knowledge of the structure of the control task is presupposed (e.g. the form of the equations of motion governing the dynamics of the arm) and only unknown parameters of the structure that are currently in play have to be estimated (e.g. the mass of a hand-held object). Parametric adaptive control, therefore, consists of estimating the parameters of the system (using one of a number of optimization procedures) and then using these parameter estimates in the control process. However, when the structural form itself is unknown, adaptive control relies on <italic>structural</italic> learning to develop a representation of the control process. Such structural learning, in its most general form, needs to determine the relevant inputs and outputs of the system, the dimensionality and form of the control problem, the relation between the control variables, their range of potential values and the noise properties associated with them. The theoretical literature has primarily investigated parametric adaptive control as this allows, by design, the adaptive control problem to be turned into a parametric optimization problem for which established system identification techniques can be employed to determine the parameters of the fixed model structure—see, for example <xref rid="bib4 bib54" ref-type="bibr">[4,54]</xref>. The structural learning problem, while potentially the more powerful framework, is more difficult to handle. The difficultly arises because the relevant structure of the controller has to be determined, for which there are no standard techniques in adaptive control, before parametric identification can take place.</p>
+        <p>One control theoretic framework to study adaptive control is optimal feedback control theory in which the command, <italic>u</italic>, is driven as a function of sensory input, <italic>x</italic>, and the parameters of the system, <italic>μ</italic> such that <italic>u</italic> <italic>=</italic> <italic>f</italic>(<italic>x,μ</italic>) <xref rid="bib65" ref-type="bibr">[65]</xref>. Here <italic>f</italic>() represents the structure of the task and <italic>μ</italic> the relevant parameters which vary across tasks. Critically, the representation of <italic>μ</italic>, and hence <italic>f</italic>(), depends on the task. For example, if across tasks the mass of a hand-held object varies then <italic>μ</italic> might represent the mass, whereas if the task involved wielding sticks of different lengths <italic>μ</italic> might represent the length of the stick. In adaptive control theory <italic>u</italic> <italic>=</italic> <italic>f</italic>(<italic>x</italic>,<italic>μ</italic>) is called a <italic>parametric</italic> adaptive control law, because it encapsulates the knowledge of how the unknown parameters <italic>μ</italic> are structurally related to the other control variables. Such parametric control laws can be used to study movement generation within the framework of optimal feedback control, and have been successful in explaining a wide range of human motor behaviour <xref rid="bib55 bib56 bib57 bib58 bib59 bib60 bib61" ref-type="bibr">[55–61]</xref>.</p>
+      </sec>
+      <sec>
+        <label>4.2</label>
+        <title>Evidence for structural learning in motor control</title>
+        <p>‘Learning to learn’ phenomena have also been observed in motor control tasks <xref rid="bib10 bib62 bib63 bib64 bib65 bib66 bib67 bib68 bib69 bib70 bib71 bib72" ref-type="bibr">[10,62–72]</xref>. In <xref rid="bib67" ref-type="bibr">[67]</xref>, for example, human participants adapted and readapted to a sequence of repeating visuomotor displacements; that is they experienced blocks of trials with opposing (leftward and rightward) prismatic rotations. Not only did these participants show faster adaptation rates over the course of the blocks for both prisms (termed ‘dual adaptation’), but also when faced with a new larger prismatic displacement, participants showed facilitation of learning (‘adaptive generalization’ or ‘learning to learn’). Such ‘adaptive generalization’ has also been observed in a study which manipulated both the type of visual distortion and the type of task <xref rid="bib72" ref-type="bibr">[72]</xref>. Subjects either walked on a treadmill or performed a balancing task. Within each of these tasks, subjects either wore a variety of distorting lenses or a single distorting lens. After training they were tested on a walking task that required obstacle avoidance. The authors found facilitation for this new task for subjects who had experienced the variety of lenses while walking on the treadmill, but no facilitation for those who had done the balancing task. This work adds to earlier studies by showing that task similarity (locomotion in this study) is critical for transfer <xref rid="bib71" ref-type="bibr">[71]</xref> and that variability during practice facilitates retention and transfer <xref rid="bib73" ref-type="bibr">[73]</xref>.</p>
+        <p>The importance of variability during training is also emphasized in another visuomotor displacement study <xref rid="bib70" ref-type="bibr">[70]</xref> showing that variable practice with different lenses (magnifying, minifying and up/down reversal) over the course of three weeks increased subjects’ adaptability to a novel visuomotor displacement compared to subjects who underwent training with only one set of magnifying lenses or sham lenses. Such non-specific speed-up of learning was found, for example, in <xref rid="bib10" ref-type="bibr">[10]</xref>, where subjects were trained on one motor learning task and transfer to another task assessed. This study demonstrated enhancements of learning and plasticity through facilitated transfer between motor tasks that share little structural similarity, such as from visuomotor rotations to sequence learning. Such non-specific enhancement of learning relies on different mechanisms from structural learning. Structural learning predicts facilitation effects that are specific for the sensorimotor structure that has been learned.</p>
+        <p>While the motor studies described above have investigated ‘learning to learn’ effects, they have not directly tested structural learning as a basis for facilitation of learning. Recently, we have conducted a series of studies to directly test the idea of structural learning in motor control. In our tasks subjects had to learn visuomotor transformations between their actual and perceived hand movement in virtual reality reaching tasks—for example, a visuomotor rotation would induce the perceived hand movement to be a rotated version of the actual hand movement. Such visuomotor transformations can be chosen to have a particular structure (e.g. rotations, shearings or scalings) that requires the setting of specific parameters to be fully determined (e.g. rotation angle, shearing parameter or scaling factor). By randomizing these parameter settings in our experiment we could test how random experience of a particular structure affects learning of a new visuomotor transformation. In <xref rid="bib66" ref-type="bibr">[66]</xref>, for example, subjects experienced extended training either with random visuomotor rotations or with highly variable random linear transforms composed of rotations, shearings and scalings (<xref rid="fig3" ref-type="fig">Fig. 3</xref>). After extensive experience with these transformations we exposed both groups to a new fixed visuomotor rotation. The structural learning hypothesis predicts that subjects who had experienced random visuomotor rotations should exhibit strong facilitation when faced with a particular instance of this class of visuomotor transformation as was observed in our experiment. In contrast, the random transformation group performed no better than a naïve group, although they had extensive experience with rotations. The reason for this lack of transfer is that the random transformation group experienced rotations as part of a much less constrained structure of random linear transformations which did not allow the detection of a lower dimensional structure. Transfer between two blocks of visuomotor rotations with different rotation angles has been previously reported <xref rid="bib74" ref-type="bibr">[74]</xref>—e.g. learning a 45° rotation facilitates learning a 90° rotation. However, previous studies did not provide any direct evidence for the importance of variable experience of a particular task structure (e.g. rotations) as opposed to experience with another task structure (e.g. linear transforms).</p>
+        <p>The structural learning hypothesis also predicts that, when learning a new transformation, the motor controller should, at least initially, explore preferentially along the structure (thick black line in <xref rid="fig1" ref-type="fig">Fig. 1</xref>A) and reduce deviations from the structure. To test this prediction, while subjects made reaching movements in three-dimensional space we exposed them to randomly varying rotations either around the vertical or the horizontal axis. Therefore each group of subjects experienced either a vertical or horizontal rotation structure, parameterized with a single rotation parameter <xref rid="bib66" ref-type="bibr">[66]</xref>. Later in the experiment, vertical and horizontal rotation probe trials were introduced for both groups. Interestingly, both groups reacted very differently to the same probe trials. They showed structure-specific facilitation, variability patterns and exploration strategies (<xref rid="fig4" ref-type="fig">Fig. 4</xref>). Their endpoint variance was markedly reduced in the direction orthogonal to their learned structure. This suggests that exploration occurred preferentially along the previously learned structure and deviation from the structure was reduced. Reduction of variance has long been recognized as an important feature of learning <xref rid="bib75" ref-type="bibr">[75]</xref>. Previously, it has been proposed that motor variance is reduced in the degrees of freedom that interfere with task goals, whereas variability in task-irrelevant dimensions is tolerated as a redundancy <xref rid="bib55 bib76 bib77 bib78 bib79 bib80" ref-type="bibr">[55,76–80]</xref>. Structure learning is entirely compatible with this concept of redundancy in task-irrelevant dimensions, since the subspace found after learning might still comprise many redundant dimensions.</p>
+        <p>Previously, it has also been suggested that co-variation between different control variables can be exploited to reduce task variance <xref rid="bib81 bib82 bib83 bib84 bib85 bib86" ref-type="bibr">[81–86]</xref>, for example, when deviations of two variables compensate for each other, as has been observed for variations in body and pistol angles compensating for each other to achieve a steady pointing position <xref rid="bib81 bib82" ref-type="bibr">[81,82]</xref>. The exploitation of such co-variations is consistent with structural learning and its effect on the structure of movement variability. Similar correlations between control variables have also been previously reported in the context of motor synergies <xref rid="bib87 bib88 bib89" ref-type="bibr">[87–89]</xref> and generalized motor programmes <xref rid="bib90 bib91" ref-type="bibr">[90,91]</xref>. Both concepts can be considered as structures that are scaled by “activation levels” and are therefore also compatible with the notion of structure learning.</p>
+        <p>Once the structure of a control task has been learned, one can employ adaptive control methods to model adaptive motor responses. Consider, for example, picking up an empty milk carton that you believe to be full. Not only do you need to adapt your estimate of the carton's weight, but simultaneously you must exert control to move the carton to a desired location. We have shown that training on such unpredictable tasks leads to the formation of structure-specific adaptation strategies that can be understood within the framework of parametric adaptive optimal feedback control <xref rid="bib65" ref-type="bibr">[65]</xref>. In such an adaptive optimal feedback controller the structure of the control task is represented by an adaptive internal model of the dynamics of the environment <xref rid="bib92 bib93 bib94" ref-type="bibr">[92–94]</xref> and the parameter of that structure identifies all the environments belonging to the class that the internal model is suited for—e.g. an internal model for the manipulation of the milk carton that can be scaled according to its weight. In our experiments <xref rid="bib65" ref-type="bibr">[65]</xref>, we tested directly whether the behaviour can be modelled by adaptive optimal control principles. Subjects were exposed to unexpected visuomotor rotations to which they had to adapt while reaching. Importantly, the visuomotor rotations could not be predicted in any single trial and required ‘online adaptation’, since the mapping from hand to cursor changed all the time. We found clear signs of improvements in subjects’ adaptive behaviour over the course of many trials (<xref rid="fig5" ref-type="fig">Fig. 5</xref>). The adaptive control model could reproduce the stereotyped adaptive arm movements generated by subjects at the end of this ‘learning how to adapt’ process by assuming an internal model that knows about the visuomotor rotation structure and tries to adapt the particular rotation angle parameter in each trial. Interestingly, this model predicts that there should be no adaptation process for visuomotor perturbations that do not change the mapping between inputs and outputs, for example when the target jumps. In accord with these predictions we found that another group of subjects who experienced random target jumps showed no learning-to-learn over the course of trials <xref rid="bib65" ref-type="bibr">[65]</xref>. This suggests that subjects who experienced random rotations had learned an adaptation strategy that was specific for the structure of the environmental variability they encountered during training.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>5</label>
+      <title>A Bayesian perspective</title>
+      <p>Structural learning can also be considered from a Bayesian point of view, in which the learner maintains a probability distribution over possible structures that could explain the data. Such structural learning is typically studied in the framework of Bayesian networks (<xref rid="fig6" ref-type="fig">Fig. 6</xref>). Ultimately, a Bayesian network is a graphical method to efficiently represent the joint distribution of a set of random variables <xref rid="bib2 bib6 bib8" ref-type="bibr">[2,6,8]</xref>. In cognitive science, for example, Bayesian graphical networks are widely used to study structure learning in causal induction <xref rid="bib95 bib96" ref-type="bibr">[95,96]</xref>. In the case of sensorimotor learning, we can consider a Bayesian network in which <italic>N</italic> random variables represent the receptor input <mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mn>...</mml:mn><mml:mo>,</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mi>N</mml:mi></mml:msub></mml:mrow></mml:math> (e.g. retinal input, proprioceptive input, or later stages of neural processing) and <italic>M</italic> variables the motor output <mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>U</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>U</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mn>...</mml:mn><mml:mo>,</mml:mo><mml:msub><mml:mi>U</mml:mi><mml:mi>M</mml:mi></mml:msub></mml:mrow></mml:math> (e.g. muscle activations or earlier stages of neural processing) (<xref rid="fig6" ref-type="fig">Fig. 6</xref>A). The dependencies between these variables are expressed by arrows in the network indicating the relation between any variable <italic>X</italic><sub><italic>i</italic></sub> (such as <italic>R</italic><sub><italic>j</italic></sub> or <italic>U</italic><sub><italic>k</italic></sub>) and its direct causal antecedents denoted as <italic>parents</italic> (<italic>X</italic><sub><italic>i</italic></sub>). Thus, depending on a particular network structure <italic>S</italic> with model parameters <italic>μ</italic><sub><italic>S</italic></sub> the joint probability distribution <mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mi>P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mover accent="true"><mml:mi>X</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>X</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>X</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mn>...</mml:mn><mml:mo>,</mml:mo><mml:msub><mml:mi>X</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mo>+</mml:mo><mml:mi>M</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math> can be split up into a product of conditional probabilities: <mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:mi>P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mover accent="true"><mml:mi>X</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mo>|</mml:mo><mml:mi>S</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>μ</mml:mi><mml:mi>S</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msubsup><mml:mo>∏</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>N</mml:mi><mml:mo>+</mml:mo><mml:mi>M</mml:mi></mml:mrow></mml:msubsup><mml:mrow><mml:mi>P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>X</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>|</mml:mo><mml:mtext>parents</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>X</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:mi>S</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>μ</mml:mi><mml:mi>S</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mrow></mml:math>. The structure <italic>S</italic> of the network determines the dependencies between the variables — that is the presence or absence of arrows — while the probabilities that specify the actual dependencies quantitatively are parameters of that structure. Therefore, ‘structural learning’ refers to learning the topology of such a network, whereas ‘parametric learning’ involves determining quantitatively the causal connections given by the structure. In particular, the problem of structural learning is exacerbated in the presence of hidden variables, because the hidden variables and the structure between them and the observables have to be inferred. This is the standard case in sensorimotor learning. For instance, in the rotation experiments described above the hidden variable is the rotation angle. If the nervous system can extract this hidden variable, the joint probability distribution over the sensorimotor space can be efficiently computed as <mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:mi>P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mo>,</mml:mo><mml:mover accent="true"><mml:mi>U</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mover accent="true"><mml:mi>U</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mo>|</mml:mo><mml:msub><mml:mi>μ</mml:mi><mml:mi>S</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mi>P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>μ</mml:mi><mml:mi>S</mml:mi></mml:msub><mml:mo>|</mml:mo><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math>, where <italic>μ</italic> represents a rotation-specific hidden variable (<xref rid="fig6" ref-type="fig">Fig. 6</xref>B). Formally, the inference process during structural learning is split up into two steps: (a) computing the posterior probability <italic>P</italic>(<italic>S</italic>|<italic>X</italic>) of a certain structural model <italic>S</italic> given the data <italic>X</italic>, and (b) computing the posterior probability <italic>P</italic>(<italic>μ</italic><sub><italic>S</italic></sub>|<italic>S</italic>, <italic>X</italic>) of the parameter <italic>μ</italic><sub><italic>S</italic></sub> given the structural model <italic>S</italic> and the data <italic>X</italic>. By using this formalism the concept of structural learning can be easily incorporated within the framework of Bayesian sensorimotor integration <xref rid="bib97 bib98" ref-type="bibr">[97,98]</xref>. What is not shown explicitly in <xref rid="fig6" ref-type="fig">Fig. 6</xref>A and B is the time-dependence of the random variables <mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>R</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:math> and <mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>U</mml:mi><mml:mo>→</mml:mo></mml:mover></mml:math>. However, time can be included by extending the graph to a Bayesian Network that represents sequences of these random variables. This is called a Dynamic Bayesian Network or DBN <xref rid="bib99" ref-type="bibr">[99]</xref>. It is also straightforward to use structure learning in Bayesian nets as a modelling tool to understand transfer between different tasks <xref rid="bib100" ref-type="bibr">[100]</xref>.</p>
+    </sec>
+    <sec>
+      <label>6</label>
+      <title>Conclusions</title>
+      <p>The hypothesis of structural learning as a ‘learning to learn’ mechanism can be applied to a large body of existing research. In experimental psychology ‘learning to learn’ phenomena have been reported when animals are exposed to different environments that belong to a particular class or type. Instead of talking about ‘class’ or ‘type’ we might equally say that these environments share a common structure. Harlow pioneered the hypothesis that animals form ‘learning sets’ of abstract solution strategies applicable to all environments that share the same class or structure. In addition, studies in cognitive science have investigated structure learning mainly in the context of inferring causal dependencies. So far these studies have rarely asked the question how such structure learning transfers to new learning problems, although some have reported ‘learning to learn’ effects <xref rid="bib39" ref-type="bibr">[39]</xref>. Thus, these lines of research provide evidence for structural learning in both animal and human cognitive learning tasks. The applicability of the concept, however, stretches much farther and includes, for example, even ‘learning to learn’ on an evolutionary scale where our ontogenetic learning is merely an adaptation to a particular instantiation of a living environment for which we have been selected <xref rid="bib101" ref-type="bibr">[101]</xref>. Here, we have mainly focused on structure learning in motor control tasks. These findings are particularly interesting because previously it has often been thought that learning in highly variable environments cannot be achieved or that only average responses could be learned <xref rid="bib102 bib103 bib104 bib105 bib106 bib107" ref-type="bibr">[102–107]</xref>. Recent data indicates, however, that this is not always the case and that structure learning can extract more abstract invariants. Structural learning in the motor system would then imply the learning of abstract motor strategies that are applicable in a wide range of environments that share common structures. Such an ability for primitive, non-cognitive abstraction or motor concept formation might also provide an interesting link between motor control and cognitive science <xref rid="bib108" ref-type="bibr">[108]</xref>. In summary, structural learning might not only play a fundamental role in skill learning and underlie the unsurpassed flexibility and adaptability of the motor system, but also govern important cognitive learning processes observed in animal psychology and cognitive science.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This work was supported by the Wellcome Trust, SENSOPAC IST-2005-028056, and Federal Ministry of Education and Research (BMBF Grant 01GQ0420 to the Bernstein Center for Computational Neuroscience, Freiburg).</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>[1]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashby</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Design for a brain: the origin of adaptive behavior</article-title>
+          <edition>2nd ed.</edition>
+          <year>1960</year>
+          <publisher-name>Chapman &amp; Hall</publisher-name>
+          <publisher-loc>London</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <label>[2]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pearl</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Probabilistic reasoning in intelligent systems: networks of plausible inference</article-title>
+          <year>1988</year>
+          <publisher-name>Morgan Kaufmann Publishers</publisher-name>
+          <publisher-loc>San Mateo, CA</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <label>[3]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boyen</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Friedman</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Koller</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Discovering the hidden structure of complex dynamic systems</article-title>
+          <source>Proceedings of the 15th annual conference on uncertainty in artificial intelligence (UAI-99)</source>
+          <year>1999</year>
+          <publisher-name>Morgan Kaufmann</publisher-name>
+          <fpage>91</fpage>
+          <lpage>100</lpage>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <label>[4]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Åström</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Wittenmark</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Adaptive control</article-title>
+          <edition>2nd ed.</edition>
+          <year>1995</year>
+          <publisher-name>Addison-Wesley</publisher-name>
+          <publisher-loc>Reading, MA</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <label>[5]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friedman</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Bayesian structural EM algorithm</article-title>
+          <source>Proceedings of the 14th annual conference on uncertainty in artificial intelligence (UAI-98)</source>
+          <year>1998</year>
+          <publisher-name>Morgan Kaufmann</publisher-name>
+          <fpage>129</fpage>
+          <lpage>139</lpage>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <label>[6]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jordan</surname>
+              <given-names>M.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning in graphical models</article-title>
+          <edition>1st MIT Press ed.</edition>
+          <year>1999</year>
+          <publisher-name>MIT Press</publisher-name>
+          <publisher-loc>Cambridge, MA; London</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <label>[7]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buntine</surname>
+              <given-names>W.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>A guide to the literature on learning probabilistic networks from data</article-title>
+          <source>IEEE Transactions on Knowledge and Data Engineering</source>
+          <year>1996</year>
+          <volume>8</volume>
+          <fpage>195</fpage>
+          <lpage>210</lpage>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <label>[8]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Needham</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Bradford</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Bulpitt</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Westhead</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A primer on learning in Bayesian networks for computational biology</article-title>
+          <source>PLoS Computational Biology</source>
+          <year>2007</year>
+          <volume>3</volume>
+          <fpage>e129</fpage>
+          <pub-id pub-id-type="pmid">17784779</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <label>[9]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vapnik</surname>
+              <given-names>V.N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical learning theory</article-title>
+          <year>1998</year>
+          <publisher-name>Wiley</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <label>[10]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seidler</surname>
+              <given-names>R.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiple motor learning experiences enhance motor adaptability</article-title>
+          <source>Journal of Cognitive Neuroscience</source>
+          <year>2004</year>
+          <volume>16</volume>
+          <fpage>65</fpage>
+          <lpage>73</lpage>
+          <pub-id pub-id-type="pmid">15006037</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <label>[11]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harlow</surname>
+              <given-names>H.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>The formation of learning sets</article-title>
+          <source>Psychological Review</source>
+          <year>1949</year>
+          <volume>56</volume>
+          <fpage>51</fpage>
+          <lpage>65</lpage>
+          <pub-id pub-id-type="pmid">18124807</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <label>[12]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dudai</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Memory from A to Z: keywords, concepts and beyond</article-title>
+          <year>2004</year>
+          <publisher-name>Oxford University Press</publisher-name>
+          <publisher-loc>Oxford</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <label>[13]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reznikova</surname>
+              <given-names>Z.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Animal intelligence: from individual to social cognition</article-title>
+          <year>2007</year>
+          <publisher-name>Cambridge University Press</publisher-name>
+          <publisher-loc>Cambridge, New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <label>[14]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schrier</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning how to learn: the significance and current status of learning set formation</article-title>
+          <source>Primates</source>
+          <year>1984</year>
+          <volume>25</volume>
+          <fpage>95</fpage>
+          <lpage>102</lpage>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <label>[15]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Langbein</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Siebert</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Nurnberg</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Manteuffel</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning to learn during visual discrimination in group housed dwarf goats (Capra hircus)</article-title>
+          <source>Journal of Comparative Psychology</source>
+          <year>2007</year>
+          <volume>121</volume>
+          <fpage>447</fpage>
+          <lpage>456</lpage>
+          <pub-id pub-id-type="pmid">18085929</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <label>[16]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bailey</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>R.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>The effects of nucleus basalis magnocellularis lesions in Long-Evans hooded rats on two learning set formation tasks, delayed matching-to-sample learning, and open-field activity</article-title>
+          <source>Behavioral Neuroscience</source>
+          <year>2001</year>
+          <volume>115</volume>
+          <fpage>328</fpage>
+          <lpage>340</lpage>
+          <pub-id pub-id-type="pmid">11345958</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <label>[17]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mackintosh</surname>
+              <given-names>N.J.</given-names>
+            </name>
+            <name>
+              <surname>Little</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Intradimensional and extradimensional shift learning by pigeons</article-title>
+          <source>Psychonomic Science</source>
+          <year>1969</year>
+          <volume>14</volume>
+          <fpage>5</fpage>
+          <lpage>6</lpage>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <label>[18]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roberts</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Robbins</surname>
+              <given-names>T.W.</given-names>
+            </name>
+            <name>
+              <surname>Everitt</surname>
+              <given-names>B.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The effects of intradimensional and extradimensional shifts on visual discrimination learning in humans and non-human primates</article-title>
+          <source>The Quarterly Journal of Experimental Psychology</source>
+          <year>1988</year>
+          <volume>40</volume>
+          <fpage>321</fpage>
+          <lpage>341</lpage>
+          <pub-id pub-id-type="pmid">3145534</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <label>[19]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Trobalon</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Miguelez</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>McLaren</surname>
+              <given-names>I.P.</given-names>
+            </name>
+            <name>
+              <surname>Mackintosh</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Intradimensional and extradimensional shifts in spatial learning</article-title>
+          <source>Journal of Experimental Psychology. Animal Behavior Processes</source>
+          <year>2003</year>
+          <volume>29</volume>
+          <fpage>143</fpage>
+          <lpage>152</lpage>
+          <pub-id pub-id-type="pmid">12735278</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <label>[20]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garner</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Thogerson</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Wurbel</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Murray</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Mench</surname>
+              <given-names>J.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Animal neuropsychology: validation of the intra-dimensional extra-dimensional set shifting task for mice</article-title>
+          <source>Behavioural Brain Research</source>
+          <year>2006</year>
+          <volume>173</volume>
+          <fpage>53</fpage>
+          <lpage>61</lpage>
+          <pub-id pub-id-type="pmid">16842867</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <label>[21]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Warren</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The comparative psychology of learning</article-title>
+          <source>Annual Review of Psychology</source>
+          <year>1965</year>
+          <volume>16</volume>
+          <fpage>95</fpage>
+          <lpage>118</lpage>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <label>[22]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Preston</surname>
+              <given-names>G.C.</given-names>
+            </name>
+            <name>
+              <surname>Dickinson</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Mackintosh</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Contextual conditional discriminations</article-title>
+          <source>The Quarterly Journal of Experimental Psychology Section B</source>
+          <year>1986</year>
+          <volume>38</volume>
+          <fpage>217</fpage>
+          <lpage>237</lpage>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <label>[23]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Santi</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The role of physical identity of the sample and correct comparison stimulus in matching-to-sample paradigms</article-title>
+          <source>Journal of the Experimental Analysis of Behavior</source>
+          <year>1978</year>
+          <volume>29</volume>
+          <fpage>511</fpage>
+          <lpage>516</lpage>
+          <pub-id pub-id-type="pmid">16812074</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <label>[24]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Edwards</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Jagielo</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Zentall</surname>
+              <given-names>T.R.</given-names>
+            </name>
+            <name>
+              <surname>Hogan</surname>
+              <given-names>D.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Acquired equivalence and distinctiveness in matching-to-sample by pigeons: mediation by reinforcer-specific expectancies</article-title>
+          <source>Journal of Experimental Psychology: Animal Behavior Processes</source>
+          <year>1982</year>
+          <volume>8</volume>
+          <fpage>244</fpage>
+          <lpage>259</lpage>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <label>[25]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fujita</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Acquisition and transfer of a higher-order conditional discrimination performance in the Japanese monkey</article-title>
+          <source>Japanese Psychological Research</source>
+          <year>1983</year>
+          <volume>25</volume>
+          <fpage>1</fpage>
+          <lpage>8</lpage>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <label>[26]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Young</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>Wasserman</surname>
+              <given-names>E.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Entropy detection by pigeons: response to mixed visual displays after same-different discrimination training</article-title>
+          <source>Journal of Experimental Psychology. Animal Behavior Processes</source>
+          <year>1997</year>
+          <volume>23</volume>
+          <fpage>157</fpage>
+          <lpage>170</lpage>
+          <pub-id pub-id-type="pmid">9095540</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <label>[27]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wasserman</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Fagot</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Young</surname>
+              <given-names>M.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Same-different conceptualization by baboons (Papio papio): the role of entropy</article-title>
+          <source>Journal of Comparative Psychology</source>
+          <year>2001</year>
+          <volume>115</volume>
+          <fpage>42</fpage>
+          <lpage>52</lpage>
+          <pub-id pub-id-type="pmid">11334218</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <label>[28]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wasserman</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Hugart</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Kirkpatrick-Steger</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Pigeons show same-different conceptualization after training with complex visual stimuli</article-title>
+          <source>Journal of Experimental Psychology: Animal Behavior Processes</source>
+          <year>1995</year>
+          <volume>21</volume>
+          <fpage>248</fpage>
+          <lpage>252</lpage>
+          <pub-id pub-id-type="pmid">7602259</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <label>[29]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sappington</surname>
+              <given-names>B.F.</given-names>
+            </name>
+            <name>
+              <surname>Goldman</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Discrimination learning and concept formation in the Arabian horse</article-title>
+          <source>Journal of Animal Science</source>
+          <year>1994</year>
+          <volume>72</volume>
+          <fpage>3080</fpage>
+          <lpage>3087</lpage>
+          <pub-id pub-id-type="pmid">7759356</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <label>[30]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Delius</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Habers</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Symmetry: can pigeons conceptualize it?</article-title>
+          <source>Behavioral Biology</source>
+          <year>1978</year>
+          <volume>22</volume>
+          <fpage>336</fpage>
+          <lpage>342</lpage>
+          <pub-id pub-id-type="pmid">626628</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <label>[31]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Herrnstein</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Loveland</surname>
+              <given-names>D.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Complex visual concept in the pigeon</article-title>
+          <source>Science (New York, NY)</source>
+          <year>1964</year>
+          <volume>146</volume>
+          <fpage>549</fpage>
+          <lpage>551</lpage>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <label>[32]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Savage-Rumbaugh</surname>
+              <given-names>E.S.</given-names>
+            </name>
+            <name>
+              <surname>Rumbaugh</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>S.T.</given-names>
+            </name>
+            <name>
+              <surname>Lawson</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reference: the linguistic essential</article-title>
+          <source>Science (New York, NY)</source>
+          <year>1980</year>
+          <volume>210</volume>
+          <fpage>922</fpage>
+          <lpage>925</lpage>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <label>[33]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bovet</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Vauclair</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Picture recognition in animals and humans</article-title>
+          <source>Behavioural Brain Research</source>
+          <year>2000</year>
+          <volume>109</volume>
+          <fpage>143</fpage>
+          <lpage>165</lpage>
+          <pub-id pub-id-type="pmid">10762685</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <label>[34]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bovet</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Vauclair</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Judgment of conceptual identity in monkeys</article-title>
+          <source>Psychonomic Bulletin &amp; Review</source>
+          <year>2001</year>
+          <volume>8</volume>
+          <fpage>470</fpage>
+          <lpage>475</lpage>
+          <pub-id pub-id-type="pmid">11700897</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <label>[35]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thompson</surname>
+              <given-names>R.K.R.</given-names>
+            </name>
+            <name>
+              <surname>Oden</surname>
+              <given-names>D.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Categorical perception and conceptual judgments by nonhuman primates: the paleological monkey and the analogical ape</article-title>
+          <source>Cognitive Science</source>
+          <year>2000</year>
+          <volume>24</volume>
+          <fpage>363</fpage>
+          <lpage>396</lpage>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <label>[36]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brown</surname>
+              <given-names>A.L.</given-names>
+            </name>
+            <name>
+              <surname>Kane</surname>
+              <given-names>M.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Preschool children can learn to transfer: learning to learn and learning from example</article-title>
+          <source>Cognitive Psychology</source>
+          <year>1988</year>
+          <volume>20</volume>
+          <fpage>493</fpage>
+          <lpage>523</lpage>
+          <pub-id pub-id-type="pmid">3191668</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <label>[37]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Duncan</surname>
+              <given-names>C.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Description of learning to learn in human subjects</article-title>
+          <source>The American Journal of Psychology</source>
+          <year>1960</year>
+          <volume>73</volume>
+          <fpage>108</fpage>
+          <lpage>114</lpage>
+          <pub-id pub-id-type="pmid">13818621</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <label>[38]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hultsch</surname>
+              <given-names>D.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning to learn in adulthood</article-title>
+          <source>Journal of Gerontology</source>
+          <year>1974</year>
+          <volume>29</volume>
+          <fpage>302</fpage>
+          <lpage>308</lpage>
+          <pub-id pub-id-type="pmid">4821845</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <label>[39]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Halford</surname>
+              <given-names>G.S.</given-names>
+            </name>
+            <name>
+              <surname>Bain</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Maybery</surname>
+              <given-names>M.T.</given-names>
+            </name>
+            <name>
+              <surname>Andrews</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Induction of relational schemas: common processes in reasoning and complex learning</article-title>
+          <source>Cognitive Psychology</source>
+          <year>1998</year>
+          <volume>35</volume>
+          <fpage>201</fpage>
+          <lpage>245</lpage>
+          <pub-id pub-id-type="pmid">9628745</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <label>[40]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tenenbaum</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Griffiths</surname>
+              <given-names>T.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Generalization, similarity, and Bayesian inference</article-title>
+          <source>The Behavioral and Brain Sciences</source>
+          <year>2001</year>
+          <volume>24</volume>
+          <fpage>629</fpage>
+          <lpage>640</lpage>
+          <comment>[discussion 652–791]</comment>
+          <pub-id pub-id-type="pmid">12048947</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <label>[41]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kemp</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Perfors</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Tenenbaum</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning domain structures</article-title>
+          <source>Proceedings of the twenty-sixth annual conference of the cognitive science society</source>
+          <year>2004</year>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <label>[42]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kemp</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Tenenbaum</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>The discovery of structural form</article-title>
+          <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+          <year>2008</year>
+          <volume>105</volume>
+          <fpage>10687</fpage>
+          <lpage>10692</lpage>
+          <pub-id pub-id-type="pmid">18669663</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <label>[43]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Michel</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Jacobs</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Parameter learning but not structure learning: a Bayesian network model of constraints on early perceptual learning</article-title>
+          <source>Journal of Vision</source>
+          <year>2007</year>
+          <volume>7</volume>
+          <fpage>4</fpage>
+          <pub-id pub-id-type="pmid">17461672</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <label>[44]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gopnik</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Glymour</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Sobel</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Schulz</surname>
+              <given-names>L.E.</given-names>
+            </name>
+            <name>
+              <surname>Kushnir</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Danks</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>A theory of causal learning in children: causal maps and Bayes nets</article-title>
+          <source>Psychological Review</source>
+          <year>2004</year>
+          <volume>111</volume>
+          <fpage>3</fpage>
+          <lpage>32</lpage>
+          <pub-id pub-id-type="pmid">14756583</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <label>[45]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kemp</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Tenenbaum</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structured statistical models of inductive reasoning</article-title>
+          <source>Psychological Review</source>
+          <year>2009</year>
+          <volume>116</volume>
+          <fpage>20</fpage>
+          <lpage>58</lpage>
+          <pub-id pub-id-type="pmid">19159147</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib46">
+        <label>[46]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tenenbaum</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Griffiths</surname>
+              <given-names>T.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure learning in human causal induction</article-title>
+          <source>Advances in neural information processing systems</source>
+          <year>2001</year>
+          <publisher-name>MIT Press</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <label>[47]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Steyvers</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Tenenbaum</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Wagenmakers</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Blum</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Inferring causal networks from observations and interventions</article-title>
+          <source>Cognitive Science</source>
+          <year>2003</year>
+          <volume>27</volume>
+          <fpage>453</fpage>
+          <lpage>489</lpage>
+        </citation>
+      </ref>
+      <ref id="bib48">
+        <label>[48]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Griffiths</surname>
+              <given-names>T.L.</given-names>
+            </name>
+            <name>
+              <surname>Tenenbaum</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure and strength in causal induction</article-title>
+          <source>Cognitive Psychology</source>
+          <year>2005</year>
+          <volume>51</volume>
+          <fpage>334</fpage>
+          <lpage>384</lpage>
+          <pub-id pub-id-type="pmid">16168981</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib49">
+        <label>[49]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pearl</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Causality: models, reasoning and inference</article-title>
+          <year>2000</year>
+          <publisher-name>Cambridge University Press</publisher-name>
+          <publisher-loc>Cambridge; New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib50">
+        <label>[50]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Waldmann</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Hagmayer</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Seeing versus doing: two modes of accessing causal knowledge</article-title>
+          <source>Journal of Experimental Psychology. Learning, Memory, and Cognition</source>
+          <year>2005</year>
+          <volume>31</volume>
+          <fpage>216</fpage>
+          <lpage>227</lpage>
+        </citation>
+      </ref>
+      <ref id="bib51">
+        <label>[51]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lagnado</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Sloman</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>The advantage of timely intervention</article-title>
+          <source>Journal of Experimental Psychology. Learning, Memory, and Cognition</source>
+          <year>2004</year>
+          <volume>30</volume>
+          <fpage>856</fpage>
+          <lpage>876</lpage>
+        </citation>
+      </ref>
+      <ref id="bib52">
+        <label>[52]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lagnado</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Sloman</surname>
+              <given-names>S.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Time as a guide to cause</article-title>
+          <source>Journal of Experimental Psychology. Learning, Memory, and Cognition</source>
+          <year>2006</year>
+          <volume>32</volume>
+          <fpage>451</fpage>
+          <lpage>460</lpage>
+        </citation>
+      </ref>
+      <ref id="bib53">
+        <label>[53]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Acuña</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Schrater</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure learning in human sequential decision-making</article-title>
+          <source>Advances in neural information processing systems</source>
+          <year>2008</year>
+          <publisher-name>MIT Press</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib54">
+        <label>[54]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sastry</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bodson</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Adaptive Control: Stability, Convergence and Robustness</article-title>
+          <year>1989</year>
+          <publisher-name>Prentice-Hall Advanced Reference Series</publisher-name>
+          <publisher-loc>Englewood Cliffs, NJ</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib55">
+        <label>[55]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Todorov</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Jordan</surname>
+              <given-names>M.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimal feedback control as a theory of motor coordination</article-title>
+          <source>Nature Neuroscience</source>
+          <year>2002</year>
+          <volume>5</volume>
+          <fpage>1226</fpage>
+          <lpage>1235</lpage>
+        </citation>
+      </ref>
+      <ref id="bib56">
+        <label>[56]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Todorov</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimality principles in sensorimotor control</article-title>
+          <source>Nature Neuroscience</source>
+          <year>2004</year>
+          <volume>7</volume>
+          <fpage>907</fpage>
+          <lpage>915</lpage>
+        </citation>
+      </ref>
+      <ref id="bib57">
+        <label>[57]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scott</surname>
+              <given-names>S.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimal feedback control and the neural basis of volitional motor control</article-title>
+          <source>Nature Reviews</source>
+          <year>2004</year>
+          <volume>5</volume>
+          <fpage>532</fpage>
+          <lpage>546</lpage>
+        </citation>
+      </ref>
+      <ref id="bib58">
+        <label>[58]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Diedrichsen</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimal task-dependent changes of bimanual feedback control and adaptation</article-title>
+          <source>Current Biology</source>
+          <year>2007</year>
+          <volume>17</volume>
+          <fpage>1675</fpage>
+          <lpage>1679</lpage>
+          <pub-id pub-id-type="pmid">17900901</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib59">
+        <label>[59]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Todorov</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evidence for the flexible sensorimotor strategies predicted by optimal feedback control</article-title>
+          <source>Journal of Neuroscience</source>
+          <year>2007</year>
+          <volume>27</volume>
+          <fpage>9354</fpage>
+          <lpage>9368</lpage>
+          <pub-id pub-id-type="pmid">17728449</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib60">
+        <label>[60]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guigon</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Baraduc</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Desmurget</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational motor control: redundancy and invariance</article-title>
+          <source>Journal of Neurophysiology</source>
+          <year>2007</year>
+          <volume>97</volume>
+          <fpage>331</fpage>
+          <lpage>347</lpage>
+          <pub-id pub-id-type="pmid">17005621</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib61">
+        <label>[61]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nagengast</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Braun</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Wolpert</surname>
+              <given-names>D.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimal control predicts human performance on objects with internal degrees of freedom</article-title>
+          <source>PLoS Computational Biology</source>
+          <year>2009</year>
+          <volume>5</volume>
+          <fpage>e1000419</fpage>
+          <pub-id pub-id-type="pmid">19557193</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib62">
+        <label>[62]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Adolph</surname>
+              <given-names>K.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning to move</article-title>
+          <source>Current Direction in Psychological Sciences</source>
+          <year>2008</year>
+          <volume>17</volume>
+          <fpage>213</fpage>
+          <lpage>218</lpage>
+        </citation>
+      </ref>
+      <ref id="bib63">
+        <label>[63]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bock</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Schneider</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Acquisition of a sensorimotor skill in younger and older adults</article-title>
+          <source>Acta Physiologica et Pharmacologica Bulgarica</source>
+          <year>2001</year>
+          <volume>26</volume>
+          <fpage>89</fpage>
+          <lpage>92</lpage>
+          <pub-id pub-id-type="pmid">11693410</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib64">
+        <label>[64]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bock</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Schneider</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bloomberg</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Conditions for interference versus facilitation during sequential sensorimotor adaptation</article-title>
+          <source>Experimental Brain Research</source>
+          <year>2001</year>
+          <volume>138</volume>
+          <fpage>359</fpage>
+          <lpage>365</lpage>
+        </citation>
+      </ref>
+      <ref id="bib65">
+        <label>[65]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Braun</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Aertsen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wolpert</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Mehring</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning optimal adaptation strategies in unpredictable motor tasks</article-title>
+          <source>Journal of Neuroscience</source>
+          <year>2009</year>
+          <volume>29</volume>
+          <fpage>6472</fpage>
+          <lpage>6478</lpage>
+          <pub-id pub-id-type="pmid">19458218</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib66">
+        <label>[66]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Braun</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Aertsen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wolpert</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Mehring</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motor task variation induces structural learning</article-title>
+          <source>Current Biology</source>
+          <year>2009</year>
+          <volume>19</volume>
+          <fpage>1</fpage>
+          <lpage>6</lpage>
+          <pub-id pub-id-type="pmid">19135370</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib67">
+        <label>[67]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Welch</surname>
+              <given-names>R.B.</given-names>
+            </name>
+            <name>
+              <surname>Bridgeman</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Anand</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Browman</surname>
+              <given-names>K.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Alternating prism exposure causes dual adaptation and generalization to a novel displacement</article-title>
+          <source>Perception and Psychophysics</source>
+          <year>1993</year>
+          <volume>54</volume>
+          <fpage>195</fpage>
+          <lpage>204</lpage>
+          <pub-id pub-id-type="pmid">8361835</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib68">
+        <label>[68]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zarahn</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Weston</surname>
+              <given-names>G.D.</given-names>
+            </name>
+            <name>
+              <surname>Liang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Mazzoni</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Krakauer</surname>
+              <given-names>J.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Explaining savings for visuomotor adaptation: linear time-invariant state-space models are not sufficient</article-title>
+          <source>Journal of Neurophysiology</source>
+          <year>2008</year>
+          <volume>100</volume>
+          <fpage>2537</fpage>
+          <lpage>2548</lpage>
+          <pub-id pub-id-type="pmid">18596178</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib69">
+        <label>[69]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seidler</surname>
+              <given-names>R.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Older adults can learn to learn new motor skills</article-title>
+          <source>Behavioural Brain Research</source>
+          <year>2007</year>
+          <volume>183</volume>
+          <fpage>118</fpage>
+          <lpage>122</lpage>
+          <pub-id pub-id-type="pmid">17602760</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib70">
+        <label>[70]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roller</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>H.S.</given-names>
+            </name>
+            <name>
+              <surname>Kimball</surname>
+              <given-names>K.T.</given-names>
+            </name>
+            <name>
+              <surname>Bloomberg</surname>
+              <given-names>J.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variable practice with lenses improves visuo-motor plasticity</article-title>
+          <source>Brain Research</source>
+          <year>2001</year>
+          <volume>12</volume>
+          <fpage>341</fpage>
+          <lpage>352</lpage>
+          <pub-id pub-id-type="pmid">11587905</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib71">
+        <label>[71]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cohen</surname>
+              <given-names>H.S.</given-names>
+            </name>
+            <name>
+              <surname>Bloomberg</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Mulavara</surname>
+              <given-names>A.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Obstacle avoidance in novel visual environments improved by variable practice training</article-title>
+          <source>Perceptual and Motor Skills</source>
+          <year>2005</year>
+          <volume>101</volume>
+          <fpage>853</fpage>
+          <lpage>861</lpage>
+          <pub-id pub-id-type="pmid">16491689</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib72">
+        <label>[72]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mulavara</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>H.S.</given-names>
+            </name>
+            <name>
+              <surname>Bloomberg</surname>
+              <given-names>J.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Critical features of training that facilitate adaptive generalization of over ground locomotion</article-title>
+          <source>Gait &amp; Posture</source>
+          <year>2009</year>
+          <volume>29</volume>
+          <fpage>242</fpage>
+          <lpage>248</lpage>
+          <pub-id pub-id-type="pmid">18838271</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib73">
+        <label>[73]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shea</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Morgan</surname>
+              <given-names>R.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Contextual interference effects on the acquisition, retention and transfer of a motor skill</article-title>
+          <source>Journal of Experimental Psychology</source>
+          <year>1979</year>
+          <volume>5</volume>
+          <fpage>179</fpage>
+          <lpage>187</lpage>
+        </citation>
+      </ref>
+      <ref id="bib74">
+        <label>[74]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abeele</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bock</surname>
+              <given-names>O.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mechanisms for sensorimotor adaptation to rotated visual input</article-title>
+          <source>Experimental Brain Research</source>
+          <year>2001</year>
+          <volume>139</volume>
+          <fpage>248</fpage>
+          <lpage>253</lpage>
+        </citation>
+      </ref>
+      <ref id="bib75">
+        <label>[75]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>N.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The co-ordination and regulation of movements</article-title>
+          <year>1967</year>
+          <publisher-name>Pergamon Press</publisher-name>
+          <publisher-loc>Oxford; New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib76">
+        <label>[76]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scholz</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Schoner</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Latash</surname>
+              <given-names>M.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identifying the control structure of multijoint coordination during pistol shooting</article-title>
+          <source>Experimental Brain Research</source>
+          <year>2000</year>
+          <volume>135</volume>
+          <fpage>382</fpage>
+          <lpage>404</lpage>
+        </citation>
+      </ref>
+      <ref id="bib77">
+        <label>[77]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scholz</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Schoner</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The uncontrolled manifold concept: identifying control variables for a functional task</article-title>
+          <source>Experimental Brain Research</source>
+          <year>1999</year>
+          <volume>126</volume>
+          <fpage>289</fpage>
+          <lpage>306</lpage>
+        </citation>
+      </ref>
+      <ref id="bib78">
+        <label>[78]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Latash</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Scholz</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Schoner</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motor control strategies revealed in the structure of motor variability</article-title>
+          <source>Exercise and Sport Sciences Reviews</source>
+          <year>2002</year>
+          <volume>30</volume>
+          <fpage>26</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="pmid">11800496</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib79">
+        <label>[79]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Todorov</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Jordan</surname>
+              <given-names>M.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>A minimal intervention principle for coordinated movement</article-title>
+          <source>Advances in Neural Information Processing Systems</source>
+          <year>2003</year>
+        </citation>
+      </ref>
+      <ref id="bib80">
+        <label>[80]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Valero-Cuevas</surname>
+              <given-names>F.J.</given-names>
+            </name>
+            <name>
+              <surname>Venkadesan</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Todorov</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structured variability of muscle activations supports the minimal intervention principle of motor control</article-title>
+          <source>Journal of Neurophysiology</source>
+          <year>2009</year>
+          <volume>102</volume>
+          <fpage>59</fpage>
+          <lpage>68</lpage>
+          <pub-id pub-id-type="pmid">19369362</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib81">
+        <label>[81]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Arutyunyan</surname>
+              <given-names>G.H.</given-names>
+            </name>
+            <name>
+              <surname>Gurfinkel</surname>
+              <given-names>V.S.</given-names>
+            </name>
+            <name>
+              <surname>Mirskii</surname>
+              <given-names>M.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Investigation of aiming at a target</article-title>
+          <source>Biophysics</source>
+          <year>1968</year>
+          <volume>13</volume>
+          <fpage>536</fpage>
+          <lpage>538</lpage>
+        </citation>
+      </ref>
+      <ref id="bib82">
+        <label>[82]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Arutyunyan</surname>
+              <given-names>G.H.</given-names>
+            </name>
+            <name>
+              <surname>Gurfinkel</surname>
+              <given-names>V.S.</given-names>
+            </name>
+            <name>
+              <surname>Mirskii</surname>
+              <given-names>M.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Organization of movements on execution by man of an exact postural task</article-title>
+          <source>Biophysics</source>
+          <year>1969</year>
+          <volume>14</volume>
+          <fpage>1162</fpage>
+          <lpage>1167</lpage>
+        </citation>
+      </ref>
+      <ref id="bib83">
+        <label>[83]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cusumano</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Cesari</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Body-goal variability mapping in an aiming task</article-title>
+          <source>Biological Cybernetics</source>
+          <year>2006</year>
+          <volume>94</volume>
+          <fpage>367</fpage>
+          <lpage>379</lpage>
+          <pub-id pub-id-type="pmid">16501988</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib84">
+        <label>[84]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kudo</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Tsutsui</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ishikura</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Ito</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Yamamoto</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Compensatory coordination of release parameters in a throwing task</article-title>
+          <source>Journal of Motor Behavior</source>
+          <year>2000</year>
+          <volume>32</volume>
+          <fpage>337</fpage>
+          <lpage>345</lpage>
+          <pub-id pub-id-type="pmid">11114227</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib85">
+        <label>[85]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Martin</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Greger</surname>
+              <given-names>B.E.</given-names>
+            </name>
+            <name>
+              <surname>Norris</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Thach</surname>
+              <given-names>W.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Throwing accuracy in the vertical direction during prism adaptation: not simply timing of ball release</article-title>
+          <source>Journal of Neurophysiology</source>
+          <year>2001</year>
+          <volume>85</volume>
+          <fpage>2298</fpage>
+          <lpage>2302</lpage>
+          <pub-id pub-id-type="pmid">11353043</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib86">
+        <label>[86]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Muller</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Sternad</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motor learning: changes in the structure of variability in a redundant task</article-title>
+          <source>Advances in Experimental Medicine and Biology</source>
+          <year>2009</year>
+          <volume>629</volume>
+          <fpage>439</fpage>
+          <lpage>456</lpage>
+          <pub-id pub-id-type="pmid">19227514</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib87">
+        <label>[87]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>d’Avella</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Saltiel</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Bizzi</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Combinations of muscle synergies in the construction of a natural motor behavior</article-title>
+          <source>Nature Neuroscience</source>
+          <year>2003</year>
+          <volume>6</volume>
+          <fpage>300</fpage>
+          <lpage>308</lpage>
+        </citation>
+      </ref>
+      <ref id="bib88">
+        <label>[88]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tresch</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Saltiel</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Bizzi</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>The construction of movement by the spinal cord</article-title>
+          <source>Nature Neuroscience</source>
+          <year>1999</year>
+          <volume>2</volume>
+          <fpage>162</fpage>
+          <lpage>167</lpage>
+        </citation>
+      </ref>
+      <ref id="bib89">
+        <label>[89]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shapkova</surname>
+              <given-names>E.Y.</given-names>
+            </name>
+            <name>
+              <surname>Shapkova</surname>
+              <given-names>A.L.</given-names>
+            </name>
+            <name>
+              <surname>Goodman</surname>
+              <given-names>S.R.</given-names>
+            </name>
+            <name>
+              <surname>Zatsiorsky</surname>
+              <given-names>V.M.</given-names>
+            </name>
+            <name>
+              <surname>Latash</surname>
+              <given-names>M.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Do synergies decrease force variability? A study of single-finger and multi-finger force production</article-title>
+          <source>Experimental Brain Research</source>
+          <year>2008</year>
+          <volume>188</volume>
+          <fpage>411</fpage>
+          <lpage>425</lpage>
+        </citation>
+      </ref>
+      <ref id="bib90">
+        <label>[90]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A schema theory of discrete motor skill learning</article-title>
+          <source>Psychological Review</source>
+          <year>1975</year>
+          <volume>82</volume>
+          <fpage>225</fpage>
+          <lpage>260</lpage>
+        </citation>
+      </ref>
+      <ref id="bib91">
+        <label>[91]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motor schema theory after 27 years: reflections and implications for a new theory</article-title>
+          <source>Research Quarterly for Exercise and Sport</source>
+          <year>2003</year>
+          <volume>74</volume>
+          <fpage>366</fpage>
+          <lpage>375</lpage>
+          <pub-id pub-id-type="pmid">14768837</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib92">
+        <label>[92]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shadmehr</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Mussa-Ivaldi</surname>
+              <given-names>F.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Adaptive representation of dynamics during learning of a motor task</article-title>
+          <source>Journal of Neuroscience</source>
+          <year>1994</year>
+          <volume>14</volume>
+          <fpage>3208</fpage>
+          <lpage>3224</lpage>
+          <pub-id pub-id-type="pmid">8182467</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib93">
+        <label>[93]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wolpert</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Ghahramani</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Jordan</surname>
+              <given-names>M.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>An internal model for sensorimotor integration</article-title>
+          <source>Science (New York, NY)</source>
+          <year>1995</year>
+          <volume>269</volume>
+          <fpage>1880</fpage>
+          <lpage>1882</lpage>
+        </citation>
+      </ref>
+      <ref id="bib94">
+        <label>[94]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wagner</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Shared internal models for feedforward and feedback control</article-title>
+          <source>Journal of Neuroscience</source>
+          <year>2008</year>
+          <volume>28</volume>
+          <fpage>10663</fpage>
+          <lpage>10673</lpage>
+          <pub-id pub-id-type="pmid">18923042</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib95">
+        <label>[95]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tenenbaum</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Griffiths</surname>
+              <given-names>T.L.</given-names>
+            </name>
+            <name>
+              <surname>Kemp</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Theory-based Bayesian models of inductive learning and reasoning</article-title>
+          <source>Trends in Cognitive Sciences</source>
+          <year>2006</year>
+          <volume>10</volume>
+          <fpage>309</fpage>
+          <lpage>318</lpage>
+          <pub-id pub-id-type="pmid">16797219</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib96">
+        <label>[96]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glymour</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning, prediction and causal Bayes nets</article-title>
+          <source>Trends in Cognitive Sciences</source>
+          <year>2003</year>
+          <volume>7</volume>
+          <fpage>43</fpage>
+          <lpage>48</lpage>
+          <pub-id pub-id-type="pmid">12517358</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib97">
+        <label>[97]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kording</surname>
+              <given-names>K.P.</given-names>
+            </name>
+            <name>
+              <surname>Wolpert</surname>
+              <given-names>D.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian integration in sensorimotor learning</article-title>
+          <source>Nature</source>
+          <year>2004</year>
+          <volume>427</volume>
+          <fpage>244</fpage>
+          <lpage>247</lpage>
+          <pub-id pub-id-type="pmid">14724638</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib98">
+        <label>[98]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kording</surname>
+              <given-names>K.P.</given-names>
+            </name>
+            <name>
+              <surname>Wolpert</surname>
+              <given-names>D.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian decision theory in sensorimotor control</article-title>
+          <source>Trends in Cognitive Sciences</source>
+          <year>2006</year>
+          <volume>10</volume>
+          <fpage>319</fpage>
+          <lpage>326</lpage>
+          <pub-id pub-id-type="pmid">16807063</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib99">
+        <label>[99]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ghahramani</surname>
+              <given-names>Z.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning dynamic Bayesian networks</article-title>
+          <source>Lecture Notes in Computer Science</source>
+          <year>1997</year>
+          <volume>1387</volume>
+          <fpage>168</fpage>
+          <lpage>197</lpage>
+        </citation>
+      </ref>
+      <ref id="bib100">
+        <label>[100]</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Niculescu-Mizil</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Caruana</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Inductive transfer for Bayesian network structure learning</article-title>
+          <source>Proceedings of the Eleventh International Conference on Artificial Intelligence and Statistics (AISTATS 2007)</source>
+          <year>2007</year>
+        </citation>
+      </ref>
+      <ref id="bib101">
+        <label>[101]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nolfi</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Parisi</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning to adapt to changing environments in evolving neural networks</article-title>
+          <source>Adaptive Behavior</source>
+          <year>1996</year>
+          <volume>5</volume>
+          <fpage>75</fpage>
+          <lpage>98</lpage>
+        </citation>
+      </ref>
+      <ref id="bib102">
+        <label>[102]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Davidson</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Wolpert</surname>
+              <given-names>D.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motor learning and prediction in a variable environment</article-title>
+          <source>Current Opinion in Neurobiology</source>
+          <year>2003</year>
+          <volume>13</volume>
+          <fpage>232</fpage>
+          <lpage>237</lpage>
+          <pub-id pub-id-type="pmid">12744979</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib103">
+        <label>[103]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Karniel</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Mussa-Ivaldi</surname>
+              <given-names>F.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Does the motor control system use multiple models and context switching to cope with a variable environment?</article-title>
+          <source>Experimental Brain Research</source>
+          <year>2002</year>
+          <volume>143</volume>
+          <fpage>520</fpage>
+          <lpage>524</lpage>
+        </citation>
+      </ref>
+      <ref id="bib104">
+        <label>[104]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scheidt</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Dingwell</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Mussa-Ivaldi</surname>
+              <given-names>F.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning to move amid uncertainty</article-title>
+          <source>Journal of Neurophysiology</source>
+          <year>2001</year>
+          <volume>86</volume>
+          <fpage>971</fpage>
+          <lpage>985</lpage>
+          <pub-id pub-id-type="pmid">11495965</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib105">
+        <label>[105]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Takahashi</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Scheidt</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Reinkensmeyer</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Impedance control and internal model formation when reaching in a randomly varying dynamical environment</article-title>
+          <source>Journal of Neurophysiology</source>
+          <year>2001</year>
+          <volume>86</volume>
+          <fpage>1047</fpage>
+          <lpage>1051</lpage>
+          <pub-id pub-id-type="pmid">11495973</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib106">
+        <label>[106]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wigmore</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Tong</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Flanagan</surname>
+              <given-names>J.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Visuomotor rotations of varying size and direction compete for a single internal model in motor working memory</article-title>
+          <source>Journal of Experimental Psychology</source>
+          <year>2002</year>
+          <volume>28</volume>
+          <fpage>447</fpage>
+          <lpage>457</lpage>
+          <pub-id pub-id-type="pmid">11999865</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib107">
+        <label>[107]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Witney</surname>
+              <given-names>A.G.</given-names>
+            </name>
+            <name>
+              <surname>Vetter</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Wolpert</surname>
+              <given-names>D.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The influence of previous experience on predictive motor control</article-title>
+          <source>Neuroreport</source>
+          <year>2001</year>
+          <volume>12</volume>
+          <fpage>649</fpage>
+          <lpage>653</lpage>
+          <pub-id pub-id-type="pmid">11277557</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib108">
+        <label>[108]</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gallese</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Lakoff</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Brain's concepts: the role of the Sensory-motor system in conceptual knowledge</article-title>
+          <source>Cognitive Neuropsychology</source>
+          <year>2005</year>
+          <volume>22</volume>
+          <fpage>455</fpage>
+          <lpage>479</lpage>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Schematic diagram of structural learning. (A) The task space is defined by two parameters, but for the given task only certain parameter combinations occur (black line). This relationship is indicated by the curved structure which can be parameterized by a one-dimensional meta-parameter <italic>μ</italic>. However, a parametric learner that is ignorant of the structure has to explore the full two-dimensional space when re-adjusting the parameter settings. (B) A structural learner, in contrast, takes the relationship between the parameters into account. By adjusting only the meta-parameter <italic>μ</italic> the learning problem is effectively one-dimensional. Reprinted with permission from <xref rid="bib66" ref-type="bibr">[66]</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Example of a causal Bayesian network. (A) Four possible structures. The arrows represent the causal structure of the three variables pressure, barometer and storm that are represented by nodes. Structural learning is determining which of the possible structures is the best model of the data. In this case the readings of the barometer and the probability of a storm occurring are correlated but independent when conditioned on the variable pressure suggesting structure 2. (B) Parametric learning involves specifying the probability distribution that quantifies the strength of the causal connections given a particular structure. In this case there is a 0.01 probability of the barometer being broken and giving a false reading.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Structural learning of visuomotor rotations. (A) Learning curves for a block of +60° rotation trials performed by a group that had experienced random rotations before (R-learner, red), a control group that had only experienced movements with veridical feedback (blue) and a group that experienced random linear transforms and ±60° rotations (green). The rotation group shows strong facilitation. (B) Learning curves for a subsequent block of −60° rotation trials performed by the same groups. The interference effect that can be seen in the control group is strongly reduced in the rotation group. (C) Learning curves for a subsequent block of +60° rotation trials performed by the same groups. Again the random rotation group shows a performance advantage in the first 10 trials. The median error over all subjects is shown and the pertinent interquartile confidence interval. Reprinted with permission from <xref rid="bib66" ref-type="bibr">[66]</xref> (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of the article.).</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Structural learning of 3D rotations. (A) Angular error in probe blocks of horizontal (red) and vertical (blue) 45°-rotations experienced by a group that experienced random horizontal rotations before. There is a clear facilitation for learning the horizontal rotation. The black line indicates performance in the block of null-rotation (washout) trials preceding the probe block. (B) Performance error in the same probe blocks for a group that experienced random vertical rotations before. The facilitation pattern is reversed. (C and D) Movement variance shortly before trial end for both kinds of probe blocks. The variance in the task-irrelevant direction — perpendicular to the displacement direction — is significantly reduced for isostructural probe blocks (ellipses show standard deviation). This suggests that subjects explored less outside the structure they had learned during the random rotation blocks. (E and F) Circular histograms of initial movement adaptation from the 1st trial of the probe block to the 2nd trial. Subjects responded to probe blocks from the same structure in a consistent way correcting towards the required target. In contrast, in case of probe trials for a different structure, subjects also showed components of learning in the direction of the previously learned structure. Reprinted with permission from <xref rid="bib66" ref-type="bibr">[66]</xref> (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of the article.).</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Evolution of within-trial adaptive behaviour for random rotation trials. (A) Mean hand trajectories for ±90° rotation trials in the first 10 batches averaged over trials and subjects (each batch consisted of 200 trials, approximately 5% of which were ±90° rotation trials). The −90° rotation trials have been mirrored about the <italic>y</italic> axis to allow averaging. Dark blue colours indicate early batches, green colours intermediate batches, red colours indicate later batches. (B) The minimum distance to the target averaged for the same trials as A (error bars indicate standard deviation over all trajectories and all subjects). This shows that subjects’ performance improves over batches. (C) Mean speed profiles for ±90° rotations of the same batches. In early batches, movements are comparatively slow and online adaptation is reflected in a second peak of the speed profile which is initially noisy and unstructured. (D) The magnitude of the second peak increases over batches (same format as B). (E) Standard deviation profiles for ±90° rotation trajectories computed for each trial batch. (F) Standard deviation of the last 500 ms of movement. Over consecutive batches the variability is reduced in the second part of the movement. Reprinted with permission from <xref rid="bib65" ref-type="bibr">[65]</xref> (For interpretation of the references to colour in this figure legend, the reader is referred to the web version of the article.).</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Structural learning in Bayesian networks. (A) The nodes of the Bayesian Network represent random variables such as sensory inputs <italic>R</italic><sub><italic>j</italic></sub> and motor outputs <italic>U</italic><sub><italic>k</italic></sub>. The arrows indicate causal dependencies that are usually expressed via parameterized probability density functions. Learning the parameters of the full joint probability distribution in this network will require substantial computations. (B) In this network there is a hidden variable <italic>μ</italic> that corresponds to what we have called a ‘meta-parameter’. The joint probability distribution over all variables splits up into a product of conditional distributions with regard to <italic>μ</italic>. This substantially reduces the dimensionality of the parameter space. In our experiments <italic>μ</italic> corresponds for instance to internal variables specific for rotations. Reprinted with permission from <xref rid="bib66" ref-type="bibr">[66]</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+  </floats-wrap>
+</article>

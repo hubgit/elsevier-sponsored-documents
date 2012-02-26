@@ -1,0 +1,938 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Comput Phys Commun</journal-id>
+      <journal-title-group>
+        <journal-title>Computer Physics Communications</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0010-4655</issn>
+      <publisher>
+        <publisher-name>North-Holland Pub. Co</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3160753</article-id>
+      <article-id pub-id-type="pmid">21969734</article-id>
+      <article-id pub-id-type="publisher-id">COMPHY4481</article-id>
+      <article-id pub-id-type="doi">10.1016/j.cpc.2011.05.016</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>A numerical projection technique for large-scale eigenvalue problems</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gamillscheg</surname>
+            <given-names>Ralf</given-names>
+          </name>
+          <email>ralf.gamillscheg@itp.tugraz.at</email>
+          <xref rid="aff001" ref-type="aff">a</xref>
+          <xref rid="cr0010" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Haase</surname>
+            <given-names>Gundolf</given-names>
+          </name>
+          <xref rid="aff002" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>von der Linden</surname>
+            <given-names>Wolfgang</given-names>
+          </name>
+          <xref rid="aff001" ref-type="aff">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff001"><label>a</label>Institute of Theoretical Physics – Computational Physics, Graz University of Technology, Graz, Austria</aff>
+      <aff id="aff002"><label>b</label>Institute for Mathematics and Scientific Computing, Karl-Franzens-University, Graz, Austria</aff>
+      <author-notes>
+        <corresp id="cr0010"><label>⁎</label>Corresponding author. <email>ralf.gamillscheg@itp.tugraz.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>10</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>10</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>182</volume>
+      <issue>10</issue>
+      <fpage>2168</fpage>
+      <lpage>2173</lpage>
+      <history>
+        <date date-type="received">
+          <day>6</day>
+          <month>8</month>
+          <year>2010</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>17</day>
+          <month>5</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>25</day>
+          <month>5</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier B.V.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>We present a new numerical technique to solve large-scale eigenvalue problems. It is based on the projection technique, used in strongly correlated quantum many-body systems, where first an effective approximate model of smaller complexity is constructed by projecting out high energy degrees of freedom and in turn solving the resulting model by some standard eigenvalue solver.</p>
+        <p>Here we introduce a generalization of this idea, where both steps are performed numerically and which in contrast to the standard projection technique converges in principle to the exact eigenvalues. This approach is not just applicable to eigenvalue problems encountered in many-body systems but also in other areas of research that result in large-scale eigenvalue problems for matrices which have, roughly speaking, mostly a pronounced dominant diagonal part. We will present detailed studies of the approach guided by two many-body models.</p>
+      </abstract>
+      <abstract abstract-type="graphical">
+        <title>Highlights</title>
+        <p>► We present a new numerical technique to solve large-scale eigenvalue problems. ► It is based on the projection technique of strongly-correlated quantum physics. ► The method performs the projection numerically. ► It converges in principle to the exact eigenvalues. ► We present detailed studies of the approach guided by two many-body models.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Strongly-correlated systems</kwd>
+        <kwd>Many-body physics</kwd>
+        <kwd>Algorithm</kwd>
+        <kwd>Eigensolver</kwd>
+        <kwd>Projection technique</kwd>
+        <kwd>Hubbard model</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="se0010">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>The solution of large, sparse eigenvalue problems is an important task in engineering, mathematics, and physics, particularly in the field of strongly correlated quantum many-body systems, such as the high-<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>T</italic><sub><italic>C</italic></sub></textual-form><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:msub><mml:mi>T</mml:mi><mml:mi>C</mml:mi></mml:msub></mml:math></alternatives></inline-formula> superconductors, and more recently cold atoms on optical lattices and coupled light-matter systems. The treatment of strong correlations between particles leads to exponentially large eigenvalue problems as a function of the system size.</p>
+      <p>To begin with, algebraic eigensolvers like the Lanczos and Arnoldi methods <xref rid="br0010 br0020" ref-type="bibr">[1,2]</xref> play an important role in many-body physics as well as in many other research areas, mainly due to the fact that they are widely applicable, simple, effective and they yield numerically exact results. Implementations of the methods can be obtained from the Internet, e.g. the well-known ARPACK<xref rid="fn0010" ref-type="fn">1</xref> routine which includes an implicitly restarting Arnoldi algorithm. On the downside, only comparably small systems can be treated by these techniques. For most problems in quantum many-body physics, the corresponding geometric sizes are much too small.</p>
+      <p>A couple of sophisticated numerical methods have been developed for such systems in recent years. The <italic>density matrix renormalization group</italic> (DMRG) <xref rid="br0030" ref-type="bibr">[3]</xref> is a powerful algorithm for the determination of ground state properties of large systems, which are not algebraically feasible. Recently the approach has been embedded into a wider mathematical framework, the matrix product states (MPS, <xref rid="br0040" ref-type="bibr">[4]</xref>). The approach is limited to 1D or quasi-1D systems. Another method is the <italic>cluster perturbation theory</italic> (CPT, <xref rid="br0050" ref-type="bibr">[5]</xref>), which constructs approximations to the Greenʼs function of infinite systems in 1, 2, and 3 dimensions by exact treatment of small clusters and combining them by perturbation theory. An extension of CPT represents the <italic>variational cluster approach</italic> (VCA, <xref rid="br0060" ref-type="bibr">[6]</xref>) which improves the results by introducing variational parameters. An approach without systematic errors is given by the family of quantum Monte-Carlo techniques (QMC, <xref rid="br0070" ref-type="bibr">[7]</xref>). QMC simulations, which are based on high-dimensional random samples of some suitable probability-density function have a statistical error which declines with the sample size. They are applicable to fairly large systems and to finite temperatures. The drawback of these methods is the so-called <italic>sign-problem</italic>, that shows up especially in fermionic models and which makes certain models or parameter regimes inaccessible <xref rid="br0080" ref-type="bibr">[8]</xref>. The methods discussed so far are particularly tailored for quantum many-body problems and cannot be applied easily, if at all, to matrices of other applications.</p>
+      <p>The methods for strongly correlated quantum many-body systems rely on the assumption that the model has only a few rather local degrees of freedom. Real ab-initio models for strongly correlated quantum many-body systems are out of reach in any case, and it is inevitable to reduce the complexity of the system upon describing the key physical properties by a few effective degrees of freedom, like in the multi-band Hubbard model <xref rid="br0090" ref-type="bibr">[9]</xref>. In many cases, these models are still too complicated and cannot be solved reliably neither analytically nor numerically. For these cases it has been proven very useful to construct <italic>effective Hamiltonians</italic> like the Heisenberg- or <italic>tJ</italic>-model. They are obtained via the projection technique <xref rid="br0090 br0100" ref-type="bibr">[9,10]</xref> upon integrating out such basis vectors which correspond to high energy excitations, or rather which have very large diagonal matrix elements in a suitable basis. Of course, it is desirable that the quantitative results of the effective model are close to those of the original model. But more than that, it is the qualitative generic physics of strongly correlated fermions at low energies, which one wants to understand. Since the original model itself is tailored for that purpose and is already a crude approximation of the underlying ab-initio Hamiltonian, it suffices to have an effective model that still includes the key physical ingredients in order to describe competing effects of strongly correlated quantum many-body systems. The standard projection technique defines the space of dynamical variables (basis vectors) which are of crucial importance for the low lying eigenvalues, which are marked by small interaction energy (small diagonal matrix elements). The residual dynamical variables (basis vectors) are treated in second order perturbation theory. If the model contains too complicated terms, such as the density assisted next-nearest neighbor hopping in the <italic>tJ</italic>-model, they are omitted. The resulting model has a significantly reduced configuration space and is solved by one of the above mentioned techniques.</p>
+      <p>Here we present a numerical scheme, that represents a threefold generalization of the projection technique: (a) it combines the two steps of the construction of the effective model and exact diagonalization, (b) no approximations are made as far as the effective model is concerned and (c) it allows a systemic inclusion of higher order terms up to the convergence to the exact result. The projection step is based on the Schur complement and results in a non-linear eigenvalue problem, which is solved exactly.</p>
+      <p>The <italic>numerical projection technique</italic> (NPT), that shall be discussed in this paper, has several advantages. First of all, it is not necessary to formulate an explicit effective Hamiltonian, which is not trivial in more complex models involving several bands and other degrees of freedom than just charge carriers <xref rid="br0110" ref-type="bibr">[11]</xref>. And last but not least, NPT allows to systematically go to higher orders, which becomes necessary if the coupling strength is merely moderate.</p>
+      <p>NPT is applicable to other large-scale eigenvalue problems as well. The underlying matrix has to be sparse and the diagonal elements, after suitable spectral shift, have to fulfill the following criterion: a few diagonal elements are zero or small and the vast majority of the diagonal elements is (much) greater than the sum of the respective off-diagonal elements.</p>
+      <p>The method is demonstrated by application to two representative problems of strongly-correlated quantum many-body physics, the spinless fermion model with nearest neighbor repulsion and the drosophila of solid state physicists: the Hubbard model with a local Coulomb repulsion. These models are used for benchmark purposes only and it is not the goal of the present paper to provide a detailed discussion of the fascinating physics described by these models.</p>
+      <p>The outline of the paper is as follows. In the second section we present the two benchmark models. The numerical projection technique is introduced in detail in the third section and analyzed in the following section. A further extension of the algorithm to improve the accuracy will be presented in Section <xref rid="se0110" ref-type="sec">5</xref>, Section <xref rid="se0120" ref-type="sec">6</xref> will show results for the Hubbard model and concluding remarks will be given in the last section.</p>
+    </sec>
+    <sec id="se0020">
+      <label>2</label>
+      <title>Model systems and basic idea</title>
+      <p>The approach that we present below is generally applicable if the matrix, for which the lowest eigenvalues shall be determined, can be split into parts of increasing diagonal dominance. What this means in detail will be clarified using two examples of the realm of many-body physics, the spinless fermion model with strong nearest neighbor interaction and the Hubbard model for fermions. Both models are tailored to study effects of strong correlations of electronic systems, such as the Mott-insulators <xref rid="br0120" ref-type="bibr">[12]</xref>, high temperature superconductors <xref rid="br0130" ref-type="bibr">[13]</xref>, manganites <xref rid="br0140" ref-type="bibr">[14]</xref>, just to name a few of the very many novel materials with fascinating many-body effects. The Hamiltonian of the spinless fermion model reads<disp-formula id="fm0010"><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>H</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mi>t</mml:mi><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mo stretchy="false">〈</mml:mo><mml:mi>i</mml:mi><mml:mi>j</mml:mi><mml:mo stretchy="false">〉</mml:mo></mml:mrow></mml:munder><mml:msubsup><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mi>i</mml:mi><mml:mo>†</mml:mo></mml:msubsup><mml:msub><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mi>j</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mi>V</mml:mi><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mo stretchy="false">〈</mml:mo><mml:mi>i</mml:mi><mml:mi>j</mml:mi><mml:mo stretchy="false">〉</mml:mo></mml:mrow></mml:munder><mml:msub><mml:mover accent="true"><mml:mi>n</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mi>i</mml:mi></mml:msub><mml:msub><mml:mover accent="true"><mml:mi>n</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mi>j</mml:mi></mml:msub><mml:mo>,</mml:mo></mml:math></disp-formula> where <inline-formula><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:msubsup><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mi>i</mml:mi><mml:mo>†</mml:mo></mml:msubsup></mml:math></inline-formula> (<inline-formula><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mi>i</mml:mi></mml:msub></mml:math></inline-formula>) denotes the creation (annihilation) operator for fermions at site <italic>i</italic>. These operators have the common fermionic anti-commutator relations (for details see <xref rid="br0150" ref-type="bibr">[15]</xref>). The operator <inline-formula><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>n</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msubsup><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mi>i</mml:mi><mml:mo>†</mml:mo></mml:msubsup><mml:msub><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mi>i</mml:mi></mml:msub></mml:math></inline-formula> is the particle number operator for site <italic>i</italic>. The bracket <inline-formula><alternatives><textual-form specific-use="jats-markup">〈<italic>i</italic><italic>j</italic>〉</textual-form><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mo stretchy="false">〈</mml:mo><mml:mi>i</mml:mi><mml:mi>j</mml:mi><mml:mo stretchy="false">〉</mml:mo></mml:math></alternatives></inline-formula> indicates that the sum is restricted to nearest-neighbor sites <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>i</italic></sub></textual-form><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>j</italic></sub></textual-form><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:math></alternatives></inline-formula>. There is a total of <italic>L</italic> lattice sites <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>i</italic></sub></textual-form><mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, which are placed on a one-dimensional regular lattice in the present work.</p>
+      <p>In the case of the Hubbard model, the spin degree of freedom is also taken into account and the Hamiltonian reads<disp-formula id="fm0020"><mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>H</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mi>t</mml:mi><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mo stretchy="false">〈</mml:mo><mml:mi>i</mml:mi><mml:mi>j</mml:mi><mml:mo stretchy="false">〉</mml:mo><mml:mi>σ</mml:mi></mml:mrow></mml:munder><mml:msubsup><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mrow><mml:mi>i</mml:mi><mml:mi>σ</mml:mi></mml:mrow><mml:mo>†</mml:mo></mml:msubsup><mml:msub><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mrow><mml:mi>j</mml:mi><mml:mi>σ</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mi>U</mml:mi><mml:munder><mml:mo>∑</mml:mo><mml:mi>i</mml:mi></mml:munder><mml:msub><mml:mover accent="true"><mml:mi>n</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mrow><mml:mi>i</mml:mi><mml:mo stretchy="false">↑</mml:mo></mml:mrow></mml:msub><mml:msub><mml:mover accent="true"><mml:mi>n</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mrow><mml:mi>j</mml:mi><mml:mo stretchy="false">↓</mml:mo></mml:mrow></mml:msub><mml:mo>.</mml:mo></mml:math></disp-formula> The creation (annihilation) operators <inline-formula><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:msubsup><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mrow><mml:mi>i</mml:mi><mml:mi>σ</mml:mi></mml:mrow><mml:mo>†</mml:mo></mml:msubsup></mml:math></inline-formula> (<inline-formula><mml:math id="M12" altimg="si12.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mrow><mml:mi>i</mml:mi><mml:mi>σ</mml:mi></mml:mrow></mml:msub></mml:math></inline-formula>) obtain a spin index <italic>σ</italic> with two possible orientations ↑, ↓. The operator <inline-formula><mml:math id="M13" altimg="si13.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>n</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mrow><mml:mi>i</mml:mi><mml:mi>σ</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msubsup><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mrow><mml:mi>i</mml:mi><mml:mi>σ</mml:mi></mml:mrow><mml:mo>†</mml:mo></mml:msubsup><mml:msub><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mrow><mml:mi>i</mml:mi><mml:mi>σ</mml:mi></mml:mrow></mml:msub></mml:math></inline-formula> is the particle number operator for spin <italic>σ</italic> at site <italic>i</italic> and the operator for the particle density at site <italic>i</italic> is given by <inline-formula><mml:math id="M14" altimg="si14.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>n</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mo>∑</mml:mo><mml:mi>σ</mml:mi></mml:msub><mml:msub><mml:mover accent="true"><mml:mi>n</mml:mi><mml:mo>ˆ</mml:mo></mml:mover><mml:mrow><mml:mi>i</mml:mi><mml:mi>σ</mml:mi></mml:mrow></mml:msub></mml:math></inline-formula>.</p>
+      <p>The physical behavior of both models is determined by the relative strength of the hopping parameter <italic>t</italic> and the two interaction parameters <italic>U</italic>, which stands for the on-site Coulomb repulsion between fermions of opposite spin, and <italic>V</italic>, which represents the repulsive nearest-neighbor interaction. In order to simplify the discussion we denote both parameters by <italic>V</italic>. In both cases the most interesting case is that of (almost) half-filling. That is, the number of particles in the system is half the maximum capacity, which is <italic>L</italic> in the spinless fermion model and 2<italic>L</italic> in the Hubbard model. Both models are particularly interesting in the strong coupling case, i.e. for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>V</italic> &gt; |<italic>t</italic>|</textual-form><mml:math id="M15" altimg="si15.gif" overflow="scroll"><mml:mi>V</mml:mi><mml:mo>&gt;</mml:mo><mml:mo stretchy="false">|</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">|</mml:mo></mml:math></alternatives></inline-formula>.</p>
+      <p>For both models we use the occupation number basis in real space in which the interaction part is diagonal and has a value <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub><italic>V</italic></textual-form><mml:math id="M16" altimg="si16.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mi>V</mml:mi></mml:math></alternatives></inline-formula>, where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub></textual-form><mml:math id="M17" altimg="si17.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub></mml:math></alternatives></inline-formula> is either the number of occupied nearest-neighbor sites (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>n</italic><italic>n</italic></sub></textual-form><mml:math id="M18" altimg="si18.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>) in case of the spinless fermion model, or the number of double-occupancies (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>d</italic></sub></textual-form><mml:math id="M19" altimg="si19.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>d</mml:mi></mml:msub></mml:math></alternatives></inline-formula>) in case of the Hubbard model. In strong coupling, states with increasing values of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub></textual-form><mml:math id="M20" altimg="si20.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub></mml:math></alternatives></inline-formula> are decreasingly important. In the projection technique <xref rid="br0090 br0100" ref-type="bibr">[9,10]</xref> effective strong coupling models are derived, in which the configuration space is restricted to the sector <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 0</textual-form><mml:math id="M21" altimg="si21.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula>, i.e. <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>n</italic><italic>n</italic></sub> = 0</textual-form><mml:math id="M22" altimg="si22.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula> (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>d</italic></sub> = 0</textual-form><mml:math id="M23" altimg="si23.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>d</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula>) and the influence of the higher sectors are taken into account up to second order in <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic> / <italic>V</italic></textual-form><mml:math id="M24" altimg="si24.gif" overflow="scroll"><mml:mi>t</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:mi>V</mml:mi></mml:math></alternatives></inline-formula>. A prominent example is the spin-1/2 antiferromagnetic Heisenberg model which is obtained in the half-filled case of the Hubbard model or the <italic>tJ</italic>-model, which is the generalization away from half-filling. Already in the <italic>tJ</italic>-model terms are neglected which belong to the same order in <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic> / <italic>V</italic></textual-form><mml:math id="M25" altimg="si25.gif" overflow="scroll"><mml:mi>t</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:mi>V</mml:mi></mml:math></alternatives></inline-formula> and to the same <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>d</italic></sub></textual-form><mml:math id="M26" altimg="si26.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>d</mml:mi></mml:msub></mml:math></alternatives></inline-formula>-sector. In models with more bands and degrees of freedom, the derivation of an effective strong coupling model can be very demanding, like e.g. in the spin-orbital model for the manganites <xref rid="br0110" ref-type="bibr">[11]</xref>.</p>
+      <p>In this paper, we exploit this idea numerically and generalize it in such a way, that the influence of high sectors is taken into account recursively without the need of leaving terms out that in standard projection technique would complicate the resulting effective Hamiltonian. For obvious reasons we will refer to this approach as numerical projection technique (NPT).</p>
+    </sec>
+    <sec id="se0030">
+      <label>3</label>
+      <title>Numerical projection technique</title>
+      <p>In order to exploit the NPT, we reorder the basis vectors according to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub></textual-form><mml:math id="M27" altimg="si27.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub></mml:math></alternatives></inline-formula>. The corresponding Hamiltonian matrix has a natural block structure (see <xref rid="fg0010" ref-type="fig">Fig. 1</xref>) corresponding to the sectors with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 0, 1, 2, ….</textual-form><mml:math id="M28" altimg="si28.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>.</mml:mo></mml:math></alternatives></inline-formula></p>
+      <p>Note, that the hopping of a particle can only change the number <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub></textual-form><mml:math id="M29" altimg="si29.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub></mml:math></alternatives></inline-formula> by one. Therefore, only neighboring sectors are coupled and the matrix has a tridiagonal block structure.</p>
+      <sec id="se0040">
+        <label>3.1</label>
+        <title>Projection step</title>
+        <p>We start out with a general projection based idea for solving an eigenvalue problem of a <inline-formula><alternatives><textual-form specific-use="jats-markup">2×2</textual-form><mml:math id="M30" altimg="si30.gif" overflow="scroll"><mml:mn>2</mml:mn><mml:mo>×</mml:mo><mml:mn>2</mml:mn></mml:math></alternatives></inline-formula> block matrix<disp-formula id="fm0030"><label>(1)</label><mml:math id="M31" altimg="si31.gif" overflow="scroll"><mml:msub><mml:mi>A</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mi>x</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi>A</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mi>E</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup></mml:mtd><mml:mtd columnalign="center"><mml:mi>B</mml:mi></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>λ</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula> The blocks correspond to some suitable partitions of the vector space under consideration. The sizes of the two partitions shall be denoted by <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>1</sub></textual-form><mml:math id="M32" altimg="si32.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>2</sub></textual-form><mml:math id="M33" altimg="si33.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></alternatives></inline-formula>, respectively. It is not necessary that the two partitions cover the entire vector space of the original problem.</p>
+        <p>We assume that <italic>A</italic> and <italic>E</italic> are ‘small’ compared to <italic>B</italic>, such that the lowest eigenvalue of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>A</italic><sub>0</sub></textual-form><mml:math id="M34" altimg="si34.gif" overflow="scroll"><mml:msub><mml:mi>A</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math></alternatives></inline-formula> is predominated by the corresponding eigenvalue of <italic>A</italic> and the perturbation due to <italic>E</italic> and <italic>B</italic> can be included perturbatively. In order to quantify this idea, we will map the influence of the second partition into the first partition by a Schur transformation, similar to the projection technique <xref rid="br0090 br0100" ref-type="bibr">[9,10]</xref>. I.e. we multiply Eq. <xref rid="fm0030" ref-type="disp-formula">(1)</xref> from the left with the matrix<disp-formula id="fm0040"><mml:math id="M35" altimg="si35.gif" overflow="scroll"><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi>I</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mo>−</mml:mo><mml:mi>E</mml:mi><mml:msup><mml:mi>B</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mi>I</mml:mi></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow></mml:math></disp-formula> resulting in<disp-formula id="fm0050"><mml:math id="M36" altimg="si36.gif" overflow="scroll"><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi>S</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup></mml:mtd><mml:mtd columnalign="center"><mml:mi>B</mml:mi></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>λ</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi>I</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mo>−</mml:mo><mml:mi>E</mml:mi><mml:msup><mml:mi>B</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mi>I</mml:mi></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>,</mml:mo></mml:math></disp-formula> with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>S</italic> = <italic>A</italic> − <italic>E</italic><italic>B</italic><sup> − 1</sup><italic>E</italic><sup>†</sup></textual-form><mml:math id="M37" altimg="si37.gif" overflow="scroll"><mml:mi>S</mml:mi><mml:mo>=</mml:mo><mml:mi>A</mml:mi><mml:mo>−</mml:mo><mml:mi>E</mml:mi><mml:msup><mml:mi>B</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup></mml:math></alternatives></inline-formula> being the Schur-complement. The second line of the eigenvalue equation yields<disp-formula id="fm0060"><label>(2)</label><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub>2</sub> =  − (<italic>B</italic> − <italic>λ</italic>)<sup> − 1</sup><italic>E</italic><sup>†</sup><italic>x</italic><sub>1</sub>.</textual-form><mml:math id="M38" altimg="si38.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>.</mml:mo></mml:math></alternatives></disp-formula></p>
+        <p>Inserting <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub>2</sub></textual-form><mml:math id="M39" altimg="si39.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></alternatives></inline-formula> into the first line leads to<disp-formula id="fm0070"><label>(3)</label><alternatives><textual-form specific-use="jats-markup"><italic>S</italic><sub><italic>λ</italic></sub><italic>x</italic><sub>1</sub>: = (<italic>A</italic> − <italic>E</italic>(<italic>B</italic> − <italic>λ</italic>)<sup> − 1</sup><italic>E</italic><sup>†</sup>)<italic>x</italic><sub>1</sub> = <italic>λ</italic><italic>x</italic><sub>1</sub>.</textual-form><mml:math id="M40" altimg="si40.gif" overflow="scroll"><mml:msub><mml:mi>S</mml:mi><mml:mi>λ</mml:mi></mml:msub><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>:</mml:mo><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mi>A</mml:mi><mml:mo>−</mml:mo><mml:mi>E</mml:mi><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mi>λ</mml:mi><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>.</mml:mo></mml:math></alternatives></disp-formula></p>
+        <p>Note that this equation is in principle exact, no approximations have been made so far. The original problem (Eq. <xref rid="fm0030" ref-type="disp-formula">(1)</xref>) has thus been projected into the subspace of the first partition which is of smaller size, but at the prize of a non-linear eigenvalue problem. By the above procedure we obtain only those eigenvectors <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic> = (<italic>x</italic><sub>1</sub>, <italic>x</italic><sub>2</sub>)</textual-form><mml:math id="M41" altimg="si41.gif" overflow="scroll"><mml:mi>x</mml:mi><mml:mo>=</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> of the <inline-formula><alternatives><textual-form specific-use="jats-markup">2×2</textual-form><mml:math id="M42" altimg="si42.gif" overflow="scroll"><mml:mn>2</mml:mn><mml:mo>×</mml:mo><mml:mn>2</mml:mn></mml:math></alternatives></inline-formula> block matrix with non-vanishing <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub>1</sub></textual-form><mml:math id="M43" altimg="si43.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula>, i.e. those vectors which evolve perturbatively from those of <italic>A</italic>. There are additional eigenvectors of the form <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic> = (0, <italic>x</italic><sub>2</sub>)</textual-form><mml:math id="M44" altimg="si44.gif" overflow="scroll"><mml:mi>x</mml:mi><mml:mo>=</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>, which can, however, be omitted, since their eigenvalues are of order <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>O</italic>(<italic>V</italic>)</textual-form><mml:math id="M45" altimg="si45.gif" overflow="scroll"><mml:mi>O</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>V</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> instead of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>O</italic>(<italic>t</italic>)</textual-form><mml:math id="M46" altimg="si46.gif" overflow="scroll"><mml:mi>O</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>.</p>
+      </sec>
+      <sec id="se0050">
+        <label>3.2</label>
+        <title>Solution of the non-linear eigenvalue problem</title>
+        <p>In the numerical projection technique, to be outlined below, the second partition will consist of a single sector. Hence <italic>B</italic> will be the sub-matrix of the Hamiltonian corresponding to basis vectors of that particular sector and it will consist of a kinetic term and an interaction term, <inline-formula><mml:math id="M47" altimg="si47.gif" overflow="scroll"><mml:mi>B</mml:mi><mml:mo>=</mml:mo><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo>+</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub></mml:math></inline-formula>, with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>B</italic><sub><italic>V</italic></sub> = <italic>N</italic><sub><italic>κ</italic></sub><italic>V</italic><bold>I</bold></textual-form><mml:math id="M48" altimg="si48.gif" overflow="scroll"><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mi>V</mml:mi><mml:mi mathvariant="bold">I</mml:mi></mml:math></alternatives></inline-formula>, where a <bold>I</bold> is a unit matrix. By virtue of this structure and the fact that <inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>V</italic>| ≫ |<italic>t</italic>|</textual-form><mml:math id="M49" altimg="si49.gif" overflow="scroll"><mml:mo stretchy="false">|</mml:mo><mml:mi>V</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mo>≫</mml:mo><mml:mo stretchy="false">|</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">|</mml:mo></mml:math></alternatives></inline-formula>, the numerical solution of the non-linear problem can be simplified significantly. We can expand the inverse in powers of <inline-formula><mml:math id="M50" altimg="si50.gif" overflow="scroll"><mml:msubsup><mml:mi>B</mml:mi><mml:mi>V</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula> or rather <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>B</italic><sub><italic>V</italic></sub> − <italic>λ</italic>)<sup> − 1</sup></textual-form><mml:math id="M51" altimg="si51.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>. The latter step is justified, since the lowest eigenvalues are of order <italic>t</italic> plus corrections of order <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>V</italic><sup> − 1</sup></textual-form><mml:math id="M52" altimg="si52.gif" overflow="scroll"><mml:msup><mml:mi>V</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>, hence <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>B</italic><sub><italic>V</italic></sub> − <italic>λ</italic> = <italic>O</italic>(<italic>V</italic>)</textual-form><mml:math id="M53" altimg="si53.gif" overflow="scroll"><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo>=</mml:mo><mml:mi>O</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>V</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. The expansion yields<disp-formula id="fm0080"><mml:math id="M54" altimg="si54.gif" overflow="scroll"><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>λ</mml:mi></mml:mrow></mml:mfrac><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup></mml:mfrac><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo>+</mml:mo><mml:mo>⋯</mml:mo><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>ν</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow><mml:mo>∞</mml:mo></mml:munderover><mml:mfrac><mml:mn>1</mml:mn><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>ν</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mfrac><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mi>ν</mml:mi></mml:msup><mml:mo>,</mml:mo></mml:math></disp-formula> and the calculation of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>S</italic><sub><italic>λ</italic></sub></textual-form><mml:math id="M55" altimg="si55.gif" overflow="scroll"><mml:msub><mml:mi>S</mml:mi><mml:mi>λ</mml:mi></mml:msub></mml:math></alternatives></inline-formula> becomes<disp-formula id="fm0090"><label>(4)</label><mml:math id="M56" altimg="si56.gif" overflow="scroll"><mml:msub><mml:mi>S</mml:mi><mml:mi>λ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mi>A</mml:mi><mml:mo>+</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>ν</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow><mml:mo>∞</mml:mo></mml:munderover><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi>ν</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup><mml:mi>E</mml:mi><mml:msup><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>ν</mml:mi></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>.</mml:mo></mml:math></disp-formula></p>
+        <p>Note that the expressions <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>λ</italic> − <italic>B</italic><sub><italic>V</italic></sub>)<sup> − (<italic>ν</italic> + 1)</sup></textual-form><mml:math id="M57" altimg="si57.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi>ν</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> are only numbers. For an iterative solution of the non-linear eigenvalue problem, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>S</italic><sub><italic>λ</italic></sub></textual-form><mml:math id="M58" altimg="si58.gif" overflow="scroll"><mml:msub><mml:mi>S</mml:mi><mml:mi>λ</mml:mi></mml:msub></mml:math></alternatives></inline-formula> has to be computed repeatedly for different values of <italic>λ</italic>, but only the pre-factors <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>λ</italic> − <italic>B</italic><sub><italic>V</italic></sub>)<sup> − (<italic>ν</italic> + 1)</sup></textual-form><mml:math id="M59" altimg="si59.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi>ν</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> are modified. The matrices <inline-formula><mml:math id="M60" altimg="si60.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:msup><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>ν</mml:mi></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup></mml:math></inline-formula>, however, are independent of <italic>λ</italic>. Therefore, they can be calculated once and stored, since they are in general of moderate size, as will be discussed later on.</p>
+        <p>This expansion can also be used in Eq. <xref rid="fm0060" ref-type="disp-formula">(2)</xref> in order to evaluate the second part of the eigenvector, i.e.<disp-formula id="fm0100"><mml:math id="M61" altimg="si61.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>ν</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow><mml:mo>∞</mml:mo></mml:munderover><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi>ν</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup><mml:msup><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>ν</mml:mi></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>.</mml:mo></mml:math></disp-formula></p>
+        <p>The non-linear eigenvalue problem can now be solved iteratively, by using an initial approximation for <italic>λ</italic> to build <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>S</italic><sub><italic>λ</italic></sub></textual-form><mml:math id="M62" altimg="si62.gif" overflow="scroll"><mml:msub><mml:mi>S</mml:mi><mml:mi>λ</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, then solve the eigenvalue problem by suitable means and use the resulting eigenvalue as a new approximation for <italic>λ</italic>. Let <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>λ</italic></sub></textual-form><mml:math id="M63" altimg="si63.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>λ</mml:mi></mml:msub></mml:math></alternatives></inline-formula> be the normalized eigenvector of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>S</italic><sub><italic>λ</italic></sub></textual-form><mml:math id="M64" altimg="si64.gif" overflow="scroll"><mml:msub><mml:mi>S</mml:mi><mml:mi>λ</mml:mi></mml:msub></mml:math></alternatives></inline-formula> to the lowest eigenvalue <inline-formula><alternatives><textual-form specific-use="jats-markup">ℰ(<italic>λ</italic>)</textual-form><mml:math id="M65" altimg="si65.gif" overflow="scroll"><mml:mi mathvariant="script">E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. In the next recursion <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>λ</italic><sup>(new)</sup> = ℰ(<italic>λ</italic>)</textual-form><mml:math id="M66" altimg="si66.gif" overflow="scroll"><mml:msup><mml:mi>λ</mml:mi><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">new</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mi mathvariant="script">E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is used as new value for the parameter <italic>λ</italic>.</p>
+        <p>A more sophisticated approach to obtain an improved value for <italic>λ</italic> is provided by the Newton–Raphson method. We are actually seeking the roots of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>Φ</italic>(<italic>λ</italic>) = ℰ(<italic>λ</italic>) − <italic>λ</italic></textual-form><mml:math id="M67" altimg="si67.gif" overflow="scroll"><mml:mi>Φ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi mathvariant="script">E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>−</mml:mo><mml:mi>λ</mml:mi></mml:math></alternatives></inline-formula>. The Newton–Raphson approach yields<disp-formula id="fm0110"><mml:math id="M68" altimg="si68.gif" overflow="scroll"><mml:msup><mml:mi>λ</mml:mi><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">new</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mi>λ</mml:mi><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mi>Φ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msup><mml:mi>Φ</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msup><mml:mi mathvariant="script">E</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac><mml:mi mathvariant="script">E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mi mathvariant="script">E</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msup><mml:mi mathvariant="script">E</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac><mml:mi>λ</mml:mi><mml:mo>.</mml:mo></mml:math></disp-formula> The expression shows that this can be transformed to an equation of form <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>λ</italic><sup>(new)</sup> = <italic>α</italic>ℰ(<italic>λ</italic>) + (1 − <italic>α</italic>)<italic>λ</italic></textual-form><mml:math id="M69" altimg="si69.gif" overflow="scroll"><mml:msup><mml:mi>λ</mml:mi><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">new</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mi>α</mml:mi><mml:mi mathvariant="script">E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>+</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mi>α</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mi>λ</mml:mi></mml:math></alternatives></inline-formula> with<disp-formula id="fm0120"><mml:math id="M70" altimg="si70.gif" overflow="scroll"><mml:mi>α</mml:mi><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msup><mml:mi mathvariant="script">E</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac><mml:mo>.</mml:mo></mml:math></disp-formula> Note that in the simple iteration scheme <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>α</italic> = 1</textual-form><mml:math id="M71" altimg="si71.gif" overflow="scroll"><mml:mi>α</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>. In order to calculate <inline-formula><alternatives><textual-form specific-use="jats-markup">ℰ<sup>′</sup>(<italic>λ</italic>)</textual-form><mml:math id="M72" altimg="si72.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="script">E</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> we can use the Hellmann–Feynman theorem resulting in<disp-formula id="fm0130"><mml:math id="M73" altimg="si73.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="script">E</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msubsup><mml:mi>x</mml:mi><mml:mi>λ</mml:mi><mml:mo>†</mml:mo></mml:msubsup><mml:msubsup><mml:mi>S</mml:mi><mml:mi>λ</mml:mi><mml:mo>′</mml:mo></mml:msubsup><mml:msub><mml:mi>x</mml:mi><mml:mi>λ</mml:mi></mml:msub><mml:mo>.</mml:mo></mml:math></disp-formula> The derivative of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>S</italic><sub><italic>λ</italic></sub></textual-form><mml:math id="M74" altimg="si74.gif" overflow="scroll"><mml:msub><mml:mi>S</mml:mi><mml:mi>λ</mml:mi></mml:msub></mml:math></alternatives></inline-formula> (Eq. <xref rid="fm0070" ref-type="disp-formula">(3)</xref>) with respect to <italic>λ</italic> therefore reads<disp-formula id="fm0140"><label>(5)</label><mml:math id="M75" altimg="si75.gif" overflow="scroll"><mml:msubsup><mml:mi>S</mml:mi><mml:mi>λ</mml:mi><mml:mo>′</mml:mo></mml:msubsup><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mi>E</mml:mi><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>,</mml:mo></mml:math></disp-formula> which, like Eq. <xref rid="fm0090" ref-type="disp-formula">(4)</xref>, can be expressed in a Taylor expansion<disp-formula id="fm0150"><label>(6)</label><mml:math id="M76" altimg="si76.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="script">E</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>ν</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow><mml:mo>∞</mml:mo></mml:munderover><mml:mo stretchy="false">(</mml:mo><mml:mi>ν</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>λ</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi>ν</mml:mi><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup><mml:msubsup><mml:mi>x</mml:mi><mml:mi>λ</mml:mi><mml:mo>†</mml:mo></mml:msubsup><mml:mi>E</mml:mi><mml:msup><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>ν</mml:mi></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:msub><mml:mi>x</mml:mi><mml:mi>λ</mml:mi></mml:msub><mml:mo>.</mml:mo></mml:math></disp-formula></p>
+        <p>As before, the stored matrices <inline-formula><mml:math id="M77" altimg="si77.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:msup><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>ν</mml:mi></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup></mml:math></inline-formula> can be reused.</p>
+      </sec>
+      <sec id="se0060">
+        <label>3.3</label>
+        <title>Iterative inclusion of higher sectors</title>
+        <p>Now we are in the position to describe the numerical projection technique. To begin with, we consider the following two partitions: the first partition may contain the lowest sectors <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 0, 1, …, <italic>N</italic><sup>′</sup></textual-form><mml:math id="M78" altimg="si78.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:msup><mml:mi>N</mml:mi><mml:mo>′</mml:mo></mml:msup></mml:math></alternatives></inline-formula>. The second partition consists of merely one sector, namely <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = <italic>N</italic><sup>′</sup> + 1</textual-form><mml:math id="M79" altimg="si79.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mi>N</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>. The sizes of the partitions are <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>1</sub></textual-form><mml:math id="M80" altimg="si80.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>2</sub></textual-form><mml:math id="M81" altimg="si81.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></alternatives></inline-formula>, respectively. The projection step, discussed before, is used to combine the two partitions. This step can now be invoked repeatedly in order to include increasingly higher sectors.<list list-type="simple"><list-item><label>(a)</label><p>We begin with the first partition, solve the eigenvalue problem for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>A</italic><sub>1</sub></textual-form><mml:math id="M82" altimg="si82.gif" overflow="scroll"><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> and determine the corresponding unitary matrix <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>V</italic><sub>1</sub></textual-form><mml:math id="M83" altimg="si83.gif" overflow="scroll"><mml:msub><mml:mi>V</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> containing the corresponding <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>1</sub></textual-form><mml:math id="M84" altimg="si84.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> eigenvectors.</p></list-item><list-item><label>(b)</label><p>The matrix for the first two partitions has the following block structure<disp-formula id="fm0160"><mml:math id="M85" altimg="si85.gif" overflow="scroll"><mml:msub><mml:mi>A</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mi>E</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mi>E</mml:mi><mml:mn>1</mml:mn><mml:mo>†</mml:mo></mml:msubsup></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mi>B</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula></p></list-item><list-item><label>(c)</label><p>Next we perform a unitary transformation on <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>A</italic><sub>2</sub></textual-form><mml:math id="M86" altimg="si86.gif" overflow="scroll"><mml:msub><mml:mi>A</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></alternatives></inline-formula> provided by the unitary matrix <inline-formula><alternatives><textual-form specific-use="jats-markup">diag(<italic>V</italic><sub>1</sub>, <italic>I</italic>)</textual-form><mml:math id="M87" altimg="si87.gif" overflow="scroll"><mml:mtext>diag</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> resulting in<disp-formula id="fm0170"><label>(7)</label><mml:math id="M88" altimg="si88.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>A</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>2</mml:mn></mml:msub><mml:mo>:</mml:mo><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>D</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:msubsup><mml:mi>V</mml:mi><mml:mn>1</mml:mn><mml:mo>†</mml:mo></mml:msubsup><mml:msub><mml:mi>E</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mi>E</mml:mi><mml:mn>1</mml:mn><mml:mo>†</mml:mo></mml:msubsup><mml:msub><mml:mi>V</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mi>B</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow></mml:math></disp-formula> with <inline-formula><mml:math id="M89" altimg="si89.gif" overflow="scroll"><mml:msub><mml:mi>D</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>:</mml:mo><mml:mo>=</mml:mo><mml:msubsup><mml:mi>V</mml:mi><mml:mn>1</mml:mn><mml:mo>†</mml:mo></mml:msubsup><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:msub><mml:mi>V</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inline-formula> being a <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>1</sub></textual-form><mml:math id="M90" altimg="si90.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula>-dimensional diagonal matrix.</p></list-item><list-item><label>(d)</label><p>Now we solve the eigenvalue problem for <inline-formula><mml:math id="M91" altimg="si91.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>A</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>2</mml:mn></mml:msub><mml:msub><mml:mover accent="true"><mml:mi>V</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>2</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>V</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>2</mml:mn></mml:msub><mml:msub><mml:mi>D</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></inline-formula> as outlined in the previous section and construct the eigenvector matrix for the entire matrix <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>A</italic><sub>2</sub></textual-form><mml:math id="M92" altimg="si92.gif" overflow="scroll"><mml:msub><mml:mi>A</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></alternatives></inline-formula>:<disp-formula id="fm0180"><mml:math id="M93" altimg="si93.gif" overflow="scroll"><mml:msub><mml:mi>V</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>V</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center"/></mml:mtr><mml:mtr><mml:mtd columnalign="center"/><mml:mtd columnalign="center"><mml:mi>I</mml:mi></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>V</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>2</mml:mn></mml:msub><mml:mo>,</mml:mo></mml:math></disp-formula> with <italic>I</italic> being an identity matrix of appropriate size. As discussed before <inline-formula><mml:math id="M94" altimg="si94.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>V</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>2</mml:mn></mml:msub></mml:math></inline-formula> only contains the lowest <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>1</sub></textual-form><mml:math id="M95" altimg="si95.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> eigenvectors. Consequently, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>D</italic><sub>2</sub></textual-form><mml:math id="M96" altimg="si96.gif" overflow="scroll"><mml:msub><mml:mi>D</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></alternatives></inline-formula> is again a <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>1</sub></textual-form><mml:math id="M97" altimg="si97.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula>-dimensional diagonal matrix.</p></list-item><list-item><label>(e)</label><p>Finally we include the blocks <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic><sub>2</sub></textual-form><mml:math id="M98" altimg="si98.gif" overflow="scroll"><mml:msub><mml:mi>E</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>B</italic><sub>2</sub></textual-form><mml:math id="M99" altimg="si99.gif" overflow="scroll"><mml:msub><mml:mi>B</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></alternatives></inline-formula> of the next sector and perform again a unitary transformation with <inline-formula><alternatives><textual-form specific-use="jats-markup">diag(<italic>V</italic><sub>2</sub>, <italic>I</italic>)</textual-form><mml:math id="M100" altimg="si100.gif" overflow="scroll"><mml:mtext>diag</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> as in Eq. <xref rid="fm0170" ref-type="disp-formula">(7)</xref> leading to<disp-formula id="fm0190"><mml:math id="M101" altimg="si101.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>A</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>3</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>D</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:msubsup><mml:mi>V</mml:mi><mml:mn>2</mml:mn><mml:mo>†</mml:mo></mml:msubsup><mml:msub><mml:mi>E</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mi>E</mml:mi><mml:mn>2</mml:mn><mml:mo>†</mml:mo></mml:msubsup><mml:msub><mml:mi>V</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mi>B</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula></p></list-item></list> The recursion steps (d) and (e) are continued until the desired accuracy is reached.</p>
+      </sec>
+      <sec id="se0070">
+        <label>3.4</label>
+        <title>Truncation of the first partition</title>
+        <p>The advantage of the numerical projection technique so far is the fact that (non-linear) eigenvalue problems have to be solved for matrices of a size given by the first partition <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>1</sub></textual-form><mml:math id="M102" altimg="si102.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula>, which is obviously smaller then the original size (see <xref rid="fg0020" ref-type="fig">Fig. 2</xref>).</p>
+        <p>It may happen that the first partition, even if it covers merely the first sector, is still very large. This is the case in the Hubbard model, where already the lowest sector for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 0</textual-form><mml:math id="M103" altimg="si103.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula> yields <inline-formula><mml:math id="M104" altimg="si104.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi>L</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↑</mml:mo></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow></mml:math></inline-formula> <inline-formula><mml:math id="M105" altimg="si105.gif" overflow="scroll"><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi>L</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↑</mml:mo></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↓</mml:mo></mml:msub></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:math></inline-formula>, which at half-filling becomes <inline-formula><mml:math id="M106" altimg="si106.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi>L</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mi>L</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:mn>2</mml:mn></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow></mml:math></inline-formula>. Next we will try and reduce the size of the first partition. Firstly, we can exploit translational invariance and solve the eigenvalue problem in the individual <italic>k</italic>-space sectors. We can furthermore restrict the number of vectors, which are retained in the first partition, based on some suitable criterion as to their importance for the lowest eigenvalue. We will use only the most obvious and simple criterion, namely to keep those vectors, which belong to the lowest eigenvalues <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>D</italic><sub>2</sub></textual-form><mml:math id="M107" altimg="si107.gif" overflow="scroll"><mml:msub><mml:mi>D</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:math></alternatives></inline-formula> of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>A</italic><sub>1</sub></textual-form><mml:math id="M108" altimg="si108.gif" overflow="scroll"><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula>. More sophisticated criteria as in DMRG are also conceivable.</p>
+        <p>We will use a predefined value <inline-formula><mml:math id="M109" altimg="si109.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>⩽</mml:mo><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></inline-formula> for the truncation size of the first partition. That means, we solve the eigenvalue problem of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>A</italic><sub>1</sub></textual-form><mml:math id="M110" altimg="si110.gif" overflow="scroll"><mml:msub><mml:mi>A</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> of size <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>1</sub>×<italic>p</italic><sub>1</sub></textual-form><mml:math id="M111" altimg="si111.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>×</mml:mo><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> and retain only those <inline-formula><mml:math id="M112" altimg="si112.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub></mml:math></inline-formula> eigenvectors in <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>V</italic><sub>1</sub></textual-form><mml:math id="M113" altimg="si113.gif" overflow="scroll"><mml:msub><mml:mi>V</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> which correspond to the lowest eigenvalues. According to the recursion procedure, in the following recursion steps the diagonal matrices entering the left-upper block <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>D</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M114" altimg="si114.gif" overflow="scroll"><mml:msub><mml:mi>D</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula> will all have the size <inline-formula><mml:math id="M115" altimg="si115.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub></mml:math></inline-formula> and henceforth only (non-linear) eigenvalue problems of this size occur.</p>
+      </sec>
+    </sec>
+    <sec id="se0080">
+      <label>4</label>
+      <title>Numerical experiments</title>
+      <p>We begin with the spinless fermion model with periodic boundary condition (pbc) at half-filling. Due to the conservation of the total momentum <italic>k</italic> only those basis vectors with the same <italic>k</italic> need to be taken into account. For the spinless fermion model at half-filling the ground state is degenerate and has <inline-formula><mml:math id="M116" altimg="si116.gif" overflow="scroll"><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mo>±</mml:mo><mml:mfrac><mml:mi>π</mml:mi><mml:mn>2</mml:mn></mml:mfrac></mml:math></inline-formula>. We will therefore only take basis vectors into account, that have a total momentum <inline-formula><mml:math id="M117" altimg="si117.gif" overflow="scroll"><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mo>±</mml:mo><mml:mfrac><mml:mi>π</mml:mi><mml:mn>2</mml:mn></mml:mfrac></mml:math></inline-formula>.<xref rid="fn0020" ref-type="fn">2</xref> The selection of the total momentum leads to a significant reduction of the computational effort. On the one hand, the size <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>1</sub></textual-form><mml:math id="M118" altimg="si118.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:math></alternatives></inline-formula> of the initial partition is reduced roughly by <italic>L</italic> and on the other hand it can be avoided that in the truncation step vectors are retained, that are irrelevant for the ground state of the original system.</p>
+      <p>To begin with, we choose as first partition the first sector with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 0</textual-form><mml:math id="M119" altimg="si119.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula>, which consists of merely 2 states with particles on every other site (charge density wave), i.e. <inline-formula><mml:math id="M120" altimg="si120.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></inline-formula>. These two vectors are the real valued linear combinations of the <inline-formula><mml:math id="M121" altimg="si121.gif" overflow="scroll"><mml:mo>±</mml:mo><mml:mfrac><mml:mi>π</mml:mi><mml:mn>2</mml:mn></mml:mfrac></mml:math></inline-formula> basis vectors.</p>
+      <p><xref rid="tl0010" ref-type="table">Table 1</xref> exhibits a comparison of the run time for various system sizes. It can be seen that NPT is significantly faster than the highly optimized ARPACK routine (Arnoldi implementation) for increasing system size. We observe that even for <inline-formula><alternatives><textual-form specific-use="jats-markup">10<sup>6</sup>×10<sup>6</sup></textual-form><mml:math id="M122" altimg="si131.gif" overflow="scroll"><mml:msup><mml:mn>10</mml:mn><mml:mn>6</mml:mn></mml:msup><mml:mo>×</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mn>6</mml:mn></mml:msup></mml:math></alternatives></inline-formula>-matrices the CPU time is less than 1 sec and more than a hundred times faster than the highly optimized ARPACK code.</p>
+      <sec id="se0090">
+        <label>4.1</label>
+        <title>Dependence on the size of the initial partition</title>
+        <p>We observe that the convergence of the eigenvalue levels off at a moderate relative accuracy of 1 percent when the initial partitions consist only of the first sector (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 0</textual-form><mml:math id="M123" altimg="si132.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula>, see <xref rid="fg0030" ref-type="fig">Fig. 3</xref>). The reason is due to the fact, that the vectors that are omitted during the recursion procedure, are relevant for a higher accuracy.</p>
+        <p>One way to increase the accuracy is to choose a greater initial partition upon including all sectors up to <inline-formula><mml:math id="M124" altimg="si138.gif" overflow="scroll"><mml:msubsup><mml:mi>N</mml:mi><mml:mi>κ</mml:mi><mml:mi mathvariant="normal">ini</mml:mi></mml:msubsup></mml:math></inline-formula>, but still using a truncation size of the first partition <inline-formula><mml:math id="M125" altimg="si139.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></inline-formula>. See the curve with turquoise upward triangles in <xref rid="fg0030" ref-type="fig">Fig. 3</xref> for results with initial partition containing sectors up to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 2</textual-form><mml:math id="M126" altimg="si140.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></alternatives></inline-formula>. The relative accuracy increases by one order of magnitude but is still restricted. In all curves we observe that the result is converged when two more sectors are included beyond the ones present in the initial partition, which is obviously a consequence of the small truncation size <inline-formula><mml:math id="M127" altimg="si141.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></inline-formula>.</p>
+      </sec>
+      <sec id="se0100">
+        <label>4.2</label>
+        <title>Dependence on the truncation size</title>
+        <p>So far we have seen that the accuracy is limited when the truncation size is restricted to 2, even if the size of the initial partition is increased and all sectors are iteratively included. One is therefore driven to study the dependence on the truncation size. To this end we consider one particular system (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>L</italic> = 20, <italic>N</italic> = 10, |<italic>V</italic> / <italic>t</italic>| = 10</textual-form><mml:math id="M128" altimg="si142.gif" overflow="scroll"><mml:mi>L</mml:mi><mml:mo>=</mml:mo><mml:mn>20</mml:mn><mml:mo>,</mml:mo><mml:mi>N</mml:mi><mml:mo>=</mml:mo><mml:mn>10</mml:mn><mml:mo>,</mml:mo><mml:mo stretchy="false">|</mml:mo><mml:mi>V</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula>) and choose as initial partition the lowest two sectors with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 0</textual-form><mml:math id="M129" altimg="si143.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 1</textual-form><mml:math id="M130" altimg="si144.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>. The size of the initial partition is <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic><sub>1</sub> = 182</textual-form><mml:math id="M131" altimg="si145.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>182</mml:mn></mml:math></alternatives></inline-formula>. In <xref rid="tl0020" ref-type="table">Table 2</xref> the energies are listed for different truncation sizes <inline-formula><mml:math id="M132" altimg="si146.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub></mml:math></inline-formula>. In all cases NPT is iterated until an absolute accuracy of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>λ</italic></sub> = 10<sup> − 4</sup></textual-form><mml:math id="M133" altimg="si147.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi>λ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> is reached. We observe a clear improvement as compared to the case <inline-formula><mml:math id="M134" altimg="si148.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></inline-formula>, although the accuracy is certainly limited by the fact, that only the first two sectors are included in the initial partition. We find that the accuracy achieved by using three sectors can never be reached.</p>
+      </sec>
+    </sec>
+    <sec id="se0110">
+      <label>5</label>
+      <title>Three-partition projection</title>
+      <p>As discussed in the introduction, the central goal of the projection techniques is to describe the low-lying generic physics of the original quantum many-body system. We have seen, that NPT as opposed to standard projection techniques resulting in effective models, even yields quantitatively good agreement with the result of the original model. If still higher accuracy is the ultimate goal, then one can do even better then what has been discussed so far. It is possible to include in each recursion step two sectors at a time with little more CPU effort. To this end we consider a matrix which has <inline-formula><alternatives><textual-form specific-use="jats-markup">3×3</textual-form><mml:math id="M135" altimg="si155.gif" overflow="scroll"><mml:mn>3</mml:mn><mml:mo>×</mml:mo><mml:mn>3</mml:mn></mml:math></alternatives></inline-formula> tridiagonal block structure, that results, if we add in each recursion (projection) step two additional sectors to the first partition. The matrix has the structure<disp-formula id="fm0200"><mml:math id="M136" altimg="si156.gif" overflow="scroll"><mml:mrow><mml:mo>(</mml:mo><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi>A</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mi>E</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup></mml:mtd><mml:mtd columnalign="center"><mml:mi>B</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mi>F</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:msup><mml:mi>F</mml:mi><mml:mo>†</mml:mo></mml:msup></mml:mtd><mml:mtd columnalign="center"><mml:mi>C</mml:mi></mml:mtd></mml:mtr></mml:mtable><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula></p>
+      <p>Here, an equivalent relation to Eq. <xref rid="fm0070" ref-type="disp-formula">(3)</xref> can be obtained:<disp-formula id="fm0210"><mml:math id="M137" altimg="si157.gif" overflow="scroll"><mml:mrow><mml:mo>(</mml:mo><mml:mi>A</mml:mi><mml:mo>−</mml:mo><mml:mi>E</mml:mi><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>F</mml:mi><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>C</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>F</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo>→</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mi>λ</mml:mi><mml:msub><mml:mi>x</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>.</mml:mo></mml:math></disp-formula></p>
+      <p>The contribution of the matrix <italic>C</italic> shall be expanded up to the linear inverse term:<disp-formula id="fm0220"><alternatives><textual-form specific-use="jats-markup"><italic>A</italic> − <italic>λ</italic><italic>I</italic> − <italic>E</italic>(<italic>B</italic> − <italic>λ</italic><italic>I</italic>)<sup> − 1</sup><italic>E</italic><sup>†</sup> − <italic>E</italic>(<italic>B</italic> − <italic>λ</italic><italic>I</italic>)<sup> − 1</sup><italic>F</italic>(<italic>C</italic> − <italic>λ</italic><italic>I</italic>)<sup> − 1</sup><italic>F</italic><sup>†</sup>(<italic>B</italic> − <italic>λ</italic><italic>I</italic>)<sup> − 1</sup><italic>E</italic><sup>†</sup>.</textual-form><mml:math id="M138" altimg="si158.gif" overflow="scroll"><mml:mi>A</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mi>I</mml:mi><mml:mo>−</mml:mo><mml:mi>E</mml:mi><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>−</mml:mo><mml:mi>E</mml:mi><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mi>F</mml:mi><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>C</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>F</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>.</mml:mo></mml:math></alternatives></disp-formula></p>
+      <p>Again, the expression is expanded in terms of the kinetic part:<disp-formula id="fm0230"><label>(8)</label><mml:math id="M139" altimg="si159.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mi>F</mml:mi><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>C</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>F</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>ν</mml:mi><mml:mi>μ</mml:mi><mml:mi>ρ</mml:mi></mml:mrow></mml:munder><mml:mfrac><mml:mn>1</mml:mn><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>ν</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mfrac><mml:mfrac><mml:mn>1</mml:mn><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>B</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>μ</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mfrac><mml:mfrac><mml:mn>1</mml:mn><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>C</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mfrac><mml:mi>E</mml:mi><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mi>ν</mml:mi></mml:msup><mml:mi>F</mml:mi><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mi>C</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mi>ρ</mml:mi></mml:msup><mml:msup><mml:mi>F</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mi>B</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mi>μ</mml:mi></mml:msup><mml:msup><mml:mi>E</mml:mi><mml:mo>†</mml:mo></mml:msup><mml:mo>.</mml:mo></mml:math></disp-formula></p>
+      <p>Using this extension, the numerical result can be improved by orders of magnitude as is shown in <xref rid="fg0040" ref-type="fig">Fig. 4</xref>. The results are for the spinless fermion model at strong coupling <inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>V</italic> / <italic>t</italic>| = 10</textual-form><mml:math id="M140" altimg="si160.gif" overflow="scroll"><mml:mo stretchy="false">|</mml:mo><mml:mi>V</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula> and half-filling. In both case the initial partition is given by the lowest sector without further truncation, i.e. <inline-formula><mml:math id="M141" altimg="si161.gif" overflow="scroll"><mml:msub><mml:mi>p</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></inline-formula>.</p>
+    </sec>
+    <sec id="se0120">
+      <label>6</label>
+      <title>Results for the Hubbard model</title>
+      <p>Next we present some results for the Hubbard model. Standard projection technique leads in the case of half-filling to the Heisenberg model and away from half-filling to the <italic>tJ</italic>-model <xref rid="br0090" ref-type="bibr">[9]</xref>. These models correspond in NPT to the situation that the initial partition is the first sector with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 0</textual-form><mml:math id="M142" altimg="si181.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula> (no double occupancies) and only the second sector is mixed in the projection step. On top of that, the non-linear eigenvalue problem is replaced by the linear one with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>λ</italic> = 0</textual-form><mml:math id="M143" altimg="si182.gif" overflow="scroll"><mml:mi>λ</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula> in Eq. <xref rid="fm0060" ref-type="disp-formula">(2)</xref>. In <xref rid="tl0030" ref-type="table">Table 3</xref> the lowest eigenvalues for different system sizes and particle numbers are given. In the half-filled case the NPT results are compared with the exact results for the corresponding Heisenberg model and away from half-filling with those of the <italic>tJ</italic>-model. In NPT we use the first sector (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 0</textual-form><mml:math id="M144" altimg="si183.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula>) as initial partition, restricted to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>k</italic> = 0</textual-form><mml:math id="M145" altimg="si184.gif" overflow="scroll"><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula>. For the truncation size in the projection steps we used <inline-formula><mml:math id="M146" altimg="si185.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></inline-formula>. The NPT recursion steps are stopped at an absolute accuracy <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ε</italic><sub><italic>λ</italic></sub> = 10<sup> − 4</sup></textual-form><mml:math id="M147" altimg="si186.gif" overflow="scroll"><mml:msub><mml:mi>ε</mml:mi><mml:mi>λ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>.</p>
+      <p>We compare NPT results and those of the effective models with the exact lowest eigenvalue of the Hubbard model. We see that even in the strong coupling case (<inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>U</italic> / <italic>t</italic>| = 10</textual-form><mml:math id="M148" altimg="si187.gif" overflow="scroll"><mml:mo stretchy="false">|</mml:mo><mml:mi>U</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula>), investigated here, NPT yields quantitatively better results than the effective models.</p>
+    </sec>
+    <sec id="se0130">
+      <label>7</label>
+      <title>Conclusions</title>
+      <p>The numerical projection technique (NPT), presented in this paper, is a numerical generalization of standard projection technique, routinely used to derive effective models for qualitative description of the generic low-energy physics of strongly correlated systems. The standard projection technique corresponds to an approximate evaluation of second order perturbation theory in the inverse interaction parameter.</p>
+      <p>NPT is on the one hand a systematic application of the projection techniques to any many-body Hamiltonian, irrespective of the complexity of the original model, also in cases where the analytic approach would lead to unmanageable effective models. On the other hand it is also applicable for moderate coupling parameters, where second order perturbation theory is not reliable enough.</p>
+      <p>We have demonstrated that NPT yields fairly accurate results with little CPU-effort as compared to state-of-the-art exact diagonalization. Furthermore, by solving the non-linear eigenvalue problem and including higher order terms the approach yields significantly better results than traditional projection technique.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="br0010">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lanczos</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>An iteration method for the solution of the eigenvalue problem of linear differential and integral operators</article-title>
+          <source>Journal of Research of the National Bureau of Standards</source>
+          <volume>45</volume>
+          <year>1950</year>
+          <fpage>255</fpage>
+          <lpage>282</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0020">
+        <label>2</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Parlett</surname>
+              <given-names>B.N.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>The Symmetric Eigenvalue Problem</chapter-title>
+          <year>1998</year>
+          <publisher-name>SIAM</publisher-name>
+          <publisher-loc>Philadelphia, USA</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="br0030">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schollwöck</surname>
+              <given-names>U.</given-names>
+            </name>
+          </person-group>
+          <article-title>The density-matrix renormalization group</article-title>
+          <source>Rev. Mod. Phys.</source>
+          <volume>77</volume>
+          <year>2005</year>
+          <fpage>259</fpage>
+          <lpage>315</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0040">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cirac</surname>
+              <given-names>J.I.</given-names>
+            </name>
+            <name>
+              <surname>Verstraete</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Renormalization and tensor product states in spin chains and lattices</article-title>
+          <source>Journal of Physics A – Mathematical and Theoretical</source>
+          <volume>42</volume>
+          <year>2009</year>
+          <fpage>504004</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0050">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sénéchal</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Perez</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Plouffe</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cluster perturbation theory for Hubbard models</article-title>
+          <source>Phys. Rev. B</source>
+          <volume>66</volume>
+          <year>2002</year>
+          <fpage>075129</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0060">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Potthoff</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Self-energy-functional approach: Analytical results and the Mott–Hubbard transition</article-title>
+          <source>The European Physical Journal B – Condensed Matter and Complex Systems</source>
+          <volume>36</volume>
+          <year>2003</year>
+          <fpage>335</fpage>
+          <lpage>348</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0070">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>von der Linden</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>A quantum Monte Carlo approach to many-body physics</article-title>
+          <source>Physics Reports</source>
+          <volume>220</volume>
+          <year>1992</year>
+          <fpage>53</fpage>
+          <lpage>162</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0080">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Evertz</surname>
+              <given-names>H.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The loop algorithm</article-title>
+          <source>Advances in Physics</source>
+          <volume>52</volume>
+          <year>2003</year>
+          <fpage>1</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0090">
+        <label>9</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fulde</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Electron Correlations in Molecules and Solids</chapter-title>
+          <series>Springer Series in Solid-State Sciences</series>
+          <year>1991</year>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <publisher-loc>Berlin, Germany</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="br0100">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Becker</surname>
+              <given-names>K.W.</given-names>
+            </name>
+            <name>
+              <surname>Fulde</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ground-state energy of strongly correlated electronic systems</article-title>
+          <source>Zeitschrift für Physik B – Condensed Matter</source>
+          <volume>72</volume>
+          <year>1988</year>
+          <fpage>423</fpage>
+          <lpage>427</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0110">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <comment>D.M., O.A.M., N.D.R.</comment>
+          <person-group person-group-type="author">
+            <name>
+              <surname>von der Linden</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Doping dependence of spin and orbital correlations in layered manganites</article-title>
+          <source>Phys. Rev. B</source>
+          <volume>73</volume>
+          <year>2006</year>
+          <fpage>104451</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0120">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Imada</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Fujimori</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Tokura</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Metal-insulator transitions</article-title>
+          <source>Rev. Mod. Phys.</source>
+          <volume>70</volume>
+          <year>1998</year>
+          <fpage>1039</fpage>
+          <lpage>1263</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0130">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dagotto</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Correlated electrons in high-temperature superconductors</article-title>
+          <source>Rev. Mod. Phys.</source>
+          <volume>66</volume>
+          <year>1994</year>
+          <fpage>763</fpage>
+          <lpage>840</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0140">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dagotto</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Hotta</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Moreo</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Colossal magnetoresistant materials: the key role of phase separation</article-title>
+          <source>Physics Reports</source>
+          <volume>344</volume>
+          <year>2001</year>
+          <fpage>1</fpage>
+          <lpage>153</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0150">
+        <label>15</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Negele</surname>
+              <given-names>J.W.</given-names>
+            </name>
+            <name>
+              <surname>Orland</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Quantum Many-Particle Systems</chapter-title>
+          <year>1988</year>
+          <publisher-name>Westview Press</publisher-name>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <fn-group>
+      <fn id="fn0010">
+        <label>1</label>
+        <p><ext-link ext-link-type="uri" xlink:href="http://www.caam.rice.edu/software/ARPACK/">http://www.caam.rice.edu/software/ARPACK/</ext-link>.</p>
+      </fn>
+      <fn id="fn0020">
+        <label>2</label>
+        <p>We keep both, to allow real valued matrices and eigenvectors.</p>
+      </fn>
+    </fn-group>
+  </back>
+  <floats-group>
+    <fig id="fg0010">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Illustration of the Hamilton matrix of a V-ordered occupation number basis. The blue parts contain the hopping terms inside a partition and the potential on the diagonal and the green parts contain the hopping terms between the partitions. (For interpretation of the references to color in this figure, the reader is referred to the web version of this article.)</p>
+      </caption>
+      <graphic xlink:href="gr001"/>
+    </fig>
+    <fig id="fg0020">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Truncation procedure for the scheme presented in the text. Each partition is consecutively projected onto the original effective matrix and diagonalized.</p>
+      </caption>
+      <graphic xlink:href="gr002"/>
+    </fig>
+    <fig id="fg0030">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Convergence of the lowest eigenvalue with the largest sector (<inline-formula><mml:math id="M149" altimg="si133.gif" overflow="scroll"><mml:msubsup><mml:mi>N</mml:mi><mml:mi>κ</mml:mi><mml:mi mathvariant="normal">max</mml:mi></mml:msubsup></mml:math></inline-formula>) included in the recursion, depending on the initial partition (e.g. green squares: the initial partition consists only of the first sector <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>κ</italic></sub> = 0</textual-form><mml:math id="M150" altimg="si134.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:math></alternatives></inline-formula>). In all cases, <inline-formula><mml:math id="M151" altimg="si135.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>2</mml:mn></mml:math></inline-formula> was used, i.e. the 2 lowest eigenvectors of the initial partition where kept. The blue solid line indicates the exact values corresponding to the various subspaces spanned by the vectors of the sectors <inline-formula><mml:math id="M152" altimg="si136.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>κ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:msubsup><mml:mi>N</mml:mi><mml:mi>κ</mml:mi><mml:mi mathvariant="normal">max</mml:mi></mml:msubsup></mml:math></inline-formula>, respectively. The results are compared with the exact eigenvalue <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic><sub>0</sub></textual-form><mml:math id="M153" altimg="si137.gif" overflow="scroll"><mml:msub><mml:mi>E</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math></alternatives></inline-formula> of the original matrix on a logarithmic scale. The system parameters are <italic>L</italic> = 20,<italic>N</italic> = 10,|<italic>V</italic>/<italic>t</italic>| = 10. (For interpretation of the references to color in this figure, the reader is referred to the web version of this article.)</p>
+      </caption>
+      <graphic xlink:href="gr003"/>
+    </fig>
+    <fig id="fg0040">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Comparison of the two-partition and three-partition approach for two different system sizes. The convergence of the relative uncertainty of the lowest eigenvalue is shown versus the maximum number of sectors included.</p>
+      </caption>
+      <graphic xlink:href="gr004"/>
+    </fig>
+    <table-wrap id="tl0010" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Run-time and accuracy comparison between NPT (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub>NPT</sub></textual-form><mml:math id="M154" altimg="si122.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi mathvariant="normal">NPT</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic><sub>NPT</sub></textual-form><mml:math id="M155" altimg="si123.gif" overflow="scroll"><mml:msub><mml:mi>E</mml:mi><mml:mi mathvariant="normal">NPT</mml:mi></mml:msub></mml:math></alternatives></inline-formula>) and traditional Arnoldi eigensolver (ARPACK, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic><sub>AR</sub></textual-form><mml:math id="M156" altimg="si124.gif" overflow="scroll"><mml:msub><mml:mi>t</mml:mi><mml:mi mathvariant="normal">AR</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic><sub>0</sub></textual-form><mml:math id="M157" altimg="si125.gif" overflow="scroll"><mml:msub><mml:mi>E</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:math></alternatives></inline-formula> ) for the spinless fermion model (|<italic>V</italic>/<italic>t</italic>| = 10) at half-filling for different system sizes and pbc. The recursion was stopped at an absolute accuracy of <inline-formula><alternatives><textual-form specific-use="jats-markup">10<sup> − 4</sup></textual-form><mml:math id="M158" altimg="si126.gif" overflow="scroll"><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>. The matrices have size <italic>M</italic> × <italic>M</italic>. All computations in this paper have been performed on a computer with Intel Core 2 Duo 3 GHz, 2 GB RAM.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">
+              <italic>L</italic>
+            </th>
+            <th align="left">M</th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup"><italic>t</italic><sub>NPT</sub> [s]</textual-form>
+                  <mml:math id="M159" altimg="si127.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>t</mml:mi>
+                      <mml:mi mathvariant="normal">NPT</mml:mi>
+                    </mml:msub>
+                    <mml:mspace width="0.25em"/>
+                    <mml:mo stretchy="false">[</mml:mo>
+                    <mml:mtext>s</mml:mtext>
+                    <mml:mo stretchy="false">]</mml:mo>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup"><italic>t</italic><sub>AR</sub> [s]</textual-form>
+                  <mml:math id="M160" altimg="si128.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>t</mml:mi>
+                      <mml:mi mathvariant="normal">AR</mml:mi>
+                    </mml:msub>
+                    <mml:mspace width="0.25em"/>
+                    <mml:mo stretchy="false">[</mml:mo>
+                    <mml:mtext>s</mml:mtext>
+                    <mml:mo stretchy="false">]</mml:mo>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>E</italic>
+                    <sub>NPT</sub>
+                  </textual-form>
+                  <mml:math id="M161" altimg="si129.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>E</mml:mi>
+                      <mml:mi mathvariant="normal">NPT</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <mml:math id="M162" altimg="si130.gif" overflow="scroll">
+                  <mml:mo stretchy="false">|</mml:mo>
+                  <mml:mfrac>
+                    <mml:mrow>
+                      <mml:msub>
+                        <mml:mi>E</mml:mi>
+                        <mml:mi mathvariant="normal">NPT</mml:mi>
+                      </mml:msub>
+                      <mml:mo>−</mml:mo>
+                      <mml:msub>
+                        <mml:mi>E</mml:mi>
+                        <mml:mn>0</mml:mn>
+                      </mml:msub>
+                    </mml:mrow>
+                    <mml:msub>
+                      <mml:mi>E</mml:mi>
+                      <mml:mn>0</mml:mn>
+                    </mml:msub>
+                  </mml:mfrac>
+                  <mml:mo stretchy="false">|</mml:mo>
+                </mml:math>
+              </inline-formula>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>16</td>
+            <td>12 870</td>
+            <td>0.0</td>
+            <td>0.2</td>
+            <td>−1.57</td>
+            <td>0.007</td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td>48 620</td>
+            <td>0.0</td>
+            <td>0.8</td>
+            <td>−1.76</td>
+            <td>0.010</td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>184 756</td>
+            <td>0.1</td>
+            <td>4.1</td>
+            <td>−1.95</td>
+            <td>0.012</td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>705 432</td>
+            <td>0.3</td>
+            <td>10.4</td>
+            <td>−2.14</td>
+            <td>0.014</td>
+          </tr>
+          <tr>
+            <td>24</td>
+            <td>2 704 156</td>
+            <td>0.6</td>
+            <td>87.1</td>
+            <td>−2.33</td>
+            <td>0.014</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap id="tl0020" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Dependence of the lowest eigenvalue on the truncation size <inline-formula><mml:math id="M163" altimg="si149.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub></mml:math></inline-formula> for a system with <italic>L</italic> = 20, <italic>N</italic> = 10, |<italic>V</italic>/<italic>t</italic>| = 10, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>λ</italic></sub> = 10<sup> − 4</sup></textual-form><mml:math id="M164" altimg="si150.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi>λ</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>. Here, the initial partition consists of the first two sectors. In addition the exact lowest eigenvalue is given for the sub-matrix including the first three sectors and the original matrix (exact).</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">
+              <inline-formula>
+                <mml:math id="M165" altimg="si151.gif" overflow="scroll">
+                  <mml:msub>
+                    <mml:mover accent="true">
+                      <mml:mi>p</mml:mi>
+                      <mml:mo>˜</mml:mo>
+                    </mml:mover>
+                    <mml:mn>1</mml:mn>
+                  </mml:msub>
+                </mml:math>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>E</italic>
+                    <sub>NPT</sub>
+                  </textual-form>
+                  <mml:math id="M166" altimg="si152.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>E</mml:mi>
+                      <mml:mi mathvariant="normal">NPT</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <mml:math id="M167" altimg="si153.gif" overflow="scroll">
+                  <mml:mo stretchy="false">|</mml:mo>
+                  <mml:mfrac>
+                    <mml:mrow>
+                      <mml:msub>
+                        <mml:mi>E</mml:mi>
+                        <mml:mi mathvariant="normal">NPT</mml:mi>
+                      </mml:msub>
+                      <mml:mo>−</mml:mo>
+                      <mml:msub>
+                        <mml:mi>E</mml:mi>
+                        <mml:mn>0</mml:mn>
+                      </mml:msub>
+                    </mml:mrow>
+                    <mml:msub>
+                      <mml:mi>E</mml:mi>
+                      <mml:mn>0</mml:mn>
+                    </mml:msub>
+                  </mml:mfrac>
+                  <mml:mo stretchy="false">|</mml:mo>
+                </mml:math>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup"><italic>t</italic><sub>iters.</sub>[s]</textual-form>
+                  <mml:math id="M168" altimg="si154.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>t</mml:mi>
+                      <mml:mtext>iters.</mml:mtext>
+                    </mml:msub>
+                    <mml:mo stretchy="false">[</mml:mo>
+                    <mml:mtext>s</mml:mtext>
+                    <mml:mo stretchy="false">]</mml:mo>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2</td>
+            <td>−1.9565</td>
+            <td>0.012</td>
+            <td>0.66</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>−1.9573</td>
+            <td>0.011</td>
+            <td>1.34</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>−1.9594</td>
+            <td>0.010</td>
+            <td>2.25</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>−1.9629</td>
+            <td>0.008</td>
+            <td>3.76</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>−1.9713</td>
+            <td>0.004</td>
+            <td>6.79</td>
+          </tr>
+          <tr>
+            <td>16</td>
+            <td>−1.9749</td>
+            <td>0.003</td>
+            <td>9.21</td>
+          </tr>
+          <tr>
+            <td colspan="4" align="char">  </td>
+          </tr>
+          <tr>
+            <td align="left">3 sectors</td>
+            <td>−1.9793</td>
+            <td>0.001</td>
+            <td/>
+          </tr>
+          <tr>
+            <td align="left">exact</td>
+            <td>−1.9800</td>
+            <td/>
+            <td/>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap id="tl0030" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Comparison of the lowest eigenvalue obtained by NPT with those of the Heisenberg or <italic>tJ</italic>-model and the exact result for the original Hubbard model. Periodic boundary conditions are assumed. Details of the NPT parameters are given in the text. One sectors were taken as initial partition (<inline-formula><mml:math id="M169" altimg="si162.gif" overflow="scroll"><mml:msubsup><mml:mi>N</mml:mi><mml:mi>κ</mml:mi><mml:mi mathvariant="normal">ini</mml:mi></mml:msubsup><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></inline-formula>).</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>System</th>
+            <th>Model</th>
+            <th align="left">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>E</italic>
+                    <sub>NPT</sub>
+                  </textual-form>
+                  <mml:math id="M170" altimg="si163.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>E</mml:mi>
+                      <mml:mi mathvariant="normal">NPT</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th align="left">
+              <inline-formula>
+                <mml:math id="M171" altimg="si164.gif" overflow="scroll">
+                  <mml:mo stretchy="false">|</mml:mo>
+                  <mml:mfrac>
+                    <mml:mrow>
+                      <mml:mi>E</mml:mi>
+                      <mml:mo>−</mml:mo>
+                      <mml:msub>
+                        <mml:mi>E</mml:mi>
+                        <mml:mn>0</mml:mn>
+                      </mml:msub>
+                    </mml:mrow>
+                    <mml:msub>
+                      <mml:mi>E</mml:mi>
+                      <mml:mn>0</mml:mn>
+                    </mml:msub>
+                  </mml:mfrac>
+                  <mml:mo stretchy="false">|</mml:mo>
+                </mml:math>
+              </inline-formula>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3"><inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>L</italic> = 8</textual-form><mml:math id="M172" altimg="si165.gif" overflow="scroll"><mml:mi>L</mml:mi><mml:mo>=</mml:mo><mml:mn>8</mml:mn></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub> ↑ </sub> = <italic>N</italic><sub> ↓ </sub> = 4</textual-form><mml:math id="M173" altimg="si166.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↑</mml:mo></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↓</mml:mo></mml:msub><mml:mo>=</mml:mo><mml:mn>4</mml:mn></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>U</italic> = 10</textual-form><mml:math id="M174" altimg="si167.gif" overflow="scroll"><mml:mi>U</mml:mi><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula></td>
+            <td>Hubbard</td>
+            <td>−2.1767</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>NPT (<inline-formula><mml:math id="M175" altimg="si168.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>20</mml:mn></mml:math></inline-formula>)</td>
+            <td>−2.1526</td>
+            <td>0.0110</td>
+          </tr>
+          <tr>
+            <td>Heisenberg</td>
+            <td>−2.2604</td>
+            <td>0.0385</td>
+          </tr>
+          <tr>
+            <td colspan="4" align="left">  </td>
+          </tr>
+          <tr>
+            <td rowspan="3"><inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>L</italic> = 10</textual-form><mml:math id="M176" altimg="si169.gif" overflow="scroll"><mml:mi>L</mml:mi><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub> ↑ </sub> = <italic>N</italic><sub> ↓ </sub> = 5</textual-form><mml:math id="M177" altimg="si170.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↑</mml:mo></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↓</mml:mo></mml:msub><mml:mo>=</mml:mo><mml:mn>5</mml:mn></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>U</italic> = 10</textual-form><mml:math id="M178" altimg="si171.gif" overflow="scroll"><mml:mi>U</mml:mi><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula></td>
+            <td>Hubbard</td>
+            <td>−2.7037</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>NPT (<inline-formula><mml:math id="M179" altimg="si172.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>26</mml:mn></mml:math></inline-formula>)</td>
+            <td>−2.6572</td>
+            <td>0.0172</td>
+          </tr>
+          <tr>
+            <td>Heisenberg</td>
+            <td>−2.8062</td>
+            <td>0.0379</td>
+          </tr>
+          <tr>
+            <td colspan="4" align="left">  </td>
+          </tr>
+          <tr>
+            <td rowspan="3"><inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>L</italic> = 10</textual-form><mml:math id="M180" altimg="si173.gif" overflow="scroll"><mml:mi>L</mml:mi><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub> ↑ </sub> = <italic>N</italic><sub> ↓ </sub> = 4</textual-form><mml:math id="M181" altimg="si174.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↑</mml:mo></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↓</mml:mo></mml:msub><mml:mo>=</mml:mo><mml:mn>4</mml:mn></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>U</italic> = 10</textual-form><mml:math id="M182" altimg="si175.gif" overflow="scroll"><mml:mi>U</mml:mi><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula></td>
+            <td>Hubbard</td>
+            <td>−5.6698</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>NPT (<inline-formula><mml:math id="M183" altimg="si176.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>80</mml:mn></mml:math></inline-formula>)</td>
+            <td>−5.7303</td>
+            <td>0.0107</td>
+          </tr>
+          <tr>
+            <td>
+              <italic>tJ</italic>
+            </td>
+            <td>−5.5282</td>
+            <td>0.0250</td>
+          </tr>
+          <tr>
+            <td colspan="4" align="left">  </td>
+          </tr>
+          <tr>
+            <td rowspan="3"><inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>L</italic> = 10</textual-form><mml:math id="M184" altimg="si177.gif" overflow="scroll"><mml:mi>L</mml:mi><mml:mo>=</mml:mo><mml:mn>10</mml:mn></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub> ↑ </sub> = <italic>N</italic><sub> ↓ </sub> = 5</textual-form><mml:math id="M185" altimg="si178.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↑</mml:mo></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mo stretchy="false">↓</mml:mo></mml:msub><mml:mo>=</mml:mo><mml:mn>5</mml:mn></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>U</italic> = 5</textual-form><mml:math id="M186" altimg="si179.gif" overflow="scroll"><mml:mi>U</mml:mi><mml:mo>=</mml:mo><mml:mn>5</mml:mn></mml:math></alternatives></inline-formula></td>
+            <td>Hubbard</td>
+            <td>−4.9334</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>NPT (<inline-formula><mml:math id="M187" altimg="si180.gif" overflow="scroll"><mml:msub><mml:mover accent="true"><mml:mi>p</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>26</mml:mn></mml:math></inline-formula>)</td>
+            <td>−4.6032</td>
+            <td>0.0669</td>
+          </tr>
+          <tr>
+            <td>Heisenberg</td>
+            <td>−5.6123</td>
+            <td>0.1376</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-group>
+</article>

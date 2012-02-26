@@ -1,0 +1,2391 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title-group>
+        <journal-title>Neuroimage</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3063336</article-id>
+      <article-id pub-id-type="pmid">20849959</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG7585</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2010.08.049</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>False positives in neuroimaging genetics using voxel-based morphometry data</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Silver</surname>
+            <given-names>Matt</given-names>
+          </name>
+          <xref rid="af0005" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Montana</surname>
+            <given-names>Giovanni</given-names>
+          </name>
+          <xref rid="af0005" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Nichols</surname>
+            <given-names>Thomas E.</given-names>
+          </name>
+          <email>t.e.nichols@warwick.ac.uk</email>
+          <xref rid="af0010" ref-type="aff">b</xref>
+          <xref rid="cr0005" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <collab>the Alzheimer's Disease Neuroimaging Initiative</collab>
+          <xref rid="fn0005" ref-type="fn">1</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="af0005"><label>a</label>Statistics Section, Department of Mathematics, Imperial College London, UK</aff>
+      <aff id="af0010"><label>b</label>Department of Statistics &amp; Warwick Manufacturing Group, University of Warwick, UK</aff>
+      <author-notes>
+        <corresp id="cr0005"><label>⁎</label>Corresponding author. <email>t.e.nichols@warwick.ac.uk</email></corresp>
+        <fn id="fn0005">
+          <label>1</label>
+          <p>Data used in the preparation of this article were obtained from the Alzheimer's Disease Neuroimaging Initiative (ADNI) database (<ext-link ext-link-type="uri" xlink:href="http://www.loni.ucla.edu/ADNI">www.loni.ucla.edu/ADNI</ext-link>). As such, the investigators within the ADNI contributed to the design and implementation of ADNI and/or provided data but did not participate in analysis or writing of this report. A complete list of ADNI investigators is available at <ext-link ext-link-type="uri" xlink:href="http://www.loni.ucla.edu/ADNI/Collaboration/ADNI_Manuscript_Citations.pdf">http://www.loni.ucla.edu/ADNI/Collaboration/ADNI_Manuscript_Citations.pdf</ext-link>.</p>
+        </fn>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>15</day>
+        <month>1</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>1</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>54</volume>
+      <issue>2</issue>
+      <fpage>992</fpage>
+      <lpage>1000</lpage>
+      <history>
+        <date date-type="received">
+          <day>23</day>
+          <month>2</month>
+          <year>2010</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>17</day>
+          <month>8</month>
+          <year>2010</year>
+        </date>
+        <date date-type="accepted">
+          <day>19</day>
+          <month>8</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Inc.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Voxel-wise statistical inference is commonly used to identify significant experimental effects or group differences in both functional and structural studies of the living brain. Tests based on the size of spatially extended clusters of contiguous suprathreshold voxels are also widely used due to their typically increased statistical power. In “imaging genetics”, such tests are used to identify regions of the brain that are associated with genetic variation. However, concerns have been raised about the adequate control of rejection rates in studies of this type. A previous study tested the effect of a set of ‘null’ SNPs on brain structure and function, and found that false positive rates were well-controlled. However, no similar analysis of false positive rates in an imaging genetic study using cluster size inference has yet been undertaken.</p>
+        <p>We measured false positive rates in an investigation of the effect of 700 pre-selected null SNPs on grey matter volume using voxel-based morphometry (VBM). As VBM data exhibit spatially-varying smoothness, we used both non-stationary and stationary cluster size tests in our analysis. Image and genotype data on 181 subjects with mild cognitive impairment were obtained from the Alzheimer's Disease Neuroimaging Initiative (ADNI). At a nominal significance level of 5%, false positive rates were found to be well-controlled (3.9–5.6%), using a relatively high cluster-forming threshold, <italic>α</italic><sub><italic>c</italic></sub> = 0.001, on images smoothed with a 12 mm Gaussian kernel. Tests were however anticonservative at lower cluster-forming thresholds (<italic>α</italic><sub><italic>c</italic></sub> = 0.01, 0.05), and for images smoothed using a 6 mm Gaussian kernel. Here false positive rates ranged from 9.8 to 67.6%. In a further analysis, false positive rates using simulated data were observed to be well-controlled across a wide range of conditions.</p>
+        <p>While motivated by imaging genetics, our findings apply to any VBM study, and suggest that parametric cluster size inference should only be used with high cluster-forming thresholds and smoothness. We would advocate the use of nonparametric methods in other cases.</p>
+      </abstract>
+      <abstract abstract-type="graphical">
+        <title>Research Highlight</title>
+        <p>►RFT nonstationary cluster size test on VBM is found to be invalid based on empirical null studies. ►Invalid inferences (inflated false positive risk) were found with 3 voxel smoothing. ►With 6 voxel smoothing, invalid inferences were found with 6 voxel smoothing and alpha=0.01 cluster-forming threshold. ►RFT nonstationary test only found to be valid with 6 voxel smoothing with alpha=0.001 cluster-forming threshold. ►Equivalent Gaussian data simulations produced valid inferences, suggesting VBM data violates RFT assumptions and motivates the use of nonparametric permutation methods.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s0005">
+      <title>Introduction</title>
+      <p>In imaging genetics brain images are used as phenotypes that are modelled by genetic predictors. In contrast to conventional genetic association studies where disease status is based on clinical observations, neuroimaging phenotypes are able to capture aspects of disease phenotypes at the physiological level. Neuroimaging genetic studies thus offer the prospect of gains in statistical power, since genes code not for mental or behavioural traits, but for the neural phenotypes that underpin them (<xref rid="bb0055" ref-type="bibr">Glahn et al., 2007</xref>). Neuroimaging genetic studies have the additional benefit of spatially localising gene effects, offering further potential insights into the structural and functional neurobiology of disease (<xref rid="bb0090 bb0130 bb0065" ref-type="bibr">Meyer-Lindenberg and Weinberger, 2006; Roffman et al., 2006; Hariri et al., 2006</xref>). Structural and functional brain images have been used in candidate and whole genome investigations of a number of neurological disorders including schizophrenia (<xref rid="bb0130 bb0120 bb0125" ref-type="bibr">Roffman et al., 2006; Potkin et al., 2009a, b</xref>) and Alzheimer's Disease (<xref rid="bb0030 bb0110" ref-type="bibr">Filippini et al., 2009; Pievani et al., 2009</xref>), and a recent study has highlighted gene effects on cortical surface area (<xref rid="bb0085" ref-type="bibr">Joyner et al., 2009</xref>).</p>
+      <p>A range of statistical methods have been used to investigate associations between SNPs and structural and functional neuroimages. Techniques include linear regression, parallel independent component analysis and multivariate approaches that model the influence of multiple SNPs at a time (<xref rid="bb0010 bb0020 bb0060" ref-type="bibr">Ashburner and Friston, 2000; Calhoun et al., 2009; Hardoon et al., 2009</xref>). The problem of multiple testing presents a particular challenge in imaging genetic studies, with a whole-brain study of 700 SNPs across 200,000 voxels requiring 1.4 million separate tests, raising concerns about false positives. Random field theory (RFT) is a widely used multiple testing method for determining corrected significances while accounting for spatial dependencies between voxels (<xref rid="bb0175" ref-type="bibr">Worsley et al., 1996a</xref>). These correlations are introduced by the image acquisition process itself, by physiological signal not included in the model, by image resampling during re-alignment, or by explicit smoothing applied in pre-processing (<xref rid="bb0040" ref-type="bibr">Frackowiak et al., 2003</xref>, chap. 14). Such RFT techniques must however be tested on representative empirical data before their efficacy can be firmly established. In a recent study <xref rid="bb0095" ref-type="bibr">Meyer-Lindenberg et al. (2008)</xref> measured rejection (i.e. false positive) rates in an imaging genetic study using voxel-wise inference against a pre-selected set of ‘null’ SNPs considered to have no effect on brain structure or function. Subjects included patients with schizophrenia, as well as healthy controls. Gene effects on brain structure (using VBM) and function (using fMRI response to cognitive tests) were considered. The study looked at false positive rates both across the brain as a whole, and for specific regions of interest. Significance thresholds were adjusted for comparisons across multiple voxels using both family-wise error (FWE) and false discovery rate (FDR) corrections. At a nominal significance level of 0.05, they found empirical rejection rates ranging from 0.2 to 4.1%, suggesting that for the methods studied, false positive rates are well-controlled, and that inferences are if anything conservative.</p>
+      <sec id="s0010">
+        <title>Cluster size tests</title>
+        <p>A variety of approaches are used to identify significant signals in the brain. In voxel-wise tests, group differences or differences in activation are assessed at each individual voxel, so that locations where there is a strong association between voxel intensity and a disease phenotype for example, are labelled as significant. In cluster size tests, an arbitrary cluster-forming threshold is applied to define connected components, and then significance is assessed on the basis of the size of the clusters. Cluster size tests are relatively more sensitive than voxel-wise tests for spatially extended signals (<xref rid="bb0050 bb0115 bb0100" ref-type="bibr">Friston et al., 1996; Poline et al., 1997; Moorhead et al., 2005</xref>), since they make use of the spatial nature of the signal and require a less severe multiple testing correction (there are always fewer clusters than voxels). This necessarily comes at the cost of reduced localising power, as rejecting the cluster null hypothesis just implies that one or more voxels within the cluster are significant.</p>
+        <p>As with voxel-wise tests, cluster size tests must account for the fact that neighbouring voxels are correlated even without any true effects RFT is used to assign <italic>P</italic>-values to each cluster in the statistic image accounting for smoothness and search volume. However, RFT rests on a number of assumptions, and simulation studies have shown that the performance of this technique depends on the choice of cluster-forming threshold, and on the use of sufficiently smooth images (<xref rid="bb0070" ref-type="bibr">Hayasaka and Nichols, 2003</xref>).</p>
+        <p>Inferences using cluster size are also subject to confounding effects arising from ‘non-stationarity’ — i.e., from local variations in noise smoothness. Under non-stationarity, even when there is no signal present, clusters will be larger in ‘smoother’ regions, and smaller in ‘rougher’ ones. Methods that fail to take such local non-stationarity into account will provide unreliable inferences, with areas of extended smoothness producing large clusters and increased incidence of false positives, and conversely rough areas demonstrating greater incidence of false negatives (<xref rid="bb0075" ref-type="bibr">Hayasaka et al., 2004</xref>). One approach to tackling this problem is to adjust cluster sizes according to local smoothness using non-stationary RFT methods (<xref rid="bb0170" ref-type="bibr">Worsley, 2002</xref>).</p>
+        <p><xref rid="bb0075" ref-type="bibr">Hayasaka et al. (2004)</xref> compared stationary and non-stationary RFT cluster size inference methods in the identification of activated areas using simulated and PET data sets. They found that the stationary RFT method was anticonservative<xref rid="fn0010" ref-type="fn">2</xref> under non-stationarity, but that the non-stationary RFT test performed well only for smooth images under high degrees of freedom. While that work suggested the use of corresponding nonparametric non-stationary cluster size permutation tests, here we are motivated to use parametric RFT in the imaging genetics context, as testing massive numbers of SNPs may make permutation tests impractical.</p>
+        <p>In this study we measured false positive (type I error) rates for voxel-wise and cluster size neuroimaging genetic inference on a dataset comprising 181 MRI images and associated genotype information from the Alzheimer's Disease Neuroimaging Initiative (ADNI) online database. We follow a similar experimental design to that of <xref rid="bb0095" ref-type="bibr">Meyer-Lindenberg et al. (2008)</xref>, although we restrict our analysis to genotypic effects on whole-brain structure (using VBM). We supplement our real data with simulated data evaluations to aid in the interpretation of the real VBM data results.</p>
+      </sec>
+    </sec>
+    <sec sec-type="materials|methods" id="s0015">
+      <title>Methods and materials</title>
+      <p>Real imaging and genotype data were obtained from the Alzheimer's Disease Neuroimaging Initiative (ADNI) database (<ext-link ext-link-type="uri" xlink:href="http://www.loni.ucla.edu/ADNI">www.loni.ucla.edu/ADNI</ext-link>). The ADNI was launched in 2003 by the National Institute on Aging (NIA), the National Institute of Biomedical Imaging and Bioengineering (NIBIB), the Food and Drug Administration (FDA), private pharmaceutical companies and non-profit organizations. ADNI is the result of efforts of many co-investigators from a broad range of academic institutions and private corporations, and subjects have been recruited from over 50 sites across the U.S. and Canada (see Acknowledgments for more details).</p>
+      <sec id="s0020">
+        <title>Imaging data</title>
+        <sec id="s0025">
+          <title>ADNI subjects</title>
+          <p>181 T1-weighted 3D structural MRI scans from subjects with mild cognitive impairment (MCI) were obtained from the ADNI database (see <xref rid="bb0080" ref-type="bibr">Jack et al. (2008)</xref> for image acquisition details). In the present study, SPM5's (<ext-link ext-link-type="uri" xlink:href="http://www.fil.ion.ucl.ac.uk/spm/software/spm5">http://www.fil.ion.ucl.ac.uk/spm/software/spm5</ext-link>) unified segmentation and normalisation was used to obtain gray matter (GM) images in standard space, modulated to account for volume changes in the warping to the MNI atlas. Modulated GM images were smoothed with 6 mm and 12 mm Gaussian kernels. 12 mm smoothing is the de-facto standard in VBM studies (<xref rid="bb0010" ref-type="bibr">Ashburner and Friston, 2000</xref>), and was used by <xref rid="bb0095" ref-type="bibr">Meyer-Lindenberg et al. (2008)</xref>. A second set of images with 6 mm smoothing enables the performance of RFT at relatively low smoothness to be assessed. A grey matter analysis mask was constructed by thresholding the mean grey matter image at 0.025. All pre-processing and smoothing was carried out using SPM5.</p>
+        </sec>
+        <sec id="s0030">
+          <title>Simulated images</title>
+          <p>Stationary and non-stationary random images were generated using FSL (<ext-link ext-link-type="uri" xlink:href="http://www.fmrib.ox.ac.uk/fsl/">http://www.fmrib.ox.ac.uk/fsl/</ext-link>). 3D simulated images had the same voxel size (2mm<sup>3</sup>) as MNI-warped ADNI images, and were also masked with the real data analysis mask.</p>
+          <p>Stationary realisations were generated using white noise images convolved with 6 mm and 12 mm 3D Gaussian smoothing kernels. Non-stationary realisations were generated from white noise images smoothed with 3 different Gaussian kernels extending over distinct, adjacent 3D regions of the image volume. “6 mm” non-stationary images were composed of a central region smoothed with a 9 mm kernel, with intermediate and outer regions smoothed with 6 and 4 mm kernels respectively. “12 mm” images were made up of regions smoothed with 12, 8, and 18 mm kernels (see <xref rid="f0005" ref-type="fig">Fig. 1</xref>). Final images were smoothed with a 1.5 mm kernel to eliminate discontinuities at the boundaries between different regions, resulting in final non-stationary smoothness of 4.3, 6.2 and 9.1 mm FWHM for “6 mm”, and 8.1, 12.1 and 18.1 for “12 mm”. All images were truncated from a larger initial volume to avoid edge artefacts. Finally, to match the real data under consideration, only voxels within the real-image grey matter mask were used.</p>
+        </sec>
+      </sec>
+      <sec id="s0035">
+        <title>Genotype data</title>
+        <p>In their study of genetic effects on brain structure, <xref rid="bb0095" ref-type="bibr">Meyer-Lindenberg et al. (2008)</xref> selected 720 ‘null’ SNPs, found to have no significant association with disease phenotype (at the 5% level) in separate case–control and family-based analyses. The results of the subsequent neuroimaging genetic analysis were considered to set an upper bound on null rejection rates, since individual SNPs may still influence brain structure after all. To establish a lower bound, the authors repeated their analysis, but with the genotype–phenotype relationship removed by permuting genotypes across subjects. 4 such permutations were analysed. In the present study, 700 selected ‘null’ SNPs are used, with 10 subsequent permutations.</p>
+        <p>ADNI subjects' genotype information, assayed using the Illumina 610-Quad BeadChip microarray, was obtained from the ADNI website. Each genotype file contains information pertaining to 620,901 SNPs and copy number variations (CNVs). 700 ‘null’ SNPs were selected as follows. Firstly, all CNVs were excluded and only SNPs from chromosome 3 were considered. Chromosome 3 was chosen since none of 4 prime candidate AD-associated genes (APOE, PSEN1, PSEN2 and SORL1) are located on this chromosome. Of the remaining 39,928 SNPs, those with a minor allele frequency of less than 5% were excluded, as were any SNPs with a Bonferroni-corrected Hardy Weinberg equilibrium <italic>P</italic>-value &lt; 0.05/700. From the remaining 18,285 SNPs, 700 uniformly-spaced (by rank order in position) SNPs were selected, in order to minimise any possible linkage disequilibrium effects. Finally, as per standard practice, an adjustment was made to those SNPs (310 in total) with low numbers (&lt; 10) of homozygous alleles, merging the rare homozygous and heterozygous groups. This is to minimise any potential biasing effects in the regression, and is equivalent to fitting a dominant or recessive model at the SNPs in question.</p>
+      </sec>
+      <sec id="s0040">
+        <title>Statistical inference</title>
+        <p>Voxel-wise and cluster size tests for association between genotype and grey matter intensity were performed under the General Linear Model (GLM) (<xref rid="bb0045" ref-type="bibr">Friston et al., 1995</xref>) using SPM5. Non-stationary tests were carried out using Hayasaka's non-stationary toolbox for SPM (<ext-link ext-link-type="uri" xlink:href="http://fmri.wfubmc.edu/cms/NS-General">http://fmri.wfubmc.edu/cms/NS-General</ext-link>). The non-stationary toolbox corrects for expected variation in cluster size in non-stationary images under the null, using statistical random field theory (<xref rid="bb0075 bb0185" ref-type="bibr">Hayasaka et al., 2004; Worsley et al., 1999</xref>). Note that we did not compare our results with standard permutation tests (<xref rid="bb0075" ref-type="bibr">Hayasaka et al., 2004</xref>). Permutation methods are guaranteed to be valid under the null hypothesis, and our prime motivation in this study was to address the accuracy of RFT methods in a large data (i.e. imaging genetics) setting where permutation might not be practical computationally.</p>
+        <p>For the real (ADNI) image dataset, genotype effects were measured by modelling modulated grey matter intensity as a response to SNP allele frequency, with subject age and sex as nuisance covariates. Each SNP was analysed separately, with SNP significance determined from <italic>t</italic> and <italic>F</italic>-tests, corrected for multiple comparisons using family-wise error and false discovery rate. For cluster size tests, cluster-forming thresholds, <italic>α</italic><sub><italic>c</italic></sub>, of 0.001, 0.01 and 0.05 under both stationary and non-stationary assumptions were considered. Overall rejection rates express the proportion of the 700 SNPs found to cause any significant activation. All tests were repeated a total of 10 times with genotype–phenotype labels permuted to remove any possible remaining association.</p>
+        <p>Equivalent tests on simulated images were conducted with the same SNP and covariate (age, sex) data, so that degrees of freedom for all tests were the same as those on the ADNI dataset. These tests were performed without permutation since there can be no association between genotype and phenotype with random images.</p>
+        <sec id="s0045">
+          <title>Non-stationary cluster size inference</title>
+          <p>While the RFT non-stationary cluster size test is described in detail elsewhere (<xref rid="bb0075" ref-type="bibr">Hayasaka et al., 2004</xref>), we review it again here to facilitate later discussion. Under the GLM, the intensity <italic>Y(v)</italic> at voxel location <italic>v</italic> is expressed as a linear combination of regressors<disp-formula id="fo0005"><label>(1)</label><alternatives><textual-form specific-use="jats-markup"><italic>Y</italic>(<italic>v</italic>) = <italic>X</italic><italic>β</italic>(<italic>v</italic>) + <italic>ε</italic>(<italic>v</italic>)</textual-form><mml:math id="M1" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mi>Y</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mi>X</mml:mi><mml:mi>β</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:mi>ε</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></alternatives></disp-formula>where, in a study with <italic>n</italic> subjects and <italic>p</italic> regressors, <italic>X</italic> is an <italic>n</italic> ×  <italic>p</italic> design matrix, <italic>β</italic>(<italic>v</italic>) is a <italic>p</italic>-dimensional vector of parameters to be estimated, and <italic>ε</italic>(<italic>v</italic>) is an <italic>n</italic>-vector of error terms, assumed to be independent and normally distributed with equal variance.</p>
+          <p>With cluster size tests, significant clusters are formed from contiguous voxels whose <italic>t</italic> or <italic>F</italic>-statistic exceed a fixed cluster-forming threshold, <italic>u</italic><sub><italic>c</italic></sub> (or equivalently, an uncorrected significance level <italic>α</italic><sub><italic>c</italic></sub> that uniquely determines <italic>u</italic><sub><italic>c</italic></sub>). Briefly, the non-stationary toolbox corrects for image non-stationarity by measuring the ‘smoothness’ at each voxel, a quantity that is related to the variance of the spatial partial derivatives of the model errors, <italic>ε</italic> in (1). From this a measure of image smoothness, measured in FWHM is obtained. FWHM refers to the ‘full-width at half-maximum’ of a Gaussian kernel required to smooth a random (white noise) image into equivalent smoothness of the data at hand; note that isotropy is not assumed, and FWHM is fully specified by [FWHM<sub><italic>x</italic></sub> FWHM<sub><italic>y</italic></sub> FWHM<sub><italic>z</italic></sub>]. A related quantity is the RESEL, a ‘virtual’ voxel of size FWHM<sub><italic>x</italic></sub> × FHWM<sub><italic>y</italic></sub> × FHWM<sub><italic>z</italic></sub>. The RESEL count <italic>N</italic><sub><italic>res</italic></sub> is the number of RESELs that fit into the search volume,<disp-formula id="fo0010"><label>(2)</label><mml:math id="M2" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mi mathvariant="italic">res</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mi>V</mml:mi><mml:mrow><mml:msub><mml:mtext>FWHM</mml:mtext><mml:mi>x</mml:mi></mml:msub><mml:mo>×</mml:mo><mml:msub><mml:mtext>FHWM</mml:mtext><mml:mi>y</mml:mi></mml:msub><mml:mo>×</mml:mo><mml:msub><mml:mtext>FHWM</mml:mtext><mml:mi>z</mml:mi></mml:msub></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula>where <italic>V</italic> is the number of voxels in the image. When stationarity (i.e. uniform smoothness across the image) is assumed, FWHM is calculated by pooling FWHM across the entire image volume.<xref rid="fn0015" ref-type="fn">3</xref> Under non-stationarity, FWHM is estimated at each voxel <italic>v</italic>, giving a RESEL measure as well. The size of this local RESEL, 1/ [FWHM<sub><italic>x</italic></sub>(<italic>v</italic>) × FHWM<sub><italic>y</italic></sub>(<italic>v</italic>) × FHWM<sub><italic>z</italic></sub>(<italic>v</italic>)], is denoted RPV <italic>(v)</italic> for RESELs per voxel at voxel <italic>v</italic>. In this way a voxel's effective volume, relative to image smoothness, is obtained. The next step is to calculate the smoothness-adjusted cluster size, <italic>S</italic><sup>′</sup>, by summing effective voxel volumes over a cluster:<disp-formula id="fo0015"><mml:math id="M3" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mi>S</mml:mi><mml:mtext>′</mml:mtext></mml:msup><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mrow><mml:mi>v</mml:mi><mml:mo>∈</mml:mo><mml:mi>C</mml:mi></mml:mrow></mml:munder><mml:mspace width="0.12em"/><mml:mtext>RPV</mml:mtext><mml:mo stretchy="true">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></disp-formula>where <italic>C</italic> denotes the set of voxel indices in the cluster. This procedure is equivalent to measuring cluster size in a distorted image, where space has been warped in such a way so as to ensure that stationarity holds (<xref rid="bb0185" ref-type="bibr">Worsley et al., 1999</xref>).</p>
+          <p>Finally, the probability of obtaining clusters of a given size <italic>S</italic><sup>′</sup> under the null is calculated, corrected for multiple comparisons. This probability is derived from the image's Euler Characteristic, <italic>ρ</italic>(<italic>u</italic><sub><italic>c</italic></sub>), a topological property which approximates the expected number of clusters or ‘blobs’ in a thresholded image of given smoothness. In the stationary case, the expected cluster size under the null is<disp-formula id="fo0020"><label>(3)</label><mml:math id="M4" altimg="si6.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:mi>S</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mi>v</mml:mi></mml:msub><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:mi>C</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula>where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>(<italic>N</italic><sub><italic>v</italic></sub>)</textual-form><mml:math id="M5" altimg="si7.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mi>v</mml:mi></mml:msub><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></alternatives></inline-formula> is the expected number of suprathreshold voxels (= <italic>Vα</italic><sub><italic>c</italic></sub>), and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>(<italic>C</italic>)</textual-form><mml:math id="M6" altimg="si8.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:mi>C</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></alternatives></inline-formula> is the expected number of clusters (= <italic>Vρ</italic>(<italic>α</italic><sub><italic>c</italic></sub>)). This expression also holds for <italic>S</italic><sup>′</sup> but suprathreshold voxels must be measured in RESELs, i.e. <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>(<italic>N</italic><sub><italic>v</italic></sub>) = <italic>N</italic><sub><italic>res</italic></sub><italic>α</italic><sub><italic>c</italic></sub></textual-form><mml:math id="M7" altimg="si9.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mi>v</mml:mi></mml:msub><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mi mathvariant="italic">res</mml:mi></mml:msub><mml:msub><mml:mi>α</mml:mi><mml:mi>c</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>. The expected cluster size is then used to estimate the null distribution of <italic>S</italic> (or <italic>S</italic><sup>′</sup>) and obtain uncorrected <italic>P</italic>-values, which are then converted to either FWE-corrected <italic>P</italic>-values or FDR-corrected <italic>P</italic>-values (<xref rid="bb0025" ref-type="bibr">Chumbley and Friston, 2009</xref>) that account for searching the brain for significant clusters.</p>
+          <p>The use of RFT in cluster size tests rests on a number of assumptions (<xref rid="bb0070" ref-type="bibr">Hayasaka and Nichols, 2003</xref>). These include:<list list-type="simple"><list-item><label>•</label><p>Lattice approximation — images are assumed to be derived from a smooth random field sampled at regular points on a lattice; sampling is assumed to be fine enough to capture the local features of the field;</p></list-item><list-item><label>•</label><p>Image smoothness — images are smooth at the voxel scale;</p></list-item><list-item><label>•</label><p>Large search region — Search volume is large compared to the size of a resel;</p></list-item><list-item><label>•</label><p>Uniform smoothness (for stationary tests only);</p></list-item><list-item><label>•</label><p>High cluster-forming thresholds — RFT's estimate of cluster size distribution under the null is derived asymptotically, under the assumption that the cluster-forming threshold <italic>α</italic><sub><italic>c</italic></sub> is sufficiently high.</p></list-item></list></p>
+          <p>These assumptions present particular practical difficulties for those using cluster size tests, since low thresholds with as little smoothing as possible — the very conditions under which RFT performs worst — tend to maximise sensitivity and localising power (<xref rid="bb0070" ref-type="bibr">Hayasaka and Nichols, 2003</xref>).</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="s0050">
+      <title>Results</title>
+      <sec id="s0055">
+        <title>Real (ADNI) images</title>
+        <p>Full cluster and voxel-wise results under FWER correction are presented in <xref rid="t0005" ref-type="table">Table 1</xref>. Similar results under FDR correction are presented in <xref rid="t0010" ref-type="table">Table 2</xref>. Relevant whole brain, voxel-wise rejection rates reported by <xref rid="bb0095" ref-type="bibr">Meyer-Lindenberg et al. (2008)</xref> are also included for comparison.</p>
+        <p>Results from tests with permuted genotype–phenotype labels (FWER-corrected results only) were broadly similar to those with observed, unpermuted labels, indicating that for the purposes of the present study, chromosome 3 SNP effects on brain structure were negligible.</p>
+        <p>The key finding was that rejection rates were poorly controlled for all cluster size tests, except for those performed on 12 mm smoothed images with the highest cluster-forming threshold, <italic>α</italic><sub><italic>c</italic></sub> = 0.001. In this latter instance, FWER-corrected rejection rates approached the desired nominal 5% level, with a 3.8 ± 0.8% rejection rate for a <italic>t</italic>-test with non-stationary correction under permutation, and 4.5 ± 1.2% under the corresponding <italic>F</italic>-test. FDR-corrected results were broadly similar to FWE-corrected results for <italic>α</italic><sub><italic>c</italic></sub> = 0.01 and 0.001.</p>
+        <p>FWE and FDR-corrected voxel-wise tests were conservative for both 6 and 12 mm smoothed images, in agreement with results for FWER-corrected voxel-wise <italic>t</italic>-tests on 12 mm smoothed images reported by <xref rid="bb0095" ref-type="bibr">Meyer-Lindenberg et al. (2008)</xref>.</p>
+        <p>In general, cluster size tests became more anticonservative at lower thresholds (decreasing <italic>u</italic><sub><italic>c</italic></sub>, increasing <italic>α</italic><sub><italic>c</italic></sub>), and this effect was exacerbated for low smoothness images. Image smoothness had a pronounced effect on all results, with tests performed on 6 mm smoothed images having substantially higher rejection rates than those performed on images with 12 mm smoothing. The degree of smoothing, however, showed little effect on voxel-wise rejection rates.</p>
+        <p>Cluster size tests corrected for image non-stationarity were generally closer to nominal than those assuming stationarity. Finally, <italic>F</italic>-tests were generally more anticonservative than equivalent <italic>t</italic>-tests.</p>
+      </sec>
+      <sec id="s0060">
+        <title>Simulated images</title>
+        <p>Rejection rates for tests on simulated, random Gaussian images are presented in <xref rid="t0015" ref-type="table">Table 3</xref>. For stationary (constant smoothness) 6 and 12 mm FWHM Gaussian images, both stationary and non-stationary cluster size <italic>t</italic>-tests are highly conservative at higher thresholds (<italic>α</italic><sub><italic>c</italic></sub> = 0.001, 0.01), but are anticonservative at the lowest threshold (<italic>α</italic><sub><italic>c</italic></sub> = 0.05). <italic>F</italic>-tests are conservative at all thresholds. As with stationary images, non-stationary cluster size <italic>t</italic>-tests are conservative at <italic>α</italic><sub><italic>c</italic></sub> = 0.001, 0.01, and anticonservative at <italic>α</italic><sub><italic>c</italic></sub> = 0.05, whereas <italic>F</italic>-tests are conservative at all thresholds. As might be expected, stationary cluster size <italic>t</italic> and <italic>F</italic>-tests on both “6 mm” and “12 mm” FWHM non-stationary images perform poorly.</p>
+        <p>Voxel-wise tests are generally conservative, or close to nominal for both stationary and non-stationary images at 6 and 12 mm.</p>
+      </sec>
+    </sec>
+    <sec id="s0065">
+      <title>Discussion</title>
+      <p>This study provides the first analysis of false positive rates in an imaging genetics study of VBM data using cluster size inference. Images from a group of 181 subjects with mild cognitive impairment were tested against a set of 700 ‘null’ SNPs. The analysis presented here suggests that rejection rates under both stationary and non-stationary assumptions are poorly controlled at low cluster-forming thresholds or for images with low smoothness.</p>
+      <p>The use of real genotype data is considered important, since the accurate modelling of linkage disequilibrium and population stratification is a challenge, and their effect on neural phenotypes is unknown (<xref rid="bb0095" ref-type="bibr">Meyer-Lindenberg et al., 2008</xref>).</p>
+      <p>Null SNPs were selected from chromosome 3, with the simple rationale that none of the genes reported to have the strongest link with AD are present on this chromosome. While this is clearly a crude measure for selecting SNPs with no effect on grey matter distribution, the use of multiple permutations ensures that any possible effects are removed by breaking the association between genotype and phenotype. In fact, rejection rates obtained using permuted SNPs are not significantly different from those obtained without permutation (considering a 95% confidence interval at ± 2 SD), indicating that, for the purposes of this study, SNP effects on brain structure are indeed negligible.</p>
+      <p>We begin by considering the results obtained with the ADNI image dataset.</p>
+      <sec id="s0070">
+        <title>Effect of cluster-forming threshold, <italic>α</italic><sub><italic>c</italic></sub></title>
+        <p>The choice of cluster-forming threshold, <italic>α</italic><sub><italic>c</italic></sub> was found to have a significant effect on cluster size inference rejection rates. For images smoothed with a 12 mm Gaussian kernel, both stationary and non-stationary tests were found to be well-controlled or conservative at the most stringent threshold (<italic>α</italic><sub><italic>c</italic></sub> = 0.001). However, tests became increasingly anticonservative at lower thresholds <italic>u</italic><sub><italic>c</italic></sub> (higher <italic>α</italic><sub><italic>c</italic></sub>) for both 12 mm and 6 mm smoothed images.</p>
+        <p>A possible explanation for the poor performance at low <italic>u</italic><sub><italic>c</italic></sub> is bias in RFT's estimate of the expected number of clusters, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>(<italic>C</italic>)</textual-form><mml:math id="M8" altimg="si10.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:mi>C</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></alternatives></inline-formula> (<xref rid="f0010" ref-type="fig">Fig. 2</xref>). If <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>(<italic>C</italic>)</textual-form><mml:math id="M9" altimg="si11.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:mi>C</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></alternatives></inline-formula> is over-estimated, expected cluster size is under-estimated (see Eq. <xref rid="fo0020" ref-type="disp-formula">(3)</xref>), meaning that more clusters of a given size are labelled as significant. This over-estimation of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>(<italic>C</italic>)</textual-form><mml:math id="M10" altimg="si12.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:mi>C</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></alternatives></inline-formula> may reflect the inability of the Euler Characteristic, <italic>ρ</italic>(<italic>u</italic><sub><italic>c</italic></sub>), to accurately estimate the number of clusters at low thresholds, where clusters are more numerous and tend to coalesce to form topologically complex patterns (<xref rid="bb0155" ref-type="bibr">Taylor and Worsley, 2008</xref>).</p>
+      </sec>
+      <sec id="s0075">
+        <title>12mm vs. 6 mm smoothing kernels</title>
+        <p>The application of a wide range of Gaussian smoothing kernels in VBM is evident in the literature — e.g. 4 mm (<xref rid="bb0145" ref-type="bibr">Schwartz et al., 2010</xref>), 8 mm (<xref rid="bb0035" ref-type="bibr">Folley et al., 2010</xref>) and 10 mm (<xref rid="bb0150" ref-type="bibr">Shen et al., 2010</xref>), as well as the ‘standard’ 12 mm (<xref rid="bb0135 bb0160" ref-type="bibr">Rosen et al., 2010; Ueda et al., 2010</xref>). However guidelines on the particular choice of smoothing kernel have been described as ‘vague’ (<xref rid="bb0070" ref-type="bibr">Hayasaka and Nichols, 2003</xref>), and there is a suggestion that kernel widths should be determined empirically (<xref rid="bb0180" ref-type="bibr">Worsley et al., 1996b</xref>). Notably, with the use of high-dimensional warping methods like DARTEL (<xref rid="bb0005" ref-type="bibr">Ashburner, 2007</xref>), there appears to be a trend towards lower smoothing kernels. Improved intersubject alignment means there is a reduced need for smoothing to ‘blur out’ warping errors. For example, <xref rid="bb0015" ref-type="bibr">Bergouignan et al. (2009)</xref> use 12 mm smoothing with SPM's standard normalisation and 8 mm with DARTEL. While reduced smoothing should increase sensitivity to effects of smaller size by “Matched Filter” arguments, cluster size tests are most sensitive to effects that are larger than the noise smoothness. Hence, to the extent that large scale anatomical effects are present after either low- or high-resolution warping, high-resolution results may be more sensitive as effects will be larger in units of resels.</p>
+        <p>In the present study, differing amounts of smoothing were found to have a pronounced effect on rejection rates. Tests on images smoothed with a 6 mm Gaussian kernel were highly anticonservative at all thresholds including the highest (<italic>α</italic><sub><italic>c</italic></sub> = 0.001), and were consistently more anticonservative when compared with 12 mm smoothing results.</p>
+        <p>Poor performance for low smoothness images is in fact to be expected under the lattice assumption of random field theory (<xref rid="bb0070" ref-type="bibr">Hayasaka and Nichols, 2003</xref>). As image smoothness decreases, this lattice approximation breaks down, since the underlying variation is poorly-captured by discrete, voxel-wise sampling. This means that continuous RFT results are modelling unobserved, large intensity changes between sampled voxels. While previous reports have suggested 3 voxel FWHM smoothing (i.e. 6 mm FWHM smoothing for the 2 mmvoxels considered here) is sufficient (<xref rid="bb0105" ref-type="bibr">Nichols and Hayasaka, 2003</xref>), for the ADNI data this is insufficient. Specifically, we find an over-estimation of the expected number of clusters, with the gap between expected and observed values, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>(<italic>C</italic>) − <italic>C</italic></textual-form><mml:math id="M11" altimg="si13.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:mi>C</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>−</mml:mo><mml:mi>C</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>, generally greater at 6 mm than at 12 mm (see <xref rid="f0010" ref-type="fig">Fig. 2</xref>).</p>
+      </sec>
+      <sec id="s0080">
+        <title>Stationary vs. non-stationary tests</title>
+        <p>Non-stationary cluster-wise rejection rates were generally similar, or slightly better-controlled than those assuming stationarity, suggesting that there is at least some non-stationarity present in the images. For non-stationary images, stationary tests would also be expected to perform worse at lower thresholds where clusters are larger and more likely to encompass extra-smooth regions, and this is indeed the case. A heuristic measure of image non-stationarity was obtained by plotting the distribution of voxel-wise FWHM, obtained from the RPV image produced by SPM (FWHM = RPV<sup> − 1/3</sup>). A completely stationary image would be expected to have constant FWHM across the entire image volume. Any pronounced departure from this suggests non-stationarity. An analysis of 6 mm and 12 mm FWHM images (see <xref rid="f0015" ref-type="fig">Fig. 3</xref>) finds a spread of around 4 mm to 8 mm and SD of 1.0 mm for 6 mm smoothed images, and 7 mm to 17 mm and SD of 2.6 mm for 12 mm images. While this spread of FWHM could be attributed to sampling variation, the theoretical SD of the FWHM estimator can be computed by simulation (see Appendix B of <xref rid="bb0075" ref-type="bibr">Hayasaka et al. (2004)</xref>). We find theoretical SDs of 0.696 mm for 12 mm smoothed stationary images, and 0.348 mm for 6 mm images, which are much smaller than our observed values. While these theoretical SDs under stationarity again depend on the accuracy of the RFT results (and, note in particular the bias in the smoothness estimation for 6 mm smoothing), they provide further evidence of substantial image non-stationarity.</p>
+      </sec>
+      <sec id="s0085">
+        <title><italic>t</italic> vs. <italic>F</italic> image results</title>
+        <p>The <italic>t</italic> and <italic>F</italic> image cluster size results cannot be directly compared. While the single degree-of-freedom <italic>F</italic>-test we used is exactly equal to the square of the <italic>t</italic>-test used, the set of clusters generated will be different for two reasons. First, the one-sided <italic>α</italic> level used to define a <italic>t</italic> statistic threshold will not equal the square root of the <italic>F</italic> statistic threshold of the same <italic>α</italic> level (an <italic>F</italic>'s level corresponds to the <italic>t</italic>'s two-sided <italic>α</italic> level). Further, the <italic>F</italic> image has the clusters arising from negative <italic>t</italic> values. Thus there will be both more and different clusters in the <italic>F</italic> images for the same data and <italic>α</italic><sub><italic>c</italic></sub>.</p>
+        <p>These caveats aside, the rejection rates on the real data were largely similar for the same <italic>α</italic><sub><italic>c</italic></sub>'s, with valid performance found only for 12 mm smoothed data with <italic>α</italic><sub><italic>c</italic></sub> = 0.001.</p>
+      </sec>
+      <sec id="s0090">
+        <title>Simulated images</title>
+        <p>In marked contrast to tests performed on the ADNI image dataset, non-stationary cluster size tests on simulated stationary and non-stationary random images were found to be valid (conservative) at both high and moderate cluster-forming thresholds (<italic>α</italic><sub><italic>c</italic></sub> = 0.001, 0.01), irrespective of image smoothness.</p>
+        <p>Other studies using simulated images produced from stationary and non-stationary, Gaussian random fields have also considered the effect of varying both the cluster-forming threshold and image smoothing kernel. With stationary simulated images, <xref rid="bb0070" ref-type="bibr">Hayasaka and Nichols (2003</xref>, <xref rid="f0010" ref-type="fig">Fig. 2</xref>) found that cluster size tests were conservative over the same range of image smoothness with <italic>α</italic><sub><italic>c</italic></sub> = 0.001, 0.01, in agreement with our results. Using similar non-stationary simulated data, <xref rid="bb0075" ref-type="bibr">Hayasaka et al. (2004)</xref> also found that non-stationary cluster size tests were conservative with images of low smoothness (comparable to our 6 mm non-stationary images), and with 20 subjects, but only considered <italic>α</italic><sub><italic>c</italic></sub> = 0.01.</p>
+        <p>The large discrepancy in cluster size inference rejection rates between real and simulated image data over a range of thresholds and smoothing kernels suggests that there are features of the real VBM data that may be incompatible with the RFT method. This may for example be due to the inherent non-normality of VBM data, or to patterns of non-stationarity in real images that are more complex than those simulated here. Non-normality of VBM data has been reported before, but only when considering the accuracy of voxel-wise significance (<xref rid="bb0165 bb0140" ref-type="bibr">Viviani et al., 2007; Salmond et al., 2002</xref>). This other work found that imbalanced group comparisons required 12 mm FWHM smoothing to accurately control voxel-wise false positives, though balanced group comparisons were accurate with smaller kernel sizes. As genotypes are rarely equally frequent, the imbalanced results are most relevant to this setting.</p>
+        <p>We performed a number of additional simulations in order to investigate the role of non-normality in cluster size inference. VBM data is hard bounded between 0 and 1, and modulated VBM nearly so. A Shapiro–Wilks test for normality at each voxel, using the spmd5beta diagnostic toolbox (<ext-link ext-link-type="uri" xlink:href="http://www.sph.umich.edu/~nichols/SPMd/">http://www.sph.umich.edu/~nichols/SPMd/</ext-link>) reveals that both 6 mm and 12 mm smoothed images are indeed highly non-normal. This deviation is particularly marked for 6 mm images, with around 45% of voxels exceeding a nominal 5% Shapiro–Wilks threshold. In contrast, the stationary Gaussian noise-derived simulated images describe earlier show no significant deviation from normality. To test the effect of introducing non-normality to our simulations, we generated a set of images by first thresholding Gaussian noise images smoothed with 6 mm and 8 mm kernels, to produce ‘patchy’, binary images. These were then smoothed with 6 mm and 12 mm kernels to produce images with a range of deviations from non-normality that mimicked or exceeded the deviations from normality exhibited by the real VBM data, as measured with a Shapiro–Wilks test. Regression of these images against all 700 SNPs produced similar results to those described earlier, with conservative results at high and moderate cluster-forming thresholds with both 6 mm and 12 mm smoothing.</p>
+        <p>To test the effect of more complex patterns of non-stationarity, we segmented FWHM images derived from 6 mm and 12 mm smoothed ADNI images to produce a set of topologically complex masks corresponding to regions of high, medium and low ‘smoothness’. Non-stationary simulated images were then generated by filling each masked region with differently smoothed Gaussian noise, as described in the Section <xref rid="s0020" ref-type="sec">Imaging data</xref>. Once again, a full analysis produced conservative results, with rejection rates below a nominal 5% for <italic>α</italic><sub><italic>c</italic></sub> = 0.001, 0.01 for both 6 mm and 12 mm smoothed images.</p>
+        <p>One final set of simulated images was produced by again generating complex, non-stationary FWHM-segmented masks, this time filled with non-normal, Gaussian noise-derived data, as described earlier. Rejection rates were again well-controlled, in marked contrast to results obtained using real ADNI data.</p>
+        <p>A reviewer raised the concern that poor performance might be attributable to the low (2.5%) threshold applied to the mean GM image to create an analysis mask. To address this we ran an additional set of tests using a mask based on a 20% GM threshold. This higher threshold will exclude voxels with the least amount of GM and those likely to have non-Gaussian errors, but also will change the topology of the search region, making it more convoluted. While we did find a slight improvement in test performance with the new mask on real ADNI data, our findings were left unchanged, in that only tests performed on 12 mm smoothed images with <italic>α</italic><sub><italic>c</italic></sub> = 0.001 were well-controlled.</p>
+      </sec>
+    </sec>
+    <sec id="s0095">
+      <title>Conclusion</title>
+      <p>We found that RFT non-stationary cluster size tests on real VBM data perform poorly at low cluster-forming thresholds and for images with low smoothness. In a second analysis with synthetic image data generated using Monte Carlo simulations, we found performance was instead excellent, if conservative. The contradictory results indicate there are features of the real VBM data that are incompatible with the RFT method.</p>
+      <p>We suggest two possible reasons for this difference in performance. First, as grey matter segmented data is hard bounded between 0 and 1, and modulated VBM data nearly so, the data may exhibit non-normality, violating a foundational assumption of the RFT method. Second, while we simulated non-stationarity, the pattern of non-stationarity observed in real VBM is substantially more complex (<xref rid="f0020" ref-type="fig">Fig. 4</xref>). However, further tests using simulated images with both significant deviations from normality, and with more complex patterns of non-stationarity still produced conservative results, so that we were unable to find evidence that either aspect of real VBM data is responsible for the poor performance observed with real image data.</p>
+      <p>There are many ways to characterise deviations from normality in image data, and it may be that the VBM data deviates from normality in ways which we have been unable to capture in our simulations. The same is true of our attempts to model the true complexity of non-stationarity. Additionally, while RFT assumes that images can be warped to approximate stationarity, for VBM these hypothetical warps could be so convoluted so as to render the constituent approximations inaccurate.</p>
+      <p>Fortunately, an alternative to parameteric, RFT-based cluster size inference is available — a nonparametric permutation test where the data itself is used to derive an empirical cluster size distribution under the null (<xref rid="bb0075" ref-type="bibr">Hayasaka et al., 2004</xref>). While this approach carries a greater computational burden, the false positive rates are exact (<xref rid="bb0070" ref-type="bibr">Hayasaka and Nichols, 2003</xref>), and the permutation approach should be reasonable for studies examining only a small number of SNPs.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bb0005">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A fast diffeomorphic image registration algorithm</article-title>
+          <source>Neuroimage</source>
+          <volume>38</volume>
+          <issue>1</issue>
+          <year>2007</year>
+          <fpage>95</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="pmid">17761438</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0010">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Voxel-based morphometry — the methods</article-title>
+          <source>Neuroimage</source>
+          <volume>11</volume>
+          <year>2000</year>
+          <fpage>805</fpage>
+          <lpage>821</lpage>
+          <pub-id pub-id-type="pmid">10860804</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0015">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bergouignan</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Chupin</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Czechowska</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Kinkingnéhun</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Lemogne</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bastard</surname>
+              <given-names>G.L.</given-names>
+            </name>
+            <name>
+              <surname>Lepage</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Garnero</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Colliot</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Fossati</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Can voxel based morphometry, manual segmentation and automated segmentation equally detect hippocampal volume differences in acute depression?</article-title>
+          <source>Neuroimage</source>
+          <volume>45</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <fpage>29</fpage>
+          <lpage>37</lpage>
+          <pub-id pub-id-type="pmid">19071222</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0020">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Calhoun</surname>
+              <given-names>V.D.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>AdalI</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>A review of group ICA for fMRI data and ICA for joint inference of imaging, genetic, and ERP data</article-title>
+          <source>Neuroimage</source>
+          <volume>45</volume>
+          <issue>1, Supplement 1</issue>
+          <year>2009</year>
+          <fpage>S163</fpage>
+          <lpage>S172</lpage>
+          <comment>Mathematics in Brain Imaging.</comment>
+          <pub-id pub-id-type="pmid">19059344</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0025">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chumbley</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>False discovery rate revisited: FDR and topological inference using Gaussian random fields</article-title>
+          <source>Neuroimage</source>
+          <volume>44</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <fpage>62</fpage>
+          <lpage>70</lpage>
+          <pub-id pub-id-type="pmid">18603449</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0030">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Filippini</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Rao</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wetten</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gibson</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Borrie</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Guzman</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Kertesz</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Loy-English</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Whitcher</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Matthews</surname>
+              <given-names>P.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Anatomically-distinct genetic associations of apoe [var epsilon]4 allele load with regional cortical atrophy in alzheimer's disease</article-title>
+          <source>Neuroimage</source>
+          <volume>44</volume>
+          <issue>3</issue>
+          <year>2009</year>
+          <fpage>724</fpage>
+          <lpage>728</lpage>
+          <pub-id pub-id-type="pmid">19013250</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0035">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Folley</surname>
+              <given-names>B.S.</given-names>
+            </name>
+            <name>
+              <surname>Astur</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Jagannathan</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Calhoun</surname>
+              <given-names>V.D.</given-names>
+            </name>
+            <name>
+              <surname>Pearlson</surname>
+              <given-names>G.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Anomalous neural circuit function in schizophrenia during a virtual morris water task</article-title>
+          <source>Neuroimage</source>
+          <volume>49</volume>
+          <issue>4</issue>
+          <year>2010</year>
+          <fpage>3373</fpage>
+          <lpage>3384</lpage>
+          <pub-id pub-id-type="pmid">19948225</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0040">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Zeki</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Human Brain Function</chapter-title>
+          <edition>2nd edition</edition>
+          <year>2003</year>
+          <publisher-name>Academic Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="bb0045">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical parametric maps in functional imaging: a general linear approach</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>2</volume>
+          <year>1995</year>
+          <fpage>189</fpage>
+          <lpage>210</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0050">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.-B.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting activations in pet and fMRI: levels of inference and power</article-title>
+          <source>Neuroimage</source>
+          <volume>4</volume>
+          <year>1996</year>
+          <fpage>223</fpage>
+          <lpage>235</lpage>
+          <pub-id pub-id-type="pmid">9345513</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0055">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glahn</surname>
+              <given-names>D.C.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>Blangero</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroimaging endophenotypes: strategies for finding genes influencing brain structure and function</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>28</volume>
+          <year>2007</year>
+          <fpage>488</fpage>
+          <lpage>501</lpage>
+          <pub-id pub-id-type="pmid">17440953</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0060">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hardoon</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Ettinger</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Mourão-Miranda</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Antonova</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Collier</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Kumari</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Brammer</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Correlation-based multivariate analysis of genetic influence on brain volume</article-title>
+          <source>Neurosci. Lett.</source>
+          <volume>450</volume>
+          <issue>3</issue>
+          <year>2009</year>
+          <fpage>281</fpage>
+          <lpage>286</lpage>
+          <pub-id pub-id-type="pmid">19028548</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0065">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hariri</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Drabant</surname>
+              <given-names>E.M.</given-names>
+            </name>
+            <name>
+              <surname>Weinberger</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Imaging genetics: perspectives from studies of genetically driven variation in serotonin function and corticolimbic affective processing</article-title>
+          <source>Biol. Psychiatry</source>
+          <volume>59</volume>
+          <year>2006</year>
+          <fpage>888</fpage>
+          <lpage>897</lpage>
+          <pub-id pub-id-type="pmid">16442081</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0070">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hayasaka</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Validating cluster size inference: random field and permutation methods</article-title>
+          <source>Neuroimage</source>
+          <volume>20</volume>
+          <issue>4</issue>
+          <year>2003</year>
+          <fpage>2343</fpage>
+          <lpage>2356</lpage>
+          <pub-id pub-id-type="pmid">14683734</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0075">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hayasaka</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Phan</surname>
+              <given-names>K.L.</given-names>
+            </name>
+            <name>
+              <surname>Liberzon</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonstationary cluster-size inference with random field and permutation methods</article-title>
+          <source>Neuroimage</source>
+          <volume>22</volume>
+          <issue>2</issue>
+          <year>2004</year>
+          <fpage>676</fpage>
+          <lpage>687</lpage>
+          <pub-id pub-id-type="pmid">15193596</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0080">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jack</surname>
+              <given-names>C.R.</given-names>
+            </name>
+            <name>
+              <surname>Bernstein</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Fox</surname>
+              <given-names>N.C.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Alexander</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Harvey</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Borowski</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Britson</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Whitwell</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Ward</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Felmlee</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Gunter</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Hill</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Killiany</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Schuff</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Fox-Bosetti</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Studholme</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>DeCarli</surname>
+              <given-names>C.S.</given-names>
+            </name>
+            <name>
+              <surname>Krueger</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Ward</surname>
+              <given-names>H.A.</given-names>
+            </name>
+            <name>
+              <surname>Metzger</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Scott</surname>
+              <given-names>K.T.</given-names>
+            </name>
+            <name>
+              <surname>Mallozzi</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Blezek</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Levy</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Debbins</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Fleisher</surname>
+              <given-names>A.S.</given-names>
+            </name>
+            <name>
+              <surname>Albert</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Green</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Bartzokis</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Glover</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Mugler</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Weiner</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Study</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Alzheimer's disease neuroimaging initiative (ADNI): MRI methods</article-title>
+          <source>J. Magn. Reson. Imaging</source>
+          <volume>27</volume>
+          <issue>4</issue>
+          <year>2008</year>
+          <fpage>685</fpage>
+          <lpage>691</lpage>
+          <pub-id pub-id-type="pmid">18302232</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0085">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Joyner</surname>
+              <given-names>A.H.</given-names>
+            </name>
+            <name>
+              <surname>J., C. R.</surname>
+            </name>
+            <name>
+              <surname>Bloss</surname>
+              <given-names>C.S.</given-names>
+            </name>
+            <name>
+              <surname>Bakken</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Rimol</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Melle</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Agartz</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Djurovic</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Topol</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Schork</surname>
+              <given-names>N.J.</given-names>
+            </name>
+            <name>
+              <surname>Andreassen</surname>
+              <given-names>O.A.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>A common MECP2 haplotype associates with reduced cortical surface area in humans in two independent populations</article-title>
+          <source>Proc. Natl. Acad. Sci.</source>
+          <volume>106</volume>
+          <issue>36</issue>
+          <year>2009</year>
+          <fpage>15483</fpage>
+          <lpage>15488</lpage>
+          <pub-id pub-id-type="pmid">19717458</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0090">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meyer-Lindenberg</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Weinberger</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Intermediate phenotypes and genetic mechanisms of psychiatric disorders</article-title>
+          <source>Nat. Rev. Neurosci.</source>
+          <volume>7</volume>
+          <year>2006</year>
+          <fpage>818</fpage>
+          <lpage>827</lpage>
+          <pub-id pub-id-type="pmid">16988657</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0095">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meyer-Lindenberg</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Nicodemus</surname>
+              <given-names>K.K.</given-names>
+            </name>
+            <name>
+              <surname>Egan</surname>
+              <given-names>M.F.</given-names>
+            </name>
+            <name>
+              <surname>Callicott</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Mattay</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Weinberger</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>False positives in imaging genetics</article-title>
+          <source>Neuroimage</source>
+          <volume>40</volume>
+          <issue>2</issue>
+          <year>2008</year>
+          <fpage>655</fpage>
+          <lpage>661</lpage>
+          <pub-id pub-id-type="pmid">18201908</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0100">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moorhead</surname>
+              <given-names>T.W.J.</given-names>
+            </name>
+            <name>
+              <surname>Job</surname>
+              <given-names>D.E.</given-names>
+            </name>
+            <name>
+              <surname>Spencer</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Whalley</surname>
+              <given-names>H.C.</given-names>
+            </name>
+            <name>
+              <surname>Johnstone</surname>
+              <given-names>E.C.</given-names>
+            </name>
+            <name>
+              <surname>Lawrie</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Empirical comparison of maximal voxel and non-isotropic adjusted cluster extent results in a voxel-based morphometry study of comorbid learning disability with schizophrenia</article-title>
+          <source>Neuroimage</source>
+          <volume>28</volume>
+          <issue>3</issue>
+          <year>2005</year>
+          <fpage>544</fpage>
+          <lpage>552</lpage>
+          <pub-id pub-id-type="pmid">16085427</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0105">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Hayasaka</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Controlling the familywise error rate in functional neuroimaging: a comparative review</article-title>
+          <source>Stat. Meth. Med. Res.</source>
+          <volume>12</volume>
+          <year>2003</year>
+          <fpage>419</fpage>
+          <lpage>446</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0110">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pievani</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Rasser</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Galluzzi</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Benussi</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Ghidoni</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Sabattoli</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Bonetti</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Binetti</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Frisoni</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mapping the effect of APOE [epsilon]4 on gray matter loss in Alzheimer's disease in vivo</article-title>
+          <source>Neuroimage</source>
+          <volume>45</volume>
+          <issue>4</issue>
+          <year>2009</year>
+          <fpage>1090</fpage>
+          <lpage>1098</lpage>
+          <pub-id pub-id-type="pmid">19349226</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0115">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Combining spatial extent and peak intensity to test for activations in functional imaging</article-title>
+          <source>Neuroimage</source>
+          <volume>5</volume>
+          <issue>2</issue>
+          <year>1997</year>
+          <fpage>83</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="pmid">9345540</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0120">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Potkin</surname>
+              <given-names>S.G.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Fallon</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Lakatos</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Keator</surname>
+              <given-names>D.B.</given-names>
+            </name>
+            <name>
+              <surname>Guffanti</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Macciardi</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gene discovery through imaging genetics: identification of two novel genes associated with schizophrenia</article-title>
+          <source>Mol. Psychiatry</source>
+          <volume>14</volume>
+          <year>2009</year>
+          <fpage>416</fpage>
+          <lpage>428</lpage>
+          <pub-id pub-id-type="pmid">19065146</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0125">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Potkin</surname>
+              <given-names>S.G.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Guffanti</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Lakatos</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Fallon</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>D.D.</given-names>
+            </name>
+            <name>
+              <surname>Mathalon</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Ford</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lauriello</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Macciardi</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>FBIRN</surname>
+            </name>
+          </person-group>
+          <article-title>A genome-wide association study of schizophrenia using brain activation as a quantitative phenotype</article-title>
+          <source>Schizophr. Bull.</source>
+          <volume>35</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <fpage>96</fpage>
+          <lpage>108</lpage>
+          <pub-id pub-id-type="pmid">19023125</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0130">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roffman</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Weiss</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Goff</surname>
+              <given-names>D.C.</given-names>
+            </name>
+            <name>
+              <surname>Rauch</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Weinberger</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroimaging-genetic paradigms: a new approach to investigate the pathophysiology and treatment of cognitive deficits in schizophrenia</article-title>
+          <source>Harv. Rev. Psychiatry</source>
+          <volume>14</volume>
+          <year>2006</year>
+          <fpage>78</fpage>
+          <lpage>91</lpage>
+          <pub-id pub-id-type="pmid">16603474</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0135">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rosen</surname>
+              <given-names>H.J.</given-names>
+            </name>
+            <name>
+              <surname>Alcantar</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Rothlind</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sturm</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Kramer</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Weiner</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>B.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuroanatomical correlates of cognitive self-appraisal in neurodegenerative disease</article-title>
+          <source>Neuroimage</source>
+          <volume>49</volume>
+          <issue>4</issue>
+          <year>2010</year>
+          <fpage>3358</fpage>
+          <lpage>3364</lpage>
+          <pub-id pub-id-type="pmid">19961939</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0140">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salmond</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Vargha-Khadem</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>A</surname>
+            </name>
+          </person-group>
+          <article-title>Distributional assumptions in voxel-based morphometry</article-title>
+          <source>Neuroimage</source>
+          <volume>1030</volume>
+          <year>2002</year>
+          <fpage>1027</fpage>
+          <lpage>1030</lpage>
+          <pub-id pub-id-type="pmid">12377176</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0145">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schwartz</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Mitchell</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Lahna</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Luber</surname>
+              <given-names>H.S.</given-names>
+            </name>
+            <name>
+              <surname>Huckans</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Mitchell</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Hoffman</surname>
+              <given-names>W.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Global and local morphometric differences in recently abstinent methamphetamine-dependent individuals</article-title>
+          <source>Neuroimage</source>
+          <volume>50</volume>
+          <issue>4</issue>
+          <year>2010</year>
+          <fpage>1392</fpage>
+          <lpage>1401</lpage>
+          <pub-id pub-id-type="pmid">20096794</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0150">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shen</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Risacher</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Nho</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Swaminathan</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>West</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Foroud</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Pankratz</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Sloan</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Huentelman</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Craig</surname>
+              <given-names>D.W.</given-names>
+            </name>
+            <name>
+              <surname>DeChairo</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Potkin</surname>
+              <given-names>S.G.</given-names>
+            </name>
+            <name>
+              <surname>Jack</surname>
+              <given-names>C.R.</given-names>
+              <suffix>Jr</suffix>
+            </name>
+            <name>
+              <surname>Weiner</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Saykin</surname>
+              <given-names>A.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Whole genome association study of brain-wide imaging phenotypes for identifying quantitative trait loci in MCI and AD: A study of the ADNI cohort</article-title>
+          <source>Neuroimage</source>
+          <volume>53</volume>
+          <issue>3</issue>
+          <year>2010</year>
+          <fpage>1051</fpage>
+          <lpage>1063</lpage>
+          <pub-id pub-id-type="pmid">20100581</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0155">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Random fields of multivariate test statistics, with applications to shape analysis</article-title>
+          <source>Ann. Statist.</source>
+          <volume>36</volume>
+          <issue>1</issue>
+          <year>2008</year>
+          <fpage>1</fpage>
+          <lpage>27</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0160">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ueda</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Fujiwara</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Miyata</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hirao</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Saze</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kawada</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Fujimoto</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Tanaka</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Sawamoto</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Fukuyama</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Murai</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Investigating association of brain volumes with intracranial capacity in schizophrenia</article-title>
+          <source>Neuroimage</source>
+          <volume>49</volume>
+          <issue>3</issue>
+          <year>2010</year>
+          <fpage>2503</fpage>
+          <lpage>2508</lpage>
+          <pub-id pub-id-type="pmid">19770046</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0165">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Viviani</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Beschoner</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Ehrhard</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Schmitz</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Thöne</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Non-normality and transformations of random fields, with an application to voxel-based morphometry</article-title>
+          <source>Neuroimage</source>
+          <volume>35</volume>
+          <year>2007</year>
+          <fpage>121</fpage>
+          <lpage>130</lpage>
+          <pub-id pub-id-type="pmid">17222566</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0170">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Non-stationary FWHM and its effect on statistical inference of fMRI data</article-title>
+          <source>Neuroimage</source>
+          <volume>15</volume>
+          <year>2002</year>
+          <fpage>S346</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0175">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Marrett</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Neelin</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Vandal</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A unified statistical approach for determining significant voxels in images of cerebral activation</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>4</volume>
+          <year>1996</year>
+          <fpage>58</fpage>
+          <lpage>73</lpage>
+          <pub-id pub-id-type="pmid">20408186</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0180">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Marrett</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Neelin</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Searching scale space for activation in PET images</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>4</volume>
+          <issue>1</issue>
+          <year>1996</year>
+          <fpage>74</fpage>
+          <lpage>90</lpage>
+          <pub-id pub-id-type="pmid">20408187</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0185">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Andermann</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Koulis</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>MacDonald</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting changes in nonisotropic images</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>8</volume>
+          <issue>2–3</issue>
+          <year>1999</year>
+          <fpage>98</fpage>
+          <lpage>101</lpage>
+          <pub-id pub-id-type="pmid">10524599</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>Matt Silver is supported by a grant from the Wellcome Trust. Thanks to Maria Vounou for help with image pre-processing, and to Reza Salimi for assisting with the generation of simulated images. Imaging and genotype data were provided by the Alzheimer's Disease Neuroimaging Initiative (ADNI). (National Institutes of Health Grant U01 AG024904). ADNI is funded by the National Institute on Aging, the National Institute of Biomedical Imaging and Bioengineering, and through generous contributions from the following: Abbott, AstraZeneca AB, Bayer Schering Pharma AG, Bristol-Myers Squibb, Eisai Global Clinical Development, Elan Corporation, Genentech, GE Healthcare, GlaxoSmithKline, Innogenetics, Johnson and Johnson, Eli Lilly and Co., Medpace, Inc., Merck and Co., Inc., Novartis AG, Pfizer Inc, F. Hoffman-La Roche, Schering-Plough, Synarc, Inc., and Wyeth, as well as non-profit partners the Alzheimer's Association and Alzheimer's Drug Discovery Foundation, with participation from the U.S. Food and Drug Administration. Private sector contributions to ADNI are facilitated by the Foundation for the National Institutes of Health (<ext-link ext-link-type="uri" xlink:href="http://www.fnih.org">www.fnih.org</ext-link>). The grantee organization is the Northern California Institute for Research and Education, and the study is coordinated by the Alzheimer's Disease Cooperative Study at the University of California, San Diego. ADNI data are disseminated by the Laboratory for Neuro Imaging at the University of California, Los Angeles. This research was also supported by NIH grants P30 AG010129, K01 AG030514, and the Dana Foundation.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn0010">
+        <label>2</label>
+        <p>Anticonservative tests produce <italic>P</italic>-values that are too small, giving rise to rejection (false positive) rates that are higher than the nominal (expected) rate for the test.</p>
+      </fn>
+      <fn id="fn0015">
+        <label>3</label>
+        <p>Precisely the roughness measure is pooled and then converted to FWHM in order to minimise bias; see (<xref rid="bb0185" ref-type="bibr">Worsley et al., 1999</xref>) for details.</p>
+      </fn>
+    </fn-group>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Non-stationary image simulation. (a) Schematic illustrating extent of 3 different smoothness regions. (b) as (a) with ADNI image brain mask applied. (c) Realisation of non-stationary image with outer, middle and inner regions smoothed with 8, 12 and 18 mm FWHM Gaussian smoothing kernels. (d) as (c) with final 1.5 mm smoothing kernel and ADNI mask applied.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Accuracy of estimation of <italic>c</italic>, the theoretical number of clusters under RFT. Histograms show the empirical distribution of <italic>c</italic> across all 700 SNPs at three different cluster-forming thresholds (left to right), and with two different smoothing kernels (top and bottom). The theoretical (RFT) and empirical mean number of clusters, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>(<italic>C</italic>)</textual-form><mml:math id="M12" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:mi>C</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></alternatives></inline-formula>, are shown as dashed and dotted lines respectively. The amount by which RFT overestimates <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>(<italic>C</italic>)</textual-form><mml:math id="M13" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mi>E</mml:mi></mml:mstyle><mml:mo stretchy="true">(</mml:mo><mml:mi>C</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></alternatives></inline-formula> increases as the cluster-forming threshold <italic>u</italic><sub><italic>c</italic></sub> is lowered, and with images of lower smoothness. (Note that the x axis for 6 mm smoothed images has a larger range, reflecting the fact that many more clusters are observed).</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Distribution of voxel-wise FWHM for ADNI images smoothed with 6 mm (left) and 12 mm (right) Gaussian smoothing kernels. Voxel-wise FWHM gives an indication of local smoothness and corresponds to the ‘full-width at half-maximum’ of a Gaussian kernel required to produce a random (white noise) image of equivalent smoothness. A perfectly stationary image would have constant FWHM at all voxels. In contrast, a highly non-stationary image would have a large spread in FWHM, as is seen here.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="f0020">
+      <label>Fig. 4</label>
+      <caption>
+        <p>12 mm VBM image non-stationarity. The figure illustrates the variation in image smoothness measured in FWHM, derived from the SPM RPV image. There is a wide variation, ranging from 3.8 to 27.7 mm.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <table-wrap id="t0005" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>FWER-corrected results — real (ADNI) images.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th rowspan="2"/>
+            <th/>
+            <th colspan="6" align="left">Rejection rates<hr/></th>
+          </tr>
+          <tr>
+            <th/>
+            <th colspan="2" align="left">6 mm smoothing<hr/></th>
+            <th colspan="2" align="left">12 mm smoothing<hr/></th>
+            <th colspan="2">
+              <xref rid="bb0095" ref-type="bibr">Meyer-Lindenberg et al. (2008)</xref>
+              <xref rid="tf0005" ref-type="table-fn">a</xref>
+              <hr/>
+            </th>
+          </tr>
+          <tr>
+            <th/>
+            <th>
+              <italic>α</italic>
+              <sub>
+                <italic>c</italic>
+              </sub>
+            </th>
+            <th align="left">Observed(%)</th>
+            <th align="left">Permuted(%)<xref rid="tf0010" ref-type="table-fn">b</xref></th>
+            <th align="left">Observed(%)</th>
+            <th align="left">Permuted(%)<xref rid="tf0010" ref-type="table-fn">b</xref></th>
+            <th align="left">Observed(%)</th>
+            <th align="left">Permuted(%)<xref rid="tf0015" ref-type="table-fn">c</xref></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">
+              <italic>t-tests</italic>
+            </td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>Cluster size</td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">10.7</td>
+            <td align="char">9.2 ± 1.1</td>
+            <td align="char">3.4</td>
+            <td align="char">3.6 ± 0.7</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">23.3</td>
+            <td align="char">24.8 ± 2.2</td>
+            <td align="char">9.4</td>
+            <td align="char">9.4 ± 1.5</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">47.4</td>
+            <td align="char">46.7 ± 1.8</td>
+            <td align="char">20.7</td>
+            <td align="char">18.6 ± 1.5</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Non-stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">10.0</td>
+            <td align="char">8.1 ± 1.0</td>
+            <td align="char">3.9</td>
+            <td align="char">3.8 ± 0.8</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">19.9</td>
+            <td align="char">21.2 ± 1.6</td>
+            <td align="char">9.1</td>
+            <td align="char">9.3 ± 1.5</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">45.0</td>
+            <td align="char">43.2 ± 2.2</td>
+            <td align="char">20.1</td>
+            <td align="char">18.4 ± 1.6</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td> Voxel-wise</td>
+            <td align="left">–</td>
+            <td align="char">3.4</td>
+            <td align="char">2.7 ± 0.6</td>
+            <td align="char">3.0</td>
+            <td align="char">2.7 ± 0.6</td>
+            <td align="left">1.9</td>
+            <td align="left">1.1 ± 0.4</td>
+          </tr>
+          <tr>
+            <td align="left"/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td align="left">
+              <italic>F-tests</italic>
+            </td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>Cluster size</td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">13.0</td>
+            <td align="char">10.3 ± 1.6</td>
+            <td align="char">4.4</td>
+            <td align="char">3.8 ± 1.1</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">30.9</td>
+            <td align="char">29.6 ± 2.1</td>
+            <td align="char">11.9</td>
+            <td align="char">10.7 ± 1.7</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">60.4</td>
+            <td align="char">60.6 ± 1.7</td>
+            <td align="char">26.1</td>
+            <td align="char">24.5 ± 2.5</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Non-stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">11.6</td>
+            <td align="char">9.1 ± 1.2</td>
+            <td align="char">4.7</td>
+            <td align="char">4.5 ± 1.2</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">25.6</td>
+            <td align="char">25.1 ± 2.1</td>
+            <td align="char">11.4</td>
+            <td align="char">10.9 ± 1.7</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">57.6</td>
+            <td align="char">55.6 ± 2.0</td>
+            <td align="char">25.6</td>
+            <td align="char">23.9 ± 2.2</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td> Voxel-wise</td>
+            <td align="left">–</td>
+            <td align="char">3.6</td>
+            <td align="char">2.6 ± 0.7</td>
+            <td align="char">3.0</td>
+            <td align="char">2.9 ± 0.7</td>
+            <td align="left">–</td>
+            <td align="left">–</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tf0005">
+          <label>a</label>
+          <p>Results refer to whole-brain <italic>t</italic>-tests using structural (VBM) data with 12 mm smoothing.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="tf0010">
+          <label>b</label>
+          <p>Mean rejection rate ± SD across 10 permutations.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="tf0015">
+          <label>c</label>
+          <p>Mean rejection rate ± SD for 4 permutations.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t0010" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>FDR-corrected results—real (ADNI) images.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th/>
+            <th/>
+            <th colspan="3" align="left">Rejection rates<xref rid="tf0020" ref-type="table-fn">a</xref><hr/></th>
+          </tr>
+          <tr>
+            <th/>
+            <th>
+              <italic>α</italic>
+              <sub>
+                <italic>c</italic>
+              </sub>
+            </th>
+            <th align="left">6 mm smoothing</th>
+            <th align="left">12 mm smoothing</th>
+            <th>
+              <xref rid="bb0095" ref-type="bibr">Meyer-Lindenberg et al. (2008)</xref>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">
+              <italic>t-tests</italic>
+            </td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>Cluster size</td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">12.7</td>
+            <td align="char">2.7</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">31.4</td>
+            <td align="char">8.0</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">51.6</td>
+            <td align="char">17.7</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Non-stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">10.7</td>
+            <td align="char">2.6</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">26.9</td>
+            <td align="char">7.9</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">48.1</td>
+            <td align="char">16.0</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td> Voxel-wise</td>
+            <td align="left">–</td>
+            <td align="char">3.3</td>
+            <td align="char">1.9</td>
+            <td align="left">1.8</td>
+          </tr>
+          <tr>
+            <td align="left"/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td align="left">
+              <italic>F-tests</italic>
+            </td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>Cluster size</td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">15.9</td>
+            <td align="char">2.9</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">41.1</td>
+            <td align="char">11.6</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">75.7</td>
+            <td align="char">25.4</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Non-stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">13.6</td>
+            <td align="char">3.3</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">35.9</td>
+            <td align="char">11.1</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">70.3</td>
+            <td align="char">24.4</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td> Voxel-wise</td>
+            <td align="left">–</td>
+            <td align="char">2.9</td>
+            <td align="char">1.6</td>
+            <td align="left">–</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tf0020">
+          <label>a</label>
+          <p>Rejection rates for unpermuted data only were considered for FDR-corrected tests.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t0015" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Results — simulated images.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th rowspan="2"/>
+            <th/>
+            <th colspan="4" align="left">Rejection rates<hr/></th>
+          </tr>
+          <tr>
+            <th/>
+            <th colspan="2" align="left">6 mm smoothing<hr/></th>
+            <th colspan="2" align="left">12 mm smoothing<hr/></th>
+          </tr>
+          <tr>
+            <th/>
+            <th>
+              <italic>α</italic>
+              <sub>
+                <italic>c</italic>
+              </sub>
+            </th>
+            <th align="left">Stationary</th>
+            <th align="left">Non-stationary<xref rid="tf0025" ref-type="table-fn">a</xref></th>
+            <th align="left">Stationary</th>
+            <th align="left">Non-stationary<xref rid="tf0030" ref-type="table-fn">b</xref></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">
+              <italic>t-tests</italic>
+            </td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>Cluster size</td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">0.5</td>
+            <td align="char">5.5</td>
+            <td align="char">2.3</td>
+            <td align="char">8.2</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">1.0</td>
+            <td align="char">11.7</td>
+            <td align="char">1.6</td>
+            <td align="char">13.0</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">13.0</td>
+            <td align="char">35.9</td>
+            <td align="char">6.9</td>
+            <td align="char">21.9</td>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Non-stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">0.6</td>
+            <td align="char">1.1</td>
+            <td align="char">2.7</td>
+            <td align="char">2.6</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">0.9</td>
+            <td align="char">0.3</td>
+            <td align="char">1.4</td>
+            <td align="char">1.9</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">9.3</td>
+            <td align="char">10.7</td>
+            <td align="char">6.4</td>
+            <td align="char">7.4</td>
+          </tr>
+          <tr>
+            <td>Voxel-wise</td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td align="left"> FWE</td>
+            <td align="left">–</td>
+            <td align="char">3.7</td>
+            <td align="char">3.6</td>
+            <td align="char">5.1</td>
+            <td align="char">4.3</td>
+          </tr>
+          <tr>
+            <td align="left"> FDR</td>
+            <td align="left">–</td>
+            <td align="char">4.7</td>
+            <td align="char">4.0</td>
+            <td align="char">2.9</td>
+            <td align="char">2.7</td>
+          </tr>
+          <tr>
+            <td align="left"/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td align="left">
+              <italic>F-tests</italic>
+            </td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td>Cluster size</td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">0.3</td>
+            <td align="char">5.6</td>
+            <td align="char">2.9</td>
+            <td align="char">7.7</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">0.4</td>
+            <td align="char">10.7</td>
+            <td align="char">0.9</td>
+            <td align="char">10.9</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">2.1</td>
+            <td align="char">20.3</td>
+            <td align="char">2.4</td>
+            <td align="char">20.4</td>
+          </tr>
+          <tr>
+            <td rowspan="3" align="left"> Non-stationary</td>
+            <td align="left">0.001</td>
+            <td align="char">0.4</td>
+            <td align="char">0.7</td>
+            <td align="char">3.1</td>
+            <td align="char">2.7</td>
+          </tr>
+          <tr>
+            <td align="left">0.01</td>
+            <td align="char">0.4</td>
+            <td align="char">0.1</td>
+            <td align="char">0.9</td>
+            <td align="char">2.3</td>
+          </tr>
+          <tr>
+            <td align="left">0.05</td>
+            <td align="char">1.1</td>
+            <td align="char">1.4</td>
+            <td align="char">2.2</td>
+            <td align="char">2.1</td>
+          </tr>
+          <tr>
+            <td>Voxel-wise</td>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+          </tr>
+          <tr>
+            <td align="left"> FWE</td>
+            <td align="left">–</td>
+            <td align="char">2.6</td>
+            <td align="char">2.7</td>
+            <td align="char">3.6</td>
+            <td align="char">3.1</td>
+          </tr>
+          <tr>
+            <td align="left"> FDR</td>
+            <td align="left">–</td>
+            <td align="char">2.0</td>
+            <td align="char">3.4</td>
+            <td align="char">1.4</td>
+            <td align="char">1.3</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tf0025">
+          <label>a</label>
+          <p>Images constructed from concentric regions smoothed with 4, 6 and 9 mm Gaussian kernels.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="tf0030">
+          <label>b</label>
+          <p>As in footnote a with 8, 12 and 18 mm Gaussian kernels.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>

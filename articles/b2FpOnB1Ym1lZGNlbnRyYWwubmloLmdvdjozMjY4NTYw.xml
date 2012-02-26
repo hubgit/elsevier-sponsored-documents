@@ -1,0 +1,687 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Pattern Recognit</journal-id>
+      <journal-title-group>
+        <journal-title>Pattern Recognition</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0031-3203</issn>
+      <publisher>
+        <publisher-name>Elsevier</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3268560</article-id>
+      <article-id pub-id-type="pmid">22298916</article-id>
+      <article-id pub-id-type="publisher-id">PR4010</article-id>
+      <article-id pub-id-type="doi">10.1016/j.patcog.2010.10.025</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Multi-scale 2D tracking of articulated objects using hierarchical spring systems</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Artner</surname>
+            <given-names>Nicole M.</given-names>
+          </name>
+          <email>nicole.artner@prip.tuwien.ac.at</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="aff3" ref-type="aff">c</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ion</surname>
+            <given-names>Adrian</given-names>
+          </name>
+          <email>ion@ins.uni-bonn.de</email>
+          <xref rid="aff2" ref-type="aff">b</xref>
+          <xref rid="aff3" ref-type="aff">c</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kropatsch</surname>
+            <given-names>Walter G.</given-names>
+          </name>
+          <email>krw@prip.tuwien.ac.at</email>
+          <xref rid="aff3" ref-type="aff">c</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1"><label>a</label>AIT Austrian Institute of Technology, Vienna, Austria</aff>
+      <aff id="aff2"><label>b</label>Institute for Numerical Simulation, University of Bonn, Germany</aff>
+      <aff id="aff3"><label>c</label>PRIP, Vienna University of Technology, Austria</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author at: PRIP, Vienna University of Technology, Austria. <email>nicole.artner@prip.tuwien.ac.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>4</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>4</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>44</volume>
+      <issue>4</issue>
+      <fpage>800</fpage>
+      <lpage>810</lpage>
+      <history>
+        <date date-type="received">
+          <day>18</day>
+          <month>3</month>
+          <year>2010</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>30</day>
+          <month>9</month>
+          <year>2010</year>
+        </date>
+        <date date-type="accepted">
+          <day>31</day>
+          <month>10</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Ltd.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>This paper presents a flexible framework to build a target-specific, part-based representation for arbitrary articulated or rigid objects. The aim is to successfully track the target object in 2D, through multiple scales and occlusions. This is realized by employing a hierarchical, iterative optimization process on the proposed representation of structure and appearance. Therefore, each rigid part of an object is described by a hierarchical spring system represented by an attributed graph pyramid. Hierarchical spring systems encode the spatial relationships of the features (attributes of the graph pyramid) describing the parts and enforce them by spring-like behavior during tracking. Articulation points connecting the parts of the object allow to transfer position information from reliable to ambiguous parts. Tracking is done in an iterative process by combining the hypotheses of simple trackers with the hypotheses extracted from the hierarchical spring systems.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>2D tracking</kwd>
+        <kwd>Articulated objects</kwd>
+        <kwd>Hierarchical spring system</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>The task of monocular tracking of articulated objects is a challenging one. Complex articulations can significantly change the appearance of the object and distant parts can perform very different motions. These aspects affect popular trackers <xref rid="bib1" ref-type="bibr">[1]</xref> that consider the appearance of simple shapes (e.g. rectangles, as certain poses might not be very compact and cover only a small portion of the bounding box) and trackers that assume a simple global motion model for the whole part.</p>
+      <p>The most promising approaches of articulated tracking are quite complex and depend to a large extent on strong motion and subject specific priors. While they do deliver excellent results for the object class they have been designed for (e.g. humans), most of them do not generalize very well and would need extensive adaptation to work for other object classes. Recent examples of such well performing specialized methods are Lee and Elgammal <xref rid="bib2" ref-type="bibr">[2]</xref>, who introduce a model that ties together the human body configuration manifold and visual manifold in one representation, which is then used for tracking within a Bayesian framework, and Brubaker et al. <xref rid="bib3" ref-type="bibr">[3]</xref> who present a physics-based model with a bio-mechanical characterization of lower-body dynamics, where tracking is accomplished with a form of sequential Monte Carlo inference.</p>
+      <p>In contrast, the presented approach requires only basic information on the structure of the target object and no motion prior, which makes it less object-class specific and more general. Objects are represented as features in arbitrary configurations. Tracking a whole object builds on simple, single hypothesis feature trackers, and deals with partial occlusion, scaling, and limited non-rigid deformation. The output consists of the 2D positions and bounding box of the object parts in every frame of the video.</p>
+      <p>At the heart of the method is a representation which describes the appearance and kinematics of articulated objects. It consists of multiple object parts modeled by rectangular regions of interest and features extracted out of these regions. Kinematics are realized by connecting object parts through articulation points, which limit the movement of each part to a circle (see <xref rid="f0015" ref-type="fig">Fig. 3</xref>).</p>
+      <p>Multiple feature trackers, called <italic>sub-trackers</italic>, are used for each part: one attempting to track the whole part and the rest considering small fixed-size windows centered around detected interest points (see <xref rid="f0005" ref-type="fig">Fig. 1</xref>).</p>
+      <p>To deal with <italic>occlusion</italic> and to avoid drifting of the sub-trackers we <italic>model the parts</italic> as a graph hierarchy with two levels: one top-level vertex for the sub-tracker tracking the whole part and multiple bottom-level vertices for the interest-point sub-trackers. The edges of the graph are weighted with the pairwise distances between the features, and act like springs pushing and pulling the vertices to reduce the deformation of the graph-structure of the parts, thus giving the name <italic>hierarchical spring system</italic> (HSS).</p>
+      <p>The final position of each feature (top and bottom level) is obtained through a mediation between the corresponding tracker, pulling towards what it considers to be the target region, and the HSS trying to enforce the initial structure (reduce deformation). The weight of each of these two factors is dynamically adjusted depending on the similarity of the region at the current position with the known appearance of the part. Thus, during occlusion (by a different looking object) the HSS has more weight allowing for badly tracked features to be placed at known relative positions, while at times of successful tracking the very confident sub-trackers are given more weight, allowing for a certain amount of non-rigid deformation. A <italic>global scaling</italic> factor is maintained and used to adjust the “relaxed” (no deformation) lengths of the springs, allowing to cope with global changes in scale.</p>
+      <p><italic>Articulated</italic> objects are modeled as multiple HSS corresponding to each part connected by vertices representing the articulation points. Articulation points have no corresponding sub-trackers and move solely under the “forces” of the adjacent parts. Thus movement of one adjacent part is transmitted to the other enforcing articulated motion.</p>
+      <p>All computation (position of sub-trackers, scaling, and articulation) is done using local confidence measures to balance between trusting the sub-trackers i.e. the visual feedback, and the object structure, i.e. the prior knowledge.</p>
+      <sec id="s0010">
+        <label>1.1</label>
+        <title>Related work</title>
+        <p>First introduced by Fischler et al. in 1973 <xref rid="bib4" ref-type="bibr">[4]</xref>, pictorial structures represent an object by its parts (e.g. head, torso, arms, legs) arranged in a deformable spatial configuration. This deformable configuration is represented by spring-like connections between pairs of parts. Object recognition or tracking can be done by minimizing the energy in this deformable configuration to find the most likely configuration of the object parts in an image. Felzenszwalb et al. employed this idea in <xref rid="bib5" ref-type="bibr">[5]</xref> to do part-based object recognition for faces and articulated objects (humans). Their approach is a statistical framework minimizing the energy of the spring system learned from training examples using maximum likelihood estimation. Ramanan et al. apply in <xref rid="bib6" ref-type="bibr">[6]</xref> the ideas from <xref rid="bib5" ref-type="bibr">[5]</xref> in tracking people.</p>
+        <p>Besides Computer Vision, the proposed representation is also related to representations used in Computer Graphics called <italic>mass–spring systems</italic> <xref rid="bib7" ref-type="bibr">[7]</xref>. Mass–spring systems are a physically based technique that is used to effectively model deformable objects for animations in Computer Graphics (e.g. a flag moving in the wind). An object is modeled by a collection of point masses connected by springs in a lattice structure.</p>
+        <p>Different from the mentioned approaches, we stress solutions that emerge from the underlying structure, as opposed to using structure to verify sampled hypothesis. The proposed representation not only connects parts in a deformable way like in <xref rid="bib5" ref-type="bibr">[5]</xref>, but introduces a bottom level consisting of “small” region descriptors described by a spring system. In comparison to pictorial structures the presented approach does not need training, because the spring-like behavior is modeled via a combination of structural and appearance offsets (provided by the sub-trackers).</p>
+        <p>Even though the bottom level of the proposed hierarchical spring system is similar to a mass–spring system <xref rid="bib7" ref-type="bibr">[7]</xref>, there are significant differences. The presented Spring System is used to supply structural feedback for tracking algorithms, which is a totally different purpose and it does not consider any external forces (e.g. gravity). In the proposed approach a vertex does not have a mass, but the force of the spring is calculated by its confidence in the current frame.</p>
+      </sec>
+      <sec id="s0015">
+        <label>1.2</label>
+        <title>Contributions</title>
+        <p>Our main contribution is the flexible framework for representing and tracking articulated objects of arbitrary complexity with each (rigid) part of an object represented by a hierarchical spring system (HSS), connected to other parts by articulation points. Articulation points are used to transfer information between the HSS of the adjacent object parts. All decisions balance between “seeing” and “knowing” using maintained confidence measures. We pose tracking as a hierarchical optimizations process on structure and appearance.</p>
+        <p>A preliminary version of our approach has been presented in <xref rid="bib8" ref-type="bibr">[8]</xref>. Possible applications are action recognition, human computer interfaces, motion based diagnosis and identification, etc.</p>
+      </sec>
+      <sec id="s0020">
+        <label>1.3</label>
+        <title>Overview</title>
+        <p>This paper is organized as follows: <xref rid="s0025" ref-type="sec">Section 2</xref> describes how to represent the appearance and structure of a rigid object in a HSS. It is explained how our approach combines the hypotheses of the sub-trackers and the HSS. In <xref rid="s0070" ref-type="sec">Section 3</xref> the introduced concepts of <xref rid="s0025" ref-type="sec">Section 2</xref> are used to model articulated objects consisting of several rigid object parts. Additionally, articulation points and the information transfer between the object parts are described. <xref rid="s0105" ref-type="sec">Section 4</xref> presents the algorithm of the tracking with the help of pseudo-code. In <xref rid="s0110" ref-type="sec">Section 5</xref> experiments qualitatively and quantitatively analyze the results of the presented approach. <xref rid="s0170" ref-type="sec">Section 6</xref> gives a conclusion, and the Appendix introduces the employed region descriptor (Sigma Sets).</p>
+      </sec>
+    </sec>
+    <sec id="s0025">
+      <label>2</label>
+      <title>Representation and tracking of a rigid object</title>
+      <p>Background clutter, similar objects in the scene and occlusions are the main reasons for tracking failure, because they can be good matches to the model of the target object and thus distract the tracker.</p>
+      <p>If the appearance of an object is uniform (no texture, mainly one color), it is advisable to describe and track it by one feature (e.g. region descriptor). Tracking whole rigid objects or parts can deliver robust positions even during motion blur due to the large image region considered. Nevertheless, in cases of partial occlusion or scaling such a description is not able to aid the tracker in overcoming the difficult distractions by providing useful information.</p>
+      <p>On the other hand, if the target object is textured (e.g. face of a human), it is possible to extract several discriminative features out of the region covering the object and track them successfully when there are no distractions. By additionally encoding the spatial relationships of the features in the representation of the object, it is possible to deal with occlusions and estimate scaling. Unfortunately, these “small” features are more sensitive to noise and fast motion of the object (big distances between frames, motion blur).</p>
+      <p>As we cannot generally decide which representation is more suitable for an object and to get the best of both worlds, we describe and track objects using multiple features and sub-trackers, where the spatial relationships of the features are described and enforced by a <italic>hierarchical spring system</italic> (HSS).</p>
+      <sec id="s0030">
+        <label>2.1</label>
+        <title>The sub-tracker</title>
+        <p>The purpose of each sub-tracker is to track a fixed-size region independently of the other sub-trackers, based solely on the content of the image. At any frame, given as input an initial estimate of the position of a tracked region and a description of its appearance, the corresponding sub-tracker will return an offset to what it considers to be the correct position of the target region.</p>
+      </sec>
+      <sec id="s0035">
+        <label>2.2</label>
+        <title>The hierarchical spring system (HSS)</title>
+        <p>We represent the HSS of an object as a graph pyramid with two levels <bold>P</bold>={<bold>G</bold><sub><bold>0</bold></sub>, <bold>G</bold><sub><bold>1</bold></sub>}, where the top level <bold>G</bold><sub><bold>1</bold></sub>(<bold>V</bold><sub><bold>1</bold></sub>, <bold>E</bold><sub><bold>1</bold></sub>) contains one single vertex <bold>V</bold><sub><bold>1</bold></sub>={<bold>v</bold><sub><bold>p</bold></sub>}, and the bottom level graph <bold>G</bold><sub><bold>0</bold></sub>(<bold>V</bold><sub><bold>0</bold></sub>, <bold>E</bold><sub><bold>0</bold></sub>) multiple vertices connected by edges. There is an one-to-one mapping between the vertices in the graph pyramid and the features with their corresponding sub-trackers. Edges are weighted with the known distance in the image plane between the features corresponding to the incident vertices. The vertex in the top level is connected with all vertices in the base level to allow communication between the two levels. <xref rid="f0005" ref-type="fig">Fig. 1</xref> shows an example representation for an object and the corresponding regions for the sub-trackers. (Options for inserting the edges are discussed in <xref rid="s0130" ref-type="sec">Section 5.3.1</xref>.)</p>
+      </sec>
+      <sec id="s0040">
+        <label>2.3</label>
+        <title>Tracking with sub-trackers and HSS</title>
+        <p>For each frame the first hypotheses of the sub-trackers are refined using an iterative alternation and combination of the offsets from the sub-trackers and the offsets from the HSS.</p>
+        <sec id="s0045">
+          <label>2.3.1</label>
+          <title>Energies in the HSS</title>
+          <p>The HSS encodes the spatial relationships of the features of the object considering their spatial distances and arrangement. Its task is to keep the structure of the features as similar as possible to the initial state in the first frame. This is realized by providing the tracker with <italic>structural offsets</italic> (see <xref rid="s0060" ref-type="sec">Section 2.3.4</xref>).</p>
+          <p>To calculate a structural offset for a feature it is necessary to determine the extent of the spatial deformation in the HSS. The extent of the deformation in a vertex <italic>v</italic> at time <italic>i</italic>=1…<italic>n</italic> is represented and calculated by the energy <italic>ɛ</italic> in <italic>v</italic>:<disp-formula id="eq0005"><label>(1)</label><mml:math id="M1" altimg="si0004.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>e</mml:mi><mml:mo>∈</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="bold">E</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold">i</mml:mi><mml:mo>−</mml:mo><mml:mn mathvariant="bold">1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:munder><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>v</mml:mi></mml:mrow><mml:mrow><mml:mi>e</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mo>|</mml:mo><mml:mi>e</mml:mi><mml:mo>|</mml:mo><mml:mo>−</mml:mo><mml:mo>|</mml:mo><mml:msup><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>|</mml:mo><mml:mo>·</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mtext>,</mml:mtext></mml:math></disp-formula>where <bold>E</bold><sup><bold>i</bold>−<bold>1</bold></sup> (<bold>v</bold>) are all edges <italic>e</italic> of the levels <bold>E</bold><sub><bold>0</bold></sub> and <bold>E</bold><sub><bold>1</bold></sub> at time <italic>i</italic>−1 incident to vertex <italic>v</italic>. <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>δ</italic><sup><italic>i</italic></sup>(<italic>v</italic><sub><italic>e</italic></sub>)</textual-form><mml:math id="M2" altimg="si0005.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>v</mml:mi></mml:mrow><mml:mrow><mml:mi>e</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is the <italic>confidence</italic> (see <xref rid="s0050" ref-type="sec">Section 2.3.2</xref>) of the neighboring vertex <italic>v</italic><sub><italic>e</italic></sub> at time <italic>i</italic> connected by <italic>e</italic>, which weights the influence of <italic>v</italic><sub><italic>e</italic></sub> on <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic></sup>(<italic>v</italic>)</textual-form><mml:math id="M3" altimg="si0006.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. The motivation behind the weighting with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>δ</italic><sup><italic>i</italic></sup>(<italic>v</italic><sub><italic>e</italic></sub>)</textual-form><mml:math id="M4" altimg="si0007.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>v</mml:mi></mml:mrow><mml:mrow><mml:mi>e</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is that occluded neighboring vertices should have a lower impact on <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic></sup>(<italic>v</italic>)</textual-form><mml:math id="M5" altimg="si0008.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> than reliably tracked neighbors. <inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>e</italic>|</textual-form><mml:math id="M6" altimg="si0009.gif" overflow="scroll"><mml:mo>|</mml:mo><mml:mi>e</mml:mi><mml:mo>|</mml:mo></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>e</italic><sup>1</sup>|</textual-form><mml:math id="M7" altimg="si0010.gif" overflow="scroll"><mml:mo>|</mml:mo><mml:msup><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>|</mml:mo></mml:math></alternatives></inline-formula> denote the deformed and initial edge lengths between <italic>v</italic> and <italic>v</italic><sub><italic>e</italic></sub>, and <italic>x</italic> is the current scaling factor of the object (for rigid objects <italic>x</italic>=<italic>x</italic><sup>⁎</sup>(<italic>p</italic>), for articulated objects with several parts <italic>x</italic>=<italic>x</italic><sup>⁎</sup>(<italic>O</italic>)). <italic>x</italic> is used to apply a global scaling to the initial edge lengths <inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>e</italic><sup>1</sup>|</textual-form><mml:math id="M8" altimg="si0011.gif" overflow="scroll"><mml:mo>|</mml:mo><mml:msup><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>|</mml:mo></mml:math></alternatives></inline-formula> to be able to track an object changing its distance to the camera (see <xref rid="s0055" ref-type="sec">Section 2.3.3</xref>).</p>
+        </sec>
+        <sec id="s0050">
+          <label>2.3.2</label>
+          <title>The confidence of a vertex</title>
+          <p>The confidence is used to dynamically weight influences of vertices in different calculations and situations e.g. calculation of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic></sup>(<italic>v</italic>)</textual-form><mml:math id="M9" altimg="si0012.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> (see <xref rid="s0045" ref-type="sec">Section 2.3.1</xref>).</p>
+          <p>The confidence <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>δ</italic><sup><italic>i</italic></sup>(<italic>v</italic>)</textual-form><mml:math id="M10" altimg="si0013.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> of a vertex <italic>v</italic> at time <italic>i</italic> depends on its degree <italic>I</italic>(<italic>v</italic>) (number of incident edges), its energy <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic> − 1</sup>(<italic>v</italic>)</textual-form><mml:math id="M11" altimg="si0014.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> and the dissimilarity <italic>D</italic><sup><italic>i</italic>−1</sup>(<italic>v</italic>) between its feature <italic>S</italic><sup><italic>i</italic>−1</sup>(<italic>v</italic>) at time <italic>i</italic>−1 to its descriptor <italic>S</italic><sup>1</sup>(<italic>v</italic>) in the initial iteration:<disp-formula id="eq0010"><label>(2)</label><mml:math id="M12" altimg="si0015.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>I</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:mfrac></mml:math></disp-formula><inline-formula><mml:math id="M13" altimg="si0016.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>I</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover></mml:math></inline-formula>, <inline-formula><mml:math id="M14" altimg="si0017.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover></mml:math></inline-formula> and <inline-formula><mml:math id="M15" altimg="si0018.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover></mml:math></inline-formula> are normalized so that <inline-formula><alternatives><textual-form specific-use="jats-markup">0 ≤ <italic>δ</italic><sup><italic>i</italic></sup>(<italic>v</italic>) ≤ 1</textual-form><mml:math id="M16" altimg="si0019.gif" overflow="scroll"><mml:mn>0</mml:mn><mml:mo>≤</mml:mo><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>≤</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>.<disp-formula id="eq0015"><label>(3)</label><mml:math id="M17" altimg="si0020.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>I</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi mathvariant="bold">E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi mathvariant="bold">E</mml:mi></mml:mrow></mml:mfrac></mml:math></disp-formula>where <bold>E</bold>(<bold>v</bold>) are the edges incident to vertex <italic>v</italic> and <bold>E</bold> are all edges in the HSS.<disp-formula id="eq0020"><label>(4)</label><mml:math id="M18" altimg="si0021.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo>=</mml:mo><mml:mfenced open="{"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="left"><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mstyle displaystyle="true"><mml:mfrac><mml:mrow><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msubsup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>max</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:mfrac></mml:mstyle><mml:mo>,</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>≤</mml:mo><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="left"><mml:mn>0</mml:mn><mml:mo>,</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>&gt;</mml:mo><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:math></disp-formula>where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic> − 1</sup>(<italic>v</italic>)</textual-form><mml:math id="M19" altimg="si0022.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is the energy in vertex <italic>v</italic> in iteration <italic>i</italic>−1 (see Eq. <xref rid="eq0005" ref-type="disp-formula">(1)</xref>), <inline-formula><mml:math id="M20" altimg="si0023.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula> is the standard deviation of the energies in the local neighborhood (vertex <italic>v</italic> and its connected neighboring vertices), and <inline-formula><mml:math id="M21" altimg="si0024.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>max</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula> is the maximum energy smaller or equal to <inline-formula><mml:math id="M22" altimg="si0025.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula>. The standard deviation <inline-formula><mml:math id="M23" altimg="si0026.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula> is considered to penalize outliers and to normalize with a suitable <inline-formula><mml:math id="M24" altimg="si0027.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>max</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula>.<disp-formula id="eq0025"><label>(5)</label><mml:math id="M25" altimg="si0028.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo>=</mml:mo><mml:mfenced open="{"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="left"><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mstyle displaystyle="true"><mml:mfrac><mml:mrow><mml:mi>h</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msubsup><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mi>max</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:mfrac></mml:mstyle><mml:mo>,</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mi>h</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>≤</mml:mo><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="left"><mml:mn>0</mml:mn><mml:mo>,</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mi>h</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>&gt;</mml:mo><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:math></disp-formula>where <italic>h</italic>(<italic>S</italic><sup><italic>i</italic>−1</sup>(<italic>v</italic>), <italic>S</italic><sup>1</sup>(<italic>v</italic>)) is the distance between the feature <italic>S</italic><sup><italic>i</italic>−1</sup>(<italic>v</italic>) in the iteration <italic>i</italic>−1 and <italic>S</italic><sup>1</sup>(<italic>v</italic>) in the initial iteration. s<sub><italic>D</italic></sub><sup><italic>i</italic>−1</sup> is the standard deviation in the local neighborhood (vertex <italic>v</italic> and its connected neighboring vertices) and <italic>h</italic><sup><italic>i</italic>−1</sup><sub>max</sub> is the highest distance value in the neighborhood of <italic>v</italic>, where <inline-formula><mml:math id="M26" altimg="si0029.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mi>max</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup><mml:mo>≤</mml:mo><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula>. As with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic> − 1</sup>(<italic>v</italic>)</textual-form><mml:math id="M27" altimg="si0030.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> the idea behind considering the standard deviation is to successfully deal with outliers and employ a suitable normalization factor <italic>h</italic><sup><italic>i</italic>−1</sup><sub>max</sub>.</p>
+        </sec>
+        <sec id="s0055">
+          <label>2.3.3</label>
+          <title>Estimation of the scaling factor</title>
+          <p>To make the representation invariant to scaling, a scaling factor <italic>x</italic><sup>⁎</sup> is estimated once in each frame after the sub-trackers have provided their first hypotheses for the positions of the features.<disp-formula id="eq0030"><label>(6)</label><mml:math id="M28" altimg="si0031.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>x</mml:mi></mml:mrow><mml:mrow><mml:mo>⁎</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>e</mml:mi><mml:mo>∈</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="bold">E</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold">i</mml:mi><mml:mo>−</mml:mo><mml:mn mathvariant="bold">1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:munder><mml:mfrac><mml:mrow><mml:mo>|</mml:mo><mml:mi>e</mml:mi><mml:mo>|</mml:mo></mml:mrow><mml:mrow><mml:mo>|</mml:mo><mml:msup><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>|</mml:mo></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>v</mml:mi></mml:mrow><mml:mrow><mml:mi>e</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>v</mml:mi></mml:mrow><mml:mrow><mml:mi>e</mml:mi></mml:mrow></mml:msub><mml:mo>∈</mml:mo><mml:mi mathvariant="bold">N</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>v</mml:mi></mml:mrow><mml:mrow><mml:mi>e</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac></mml:math></disp-formula>where <italic>x</italic><sup>⁎</sup>(<italic>v</italic>) is the estimated scaling factor in the local neighborhood of vertex <italic>v</italic>. <bold>N</bold>(<bold>v</bold>) is the neighborhood of <italic>v</italic> (all vertices <italic>v</italic><sub><italic>e</italic></sub> connected to <italic>v</italic> by <italic>e</italic>). <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>δ</italic><sup><italic>i</italic></sup>(<italic>v</italic><sub><italic>e</italic></sub>)</textual-form><mml:math id="M29" altimg="si0032.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>v</mml:mi></mml:mrow><mml:mrow><mml:mi>e</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is the confidence of the neighboring vertices in the current iteration. <italic>x</italic><sup>⁎</sup>(<italic>v</italic>) is determined by a weighted sum to boost the influence of the most reliable vertices and the associated edges.</p>
+          <p>The scaling factor <italic>x</italic><sup>⁎</sup>(<italic>v</italic>) of each vertex is used to calculate a scaling factor for the rigid object (part of an articulated object):<disp-formula id="eq0035"><label>(7)</label><mml:math id="M30" altimg="si0033.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>x</mml:mi></mml:mrow><mml:mrow><mml:mo>⁎</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>v</mml:mi><mml:mo>∈</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold">V</mml:mi></mml:mrow><mml:mrow><mml:mn mathvariant="bold">0</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:munder><mml:msup><mml:mrow><mml:mi>x</mml:mi></mml:mrow><mml:mrow><mml:mo>⁎</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>f</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>v</mml:mi><mml:mo>∈</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold">V</mml:mi></mml:mrow><mml:mrow><mml:mn mathvariant="bold">0</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>f</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac></mml:math></disp-formula>where <bold>V</bold><sub><bold>0</bold></sub> are all vertices <italic>v</italic> of the bottom level of the HSS.</p>
+        </sec>
+        <sec id="s0060">
+          <label>2.3.4</label>
+          <title>Offsets of the HSS</title>
+          <p>To compute the offsets of the HSS we employ <italic>graph relaxation</italic>, which models the spring-like behavior of the edges with the purpose to minimize the energies in the HSS, i.e. to bring all edges <bold>E</bold> to have the same length ratio as in the model (e.g. initial frame).</p>
+          <p>A <italic>structural offset vector</italic> <inline-formula><mml:math id="M31" altimg="si0034.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>O</mml:mi></mml:mrow><mml:mrow><mml:mo>⇒</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula> for vertex <italic>v</italic> is calculated so that it is pointing to a spatial position in which the <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic></sup>(<italic>v</italic>)</textual-form><mml:math id="M32" altimg="si0035.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is minimized:<disp-formula id="eq0040"><label>(8)</label><mml:math id="M33" altimg="si0036.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>O</mml:mi></mml:mrow><mml:mrow><mml:mo>⇒</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>e</mml:mi><mml:mo>∈</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="bold">E</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="bold">i</mml:mi><mml:mo>−</mml:mo><mml:mn mathvariant="bold">1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:munder><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>v</mml:mi></mml:mrow><mml:mrow><mml:mi>e</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mo>|</mml:mo><mml:mi>e</mml:mi><mml:mo>|</mml:mo><mml:mo>−</mml:mo><mml:mo>|</mml:mo><mml:msup><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>|</mml:mo><mml:mo>·</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo>·</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:mover accent="true"><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mo>⇒</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></disp-formula>where <inline-formula><mml:math id="M34" altimg="si0037.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mo>⇒</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula> is the unitary vector pointing from a neighboring vertex <italic>v</italic><sub><italic>e</italic></sub> toward <italic>v</italic> and <italic>x</italic> is the scaling factor of the object (for rigid objects x=<italic>x</italic><sup>⁎</sup>(<italic>p</italic>), for articulated objects with several parts <italic>x</italic>=<italic>x</italic><sup>⁎</sup>(<italic>O</italic>)). <xref rid="f0010" ref-type="fig">Fig. 2</xref> shows the concept of producing structural offsets with graph relaxation.</p>
+        </sec>
+        <sec id="s0065">
+          <label>2.3.5</label>
+          <title>Combining the hypotheses</title>
+          <p>For each feature (vertex) and in each iteration <italic>i</italic> the corresponding sub-tracker and HSS propose a “new” position with the knowledge of the position of the previous iteration <italic>i</italic>−1 and their offsets.</p>
+          <p>Both hypotheses are combined to determine the position <bold>c</bold><sub><italic>pos</italic></sub> of each vertex as follows:<disp-formula id="eq0045"><label>(9)</label><alternatives><textual-form specific-use="jats-markup"><bold>c</bold><sub><italic>pos</italic></sub> = <italic>δ</italic><sup><italic>i</italic></sup>(<italic>v</italic>)·<bold>t</bold><sub><italic>pos</italic></sub> + (1 − <italic>δ</italic><sup><italic>i</italic></sup>(<italic>v</italic>))·<bold>s</bold><sub><italic>pos</italic></sub></textual-form><mml:math id="M35" altimg="si0038.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="bold">c</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">pos</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold">t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">pos</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold">s</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">pos</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></disp-formula>where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>δ</italic><sup><italic>i</italic></sup>(<italic>v</italic>)</textual-form><mml:math id="M36" altimg="si0039.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is the confidence of vertex <italic>v</italic> at time <italic>i</italic>, <bold>t</bold><sub><italic>pos</italic></sub> is a vector representing the hypothesis of the sub-tracker and <bold>s</bold><sub><italic>pos</italic></sub> is the proposed position of <italic>v</italic> of the HSS.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="s0070">
+      <label>3</label>
+      <title>Assembling parts to form articulated objects</title>
+      <p><italic>Articulated</italic> objects are modeled as multiple object parts represented by <italic>hierarchical spring systems</italic> (HSSs) and connected by vertices representing articulation points. To exchange information between the parts of the object, articulation points are connected to the corresponding HSSs. Articulation points have no corresponding sub-trackers and move solely under the “forces” of the adjacent parts.</p>
+      <sec id="s0075">
+        <label>3.1</label>
+        <title>The confidence of a part</title>
+        <p>The confidence of object parts <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>δ</italic><sup><italic>i</italic></sup>(<italic>p</italic>)</textual-form><mml:math id="M37" altimg="si0040.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> becomes meaningful when the target object is an articulated object consisting of several parts connected by articulation points. It is computed out of the size <italic>I</italic>(<italic>p</italic>), the energy <italic>E</italic><sup><italic>i</italic>−1</sup>(<italic>p</italic>), and the dissimilarity <italic>D</italic><sup><italic>i</italic>−1</sup>(<italic>p</italic>) of the feature <italic>S</italic><sup><italic>i</italic>−1</sup>(<italic>p</italic>) in comparison to <italic>S</italic><sup>1</sup>(<italic>p</italic>) of the initial frame:<disp-formula id="eq0050"><label>(10)</label><mml:math id="M38" altimg="si0041.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mover accent="true"><mml:mrow><mml:mi>I</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>E</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo>+</mml:mo><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover></mml:math></disp-formula><inline-formula><mml:math id="M39" altimg="si0042.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>I</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover></mml:math></inline-formula>, <inline-formula><mml:math id="M40" altimg="si0043.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>E</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover></mml:math></inline-formula> and <inline-formula><mml:math id="M41" altimg="si0044.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover></mml:math></inline-formula> are normalized to satisfy <inline-formula><alternatives><textual-form specific-use="jats-markup">0 ≤ <italic>δ</italic><sup><italic>i</italic></sup>(<italic>p</italic>) ≤ 1</textual-form><mml:math id="M42" altimg="si0045.gif" overflow="scroll"><mml:mn>0</mml:mn><mml:mo>≤</mml:mo><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>≤</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>.<disp-formula id="eq0055"><label>(11)</label><mml:math id="M43" altimg="si0046.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>I</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>F</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>F</mml:mi></mml:mrow></mml:mfrac></mml:math></disp-formula>where <italic>F</italic>(<italic>p</italic>) is the number of features of part <italic>p</italic> and <italic>F</italic> is the number of all features in the object.</p>
+        <p>The sum of all local energies in an object part <italic>E</italic><sup>i−1</sup>(<italic>p</italic>) is normalized by the number of features (vertices):<disp-formula id="eq0060"><label>(12)</label><mml:math id="M44" altimg="si0047.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>E</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>v</mml:mi><mml:mo>∈</mml:mo><mml:mi>p</mml:mi></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mi>E</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>F</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac></mml:math></disp-formula><disp-formula id="eq0065"><label>(13)</label><mml:math id="M45" altimg="si0048.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:msup><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo stretchy="true">˜</mml:mo></mml:mrow></mml:mover><mml:mo>=</mml:mo><mml:mfenced open="{"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="left"><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mstyle displaystyle="true"><mml:mfrac><mml:mrow><mml:mi>h</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msubsup><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mi>max</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:mfrac></mml:mstyle><mml:mo>,</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mi>h</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>≤</mml:mo><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="left"><mml:mn>0</mml:mn><mml:mo>,</mml:mo></mml:mtd><mml:mtd columnalign="left"><mml:mi>h</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:msup><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>&gt;</mml:mo><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:math></disp-formula>where <italic>h</italic>(<italic>S</italic><sup><italic>i</italic>−1</sup>(<italic>p</italic>), <italic>S</italic><sup>1</sup>(<italic>p</italic>)) is the distance between the feature <italic>S</italic><sup><italic>i</italic>−1</sup>(<italic>p</italic>) in the current iteration and <italic>S</italic><sup>1</sup>(<italic>p</italic>) in the initial frame. s<sub><italic>D</italic></sub><sup><italic>i</italic>−1</sup> is the standard deviation of the distances for all parts in the target object and <italic>h</italic><sup><italic>i</italic>−1</sup><sub>max</sub> is the highest distance value, where <inline-formula><mml:math id="M46" altimg="si0049.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mi>max</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup><mml:mo>≤</mml:mo><mml:msubsup><mml:mrow><mml:mi mathvariant="normal">s</mml:mi></mml:mrow><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula>.</p>
+      </sec>
+      <sec id="s0080">
+        <label>3.2</label>
+        <title>Scaling of the whole object</title>
+        <p>The estimation of the global scaling of the whole articulated object is based on the scaling factors of the object parts <italic>x</italic><sup>⁎</sup>(<italic>p</italic>) (see <xref rid="s0055" ref-type="sec">Section 2.3.3</xref>), which are combined by a weighted sum:<disp-formula id="eq0070"><label>(14)</label><mml:math id="M47" altimg="si0050.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>x</mml:mi></mml:mrow><mml:mrow><mml:mo>⁎</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>O</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mo>∈</mml:mo><mml:mi>O</mml:mi></mml:mrow></mml:munder><mml:msup><mml:mrow><mml:mi>x</mml:mi></mml:mrow><mml:mrow><mml:mo>⁎</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:mfrac><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>f</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mo>∈</mml:mo><mml:mi>O</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>f</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac><mml:mtext>.</mml:mtext></mml:math></disp-formula></p>
+      </sec>
+      <sec id="s0085">
+        <label>3.3</label>
+        <title>Articulation points: agents of the information transfer</title>
+        <p>An <italic>articulation point</italic> connects several rigid parts. It allows them to move independently from each other, while keeping the same distance to it. The movement of a point of a rigid part in the image plane is constrained to a circle centered at the articulation point. The radius is equal to the distance between the point of the rigid part and the articulation point. <xref rid="f0015" ref-type="fig">Fig. 3</xref> illustrates this concept.</p>
+        <p>If the articulation point moves it “pulls” the connected rigid part to keep the distance constraint, and vice versa. In this way position information is transferred from one rigid part to an adjacent one over the articulation point.</p>
+        <sec id="s0090">
+          <label>3.3.1</label>
+          <title>Modeling articulation points</title>
+          <p>Planar articulated motion from frame <italic>f</italic> to frame <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>f</italic> + <italic>δ</italic></textual-form><mml:math id="M48" altimg="si0051.gif" overflow="scroll"><mml:mi>f</mml:mi><mml:mo>+</mml:mo><mml:mi>δ</mml:mi></mml:math></alternatives></inline-formula> can be decomposed into: an independent rotation of the rigid parts around the articulation point, followed by a common translation of the parts (and the articulation point). Given two pairs of points corresponding to two rigid parts performing articulated motion, each at frame <italic>f</italic> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>f</italic> + <italic>δ</italic></textual-form><mml:math id="M49" altimg="si0052.gif" overflow="scroll"><mml:mi>f</mml:mi><mml:mo>+</mml:mo><mml:mi>δ</mml:mi></mml:math></alternatives></inline-formula>, the rotation (<inline-formula><alternatives><textual-form specific-use="jats-markup">cos(<italic>θ</italic>), sin(<italic>θ</italic>)</textual-form><mml:math id="M50" altimg="si0053.gif" overflow="scroll"><mml:mi>cos</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>θ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:mi>sin</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>θ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>) of each part, the common translation (<italic>O</italic><sub><italic>x</italic></sub>, <italic>O</italic><sub><italic>y</italic></sub>) as well as the position of the articulated point at frame <italic>f</italic> are obtained by solving the resulting system of eight equations with eight unknowns.</p>
+          <p>During the initialization of the representation a local coordinate system of each pair of features of an object part is created (see <xref rid="f0015" ref-type="fig">Fig. 3</xref>). The coordinates of the articulation point in this coordinate systems are stored. Having the position of any two features is then enough to build the local coordinate system and reconstruct the position of the articulation point in every frame.</p>
+        </sec>
+        <sec id="s0095">
+          <label>3.3.2</label>
+          <title>Tracking articulation points</title>
+          <p>At any time during tracking, knowing the positions of two vertices of a part and the current scaling factor is sufficient to generate a hypothesis for the positions of all adjacent articulation points. These hypotheses are produced with the local coordinate system defined by the two most confident features (see <xref rid="s0050" ref-type="sec">Section 2.3.2</xref>) – further on named <italic>reference vertices</italic> – of each part.</p>
+          <p>The hypotheses of all parts connected to an articulation point are combined with a weighted sum to calculate the current position <bold>a</bold><sub><italic>pos</italic></sub> of the articulation point <italic>a</italic>. The weight for each hypothesis depends on the confidence of the corresponding part (see <xref rid="s0075" ref-type="sec">Section 3.1</xref>):<disp-formula id="eq0075"><label>(15)</label><mml:math id="M51" altimg="si0054.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="bold">a</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">pos</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mo>∈</mml:mo><mml:mi mathvariant="bold">P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">a</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:munder><mml:msub><mml:mrow><mml:mi>y</mml:mi></mml:mrow><mml:mrow><mml:mi>p</mml:mi></mml:mrow></mml:msub><mml:mo>·</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mo>∈</mml:mo><mml:mi mathvariant="bold">P</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">a</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac></mml:math></disp-formula>where <bold>P</bold>(<bold>a</bold>) is the set of parts connected to the articulation point <italic>a. y</italic><sub><italic>p</italic></sub> is the hypothesis determined with the local coordinate system (which considers the current scaling factor <italic>x</italic>) of part <italic>p</italic>. <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>δ</italic><sup><italic>i</italic></sup>(<italic>p</italic>)</textual-form><mml:math id="M52" altimg="si0055.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is the confidence of part <italic>p</italic>. With this weighted sum, the influence of ambiguous parts on the position of the articulation point is low (e.g. if a part is occluded) and of reliably tracked parts high.</p>
+        </sec>
+      </sec>
+      <sec id="s0100">
+        <label>3.4</label>
+        <title>Information transfer</title>
+        <p>For each rigid part, the distance constraint to the articulation point is enforced by connecting all vertices from the bottom level and the vertex from the top level with the corresponding articulation point. The articulation point “transfers” position information from reliably to ambiguously tracked parts through its distance constraints (circles).</p>
+        <p>The information transfer is realized with graph relaxation by calculating a structural offset vector. Therefore, Eq. <xref rid="eq0040" ref-type="disp-formula">(8)</xref> is adapted as follows:<disp-formula id="eq0080"><label>(16)</label><mml:math id="M53" altimg="si0056.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>O</mml:mi></mml:mrow><mml:mrow><mml:mo>⇒</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mo>|</mml:mo><mml:mi>e</mml:mi><mml:mo>|</mml:mo><mml:mo>−</mml:mo><mml:mo>|</mml:mo><mml:msup><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>|</mml:mo><mml:mo>·</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo>·</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:mover accent="true"><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mo>⇒</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></disp-formula>where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>δ</italic><sup><italic>i</italic></sup>(<italic>v</italic>)</textual-form><mml:math id="M54" altimg="si0057.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is the confidence of vertex <italic>v</italic>, <inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>e</italic>|</textual-form><mml:math id="M55" altimg="si0058.gif" overflow="scroll"><mml:mo>|</mml:mo><mml:mi>e</mml:mi><mml:mo>|</mml:mo></mml:math></alternatives></inline-formula> is the length of edge <italic>e</italic> connecting <italic>v</italic> with <italic>a</italic> and <inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>e</italic><sup>1</sup>|</textual-form><mml:math id="M56" altimg="si0059.gif" overflow="scroll"><mml:mo>|</mml:mo><mml:msup><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>|</mml:mo></mml:math></alternatives></inline-formula> represents the length of the same edge in the initial frame. <inline-formula><mml:math id="M57" altimg="si0060.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mo>⇒</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">(</mml:mo><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></inline-formula> is the unitary vector pointing from a vertex <italic>v</italic> toward the articulation point <italic>a</italic>.</p>
+      </sec>
+    </sec>
+    <sec id="s0105">
+      <label>4</label>
+      <title>Tracking as a hierarchical optimization process—the algorithm</title>
+      <p>The algorithm to track articulated objects using HSSs is summarized in <xref rid="enun0005" ref-type="statement">Algorithm 1</xref>.</p>
+      <p>Tracking is done in a <italic>top to bottom</italic> or <italic>bottom to top</italic> process, depending on the confidence values (see <xref rid="enun0005" ref-type="statement">Algorithm 1</xref>, Line 8). In frames when the tracking is reliable, the springs connecting the top vertex with the bottom level are used to generate additional structural offsets for the vertices in the bottom level (<italic>top to bottom</italic> processing). During occlusions this flow of structural feedback is inverted s.t. structural offsets are determined for the top vertex (<italic>bottom to top</italic> processing). The decision for <italic>top to bottom</italic> or <italic>bottom to top</italic> processing is taken by a comparison of the confidence values of the top and bottom vertices. In cases of ambiguity <italic>bottom to top</italic> processing is preferred (confidence value of top vertex is smaller than confidence of bottom vertex). <statement id="enun0005"><label>Algorithm 1</label><p>Algorithm for tracking articulated objects. <table-wrap id="t0010" position="float"><label/></table-wrap></p></statement></p>
+    </sec>
+    <sec id="s0110">
+      <label>5</label>
+      <title>Experiments</title>
+      <p>The following experiments show the application of the presented framework on concrete tracking tasks with different complexities and difficulties.</p>
+      <sec id="s0115">
+        <label>5.1</label>
+        <title>The sub-trackers</title>
+        <p>We use the mean shift algorithm for the sub-trackers. It is a simple, single hypothesis tracker, which on its own is not able to track complex, articulated objects successfully.</p>
+        <p>Mean shift efficiently searches for local extremal values in a probability distribution with a search window, and generates an offset vector pointing to the corresponding position. The value of the distribution at a certain point depends on the similarity between features extracted within a window centered at that point and features extracted in an initialization phase from the region to be tracked.</p>
+      </sec>
+      <sec id="s0120">
+        <label>5.2</label>
+        <title>The region descriptors</title>
+        <p>Sigma Sets are used in the experiments as the region descriptors (features) describing the appearance of the corresponding regions of interests covering the target object. <xref rid="s0175" ref-type="sec">Appendix A</xref> gives a brief recall of Sigma Sets.</p>
+        <p>The extraction of the features in every frame is very expensive with regard to computation time. In a frame with a resolution of 480×640 pixels the calculation of the features consumes between 60 and 70 s of the overall computing time of maximum 75 s per frame.</p>
+      </sec>
+      <sec id="s0125">
+        <label>5.3</label>
+        <title>Initializing the hierarchical spring systems</title>
+        <p><italic>Features/vertices</italic>. Before a HSS can be built, a target object needs to be defined and suitable features describing the object have to be selected. This can be done automatically by methods like in <xref rid="bib9 bib10 bib11 bib12" ref-type="bibr">[9–12]</xref> or semi-manually as for the experiments in this paper.</p>
+        <p>The top level is described by one region descriptor <italic>S</italic><sup>1</sup>(<italic>p</italic>), extracted out of a region of interest (ROI) covering the whole object part (<xref rid="f0005" ref-type="fig">Fig. 1</xref>(a)). The bottom level consists of several smaller region descriptors, which are from the same ROI (see <xref rid="f0005" ref-type="fig">Fig. 1</xref>(b)). A Harris corner detector is applied on the ROI to find promising positions for the smaller region descriptors <italic>S</italic><sup>1</sup>(<italic>v</italic>). Around each corner point a small ROI is built to extract a Sigma Set (e.g. 9×9 pixels).</p>
+        <p><italic>Edges</italic>. The edges can be inserted with a Delaunay triangulation (see <xref rid="f0020" ref-type="fig">Fig. 4</xref>(b)) or a fully connected graph can be built (see <xref rid="f0020" ref-type="fig">Fig. 4</xref>(c)). For more details on inserting the edges refer to <xref rid="s0130" ref-type="sec">Section 5.3.1</xref>.</p>
+        <p><italic>Articulation points</italic>. They can be initialized manually (as in the following experiments) or automatically by observing the articulated motion of the target object <xref rid="bib13 bib9" ref-type="bibr">[13,9]</xref>.</p>
+        <sec id="s0130">
+          <label>5.3.1</label>
+          <title>Connectivity issues</title>
+          <p>This section deals with the impact of the connectivity of the vertices in the HSS on the quality of the structural feedback, i.e. on the structural offset vector.</p>
+          <p>Given the features represented as vertices, there are different possibilities for adding the edges connecting them e.g.: a Delaunay triangulation or a fully connected graph (see <xref rid="f0020" ref-type="fig">Fig. 4</xref>).</p>
+          <p>If a vertex <italic>v</italic> is of degree 1 – only connected to one neighbor – the structural feedback determined by graph relaxation is ambiguous. The local energy <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic></sup>(<italic>v</italic>)</textual-form><mml:math id="M58" altimg="si0071.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> in the current vertex <italic>v</italic> is minimized (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic></sup>(<italic>v</italic>) = 0.0</textual-form><mml:math id="M59" altimg="si0072.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mn>0.0</mml:mn></mml:math></alternatives></inline-formula>) by moving <italic>v</italic> to any point on the circle centered on its neighbor with the radius equal to the “original” length <inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>e</italic><sup>1</sup>|</textual-form><mml:math id="M60" altimg="si0073.gif" overflow="scroll"><mml:mo>|</mml:mo><mml:msup><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>|</mml:mo></mml:math></alternatives></inline-formula> of the edge connecting them. Therefore, there is no unique global minimum or structural offset vector for <italic>v</italic>. For a vertex <italic>v</italic> with degree 2, the ambiguity is reduced to two possible positions, both with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic></sup>(<italic>v</italic>) = 0.0</textual-form><mml:math id="M61" altimg="si0074.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mn>0.0</mml:mn></mml:math></alternatives></inline-formula>. Above degree 2, there is only one position in the image, which minimizes <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup><italic>i</italic></sup>(<italic>v</italic>)</textual-form><mml:math id="M62" altimg="si0075.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>v</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. <xref rid="f0025" ref-type="fig">Fig. 5</xref> visualizes these three cases.</p>
+          <p>In our experiments both a Delaunay triangulation and a fully connected graph are used as representation. <xref rid="t0005" ref-type="table">Table 1</xref> lists important facts of both representations.</p>
+          <p>As <xref rid="t0005" ref-type="table">Table 1</xref> lists, a fully connected graph may produce superior results. When determining the structural offset vector (see Eq. <xref rid="eq0040" ref-type="disp-formula">(8)</xref>) each vertex gets structural input from every other vertex in the graph. Especially in cases of occlusion, this leads to a faster propagation of “correct” position information (see <xref rid="f0030" ref-type="fig">Fig. 6</xref> in <xref rid="s0110" ref-type="sec">Section 5</xref>). The only drawback we identified for the fully connected graph is the, in our experiments insignificant, increase in processing time when calculating the structural offset vector.</p>
+        </sec>
+      </sec>
+      <sec id="s0135">
+        <label>5.4</label>
+        <title>Experimental setup</title>
+        <p>The videos employed for the following experiments are self-produced (800×600 pixel), from the Motion of Body (MoBo) database <xref rid="bib15" ref-type="bibr">[15]</xref> (486×640 pixel) and from Amit et al. <xref rid="bib16" ref-type="bibr">[16]</xref> (352 ×288 pixel).</p>
+        <p>The videos are selected considering the current status of the presented approach. Even though the proposed framework is able to successfully track objects through articulated motion and scaling, it can only deal with affine or perspective changes up to a certain degree. The reason for this lies in the current state of the HSS as it does not consider the 3D space when generating structural offset vectors. Therefore, videos with objects moving in the 3D space are not suitable for our experiments and will lead to significant errors in tracking.</p>
+        <p>In all experiments presented in this section, the target object is initialized manually by selecting the parts of the object and defining the positions of the articulation points. Except of the video in experiment 1, the ground truth was determined by us and is a result of manually selecting the center positions of the object parts.</p>
+      </sec>
+      <sec id="s0140">
+        <label>5.5</label>
+        <title>Experiment 1: occlusion</title>
+        <p>This experiment focuses on occlusions and compares the tracking results of mean shift alone and our combined approach. The video used in this experiment is from the work of Amit et al. <xref rid="bib16" ref-type="bibr">[16]</xref>. It shows the face of a woman being partially occluded several times.</p>
+        <p>In <xref rid="f0030" ref-type="fig">Fig. 6</xref> one can see the results of tracking with mean shift alone, with a HSS with triangulated graphs and with a HSS using fully connected graphs. As already mentioned in <xref rid="s0130" ref-type="sec">Section 5.3.1</xref>, the fully connected graph is superior to the triangulated graph in challenging cases of occlusion, which occur in this video sequence. The face is occluded several times by a highly textured object (magazine) moving in different directions and occluding different parts of the face. This leads to big confusions and errors in the tracking with mean shift alone (see <xref rid="f0030" ref-type="fig">Fig. 6</xref> (top)).</p>
+        <p><xref rid="f0035" ref-type="fig">Fig. 7</xref> shows the quantitative results of this experiment. These results confirm the qualitative results. The ground truth is provided by <xref rid="bib16" ref-type="bibr">[16]</xref>. When comparing the results of <xref rid="f0035" ref-type="fig">Fig. 7</xref> with the results in <xref rid="bib16" ref-type="bibr">[16]</xref>, one can see that the methods have a similar error rate. The approach of Amit et al. <xref rid="bib16" ref-type="bibr">[16]</xref> has problems in frames 500–600, where as our approach performed better in this period. Both methods are challenged in frames 700–800, but this time the method of Amit et al. is slightly better.</p>
+      </sec>
+      <sec id="s0145">
+        <label>5.6</label>
+        <title>Experiment 2: articulated motion with self-occlusion</title>
+        <p>This experiment uses a video of <xref rid="bib15" ref-type="bibr">[15]</xref> of subject 04011 in view vr16_7, where the aim was to track hand, torso, and upper and lower arms. The challenges are self-occlusions and similar appearance in several object parts. (We do not show images of subject 04011 as it is not allowed by <xref rid="bib15" ref-type="bibr">[15]</xref>.)</p>
+        <p><xref rid="f0040" ref-type="fig">Fig. 8</xref> shows that the presented representation significantly improves the quality of the results of tracking with mean shift. The left lower arm is the most challenging object part to track, but our approach is able to recover well from wrong hypotheses.</p>
+      </sec>
+      <sec id="s0150">
+        <label>5.7</label>
+        <title>Experiment 3: articulated motion under scaling</title>
+        <p>In experiment 3 the aim is to successfully track an articulated object consisting of eight parts connected via six articulation points (jumping jack). The challenges are the scaling (approximately from 100% to 130% and to 80%) and the two types of motion: articulated and camera.</p>
+        <p>In <xref rid="f0045" ref-type="fig">Fig. 9</xref> one can see three frames of the video. <xref rid="f0050" ref-type="fig">Fig. 10</xref> shows the deviation from the manually labeled ground truth of tracking with mean shift alone, of our approach with HSSs represented by planar triangulated graphs or fully connected graphs. As expected there is no remarkable difference in the results for planar and fully connected graph.</p>
+      </sec>
+      <sec id="s0155">
+        <label>5.8</label>
+        <title>Experiment 4: fast movements</title>
+        <p>In this experiment the robustness and recovery potential of the HSS is tested. The employed video shows a woman waving a hand very fast, which leads to heavy motion blur.</p>
+        <p><xref rid="f0055" ref-type="fig">Fig. 11</xref> shows some frames of the video sequence including qualitative results for tracking with mean shift alone and our approach with fully connected graphs. Frames 155 and 170 show the superior results of our approach in comparison to mean shift on its own. <xref rid="f0060" ref-type="fig">Fig. 12</xref> evaluates the results in concrete numbers.</p>
+      </sec>
+      <sec id="s0160">
+        <label>5.9</label>
+        <title>Experiment 5: tracking a whole human</title>
+        <p>In experiment 5 representations with 10 object parts and nine articulation points are built and track walking humans in 04002 and 04006 in view vr7_7 of <xref rid="bib15" ref-type="bibr">[15]</xref>. <xref rid="f0065" ref-type="fig">Fig. 13</xref> shows images of 04002 and 04006, where in (d) one can see that for some parts (in this case left upper arm) it is not possible to extract enough local features. In such cases also tracking is more difficult and depends mainly on the top level of the HSS. As expected tracking with our approach by combining mean shift and HSSs delivers the better result (see <xref rid="f0070" ref-type="fig">Fig. 14</xref>).</p>
+      </sec>
+      <sec id="s0165">
+        <label>5.10</label>
+        <title>Discussion and future work</title>
+        <p>The presented experiments showed the application of the proposed framework in tracking objects of different complexity under “simple” motion, articulated motion, camera motion, scaling, occlusion, and motion blur.</p>
+        <p>Even though tracking with mean shift and Sigma Sets are employed as basic building blocks, both the tracker and the region descriptor are exchangeable. The focus of our work lies in the hierarchical representation.</p>
+        <p>The experiments in this section showed that a fully connected graph as representation for a HSS is equal or superior to a triangulated graph (especially during occlusions). Therefore, we intend to employ this representation in future. The increase in processing time is insignificant, as most of the processing time (approximately 95%) is spent in calculating region descriptors and building distributions.</p>
+        <p>Besides its advantages during occlusion, the fully connected graph is also a good basis to start future research on updating the elements of the HSS. When an object moves in the 3D space (e.g. turning around) it happens that some regions of the object become invisible and new regions appear. Therefore, it is necessary to develop an update process for the elements of the HSS, which allows the removal of “old” vertices and the addition of “new” ones. This process requires changes in the graph representing the HSS and here a fully connected graph is easier to handle than a triangulation.</p>
+        <p>Furthermore, we plan to extend our HSS to be able to handle 3D position information. One possibility to realize this, could be to stick with mean shift tracking in 2D, but optimize the Spring System in 3D coordinates.</p>
+      </sec>
+    </sec>
+    <sec id="s0170">
+      <label>6</label>
+      <title>Conclusion</title>
+      <p>This paper presented a flexible framework to represent and track articulated objects consisting of several rigid parts connected with articulation points. The parts of the object are described by a hierarchical spring system which is represented by an attributed graph pyramid. The attributes of the pyramid are region descriptors and the edges encode the spatial relationships between the vertices/attributes. This spatial structure is enforced during tracking by the spring-like behavior of the edges in the hierarchical spring systems. The “springs” allow to determine structural offset vectors, which are combined with the offset vectors provided by the employed mean shift tracker. Position information can be transferred between the parts over the corresponding articulation points depending on the confidence of the parts and their features.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Comaniciu</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Ramesh</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Meer</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Kernel-based object tracking</article-title>
+          <source>Pattern Analysis and Machine Intelligence</source>
+          <volume>25</volume>
+          <issue>5</issue>
+          <year>2003</year>
+          <fpage>564</fpage>
+          <lpage>575</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>C.-S.</given-names>
+            </name>
+            <name>
+              <surname>Elgammal</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coupled visual and kinematic manifold models for tracking</article-title>
+          <source>International Journal of Computer Vision</source>
+          <volume>87</volume>
+          <year>2010</year>
+          <fpage>118</fpage>
+          <lpage>139</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brubaker</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Fleet</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Hertzmann</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Physics-based person tracking using the anthropomorphic walker</article-title>
+          <source>International Journal of Computer Vision</source>
+          <volume>87</volume>
+          <year>2010</year>
+          <fpage>140</fpage>
+          <lpage>155</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fischler</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Elschlager</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The representation and matching of pictorial structures</article-title>
+          <source>Transactions on Computers</source>
+          <volume>22</volume>
+          <year>1973</year>
+          <fpage>67</fpage>
+          <lpage>92</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Felzenszwalb</surname>
+              <given-names>P.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Pictorial structures for object recognition</article-title>
+          <source>International Journal of Computer Vision</source>
+          <volume>61</volume>
+          <year>2005</year>
+          <fpage>55</fpage>
+          <lpage>79</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <label>6</label>
+        <mixed-citation publication-type="other">D. Ramanan, D. Forsyth, Finding and tracking people from the bottom up, in: CVPR, vol. 2, IEEE, 2003, pp. 467–474.</mixed-citation>
+      </ref>
+      <ref id="bib7">
+        <label>7</label>
+        <mixed-citation publication-type="other">S.F.F. Gibson, B. Mirtich, A survey of deformable modeling in computer graphics, Technical Report, Mitsubishi Electric Research Laboratories, 1997.</mixed-citation>
+      </ref>
+      <ref id="bib8">
+        <label>8</label>
+        <mixed-citation publication-type="other">N.M. Artner, A. Ion, W.G. Kropatsch, Coarse-to-fine tracking of articulated objects using a hierarchical spring system, in: International Conference on Computer Analysis of Images and Patterns, Springer, Münster, Germany, 2009, pp. 1011–1018.</mixed-citation>
+      </ref>
+      <ref id="bib9">
+        <label>9</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Artner</surname>
+              <given-names>N.M.</given-names>
+            </name>
+            <name>
+              <surname>Ion</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kropatsch</surname>
+              <given-names>W.G.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Rigid part decomposition in a graph pyramid</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Eduardo Bayro-Corrochano</surname>
+              <given-names>J.O.E.</given-names>
+            </name>
+          </person-group>
+          <source>The 14th Iberoamerican Congress on Pattern Recognition, Lecture Notes in Compute Science</source>
+          <year>2009</year>
+          <publisher-name>Springer</publisher-name>
+          <fpage>758</fpage>
+          <lpage>765</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yan</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Pollefeys</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>A factorization-based approach for articulated nonrigid shape, motion and kinematic chain recovery from video</article-title>
+          <source>Pattern Analysis and Machine Intelligence</source>
+          <volume>30</volume>
+          <issue>5</issue>
+          <year>2008</year>
+          <fpage>865</fpage>
+          <lpage>877</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <label>11</label>
+        <mixed-citation publication-type="other">T. Walther, R.P. Würtz, Unsupervised learning of human body parts from video footage, in: 2nd Workshop on Non-Rigid Shape Analysis and Deformable Image Alignment, 2009, pp. 336–343.</mixed-citation>
+      </ref>
+      <ref id="bib12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Drouin</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Hébert</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Parizeau</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Incremental discovery of object parts in video sequences</article-title>
+          <source>Computer Vision and Image Understanding</source>
+          <volume>110</volume>
+          <year>2008</year>
+          <fpage>60</fpage>
+          <lpage>74</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <label>13</label>
+        <mixed-citation publication-type="other">N. Artner, A. Ion, W.G. Kropatsch, Tracking objects beyond rigid motion, in: Workshop on Graph-based Representations in Pattern Recognition, Springer, 2009.</mixed-citation>
+      </ref>
+      <ref id="bib15">
+        <label>15</label>
+        <mixed-citation publication-type="other">R. Gross, J. Shi, The cmu motion of body (mobo) database, Technical Report CMU-RI-TR-01-18, Robotics Institute, Pittsburgh, PA, June 2001.</mixed-citation>
+      </ref>
+      <ref id="bib16">
+        <label>16</label>
+        <mixed-citation publication-type="other">A. Adam, E. Rivlin, I. Shimshoni, Robust fragments-based tracking using the integral histogram, in: CVPR, 2006, pp. 798–805.</mixed-citation>
+      </ref>
+      <ref id="bib17">
+        <label>17</label>
+        <mixed-citation publication-type="other">X. Hong, H. Chang, S. Shan, X. Chen, W. Gao, Sigma set: a small second order statistical region descriptor, in: Computer Vision and Pattern Recognition, IEEE, 2009, pp. 1802–1809.</mixed-citation>
+      </ref>
+      <ref id="bib18">
+        <label>18</label>
+        <mixed-citation publication-type="other">O. Tuzel, F. Porikli, P. Meer, Region covariance: a fast descriptor for detection and classification, in: ECCV, Springer, 2006, pp. 589–600.</mixed-citation>
+      </ref>
+    </ref-list>
+    <bio>
+      <p><bold>Nicole M. Artner</bold> received the “Bachelor” from the University of Applied Science of Hagenberg, Austria in 2006, and the “Master of Applied Science” from the University of Applied Science of Hagenberg, Austria in 2008. She started her Ph.D. in 2008 and her research interests lie in the field of Computer Vision and include hierarchical, structural, and part-based representations and tracking of articulated objects.</p>
+    </bio>
+    <bio>
+      <p><bold>Adrian Ion</bold> received an Engineer's degree in Computer Science from the “Politehnica” University of Timisoara, Romania in 2001, and the Dr. Techn. in computer science from the Vienna University of Technology in 2009. His research interests include graph based representations and algorithms, irregular pyramids, and the analysis of 2D and 3D shapes. Currently, Dr. Ion is a post doctoral researcher at the University of Bonn, Germany, working on image segmentation and object recognition.</p>
+    </bio>
+    <bio>
+      <p><bold>Walter G. Kropatsch</bold> founded the PRIP group at Vienna University of Technology in 1990. Prof. Kropatsch has received his Ph.D. in computer science from the Technical University of Graz, in 1982, and his habilitation (Venia Docendi) from the University of Innsbruck, in 1991. He has done sustained research in the fields of irregular pyramids, graphs, and their application in various computer vision areas.</p>
+    </bio>
+    <sec id="s0175">
+      <label>Appendix A</label>
+      <title>Sigma set</title>
+      <p>Hong et al. introduced the <italic>Sigma Set</italic> <xref rid="bib17" ref-type="bibr">[17]</xref>, a novel second order statistics based region descriptor. The sigma set descriptor is based on the covariance matrix descriptor, which was first introduced as a region descriptor by Tuzel et al. <xref rid="bib18" ref-type="bibr">[18]</xref>. Covariance matrices are invariant to scaling and rotation up to a certain degree (depends on the feature selection) and allow the combination of multiple features in an elegant way. Furthermore, compared to other region descriptors, region covariance is low-dimensional and can be efficiently calculated using integral images. However, there are evident disadvantages enumerated by Hong et al., which led to the development of the Sigma Set (e.g. covariance matrices do not lie on the Euclidean space, which requires time-consuming operations through Riemannian geometry).</p>
+      <p>The covariance matrix descriptor <xref rid="bib18" ref-type="bibr">[18]</xref> can be extracted out of a 2D image <italic>I</italic> of size <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>W</italic>×<italic>H</italic></textual-form><mml:math id="M63" altimg="si0076.gif" overflow="scroll"><mml:mi>W</mml:mi><mml:mo>×</mml:mo><mml:mi>H</mml:mi></mml:math></alternatives></inline-formula>. <italic>F</italic> is a feature image of size <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>W</italic>×<italic>H</italic>×<italic>d</italic></textual-form><mml:math id="M64" altimg="si0077.gif" overflow="scroll"><mml:mi>W</mml:mi><mml:mo>×</mml:mo><mml:mi>H</mml:mi><mml:mo>×</mml:mo><mml:mi>d</mml:mi></mml:math></alternatives></inline-formula> extracted from <italic>I</italic>, encoding a feature vector of size <italic>d</italic> at each position:<disp-formula id="eq0085"><label>(17)</label><alternatives><textual-form specific-use="jats-markup"><italic>F</italic>(<italic>x</italic>, <italic>y</italic>) = <italic>ϕ</italic>(<italic>I</italic>, <italic>x</italic>, <italic>y</italic>)</textual-form><mml:math id="M65" altimg="si0078.gif" overflow="scroll"><mml:mi>F</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>y</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>I</mml:mi><mml:mo>,</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>y</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></disp-formula>where the function <italic>ϕ</italic> can be any mapping including, e.g. intensity, color, gradients and so on. A rectangular region of interest <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>R</italic> ⊂ <italic>F</italic></textual-form><mml:math id="M66" altimg="si0080.gif" overflow="scroll"><mml:mi>R</mml:mi><mml:mo>⊂</mml:mo><mml:mi>F</mml:mi></mml:math></alternatives></inline-formula> can be represented by the <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>d</italic>×<italic>d</italic></textual-form><mml:math id="M67" altimg="si0081.gif" overflow="scroll"><mml:mi>d</mml:mi><mml:mo>×</mml:mo><mml:mi>d</mml:mi></mml:math></alternatives></inline-formula> covariance matrix<disp-formula id="eq0090"><label>(18)</label><mml:math id="M68" altimg="si0082.gif" overflow="scroll"><mml:mi>C</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>R</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>n</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac><mml:munderover><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:munderover><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>z</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:mi>μ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>z</mml:mi></mml:mrow><mml:mrow><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:mi>μ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>T</mml:mi></mml:mrow></mml:msup><mml:mtext>,</mml:mtext></mml:math></disp-formula>where {<italic>z</italic><sub><italic>k</italic></sub>}<sub><italic>k</italic>=1…<italic>n</italic></sub> are the <italic>d</italic>-dimensional feature vectors of the points in <italic>R</italic> and <italic>μ</italic> is the mean over all points.</p>
+      <p>The basic idea of Hong et al. <xref rid="bib17" ref-type="bibr">[17]</xref> is to find a small set of points <italic>S</italic> which satisfies <italic>C</italic>(<italic>S</italic>)=<italic>C</italic>(<italic>R</italic>) so that <italic>S</italic> is <italic>equivalent</italic> to <italic>R</italic> in terms of 2nd order statistics. They employ the Cholesky decomposition to construct the Sigma Set descriptor <italic>S</italic> for a region <italic>R</italic> from the corresponding covariance matrix <italic>C</italic>(<italic>R</italic>). The space complexity of Sigma Set is (<italic>d</italic><sup>2</sup>+<italic>d</italic>)/2. For example for a color image <italic>I</italic> with a feature image <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>F</italic> = <italic>W</italic>×<italic>H</italic>×3</textual-form><mml:math id="M69" altimg="si0084.gif" overflow="scroll"><mml:mi>F</mml:mi><mml:mo>=</mml:mo><mml:mi>W</mml:mi><mml:mo>×</mml:mo><mml:mi>H</mml:mi><mml:mo>×</mml:mo><mml:mn>3</mml:mn></mml:math></alternatives></inline-formula> the extracted Sigma Set <italic>S</italic> has <inline-formula><alternatives><textual-form specific-use="jats-markup">1×6</textual-form><mml:math id="M70" altimg="si0085.gif" overflow="scroll"><mml:mn>1</mml:mn><mml:mo>×</mml:mo><mml:mn>6</mml:mn></mml:math></alternatives></inline-formula> dimensions.</p>
+      <p>Hong et al. choose the modified Hausdorff distance (MHD) to evaluate the distance <italic>h</italic> between Sigma Sets <xref rid="bib17" ref-type="bibr">[17]</xref>:<disp-formula id="eq0095"><label>(19)</label><mml:math id="M71" altimg="si0086.gif" overflow="scroll"><mml:mi>h</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>A</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>B</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mi>d</mml:mi></mml:mrow></mml:mfrac><mml:munder><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>a</mml:mi><mml:mo>∈</mml:mo><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>A</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:munder><mml:munder><mml:mrow><mml:mi>min</mml:mi></mml:mrow><mml:mrow><mml:mi>b</mml:mi><mml:mo>∈</mml:mo><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi>B</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:munder><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>E</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>a</mml:mi><mml:mo>,</mml:mo><mml:mi>b</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:math></disp-formula>where <italic>S</italic><sub><italic>A</italic></sub> and <italic>S</italic><sub><italic>B</italic></sub> are two Sigma Sets and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>d</italic><sub><italic>E</italic></sub>(•)</textual-form><mml:math id="M72" altimg="si0087.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>d</mml:mi></mml:mrow><mml:mrow><mml:mi>E</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mo>•</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> can be any distance metric defined in <italic>R</italic><sup><italic>d</italic></sup>, such as the Euclidean distance (L2 Norm).</p>
+      <p>As Sigma Set is derived from the covariance matrix uniquely, it inherits its robustness and certain invariance against scale and rotation changes. This is essential in the presented approach to successfully associate regions in consecutive frames of a video.</p>
+      <p>In our previous work on tracking with Spring Systems <xref rid="bib8" ref-type="bibr">[8]</xref> we employed covariance matrix descriptors. The deciding fact to chose Sigma Set as region descriptor over covariance matrix is the more efficient distance evaluation. This evaluation is obligatory in every frame and critically influencing the running time.</p>
+    </sec>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>The presented work was partially supported by the Austrian Science Fund under grants S9103-N13, P18716-N13. Adrian Ion was supported, in part, by the European Commission, under project MCEXT-025481.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Example representation for a part. (a) Feature for the top level sub-tracker. (b) Features for the bottom level sub-trackers. The white edges are the edges of <bold>G</bold><sub><bold>0</bold></sub>. (c) Corresponding graph pyramid <bold>P</bold>={<bold>G</bold><sub><bold>0</bold></sub>, <bold>G</bold><sub><bold>1</bold></sub>} (not all bottom level vertices and edges are shown).</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Graph relaxation examples. <italic>B</italic> is the initial state of the vertex and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>B</italic>′</textual-form><mml:math id="M73" altimg="si0001.gif" overflow="scroll"><mml:mi>B</mml:mi><mml:mo>′</mml:mo></mml:math></alternatives></inline-formula> the deformed one. The arrows visualize the structural offset vectors <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>O</italic>(<italic>B</italic>′)</textual-form><mml:math id="M74" altimg="si0002.gif" overflow="scroll"><mml:mi>O</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>B</mml:mi><mml:mo>′</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Left: distance constraints imposed by articulation points. Right: articulation point <italic>a</italic> in the local coordinate system defined by an ordered pair of points <italic>p</italic><sub>1</sub>, <italic>p</italic><sub>2</sub>.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="f0020">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Building a HSS. Target object: head of jumping jack. (a) Selected features: region descriptors (boxes). (b) Inserted edges: triangulated graph. (c) Inserted edges: fully connected graph.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="f0025">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Ambiguity of structural offset vectors. (a) Vertex degree 1, all positions on circle are minima. (b) Vertex degree 2, two minima. (c) Vertex degree 3, one unique minimum.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="f0030">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Experiment 1: tracking an occluded face with mean shift (top), with our approach in a triangulation (middle) and our approach with a fully connected graph (bottom). The images show the features of the bottom level connected by edges to illustrate the deformations and the qualitative results.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="f0035">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Experiment 1: deviation from ground truth. (full) Using HSS with a fully connected graph, (planar) using HSS with a triangulated graph, and (without) using only tracking with mean shift.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="f0040">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Experiment 2: deviation from ground truth: (top) tracking with mean shift, (bottom) tracking with our approach with fully connected graphs.</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="f0045">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Experiment 3: some frames of the video showing the scaling.</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+    <fig id="f0050">
+      <label>Fig. 10</label>
+      <caption>
+        <p>Experiment 3: deviation from ground truth. The position error in pixels is a sum over the error of all object parts.</p>
+      </caption>
+      <graphic xlink:href="gr10"/>
+    </fig>
+    <fig id="f0055">
+      <label>Fig. 11</label>
+      <caption>
+        <p>Experiment 4: tracking an articulated object through motion blur. (top) Tracking with mean shift and (bottom) our approach with HSS and fully connected graphs.</p>
+      </caption>
+      <graphic xlink:href="gr11"/>
+    </fig>
+    <fig id="f0060">
+      <label>Fig. 12</label>
+      <caption>
+        <p>Experiment 4: deviation from ground truth. (without) Tracking the object parts with mean shift, (full) our approach with fully connected graphs.</p>
+      </caption>
+      <graphic xlink:href="gr12"/>
+    </fig>
+    <fig id="f0065">
+      <label>Fig. 13</label>
+      <caption>
+        <p>Experiment 5: (a) frame of subject 04002 with the top level of the HSSs and the articulation points, (b) subject 04002 and corresponding bottom level of HSSs, (c) frame of subject 04006 and its top level with the articulation points, and (d) showing the bottom level of the HSSs of 04006.</p>
+      </caption>
+      <graphic xlink:href="gr13"/>
+    </fig>
+    <fig id="f0070">
+      <label>Fig. 14</label>
+      <caption>
+        <p>Experiment 5: Deviation from ground truth. (top) Video with subject 04002 in view vr7_7, (bottom) subject 04006 in the same view. For both videos results with mean shift (without) and with our approach (full) are shown. The position error in pixels is a sum over the error of all object parts.</p>
+      </caption>
+      <graphic xlink:href="gr14"/>
+    </fig>
+    <table-wrap id="t0005" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Comparison of facts of a triangulated and a fully connected graph.</p>
+      </caption>
+    </table-wrap>
+  </floats-group>
+</article>

@@ -1,0 +1,2270 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuron</journal-id>
+      <journal-title>Neuron</journal-title>
+      <issn pub-type="ppub">0896-6273</issn>
+      <issn pub-type="epub">1097-4199</issn>
+      <publisher>
+        <publisher-name>Cell Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">1885959</article-id>
+      <article-id pub-id-type="pmid">17442244</article-id>
+      <article-id pub-id-type="publisher-id">NEURON2880</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuron.2007.03.025</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Neurotechnique</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title><italic>neuroConstruct</italic>: A Tool for Modeling Networks of Neurons in 3D Space</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gleeson</surname>
+            <given-names>Padraig</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Steuber</surname>
+            <given-names>Volker</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Silver</surname>
+            <given-names>R. Angus</given-names>
+          </name>
+          <email>a.silver@ucl.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">1</xref>
+          <xref rid="cor1" ref-type="corresp">∗</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>1</sup>Department of Physiology, University College London, Gower Street, London WC1E 6BT, United Kingdom</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>∗</label>Corresponding author <email>a.silver@ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>19</day>
+        <month>4</month>
+        <year>2007</year>
+      </pub-date>
+      <volume>54</volume>
+      <issue>2</issue>
+      <fpage>219</fpage>
+      <lpage>235</lpage>
+      <history>
+        <date date-type="received">
+          <day>20</day>
+          <month>11</month>
+          <year>2006</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>9</day>
+          <month>2</month>
+          <year>2007</year>
+        </date>
+        <date date-type="accepted">
+          <day>26</day>
+          <month>3</month>
+          <year>2007</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2007 ELL &amp; Excerpta Medica</copyright-statement>
+        <copyright-year>2007</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Summary</title>
+        <p>Conductance-based neuronal network models can help us understand how synaptic and cellular mechanisms underlie brain function. However, these complex models are difficult to develop and are inaccessible to most neuroscientists. Moreover, even the most biologically realistic network models disregard many 3D anatomical features of the brain. Here, we describe a new software application, <italic>neuroConstruct</italic>, that facilitates the creation, visualization, and analysis of networks of multicompartmental neurons in 3D space. A graphical user interface allows model generation and modification without programming. Models within <italic>neuroConstruct</italic> are based on new simulator-independent NeuroML standards, allowing automatic generation of code for NEURON or GENESIS simulators. <italic>neuroConstruct</italic> was tested by reproducing published models and its simulator independence verified by comparing the same model on two simulators. We show how more anatomically realistic network models can be created and their properties compared with experimental measurements by extending a published 1D cerebellar granule cell layer model to 3D.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>SYSNEURO</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec1">
+      <title>Introduction</title>
+      <p>The characteristic 3D structures of brain regions like the cerebellum, hippocampus, and cortex and the complex connectivity between and within them are thought to play a key role in determining how information is distributed and processed in the brain. Moreover, neuronal classes exhibit unique morphologies, and modeling studies have shown that the shape of the dendritic tree affects the electrical behavior (<xref rid="bib43 bib67 bib68" ref-type="bibr">Mainen and Sejnowski, 1996; van Ooyen et al., 2002; Vetter et al., 2001</xref>) and that the spatial pattern of synaptic contacts influences how signals are integrated (<xref rid="bib7 bib20 bib38 bib46 bib48 bib56" ref-type="bibr">Blomfield, 1974; Destexhe and Pare, 1999; Jarsky et al., 2005; Markram et al., 1997; Mel, 1993; Rall et al., 1967</xref>). Neuronal signaling is not only restricted to point-to-point synaptic transmission but is also mediated by diffuse messengers including classical neuromodulators (e.g., ACh, 5-HT), nitric oxide (<xref rid="bib37" ref-type="bibr">Jacoby et al., 2001</xref>), cannabinoids (<xref rid="bib1 bib71" ref-type="bibr">Alger, 2002; Wilson and Nicoll, 2002</xref>), and neurotransmitters (<xref rid="bib51" ref-type="bibr">Mitchell and Silver, 2000</xref>). The signal processing carried out by an individual neuron is therefore determined by both its morphology and the 3D structure of the network in which it is embedded.</p>
+      <p>Understanding how complex brain structures and the myriad of underlying mechanisms interact to produce higher-level functions will require the help of network models with biologically realistic features. Models that use compartmental neurons, Hodgkin-Huxley type membrane conductances, and semirealistic synaptic connectivity have been used to explore the potential mechanisms underlying synchronous activity (<xref rid="bib17 bib42" ref-type="bibr">Davison et al., 2003; Maex and De Schutter, 1998</xref>), cortical oscillations (<xref rid="bib66" ref-type="bibr">Traub et al., 2005</xref>), hippocampal memory (<xref rid="bib39" ref-type="bibr">Kunec et al., 2005</xref>), and temporal coding (<xref rid="bib10" ref-type="bibr">Buonomano, 2000</xref>). They have also provided insights into potential causes of epileptiform activity in dentate gyrus (<xref rid="bib57" ref-type="bibr">Santhakumar et al., 2005</xref>) and cortex (<xref rid="bib11 bib66" ref-type="bibr">Bush et al., 1999; Traub et al., 2005</xref>). However, virtually all such models utilize simplified synaptic connectivity, featuring abstract neurons connected in either one dimension (<xref rid="bib42 bib57" ref-type="bibr">Maex and De Schutter, 1998; Santhakumar et al., 2005</xref>) or two-dimensional layered structures (<xref rid="bib47 bib58" ref-type="bibr">Medina and Mauk, 2000; Schweighofer and Ferriol, 2000</xref>).</p>
+      <p>The development of more biologically realistic network models that include explicit 3D information would allow direct comparison of the model structure with anatomical measurements. Such network models would also allow direct comparison of the spatiotemporal properties of simulated neural activity with experimental measurements using multielectrode recordings (<xref rid="bib12 bib52" ref-type="bibr">Buzsaki, 2004; Nicolelis and Ribeiro, 2002</xref>) or two-photon imaging of activity in blocks of tissue (<xref rid="bib53 bib64" ref-type="bibr">Ohki et al., 2005; Stosiek et al., 2003</xref>). Moreover, they could be extended to simulate volume signaling and brain metabolism. While the development of such 3D network models is theoretically possible with current simulators such as NEURON (<xref rid="bib31" ref-type="bibr">Hines and Carnevale, 1997</xref>) and GENESIS (<xref rid="bib8" ref-type="bibr">Bower and Beeman, 1997</xref>), and some preliminary attempts have been made (<xref rid="bib6 bib34" ref-type="bibr">Berends et al., 2004; Howell et al., 2000</xref>), considerable technical difficulties remain. These include a requirement for algorithms that can create the highly nonuniform 3D synaptic connectivity observed in biological networks (<xref rid="bib62 bib63 bib72" ref-type="bibr">Song et al., 2005; Sporns and Kotter, 2004; Yoshimura and Callaway, 2005</xref>), a method for verifying connectivity and routines for analyzing network behavior. Indeed, the absence of such tools has prevented the development and use of more biologically realistic 3D network models.</p>
+      <p>A more integrated understanding of brain function will require closer interaction between experimental and theoretical neuroscientists (<xref rid="bib19 bib21 bib59" ref-type="bibr">De Schutter et al., 2005; Destexhe and Marder, 2004; Segev and London, 2000</xref>). At present, communication between these groups, and even between individual theoreticians, is hampered by poor accessibility and interoperability of models. Although single-cell and network models are available on public databases (<xref rid="bib33" ref-type="bibr">Hines et al., 2004</xref>), their utility as research tools is often restricted to those familiar with the specialist scripting languages, which are simulator specific. For example, a neuronal model written in NEURON script cannot be used as part of a GENESIS simulation, thereby limiting its interchange and reuse. Although graphical user interfaces (GUIs) have improved the accessibility of single-cell models, networks remain inaccessible to most neuroscientists.</p>
+      <p>We have developed a new software application, <italic>neuroConstruct</italic>, that facilitates the creation and analysis of networks of multicompartmental neurons in 3D space. Automated cell placement and generation of synaptic connectivity, together with 3D visualization, allow the creation and verification of models with greater anatomical realism than achieved previously with script files. A GUI and the automated generation of code for NEURON or GENESIS allow network models to be built, modified, and run without programming, enhancing their accessibility. Model reuse and interchangeability are facilitated through the implementation of a simulator-independent model description based on NeuroML standards (<xref rid="bib16 bib28" ref-type="bibr">Crook et al., 2007; Goddard et al., 2001</xref>). We describe and test the functionality of <italic>neuroConstruct</italic> and extend a 1D model of the granule cell layer of the cerebellar cortex (<xref rid="bib42" ref-type="bibr">Maex and De Schutter, 1998</xref>) to 3D, thereby providing an example of behavior, previously observed in vivo (<xref rid="bib69" ref-type="bibr">Vos et al., 1999</xref>), that could not be captured in the original 1D model.</p>
+    </sec>
+    <sec id="sec2">
+      <title>Results</title>
+      <sec id="sec2.1">
+        <title>Outline of Application</title>
+        <p><italic>neuroConstruct</italic> is a JAVA-based software tool for constructing neural network models with many biologically realistic features. These include realistic cell morphologies, voltage- and ligand-gated ion channels, cell densities, synaptic connectivity patterns, and gross 3D structures of different brain regions. Cell and network models can be built through the <italic>neuroConstruct</italic> GUI and automatically simulated on either the NEURON or GENESIS platform. The latest version of <italic>neuroConstruct</italic>, including the models described in this paper and a number of tutorials, is freely available for download from <ext-link xlink:href="http://www.neuroConstruct.org" ext-link-type="uri">http://www.neuroConstruct.org</ext-link>.</p>
+        <p><italic>neuroConstruct's</italic> functionality can be grouped into five main areas (<xref rid="fig1" ref-type="fig">Figure 1</xref>A).</p>
+        <sec id="sec2.1.1">
+          <title>(1) Importation and Validation of Morphologies</title>
+          <p>Reconstructed neuronal morphologies, commonly used in conductance-based neuronal models, can be imported into <italic>neuroConstruct</italic> in various formats (e.g., Neurolucida) and automatically checked for errors. More abstract morphologies with a smaller number of compartments can also be created manually (<xref rid="fig1" ref-type="fig">Figure 1</xref>B).</p>
+        </sec>
+        <sec id="sec2.1.2">
+          <title>(2) Creation of Simulator-Independent Conductance-Based Cell Models</title>
+          <p>Modeling of detailed cellular mechanisms, such as the conductance changes produced by voltage- and ligand-gated ion channels, is essential for reproducing the complex behavior of real neurons. Cell mechanisms can be defined in <italic>neuroConstruct</italic> in a simulator-independent format and cell models created by specifying the complement and density of these on the cell membrane (<xref rid="fig1" ref-type="fig">Figure 1</xref>B).</p>
+        </sec>
+        <sec id="sec2.1.3">
+          <title>(3) Network Generation</title>
+          <p>Once cell models have been created in <italic>neuroConstruct</italic>, they can be placed within a region of 3D space at a specified density (<xref rid="fig1" ref-type="fig">Figure 1</xref>C). Layered structures, such as the cortex, can be created from stacks of contiguous regions. Once the cells are arranged, synaptic connections can be generated according to specified sets of rules.</p>
+        </sec>
+        <sec id="sec2.1.4">
+          <title>(4) Simulation Management</title>
+          <p>Network simulations are carried out by automatically generating script files for the simulator packages NEURON or GENESIS and the results stored in text files.</p>
+        </sec>
+        <sec id="sec2.1.5">
+          <title>(5) Network Analysis</title>
+          <p>Simulations can be loaded back into <italic>neuroConstruct</italic> for visualization and analysis. For more specialized analyses, script files are created that allow data to be imported into two common numerical analysis packages.</p>
+        </sec>
+      </sec>
+      <sec id="sec2.2">
+        <title>Description of Functionality and Validation of Application</title>
+        <sec id="sec2.2.1">
+          <title>Neuronal Morphology</title>
+          <p>Neuronal models with complex morphologies have been used to investigate various aspects of synaptic integration and neuronal excitability (<xref rid="bib18 bib20 bib29 bib38 bib44 bib49 bib54 bib68" ref-type="bibr">De Schutter and Bower, 1994; Destexhe and Pare, 1999; Hanson et al., 2004; Jarsky et al., 2005; Mainen et al., 1995; Migliore et al., 1995; Poirazi et al., 2003; Vetter et al., 2001</xref>), and public databases have been produced that contain examples of anatomical reconstructions of stained neurons (<xref rid="bib2 bib13" ref-type="bibr">Ascoli, 2006; Cannon et al., 1998</xref>). However, using such morphology files in compartmental models is complicated by the fact that they are often in different formats, their anatomical and electrical compartments are not equivalent and there are subtle differences in how the morphological information is used by different simulators. To overcome these problems, <italic>neuroConstruct</italic> can import and visualize morphology files with different formats (<xref rid="fig2" ref-type="fig">Figure 2</xref>A), including Neurolucida (<sup>∗</sup>.asc; <ext-link xlink:href="http://www.mbfbioscience.com/neurolucida" ext-link-type="uri">http://www.mbfbioscience.com/neurolucida</ext-link>), GENESIS readcell compatible format (<sup>∗</sup>.p), most NEURON/ntscable generated morphology files (<sup>∗</sup>.nrn or <sup>∗</sup>.hoc), and Cvapp (<sup>∗</sup>.swc) format (<xref rid="bib13" ref-type="bibr">Cannon et al., 1998</xref>). The simulator-independent representation of the morphology used in <italic>neuroConstruct</italic> allows the same model to be mapped onto different simulator structures (<xref rid="sec4" ref-type="sec">Experimental Procedures</xref>) and is closely related to MorphML (<xref rid="bib16" ref-type="bibr">Crook et al., 2007</xref>), a new standard for describing neuronal morphologies. MorphML is based on XML (extensible markup language), and is the core of level 1 of the NeuroML framework (<xref rid="bib16 bib28" ref-type="bibr">Crook et al., 2007; Goddard et al., 2001</xref>; <ext-link xlink:href="http://www.neuroml.org" ext-link-type="uri">http://www.neuroml.org</ext-link>). <italic>neuroConstruct</italic> also has a recompartmentalization function that can reduce the total number of compartments while conserving morphological features such as total membrane area and section length (<xref rid="fig2" ref-type="fig">Figure 2</xref>B; <xref rid="sec4" ref-type="sec">Experimental Procedures</xref>), thereby speeding up simulations (see <xref rid="app2" ref-type="sec">Figure S1</xref> in the <xref rid="app2" ref-type="sec">Supplemental Data</xref> available with this article online). Large-scale networks of thousands of neurons often use simplified cell models with fewer compartments to minimize the computational overhead (<xref rid="bib57 bib66" ref-type="bibr">Santhakumar et al., 2005; Traub et al., 2005</xref>). These can be created manually in <italic>neuroConstruct</italic> and are handled in the same way as more detailed cells.</p>
+        </sec>
+        <sec id="sec2.2.2">
+          <title>Cell Mechanisms</title>
+          <p>Neuronal signaling is mediated by a variety of subcellular, membrane, and synaptic mechanisms. Models of cellular mechanisms can be simple, such as a synaptic conductance waveform, or more complex, like Hodgkin-Huxley type formulations of voltage-gated conductances, which depend on both voltage and time, and their conductance density can be nonuniformly distributed over the cell membrane. Such models form a core part of any conductance based neuronal simulation, but their implementation is one of the more complicated aspects of using existing simulation packages. Although the mathematical framework used to describe such mechanisms (e.g., maximum channel conductance, reversal potential, rate equations) is general and familiar to many neuroscientists, implementation of these in NEURON or GENESIS involves use of a platform-specific programming language.</p>
+          <p>Models of cell mechanisms are implemented in <italic>neuroConstruct</italic> using a ChannelML-based description, which forms part of level 2 of the NeuroML framework (<xref rid="bib16" ref-type="bibr">Crook et al., 2007</xref>). <xref rid="fig3" ref-type="fig">Figure 3</xref> shows a ChannelML file describing a synaptic conductance mechanism and how it can be used. It consists of an XML file containing the physiological parameters in a structured format that can be validated against a specification, reducing the probability of errors. Information in XML files can easily be transformed into other formats with an XSL (extensible stylesheet language) mapping file (<xref rid="fig3" ref-type="fig">Figure 3</xref>). We have created XSL files which map ChannelML descriptions of cell mechanisms onto NMODL (<xref rid="bib32" ref-type="bibr">Hines and Carnevale, 2000</xref>) format for NEURON and onto the appropriate object in a GENESIS script file. The simulator-independent XML format promotes compatibility with other simulators: for each newly supported simulator, a single XSL file needs to be created which maps the files onto its specialized format. The nature of XML also allows translation of the file into HTML, allowing the cell mechanism to be presented in an easy-to-read format, facilitating online archiving.</p>
+          <p>A number of ChannelML templates are included with <italic>neuroConstruct</italic>. Parameters in these models can be easily modified through the GUI to match the channel kinetics in a particular cell type, either from a published model or directly from experimental measurements of these parameters (e.g., m<sub>∞</sub>, τ<sub>m</sub>, h<sub>∞</sub> and τ<sub>h</sub> for a Hodgkin-Huxley type model of a Na<sup>+</sup> channel). However, ChannelML specifications are still in development, and some cell mechanism types are not yet covered. To allow for unsupported models and to provide greater backward compatibility, files in NMODL (<sup>∗</sup>.mod files) or GENESIS script (e.g., tabchannel based) can be incorporated into cell models created with <italic>neuroConstruct</italic>, but this makes the model simulator specific. For example, synaptic plasticity mechanisms and Markov models can be incorporated into a <italic>neuroConstruct</italic>-based model by inserting an NMODL file for simulation in NEURON.</p>
+          <p>The use of different systems of units can lead to errors in translation between the different simulators. GENESIS uses a consistent set of either SI units or physiological units (ms, mV, etc.), whereas NEURON has its own system based on physiological units. Conversion between these systems of units is handled automatically by <italic>neuroConstruct</italic>.</p>
+        </sec>
+        <sec id="sec2.2.3">
+          <title>Creation of Cell Models</title>
+          <p>Once a cellular morphology has been imported or created in <italic>neuroConstruct</italic>, groups of sections can be defined to distinguish axons, somata, and dendrites. Subgroups of sections such as proximal, oblique, and apical dendrites can also be defined. The distribution of cellular mechanisms can then be specified for each cell region. For example, a nonuniform channel density can be implemented by varying the conductance density in each group (<xref rid="fig1" ref-type="fig">Figure 1</xref>B). Ion-concentration mechanisms (e.g., activity-dependent intracellular Ca<sup>2+</sup> concentrations) can also be added in this way, as can passive electrical properties (specific membrane capacitance and specific membrane/axial resistance), allowing spine densities to be simulated without additional compartments. New cell models can be created from experimental or published data using <italic>neuroConstruct</italic> by importing/creating cell morphologies and modifying existing ChannelML templates or adding native code. However, the painstaking process of making a detailed multicompartmental cell model from scratch often involves automated optimization of parameters and access to all model variables, which requires coding with a command-line-based simulator or another program (e.g., MATLAB or Python; see <xref rid="sec3" ref-type="sec">Discussion</xref>).</p>
+        </sec>
+        <sec id="sec2.2.4">
+          <title>Comparison of a Cell Model on Two Independently Developed Simulators</title>
+          <p>To test <italic>neuroConstruct</italic>'s simulator-independent representation of channel mechanisms, we have recreated a published model of a cerebellar granule cell (GrC), originally written in GENESIS (<xref rid="bib42" ref-type="bibr">Maex and De Schutter, 1998</xref>), and compared its properties on NEURON and GENESIS. The model contains multiple ion conductances, including a fast inactivating Na<sup>+</sup> conductance, three K<sup>+</sup> conductances (delayed rectifier, A type, and Ca<sup>2+</sup> dependent), a high-voltage activated Ca<sup>2+</sup> channel, and a hyperpolarization activated H conductance. It also has a passive leak conductance and an exponentially decaying pool of calcium. In the <italic>neuroConstruct</italic> version, all channels are specified in ChannelML. <xref rid="fig4" ref-type="fig">Figure 4</xref>A compares membrane potential during a depolarizing current step for simulations run on GENESIS and NEURON. The timing of the final action potential (AP) in the train depended strongly on the integration time step, and the two simulators converged to values separated by less than 1 ms after a 500 ms simulation run (<xref rid="fig4" ref-type="fig">Figure 4</xref>B). The root mean squared (RMS) difference between the voltage traces decreased over the range of commonly used simulation time steps (<xref rid="fig4" ref-type="fig">Figure 4</xref>C), indicating the traces as a whole, not just the final spike, converged. The internal state variables were also similar on each of the simulators under these conditions (<xref rid="fig4" ref-type="fig">Figure 4</xref>D). To investigate how significant the difference between the simulators was, we compared the RMS error to that when the Na<sup>+</sup> conductance had been altered by only 1% (<xref rid="fig4" ref-type="fig">Figure 4</xref>C, dashed line). The error due to the difference in simulator choice is smaller than this error, and thus insignificant when taking into account biological variability and the uncertainty in the conductance density.</p>
+          <p>We also compared simulations on NEURON and GENESIS of a morphologically complex neuron (<xref rid="bib44" ref-type="bibr">Mainen et al., 1995</xref>; <xref rid="fig2" ref-type="fig">Figure 2</xref>A), to test the simulator-independent representation of both the channel mechanisms and the morphology. Simulations on both simulators closely reproduced the results of the original model (<xref rid="app2" ref-type="sec">Figure S1</xref>). These results demonstrate that model descriptions in <italic>neuroConstruct</italic> are simulator independent.</p>
+        </sec>
+        <sec id="sec2.2.5">
+          <title>Cell Placement in 3D</title>
+          <p>The gross anatomy of a brain region is generated in <italic>neuroConstruct</italic> by defining 3D regions in which specific cell types are placed. Regions can currently be boxes, spheres, cylinders, or cones, and multiple regions can be used to create composite structures such as the layers found in the cerebellum (<xref rid="fig1" ref-type="fig">Figure 1</xref>C) and cortex. Cells in <italic>neuroConstruct</italic> are arranged in cell groups, which are created by specifying the cell type, the 3D region in which the cells are found, and the packing pattern used to fill the space. Possible packing patterns include the following: cubic close packing for maximum density in 3D space, evenly spaced packing in 3D with cell body centers aligned, hexagonal planar patterns, single cells placed at a specified location, and cells placed in a one-dimensional line. However, for many brain regions, random cell placement is more realistic (<xref rid="fig1" ref-type="fig">Figure 1</xref>C). The number of cells in a specified region can be set, and whether cells should avoid the space occupied by existing cell bodies or can overlap can be specified. This allows cell densities to be matched to experimentally measured values for a particular brain region.</p>
+        </sec>
+        <sec id="sec2.2.6">
+          <title>Generation of Synaptic Connectivity Patterns</title>
+          <p>Once cells are arranged in 3D, synaptic connections can be created between cell groups or within a single cell group. The set of rules specifying synaptic connections between cell groups and the associated type of synaptic mechanism is termed a network connection. There are two different ways in which network connections can be generated in <italic>neuroConstruct</italic>. The first, morphology-based connections, works by defining regions on pre- and postsynaptic cells where synaptic connections are allowed. Several other parameters can also be set, including the number of synapses per cell and the maximum and minimum connection lengths (<xref rid="sec4" ref-type="sec">Experimental Procedures</xref>). <xref rid="fig5" ref-type="fig">Figure 5</xref>A shows how the morphology-based connection algorithm can be used to generate connections between simplified models of GrCs and Purkinje cells (PCs) in the cerebellar cortex. GrC axons consist of an ascending axon and a T-shape bifurcation giving rise to a so-called parallel fiber (PF), which passes through the planar dendritic arbor of PCs (<xref rid="fig5" ref-type="fig">Figures 5</xref>Ai and 5Aii). The PF sections were specified as potential locations of presynaptic connections, and a subset of the PC dendritic sections (<xref rid="fig5" ref-type="fig">Figures 5</xref>Ai and 5Aii, red) were specified as possible postsynaptic connection locations. In this case, the number of connections between pre- and postsynaptic neurons was constrained to a maximum of one (<xref rid="fig5" ref-type="fig">Figure 5</xref>Aiii).</p>
+          <p>The second algorithm, which we term a volume-based connection, is designed for cases where the axon is a dense, highly arborized structure, distributed over a specific region of space, as commonly found in the cortex. <xref rid="fig5" ref-type="fig">Figure 5</xref>Bi shows a simplified model of a cortical interneuron and a cylindrical volume that defines the bounds of its axonal arborization. The diagram of a simplified pyramidal cell in <xref rid="fig5" ref-type="fig">Figure 5</xref>Bii shows the subset of its dendritic tree where connections of that type are permitted. When the cells are placed in 3D, regions of the dendritic trees of a number of pyramidal cells which fall within the axonal arbor of the interneurons are potential candidates for connections. These are made randomly based on the user-defined connectivity conditions, which include the number of connections per source cell and the maximum number of connections on each target cell. Other shapes including cones and spheres can be used to define the 3D bounds of axonal arborizations. The probability of making a synaptic connection within this volume can also be nonuniform (<xref rid="sec4" ref-type="sec">Experimental Procedures</xref>), allowing a preference for local connections.</p>
+          <p>There is also provision to introduce randomness into the amplitudes of the synaptic conductances and their onset delays for both connectivity algorithms. Moreover, the spatial location of the network elements can be used to simulate interesting 3D phenomena. We have used the ability to insert native code in <italic>neuroConstruct</italic> and the 3D spatial information contained within models to develop a very simple model of extracellular diffusion. <xref rid="app2" ref-type="sec">Figure S2</xref> shows a 3D network model with a diffusible signaling molecule that transiently inhibits the AMPA synaptic conductances. Changes in synaptic weight can be visualized by replaying the simulation in <italic>neuroConstruct</italic> or exported and plotted as a function of distance from the source. Although preliminary, this simulation illustrates the potential for creating models of volume-based signaling involving NO, cannabinoids, or neurotransmitters together with the supply and removal of metabolic factors.</p>
+        </sec>
+        <sec id="sec2.2.7">
+          <title>Network Visualization and Input Properties</title>
+          <p>As network models can vary widely in size, there are a number of functions in <italic>neuroConstruct</italic> to facilitate the clear display of large networks, cells with complex morphologies, and individual synaptic connections. These include showing the dendrite and axon as lines (<xref rid="fig5" ref-type="fig">Figures 5</xref>Biii) or just showing ball-shaped somata (<xref rid="fig8" ref-type="fig">Figure 8</xref>A), rather than the full 3D structure of each cell (<xref rid="fig2" ref-type="fig">Figure 2</xref>). An adjustable transparency mode is available for visualizing cells deep within large networks. This allows an individual cell, defined groups of cells, or cells within a defined region to be highlighted (Figures <xref rid="fig1" ref-type="fig">1</xref>C and <xref rid="fig7" ref-type="fig">7</xref>B). These functions allow cells to be viewed in networks of thousands of cells on most standard desktop computers. Functions for analyzing the anatomical properties are also available within <italic>neuroConstruct</italic> (see <xref rid="sec2.2.9" ref-type="sec">Extension of the 1D Cerebellar Granule Cell Layer Model to 3D</xref>). The cell placement and network connectivity can be imported and exported in NetworkML format (level 3 of the NeuroML framework), allowing networks created with other applications to be loaded into <italic>neuroConstruct</italic> for visualization and use in simulations.</p>
+          <p>The external activation of a network with defined patterns of stimuli can be achieved in several ways. Cell groups can receive two main types of inputs: current steps of specific duration, delay, and amplitude or random trains of synaptic inputs, with a defined input frequency or a range of frequencies. Both of these types of input can be applied to all cells in a group, to a fixed percentage of cells, or to cells inside or outside a defined 3D region. The last option can be used to apply spatially organized input patterns to networks.</p>
+        </sec>
+        <sec id="sec2.2.8">
+          <title>Verification of Network Models Implemented in <italic>neuroConstruct</italic></title>
+          <p>We verified the ability of <italic>neuroConstruct</italic> to generate accurate network models by implementing two published network models and comparing the behavior of the <italic>neuroConstruct</italic> versions to the original models. We first tested the conductance-based model of the cerebellar GrC layer (<xref rid="bib42" ref-type="bibr">Maex and De Schutter, 1998</xref>). GENESIS simulation scripts for this model were obtained from <ext-link xlink:href="http://www.tnb.ua.ac.be/models/network.shtml" ext-link-type="uri">http://www.tnb.ua.ac.be/models/network.shtml</ext-link>, and the network specified by these scripts, consisting of 12 mossy fiber (MF) inputs, 75 GrCs, and 4 Golgi cells (GoCs), was recreated in <italic>neuroConstruct</italic> (<xref rid="fig6" ref-type="fig">Figure 6</xref>A). The GrC model outlined previously (<xref rid="fig4" ref-type="fig">Figure 4</xref>), and a GoC model, also with ChannelML-based channel mechanisms, were used in the network (<xref rid="sec4" ref-type="sec">Experimental Procedures</xref>). A key conclusion from the original study was that GrC firing becomes entrained by GoC feedback inhibition during random MF input. <xref rid="fig6" ref-type="fig">Figure 6</xref>B shows population spike time histograms of the original model (left) and the model generated in <italic>neuroConstruct</italic>. Although there are minor differences in the exact spike times due to subtle differences in the connectivity of the two models, they both exhibit synchronized GoCs spiking after ∼100 ms, while the GrCs fire in a small time window before these spikes.</p>
+          <p>Since neurons in the GrC layer model had only a single compartment, we also recreated a 527 cell model of the dentate gyrus (<xref rid="bib57" ref-type="bibr">Santhakumar et al., 2005</xref>), which had four types of multicompartmental neurons, with 11 channel mechanisms and section specific connectivity, albeit in 1D (<xref rid="sec4" ref-type="sec">Experimental Procedures</xref>; <xref rid="fig6" ref-type="fig">Figure 6</xref>C). A key result from the model was to show that increased MF connectivity (sprouting) could generate epileptiform network activity. <xref rid="fig6" ref-type="fig">Figure 6</xref>D shows the raster plots of spike times for the original model and <italic>neuroConstruct</italic> versions of the model. Focal stimulation at 5 ms caused the central 100 granule cells to fire synchronously a short time later, producing the initial line in the plot. The extra connectivity in the network that mimicked MF sprouting caused the activity to propagate to the other cells in the network over approximately 200 ms in both the original and <italic>neuroConstruct</italic> version. These results show that <italic>neuroConstruct</italic> can faithfully reproduce two of the most advanced published network models, demonstrating its ability to recreate models of different brain regions and the validity of the internal implementation of cell mechanisms and neuronal connectivity.</p>
+        </sec>
+        <sec id="sec2.2.9">
+          <title>Extension of the 1D Cerebellar Granule Cell Layer Model to 3D</title>
+          <p>To test the ability of <italic>neuroConstruct</italic> to generate network models in 3D space, we extended the 1D model of the cerebellar GrC layer to 3D. For comparison, we used the same parameters for the cell and synaptic mechanisms as in the original model (<xref rid="bib42" ref-type="bibr">Maex and De Schutter, 1998</xref>). The model consisted of a 3D region representing the GrC layer (<xref rid="fig7" ref-type="fig">Figure 7</xref>A). Thirty-two GoC bodies were packed randomly into this region, and 96 MFs, represented by a single segment for each glomerulus, were placed around these. Finally, 600 GrCs with bifurcated axons were packed randomly, avoiding the space taken up by the existing cell bodies. The axons of the GrCs and the GoCs' single dendrites projected to the molecular layer region. Synaptic connections were generated with the morphology-based connection algorithm (<xref rid="sec4" ref-type="sec">Experimental Procedures</xref>). <xref rid="fig7" ref-type="fig">Figure 7</xref>B illustrates one of the visualization features of <italic>neuroConstruct</italic>, to highlight the connections of a single cell. We used the anatomical analysis functions in <italic>neuroConstruct</italic> to verify the network connectivity by comparing the properties of the model to measured anatomical properties. These include the number of connections made by the pre- and postsynaptic cells (<xref rid="fig7" ref-type="fig">Figures 7</xref>C and 7D) and the distances between the GrC somata and the MF terminals, which correspond to dendritic length (<xref rid="fig7" ref-type="fig">Figure 7</xref>E). In this case, dendrites were substantially longer than for real GrCs (<xref rid="bib26 bib36" ref-type="bibr">Eccles et al., 1967; Ito, 1984</xref>) because the GrC density was reduced to below the biologically realistic value for illustrative purposes. This example demonstrates that network models can be created in 3D and that their anatomical properties can be directly compared to measured anatomical parameters.</p>
+        </sec>
+        <sec id="sec2.2.10">
+          <title>Simulation Management</title>
+          <p>In addition to specifying the cell and network structure, information on simulation duration, time step, and numerical integration method can be specified through the application interface. Moreover, parameters can be specified for saving and/or plotting during a simulation (e.g., membrane potential, ion channel conductance/current/state variables, calcium concentration, spike times, etc.). It is also possible to specify ranges of parameters (e.g., stimulation amplitude or duration) over which to run multiple simulations, allowing basic parameter space searches. Before a simulation is run, a number of validity checks can be carried out (morphology compliance, appropriate simulation time step/temperature during simulation, etc.) to catch potential errors in neuronal simulations. A <italic>neuroConstruct</italic> project can contain a number of simulation configurations, each of which specifies a subset of cell groups, connections, inputs, etc. to generate, illustrating different aspects of the modeled system. Simulation scripts are automatically generated by mapping the internal representation of the model into the native format of each of the supported simulators. The simulations are initiated through the <italic>neuroConstruct</italic> interface and run on standard versions of NEURON or GENESIS. There is no interaction between the simulator and <italic>neuroConstruct</italic> during the numerical integration.</p>
+        </sec>
+        <sec id="sec2.2.11">
+          <title>Analysis of Network Activity</title>
+          <p>Saved simulations can be browsed and loaded through an interface in <italic>neuroConstruct</italic>. The simulation can be replayed at various levels of detail, and there are several features for analyzing network behavior. <xref rid="fig8" ref-type="fig">Figure 8</xref>A shows the 3D GrC layer model with cell processes and connections removed for clarity. At the most basic level, the voltage of specific cells can be plotted (<xref rid="fig8" ref-type="fig">Figure 8</xref>B) or a raster plot of spike times generated (as in <xref rid="fig6" ref-type="fig">Figure 6</xref>D). A histogram of interspike intervals shows that GoCs (<xref rid="fig8" ref-type="fig">Figure 8</xref>C, red) and GrCs (<xref rid="fig8" ref-type="fig">Figure 8</xref>C, black) in the 3D network model fire with similar intervals as for the 1D model (<xref rid="fig6" ref-type="fig">Figure 6</xref>B), with the multiple peaks in the GrC histogram reflecting the fact that GrCs do not fire on every GoC cycle. Interestingly, our simple 3D GrC layer model also exhibited spatiotemporal properties that are not present in the 1D model. To quantify these properties, we defined two analysis regions, with cells which shared different PF inputs (<xref rid="fig8" ref-type="fig">Figure 8</xref>A); GoCs in these regions (beam A and beam B) connect with largely nonoverlapping sets of GrCs (<xref rid="fig7" ref-type="fig">Figure 7</xref>B). As <xref rid="fig8" ref-type="fig">Figure 8</xref>B shows, APs from cells in the same beam were more closely aligned at the end of the simulation than in different beams (black and red traces, blue and green traces). We investigated this further by comparing the correlation in spike times over the whole 4 s simulation run between a GoC in beam A (cell 31, <xref rid="fig8" ref-type="fig">Figure 8</xref>A, red) with other GoCs in the same beam and GoCs in beam B. A higher correlation was found between this cell and the four other GoC cells in beam A (<xref rid="fig8" ref-type="fig">Figure 8</xref>D) than with the six GoCs in beam B (<xref rid="fig8" ref-type="fig">Figure 8</xref>E). This behavior is consistent with experimental results comparing simultaneous recordings from GoCs along and across PF tracts (<xref rid="bib69" ref-type="bibr">Vos et al., 1999</xref>). This simple model demonstrates that network models can be generated and analyzed in <italic>neuroConstruct</italic> with more realistic anatomical properties and behaviors than have been achieved previously.</p>
+          <p><italic>neuroConstruct</italic> also automatically creates files for loading data into common numerical analysis packages for more specialized analysis. Script files are included for quick analysis (e.g., for generating raster plots, spike histograms, etc.) in MATLAB or GNU Octave (<ext-link xlink:href="http://www.octave.org" ext-link-type="uri">http://www.octave.org</ext-link>), an open source application compatible with MATLAB script files. Files are also generated for importing simulation data into IGOR Pro. These can be analyzed with NeuroMatic (<ext-link xlink:href="http://www.neuromatic.thinkrandom.com" ext-link-type="uri">http://www.neuromatic.thinkrandom.com</ext-link>), an open source set of functions for IGOR Pro, specifically for analysis of electrophysiological data. Experimental data traces can also be imported into <italic>neuroConstruct</italic> for direct comparison with simulation data.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="sec3">
+      <title>Discussion</title>
+      <p><italic>neuroConstruct</italic> is a new platform-independent software tool for constructing, visualizing, and analyzing conductance-based neural network models with properties that closely match the 3D neuronal morphology and connectivity of different brain regions. A user-friendly GUI allows models to be built, modified, and run without the need for specialist programming knowledge, providing accessibility to both experimentalists and theoreticians studying network function. Models built with <italic>neuroConstruct</italic> are simulator independent and can be automatically mapped onto the NEURON or GENESIS simulation environments for numerical integration. Model components are stored in a simulator-independent XML format, allowing interchange and reuse of model components across simulators. We have demonstrated the functionality of <italic>neuroConstruct</italic> by creating and analyzing a simple 3D network model of the cerebellar GrC layer.</p>
+      <sec id="sec3.1">
+        <title>Construction of 3D Neural Network Models</title>
+        <p>Quantitative measurements of network properties including cell densities, numbers of synaptic connections between cell groups, and dimensions of axonal and dendritic fields are available for several brain regions including cortex (<xref rid="bib24 bib61" ref-type="bibr">Douglas and Martin, 2004; Somogyi et al., 1998</xref>) and cerebellum (<xref rid="bib30 bib65" ref-type="bibr">Harvey and Napper, 1991; Sultan and Bower, 1998</xref>). However, generating biologically realistic 3D neuronal network models from such data has proven difficult using the direct scripting approach. This is because, unlike many random artificial networks, networks of neurons in the brain exhibit inhomogeneous connectivity probabilities (<xref rid="bib41" ref-type="bibr">Lubke et al., 2003</xref>), spatial clustering, and an enhanced probability of certain multicell motifs (<xref rid="bib62 bib63" ref-type="bibr">Song et al., 2005; Sporns and Kotter, 2004</xref>). These are due to a prevalence of local connections and the presence of local circuits (<xref rid="bib72" ref-type="bibr">Yoshimura and Callaway, 2005</xref>), which are thought to be essential for local computations (<xref rid="bib55" ref-type="bibr">Pouille and Scanziani, 2004</xref>).</p>
+        <p>Several core functions within <italic>neuroConstruct</italic> facilitate the generation of 3D network models with increased biological realism. These include the ability to import neuronal reconstructions in multiple file formats and the automated placement of cells in defined 3D patterns. Two algorithms enable synaptic connectivity to be generated in 3D space with subcellular specificity. The first was designed for cell models with fully reconstructed axons, axons that are rather invariant (e.g., PF-PC and Schaffer collateral-CA1 synaptic connections [<xref rid="bib60" ref-type="bibr">Shepherd, 1998</xref>]) and large terminals that innervate many postsynaptic cells (e.g., cerebellar MFs). The second is designed for cells with dense axonal arborizations that project over a particular region of 3D space (e.g., spiny stellate cells in cortex [<xref rid="bib41" ref-type="bibr">Lubke et al., 2003</xref>] and various interneurons in cortex, hippocampus, and cerebellum [<xref rid="bib60" ref-type="bibr">Shepherd, 1998</xref>]). Nonuniform network connectivity can be implemented in <italic>neuroConstruct</italic> by defining multiple groups of cells and/or connections and by applying connection probabilities that decay with distance. This potentially allows local circuits with spatially correlated synaptic connectivity, feed-forward inhibitory networks (<xref rid="bib72" ref-type="bibr">Yoshimura and Callaway, 2005</xref>), and networks with “small world” properties (<xref rid="bib70" ref-type="bibr">Watts and Strogatz, 1998</xref>) to be created. Also, highly skewed distributions of synaptic weights (<xref rid="bib62" ref-type="bibr">Song et al., 2005</xref>) could be implemented. This flexibility in the generation of circuits should allow a wide range of spatially nonuniform local circuits to be generated in <italic>neuroConstruct</italic>.</p>
+      </sec>
+      <sec id="sec3.2">
+        <title>Model Accessibility and Reuse</title>
+        <p>The accessibility of large-scale neural network models is currently limited by the fact that they are large specialized programs, often written in different languages, which run on different simulators (<xref rid="bib42 bib57 bib66" ref-type="bibr">Maex and De Schutter, 1998; Santhakumar et al., 2005; Traub et al., 2005</xref>). Modifying and rerunning such programs can be difficult and requires specialist programming knowledge. While recent efforts have been made to improve accessibility with the development of GUI interfaces in NEURON and GENESIS, network models are usually written and run using script files. We have addressed this issue by developing a GUI for <italic>neuroConstruct</italic> that allows networks to be built, visualized, and analyzed. Moreover, <italic>neuroConstruct</italic> automatically writes the simulation code and runs it on the chosen simulator (NEURON or GENESIS). No programming knowledge is therefore needed to create, run, and analyze a large network simulation using <italic>neuroConstruct</italic>. These features of <italic>neuroConstruct</italic> make neural network simulations more accessible to nonprogrammers, thereby providing a new tool for both research and teaching.</p>
+        <p>The latest NeuroML specifications (<xref rid="bib16 bib28" ref-type="bibr">Crook et al., 2007; Goddard et al., 2001</xref>) form the core of our simulator-independent model descriptions. Key advantages of using XML are the facilitated exchange of information between different applications, the simple validation of files, and the ability to include structured metadata describing the contents of the files. Increased adoption of these standards, which are also used in the latest version of NEURON and which will form the basis of model descriptions in GENESIS 3/MOOSE (currently under development at <ext-link xlink:href="http://sourceforge.net/projects/moose-g3" ext-link-type="uri">http://sourceforge.net/projects/moose-g3</ext-link>), will promote greater model reuse and collaboration between research groups on cellular and network models (<xref rid="bib14" ref-type="bibr">Cannon et al., 2007</xref>).</p>
+      </sec>
+      <sec id="sec3.3">
+        <title>Current Limitations and Future Developments</title>
+        <p><italic>neuroConstruct</italic> presently generates models that can be run on single-processor machines. The scale of simulations that can be run and visualized is therefore limited by the processor and video memory, respectively. We have run simulations of up to 5,000 multicompartmental neurons (50,000 simulated compartments) on a single processor with 2 GB of memory. This simulation could be visualized with a 128 MB video card. For larger simulations, the processor and video memories would have to be scaled up accordingly (we have visualized 50,000 multicompartmental neurons with a 256 MB video card and 8 GB of RAM). Simulations such as that illustrated in <xref rid="fig8" ref-type="fig">Figure 8</xref> (728 compartments) can take 1–2 hr for a 4 s simulation on a single processor, so if larger-scale simulations or extensive parameter searching is required, parallelization may be necessary. We plan to include in the next major release of <italic>neuroConstruct</italic> features for distributing multiple individual simulations using CONDOR (<ext-link xlink:href="http://www.cs.wisc.edu/condor" ext-link-type="uri">http://www.cs.wisc.edu/condor</ext-link>) and parallelization of large network simulations using the recently developed parallel version of NEURON (<xref rid="bib50" ref-type="bibr">Migliore et al., 2006</xref>), which is being used for simulations in the Blue Brain Project (<xref rid="bib45" ref-type="bibr">Markram, 2006</xref>). Parallel simulations will also be a key feature of GENESIS 3/MOOSE, which will be supported in future versions of <italic>neuroConstruct</italic>.</p>
+        <p>Functions beyond the scope of the <italic>neuroConstruct</italic> GUI interface can be added by inserting native NEURON or GENESIS code. We intend to improve the flexibility of <italic>neuroConstruct</italic> by including a Python-based (<ext-link xlink:href="http://www.python.org" ext-link-type="uri">http://www.python.org</ext-link>) scripting interface. This will allow greater access to the internal variables of a model, allowing easier parameter searching and model optimization. <italic>neuroConstruct</italic> is closely linked to the NeuroML initiative, and future extensions to ChannelML will allow the implementation of new channel types and plasticity mechanisms and will be more compatible with systems biology standards (<xref rid="bib27" ref-type="bibr">Finkelstein et al., 2004</xref>) such as with SBML (<xref rid="bib35" ref-type="bibr">Hucka et al., 2003</xref>) and CellML (<xref rid="bib40" ref-type="bibr">Lloyd et al., 2004</xref>). This opens the possibility of interaction with 3D diffusion-reaction packages like MCell (<ext-link xlink:href="http://www.mcell.cnl.salk.edu" ext-link-type="uri">http://www.mcell.cnl.salk.edu</ext-link>) and VCell (<ext-link xlink:href="http://www.nrcam.uchc.edu" ext-link-type="uri">http://www.nrcam.uchc.edu</ext-link>), although the difference between the morphological representations in these and compartmental neuronal simulators could be restrictive. On the network connectivity side, work is ongoing in the NeuroML project with the developers of Topographica (<xref rid="bib5" ref-type="bibr">Bednar et al., 2004</xref>), NEST (<xref rid="bib22" ref-type="bibr">Diesmann and Gewaltig, 2002</xref>), and Neurospaces (<xref rid="bib15" ref-type="bibr">Cornelis and De Schutter, 2003</xref>), to gain a broad consensus on descriptions of network connectivity.</p>
+      </sec>
+      <sec id="sec3.4">
+        <title>Toward More Realistic Models of Brain Function</title>
+        <p>The modular structure of <italic>neuroConstruct</italic> allows the addition of new features which extend the cellular and network model representations, ensuring compatibility with future advances in our understanding of brain mechanisms. For example, the 3D spatial information can be used to investigate the role of diffusion in brain function. We have implemented a simple model of a diffusible substance that transiently depresses synaptic conductances (<xref rid="app2" ref-type="sec">Figure S2</xref>). Although oversimplified, this proof of concept simulation illustrates how <italic>neuroConstruct</italic> could be used to examine volume-signaling mechanisms such as NO or the relationship between metabolism and neuronal activity, which underlies functional imaging (<xref rid="bib4" ref-type="bibr">Attwell and Iadecola, 2002</xref>). Extensions currently envisioned that will allow greater biological realism include automated generation of heterogeneous cell morphologies, using approaches similar to L-Neuron (<xref rid="bib3" ref-type="bibr">Ascoli et al., 2001</xref>) or NeuGen (<xref rid="bib25" ref-type="bibr">Eberhard et al., 2006</xref>). Moreover, detailed reconstruction of large blocks of tissue using serial block face scanning EM could provide more accurate information about the 3D circuit topology and local spatial arrangements of synapses. Indeed, it even opens the possibility of including ultrastructure at 30 nm resolution (<xref rid="bib9" ref-type="bibr">Briggman and Denk, 2006</xref>), which would allow more detailed diffusion models. If such EM data stacks were converted into compartmentalized anatomical objects and stored in MorphML format, they could then be directly imported into <italic>neuroConstruct</italic> and used to build network models. This combination of technologies would open the possibility of 3D network modeling with unprecedented levels of biological realism.</p>
+      </sec>
+      <sec id="sec3.5">
+        <title>Conclusion</title>
+        <p>By providing a tool for building, visualizing, and analyzing network models in 3D space using a user-friendly GUI, without the need for programming, <italic>neuroConstruct</italic> increases the accessibility of modeling brain function. The new functionality and accessibility provided by <italic>neuroConstruct</italic> makes it suitable for both experimentalists and theoreticians. It can also be used for teaching network function in health and disease. The 3D models generated will allow simulations of increased biological realism, enabling more direct comparisons with results from new experimental methods for measuring neural activity in 3D at high spatial and temporal resolution.</p>
+      </sec>
+    </sec>
+    <sec sec-type="materials-methods" id="sec4">
+      <title>Experimental Procedures</title>
+      <sec id="sec4.1">
+        <title>Morphology</title>
+        <p><italic>neuroConstruct</italic> uses a simulator-independent representation of neuronal morphology, which allows translation between simulator-specific formats. In NEURON, unbranched neurites are specified in 3D by a sequence of points and diameters, outlining their shapes (termed sections). Membrane surface area and axial resistance are computed from these values. Sections can be subdivided into evenly spaced segments (by specifying the variable <italic>nseg</italic>) for numerical integration, which is carried out at their center points. In contrast, GENESIS uses a single unit, termed a compartment, as the building block for both morphology and numerical integration. <italic>neuroConstruct</italic> defines a section (which maps directly onto a NEURON section) as an unbranched part of the neuronal morphology with uniform biophysical properties. Sections contain one or more segments whose endpoints give the 3D structure along the section. Note that the number of anatomical segments in <italic>neuroConstruct</italic> is not the same as <italic>nseg</italic> in NEURON. Instead, the <italic>nseg</italic>/spatial discretization value is a property of the <italic>neuroConstruct</italic> section. For GENESIS, each <italic>neuroConstruct</italic> segment is mapped to a single compartment.</p>
+        <p>Manual editing of the imported morphologies is possible, and <italic>neuroConstruct</italic> can also recompartmentalize neurons, allowing morphologies originally in Neurolucida or NEURON format (e.g., 4000–5000 segments) to be mapped onto a reduced number of segments/GENESIS compartments (∼500–1000; <xref rid="app2" ref-type="sec">Figure S1</xref>). Overall cell structure is preserved, and each section (e.g., five to ten segments) is mapped onto two single-segment cylindrical sections (<xref rid="fig2" ref-type="fig">Figure 2</xref>B) corresponding to GENESIS compartments. The radii of the cylinders are calculated to preserve cell membrane surface area, total length, and axial resistance along sections. There is a one-to-one mapping between <italic>neuroConstruct</italic> and MorphML format (<xref rid="bib16" ref-type="bibr">Crook et al., 2007</xref>); segments are mapped to segment elements, and sections are mapped to cable elements. Automatic checks in <italic>neuroConstruct</italic> signal potential problems with morphologies including dendritic segments of zero diameter or zero length and dendrites that are detached from the cell body.</p>
+      </sec>
+      <sec id="sec4.2">
+        <title>Cell Mechanisms</title>
+        <p>Models of cell mechanisms can be specified using a simulator-independent ChannelML description (further examples can be obtained from <ext-link xlink:href="http://www.morphml.org:8080/NeuroMLValidator" ext-link-type="uri">http://www.morphml.org:8080/NeuroMLValidator</ext-link>) or by a simulator-dependent native script language (NMODL or GENESIS script) which creates and sets the parameters for the object enabling the mechanism. For NEURON, the NMODL files are compiled automatically before the simulation is run.</p>
+      </sec>
+      <sec id="sec4.3">
+        <title>Connectivity Algorithms</title>
+        <p>Connections can be defined relative to the pre- or postsynaptic cell. Each source cell is assigned a number of connections, which can be fixed or variable within set bounds. One or more synaptic mechanisms are associated with the connection, and these can have variable or fixed weights and internal delays. With the morphology-based connection, the target cell can be chosen at random, can be the closest available cell, or the closest cell from a random pool of n possible locations. Maximum and minimum connection lengths can also be set. It is often convenient to calculate the time the AP takes to get from the soma to the synaptic terminal, rather than model the axonal sections explicitly, to reduce computational overhead. AP propagation speed can be specified for cells, and <italic>neuroConstruct</italic> will calculate the extra synaptic delay from the axonal morphology. For the volume-based connection, an axonal arborization volume is defined and any appropriate target segment falling within this region is a candidate for a connection. Nonuniform connectivity is generated by assigning putative connection locations a connection probability that is a function of radial distance or x, y, z coordinates relative to the source soma. The spatial-dependence function can be defined by the user. A connection is made if a random number (0–1) is ≤ the connection probability; otherwise, another random location is picked until all connections are made.</p>
+      </sec>
+      <sec id="sec4.4">
+        <title>Network Model Details</title>
+        <p>In the 1D GrC model, MFs were modeled as single compartments, firing Poisson trains of random spikes. Twelve MFs were placed along a 900 μm line, and the 75 GrCs and 4 GoCs were displaced vertically to facilitate visualization. Synaptic connections between MFs and GrCs had both AMPA and NMDA receptor synaptic mechanisms, with random weights (multiplicative factors of a physiological synaptic conductance) of 5.1–6.9 and 3.4–4.6, respectively. Each GrC was connected to four random MFs within a horizontal distance of 400 μm, giving a radius of influence of five times MF separation. This differed from the combinatorial expansion in the original model but produced an equivalent number of MF-GrC inputs, a similar radius of influence for each MF and more anatomical realism in the stochasticity of the connection. Each GrC connected to all four GoCs via an AMPA receptor synaptic mechanism with a random weight 0.51–0.69. The inhibitory GoCs-GrC connections had a GABA<sub>A</sub> receptor synaptic connection with a random weight of 38.25–51.75, and each GrC was connected to closest GoC. In our 3D model, the number of cells in the GrC layer reflects a scaling up of the 1D network model by eight times. GrCs consisted of a soma and a bifurcated axon which formed the parallel fibers (PFs). The segments for these axons were not explicitly simulated; an AP propagation speed was specified to provide the extra synaptic delay. GoCs consisted of a soma, taken from the previous model, together with a single dendrite of similar length to the ascending segment of the GrC. The number of MF connections to each GrC was taken from a truncated Gaussian distribution (max 7, min 3, mean 4), reflecting experimentally measured numbers (<xref rid="bib26" ref-type="bibr">Eccles et al., 1967</xref>).</p>
+        <p>The dentate gyrus model implemented in <italic>neuroConstruct</italic> (<xref rid="fig6" ref-type="fig">Figure 6</xref>C) was based on a topographic strip rather than the ring (see <xref rid="fig3" ref-type="fig">Figure 3</xref> of <xref rid="bib57" ref-type="bibr">Santhakumar et al. [2005]</xref>) used to eliminate edge effects. Postsynaptic target cells were selected by setting maximum and minimum distances for synaptic connection lengths along the line of cell bodies using the morphology-based connection algorithm. Since only 5 of the 11 channel mechanisms were covered by the ChannelML specifications, we reused existing NMODL files for the remaining channels. The original model was downloaded from <ext-link xlink:href="http://senselab.med.yale.edu/senselab/modeldb/ShowModel.asp?model=51781" ext-link-type="uri">http://senselab.med.yale.edu/senselab/modeldb/ShowModel.asp?model=51781</ext-link>, and the perforant path inputs were positioned at GrCs 200–299, to facilitate comparison to the <italic>neuroConstruct</italic> model. Network generation in <italic>neuroConstruct</italic> resulted in similar means but some differences in the standard deviations of synaptic convergence (Table 3 of <xref rid="bib57" ref-type="bibr">Santhakumar et al. [2005]</xref>). The small divergence of behavior when the wave of activation reached the end of the strip (<xref rid="fig6" ref-type="fig">Figure 6</xref>D) is also due to the change from a ring structure to a linear network topology.</p>
+      </sec>
+    </sec>
+    <sec id="app1" sec-type="supplementary-material">
+      <title>Supplemental Data</title>
+      <p>The Supplemental Data for this article can be found online at <ext-link xlink:href="http://www.neuron.org/cgi/content/full/54/2/219/DC1/" ext-link-type="uri">http://www.neuron.org/cgi/content/full/54/2/219/DC1/</ext-link>.</p>
+    </sec>
+    <sec id="app2" sec-type="supplementary-material">
+      <title>Supplemental Data</title>
+      <p>
+        <supplementary-material content-type="local-data" id="mmc1">
+          <caption>
+            <title>Document S1. Two Figures</title>
+          </caption>
+          <media xlink:href="mmc1.pdf" mimetype="application" mime-subtype="pdf"/>
+        </supplementary-material>
+      </p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>We thank Robert Cannon, Fred Howell and Arnd Roth for helpful discussions, the NEURON and GENESIS development teams, especially Michael Hines and Dave Beeman, and Sharon Crook and the other members of the NeuroML initiative. We are grateful to the beta testers, especially Chiara Saviane, and to David Attwell, Mark Farrant, Clare Howarth, Zoltan Nusser, and Arnd Roth for comments on the manuscript. Funded by the MRC (G0100853, G0400598, G90/100), Wellcome Trust, and the EU (EUSynapse LSHM-CT-2005-019055). P.G. holds an MRC Special Research Training Fellowship, and R.A.S. is in receipt of a Wellcome Trust Senior Research Fellowship.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>Alger, 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alger</surname>
+              <given-names>B.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Retrograde signaling in the regulation of synaptic transmission: focus on endocannabinoids</article-title>
+          <source>Prog. Neurobiol.</source>
+          <year>2002</year>
+          <volume>68</volume>
+          <fpage>247</fpage>
+          <lpage>286</lpage>
+          <pub-id pub-id-type="pmid">12498988</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <label>Ascoli, 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ascoli</surname>
+              <given-names>G.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mobilizing the base of neuroscience data: the case of neuronal morphologies</article-title>
+          <source>Nat. Rev. Neurosci.</source>
+          <year>2006</year>
+          <volume>7</volume>
+          <fpage>318</fpage>
+          <lpage>324</lpage>
+          <pub-id pub-id-type="pmid">16552417</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <label>Ascoli et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ascoli</surname>
+              <given-names>G.A.</given-names>
+            </name>
+            <name>
+              <surname>Krichmar</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Nasuto</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Senft</surname>
+              <given-names>S.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Generation, description and storage of dendritic morphology data</article-title>
+          <source>Philos. Trans. R. Soc. Lond. B Biol. Sci.</source>
+          <year>2001</year>
+          <volume>356</volume>
+          <fpage>1131</fpage>
+          <lpage>1145</lpage>
+          <pub-id pub-id-type="pmid">11545695</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <label>Attwell and Iadecola, 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Attwell</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Iadecola</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>The neural basis of functional brain imaging signals</article-title>
+          <source>Trends Neurosci.</source>
+          <year>2002</year>
+          <volume>25</volume>
+          <fpage>621</fpage>
+          <lpage>625</lpage>
+          <pub-id pub-id-type="pmid">12446129</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <label>Bednar et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bednar</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Choe</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>De Paula</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Miikkulainen</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Provost</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tversky</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modeling cortical maps with Topographica</article-title>
+          <source>Neurocomputing</source>
+          <year>2004</year>
+          <volume>58-60</volume>
+          <fpage>1129</fpage>
+          <lpage>1135</lpage>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <label>Berends et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berends</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Maex</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>De Schutter</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A detailed three-dimensional model of the cerebellar granule cell layer</article-title>
+          <source>Neurocomputing</source>
+          <year>2004</year>
+          <volume>58–60</volume>
+          <fpage>587</fpage>
+          <lpage>592</lpage>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <label>Blomfield, 1974</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Blomfield</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Arithmetical operations performed by nerve cells</article-title>
+          <source>Brain Res.</source>
+          <year>1974</year>
+          <volume>69</volume>
+          <fpage>115</fpage>
+          <lpage>124</lpage>
+          <pub-id pub-id-type="pmid">4817903</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <label>Bower and Beeman, 1997</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bower</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Beeman</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Book of GENESIS: Exploring Realistic Neural Models with the GEneral NEural SImulation System</article-title>
+          <year>1997</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <label>Briggman and Denk, 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Briggman</surname>
+              <given-names>K.L.</given-names>
+            </name>
+            <name>
+              <surname>Denk</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards neural circuit reconstruction with volume electron microscopy techniques</article-title>
+          <source>Curr. Opin. Neurobiol.</source>
+          <year>2006</year>
+          <volume>16</volume>
+          <fpage>562</fpage>
+          <lpage>570</lpage>
+          <pub-id pub-id-type="pmid">16962767</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <label>Buonomano, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buonomano</surname>
+              <given-names>D.V.</given-names>
+            </name>
+          </person-group>
+          <article-title>Decoding temporal information: a model based on short-term synaptic plasticity</article-title>
+          <source>J. Neurosci.</source>
+          <year>2000</year>
+          <volume>20</volume>
+          <fpage>1129</fpage>
+          <lpage>1141</lpage>
+          <pub-id pub-id-type="pmid">10648718</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <label>Bush et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bush</surname>
+              <given-names>P.C.</given-names>
+            </name>
+            <name>
+              <surname>Prince</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>K.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Increased pyramidal excitability and NMDA conductance can explain posttraumatic epileptogenesis without disinhibition: a model</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>1999</year>
+          <volume>82</volume>
+          <fpage>1748</fpage>
+          <lpage>1758</lpage>
+          <pub-id pub-id-type="pmid">10515964</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <label>Buzsaki, 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buzsaki</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Large-scale recording of neuronal ensembles</article-title>
+          <source>Nat. Neurosci.</source>
+          <year>2004</year>
+          <volume>7</volume>
+          <fpage>446</fpage>
+          <lpage>451</lpage>
+          <pub-id pub-id-type="pmid">15114356</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <label>Cannon et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cannon</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Pyapali</surname>
+              <given-names>G.K.</given-names>
+            </name>
+            <name>
+              <surname>Wheal</surname>
+              <given-names>H.V.</given-names>
+            </name>
+          </person-group>
+          <article-title>An on-line archive of reconstructed hippocampal neurons</article-title>
+          <source>J. Neurosci. Methods</source>
+          <year>1998</year>
+          <volume>84</volume>
+          <fpage>49</fpage>
+          <lpage>54</lpage>
+          <pub-id pub-id-type="pmid">9821633</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <label>Cannon et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cannon</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Gewaltig</surname>
+              <given-names>M.O.</given-names>
+            </name>
+            <name>
+              <surname>Gleeson</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Bhalla</surname>
+              <given-names>U.S.</given-names>
+            </name>
+            <name>
+              <surname>Cornelis</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Hines</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Howell</surname>
+              <given-names>F.W.</given-names>
+            </name>
+            <name>
+              <surname>Muller</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Stiles</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Wils</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>De Schutter</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Interoperability of neuroscience modeling software: current status and future directions</article-title>
+          <source>Neuroinformatics</source>
+          <year>2007</year>
+          <comment>in press</comment>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <label>Cornelis and De Schutter, 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cornelis</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>De Schutter</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>NeuroSpaces: separating modeling and simulation</article-title>
+          <source>Neurocomputing</source>
+          <year>2003</year>
+          <volume>52-4</volume>
+          <fpage>227</fpage>
+          <lpage>231</lpage>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <label>Crook et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crook</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gleeson</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Howell</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Svitak</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Silver</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>MorphML: level 1 of the NeuroML standards for neuronal morphology data and model specification</article-title>
+          <source>Neuroinformatics</source>
+          <year>2007</year>
+          <comment>in press</comment>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <label>Davison et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Davison</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Feng</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dendrodendritic inhibition and simulated odor responses in a detailed olfactory bulb network model</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>2003</year>
+          <volume>90</volume>
+          <fpage>1921</fpage>
+          <lpage>1935</lpage>
+          <pub-id pub-id-type="pmid">12736241</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <label>De Schutter and Bower, 1994</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>De Schutter</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Bower</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>An active membrane model of the cerebellar Purkinje cell. I. Simulation of current clamps in slice</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>1994</year>
+          <volume>71</volume>
+          <fpage>375</fpage>
+          <lpage>400</lpage>
+          <pub-id pub-id-type="pmid">7512629</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <label>De Schutter et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>De Schutter</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Ekeberg</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Kotaleski</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Achard</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Lansner</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Biophysically detailed modelling of microcircuits and beyond</article-title>
+          <source>Trends Neurosci.</source>
+          <year>2005</year>
+          <volume>28</volume>
+          <fpage>562</fpage>
+          <lpage>569</lpage>
+          <pub-id pub-id-type="pmid">16118023</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <label>Destexhe and Pare, 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Destexhe</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pare</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Impact of network activity on the integrative properties of neocortical pyramidal neurons in vivo</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>1999</year>
+          <volume>81</volume>
+          <fpage>1531</fpage>
+          <lpage>1547</lpage>
+          <pub-id pub-id-type="pmid">10200189</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <label>Destexhe and Marder, 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Destexhe</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Marder</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Plasticity in single neuron and circuit computations</article-title>
+          <source>Nature</source>
+          <year>2004</year>
+          <volume>431</volume>
+          <fpage>789</fpage>
+          <lpage>795</lpage>
+          <pub-id pub-id-type="pmid">15483600</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <label>Diesmann and Gewaltig, 2002</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Diesmann</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Gewaltig</surname>
+              <given-names>M.-O.</given-names>
+            </name>
+          </person-group>
+          <article-title>NEST: An Environment for Neural Systems Simulations</article-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Plesser</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Macho</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <source>Forschung und wisschenschaftliches Rechnen, Beitrage zum Heinz-Billing-Preis 2001, Volume 58</source>
+          <year>2002</year>
+          <publisher-name>Ges. fur Wiss. Datenverarbeitung</publisher-name>
+          <publisher-loc>Gottingen, Germany</publisher-loc>
+          <fpage>43</fpage>
+          <lpage>70</lpage>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <label>Dieudonne, 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dieudonne</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Submillisecond kinetics and low efficacy of parallel fibre-Golgi cell synaptic currents in the rat cerebellum</article-title>
+          <source>J. Physiol.</source>
+          <year>1998</year>
+          <volume>510</volume>
+          <fpage>845</fpage>
+          <lpage>866</lpage>
+          <pub-id pub-id-type="pmid">9660898</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <label>Douglas and Martin, 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Douglas</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>K.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuronal circuits of the neocortex</article-title>
+          <source>Annu. Rev. Neurosci.</source>
+          <year>2004</year>
+          <volume>27</volume>
+          <fpage>419</fpage>
+          <lpage>451</lpage>
+          <pub-id pub-id-type="pmid">15217339</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <label>Eberhard et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eberhard</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Wanner</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wittum</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>NeuGen: a tool for the generation of realistic morphology of cortical neurons and neural networks in 3D</article-title>
+          <source>Neurocomputing</source>
+          <year>2006</year>
+          <volume>70</volume>
+          <fpage>327</fpage>
+          <lpage>342</lpage>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <label>Eccles et al., 1967</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eccles</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Ito</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Szentagothai</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Cerebellum as a Neuronal Machine</article-title>
+          <year>1967</year>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <publisher-loc>Berlin</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <label>Finkelstein et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Finkelstein</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hetherington</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>L.Z.</given-names>
+            </name>
+            <name>
+              <surname>Margoninski</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Saffrey</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Seymour</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Warner</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational challenges of systems biology</article-title>
+          <source>Computer</source>
+          <year>2004</year>
+          <volume>37</volume>
+          <fpage>26</fpage>
+          <lpage>33</lpage>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <label>Goddard et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goddard</surname>
+              <given-names>N.H.</given-names>
+            </name>
+            <name>
+              <surname>Hucka</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Howell</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Cornelis</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Shankar</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Beeman</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards NeuroML: model description methods for collaborative modelling in neuroscience</article-title>
+          <source>Philos. Trans. R. Soc. Lond. B Biol. Sci.</source>
+          <year>2001</year>
+          <volume>356</volume>
+          <fpage>1209</fpage>
+          <lpage>1228</lpage>
+          <pub-id pub-id-type="pmid">11545699</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <label>Hanson et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hanson</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Jaeger</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sodium channels and dendritic spike initiation at excitatory synapses in globus pallidus neurons</article-title>
+          <source>J. Neurosci.</source>
+          <year>2004</year>
+          <volume>24</volume>
+          <fpage>329</fpage>
+          <lpage>340</lpage>
+          <pub-id pub-id-type="pmid">14724231</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <label>Harvey and Napper, 1991</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harvey</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Napper</surname>
+              <given-names>R.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitative studies on the mammalian cerebellum</article-title>
+          <source>Prog. Neurobiol.</source>
+          <year>1991</year>
+          <volume>36</volume>
+          <fpage>437</fpage>
+          <lpage>463</lpage>
+          <pub-id pub-id-type="pmid">1947173</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <label>Hines and Carnevale, 1997</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hines</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Carnevale</surname>
+              <given-names>N.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>The NEURON simulation environment</article-title>
+          <source>Neural Comput.</source>
+          <year>1997</year>
+          <volume>9</volume>
+          <fpage>1179</fpage>
+          <lpage>1209</lpage>
+          <pub-id pub-id-type="pmid">9248061</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <label>Hines and Carnevale, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hines</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Carnevale</surname>
+              <given-names>N.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Expanding NEURON's repertoire of mechanisms with NMODL</article-title>
+          <source>Neural Comput.</source>
+          <year>2000</year>
+          <volume>12</volume>
+          <fpage>995</fpage>
+          <lpage>1007</lpage>
+          <pub-id pub-id-type="pmid">10905805</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <label>Hines et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hines</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Morse</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Migliore</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Carnevale</surname>
+              <given-names>N.T.</given-names>
+            </name>
+            <name>
+              <surname>Shepherd</surname>
+              <given-names>G.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>ModelDB: a database to support computational neuroscience</article-title>
+          <source>J. Comput. Neurosci.</source>
+          <year>2004</year>
+          <volume>17</volume>
+          <fpage>7</fpage>
+          <lpage>11</lpage>
+          <pub-id pub-id-type="pmid">15218350</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <label>Howell et al., 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Howell</surname>
+              <given-names>F.W.</given-names>
+            </name>
+            <name>
+              <surname>Dyhrfjeld-Johnsen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Maex</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Goddard</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>De Schutter</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A large scale model of the cerebellar cortex using PGENESIS</article-title>
+          <source>Neurocomputing</source>
+          <year>2000</year>
+          <volume>32-33</volume>
+          <fpage>1041</fpage>
+          <lpage>1046</lpage>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <label>Hucka et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hucka</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Finney</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Sauro</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Bolouri</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Doyle</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Kitano</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Arkin</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Bornstein</surname>
+              <given-names>B.J.</given-names>
+            </name>
+            <name>
+              <surname>Bray</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Cornish-Bowden</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The systems biology markup language (SBML): a medium for representation and exchange of biochemical network models</article-title>
+          <source>Bioinformatics</source>
+          <year>2003</year>
+          <volume>19</volume>
+          <fpage>524</fpage>
+          <lpage>531</lpage>
+          <pub-id pub-id-type="pmid">12611808</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <label>Ito, 1984</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ito</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Cerebellum and Neural Control</article-title>
+          <year>1984</year>
+          <publisher-name>Raven Press</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <label>Jacoby et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jacoby</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Sims</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Hartell</surname>
+              <given-names>N.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nitric oxide is required for the induction and heterosynaptic spread of long-term potentiation in rat cerebellar slices</article-title>
+          <source>J. Physiol.</source>
+          <year>2001</year>
+          <volume>535</volume>
+          <fpage>825</fpage>
+          <lpage>839</lpage>
+          <pub-id pub-id-type="pmid">11559778</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <label>Jarsky et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jarsky</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Roxin</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kath</surname>
+              <given-names>W.L.</given-names>
+            </name>
+            <name>
+              <surname>Spruston</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Conditional dendritic spike propagation following distal synaptic activation of hippocampal CA1 pyramidal neurons</article-title>
+          <source>Nat. Neurosci.</source>
+          <year>2005</year>
+          <volume>8</volume>
+          <fpage>1667</fpage>
+          <lpage>1676</lpage>
+          <pub-id pub-id-type="pmid">16299501</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <label>Kunec et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kunec</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Hasselmo</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>Kopell</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Encoding and retrieval in the CA3 region of the hippocampus: a model of theta-phase separation</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>2005</year>
+          <volume>94</volume>
+          <fpage>70</fpage>
+          <lpage>82</lpage>
+          <pub-id pub-id-type="pmid">15728768</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <label>Lloyd et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lloyd</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Halstead</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Nielsen</surname>
+              <given-names>P.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>CellML: its future, present and past</article-title>
+          <source>Prog. Biophys. Mol. Biol.</source>
+          <year>2004</year>
+          <volume>85</volume>
+          <fpage>433</fpage>
+          <lpage>450</lpage>
+          <pub-id pub-id-type="pmid">15142756</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <label>Lubke et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lubke</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Roth</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Feldmeyer</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Sakmann</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Morphometric analysis of the columnar innervation domain of neurons connecting layer 4 and layer 2/3 of juvenile rat barrel cortex</article-title>
+          <source>Cereb. Cortex</source>
+          <year>2003</year>
+          <volume>13</volume>
+          <fpage>1051</fpage>
+          <lpage>1063</lpage>
+          <pub-id pub-id-type="pmid">12967922</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <label>Maex and De Schutter, 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Maex</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>De Schutter</surname>
+              <given-names>E.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Synchronization of golgi and granule cell firing in a detailed network model of the cerebellar granule cell layer</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>1998</year>
+          <volume>80</volume>
+          <fpage>2521</fpage>
+          <lpage>2537</lpage>
+          <pub-id pub-id-type="pmid">9819260</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <label>Mainen and Sejnowski, 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mainen</surname>
+              <given-names>Z.F.</given-names>
+            </name>
+            <name>
+              <surname>Sejnowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Influence of dendritic structure on firing pattern in model neocortical neurons</article-title>
+          <source>Nature</source>
+          <year>1996</year>
+          <volume>382</volume>
+          <fpage>363</fpage>
+          <lpage>366</lpage>
+          <pub-id pub-id-type="pmid">8684467</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <label>Mainen et al., 1995</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mainen</surname>
+              <given-names>Z.F.</given-names>
+            </name>
+            <name>
+              <surname>Joerges</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Huguenard</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Sejnowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A model of spike initiation in neocortical pyramidal neurons</article-title>
+          <source>Neuron</source>
+          <year>1995</year>
+          <volume>15</volume>
+          <fpage>1427</fpage>
+          <lpage>1439</lpage>
+          <pub-id pub-id-type="pmid">8845165</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <label>Markram, 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Markram</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Blue Brain Project</article-title>
+          <source>Nat. Rev. Neurosci.</source>
+          <year>2006</year>
+          <volume>7</volume>
+          <fpage>153</fpage>
+          <lpage>160</lpage>
+          <pub-id pub-id-type="pmid">16429124</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib46">
+        <label>Markram et al., 1997</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Markram</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Lubke</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Frotscher</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Roth</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Sakmann</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Physiology and anatomy of synaptic connections between thick tufted pyramidal neurones in the developing rat neocortex</article-title>
+          <source>J. Physiol.</source>
+          <year>1997</year>
+          <volume>500</volume>
+          <fpage>409</fpage>
+          <lpage>440</lpage>
+          <pub-id pub-id-type="pmid">9147328</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <label>Medina and Mauk, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Medina</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Mauk</surname>
+              <given-names>M.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computer simulation of cerebellar information processing</article-title>
+          <source>Nat. Neurosci.</source>
+          <year>2000</year>
+          <volume>3</volume>
+          <issue>Suppl.</issue>
+          <fpage>1205</fpage>
+          <lpage>1211</lpage>
+          <pub-id pub-id-type="pmid">11127839</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib48">
+        <label>Mel, 1993</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mel</surname>
+              <given-names>B.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Synaptic integration in an excitable dendritic tree</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>1993</year>
+          <volume>70</volume>
+          <fpage>1086</fpage>
+          <lpage>1101</lpage>
+          <pub-id pub-id-type="pmid">8229160</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib49">
+        <label>Migliore et al., 1995</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Migliore</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Cook</surname>
+              <given-names>E.P.</given-names>
+            </name>
+            <name>
+              <surname>Jaffe</surname>
+              <given-names>D.B.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Johnston</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computer simulations of morphologically reconstructed CA3 hippocampal neurons</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>1995</year>
+          <volume>73</volume>
+          <fpage>1157</fpage>
+          <lpage>1168</lpage>
+          <pub-id pub-id-type="pmid">7608762</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib50">
+        <label>Migliore et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Migliore</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Cannia</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Lytton</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Markram</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Hines</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Parallel network simulations with NEURON</article-title>
+          <source>J. Comput. Neurosci.</source>
+          <year>2006</year>
+          <volume>21</volume>
+          <fpage>119</fpage>
+          <lpage>129</lpage>
+          <pub-id pub-id-type="pmid">16732488</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib51">
+        <label>Mitchell and Silver, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mitchell</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Silver</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Glutamate spillover suppresses inhibition by activating presynaptic mGluRs</article-title>
+          <source>Nature</source>
+          <year>2000</year>
+          <volume>404</volume>
+          <fpage>498</fpage>
+          <lpage>502</lpage>
+          <pub-id pub-id-type="pmid">10761918</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib52">
+        <label>Nicolelis and Ribeiro, 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nicolelis</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Ribeiro</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multielectrode recordings: the next steps</article-title>
+          <source>Curr. Opin. Neurobiol.</source>
+          <year>2002</year>
+          <volume>12</volume>
+          <fpage>602</fpage>
+          <lpage>606</lpage>
+          <pub-id pub-id-type="pmid">12367642</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib53">
+        <label>Ohki et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ohki</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Chung</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ch'ng</surname>
+              <given-names>Y.H.</given-names>
+            </name>
+            <name>
+              <surname>Kara</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Reid</surname>
+              <given-names>R.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional imaging with cellular resolution reveals precise micro-architecture in visual cortex</article-title>
+          <source>Nature</source>
+          <year>2005</year>
+          <volume>433</volume>
+          <fpage>597</fpage>
+          <lpage>603</lpage>
+          <pub-id pub-id-type="pmid">15660108</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib54">
+        <label>Poirazi et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poirazi</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Brannon</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Mel</surname>
+              <given-names>B.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Pyramidal neuron as two-layer neural network</article-title>
+          <source>Neuron</source>
+          <year>2003</year>
+          <volume>37</volume>
+          <fpage>989</fpage>
+          <lpage>999</lpage>
+          <pub-id pub-id-type="pmid">12670427</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib55">
+        <label>Pouille and Scanziani, 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pouille</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Scanziani</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Routing of spike series by dynamic circuits in the hippocampus</article-title>
+          <source>Nature</source>
+          <year>2004</year>
+          <volume>429</volume>
+          <fpage>717</fpage>
+          <lpage>723</lpage>
+          <pub-id pub-id-type="pmid">15170216</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib56">
+        <label>Rall et al., 1967</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rall</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Burke</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>T.G.</given-names>
+            </name>
+            <name>
+              <surname>Nelson</surname>
+              <given-names>P.G.</given-names>
+            </name>
+            <name>
+              <surname>Frank</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dendritic location of synapses and possible mechanisms for the monosynaptic EPSP in motoneurons</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>1967</year>
+          <volume>30</volume>
+          <fpage>1169</fpage>
+          <lpage>1193</lpage>
+          <pub-id pub-id-type="pmid">4293410</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib57">
+        <label>Santhakumar et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Santhakumar</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Aradi</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Soltesz</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Role of mossy fiber sprouting and mossy cell loss in hyperexcitability: a network model of the dentate gyrus incorporating cell types and axonal topography</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>2005</year>
+          <volume>93</volume>
+          <fpage>437</fpage>
+          <lpage>453</lpage>
+          <pub-id pub-id-type="pmid">15342722</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib58">
+        <label>Schweighofer and Ferriol, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schweighofer</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Ferriol</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Diffusion of nitric oxide can facilitate cerebellar learning: a simulation study</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2000</year>
+          <volume>97</volume>
+          <fpage>10661</fpage>
+          <lpage>10665</lpage>
+          <pub-id pub-id-type="pmid">10984547</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib59">
+        <label>Segev and London, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Segev</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>London</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Untangling dendrites with quantitative models</article-title>
+          <source>Science</source>
+          <year>2000</year>
+          <volume>290</volume>
+          <fpage>744</fpage>
+          <lpage>750</lpage>
+          <pub-id pub-id-type="pmid">11052930</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib60">
+        <label>Shepherd, 1998</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shepherd</surname>
+              <given-names>G.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Synaptic Organization of the Brain</article-title>
+          <edition>Fourth Edition</edition>
+          <year>1998</year>
+          <publisher-name>University Press</publisher-name>
+          <publisher-loc>Oxford</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib61">
+        <label>Somogyi et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Somogyi</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Tamas</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Lujan</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Buhl</surname>
+              <given-names>E.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Salient features of synaptic organisation in the cerebral cortex</article-title>
+          <source>Brain Res. Brain Res. Rev.</source>
+          <year>1998</year>
+          <volume>26</volume>
+          <fpage>113</fpage>
+          <lpage>135</lpage>
+          <pub-id pub-id-type="pmid">9651498</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib62">
+        <label>Song et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Song</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Sjostrom</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Reigl</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Nelson</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Chklovskii</surname>
+              <given-names>D.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Highly nonrandom features of synaptic connectivity in local cortical circuits</article-title>
+          <source>PLoS Biol.</source>
+          <year>2005</year>
+          <volume>3</volume>
+          <fpage>e68</fpage>
+          <pub-id pub-id-type="pmid">15737062</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib63">
+        <label>Sporns and Kotter, 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sporns</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Kotter</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motifs in brain networks</article-title>
+          <source>PLoS Biol.</source>
+          <year>2004</year>
+          <volume>2</volume>
+          <fpage>e369</fpage>
+          <pub-id pub-id-type="pmid">15510229</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib64">
+        <label>Stosiek et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stosiek</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Garaschuk</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Holthoff</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Konnerth</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>In vivo two-photon calcium imaging of neuronal networks</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2003</year>
+          <volume>100</volume>
+          <fpage>7319</fpage>
+          <lpage>7324</lpage>
+          <pub-id pub-id-type="pmid">12777621</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib65">
+        <label>Sultan and Bower, 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sultan</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Bower</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitative Golgi study of the rat cerebellar molecular layer interneurons using principal component analysis</article-title>
+          <source>J. Comp. Neurol.</source>
+          <year>1998</year>
+          <volume>393</volume>
+          <fpage>353</fpage>
+          <lpage>373</lpage>
+          <pub-id pub-id-type="pmid">9548555</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib66">
+        <label>Traub et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Traub</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Contreras</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Cunningham</surname>
+              <given-names>M.O.</given-names>
+            </name>
+            <name>
+              <surname>Murray</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>LeBeau</surname>
+              <given-names>F.E.</given-names>
+            </name>
+            <name>
+              <surname>Roopun</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Bibbig</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wilent</surname>
+              <given-names>W.B.</given-names>
+            </name>
+            <name>
+              <surname>Higley</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Whittington</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Single-column thalamocortical network model exhibiting gamma oscillations, sleep spindles, and epileptogenic bursts</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>2005</year>
+          <volume>93</volume>
+          <fpage>2194</fpage>
+          <lpage>2232</lpage>
+          <pub-id pub-id-type="pmid">15525801</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib67">
+        <label>van Ooyen et al., 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van Ooyen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Duijnhouwer</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Remme</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>van Pelt</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The effect of dendritic topology on firing patterns in model neurons</article-title>
+          <source>Network</source>
+          <year>2002</year>
+          <volume>13</volume>
+          <fpage>311</fpage>
+          <lpage>325</lpage>
+          <pub-id pub-id-type="pmid">12222816</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib68">
+        <label>Vetter et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vetter</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Roth</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hausser</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Propagation of action potentials in dendrites depends on dendritic morphology</article-title>
+          <source>J. Neurophysiol.</source>
+          <year>2001</year>
+          <volume>85</volume>
+          <fpage>926</fpage>
+          <lpage>937</lpage>
+          <pub-id pub-id-type="pmid">11160523</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib69">
+        <label>Vos et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vos</surname>
+              <given-names>B.P.</given-names>
+            </name>
+            <name>
+              <surname>Maex</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Volny-Luraghi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>De Schutter</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Parallel fibers synchronize spontaneous activity in cerebellar Golgi cells</article-title>
+          <source>J. Neurosci.</source>
+          <year>1999</year>
+          <volume>19</volume>
+          <fpage>RC6</fpage>
+          <pub-id pub-id-type="pmid">10341267</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib70">
+        <label>Watts and Strogatz, 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Watts</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Strogatz</surname>
+              <given-names>S.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Collective dynamics of ‘small-world’ networks</article-title>
+          <source>Nature</source>
+          <year>1998</year>
+          <volume>393</volume>
+          <fpage>440</fpage>
+          <lpage>442</lpage>
+          <pub-id pub-id-type="pmid">9623998</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib71">
+        <label>Wilson and Nicoll, 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wilson</surname>
+              <given-names>R.I.</given-names>
+            </name>
+            <name>
+              <surname>Nicoll</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Endocannabinoid signaling in the brain</article-title>
+          <source>Science</source>
+          <year>2002</year>
+          <volume>296</volume>
+          <fpage>678</fpage>
+          <lpage>682</lpage>
+          <pub-id pub-id-type="pmid">11976437</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib72">
+        <label>Yoshimura and Callaway, 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yoshimura</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Callaway</surname>
+              <given-names>E.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fine-scale specificity of cortical networks depends on inhibitory cell type and connectivity</article-title>
+          <source>Nat. Neurosci.</source>
+          <year>2005</year>
+          <volume>8</volume>
+          <fpage>1552</fpage>
+          <lpage>1559</lpage>
+          <pub-id pub-id-type="pmid">16222228</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Figure 1</label>
+      <caption>
+        <p>Overview of <italic>neuroConstruct</italic></p>
+        <p>(A) Schematic view of the main functionality of <italic>neuroConstruct</italic>.</p>
+        <p>(B) Main <italic>neuroConstruct</italic> GUI showing a single abstract cell with a Na<sup>+</sup> channel conductance density that varies on different parts of the cell membrane.</p>
+        <p>(C) Main interface to <italic>neuroConstruct</italic> showing the visualization of a simple network using the transparency feature to highlight a single cell and its connections.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Figure 2</label>
+      <caption>
+        <p>Detailed Cell Morphologies in <italic>neuroConstruct</italic></p>
+        <p>(A) A detailed reconstruction of a neocortical pyramidal cell (<xref rid="bib44" ref-type="bibr">Mainen et al., 1995</xref>) imported into <italic>neuroConstruct</italic> from a NEURON morphology file.</p>
+        <p>(B) Detail of a small part of a dendritic tree. Upper view: all 3D detail present in the original morphology file. Sections (between the blue spheres) contain a number of 3D points with associated diameter, each of which is the endpoint of a segment (small gray conical frusta). NEURON uses this information to compute membrane area and axial resistance, but only performs numerical integration at specific locations (red spheres; determined by <italic>nseg</italic>). Lower view: simpler representation of cell structure with fewer segments for mapping to GENESIS (<xref rid="sec4" ref-type="sec">Experimental Procedures</xref>).</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Figure 3</label>
+      <caption>
+        <p>Use of ChannelML for Specifying Cellular Mechanisms</p>
+        <p>A ChannelML file (the code fragment shows the parameters needed to specify a double exponential time course synapse) can be converted into script files in the native language of various neuronal simulators (currently NEURON and GENESIS), using an XSL file for each mapping. HTML representations of the XML file provide a more readable view of the mechanism and associated metadata. Plots can be generated to view the mechanism's properties.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Figure 4</label>
+      <caption>
+        <p>Test of the Simulator Independence of a <italic>neuroConstruct</italic> Model</p>
+        <p>(A) Membrane potential responses to a 500 ms current pulse of 10 pA at a simulation time step of 0.01 ms for a granule cell model (<xref rid="bib42" ref-type="bibr">Maex and De Schutter, 1998</xref>) implemented in <italic>neuroConstruct</italic> using ChannelML and run on NEURON and GENESIS.</p>
+        <p>(B) Dependence of timing of last action potential on integration time step.</p>
+        <p>(C) Dependence of the root-mean-square (rms) of the difference between traces on integration time step. The minimum at 0.001 ms is due to the peaks overlapping before converging at slightly different times in each simulator. The dotted line shows the rms error between the GENESIS model and one with a 1% difference in Na<sup>+</sup> conductance density.</p>
+        <p>(D) Values of some of the internal state variables as a function of time (ms) displayed as screenshots from NEURON (left, time units ms) and GENESIS (right, s).</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Figure 5</label>
+      <caption>
+        <p>Connectivity Schemes Used to Generate Network Connections between Cell Groups in <italic>neuroConstruct</italic></p>
+        <p>(A) Simplified morphology of a GrC (i) including soma and axon. Parallel fiber sections, highlighted in red, indicate presynaptic sections where synapses are permitted. Simplified morphology of a PC (ii) with red dendritic sections showing postsynaptic sections where synapses are permitted. Connections between multiple GrCs and a PC made using the morphology-based connection algorithm (iii). Green and red spheres show the sites of pre- and postsynaptic connection, respectively.</p>
+        <p>(B) Simplified morphology of a cortical interneuron (i) including soma, dendrites, and a cylindrical volume (gray shading) defining boundaries of the axonal arbor. Simplified morphology of a cortical pyramidal cell (ii) with red dendritic sections showing postsynaptic sections where synapses are permitted. Three-dimensional connections between multiple interneurons and pyramidal cells made using the volume-based connection algorithm (iii). Sites of pre- and postsynaptic connections are linked by lines changing from green to red.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Figure 6</label>
+      <caption>
+        <p>Implementation of Existing Network Models in <italic>neuroConstruct</italic></p>
+        <p>(A) Visualization of a 1D GrC layer network model from <xref rid="bib42" ref-type="bibr">Maex and De Schutter (1998)</xref>. MFs (bottom) are connected via excitatory synapses to GrCs (middle), which are in turn connected to GoCs (top). The GrCs receive inhibitory connections from GoCs.</p>
+        <p>(B) Spike time histograms (bin size, 1 ms) as produced by the script files released with the original publication (left) and for the <italic>neuroConstruct</italic> model of the network (right). Spikes for the GrCs are in black and the GoCs are in red.</p>
+        <p>(C) Replication of a network model of the dentate gyrus (<xref rid="bib57" ref-type="bibr">Santhakumar et al., 2005</xref>). The model consists of (from the top down) 500 GrCs with two dendritic branches, 6 basket cells, 15 mossy cells, and 6 hilar cells. The 10,000+ synaptic connections have been removed for clarity. The network receives a brief perforant path focal stimulation, mainly on the central 100 GrCs. Cell coloring reflects network activity 110 ms after stimulation.</p>
+        <p>(D) Raster plots of dentate gyrus GrC activity in the original published model and in the <italic>neuroConstruct</italic> implementation of the network.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Figure 7</label>
+      <caption>
+        <p>Extension of a 1D Model of Granule Cell Layer to 3D</p>
+        <p>(A) Visualization of a 3D cerebellar GrC model based on a published 1D model (<xref rid="bib42" ref-type="bibr">Maex and De Schutter, 1998</xref>). MF terminals (blue), GrC somas (orange), and GoC somata (green) are packed in a 3D region (500μm in PF direction, 1 mm parasagittally, 50 μm in thickness) representing a section of the GrC layer of the cerebellar cortex. The ascending segments and parallel fibers of the GrCs extend into the molecular layer region, as do the single dendrites of the GoCs.</p>
+        <p>(B) A single GoC and associated network connections highlighted using the transparency option in <italic>neuroConstruct</italic>. The range of connection lengths is larger than the experimentally reported values for the GoC dendritic tree (∼200 μm [<xref rid="bib23" ref-type="bibr">Dieudonne, 1998</xref>]) due to the reduced cell density.</p>
+        <p>(C) Histogram of the distribution of number of synaptic connections received by GrCs from MF terminals. Axis variables shown at bottom of window in (C)–(E).</p>
+        <p>(D) Histogram showing the distribution of numbers of synaptic connections made to GrCs by the 96 MFs in the network.</p>
+        <p>(E) Distribution of distances between connected MF terminals and GrC somata, corresponding to dendritic length.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig8">
+      <label>Figure 8</label>
+      <caption>
+        <p>Network Analysis of a 3D Granule Cell Layer Model</p>
+        <p>(A) View of 3D cerebellar GrC layer model showing only the cell bodies. Two regions are identified, beam A and beam B, which have nonoverlapping sets of PFs.</p>
+        <p>(B) Voltage traces of four GoCs at the end of a 4 s simulation run, with network connectivity as outlined previously and 50 Hz Poisson input to the MFs. Black trace (cell 31) and red trace (cell 5) are from GoCs in beam A. Cells 13 (blue) and 15 (green) are in beam B. Axis variables shown at bottom of window in (B)–(E).</p>
+        <p>(C) Interspike interval histograms of the GrCs (black) and GoCs (red). The peak at approximately 40 ms reflects the observed average firing rate of the GoCs of 23.8 Hz, the single peak resulted from regular GoCs spiking. The GrCs have a lower average firing rate and do not fire on every GoC cycle, hence the multiple peaks in the histogram.</p>
+        <p>(D) Crosscorrelation between cell 31 and the other four GoCs in beam A, each color graph representing a different cell. The y axis represents the probability of a spike occurring in the other cell with the specified offset (1 ms time window).</p>
+        <p>(E) Crosscorrelation between cell 31 and the six GoCs in beam B, with identical axes to D.</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+  </floats-wrap>
+</article>

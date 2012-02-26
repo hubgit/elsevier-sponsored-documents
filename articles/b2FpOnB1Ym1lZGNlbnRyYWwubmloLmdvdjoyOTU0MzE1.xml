@@ -1,0 +1,1023 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroscience</journal-id>
+      <journal-title-group>
+        <journal-title>Neuroscience</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0306-4522</issn>
+      <issn pub-type="epub">1873-7544</issn>
+      <publisher>
+        <publisher-name>Elsevier Science</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2954315</article-id>
+      <article-id pub-id-type="pmid">20659531</article-id>
+      <article-id pub-id-type="publisher-id">NSC12284</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroscience.2010.07.032</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Cellular and Molecular Neuroscience</subject>
+          <subj-group>
+            <subject>Research Paper</subject>
+          </subj-group>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Which elements of the mammalian central nervous system are excited by low current stimulation with microelectrodes?</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rattay</surname>
+            <given-names>F.</given-names>
+          </name>
+          <email>frank.rattay@tuwien.ac.at</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Wenger</surname>
+            <given-names>C.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>Institute for Analysis and Scientific Computing, Vienna University of Technology, Wiedner Hauptstrasse 8-10, A-1040 Vienna, Austria</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author: Tel: +43-1-58801-10114 <email>frank.rattay@tuwien.ac.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>13</day>
+        <month>10</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>13</day>
+        <month>10</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>170</volume>
+      <issue>2-2</issue>
+      <fpage>399</fpage>
+      <lpage>407</lpage>
+      <history>
+        <date date-type="accepted">
+          <day>17</day>
+          <month>7</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Ltd.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>IBRO</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Low current cortex stimulation produces a sparse and distributed set of activated cells often with distances of several hundred micrometers between cell bodies and the microelectrode. A modeling study based on recently measured densities of high threshold sodium channels Nav1.2 in dendrites and soma and low threshold sodium channels Nav1.6 in the axon shall identify spike initiation sites including a discussion on dendritic spikes. Varying excitability along the neural axis has been observed while studying different electrode positions and configurations. Although the axon initial segment (AIS) and nodes of Ranvier are most excitable, many thin axons and dendrites which are likely to be close to the electrode in the densely packed cortical regions are also proper candidates for spike initiation sites. Cathodic threshold ratio for thin axons and dendrites is about 1:3, whereas 0.2 μm diameter axons passing the electrode tip in 10 μm distance can be activated by 100 μs pulses with 2.6 μA. Direct cathodic excitation of dendrites requires a minimum electrode-fiber distance, which increases with dendrite diameter. Therefore thin dendrites can profit from the stronger electrical field close to the electrode but low current stimulation cannot activate large diameter dendrites, contrary to the inverse recruitment order known from peripheral nerve stimulation. When local depolarization fails to generate a dendritic spike, stimulation is possible via intracellular current flow that initiates an action potential, for example 200 μm distant in the low threshold AIS or in certain cases at the distal dendrite ending. Beside these exceptions, spike initiation site for cathodic low current stimulation appears rather close to the electrode.</p>
+      </abstract>
+      <kwd-group>
+        <title>Key words</title>
+        <kwd>microstimulation</kwd>
+        <kwd>sodium channels</kwd>
+        <kwd>pyramidal cells</kwd>
+        <kwd>activating function</kwd>
+        <kwd>cortex stimulation</kwd>
+        <kwd>compartment model</kwd>
+      </kwd-group>
+      <kwd-group>
+        <title>Abbreviation</title>
+        <kwd>AIS, axon initial segment</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <p>Recent data on external cortical neuron excitation with microelectrodes demand for a revised view of the mechanisms involved. As an example, <xref rid="bib5" ref-type="bibr">Histed et al. (2009)</xref> showed a sparely distributed population of pyramidal neurons when stimulated at low intensities. These findings are contrary to the generally accepted simple rule that electrical microstimulation leads to a sphere of activated neurons around the electrode tip that increases in size with increasing current (<xref rid="bib26 bib28" ref-type="bibr">Stoney et al., 1968; Tehovnik, 1996</xref>). It has been estimated that 200 μs pulses with 10 and 100 μA amplitudes activate cells in a radius of 100 and 450 μm around the electrode (<xref rid="bib26" ref-type="bibr">Stoney et al., 1968</xref>). This rule does not define which part of the cell should be considered and it neglects the fact that different membrane segments show essential divergence in their passive and active electrical properties. Therefore, experiments with a computational model incorporating new morphological and electrical data of pyramidal cells shall clarify the altering excitation pattern along the neural axis and examine thresholds distribution of different neural elements to microstimulation of varying electrode position and configuration.</p>
+    <p>It has been reported that the quadratic current-distance relations may be applied for the distance between the electrode tip and one of the three sites: soma, axon initial segment or the nearest node of Ranvier (<xref rid="bib26 bib28 bib29" ref-type="bibr">Stoney et al., 1968; Tehovnik, 1996; Tehovnik et al., 2006</xref>). The latter presentation seems very plausible because both the axon initial segment (AIS) and nodes of Ranvier are segments with highest sodium channel densities. Secondly the fact that the AIS is quite close to the soma in cortical neurons compared to the size of activated spheres mentioned above with radii from 100 to 450 μm, further strengthens this concept. However, experimental data already reviewed by Ranck in 1975 and theoretical investigations (<xref rid="bib17 bib18 bib20" ref-type="bibr">Rattay, 1987, 1989, 2008</xref>) show a trend of a linear to cubic current distance relation for straight axons when the range of distances is extended to both sides.</p>
+    <p>Since electrodes are rather surrounded by thin axons and dendrites than by the most excitable segments, that is the AIS or the nodes of Ranvier, phenomena occurring in these processes are of specific interest. Furthermore recent investigations reveal the possibility of dendritic spikes and detailed data on distribution and kinetics of ion channel composition are available. Whereas older studies assumed extreme different sodium channel densities with a ratio of 1:1500 (<xref rid="bib10" ref-type="bibr">Mainen and Sejnowski, 1996</xref>) in the dendrite and the AIS, in order to explain back propagating action potential (AP) behavior, much smaller ratios as 1:34 (<xref rid="bib6" ref-type="bibr">Hu et al., 2009</xref>) seem to be typical. Observed backpropagation characteristics such as reduction in spike amplitude and failure of antidromic transmission of APs into dendrites as well as findings on spike initiation sites can be explained by the distribution of low-threshold Na<sub>v</sub>1.6 and high-threshold Na<sub>v</sub>1.2 sodium channels in pyramidal cells (<xref rid="bib27 bib30 bib6" ref-type="bibr">Stuart et al., 1997; Yu et al., 2008; Hu et al., 2009</xref>). Thus new insights are expected using actual membrane models by testing the possibility to excite neurons extracellularly.</p>
+    <sec sec-type="methods" id="sec1">
+      <title>Experimental procedures</title>
+      <p>We assumed a monopolar spherical electrode in an infinite homogeneous extracellular medium with a resistivity of ρ<sub>e</sub>=300 Ωcm. Under quasi-static conditions the extracellular potentials <italic>V</italic><sub>e</sub> along the rectified neuron was calculated by <italic>V</italic><sub>e</sub>=ρ<sub>e</sub><italic>I</italic><sub>el</sub>/4<italic>πr</italic>, where <italic>r</italic> is the distance from a compartment to the electrode radiating a monophasic stimulating current pulse with amplitude <italic>I</italic><sub>el</sub>. The current to the center of the n-th compartment of the model neuron consists of the following components: capacitive current, ion currents across the membrane and ohmic currents to the left and right neighbors. Applying Kirchhoff's law for compartment n results in<disp-formula id="eq1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:msub><mml:mi>C</mml:mi><mml:mrow><mml:mi>m</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:msub><mml:mi>I</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>o</mml:mi><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mo lspace="0em" rspace="0em">=</mml:mo><mml:mn>0</mml:mn></mml:mrow></mml:math></disp-formula> with <italic>V</italic><sub>i</sub> ,<italic>R</italic> and <italic>C</italic><sub>m</sub> denoting the intracellular potential, axial resistance and membrane capacity, respectively. Intracellular resistivity was 150 Ωcm, membrane capacity 1 μF/cm<sup>2</sup>. The following system of differential equations is deduced by introducing the transmembrane voltage <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>V</italic> = <italic>V</italic><sub><italic>i</italic></sub>−<italic>V</italic><sub><italic>e</italic></sub></textual-form><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mi>V</mml:mi><mml:mo lspace="0em" rspace="0em">=</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>e</mml:mi></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> to compute the time courses of <italic>V</italic><sub>n</sub> in every compartment (<xref rid="bib19" ref-type="bibr">Rattay, 1999</xref>):<disp-formula id="eq2"><label>(2)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:msub><mml:mi>V</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo lspace="0em" rspace="0em">=</mml:mo><mml:mo>[</mml:mo><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>I</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>o</mml:mi><mml:mi>n</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mo>]</mml:mo><mml:mo>/</mml:mo><mml:msub><mml:mi>C</mml:mi><mml:mrow><mml:mi>m</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></disp-formula> The direct stimulating influence of the extracellular potential on compartment <italic>n</italic> is defined by the activating function<disp-formula id="eq3"><label>(3)</label><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>f</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo lspace="0em" rspace="0em">=</mml:mo><mml:mo>[</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo lspace="0em" rspace="0em">−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mrow><mml:mi>e</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>R</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo lspace="0em" rspace="0em">+</mml:mo><mml:msub><mml:mi>R</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>/</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mo>]</mml:mo><mml:mo>/</mml:mo><mml:msub><mml:mi>C</mml:mi><mml:mrow><mml:mi>m</mml:mi><mml:mo>,</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></disp-formula> The physical dimension of <italic>f</italic><sub>n</sub> is [V/s]. If the neuron is in the resting state before a stimulating current impulse is applied, <italic>f</italic><sub>n</sub> is the slope of membrane voltage <italic>V</italic><sub>n</sub> at stimulus onset (<xref rid="fig1" ref-type="fig">Fig. 1</xref>C). As <italic>R</italic> decreases with increasing compartment diameters, <italic>f</italic> increases with diameter and consequently processes with larger diameters are generally easier to excite.</p>
+      <p>The excitability of the rectified model neuron was initially tested with the original model data obtained from the NEURON ModelDB corresponding to the model of a cortical pyramidal cell by <xref rid="bib6" ref-type="bibr">Hu et al. (2009)</xref>. This model incorporates tapering diameters, uneven channel distribution within compartments of one type as well as a reduced membrane capacity of 0.02 μF/cm<sup>2</sup> in order to simulate myelination. High threshold sodium Na<sub>v</sub>1.2 and low threshold Na<sub>v</sub>1.6, fast voltage-gated K<sup>+</sup>, slow non-inactivating potassium current, high-voltage activated Ca<sup>2+</sup> and calcium dependent K<sup>+</sup> currents are non-uniformly integrated and combined with a linear leakage current throughout the cell. During single pulse experiments for a reduced model we obtained quite similar threshold characteristics in spite of either assuming constant channel densities within every main segment or including only Na<sub>v</sub>1.2, Na<sub>v</sub>1.6, fast voltage-gated K<sup>+</sup> channels and a linear leakage current with E<sub>leak</sub>=−70 mV and g<sub>leak</sub>=0.033 mS/cm<sup>2</sup> throughout the whole neuron. In detail, the reduced model distinguishes soma and dendrites compartment, both with maximum conductances of g<sub>Nav1.2</sub>=8, g<sub>Nav1.6</sub>=0, g<sub>Kv</sub>=10 mS/cm<sup>2</sup>, the axon hillock with g<sub>Nav1.2</sub>=320, g<sub>Nav1.6</sub>=0, g<sub>Kv</sub>=100 mS/cm<sup>2</sup>, the AIS with g<sub>Nav1.2</sub>=100, g<sub>Nav1.6</sub>=320, g<sub>Kv</sub>=100 mS/cm<sup>2</sup>, the unmyelinated axon with g<sub>Nav1.2</sub>=0, g<sub>Nav1.6</sub>=300, g<sub>Kv</sub>=150 mS/cm<sup>2</sup> and the nodes of Ranvier with g<sub>Nav1.2</sub>=0, g<sub>Nav1.6</sub>=160, g<sub>Kv</sub>=20 mS/cm<sup>2</sup>.</p>
+      <p>Sodium current kinetics are calculated via I<sub>Nav1.j</sub>=g<sub>Nav1.j</sub> m<sup>3</sup>h × (V–E<sub>Na</sub>) with j equals either 2 or 6 and a reversal potential of E<sub>Na</sub>=60 mV. Details on the differential equations of the different variables have been presented for example by <xref rid="bib9" ref-type="bibr">Mainen et al. (1995)</xref>. The values for the half (in)activation voltages V<sub>1/2</sub>, the slopes k and the coefficients A were obtained from a previously published model in the NEURON Model DB (<xref rid="bib6" ref-type="bibr">Hu et al., 2009</xref>) after subtracting the corresponding value for the shift of voltage dependence of the kinetics. Therefore the sodium currents I<sub>Nav1.j</sub> have the same values for A, that is A(α<sub>m</sub>)=0.182, A(β<sub>m</sub>)=0.124, A(α<sub>h</sub>)=0.024, A(β<sub>h</sub>)=0.0091, and the slope of inactivation, that is k(τ<sub>h</sub>)=5 and k(h<sub>∞</sub>)=6.2, in contrast to altered slope of activation, that is k(τ<sub>m</sub>)=k(m<sub>∞</sub>)=7 for Na<sub>v</sub>1.2 but k(τ<sub>m</sub>)=k(m<sub>∞</sub>)=6 for Na<sub>v</sub>1.6. To account for the reduced threshold of Na<sub>v</sub>1.6 channels V<sub>1/2</sub> (m) is decreased to −41 mV compared to the calculated value of −28 mV for activation of Na<sub>v</sub>1.2 channels. The corresponding values in mV for the inactivation of Na<sub>v</sub>1.2/Na<sub>v</sub>1.6 channels are V<sub>1/2</sub>(α<sub>h</sub>)=−35/−41, V<sub>1/2</sub> (β<sub>h</sub>)=−60/−73, V<sub>1/2</sub> (h<sub>∞</sub>)=−57/−70. The potassium currents are determined by I<sub>K</sub>=g<sub>K</sub> n (V–E<sub>K</sub>) with E<sub>K</sub>=−90 mV. To be consistent the corresponding values of A(α)=0.02, A(β)=0.002, V<sub>1/2</sub>(α)=V<sub>1/2</sub>(β)=25 mV and k(α)=k(β)=9 which were used for the reduced model were also obtained from the NEURON Model DB (<xref rid="bib6" ref-type="bibr">Hu et al., 2009</xref>). Since the presented results are simulated for 37 °C, a temperature coefficient of 3.209 has to be applied when calculating the conductances and the channel kinetics to account for the original model temperature of 23 °C and a Q<sub>10</sub> of 2.3. The internodes are simulated with 17 sheets of membrane with a conductance of 1 mS/cm<sup>2</sup> and C=1 μF/cm<sup>2</sup> per sheet (<xref rid="bib19" ref-type="bibr">Rattay, 1999</xref>). All the presented results are computed with the reduced model.</p>
+    </sec>
+    <sec id="sec2">
+      <title>Results</title>
+      <sec id="sec2.1">
+        <title>Dendritic spikes</title>
+        <p>Dendritic excitation with spike propagation across the soma into the axon was analyzed with a simple compartment model with a straight axis (<xref rid="fig1" ref-type="fig">Fig. 1</xref>). The model neuron consists of a single non-branching dendrite (500 μm, d=5 μm), soma (20 μm), axon hillock (10 μm, d=3.1 μm), AIS (50 μm, d=1.22 μm), unmyelinated axon (200 μm, d=1 μm), myelinated axon (500 μm, d=1 μm) and unmyelinated terminal (50 μm, d=1 μm). Also assumptions for ion channel distribution are quite similar as modeled by <xref rid="bib6" ref-type="bibr">Hu et al. (2009)</xref>: the same constant Na<sub>v</sub>1.2 channel density for dendrite and soma, but 40 times higher sodium channel density in hillock and AIS with a change to the low threshold type Na<sub>v</sub>1.6 in the axon (<xref rid="fig1" ref-type="fig">Fig. 1</xref>B). In a distance of 80 μm from the dendrite axis a propagating spike is generated by a 100 μs cathodic pulse from the tip of an electrode which is modeled as point source in an infinite homogeneous medium (<xref rid="fig1" ref-type="fig">Fig. 1</xref>C).</p>
+        <p>According to the activating function concept (<xref rid="bib16 bib19" ref-type="bibr">Rattay, 1986, 1999</xref>) the slopes of membrane voltage at the beginning of the stimulus pulse reflect the first response of the applied electric field and these slopes are proportional to fictive current pulses injected individually in each of the compartments. Therefore spike initiation is expected in a region with positive activating function, that is, where the slopes at stimulus onset are positive (<xref rid="fig1" ref-type="fig">Fig. 1</xref>C). Assuming a homogeneous external medium and a straight long fiber with constant diameter, the activated region is limited by an angle of 70° (<xref rid="fig1" ref-type="fig">Fig. 1</xref>A, <xref rid="bib16" ref-type="bibr">Rattay, 1986</xref>) resulting in an excited length of 1.4×r, where r is the electrode-fiber distance. This initial excitation pattern is independent from ion channel composition as well as internal and external resistivities. In order to obtain a propagating spike, inward sodium current has to be large enough to supply the neighboring region with enough intracellular axial current flow to reach threshold. This fact demands for a minimum sodium channel density which is not achieved on the assumptions mentioned above with a ratio of 1:1500 concerning dendrites and AIS.</p>
+        <p>Moving the electrode closer to the dendrite reduces the length of the activated region as a consequence of the 70° limit. The rather low maximum sodium conductance g<sub>Na</sub>=8 mS/cm<sup>2</sup> is not enough for nearby stimulation and therefore direct cathodic dendritic spike excitation fails for electrode distances below a limit which is about 56 μm for the 5 μm dendrite<xref rid="fn1" ref-type="fn">1</xref>. Excitation is however possible when the inward dendritic sodium current shifts the AP initiation site by axial current into the low threshold AIS (<xref rid="fig2" ref-type="fig">Fig. 2</xref>A). Maximum membrane voltage increases with stimulus strength in the activated 70° region, still passive excitation is prevented by the hyperpolarized regions on both sides (<xref rid="fig2" ref-type="fig">Fig. 2</xref>B). For an infinite long fiber, reduction of fiber diameter by a factor four causes quite the same numerical values in model evaluation when fiber-electrode distance, compartment length as well as stimulus current is divided by 2 (quadratic relation). This means that thinner dendritic regions are directly excitable for shorter electrode-fiber distances, for example the limit is 28 μm for 1.25 μm dendrite diameter. In this case, propagating spikes are generated in the small operating window from −25 to −41 μA. Higher stimuli cause cathodic block by strong hyperpolarized side lobes that hinder spike propagation (<xref rid="bib15 bib16" ref-type="bibr">Ranck, 1975; Rattay, 1986</xref>) in a similar way as shown in <xref rid="fig2" ref-type="fig">Fig. 2</xref>B.</p>
+      </sec>
+      <sec id="sec2.2">
+        <title>Excitability along the neural axis</title>
+        <p>The geometry of the last example is used to compare dendritic and axonal excitability: moving the electrode from the dendrite (1.25 μm diameter) to the distal end of the AIS (x<sub>electrode</sub>=70 μm) with constant axial distance (z<sub>electrode</sub>=28 μm) reduces cathodic threshold current from −25 to −8.1 μA. In this example the AIS and the dendrite have quite similar diameters but the AIS threshold is less than one-third of the dendrite's value. Additionally, the cathodic block phenomenon disappears. Furthermore, the electrode with the same axial distance is positioned above the third node of Ranvier. In spite of the reduction of diameter (from 1.22 to 1 μm) as well as the decrease in the maximum sodium conductance gnav1.6 (from 320 to 160 mS/cm<sup>2</sup>) for compartments of type NR compared to those of type AIS, the firing threshold is further reduced by 5% to −7.7 μA and cathodic block threshold appears again at −24 μA. Above the center of the second internode (x<sub>electrode</sub>=518 μm, z<sub>electrode</sub>=27.6 μm) threshold current increases for propagating spikes to −21.8 μA and blockade threshold to −45 μA.</p>
+        <p>When the electrode is shifted in constant distance along the axis of the neuron, several phenomena can be observed (<xref rid="fig3" ref-type="fig">Fig. 3</xref>A). Statements 4–9 result from simulations with z<sub>electrode</sub>=50 μm. <list list-type="simple"><list-item><label>(1)</label><p>The distal end of the axonal initial segment with high Na<sub>v</sub>1.6 channel density is very sensitive to cathodic stimulation and this is the site of spike initiation in many cases.</p></list-item><list-item><label>(2)</label><p>However, the neuron is even more excitable at the third and fourth node of Ranvier, in spite of essentially lower ion channel densities. This is a consequence of high activating function values in nodes of Ranvier that are favored by the properties of the internodes (<xref rid="bib2 bib16 bib18 bib21" ref-type="bibr">Coburn, 1989; Rattay, 1986, 1989; Rattay et al., 2000</xref>).</p></list-item><list-item><label>(3)</label><p>Moving the electrode along the thick dendrite in a distance of 100 μm from the neuron axis needs about twice the threshold current in comparison to the positions along the axon.</p><p>Moving the electrode with 50 μm distance along the neuron shows the following discrepancies (4 and 5) to a quadratic distance—threshold current relation as expected from literature (<xref rid="bib26 bib28 bib29" ref-type="bibr">Stoney et al., 1968; Tehovnik, 1996; Tehovnik et al., 2006</xref>).</p></list-item><list-item><label>(4)</label><p>The thresholds are higher as expected (prediction according to the quadratic rule is shown as dashed blue line in <xref rid="fig3" ref-type="fig">Fig. 3</xref>A).</p></list-item><list-item><label>(5)</label><p>Electrodes above the center of an internode need doubled threshold currents compared to positions above a node of Ranvier. This node-internode threshold relation known from peripheral nerve stimulation becomes more and more pronounced when electrode-fiber distance is reduced (<xref rid="bib17" ref-type="bibr">Rattay, 1987</xref>).</p></list-item><list-item><label>(6)</label><p>Within a dendritic region (−149 μm&lt;x<sub>electrode</sub>&lt;−37 μm) anodic threshold is lower than cathodic. This is in agreement with experiments (<xref rid="bib15" ref-type="bibr">Ranck, 1975</xref>) and theory (<xref rid="bib19" ref-type="bibr">Rattay, 1999</xref>).</p></list-item><list-item><label>(7)</label><p>Anodic threshold current of the 5 μm diameter dendrite example increases in an exponential way with distance from the soma (comp. the rather linear relation of the left part of the green line in the logarithmic current scaling of <xref rid="fig3" ref-type="fig">Fig. 3</xref>A). The thin dendrite has another threshold characteristic as explained below.</p></list-item><list-item><label>(8)</label><p>The extreme node-internode threshold fluctuations seen for cathodic pulses are lost when pulse polarity is reversed.</p></list-item><list-item><label>(9)</label><p>In general thin dendrites have higher thresholds (comp. thin and thick green and blue lines in <xref rid="fig3" ref-type="fig">Fig. 3</xref>A). This rule is not valid for anodic stimulation in the somatic region.</p></list-item></list></p>
+        <p>Threshold currents are also computed in radial direction for three cell regions: middendritric, soma and AIS (<xref rid="fig3" ref-type="fig">Fig. 3</xref>B, <xref rid="tbl1" ref-type="table">Table 1</xref>). Beside the cathodic monophasic data (<xref rid="fig3" ref-type="fig">Fig. 3</xref>B) thresholds for charge balanced pulses are investigated. Thresholds in <xref rid="tbl1" ref-type="table">Table 1</xref> are calculated with charge-balanced triphasic pulses with an interpulse time of 100 μs and 100 μs per phase. This way they can be compared with our previous data as well as with symmetric biphasic pulse widths of 200 μs per phase which are often applied in cortical experiments. As for such pulse durations, the charge per phase is essential for threshold current (<xref rid="bib14" ref-type="bibr">Nowak and Bullier, 1998</xref>), half of our reported threshold values are expected when 200 μs pulses are applied. For low current stimulation (left part of <xref rid="tbl1" ref-type="table">Table 1</xref>) deviations between charge-balanced and monophasic pulses are quite small especially in the first two columns. Note that the spike initiation site or the excitation mechanisms (dendritic spike–AIS spike—anodal break, etc.) suddenly may change when the electrode is slightly moved.</p>
+        <p>A continuous trend from linear (doubled threshold for doubled distance) to quadratic relationship (fourfold threshold for doubled distance) is illustrated by the tangents in <xref rid="fig3" ref-type="fig">Fig. 3</xref>B when electrode distance is increased. The radial distance values in <xref rid="fig3" ref-type="fig">Fig. 3</xref>B, <xref rid="tbl1" ref-type="table">Table 1</xref> cover also the range above 100 μm in order to demonstrate that a quadratic current distance rule I<sub>threshold</sub>=k×r<sup>2</sup> (with constant k and electrode-neuron distance r) as reported by <xref rid="bib28" ref-type="bibr">Tehovnik (1996)</xref> is a good fit for this area. This behavior changes continuously to a rather linear relation when the electrode enters the region below 50 μm where low current stimulation is possible.</p>
+      </sec>
+      <sec id="sec2.3">
+        <title>Spike initiation regions</title>
+        <p>In contrast to experimental recording, computer simulation allows snapshots of membrane voltages as functions of neuron's length coordinate (<xref rid="fig4" ref-type="fig">Fig. 4</xref>). We analyze cathodic and anodic stimulation for three electrode positions, always with z<sub>el</sub>=50 μm to be comparable with <xref rid="fig3" ref-type="fig">Fig. 3</xref>A: (i) above the second node of Ranvier (x<sub>el</sub>=370 μm, <xref rid="fig4" ref-type="fig">Fig. 4</xref> right traces), (ii) above the distal AIS end (x<sub>el</sub>=70 μm, <xref rid="fig4" ref-type="fig">Fig. 4</xref> central traces), (iii) above the dendrite, symmetrical to position 1 (x<sub>el</sub>=−370 μm, <xref rid="fig4" ref-type="fig">Fig. 4</xref> left traces).</p>
+        <p>Starting at rest, first compartment responses are proportional to the activating function which is independent of the ion channel composition (<xref rid="bib16 bib19" ref-type="bibr">Rattay, 1986, 1999</xref>). Positive activating function values, especially large ones, are indicators for spike initiation. They appear because of irregularities of the electric field and due to changes of the neural geometry. With our assumptions irregularities of the electric field are strongest in the vicinity of the electrode. In other cases inhomogeneity of extracellular medium and curvature of fibers essentially contribute to high activating function values. This first response is smoothed by intracellular current flow (compare red lines with the activating functions in <xref rid="fig4" ref-type="fig">Fig. 4</xref>). For the three cases (<xref rid="fig4" ref-type="fig">Fig. 4</xref>A–C) of cathodic stimulation the maxima of the red lines appear at the electrode position which is marked by dashed red lines in <xref rid="fig4" ref-type="fig">Fig. 4</xref> and consequently spikes are initiated in the neuron compartment closest to the electrode in cases <xref rid="fig4" ref-type="fig">Fig. 4</xref>B, C.</p>
+        <p>The maximum value of the red line in <xref rid="fig4" ref-type="fig">Fig. 4</xref>A is larger than that of case <xref rid="fig4" ref-type="fig">Fig. 4</xref>B, but as explained above, the low dendritic sodium channel densities hinder spiking also for higher stimuli, because of the hyperpolarized regions predicted by the negative side lobes of the activating function (comp. enlarged picture of the activating function in <xref rid="fig4" ref-type="fig">Fig. 4</xref>D). Changing the stimulus polarity causes these side lobes of the activating function to become stimulating (comp. negative part of the dashed lines in <xref rid="fig4" ref-type="fig">Fig. 4</xref>D, E with the corresponding red lines in <xref rid="fig4" ref-type="fig">Fig. 4</xref>G, H. For a fiber with constant diameter the activating function values of the side lobes converge asymptotically to zero when the x distance to the electrode position is increased. In case (<xref rid="fig4" ref-type="fig">Fig. 4</xref>G), the rather small activating function values in the AIS are, however, still more powerful than the higher values in the dendrite with its low sodium channel density resulting in distant spike initiation, that is more than 400 μm away from the electrode. This phenomenon explains the almost exponential increase for anodic threshold current when the electrode is moved distally along the dendrite (left part of green curve in <xref rid="fig3" ref-type="fig">Fig. 3</xref>). A similar effect, but not as spectacular in its shifting size, is seen for anodic axon stimulation: in case (<xref rid="fig4" ref-type="fig">Fig. 4</xref>H) the left side lobe (dashed curve in <xref rid="fig4" ref-type="fig">Fig. 4</xref>E) causes a mirrored pattern similar to the dendritic excitation of case (<xref rid="fig4" ref-type="fig">Fig. 4</xref>G) (comp. red lines) but the low dendritic sodium channel density together with its higher Na<sub>v</sub>1.2 threshold voltage are the reasons why the spike is initiated within the unmyelinated axon distal to AIS. Putting the electrode above the second internode results in an asymmetric activating function with a larger right side lobe value (<xref rid="fig4" ref-type="fig">Fig. 4</xref>F). Note that this rather small difference in activating function minima favors nodal excitation in spite of half nodal Na<sub>v</sub>1.6 channel densities when compared to the other activating function side lobe in the unmyelinated axon.</p>
+        <p>Increasing the cathodic stimulus of the subthreshold case of <xref rid="fig4" ref-type="fig">Fig. 4</xref>A from −50 to −57 μA causes a delayed spike development for the 5 μm diameter dendrite at its distal end (<xref rid="fig5" ref-type="fig">Fig. 5</xref>A). As discussed above, the primarily excited region is too short for direct spiking but the axial current flow in both directions prefers to stimulate the left side in spite of the rather large hyperpolarization at the end of the pulse (red bottom line in <xref rid="fig5" ref-type="fig">Fig. 5</xref>A) which is quickly depolarized (comp. a similar situation for the top line in <xref rid="fig1" ref-type="fig">Fig. 1</xref>C).</p>
+        <p>Since the distal end of the dendrite is assumed to be sealed, the axial current is also restricted to flow backwards which escalates the increase of membrane voltage in that particular area. This effect is also reflected by the asymmetry of the excitation process of the neighboring compartments of the cyan line in <xref rid="fig1" ref-type="fig">Fig. 1</xref>C with differing response on left side compared to the behavior on the right. When the electrode is slightly moved further away the left hyperpolarized side lobe of the red line in <xref rid="fig5" ref-type="fig">Fig. 5</xref>A is reduced. This explains the decrease of threshold as can be seen at the left end of the corresponding thick blue curve in <xref rid="fig3" ref-type="fig">Fig. 3</xref>A. However the effect vanishes when the positive segment of the red curve is reduced, that is before the electrode position reaches the distal end (comp. blue curve in <xref rid="fig3" ref-type="fig">Fig. 3</xref>). Reduction of fiber diameter to one-fourth allows direct dendritic spiking for this dendrite—electrode distance of 50 μm. Within a corresponding large region the thin blue curve in <xref rid="fig3" ref-type="fig">Fig. 3</xref>A has therefore rather constant thresholds. Changing the polarity reduces the length for direct anodic dendritic spiking (constant threshold values of thin green curve in <xref rid="fig3" ref-type="fig">Fig. 3</xref>A) and causes again spike initiation at the distal dendrite end (<xref rid="fig5" ref-type="fig">Fig. 5</xref>B) or at the AIS (<xref rid="fig5" ref-type="fig">Fig. 5</xref>C).</p>
+      </sec>
+    </sec>
+    <sec id="sec3">
+      <title>Discussion</title>
+      <p>The aim of the study was to study the effects of external low current stimulation on a cortical model neuron with respect to changing microelectrode position and configuration. In order to enlighten the neural elements which are activated, the electrode has been shifted in the axial direction, showing a varying, non-uniform excitation pattern along the neural axis. A model based on recently reported Nav1.2 and Nav1.6 channel distribution (<xref rid="bib6" ref-type="bibr">Hu et al., 2009</xref>) has been used to calculate thresholds for different pulses and varying distances to the electrode by radial offset. During simulations we identified the spike initiation sites with special emphasis on spikes generated in the dendrite by direct stimulation.</p>
+      <sec id="sec3.1">
+        <title>Excitability and spike initiation</title>
+        <p>The performed simulations indicate that the nodes of Ranvier and the distal end of the AIS are the most excitable structures (<xref rid="fig3" ref-type="fig">Fig. 3</xref>A) showing the lowest threshold for stimulation which is in accordance with experiments (<xref rid="bib14 bib4" ref-type="bibr">Nowak and Bullier, 1998; Gustafsson and Jonkowska, 1976</xref>). In comparison to the sensitive AIS and electrode positions close to nodes of Ranvier, about 2–3 times higher currents are needed to excite thick dendrites and even higher thresholds are expected for thin branches (<xref rid="fig3" ref-type="fig">Fig. 3</xref>A). This trend seems to be applicable to various cell types, since <xref rid="bib4" ref-type="bibr">Gustafsson and Jonkowska (1976)</xref> revealed similar results with their experiments on spinal motor neurons and spinal border cells. The excitability essentially differs along the neural axis displaying the varying electrical properties of different functional elements of the neuron. Therefore parameter values shall be collected carefully, for example it should be pointed out that different modeling of myelination considering the presence of Na<sub>v</sub>1.2 channels, but with decreased capacitance as formerly described by <xref rid="bib6" ref-type="bibr">Hu et al. (2009)</xref>, also leads to a zig-zag behavior of the threshold function as mentioned previously, but not as pronounced as in <xref rid="fig3" ref-type="fig">Fig. 3</xref>A.</p>
+        <p>Since non-branching long straight excitable fibers with constant diameters show an anodic—cathodic threshold ratio in the order of 4:1 (<xref rid="bib15 bib16" ref-type="bibr">Ranck, 1975; Rattay, 1986</xref>), we focused our simulations on phenomena occurring for the cathodic excitation. Nonetheless, note that only within a small region in the vicinity of the soma dendrites are easier to stimulate with anodic pulses and that the extreme node-internode threshold fluctuations are lost when pulse polarity is reversed.</p>
+        <p>Charge-balanced triphasic pulses with an interpulse time of 100 μs and 100 μs per phase have also been tested for both polarities, that is anodic first and cathodic first stimuli. When the electrode is placed close to the neuron the thresholds are similar to monophasic cathodic stimulation. Deviations arise when the electrode-fiber distance is increased.</p>
+        <p>The spike initiation site is close to the electrode in most cathodic stimulation cases. Nonetheless we observed an alternative activation of the cell when the electrode is placed in the vicinity of the dendrites. Shortening the electrode-fiber distance allows indirect spike generation in the AIS (<xref rid="fig2" ref-type="fig">Fig. 2</xref>A), but still this type of stimulation demands for electrode positions rather close to the soma. In order to reach their threshold value the neighboring compartments profit from high intracellular resistance. Lower resistances caused by branching or suddenly increased diameters, for example at the border to the soma, not only reduce the possibility of spike development but are also capable of preventing the conduction into the axon. Evaluation of data shown in <xref rid="fig5" ref-type="fig">Fig. 5</xref>B demonstrates a reduction in amplitude to 42% before the thin dendrite spike enters the soma, whereas for the 5 μm dendrite the dendrite-soma diameter ratio of 1:4 is secure and the spike enters the soma with full amplitude (<xref rid="fig5" ref-type="fig">Fig. 5</xref>A).</p>
+        <p>Our results indicate that a reasonable hypothesis to explain the sparely distributed population of pyramidal cell bodies when stimulated at low intensities (<xref rid="bib5" ref-type="bibr">Histed et al., 2009</xref>) is to assume a rather dense concentration of collaterals of many neurons in the close surrounding of the electrode tip. These thin axons and dendrites are capable of generating an ongoing nerve impulse or activate the distant AIS via intracellular current flow. Therefore the cell bodies of stimulated pyramidal cells can be situated within a distance of several hundred micrometers to the electrode tip, whereas most of the cell bodies closer to the electrode won't be activated.</p>
+      </sec>
+      <sec id="sec3.2">
+        <title>Dendritic spikes</title>
+        <p>The performed simulations further approve the ability of dendrites to generate and successfully transmit an ongoing action potential when stimulated extracellularly. <xref rid="bib5" ref-type="bibr">Histed et al. (2009)</xref> report that the current needed to activate at least one cell was 10 μA or less. According to their Fig. 8C (see <xref rid="bib5" ref-type="bibr">Histed et al., 2009</xref>), axon and dendrite diameters are estimated with 0.2 μm. With our assumptions such tiny dendrites can be directly activated in the range from −10 to −16 μA.</p>
+        <p>Our results demonstrate that, by applying a 100 μs pulse with an amplitude between −25 and −41 μA, a 1.25 μm diameter dendrite that passes the electrode tip in 28 μm distance is able to evoke a spike, whereas the 5 μm thick dendrites needs a minimum distance of 56 μm for a local spike and much higher currents. Starting at the resting state, we have demonstrated that regular dendritic spikes need an excited region of minimum size to obtain enough intracellular current for the neighboring segments to reach threshold. In case of external point source stimulation the polarized and depolarized regions are separated by a 70° angle, that is the length of the activated area can be calculated by 1.4 × distance to electrode. This area does not depend on ion channel compositions, however the minimum electrode fiber distance for a local spike depends essentially on the sodium and potassium channel densities and the intracellular resistance.</p>
+        <p>The inverse recruitment order for peripheral nerve stimulation which is known since 1933 (<xref rid="bib1" ref-type="bibr">Blair and Erlanger, 1933</xref>) states that large diameter fibers have smaller threshold currents. This behavior is also predicted by the activating function both for myelinated and unmyelinated fibers (see methods, <xref rid="bib18 bib19" ref-type="bibr">Rattay, 1989, 1999</xref>). Surprisingly, this rule does not hold for microelectrode stimulation of dendrites.</p>
+        <p>Moreover, the strength of dendritic spike propagation is vulnerable to modulation by the extracellular ion concentrations or any other circumstances that change the dendritic voltage-gated channel profile (<xref rid="bib3" ref-type="bibr">Gasparini et al., 2004</xref>). Although most of these components are beyond the scope of this article, the threshold behavior has also been tested with a more complex model as used by <xref rid="bib6" ref-type="bibr">Hu et al. (2009)</xref>, including more types of ion. Generally, the obtained results were quite similar to the reported ones, demonstrating that dendritic Na<sup>+</sup> and K<sup>+</sup> channels play a key role in setting the threshold and determining the shape and forward-propagation of dendritic spikes (<xref rid="bib3" ref-type="bibr">Gasparini et al., 2004</xref>).</p>
+        <p>This is also in accordance with simulations performed by <xref rid="bib30" ref-type="bibr">Yu et al. (2008)</xref> with a simple model of reduced geometrical complexity and an even distribution of only traditional Hodgkin Huxley style Na<sup>+</sup> and K<sup>+</sup> currents which is able to explain properties like rapid spike onset and its high threshold variability. Thus thresholds can be accurately predicted even with simplified models. Another obvious reason for the missing effect of the addition of currents I<sub>Ca</sub>, I<sub>KCa</sub> and I<sub>Km</sub> to somatodendritic compartments is their relatively low conductances of g<sub>Ca</sub>=0.03, g<sub>KCa</sub>=0.3, g<sub>Ca</sub>=0.03 mS/cm<sup>2</sup> (<xref rid="bib6" ref-type="bibr">Hu et al., 2009</xref>). Since <xref rid="bib22" ref-type="bibr">Royeck et al. (2008)</xref> among other authors report that these ion currents amplify spike after depolarizations and cause the generation of spike bursts, their absence does not influence the initial respond of neurons in the resting start during the onset of microstimulation. <xref rid="bib10" ref-type="bibr">Mainen and Sejnowski (1996)</xref> suggest to include these complex ion channels to expand from single spikes to spike trains, that is repitative firing, which is beyond the purpose of this article.</p>
+        <p>In order to concentrate the analysis on phenomena already observed in a non-branching rectified neuron, we avoided to include the anatomical diversity of pyramidal cells concerning their diverging pattern of dendrites and axons. One should be aware that many more parameters influence the recruitment of extracellular microelectrodes, such as synaptic activities (<xref rid="bib25 bib24" ref-type="bibr">Spruston, 2008; Sjöström et al., 2008</xref>), refractory behavior (<xref rid="bib13" ref-type="bibr">Miocinovic and Grill, 2004</xref>), inhomogeneity in ion channel densities (<xref rid="bib12 bib23 bib8" ref-type="bibr">Migliore and Shepherd, 2002; Schaefer et al., 2007; Keren et al., 2009</xref>) as well as branching (<xref rid="bib11" ref-type="bibr">Manita and Ross, 2009</xref>), curvature (<xref rid="bib21 bib7" ref-type="bibr">Rattay et al., 2000; Iles, 2005</xref>) or irregularities in diameters of cell processes (<xref rid="bib19" ref-type="bibr">Rattay, 1999</xref>). More details on the influence of 3D structures and ion channel distributions will be reported in a forthcoming paper.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <element-citation publication-type="journal" id="sbref0005">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Blair</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Erlanger</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A comparison of the characteristics of axons through their individual electrical responses</article-title>
+          <source>Am J Physiol</source>
+          <volume>106</volume>
+          <year>1933</year>
+          <fpage>524</fpage>
+          <lpage>564</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="journal" id="sbref0010">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Coburn</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural modeling in electrical stimulation</article-title>
+          <source>Crit Rev Biomed Eng</source>
+          <volume>17</volume>
+          <issue>2</issue>
+          <year>1989</year>
+          <fpage>133</fpage>
+          <lpage>178</lpage>
+          <pub-id pub-id-type="pmid">2663351</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <element-citation publication-type="journal" id="sbref0015">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gasparini</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Migliore</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Magee</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the initiation and propagation of dendritic spikes in CA1 pyramidal neurons</article-title>
+          <source>J Neurosci</source>
+          <volume>24</volume>
+          <issue>49</issue>
+          <year>2004</year>
+          <fpage>11046</fpage>
+          <lpage>11056</lpage>
+          <pub-id pub-id-type="pmid">15590921</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <element-citation publication-type="journal" id="sbref0020">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gustafsson</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Jonkowska</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Direct and indirect activation of nerve cells by electrical pulses applied extracellularly</article-title>
+          <source>J Physiol</source>
+          <volume>258</volume>
+          <year>1976</year>
+          <fpage>33</fpage>
+          <lpage>61</lpage>
+          <pub-id pub-id-type="pmid">940071</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <element-citation publication-type="journal" id="sbref0025">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Histed</surname>
+              <given-names>M.H.</given-names>
+            </name>
+            <name>
+              <surname>Bonin</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Reid</surname>
+              <given-names>R.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Direct activation of sparse, distributed populations of cortical neurons by electrical microstimulation</article-title>
+          <source>Neuron</source>
+          <volume>63</volume>
+          <issue>4</issue>
+          <year>2009</year>
+          <fpage>508</fpage>
+          <lpage>522</lpage>
+          <pub-id pub-id-type="pmid">19709632</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <element-citation publication-type="journal" id="sbref0030">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hu</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Tian</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Hou</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Shu</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distinct contributions of Nav16 and Nav12 in action potential initiation and backpropagation</article-title>
+          <source>Nat Neurosci</source>
+          <volume>12</volume>
+          <issue>8</issue>
+          <year>2009</year>
+          <fpage>996</fpage>
+          <lpage>1002</lpage>
+          <pub-id pub-id-type="pmid">19633666</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <element-citation publication-type="journal" id="sbref0035">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Iles</surname>
+              <given-names>J.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Simple models of stimulation of neurones in the brain by electric fields</article-title>
+          <source>Prog Biophys Mol Biol</source>
+          <volume>87</volume>
+          <issue>1</issue>
+          <year>2005</year>
+          <fpage>17</fpage>
+          <lpage>31</lpage>
+          <pub-id pub-id-type="pmid">15471588</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <element-citation publication-type="journal" id="sbref0040">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Keren</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Bar-Yehuda</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Korngreen</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Experimentally guided modelling of dendritic excitability in rat neocortical pyramidal neurones</article-title>
+          <source>J Physiol</source>
+          <volume>587</volume>
+          <year>2009</year>
+          <fpage>1413</fpage>
+          <lpage>1437</lpage>
+          <pub-id pub-id-type="pmid">19171651</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <element-citation publication-type="journal" id="sbref0045">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mainen</surname>
+              <given-names>Z.F.</given-names>
+            </name>
+            <name>
+              <surname>Joerges</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hugenard</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Sejnowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A model of spike initiation in neocortical pyramidal neurons</article-title>
+          <source>Neuron</source>
+          <volume>15</volume>
+          <issue>6</issue>
+          <year>1995</year>
+          <fpage>1427</fpage>
+          <lpage>1439</lpage>
+          <pub-id pub-id-type="pmid">8845165</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <element-citation publication-type="journal" id="sbref0050">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mainen</surname>
+              <given-names>Z.F.</given-names>
+            </name>
+            <name>
+              <surname>Sejnowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Influence of dendritic structure on firing pattern in model neocortical neurons</article-title>
+          <source>Nature</source>
+          <volume>382</volume>
+          <year>1996</year>
+          <fpage>363</fpage>
+          <lpage>366</lpage>
+          <pub-id pub-id-type="pmid">8684467</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <element-citation publication-type="journal" id="sbref0055">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Manita</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ross</surname>
+              <given-names>W.N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Synaptic activation and membrane potential changes modulate the frequency of spontaneous elementary Ca2+ release events in the dendrites of pyramidal neurons</article-title>
+          <source>J Neurosci</source>
+          <volume>29</volume>
+          <issue>24</issue>
+          <year>2009</year>
+          <fpage>7833</fpage>
+          <lpage>7845</lpage>
+          <pub-id pub-id-type="pmid">19535595</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <element-citation publication-type="journal" id="sbref0060">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Migliore</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Shepherd</surname>
+              <given-names>G.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Emerging rules for the distributions of active dendritic conductances</article-title>
+          <source>Nat Rev Neurosci</source>
+          <volume>3</volume>
+          <issue>5</issue>
+          <year>2002</year>
+          <fpage>362</fpage>
+          <lpage>370</lpage>
+          <pub-id pub-id-type="pmid">11988775</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <element-citation publication-type="journal" id="sbref0065">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Miocinovic</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Grill</surname>
+              <given-names>W.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sensitivity of temporal excitation properties to the neuronal element activated by extracellular stimulation</article-title>
+          <source>J Neurosci Methods</source>
+          <volume>132</volume>
+          <issue>1</issue>
+          <year>2004</year>
+          <fpage>91</fpage>
+          <lpage>99</lpage>
+          <pub-id pub-id-type="pmid">14687678</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib14">
+        <element-citation publication-type="journal" id="sbref0070">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nowak</surname>
+              <given-names>L.G.</given-names>
+            </name>
+            <name>
+              <surname>Bullier</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Axons, but not cell bodies, are activated by electrical stimulation in cortical gray matter: I. Evidence from chronaxie measurements</article-title>
+          <source>Exp Brain Res</source>
+          <volume>118</volume>
+          <year>1998</year>
+          <fpage>477</fpage>
+          <lpage>488</lpage>
+          <pub-id pub-id-type="pmid">9504843</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib15">
+        <element-citation publication-type="journal" id="sbref0075">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ranck</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Which elements are excited in electrical stimulation of mammalian central nervous system: a review</article-title>
+          <source>Brain Res</source>
+          <volume>98</volume>
+          <year>1975</year>
+          <fpage>417</fpage>
+          <lpage>440</lpage>
+          <pub-id pub-id-type="pmid">1102064</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib16">
+        <element-citation publication-type="journal" id="sbref0080">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rattay</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of models for external stimulation of axons</article-title>
+          <source>IEEE Trans Biomed Eng</source>
+          <volume>33</volume>
+          <issue>10</issue>
+          <year>1986</year>
+          <fpage>974</fpage>
+          <lpage>977</lpage>
+          <pub-id pub-id-type="pmid">3770787</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib17">
+        <element-citation publication-type="journal" id="sbref0085">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rattay</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ways to approximate current-distance relations for electrically stimulated fibers</article-title>
+          <source>J Theor Biol</source>
+          <volume>125</volume>
+          <issue>3</issue>
+          <year>1987</year>
+          <fpage>339</fpage>
+          <lpage>349</lpage>
+          <pub-id pub-id-type="pmid">3657215</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib18">
+        <element-citation publication-type="journal" id="sbref0090">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rattay</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of models for extracellular fiber stimulation</article-title>
+          <source>IEEE Trans Biomed Eng</source>
+          <volume>36</volume>
+          <issue>7</issue>
+          <year>1989</year>
+          <fpage>676</fpage>
+          <lpage>682</lpage>
+          <pub-id pub-id-type="pmid">2744791</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib19">
+        <element-citation publication-type="journal" id="sbref0095">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rattay</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>The basic mechanism for the electrical stimulation of the nervous system</article-title>
+          <source>Neuroscience</source>
+          <volume>89</volume>
+          <issue>2</issue>
+          <year>1999</year>
+          <fpage>335</fpage>
+          <lpage>346</lpage>
+          <pub-id pub-id-type="pmid">10077317</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib20">
+        <element-citation publication-type="journal" id="sbref0100">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rattay</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Current distance relations for fiber stimulation with pointsources</article-title>
+          <source>IEEE Trans Biomed Eng</source>
+          <volume>55</volume>
+          <issue>3</issue>
+          <year>2008</year>
+          <fpage>1122</fpage>
+          <lpage>1127</lpage>
+          <pub-id pub-id-type="pmid">18334404</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib21">
+        <element-citation publication-type="journal" id="sbref0105">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rattay</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Minassian</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Dimitrijevic</surname>
+              <given-names>M.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Epidural electrical stimulation of posterior structures of the human lumbosacral cord: 2: Quantitative analysis by computer modeling</article-title>
+          <source>Spinal Cord</source>
+          <volume>38</volume>
+          <issue>8</issue>
+          <year>2000</year>
+          <fpage>473</fpage>
+          <lpage>489</lpage>
+          <pub-id pub-id-type="pmid">10962608</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib22">
+        <element-citation publication-type="journal" id="sbref0110">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Royeck</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Horstmann</surname>
+              <given-names>M.T.</given-names>
+            </name>
+            <name>
+              <surname>Remy</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Reitze</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Yaari</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Role of Na<sub>v</sub>1.6 sodium channels in action potential initiation of CA1 pyramidal neurons</article-title>
+          <source>J Neurophysiol</source>
+          <volume>100</volume>
+          <issue>4</issue>
+          <year>2008</year>
+          <fpage>2361</fpage>
+          <lpage>2380</lpage>
+          <pub-id pub-id-type="pmid">18650312</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib23">
+        <element-citation publication-type="journal" id="sbref0115">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schaefer</surname>
+              <given-names>A.T.</given-names>
+            </name>
+            <name>
+              <surname>Helmstaedter</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Schmitt</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Bar-Yehuda</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Almog</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ben-Porat</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Sakmann</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Korngreen</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dendritic voltage-gated K+ conductance gradient in pyramidal neurones of neocortical layer 5B from rats</article-title>
+          <source>J Physiol</source>
+          <volume>579</volume>
+          <year>2007</year>
+          <fpage>737</fpage>
+          <lpage>752</lpage>
+          <pub-id pub-id-type="pmid">17158172</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib24">
+        <element-citation publication-type="journal" id="sbref0120">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sjöström</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Rancz</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Roth</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Häusser</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dendritic excitability and synaptic plasticity</article-title>
+          <source>Physiol Rev</source>
+          <volume>88</volume>
+          <issue>2</issue>
+          <year>2008</year>
+          <fpage>769</fpage>
+          <lpage>840</lpage>
+          <pub-id pub-id-type="pmid">18391179</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib25">
+        <element-citation publication-type="journal" id="sbref0125">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Spruston</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Pyramidal neurons: dendritic structure and synaptic integration</article-title>
+          <source>Nat Rev Neurosci</source>
+          <volume>9</volume>
+          <issue>3</issue>
+          <year>2008</year>
+          <fpage>206</fpage>
+          <lpage>221</lpage>
+          <pub-id pub-id-type="pmid">18270515</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib26">
+        <element-citation publication-type="journal" id="sbref0130">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stoney</surname>
+              <given-names>S.D.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Asanuma</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Excitation of pyramidal tract cells by intracortical microstimulation: effective extent of stimulating current</article-title>
+          <source>J Neurophysiol</source>
+          <volume>31</volume>
+          <year>1968</year>
+          <fpage>659</fpage>
+          <lpage>669</lpage>
+          <pub-id pub-id-type="pmid">5711137</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib27">
+        <element-citation publication-type="journal" id="sbref0135">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stuart</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Spruston</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Sakmann</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Häusser</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Action potential initiation and backpropagation in neurons of the mammalian CNS</article-title>
+          <source>Trends Neurosci</source>
+          <volume>20</volume>
+          <issue>3</issue>
+          <year>1997</year>
+          <fpage>125</fpage>
+          <lpage>131</lpage>
+          <pub-id pub-id-type="pmid">9061867</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib28">
+        <element-citation publication-type="journal" id="sbref0140">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tehovnik</surname>
+              <given-names>E.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electrical stimulation of neural tissue to evoke behavioral responses</article-title>
+          <source>J Neurosci Methods</source>
+          <volume>65</volume>
+          <issue>1</issue>
+          <year>1996</year>
+          <fpage>1</fpage>
+          <lpage>17</lpage>
+          <pub-id pub-id-type="pmid">8815302</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib29">
+        <element-citation publication-type="journal" id="sbref0145">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tehovnik</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Tolias</surname>
+              <given-names>A.S.</given-names>
+            </name>
+            <name>
+              <surname>Sultan</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Slocum</surname>
+              <given-names>W.M.</given-names>
+            </name>
+            <name>
+              <surname>Logothetis</surname>
+              <given-names>N.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Direct and indirect activation of cortical neurons by electrical microstimulation</article-title>
+          <source>J Neurophysiol</source>
+          <volume>96</volume>
+          <issue>2</issue>
+          <year>2006</year>
+          <fpage>512</fpage>
+          <lpage>521</lpage>
+          <pub-id pub-id-type="pmid">16835359</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib30">
+        <element-citation publication-type="journal" id="sbref0150">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Shu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>McCormick</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cortical action potential backpropagation explains spike threshold variability and rapid-onset kinetics</article-title>
+          <source>J Neurosci</source>
+          <volume>28</volume>
+          <issue>29</issue>
+          <year>2008</year>
+          <fpage>7260</fpage>
+          <lpage>7272</lpage>
+          <pub-id pub-id-type="pmid">18632930</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This research project was supported by the Austrian Science Funds (FWF)—project 21848-N13.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1">
+        <label>1</label>
+        <p>The limit value depends on ion channel types and their densities. As an example, a lower dendritic potassium channel concentration reduces the limit.</p>
+      </fn>
+    </fn-group>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>External stimulation at the dendrite. (A) geometry. (B) high threshold Na<sub>v</sub>1.2 channel densities represented by the maximum conductance (magenta) exist in the upper part of the neuron until AIS and low threshold Na<sub>v</sub>1.6 channels (purple) from AIS until the axon terminal. Note that high concentrations from axon hillock until myelination exceed even that of nodes of Ranvier by a factor 2 whereas in soma and dendrite a uniform maximum sodium conductance of 8 mS/cm<sup>2</sup> is assumed (Hu et al., 2009). (C) Transmembrane voltages as functions of time. Electrode tip is assumed 300 μm from the soma and 80 μm from the axis (x<sub>el</sub>=−300 μm, z<sub>el</sub>=80 μm) in a homogeneous medium with resistivity ρ<sub>e</sub>=300 Ωcm. At this distance the electric field has a direct depolarizing effect only within the gray shaded region where the slopes at stimulus onset in (C) are positive. Spike is initiated in the compartment closest to the electrode (cyan) and propagates in both directions. When intracellular currents cross the soma (red) they activate the low threshold region and cause earlier AP peaks thereof compared to the soma and the last presomatic dendritic compartments.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Axonal spike initiation for middendritic electrode position causes a delayed backpropagating dendritic AP (A) but fails for a stimulus pulse with doubled amplitude (B). Display as in <xref rid="fig1" ref-type="fig">Fig. 1</xref>C but to account for numerical reasons with an increased amount of shorter dendritic compartments. Time courses of selected compartments are redrawn in the bottom. Note the 110 mV increase of the closest compartment to the electrode (purple) in (A) which causes enough subthreshold activities in the proximal dendrite compartments to cross the soma and to initiate a spike in the AIS. No depolarizing response reaches the soma in case (B) in spite of larger membrane amplitude at the most excited part of the dendrite. Dashed lines indicate the sodium current thresholds for the dendrite (Na<sub>v</sub>1.2, 40 mV above V<sub>rest</sub>) and the AIS (Na<sub>v</sub>1.6, 20 mV above V<sub>rest</sub>), the diameter of the dendrite is 5 μm, x<sub>electrode</sub>=−200 μm, z<sub>electrode</sub>=50 μm.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Threshold current as a function of electrode position for monophasic 100 μs pulses. (A) When the electrode is moved from left to right in constant 100 μm distance to the neuron axis, cathodic threshold current (red line, marked as I<sub>100</sub>) is rather constant along the dendrite but threshold reduces quickly before arriving at the soma (x<sub>el</sub>=0) with a local minimum at the distal end of the AIS (AIS is marked as gray region). Zig-zag line demonstrates low thresholds when the electrode is just above a node of Ranvier. For half the axial distance (z<sub>el</sub>=50 μm) cathodic threshold (blue line) is similar in shape with the broken blue line which is the prediction for a quadratic current distance rule (I<sub>100</sub>/4 is a vertical shift of the red I<sub>100</sub> line, corresponding to the factor 1/4 of the logarithmic scale). However, two discrepancies are characteristic: full blue line values are always higher and, second, the threshold ratio for nodal and internodal positions is increased. Anodic stimulation (green line) does neither favor positions above nodes nor the vicinity of the AIS. Thin green and blue lines show threshold predictions when the dendritic diameter is reduced from 5 to 1.25 μm. (B) radial current distance relations for 3 selected positions as marked in (A): middendritic, soma and distal end of AIS. Indicated by the slopes of the gray arrows, in all three cases there is a clear trend from a linear to a quadratic relation when electrode distance is increased in radial direction.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Snapshots of transmembrane voltages along the neuron. Shifted lines correspond to 100 μs intervals. At the end of the 100 μs pulse (red lines) transmembrane voltages are smoothed pictures of the activating functions (middle traces) with inverted polarity for anodic pulses (lower traces). In spite of rather large membrane voltages during dendritic stimulation (red line in G), indirect activation is initiated in the AIS. Dashed black lines mark soma position, dashed red lines the electrode positions. AIS region is shown in gray. z<sub>electrode</sub>=50 μm in all cases.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Spike initiation (vertical black arrows) at the distal end of dendrite (A, B) and in the distal AIS (C) have large axial distances (140, 266 and 248 μm) to electrode position as marked by red arrowheads; x<sub>electrode</sub>=−370 μm (A), −244 μm (B) and −184 μm (C). z<sub>electrode</sub>=50 μm, 100 μs pulse −57 μA (A) and +200 μA in (B, C), dendrite diameter 5 μm (A) and 1.25 μm (B, C). Lower traces: 2× magnified transmembrane voltages at the end of the stimulus pulse show 1, 2 and 3 depolarized regions as candidates for spike initiation. Soma is marked by dashed line, AIS as gray region.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <table-wrap id="tbl1" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Threshold currents in μA for the same electrode positions as in <xref rid="fig3" ref-type="fig">Fig. 3</xref>B</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">z<sub>el</sub>=in μm</th>
+            <th align="left">14</th>
+            <th align="left">25</th>
+            <th align="left">35</th>
+            <th align="left">50</th>
+            <th align="left">71</th>
+            <th align="left">100</th>
+            <th align="left">141</th>
+            <th align="left">200</th>
+            <th align="left">Pulse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">Dendrite x<sub>el</sub>=−300 μm</td>
+            <td align="center">×××</td>
+            <td align="center">×××</td>
+            <td align="center">×44×</td>
+            <td align="center">565062</td>
+            <td align="center">807590</td>
+            <td align="center">135130150</td>
+            <td align="center">260230210</td>
+            <td align="center">520460310</td>
+            <td align="left">–−/++/−</td>
+          </tr>
+          <tr>
+            <td align="left">Soma x<sub>el</sub>=0</td>
+            <td align="center">8,1</td>
+            <td align="center">17</td>
+            <td align="center">24</td>
+            <td align="center">36</td>
+            <td align="center">59</td>
+            <td align="center">97</td>
+            <td align="center">171</td>
+            <td align="center">330</td>
+            <td align="left">–</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="center">6,4</td>
+            <td align="center">15</td>
+            <td align="center">23</td>
+            <td align="center">38</td>
+            <td align="center">62</td>
+            <td align="center">110</td>
+            <td align="center">200</td>
+            <td align="center">400</td>
+            <td align="left">−/+</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="center">8,9</td>
+            <td align="center">21</td>
+            <td align="center">34</td>
+            <td align="center">57</td>
+            <td align="center">100</td>
+            <td align="center">190</td>
+            <td align="center">390</td>
+            <td align="center">760</td>
+            <td align="left">+/−</td>
+          </tr>
+          <tr>
+            <td align="left">Distal AIS x<sub>el</sub>=70 μm</td>
+            <td align="center">3,23,33,6</td>
+            <td align="center">6,36,67,5</td>
+            <td align="center">1010,412,4</td>
+            <td align="center">171823</td>
+            <td align="center">303143</td>
+            <td align="center">556086</td>
+            <td align="center">106120190</td>
+            <td align="center">220250450</td>
+            <td align="left">–−/++/−</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>Stimulation with monophasic cathodic and charge balanced triphasic (cathodic first and anodic first) pulses, 100 μs per phase. The triphasic pulses have a gap of 100 μs after the first pulse and show a threshold characteristic quite similar to biphasic 200 μs pulses of the same charge per phase.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>

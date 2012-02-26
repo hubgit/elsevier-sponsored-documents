@@ -1,0 +1,660 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">J Neurosci Methods</journal-id>
+      <journal-title-group>
+        <journal-title>Journal of Neuroscience Methods</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0165-0270</issn>
+      <issn pub-type="epub">1872-678X</issn>
+      <publisher>
+        <publisher-name>Elsevier/North-Holland Biomedical Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3142613</article-id>
+      <article-id pub-id-type="pmid">21620891</article-id>
+      <article-id pub-id-type="publisher-id">NSM6004</article-id>
+      <article-id pub-id-type="doi">10.1016/j.jneumeth.2011.05.011</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>An automated calibration method for non-see-through head mounted displays</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gilson</surname>
+            <given-names>Stuart J.</given-names>
+          </name>
+          <email>stuart.gilson@physiol.ox.ac.uk</email>
+          <xref rid="aff0005" ref-type="aff">a</xref>
+          <xref rid="cor0005" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Fitzgibbon</surname>
+            <given-names>Andrew W.</given-names>
+          </name>
+          <xref rid="aff0010" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Glennerster</surname>
+            <given-names>Andrew</given-names>
+          </name>
+          <xref rid="aff0015" ref-type="aff">c</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff0005"><label>a</label>Department of Physiology, Anatomy and Genetics, University of Oxford, Oxford, UK</aff>
+      <aff id="aff0010"><label>b</label>Microsoft Research Ltd., Cambridge, UK</aff>
+      <aff id="aff0015"><label>c</label>School of Psychology and Clinical Language Sciences, University of Reading, Reading, UK</aff>
+      <author-notes>
+        <corresp id="cor0005"><label>⁎</label>Corresponding author. Tel.: +44 01865 27460. <email>stuart.gilson@physiol.ox.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>15</day>
+        <month>8</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>8</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>199</volume>
+      <issue>2</issue>
+      <fpage>328</fpage>
+      <lpage>335</lpage>
+      <history>
+        <date date-type="received">
+          <day>16</day>
+          <month>3</month>
+          <year>2011</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>5</day>
+          <month>5</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>6</day>
+          <month>5</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier B.V.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract abstract-type="graphical">
+        <title>Highlights</title>
+        <p>► Correctly calibrating a head-mounted display (HMD) is critical for the kinds of virtual reality applications used by visual neuroscientists. ► We propose a method that produces these calibrations accurately and quickly. ► Unlike methods proposed by others, ours requires no error-prone human judgements. ► Our method permits the collection of large numbers of samples for the calibration data. We show how number of samples affects calibration accuracy. ► Can be used for the more popular non-see-through HMDs, which, traditionally, have been neglected. Existing calibration techniques work only with optical-see-through HMDs.</p>
+      </abstract>
+      <abstract>
+        <p>Accurate calibration of a head mounted display (HMD) is essential both for research on the visual system and for realistic interaction with virtual objects. Yet, existing calibration methods are time consuming and depend on human judgements, making them error prone, and are often limited to optical see-through HMDs. Building on our existing approach to HMD calibration <xref rid="bib0010" ref-type="bibr">Gilson et al. (2008)</xref>, we show here how it is possible to calibrate a non-see-through HMD. A camera is placed inside a HMD displaying an image of a regular grid, which is captured by the camera. The HMD is then removed and the camera, which remains fixed in position, is used to capture images of a tracked calibration object in multiple positions. The centroids of the markers on the calibration object are recovered and their locations re-expressed in relation to the HMD grid. This allows established camera calibration techniques to be used to recover estimates of the HMD display's intrinsic parameters (width, height, focal length) and extrinsic parameters (optic centre and orientation of the principal ray). We calibrated a HMD in this manner and report the magnitude of the errors between real image features and reprojected features. Our calibration method produces low reprojection errors without the need for error-prone human judgements.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Head mounted display</kwd>
+        <kwd>Non-see-through</kwd>
+        <kwd>Calibration</kwd>
+        <kwd>Photogrammetry</kwd>
+        <kwd>Immersive virtual reality</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>A head mounted display (HMD) can be modelled in a similar way to a conventional camera. Like a camera, it has both <italic>intrinsic</italic> parameters – focal length, aspect ratio, centre pixel – and <italic>extrinsic</italic> parameters – position of the optic centre and orientation of the principal ray. It also has an <italic>image plane</italic>, upon which pixels are drawn which represent the rays of light from the scene striking the virtual film. Collectively, these define a set of <italic>projection parameters</italic> which determines how the vertices of virtual objects are projected onto the image plane.</p>
+      <p>The issue, then, is to find the projection parameters for each eye's display in a HMD. HMD manufacturer specifications tend to be inadequate for this task, so the only other solution is to attempt to measure these display properties. Unlike calibrating a monitor display, it is usually difficult to get sufficient physical access to a HMD display in order to make accurate measurements. Instead, we describe here a method based on photogrammetry (camera calibration) techniques.</p>
+      <p>HMDs fall into two categories: see-through and non-see-through. Of the see-through variety, there are two sub-categories: optical-see-through and video-see-through. Video-see-through displays are very popular in augmented reality applications, where a video camera mounted within the HMD sends digitized images of the real world to the graphics computer, which can then overlay computer graphics onto the images before sending them to the HMD to be displayed to the observer. Such displays are generally straight-forward to calibrate (<xref rid="bib0080 bib0005" ref-type="bibr">Tuceryan et al., 1995; Azuma et al., 2001</xref>), since the issue of calibrating a conventional camera is well understood (<xref rid="bib0020" ref-type="bibr">Hartley and Zisserman, 2001</xref>). However, the optic centre of the camera is not at the observer's eye, and the resulting calibrated display will differ from that which the observer would see if they removed the HMD. For some applications, this discrepancy is acceptable (e.g., navigation, gaming, architectural walk-throughs), while for other applications involving interaction with real and virtual objects the offset between hand and eye may be detrimental to the task.</p>
+      <p>Optical-see-through displays generally use a half-silvered mirror placed in front of the observer's eyes, with a display device (cathode-ray tube or liquid crystal) mounted on the HMD. The half-silvered mirror permits rays of light from the real world to reach the observer, while also reflecting images from the display device. The observer sees a composite of the two sources, but with several limitations. Notably, the computer graphics (CG) image is effectively blended with the real world image and, as such, can never completely obliterate the real world. Hence, making virtual objects occlude real ones is impossible. Also, dark details in the CG image will become washed out by bright areas of the real world. Of more relevance here, is that there is no digital record of the rays entering the HMD optics and, so, existing camera calibration methods cannot be used. Critically, without an accurate calibration, virtual objects will not register precisely with real objects, making optical-see-through a poor choice for augmented reality.</p>
+      <p>Non-see-through HMDs usually place the display device directly in front of the observer's eye, and are thus optically much simpler than either of the other two types of HMD. This does not make them any easier to calibrate, though. While the real world is not visible to the observer, and so registering virtual objects with real world ones is not an issue, a correct calibration is still important. Failure to calibrate correctly can lead to observers misinterpreting the virtual world (for example, they often underestimate distances to objects which can be a symptom of an incorrect calibration (<xref rid="bib0030" ref-type="bibr">Kuhl et al., 2009</xref>)). Inadequate calibration can also lead to users experiencing premature fatigue and possible onset of nausea (<xref rid="bib0045 bib0040 bib0055" ref-type="bibr">Mon-Williams et al., 1993,1998; Regan, 1995</xref>).</p>
+      <p>Thus, there is a demand for a reliable calibration procedure for both optical-see-through and non-see-through HMDs. Several methods of calibration that have been described previously have relied on human judgements. For non-see-through HMDs this involves either the observer removing the headset and comparing the widths or locations of objects presented in the real world with those shown in the headset (<xref rid="bib0030" ref-type="bibr">Kuhl et al., 2009</xref>) or judging the separation of features in the HMD image with an after-image produced by a bright flash (<xref rid="bib0060" ref-type="bibr">Rinalducci et al., 1996</xref>). Both types of method suffer from the inevitable imprecision and inaccuracy of human judgements. These methods were also designed to calibrate only a restricted range of parameters (e.g., horizontal and vertical scale, pitch and pin-cushion distortion).</p>
+      <p>Optical see-through HMDs have the advantage that the real world and computer-generated image can be viewed simultaneously. In the literature on optical see-through HMDs, the most extensively covered calibration method, SPAAM (single point active alignment method), uses a human observer to calibrate the display by wearing the HMD and positioning their head in order to align HMD image points with real world objects whose locations are known (<xref rid="bib0075" ref-type="bibr">Tuceryan et al., 2002</xref>). When this alignment is achieved, the HMD position and pose is recorded from the tracker, and the procedure is repeated with more image/world coordinate pairs until sufficient data has been gathered to estimate the projection parameters. This is a time-consuming process, requiring a skilled observer to make numerous, potentially erroneous judgements. Also, there can be high variability in the results due to the difficulty of performing such an alignment task with a free-moving head. Finally, images in the HMD are at a fixed accommodative distance but it is desirable to match image objects with real world objects at a range of distances in order to estimate the projection parameters correctly. Human observers can find it difficult to match the visual direction of real and virtual objects at substantially different distances (and, hence, with different accommodative demands).</p>
+      <p>(<xref rid="bib0050" ref-type="bibr">Owen et al., 2004</xref>) used a calibration method that at first sight appears similar to ours, with at least one fundamental difference. In our method, all real-world coordinates (of both HMD location and visible markers) are reported by a single tracking system, which obviates the need for error-prone human measurements such as are used by <xref rid="bib0050" ref-type="bibr">Owen et al. (2004)</xref>. Unlike <xref rid="bib0050" ref-type="bibr">Owen et al. (2004)</xref> and the majority of other HMD calibration papers, we provide a quantitative evaluation (i.e., root-mean-square error) of the extent to which our calibration has been successful.</p>
+      <p>We have described previously a calibration method applicable to see-through HMDs (<xref rid="bib0010" ref-type="bibr">Gilson et al., 2008</xref>). Here, we describe a method suitable to <italic>non-see-through</italic> HMDs, thus making our method appropriate for the majority of HMDs currently used for virtual reality applications. In the current method, we used a dynamically tracked object which the user could move freely within the volume visible through the HMD display. This made it easier for the user to cover a wide range of the HMD field of view and hence to obtain a more complete and accurate calibration than would be obtainable with a small number of statically positioned objects.</p>
+    </sec>
+    <sec sec-type="methods" id="sec0010">
+      <label>2</label>
+      <title>Methods</title>
+      <p>Our aim was to find estimates of the intrinsic and extrinsic matrices which define the HMD display (shown pictorially in <xref rid="fig0005" ref-type="fig">Fig. 1</xref>). The extrinsic matrix describes the location of the optic centre of the HMD display and the orientation of the principal ray (in world coordinates):<disp-formula id="eq0005"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mtext>S</mml:mtext></mml:mstyle><mml:mo>=</mml:mo><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable columnalign="center"><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mstyle mathvariant="bold"><mml:mtext>R</mml:mtext></mml:mstyle></mml:mtd><mml:mtd columnalign="center"><mml:mrow><mml:msup><mml:mstyle mathvariant="bold"><mml:mtext>T</mml:mtext></mml:mstyle><mml:mi>T</mml:mi></mml:msup></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>1</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula>where <bold>R</bold> is a 3 × 3 rotation matrix and <bold>T</bold> is a 1 × 3 translation matrix, i.e., 6 extrinsic parameters.</p>
+      <p>The intrinsic matrix (<xref rid="bib0020" ref-type="bibr">Hartley and Zisserman, 2001</xref>) comprises the focal length (<italic>f</italic>, in both horizontal and vertical directions, thus denoting aspect ratio), centre pixel location (<italic>c</italic>), and image skew (<italic>s</italic>):<disp-formula id="eq0010"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mtext>K</mml:mtext></mml:mstyle><mml:mo>=</mml:mo><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable columnalign="center"><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:msub><mml:mi>f</mml:mi><mml:mi>x</mml:mi></mml:msub></mml:mrow></mml:mtd><mml:mtd columnalign="center"><mml:mi>s</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mrow><mml:msub><mml:mi>c</mml:mi><mml:mi>x</mml:mi></mml:msub></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mrow><mml:msub><mml:mi>f</mml:mi><mml:mi>y</mml:mi></mml:msub></mml:mrow></mml:mtd><mml:mtd columnalign="center"><mml:mrow><mml:msub><mml:mi>c</mml:mi><mml:mi>y</mml:mi></mml:msub></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>1</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula></p>
+      <p>These 11 parameters define a linear projection model, transforming 3D coordinates of virtual objects into image space. In order to obtain projected pixel coordinates (necessary for rendering), we reformulate <bold>K</bold> into a format used in computer graphics languages (like OpenGL):<disp-formula id="eq0015"><label>(3)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mtext>P</mml:mtext></mml:mstyle><mml:mo>=</mml:mo><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable columnalign="center"><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:mfrac><mml:mrow><mml:mn>2</mml:mn><mml:mo>×</mml:mo><mml:mtext>ncp</mml:mtext></mml:mrow><mml:mrow><mml:mtext>right</mml:mtext><mml:mo>−</mml:mo><mml:mtext>left</mml:mtext></mml:mrow></mml:mfrac></mml:mrow></mml:mtd><mml:mtd columnalign="center"><mml:mi>s</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mrow><mml:mfrac><mml:mrow><mml:mtext>right</mml:mtext><mml:mo>+</mml:mo><mml:mtext>left</mml:mtext></mml:mrow><mml:mrow><mml:mtext>right</mml:mtext><mml:mo>−</mml:mo><mml:mtext>left</mml:mtext></mml:mrow></mml:mfrac></mml:mrow></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mrow><mml:mfrac><mml:mrow><mml:mn>2</mml:mn><mml:mo>×</mml:mo><mml:mtext>ncp</mml:mtext></mml:mrow><mml:mrow><mml:mtext>top</mml:mtext><mml:mo>−</mml:mo><mml:mtext>bottom</mml:mtext></mml:mrow></mml:mfrac></mml:mrow></mml:mtd><mml:mtd columnalign="center"><mml:mrow><mml:mfrac><mml:mrow><mml:mtext>top</mml:mtext><mml:mo>+</mml:mo><mml:mtext>bottom</mml:mtext></mml:mrow><mml:mrow><mml:mtext>top</mml:mtext><mml:mo>−</mml:mo><mml:mtext>bottom</mml:mtext></mml:mrow></mml:mfrac></mml:mrow></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mtext>fcp</mml:mtext><mml:mo>+</mml:mo><mml:mtext>ncp</mml:mtext></mml:mrow><mml:mrow><mml:mtext>fcp</mml:mtext><mml:mo>−</mml:mo><mml:mtext>ncp</mml:mtext></mml:mrow></mml:mfrac></mml:mrow></mml:mtd><mml:mtd columnalign="center"><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mn>2</mml:mn><mml:mo>×</mml:mo><mml:mtext>fcp</mml:mtext><mml:mo>×</mml:mo><mml:mtext>ncp</mml:mtext></mml:mrow><mml:mrow><mml:mtext>fcp</mml:mtext><mml:mo>−</mml:mo><mml:mtext>ncp</mml:mtext></mml:mrow></mml:mfrac></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula>where:<disp-formula id="eq0020"><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:mtable columnalign="center"><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:mtext>left</mml:mtext><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mtext>ncp</mml:mtext><mml:mo>×</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>c</mml:mi><mml:mi>x</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>f</mml:mi><mml:mi>x</mml:mi></mml:msub></mml:mrow></mml:mfrac><mml:mo>,</mml:mo><mml:mtext> </mml:mtext><mml:mtext>right</mml:mtext><mml:mo>=</mml:mo><mml:mtext>ncp</mml:mtext><mml:mo>×</mml:mo><mml:mfrac><mml:mrow><mml:mi>w</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>c</mml:mi><mml:mi>x</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>f</mml:mi><mml:mi>x</mml:mi></mml:msub></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:mtext>bottom</mml:mtext><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mtext>ncp</mml:mtext><mml:mo>×</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>c</mml:mi><mml:mi>y</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>f</mml:mi><mml:mi>y</mml:mi></mml:msub></mml:mrow></mml:mfrac><mml:mo>,</mml:mo><mml:mtext> </mml:mtext><mml:mtext>top</mml:mtext><mml:mo>=</mml:mo><mml:mtext>ncp</mml:mtext><mml:mo>×</mml:mo><mml:mfrac><mml:mrow><mml:mi>h</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>c</mml:mi><mml:mi>y</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>f</mml:mi><mml:mi>y</mml:mi></mml:msub></mml:mrow></mml:mfrac></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula>define the borders of the frustum's near clipping plane (<italic>w</italic> and <italic>h</italic> are the pixel width and the height of the graphics viewport, and ncp and fcp are the near- and far-clipping planes – these are application specific and not covered further here).</p>
+      <p>Briefly, the calibration procedure was as below:<list list-type="simple"><list-item><label>1.</label><p>The HMD was rigidly mounted on a stable table, and it's position and orientation were recorded by the tracking system.</p></list-item><list-item><label>2.</label><p>The camera was placed inside the HMD such that the camera was approximately fronto-parallel to the HMD display, and could capture as much of one of the displays as possible.</p></list-item><list-item><label>3.</label><p>A chequerboard grid image was displayed in the HMD display, and captured by the camera. The image was post-processed to locate and record the grid vertices in the camera image.</p></list-item><list-item><label>4.</label><p>The HMD was carefully moved away from the camera, without moving the camera or table.</p></list-item><list-item><label>5.</label><p>The calibration object was then waved around within the field of view of the camera. The centroids of the markers on the calibration object were extracted from the camera images in real time. The 3D location of the same markers were also recorded by the tracking system.</p></list-item><list-item><label>6.</label><p>The 3D marker positions and the 2D image centroids formed the input to the off-line calibration calculations.</p></list-item><list-item><label>7.</label><p>Typically, this procedure would then be repeated for the other HMD display, although we only describe calibration of one display here.</p></list-item></list></p>
+      <p>To capture images for calibration, we used an AVT Pike (1280 × 1024 pixels resolution, ≈65° field of view). The camera was configured to have the smallest lens aperture possible to maximize its depth of field, while still enabling sufficient illumination for the necessary image processing. The shutter time was also minimized as much as illumination allowed, to increase the frame rate of the images and to minimize temporal blurring between frames of any moving objects.</p>
+      <p>We calibrated an nVis SX111 HMD, which has a nominal 76° horizontal field of view in each display, giving a binocular field of view of ≈102° with 66% stereo overlap. Each display comprises 1280 × 1024 pixels and refreshes at 60 Hz. The camera was positioned inside the independently supported HMD in such a way that it could capture as much of the HMD image as possible. The location and pose of the HMD, <bold>S</bold><sub>T</sub>, was recorded using a 6 degree-of-freedom real time optical tracking system (Vicon Motion Systems MX3). The HMD displayed a simple chequerboard pattern (41 × 41 vertices) and an image of this was captured using the camera (<xref rid="fig0010" ref-type="fig">Fig. 2</xref>). The vertices of the chequerboard in this image were extracted using image processing. Using a salient feature in the middle of the HMD image, we were able to relate the known vertices of the HMD chequerboard to corresponding vertices in the camera image.</p>
+      <p>This allowed us to generate a mapping between camera image and HMD coordinates. If the HMD vertices are denoted by:<disp-formula id="eq0025"><label>(4)</label><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mstyle mathvariant="bold"><mml:mtext>g</mml:mtext></mml:mstyle><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mo>{</mml:mo><mml:mfenced open="(" close=")"><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mi>i</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup><mml:mo>,</mml:mo><mml:msubsup><mml:mi>y</mml:mi><mml:mi>i</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup></mml:mrow></mml:mfenced><mml:mo>|</mml:mo><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1...1681</mml:mn><mml:mo>}</mml:mo></mml:mrow></mml:math></disp-formula>where <inline-formula><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mi>i</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> and <inline-formula><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mi>y</mml:mi><mml:mi>i</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> are HMD coordinates, then, for each vertex <italic>i</italic> there exists:<disp-formula id="eq0030"><label>(5)</label><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mstyle mathvariant="bold"><mml:mtext>g</mml:mtext></mml:mstyle><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mo>{</mml:mo><mml:mfenced open="(" close=")"><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mi>i</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup><mml:mo>,</mml:mo><mml:msubsup><mml:mi>y</mml:mi><mml:mi>i</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup></mml:mrow></mml:mfenced><mml:mo>|</mml:mo><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1...1681</mml:mn><mml:mo>}</mml:mo></mml:mrow></mml:math></disp-formula>where <inline-formula><mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mi>x</mml:mi><mml:mi>i</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> and <inline-formula><mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mi>y</mml:mi><mml:mi>i</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> are the coordinates of the corresponding vertex in camera coordinates. This allowed any camera coordinate to be converted to a HMD coordinate using interpolation. If <inline-formula><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>x</mml:mtext></mml:mstyle><mml:mi>t</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> denotes a real world point captured by the unmoved camera at time <italic>t</italic>, then we found the smallest triangle of the chequerboard that encompassed it, whose vertices we denote <bold>g</bold><sub><italic>i</italic></sub>, <bold>g</bold><sub><italic>h</italic></sub> and <bold>g</bold><sub><italic>v</italic></sub>. We then used linear interpolation to re-express the camera coordinate in HMD coordinates using the basis vectors <inline-formula><mml:math id="M12" altimg="si12.gif" overflow="scroll"><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>g</mml:mtext></mml:mstyle><mml:mi>h</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>g</mml:mtext></mml:mstyle><mml:mi>i</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></inline-formula> and <inline-formula><mml:math id="M13" altimg="si13.gif" overflow="scroll"><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>g</mml:mtext></mml:mstyle><mml:mi>v</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>g</mml:mtext></mml:mstyle><mml:mi>i</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></inline-formula> and their equivalents <inline-formula><mml:math id="M14" altimg="si14.gif" overflow="scroll"><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>g</mml:mtext></mml:mstyle><mml:mi>h</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>g</mml:mtext></mml:mstyle><mml:mi>i</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></inline-formula> and <inline-formula><mml:math id="M15" altimg="si15.gif" overflow="scroll"><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>g</mml:mtext></mml:mstyle><mml:mi>v</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>g</mml:mtext></mml:mstyle><mml:mi>i</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></inline-formula> respectively. Expressed in terms of these basis vectors, <bold>x</bold><sub><italic>t</italic></sub><sup>CAM</sup> and <bold>x</bold><sub><italic>t</italic></sub><sup>HMD</sup> are equivalent points (<xref rid="bib0010" ref-type="bibr">Gilson et al., 2008</xref>).</p>
+      <p>This step essentially rectifies the camera data and means calibration of the camera itself is not required. The HMD calibration procedure relies only on the assumption that the camera coordinates can be mapped onto HMD coordinates by a linear (affine) mapping within the region of a single square of the the chequerboard.</p>
+      <p>We removed the HMD from the camera and – crucially – ensured that the camera did not move. The camera then captured frames of the real world in which we moved a calibration object along a random trajectory within the field of view of the camera. The operator's objective when generating the trajectory was to ‘paint’ as much as possible of the camera image with projections of the markers. In addition, it is beneficial for the accuracy of the calibration results to include as wide a depth range as possible in the trajectory (<xref rid="fig0015" ref-type="fig">Fig. 3</xref>). The calibration object consisted of several rigidly positioned markers forming an asymmetric planar pattern. The asymmetry allowed the Vicon tracking system to report the object's position unambiguously. By using a number of markers on a rigid object, the Vicon tracking system could report each marker's location with greater accuracy than if just one marker was used. Our calibration software extracted the 2D centroids of the markers from the camera images in real time, while also recording the markers’ 3D locations reported by the Vicon tracker.</p>
+      <p>Aside from being attached to the same physical object, the data from each marker is treated as entirely independent of the others in the subsequent stages of calibration, so we concatenated their coordinates together to form one large trajectory. For simplicity, the following explanation refers to this compound trajectory as if it were generated by just one marker.</p>
+      <p>We thus obtained, for each trajectory, approximately 8000 quintuples <inline-formula><mml:math id="M16" altimg="si16.gif" overflow="scroll"><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>x</mml:mtext></mml:mstyle><mml:mi>t</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup><mml:msub><mml:mstyle mathvariant="bold"><mml:mtext>X</mml:mtext></mml:mstyle><mml:mi>t</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:math></inline-formula> representing the instantaneous location of the marker at any moment (<bold>X</bold><sub><italic>t</italic></sub>) and its projection on the camera image <inline-formula><mml:math id="M17" altimg="si17.gif" overflow="scroll"><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>x</mml:mtext></mml:mstyle><mml:mi>t</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></inline-formula>. Before these coordinates could form the input to the camera calibration routine, all 2D image locations were transformed into HMD coordinates using the basis vectors described above, to give <inline-formula><mml:math id="M18" altimg="si18.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>x</mml:mtext></mml:mstyle><mml:mi>t</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula>. This was a critical step, since without this, the subsequent photogrammetry would produce an intrinsic model of the camera, not the HMD.</p>
+      <p>We computed initial values for the intrinsic and extrinsic matrices by finding a single homography that mapped <inline-formula><mml:math id="M19" altimg="si19.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>x</mml:mtext></mml:mstyle><mml:mi>t</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> onto the corresponding <bold>X</bold><sub><italic>t</italic></sub> [<xref rid="bib0020" ref-type="bibr">Hartley and Zisserman, 2001</xref>, page 92]. The resulting estimates for focal length, aspect ratio, centre pixel, optic centre location and principal ray direction were then used as a starting point for a simplex minimisation (<xref rid="bib0035" ref-type="bibr">Lagarias et al., 1998</xref>). The cost function was the reprojection error – that is, the root-mean-square (RMS) difference (in pixels) between the original projections <bold>x</bold><sup>HMD</sup> and the new projections computed by:<disp-formula id="eq0035"><label>(6)</label><alternatives><textual-form specific-use="jats-markup">(<italic>x</italic><sub><italic>t</italic></sub>, <italic>y</italic><sub><italic>t</italic></sub>, <italic>z</italic><sub><italic>t</italic></sub>, <italic>w</italic><sub><italic>t</italic></sub>) = PS<sub>P</sub>[X<sub><italic>t</italic></sub>1]<sup>T</sup></textual-form><mml:math id="M20" altimg="si20.gif" overflow="scroll"><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>z</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>w</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mstyle mathvariant="bold"><mml:mtext>P</mml:mtext></mml:mstyle><mml:msub><mml:mstyle mathvariant="bold"><mml:mtext>S</mml:mtext></mml:mstyle><mml:mtext>P</mml:mtext></mml:msub><mml:msup><mml:mrow><mml:mo stretchy="false">[</mml:mo><mml:msub><mml:mstyle mathvariant="bold"><mml:mtext>X</mml:mtext></mml:mstyle><mml:mi>t</mml:mi></mml:msub><mml:mn>1</mml:mn><mml:mo stretchy="false">]</mml:mo></mml:mrow><mml:mtext>T</mml:mtext></mml:msup></mml:mrow></mml:math></alternatives></disp-formula>(where the depth component, <italic>z</italic><sub><italic>t</italic></sub>, of the homogeneous coordinate can be discarded leaving a simple difference vector between <inline-formula><mml:math id="M21" altimg="si21.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>x</mml:mtext></mml:mstyle><mml:mi>t</mml:mi><mml:mrow><mml:mtext>HMD</mml:mtext></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> and (<italic>x</italic><sub><italic>t</italic></sub>, <italic>y</italic><sub><italic>t</italic></sub>)). The matrix <bold>S</bold><sub>P</sub> is the location and pose of the camera, estimated by calibration, in absolute tracker coordinates. However, we needed to know these parameters in coordinates relative to the tracked HMD position, so that the correct image could be rendered for any HMD position or orientation. We thus computed <bold>D</bold> as the single transform between HMD tracked centre and the HMD display:<disp-formula id="eq0040"><label>(7)</label><mml:math id="M22" altimg="si22.gif" overflow="scroll"><mml:mrow><mml:mstyle mathvariant="bold"><mml:mtext>D</mml:mtext></mml:mstyle><mml:mo>=</mml:mo><mml:msub><mml:mstyle mathvariant="bold"><mml:mtext>S</mml:mtext></mml:mstyle><mml:mtext>P</mml:mtext></mml:msub><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>S</mml:mtext></mml:mstyle><mml:mtext>T</mml:mtext><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:math></disp-formula></p>
+      <p>This simplicity arises from the fact that <bold>S</bold><sub>P</sub> and <bold>S</bold><sub>T</sub> are in the same coordinate frame. We now have a projection matrix (of the HMD display) and a modelling matrix which can be used directly in a 3D programming language such as OpenGL by post-multiplying it with the modelling matrix from the tracker:<list list-type="simple"><list-item><p>// Switch to intrinsic (projection) matrix mode.</p></list-item><list-item><p>glMatrixMode(GL_PROJECTION);</p></list-item><list-item><p>// Load intrinsic matrix, P.</p></list-item><list-item><p>glLoadMatrix(P);</p></list-item><list-item><p>// Switch to extrinsic (modelling) matrix.</p></list-item><list-item><p>glMatrixMode(GL_MODELVIEW);</p></list-item><list-item><p>// Load HMD_to_optic_centre transform.</p></list-item><list-item><p>glLoadMatrix(D);</p></list-item><list-item><p>// Incorporate tracker transform.</p></list-item><list-item><p>glMultMatrix(S_T);</p></list-item></list></p>
+      <p>This procedure was repeated for both displays in the binocular HMD, with each display calibrated independently. In our experience, using this method we have found no need to perform an explicit stereo calibration.</p>
+      <p>Calibration accuracy was quantified as the root-mean-square reprojection error (in pixels) measured for all marker positions in the trajectory. It may seem counter-intuitive to use reprojections as an error measure here, since a non-see-through HMD has no real-world image in which to make such reprojections. The important point, of course, is that the camera did not move between capturing the HMD chequerboard and the corresponding marker trajectories and, thus, each camera pixel corresponded to the same ray irrespective of whether the HMD was present or not.</p>
+    </sec>
+    <sec id="sec0015">
+      <label>3</label>
+      <title>Results</title>
+      <p>We collected 4 trajectories using the method described above, each consisting of at least 8000 samples. We then physically moved the HMD to a new location within the tracked volume and collected another 4 trajectories. We repeated this procedure until we had acquired 6 sets of 4 trajectories for one HMD display. The importance of moving the HMD to new locations is two-fold. First, the spatial relationship between the HMD and the camera will change each time – the effects of this change will be discussed below. Second, the relocation demonstrates that the calibration method works irrespective of HMD position, orientation, angle of inclination, etc.</p>
+      <p>We first present a typical calibrated solution from one trajectory. <xref rid="fig0020" ref-type="fig">Fig. 4</xref> shows the solution for the trajectory shown in <xref rid="fig0015" ref-type="fig">Fig. 3</xref>. Here, the 3D marker data (<bold>X</bold>) is reprojected using the calibrated projection parameters to produce a new set of 2D pixel locations, <bold>y</bold> (shown as circles in <xref rid="fig0020" ref-type="fig">Fig. 4</xref>). Plotting <bold>y</bold> together with <bold>x</bold> (the original marker centroids captured by the camera, shown as plus-signs) reveals the close coincidence between the two. Incorrect estimates of the camera parameters would result in a spatial offset between <bold>y</bold> and <bold>x</bold>. No such systematic offset is evident in <xref rid="fig0020" ref-type="fig">Fig. 4</xref>. The trajectory was gathered over a wide range of distances and yet the errors are low across the whole trajectory, demonstrating the applicability of the calibration over a large working volume. The reprojection error for this example is 0.89 pixels. For the nVis SX111 HMD, with a calibrated left display of 75° horizontal field of view, this reprojection error represents ≈3.13 arcmin (where each pixel subtends ≈3.5 arcmin). Note that the calibrated horizontal field of view is close to the manufacturer's specification of 76° but using the latter figure would result in a systematic error, greatest at the edges of the display, of over 2 pixels.</p>
+      <p>For any single trajectory, the presence of noise (and possibly other idiosyncratic aspects of the measurement apparatus) will inevitably lead to errors in the estimation of projection parameters. Such incorrect estimation will be evident in higher reprojection errors of <italic>other</italic> trajectories captured under identical conditions (i.e., when the camera is not moved or adjusted). We used the extra 3 trajectories captured for each camera/HMD position to test this by calculating the reprojection errors for the remaining trajectories with that calibration. <xref rid="fig0025" ref-type="fig">Fig. 5</xref> shows reprojection errors for the 4 trajectories within each data set when they were tested with the calibration generated from the first trajectory in the first data set (trajectory 1 in <xref rid="fig0025" ref-type="fig">Fig. 5</xref>a). It is clear that the original calibration generalized well to the other trajectories from the same camera/HMD position, with reprojection errors remaining at about 0.91 ± 0.12 (mean ± standard deviation) pixels for the novel trajectories. This indicates that the calibration was not over-specialized or otherwise influenced by measurement noise in the tracker and image processing coordinates.</p>
+      <p>We could also measure generalisation across the other 20 trajectories from the other 5 camera positions, which tests quite a distinct aspect of the calibration. <xref rid="fig0025" ref-type="fig">Fig. 5</xref>b–f illustrates the consequences of testing the original calibration (from <xref rid="fig0025" ref-type="fig">Fig. 5</xref>a, trajectory 1) but now using trajectories that were collected with the camera in a slightly different location with respect to the HMD display. Each panel shows results for the camera in a different location. It is clear that these trajectories result in a larger reprojection error (up to 9 pixels). The different trajectories <italic>within</italic> each panel (i.e., taken from the same camera location) all have similar reprojection errors but, in each case, they confirm that the calibration is an inappropriate one for these trajectories.</p>
+      <p>We tested all 24 calibrations using each of the 24 trajectories (576 combinations, not shown). We found that it was always the case that the reprojection errors for the trajectories viewed from the same location as the trajectory used to calibrate the HMD (i.e., cases equivalent to those shown in <xref rid="fig0025" ref-type="fig">Fig. 5</xref>a) were low compared to those tested with trajectories obtained from a different camera location. Specifically, generalisation within the same camera position had reprojection errors of 0.98 ± 0.01 pixels; for generalisation to other trajectories taken from a different location from the one used for calibration, reprojection errors were on average 6.71 ± 3.05 pixels.</p>
+      <p>Clearly, the effect of physically moving the headset to a different region of the tracked volume necessarily involves the camera being moved in relation to the headset and, critically, altering the spatial relationship between the camera's optic centre and principal ray relative to the HMD display. However, the relationship between the camera and HMD locations is not unbounded – the constraint that the camera must be positioned to capture as much of the HMD grid image as possible means that it will lie within a small region whose centre is close to the HMD display's true optic centre. Further, the camera placement with respect to the HMD display is likely to mimic that of a human user wearing the same HMD: each occasion on which they re-position the HMD will yield a different alignment, but constrained by the requirement to obtain a clear image. The recovered locations of the camera optic centre with respect to the HMD's tracked centre are illustrated in <xref rid="fig0030" ref-type="fig">Fig. 6</xref>, for all 24 trajectories. Changes in optic centre location of this magnitude would be expected to give rise to errors of the sort shown in <xref rid="fig0025" ref-type="fig">Fig. 5</xref>b–f. In Section <xref rid="sec0025" ref-type="sec">5</xref>, we consider the consequences of such head movements for both see-through and non-see-through HMDs.</p>
+      <p>We next considered the number of samples that are required in order to obtain an accurate calibration. Because each sample quintuple of <inline-formula><mml:math id="M23" altimg="si23.gif" overflow="scroll"><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:msubsup><mml:mstyle mathvariant="bold"><mml:mtext>x</mml:mtext></mml:mstyle><mml:mi>t</mml:mi><mml:mrow><mml:mtext>CAM</mml:mtext></mml:mrow></mml:msubsup><mml:msub><mml:mstyle mathvariant="bold"><mml:mtext>X</mml:mtext></mml:mstyle><mml:mi>t</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:math></inline-formula> is entirely independent of the others, we were able to subsample each of the trajectories obtained to see how calibration accuracy varied with the number of samples used. <xref rid="fig0035" ref-type="fig">Fig. 7</xref> shows how reprojection error changed as more samples were made available to the calibration procedure. For each number of samples, a new calibration was generated using that number of samples from one particular trajectory. The reprojection errors for these calibrations are shown by the crosses: these are about 0.5 pixels for the smallest number of samples and rise to about 0.9 pixels for the case when all 8000 samples in the trajectory were used. The other 23 points plotted for a given sample size show how the calibration generalises to other trajectories, i.e. the reprojection errors are shown when other (whole) trajectories are tested using the calibration generated from the (sampled) first trajectory.</p>
+      <p>For the smallest number of samples tested (10), the algorithm over-fits the data, as is evident from the fact that there is a low reprojection error on the training data but high reprojection errors on the test trajectories. Between 10 and 1000 samples, the reprojection error on the trajectory used to generate the calibration actually deteriorates but this is accompanied by an improvement in the reprojection errors for other trajectories taken from the same camera location (plus signs), as would be expected if the calibration is converging on the correct solution. Above 1000 samples there was no clear improvement in calibration generalisation for other trajectories captured from the same camera location, even when all 4 trajectories were combined (over 32,000 samples, reprojection error of 0.9 pixels). Trajectories taken from other camera locations led to a worse calibration, as we discussed in relation to <xref rid="fig0025" ref-type="fig">Fig. 5</xref> but, unlike the trajectories taken from the same camera location, the reprojection errors are relatively unaffected by sample size. Of course, the main point is to determine the number of samples that would be required to achieve a reasonable calibration. From <xref rid="fig0035" ref-type="fig">Fig. 7</xref>, and confirmed from similar calibrations, it would appear that 1000 samples is reasonable.</p>
+      <p>Given that the ultimate aim is to recover the 11 projection parameters of the display, it is instructive to plot the change in these as the number of samples increases and reprojection errors drop. <xref rid="fig0040" ref-type="fig">Fig. 8</xref> illustrates the <bold>X</bold> and <bold>Z</bold> translation components of the optic centre plotted as a function of the number of samples used in the calibration for the 4 trajectories from the HMD position shown in <xref rid="fig0035" ref-type="fig">Fig. 7</xref>. It can be seen that, when the sample number is low, the estimates of the optic centre are scattered around the location of the best estimate, obtained with 32,000 samples. This reduction in scatter is accompanied by a relatively modest fall in the reprojection error, from ≈2.0 pixels for 10 samples to ≈1.0 pixels for 32,000 samples. The examples illustrate the advantage of an automatic, camera-based method over those that rely on human judgements of alignment, such as SPAAM (<xref rid="bib0075" ref-type="bibr">Tuceryan et al., 2002</xref>), which are inevitably limited in the number of samples that can be obtained.</p>
+      <p>Finally, we repeated the estimation of projection parameters including a model of non-linear (radial and tangential) distortions (<xref rid="bib0025" ref-type="bibr">Heikkilä and Silvén, 1997</xref>). The extra 5 parameters were included in the simplex minimisation, and the image corrections were applied to the pixel coordinates obtained in Eq. <xref rid="eq0035" ref-type="disp-formula">(6)</xref>. The fact that data samples were captured at a high density across a wide area of the image meant that non-linear parameters could be well estimated. For the SX111 HMD used here, the non-linear parameters were small and reprojection errors were reduced, on average, by 7%.</p>
+    </sec>
+    <sec id="sec0020">
+      <label>4</label>
+      <title>Discussion</title>
+      <p>In addition to the objective measures of calibration accuracy described above, it is important to consider the implications for humans wearing the HMD. For example, the optic centre of the wearer will never align perfectly with that found by the calibration procedure. As we saw in <xref rid="fig0025" ref-type="fig">Fig. 5</xref>, movement of the camera relative to the HMD results in larger reprojection errors. Such movement is comparable to that of a human observer wearing a HMD – each usage would change the relative position of their binocular optic centres in relation to the HMD. The issue is complicated by the optics used in HMDs, many of which use an approximation to collimated optics in order to relax the constraint of positioning the observer's eyes directly in line with the display's exit pupils. As a result, some shifts in the position of the eyes’ optic centres relative to the exit pupils still give rise to a clear, focussed image.</p>
+      <p>The importance of small shifts in the optic centre of the user relative to the HMD display depends on whether the display is see-through or not. For a see-through display, translation of the user's optic centre will result in parallax between features drawn on the HMD screen and real objects viewed through the screen. The extent of this parallax is particularly evident in the large rise in reprojection errors for <xref rid="fig0025" ref-type="fig">Fig. 5</xref>b–d relative to those in <xref rid="fig0025" ref-type="fig">Fig. 5</xref>a. We do not know the range of optic centre translations that participants tolerate relative to the HMD but it is likely to be a very much smaller range in augmented reality headsets than in a non-see-through headset because human observers are exquisitely sensitive to relative offsets in the alignment of visual features.</p>
+      <p>The subjective impression that observers obtain in a non-see-through headset is quite different from an optical see-through headset. If, for example, the simulated inter-ocular separation is changed on a headset while an observer is wearing it, the observer will generally not notice much of a change in the perception of distance, size or stability of objects in the scene despite the fact that, in a see-through display, such changes in simulated inter-ocular separation would cause very noticeable parallax between the real and virtual scenes. It is interesting to speculate about the reasons for this difference. Briefly, it probably implies that observers are not reconstructing the virtual scene when they view a scene with a non-see-through headset (or, indeed, when they view an ordinary scene). The argument is that there is no consistent interpretation of a static scene and fixed camera calibration parameters that could explain that scene so, if they are perceiving a stable scene, they must be doing something other than reconstruction. We have made a similar argument in relation to experiments on an expanding virtual scene (which observers perceive to be stable (<xref rid="bib0015 bib0070" ref-type="bibr">Glennerster et al., 2006; Svarverud et al., 2010</xref>)). In that case, there <italic>is</italic> a stable interpretation of the images the observer receives but only if they are prepared to accept wildly inaccurate estimates of the optic centre locations, including both inter-ocular separation and translation of the head. More likely, in both the expanding room and the case of manually changing the inter-pupillary distance on a HMD, the reason that the world appears to remain stable is that the visual system is remarkably prone to accepting that this is the case.</p>
+      <p>A consequence of this difference is that the calibration technique we describe here is probably sufficient, in general, when using a non-see-through HMD, but a more stringent or adaptive method is likely to be required to obtain a highly accurate solution when using an optical-see-through HMD. Broadly, to calibrate more adaptively, two alternatives seem to be available. One possibility is that while the observer is wearing the see-through HMD they must adjust the position of the headset and the optics using a visual alignment procedure until the optic centre of each eye is in the ‘correct’ location, where ‘correct’ means the optic centre for which the HMD is calibrated. This may, in practice, be the simplest solution. An alternative method might be to allow the observer to adjust the HMD until they are comfortable with the view and then try different, precomputed calibrations. They could use an alignment method against a calibration rig to judge which calibration gives the best alignment relative to fixed markers in the scene. This approach has some similarities to the SPAAM procedure described earlier (<xref rid="bib0075" ref-type="bibr">Tuceryan et al., 2002</xref>) and would need to be performed each time the user wears the HMD. It may also be helpful to obtain an independent estimate of the location of the optic centre relative to the headset in order to choose the best pre-computed calibration. <xref rid="bib0065" ref-type="bibr">Sousa et al. (2010)</xref> have described how this can be achieved using a long, tracked, hand-held tube containing cross-hairs at each end which the user repositions until the cross-hairs are aligned. When repeated from several different orientations, these ‘rays’ constrain the estimated location of the optic centre. Nevertheless, it is worth remembering that the human eye does not rotate around it's optic centre, and thus any changes in gaze will change the spatial relationship between the calibration's and observer's optic centres. Until optical-see-through HMDs are able to dynamically adapt to gaze direction, it may not be possible to obtain a truly ‘perfect’ alignment of real and virtual worlds.</p>
+    </sec>
+    <sec id="sec0025">
+      <label>5</label>
+      <title>Conclusion</title>
+      <p>We have presented here an HMD calibration method for non-see-through HMDs, which are the most common type of HMDs used in virtual reality applications. Our method, based on our earlier optical see-through HMDs calibration work (<xref rid="bib0010" ref-type="bibr">Gilson et al., 2008</xref>), provides a quick, reliable and robust method to calibrate each display of an HMD. Unlike existing calibration methods (<xref rid="bib0075 bib0050" ref-type="bibr">Tuceryan et al., 2002; Owen et al., 2004</xref>), ours does not require error-prone human measurements and provides an objective measure of calibration accuracy.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib0005">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azuma</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Baillot</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Behringer</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Feiner</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Julier</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>MacIntyre</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Recent advances in augmented reality</article-title>
+          <source>IEEE Comput Graph</source>
+          <volume>21</volume>
+          <year>2001</year>
+          <fpage>34</fpage>
+          <lpage>47</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0010">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gilson</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Fitzgibbon</surname>
+              <given-names>A.W.</given-names>
+            </name>
+            <name>
+              <surname>Glennerster</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spatial calibration of an optical see-through head-mounted display</article-title>
+          <source>J Neurosci Methods</source>
+          <volume>173</volume>
+          <issue>1</issue>
+          <year>2008</year>
+          <fpage>140</fpage>
+          <lpage>146</lpage>
+          <pub-id pub-id-type="pmid">18599125</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0015">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glennerster</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Tcheang</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Gilson</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Fitzgibbon</surname>
+              <given-names>A.W.</given-names>
+            </name>
+            <name>
+              <surname>Parker</surname>
+              <given-names>A.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Humans ignore motion and stereo cues in favour of a fictional stable world</article-title>
+          <source>Curr Biol</source>
+          <volume>16</volume>
+          <year>2006</year>
+          <fpage>428</fpage>
+          <lpage>443</lpage>
+          <pub-id pub-id-type="pmid">16488879</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0020">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hartley</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Zisserman</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Multiple view geometry in computer vision</chapter-title>
+          <year>2001</year>
+          <publisher-name>Cambridge University Press</publisher-name>
+          <publisher-loc>UK</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib0025">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heikkilä</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Silvén</surname>
+              <given-names>O.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>A four-step camera calibration procedure with implicit image correction</chapter-title>
+          <source>IEEE Comp Vis Pat Recog</source>
+          <conf-name>San Juan, Peurto Rico</conf-name>
+          <year>1997</year>
+          <fpage>1106</fpage>
+          <lpage>1112</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0030">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kuhl</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>W.B.</given-names>
+            </name>
+            <name>
+              <surname>Creem-Regehr</surname>
+              <given-names>S.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>HMD calibration and its effects on distance judgments</article-title>
+          <source>ACM Trans Appl Percept</source>
+          <volume>6</volume>
+          <year>2009</year>
+          <comment>19:1–19:20</comment>
+        </element-citation>
+      </ref>
+      <ref id="bib0035">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lagarias</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Reeds</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Wright</surname>
+              <given-names>M.H.</given-names>
+            </name>
+            <name>
+              <surname>Wright</surname>
+              <given-names>P.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Convergence properties of the Nelder-Mead simplex method in low dimensions</article-title>
+          <source>SIAM J Optim</source>
+          <volume>9</volume>
+          <year>1998</year>
+          <fpage>112</fpage>
+          <lpage>147</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0040">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mon-Williams</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Plooy</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Burgess-Limerick</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Wann</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gaze angle: a possible mechanism of visual stress in virtual reality headsets</article-title>
+          <source>Ergonomics</source>
+          <volume>41</volume>
+          <year>1998</year>
+          <fpage>280</fpage>
+          <lpage>285</lpage>
+          <pub-id pub-id-type="pmid">9520625</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0045">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mon-Williams</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Wann</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Rushton</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Binocular vision in a virtual world: visual deficits following the wearing of a head-mounted display</article-title>
+          <source>Ophthalmic Physiol Opt</source>
+          <volume>13</volume>
+          <year>1993</year>
+          <fpage>387</fpage>
+          <lpage>391</lpage>
+          <pub-id pub-id-type="pmid">8278192</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0050">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Owen</surname>
+              <given-names>C.B.</given-names>
+            </name>
+            <name>
+              <surname>Zhou</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Xiao</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Display-relative calibration for optical see-through head-mounted displays</chapter-title>
+          <source>Proc. IEEE ACM Int. Symp. Mixed Aug Real (ISMAR)</source>
+          <year>2004</year>
+        </element-citation>
+      </ref>
+      <ref id="bib0055">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Regan</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>An investigation into nausea and other side-effects of head-coupled immersive virtual reality</article-title>
+          <source>Virt Real</source>
+          <volume>1</volume>
+          <year>1995</year>
+          <fpage>17</fpage>
+          <lpage>31</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0060">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rinalducci</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Mapes</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Cinq-Mars</surname>
+              <given-names>S.G.</given-names>
+            </name>
+            <name>
+              <surname>Higgins</surname>
+              <given-names>K.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Determining the field of view in HMDs – a psychophysical method</article-title>
+          <source>Presence-Teleop Virt</source>
+          <volume>5</volume>
+          <issue>3</issue>
+          <year>1996</year>
+          <fpage>353</fpage>
+          <lpage>356</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0065">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sousa</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Brenner</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Smeets</surname>
+              <given-names>J.B.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new binocular cue for absolute distance: disparity relative to the most distant structure</article-title>
+          <source>Vision Res</source>
+          <volume>50</volume>
+          <year>2010</year>
+          <fpage>1786</fpage>
+          <lpage>1792</lpage>
+          <pub-id pub-id-type="pmid">20595037</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0070">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Svarverud</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Gilson</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Glennerster</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cue combination for 3D location judgements</article-title>
+          <source>J Vis</source>
+          <volume>10</volume>
+          <issue>1</issue>
+          <year>2010</year>
+        </element-citation>
+      </ref>
+      <ref id="bib0075">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tuceryan</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Genc</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Navab</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Single point active alignment method (SPAAM) for optical see-through HMD calibration for augmented reality</article-title>
+          <source>Presence-Teleop Virt</source>
+          <volume>11</volume>
+          <year>2002</year>
+          <fpage>259</fpage>
+          <lpage>276</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0080">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tuceryan</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Greer</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Whitaker</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Breen</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Crampton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Rose</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Calibration requirements and procedures for a monitor-based augmented reality system</article-title>
+          <source>IEEE Trans Vis Comput Graph</source>
+          <volume>1</volume>
+          <year>1995</year>
+          <fpage>255</fpage>
+          <lpage>273</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgement</title>
+      <p>This work was funded by the Wellcome Trust.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>The purpose of calibration is to find values for the displays’ intrinsic parameters, and also the position and orientation of the displays with respect to the HMD's tracked centre.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Chequerboard pattern displayed in the HMD and captured by the camera. Note spots indicating the logical centre of HMD display. The vignetting of the grid seen here was due to the camera lens.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Plots of the 3D marker location and corresponding 2D centroid locations extracted from the camera images. (a) Plot of 3D marker locations (circles, every fifth location shown for clarity) as the calibration object was moved along a trajectory (grey line). Camera only shown schematically, since at this stage the viewing parameters are not known. (b) 2D marker centroids extracted from camera images as the object, consisting of 4 markers, was moved. The data points are shown linked to illustrate the trajectory the markers were moved through, but the ordering information is not needed for calibration since each data point is entirely independent.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig0020">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Plot of calibrated solution (circles) for the trajectory shown in <xref rid="fig0015" ref-type="fig">Fig. 3</xref> (plus-signs). The inset shows a magnified section, revealing the accurate alignment of the reprojected data. The reprojection error in this case is 0.89 pixels.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig0025">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Generalisation of a calibration. (a) Column 1 shows the reprojection error for a calibration generated from ≈8000 samples of marker location. Three other similar trajectories were captured and columns 2–4 show the reprojection error when these trajectories were tested using the calibration computed from the first trajectory. (b)–(f) Show the reprojection error when trajectories recorded from the five other camera locations were tested, again using the calibration computed from the first trajectory.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig0030">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Optic centre locations recovered by calibration from the 24 trajectories plotted relative to the HMD tracked centre (<bold>S</bold><sub>T</sub>).</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig0035">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Calibration errors as a function of number of samples used from the tracked object trajectory. The crosses (×) show reprojection errors for a single trajectory. These are plotted against the sample size, with samples picked randomly from the ≈8000 locations of the tracked marker. The plus-signs (+) show how well this calibration generalised to the three different trajectories captured with the same camera position (c.f. <xref rid="fig0025" ref-type="fig">Fig. 5</xref>a). The open symbols show reprojection errors when this calibration was tested against trajectories taken from the three alternate camera locations (c.f. <xref rid="fig0025" ref-type="fig">Fig. 5</xref>b–f).</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig0040">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Two components of the HMD optic centre locations, estimated for different numbers of samples for all trajectories from the 6 HMD positions. Light grey symbols represent the results when the calibration is based on only 7 samples; mid grey: 10 samples; dark grey: 20 samples; black: 100 samples. As the number of samples increases, the estimated optic centres cluster more closely around the estimate obtained using the combined trajectories for each HMD position (≈32,000 samples, origin of plot).</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+  </floats-group>
+</article>

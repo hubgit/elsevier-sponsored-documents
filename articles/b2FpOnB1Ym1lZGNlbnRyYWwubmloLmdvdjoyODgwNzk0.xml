@@ -1,0 +1,1200 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">J Proteomics</journal-id>
+      <journal-title-group>
+        <journal-title>Journal of Proteomics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1874-3919</issn>
+      <issn pub-type="epub">1876-7737</issn>
+      <publisher>
+        <publisher-name>Elsevier</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2880794</article-id>
+      <article-id pub-id-type="pmid">20230925</article-id>
+      <article-id pub-id-type="publisher-id">JPROT293</article-id>
+      <article-id pub-id-type="doi">10.1016/j.jprot.2010.03.003</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>A comparison of the accuracy of iTRAQ quantification by nLC-ESI MSMS and nLC-MALDI MSMS methods</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Shirran</surname>
+            <given-names>Sally L.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Botting</surname>
+            <given-names>Catherine H.</given-names>
+          </name>
+          <email>cb2@st-andrews.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff>Centre for Biomolecular Sciences, Biomolecular Sciences Building, North Haugh, University of St Andrews, Fife, KY16 9ST, United Kingdom</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Tel.: +44 1334 467195; fax: +44 1334 462595. <email>cb2@st-andrews.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>07</day>
+        <month>5</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>5</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>73</volume>
+      <issue>7</issue>
+      <fpage>1391</fpage>
+      <lpage>1403</lpage>
+      <history>
+        <date date-type="received">
+          <day>18</day>
+          <month>12</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>6</day>
+          <month>3</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier B.V.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>The accuracy of quantification obtained using the iTRAQ labelling methodology for measuring protein ratios more extreme than 1:1 was investigated. A comparison of nLC-ESI MSMS and nLC-MALDI MSMS analysis routes was performed. A fixed concentration of a standard six protein mix was spiked with two proteins at a range of concentrations. The two data analysis programmes, Mascot and ProteinPilot Paragon, were also compared. Whilst the lower ratios could be measured accurately, greater discrepancies were seen for the higher ratios, particularly by nLC-ESI MSMS. Filtering out the weaker reporter ion signals improved the accuracy of the ratios: this is likely due to several factors which are explored in more detail. Overall, analysis by nLC-MALDI MSMS followed by Mascot interpretation gave the most accurate results.</p>
+      </abstract>
+      <abstract abstract-type="graphical">
+        <title>Graphical abstract</title>
+        <fig id="d30e2174" position="anchor">
+          <graphic xlink:href="fx1"/>
+        </fig>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>iTRAQ quantification</kwd>
+        <kwd>nLC-ESI MSMS</kwd>
+        <kwd>nLC-MALDI MSMS</kwd>
+        <kwd>Mascot</kwd>
+        <kwd>ProteinPilot</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <label>1</label>
+      <title>Introduction</title>
+      <p>A main objective of proteomics research is to systematically identify and quantify the proteins in a given proteome <xref rid="bib1" ref-type="bibr">[1]</xref>. The iTRAQ method of quantitative proteomics <xref rid="bib2" ref-type="bibr">[2]</xref> is one of the leading quantitative techniques and has been demonstrated in many organisms and tissues <xref rid="bib3 bib4 bib5" ref-type="bibr">[3–5]</xref>. The method involves labelling a sample from each condition/time point, normally at the peptide level (although protein-labelling is also possible), with one of a range of four or eight isotopically labelled reagents. These reagents contain a balance and reporter moiety giving isobaric labels at the MS level, whilst fragmentation gives reporter ions under MSMS conditions. The reporter ion peaks are then quantified.</p>
+      <p>The analysis of iTRAQ-labelled samples from complex mixtures commonly requires nLC-MSMS, with either ESI or MALDI as the ionization method. In nLC-ESI MSMS the chromatographic separation is coupled directly to the MS analysis. Peptides are detected, selected and fragmented in real time, as the column eluent sprays into the instrument. Particularly in older instruments, MS and MSMS scan times are preset at the beginning of the run as a compromise between signal intensity and the requirement to analyse as many peptides as possible in a chromatographic window. In contrast, during nLC-MALDI MSMS <xref rid="bib6" ref-type="bibr">[6]</xref>, the nanoflowLC column eluent is collected as droplet-sized fractions on the MALDI target plate by a spotting robot, which also adds matrix to the spots. nLC-MALDI MSMS has the advantage that the collection of MSMS data is decoupled from the LC. Typically, after a MS survey scan, the ion chromatogram is generated in silico and the peptides selected for MSMS at their maxima. This minimises the collection of redundant data and ensures the collection of isobaric peptides eluting at similar time points but with different elution profiles.</p>
+      <p>nLC-MALDI MSMS has the further advantage, as in traditional MALDI, that it is more tolerant to salts and interfering compounds in the sample or eluents, allowing a wider range of chromatographic conditions to be utilised. Additionally there is no time constraint on analysing a particular fraction, allowing mining down to obtain MSMS, in practise, until the sample has been ablated. Furthermore, the sample is stored on the plate and can be archived for later analysis <xref rid="bib7" ref-type="bibr">[7]</xref>. Nevertheless, the nature of the large-scale nLC-MALDI MSMS experiment is time consuming precisely because the analysis is decoupled, with the LC and MS performed sequentially, typically with manual intervention in between.</p>
+      <p>As MALDI and ESI ionization give, to some extent, complementary results <xref rid="bib8 bib9" ref-type="bibr">[8,9]</xref>, it may be of benefit to use both analysis techniques in parallel to achieve maximum proteome coverage. However, are both analysis routes equally effective for quantitative analysis performed using iTRAQ labelling?</p>
+      <p>Whilst earlier literature reports show that low ratios of up or down-regulation (1:1 or 1:2) can be measured accurately by both ESI and MALDI routes <xref rid="bib6 bib10 bib11" ref-type="bibr">[6,10,11]</xref> some laboratories are reporting an underestimation of the degree of up- and down-regulation when using iTRAQ quantification to look at larger changes. This is particularly evidenced in the ABRF Proteomics Research Group 2007 Advanced Proteomics Study <xref rid="bib12" ref-type="bibr">[12]</xref> where standard proteins, spiked into an E. coli cell lysate background, at ratios of 1:4.6 and 1:10 were significantly underestimated by iTRAQ analysis. Furthermore, the iTRAQ ratios reported by different laboratories all showed similar deviation from the expected value, suggesting a common underlying problem. Likewise, DeSouza et al. <xref rid="bib13" ref-type="bibr">[13]</xref> noted that the ratio for the relative abundance of pyruvate kinase measured in a discovery-phase study of endometrial tissue performed using iTRAQ was lower, at 2, compared to a ratio of 4 obtained with the mTRAQ variant of iTRAQ, used for absolute quantification <xref rid="bib14" ref-type="bibr">[14]</xref>, when analysed on a Q-Trap instrument. Patel et al. <xref rid="bib15" ref-type="bibr">[15]</xref> compared the label free MS<sup>E</sup> quantification method with the iTRAQ method, using a Q-ToF instrument, and saw discrepancies in the degree of up-regulation of up to a factor of 9.2 between the two quantification methods, with the iTRAQ method giving lower ratios. Pierce et al. <xref rid="bib16" ref-type="bibr">[16]</xref>, investigating the 8plex iTRAQ reagents, with analysis on a QStar XL instrument, saw underestimation of the degree of up and down-regulation, in a defined mixture, by up to a factor of 5 (a 1:10 ratio measuring only 1:2). However, these results contrast with the work of Kuzyk et al. <xref rid="bib7" ref-type="bibr">[7]</xref> who have recently shown 10:1 ratios that were only underestimated by 14% (QStar Elite) and 20% (4800 MALDI TOF/TOF Analyser) and of Ow et al. <xref rid="bib17" ref-type="bibr">[17]</xref> who measured ratios up to 1:10 accurately using 8plex reagents.</p>
+      <p>Here we describe the analysis of an iTRAQ labelled sample by nLC-ESI MSMS, on a QStar XL, and by nLC-MALDI MSMS, on a 4800 MALDI TOF/TOF Analyser, with the aim of investigating the accuracy and precision of the two data sets. The sample was created by spiking known ratios of two proteins into a constant background of a further six proteins at a 2, 4, and 8 fold excess, and a 2, 4 and 8 fold reduction. The two data sets were each analysed using the software packages Mascot and ProteinPilot Paragon and the quantification results compared. These software packages are two of a number of packages that support iTRAQ data analysis: Mascot (MatrixScience), ProteinPilot Paragon and its forerunner ProQuant (Applied Biosystems), SpectrumMill (Agilent), Warp LC (Bruker), Scaffold Q+ <xref rid="bib18" ref-type="bibr">[18]</xref> (Proteome Software Inc) and Peaks <xref rid="bib19" ref-type="bibr">[19]</xref> (Bioinformatics Solutions Inc) amongst others. The packages differ in the way that the reporter ion peak intensity is calculated and the statistical methods that are applied to the data.</p>
+    </sec>
+    <sec sec-type="materials|methods">
+      <label>2</label>
+      <title>Materials and methods</title>
+      <sec>
+        <label>2.1</label>
+        <title>Preparation of 8 protein sample</title>
+        <p>A tryptic digest of a six protein mix (Dionex, Sunnyvale, CA) which had been reduced and alkylated, with iodoacetic acid, was spiked with varying amounts of trypsin digested rabbit muscle aldolase (Ald) and human carbonic anhydrase (CAH) (Sigma-Aldrich, Poole, UK) in 100 mM triethylammonium bicarbonate (TEAB). The spike proteins were not reduced and alkylated. The four samples to be labelled with the 4plex iTRAQ reagents (Applied Biosytems, Foster City, CA) 114, 115, 116 and 117 respectively, each contained 5 pmol of each of the six proteins in the mix (lysozyme C (LysoC), cytochrome C (CytoC), ß-galactosidase (βGal), bovine serum albumin (BSA), alcohol dehydrogenase (ADH) and serotransferrin (TF)). CAH and Ald peptides were added as follows: iTRAQ label 114: 20 pmol CAH, 2.5 pmol Ald; iTRAQ label 115: 10 pmol CAH, 5 pmol Ald; iTRAQ label 116: 5 pmol CAH, 10 pmol Ald and iTRAQ label 117: 2.5 pmol CAH, 20 pmol Ald. Hence the combined labelled samples contained 195 pmol of digested protein. This provided a sample which mimicked CAH down-regulation by 2, 4 and 8 fold and Ald up-regulation by 2, 4 and 8 fold relative to the 114 label.</p>
+        <p>The peptide mixtures were concentrated to dryness and resuspended in TEAB (1.5 μL, 0.5M). The appropriate iTRAQ reagent (3.5 μL, 0.05 unit, from a tube contents (1 unit) resuspended in 70 μL ethanol) was added to each sample and the individual reactions incubated at room temperature for 1 h. The four labelling reactions were then combined and the sample concentrated to dryness. The mixture was resuspended in cation exchange load buffer (10 mM K<sub>2</sub>HPO<sub>4</sub>, pH 3.0, 25% ACN) and loaded on to a cation exchange cartridge (as shipped with iTRAQ Reagent Methods Development Kit, Applied Biosystems), which had been pre-equilibrated with load buffer. After washing away non-binding contaminants with load buffer, the peptides were eluted with 500 μL, 10 mM K<sub>2</sub>HPO<sub>4</sub>, pH 3.0, 320 mM KCl, 25% ACN. An equal volume of 0.2% TFA was added to the eluent and it was desalted using a Sep-Pak 100mg C18 cartridge (Waters, Elstree, UK). The eluent was concentrated to dryness and resuspended in 0.5% formic acid. Half of the sample (97.5 pmol) was analysed by nLC-ESI MSMS and half (97.5 pmol) by nLC-MALDI MSMS. The experiment was performed in triplicate, using different batches of peptide and iTRAQ reagents.</p>
+      </sec>
+      <sec>
+        <label>2.2</label>
+        <title>Sample analysis by nLC-MALDI MSMS</title>
+        <p>The peptides were separated using a Dionex UltiMate 3000 nanoLC equipped with a PepMap100 C18 300 μm × 5 mm trap and 75 μm × 15 cm column (Dionex), using a 3.5 h gradient of increasing acetonitrile concentration, containing 0.05% TFA (5-35% ACN in 3 h, 35–50% in a further 30 min, followed by 95% ACN to clean the column). The eluent was spotted onto a MALDI target plate, along with α-cyano-4-hydroxycinnamic acid (2 mg/mL in 70% ACN, 0.1% TFA) at 0.98 μL/min, using a Dionex Probot spotter, collecting 20 s fractions.</p>
+        <p>The nLC-MALDI fractions were analysed using an Applied Biosystems 4800 MALDI TOF/TOF Analyser equipped with a Nd:YAG 355 nm laser in a plate-wide data dependent manner. All spots were initially analysed in positive MS mode over the range 800 to 4000 <italic>m</italic>/<italic>z</italic> by averaging 1000 laser spots. The MS ions that satisfied the precursor criteria (200 ppm fraction to fraction precursor exclusion, S/N ratio &gt; 20) were selected for subsequent MSMS, from the spot where the MS ion gave the highest counts, with up to 5 MSMS being acquired from each spot, selecting the strongest precursor ion first. MSMS spectra were acquired to a maximum of 3000 laser shots or until the accumulated spectrum reached a S/N ratio of 35 for 10 peaks. All MSMS data were acquired using 1 keV collision energy.</p>
+      </sec>
+      <sec>
+        <label>2.3</label>
+        <title>Sample analysis by nLC-ESI MSMS</title>
+        <p>The peptides were separated using a Dionex UltiMate nanoLC equipped with a PepMap100 C18 300 μm × 5 mm trap and 75 μm × 15 cm column (Dionex), using a 3.5 h gradient of increasing ACN concentration, containing 0.1% formic acid (5–35% ACN in 3 h, 35–50% in a further 30 min, followed by 95% ACN to clean the column). The eluent was sprayed into an Applied Biosystems QStar XL tandem mass spectrometer and analysed in Information Dependent Acquisition (IDA) mode using Analyst QS 1.1 software. The MS was collected for 1 s, and the two strongest 2+ or 3+ ions that met the MS criteria (ions greater than 300 <italic>m</italic>/<italic>z</italic> but less than 1200 <italic>m</italic>/<italic>z</italic> that exceed 10 counts, mass tolerance 100 ppm) were selected for 3 s MSMS each. These masses were then excluded from analysis for the next 60 s. A rolling collision energy was employed for fragmentation, set 10 V higher than that normally used for peptides, to provide sufficient peptide fragmentation and generation of the iTRAQ reporter groups.</p>
+      </sec>
+      <sec>
+        <label>2.4</label>
+        <title>Data analysis</title>
+        <p>The data files were processed by both ProteinPilot 2.0 (Applied Biosystems) using the Paragon algorithm <xref rid="bib20" ref-type="bibr">[20]</xref> and Mascot v2.2 <xref rid="bib21" ref-type="bibr">[21]</xref> (Matrix Science, London, UK). All searches were performed against the UniProt database (Swiss-Prot and Trembl databases combined, 9 April, 2009, 7,966,092 sequences). Automatic isotope correction was carried out by both software packages using the values supplied with the Applied Biosystems reagents. For ProteinPilot Paragon, iodoacetic acid was selected as the cysteine modification agent, trypsin as the digestion enzyme, ‘biological modifications’ were selected as the ‘ID focus’ and a ‘Thorough ID Search Effort’ was selected. Although the protein set was too small to expect truly meaningful values, the Proteomics System Performance Evaluation Pipeline Software (PSPEP) using reversed protein sequences was used to calculate the number of false positive proteins expected at a 95% confidence level. For Mascot, the nLC-ESI MSMS data for doubly and triply charged precursor ions were converted to centroid data, without smoothing, using the Analyst QS1.1 mascot .dll data import filter. The ‘MS/MS averaging of IDA dependents’ had a precursor mass tolerance for grouping of 0.1 and the maximum number of cycles between groups and minimum number of cycles per group were both set to 1. The MS/MS settings include: spectra de-isotoped — except for the iTRAQ reporter region, peak areas reported, spectra rejected if they contained less than 10 peaks, and peaks not removed if they were close to the precursor <italic>m</italic>/<italic>z</italic>. The nLC-ESI MSMS data were searched with a tolerance of 0.08 Da for the precursor ions and 0.2 Da for the fragment ions. The nLC-MALDI MSMS data were extracted using TS2Mascot 1.0.0 (Matrix Science) and the data saved to a peak list. The nLC-MALDI MSMS data were searched with tolerances of 100 ppm for the precursor ion and 0.5 Da for the fragment ions. For both ionization routes the following settings were used: trypsin was the cleavage enzyme, one missed cleavage, carboxymethyl modification of cysteines was a fixed modification and methionine oxidation was selected as a variable modification. The following settings were used to manipulate the quantification results: the protein ratio type was the ‘weighted’ geometric mean, there was no normalisation, outlier removal was ‘automatic’ (Dixon's method up to 25 data points, Rosner's method above 25 data points), the peptide threshold was ‘at least homology’ (peptide score does not exceed absolute threshold but is an outlier from the quasi-normal distribution of random scores), the minimum number of peptides was two and peptides were required to be the top ranking peptide matches (‘red’). An automatic decoy database search was also performed.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>3</label>
+      <title>Results and discussion</title>
+      <sec>
+        <label>3.1</label>
+        <title>Global comparison of nLC-ESI MSMS and nLC-MALDI MSMS analysis</title>
+        <p>The trypsin digest of an eight protein mix labelled with iTRAQ reagents was analysed by both nLC-ESI MSMS (QStar XL) and nLC-MALDI MSMS (4800 MALDI TOF/TOF Analyser) methods and the data analysed using Mascot and ProteinPilot Paragon with the settings described above. The results were compared. Both techniques provided confident identifications of the expected proteins with high peptide coverage (<xref rid="tbl1" ref-type="table">Table 1</xref>). The six background proteins from a pre-digested commercial protein mix were spiked with digested peptides from Ald (up-regulation by a factor of 2, 4 and 8) and CAH (down-regulation by a factor of 2, 4 and 8). The spike proteins were medium sized proteins which should generate enough peptides to give statistically significant results. The concentration of the six background proteins remained constant between each labelling experiment and, therefore, values of 1 were expected for the 115:114, 116:114 and 117:114 reporter ion ratios. <xref rid="fig1" ref-type="fig">Fig. 1</xref> shows ratios close to 1 were achieved in each of the triplicate experiments, using both analysis methods and analysis software packages. The geometric mean of the geometric standard deviations between the triplicate measurements was 10% at the 95% confidence interval for the six background proteins and for the Ald and CAH measurements, indicating reproducible experimental technique. However the accuracy of the results for those proteins showing changes in ‘expression’ level was low, with the degree of up-regulation of Ald, spiked in at 2, 4 and 8 fold excess compared to the 114 labelled experiment, underestimated by both nLC-MALDI MSMS and nLC-ESI MSMS, but more so by the latter. Furthermore, greater underestimation was seen using ProteinPilot Paragon as the analysis software, compared to the results achieved with Mascot. Larger deviations from the true value were seen at higher degrees of up- or down-regulation, particularly when using nLC-ESI MSMS analysis, with discrepancies as high as 62%. Similarly the degree of down-regulation of CAH was also underestimated by nLC-ESI MSMS (<xref rid="fig1" ref-type="fig">Fig. 1</xref>, right hand scale). The QStar XL and 4800 MALDI TOF/TOF Analyser data sets were analysed in more detail in order to determine the source(s) of these discrepancies.</p>
+      </sec>
+      <sec>
+        <label>3.2</label>
+        <title>Raw data assessment – reporter ions - nLC-MALDI MSMS of Ald</title>
+        <p>For the triplicate nLC-MALDI MSMS experiments, a total of 14 different peptide masses (between 5 and 10 per analysis and never more than two datasets for the same peptide mass) were used by Mascot for quantification of Ald, once those peptides with scores below the homology threshold, or with iTRAQ tyrosine modification, had been eliminated. (The reaction of the iTRAQ label with tyrosine is slower than that with amines and hence may not go to completion, which could lead to inaccurate ratios if these matches were included <xref rid="bib2" ref-type="bibr">[2]</xref>.) The reporter ion ratios relative to 114 were recalculated manually from the raw data, using Applied Biosystems Data Explorer software to calculate the MALDI peak areas, corrected for isotope impurities using the values from the Certificate of Analysis supplied with the reagents, and the reporter ion ratios calculated (<xref rid="app1" ref-type="sec">Table 1 Supplementary Material</xref>). The ratios are plotted for each Ald peptide in <xref rid="fig2" ref-type="fig">Fig. 2</xref>A and the geometric mean and geometric standard deviation given in <xref rid="tbl2" ref-type="table">Table 2</xref>. It can be seen that there is a tendency for the raw data from peptides selected using the Mascot ‘at least homology’ threshold to give lower than expected peak area ratios.</p>
+        <p>The peak area ratios 117:114, 116:114 and 115:114 were plotted against log<sub>2</sub> of the peak area/10,000 of the 117 reporter ion as a measure of reporter ion intensity (<xref rid="fig3" ref-type="fig">Fig. 3</xref>A-C). The 117 reporter ion was chosen as the most intense and, therefore, most accurately measureable of the reporter ion peaks. The red lines of best fit are an indicator that the deviation from the expected peak area ratio is less at higher 117 peak areas. It would, therefore, be advantageous to remove data points below a certain 117 peak area threshold. If a threshold of 20,000 (1 on the graph log scale) is arbitrarily chosen the geometric mean values are adjusted as shown in <xref rid="tbl2" ref-type="table">Table 2</xref> and by the blue lines on <xref rid="fig3" ref-type="fig">Fig. 3</xref>A-C). However, it should be noted that, with this threshold, the quantification now only uses the few most intense peaks for that protein from each run. Hu et al. <xref rid="bib22" ref-type="bibr">[22]</xref> saw a similar effect when optimising proteomic analysis of mouse cerebellar dysfunction using a MALDI TOF/TOF 4700 Proteomics Analyzer, and also concluded that more accurate peptide expression ratios were obtained if the lower intensity peaks were filtered out.</p>
+      </sec>
+      <sec>
+        <label>3.3</label>
+        <title>Raw data assessment – reporter ions – nLC-ESI MSMS of Ald</title>
+        <p>Similarly, for the nLC-ESI MSMS data, reporter ion peak areas from each cycle (MSMS acquisition) selected by Mascot using the ‘at least homology’ threshold, that had a total ion count for the most intense peak in the spectrum of 12 or above and a complete set of measureable reporter ion peak areas were calculated using Applied Biosystems Analyst software. These values were corrected for isotope impurities and the reporter ion peak area ratios calculated (<xref rid="app1" ref-type="sec">Table 2 Supplementary Material</xref>). The peak area ratios were plotted for each peptide (<xref rid="fig2" ref-type="fig">Fig. 2</xref>B). In contrast to the nLC-MALDI MSMS data, there tend to be more data points for many of the peptides. The geometric mean for the merged triplicate nLC-ESI MSMS data points is given in <xref rid="tbl2" ref-type="table">Table 2</xref>.</p>
+        <p>The peak area ratios 117:114, 116:114 and 115:114 were again plotted against log<sub>2</sub> of the peak area of the 117 reporter ion (<xref rid="fig3" ref-type="fig">Fig. 3</xref>D-F). As shown by the red line of best fit, there is, once more, a tendency for the weaker data points to give less accurate, lower ratios. By removing data points below an arbitrary 117 peak area threshold of 4 (2 in log<sub>2</sub>), the accuracy of the peak area ratios can be improved as shown in <xref rid="tbl2" ref-type="table">Table 2</xref> and as the blue line on the graphs. Therefore, removing those data points with the weakest 117 peak areas improves the accuracy of the ratios. However, the ratios are still underestimated, particularly, at the higher degrees of up- or down-regulation.</p>
+        <p>In this experiment all ratios are calculated relative to 114, which for Ald is the weakest peak and therefore possibly the least accurate in the reporter ion quadruplet. Ow et al. <xref rid="bib17" ref-type="bibr">[17]</xref> showed that poor S/N led to increased errors when studying a 4 protein mix. Indeed we see for our data that the geometric mean of the ratio between each adjacent pair of reporter ions, which would be expected to be 2, is 1.36 (geo. SD: 1.71) for 116:115 and 1.80 (geo. SD: 1.78) for 117:116, compared to 1.35 (geo. SD: 1.84) for 115:114. So the 117:116 ratio is only 10% lower than expected compared to 33% lower, for the 115:114 and 116:115 ratios. Indeed the two outlying data points with 117/114 peak area ratios above 20 (see <xref rid="fig3" ref-type="fig">Fig. 3</xref>D and <xref rid="app1" ref-type="sec">Supplementary Table 2</xref>) have anomalously small 114 peaks, hence the ratios relative to 114 are distorted although those between 115, 116 and 117 are reasonably accurate.</p>
+        <p>In this study MSMS was collected for 3 s regardless of signal intensity. However, Analyst QS2.0 software, for the newer QStar Elite instrument, allows collection of MSMS data until a predefined S/N is achieved, allowing shorter acquisition times for more intense ions, leading to the collection of more MSMS spectra in a given time period, when proteome coverage is important. However, for iTRAQ analysis, this S/N threshold can be increased to improve the signal intensity of data to be used for quantification. It may be this improvement, combined with other changes to the acquisition method discussed below, that led to the improved accuracy of the ratios reported by Kuzyk et al. <xref rid="bib7" ref-type="bibr">[7]</xref> using a QStar Elite, over the results presented here using a QStar XL.</p>
+        <p>An alternative way of filtering the data would be to use only the reporter ion ratios acquired whilst a chromatographic peak is above 50% of its maximum intensity. This has some parallels to the MALDI acquisition, where MSMS is performed on the spot which represents the top of the chromatographic peak. In the combined triplicate data set 32 data points fulfil this criterion. They are depicted with red circles on <xref rid="fig3" ref-type="fig">Fig. 3</xref>D. Twenty one of these data points are above the arbitrary 117 peak area threshold cut-off value of 4 and eleven below. However, nine of the peaks above the threshold of 4 are not from above half height on the chromatographic peak. The geometric mean for the 32 data points is given in <xref rid="tbl2" ref-type="table">Table 2</xref>. As shown in <xref rid="tbl2" ref-type="table">Table 2</xref>, taking only the 21 data points that fulfil both criteria gives the most accurate set of ratios.</p>
+        <p>An alternative to removing the weaker peaks during the data manipulation stage would be to increase the number of counts required to trigger the collection of MSMS. However this would compromise the identification part of the analysis, so it is preferable to acquire as complete a data set as possible and then use data filtering tools to allow a data set that gives reliable quantification to be extracted.</p>
+        <p>Certainly a significant proportion of the poor nLC-ESI MSMS data is from analysis of material from chromatographic tailing. This is occurring, in part, due to the relative lack of complexity of the eight protein sample, compared to a ‘real’ sample, which promotes reanalysis of the chromatographic tail, as no ‘new’ peptides are eluting and also due to the high concentration of Ald peptides analysed (18.75 pmol per instrument run). This is excessive for identification, as the QStar XL gives confident identifications (30-40% coverage) with 50 fmol of sample and the 4800 gives similar coverage with 10 fmol of sample. However high peptide loads are required to give a 117 reporter ion peak area of above four which appears to produce better quantification. In a real sample the individual proteins would be at unknown concentrations and span a large concentration range, so accurate quantification is called for at all concentrations.</p>
+      </sec>
+      <sec>
+        <label>3.4</label>
+        <title>Relative fragmentation efficiencies</title>
+        <p>Examination of the MSMS spectra generated by the MALDI mass spectrometer showed that the reporter ions dominated the fragmentation spectra (<xref rid="fig4" ref-type="fig">Fig. 4</xref>A). In contrast, the nLC-ESI MSMS spectra, acquired at a collision energy (CE) set 10 V above the standard rolling CE used for peptide fragmentation, as recommended by the manufacturer, show b and y fragment ions as the most intense peaks, with the reporter ions of only moderate to low abundance (an example showing low abundance reporter ions is shown in <xref rid="fig4" ref-type="fig">Fig. 4</xref>B). Weise et al. <xref rid="bib11" ref-type="bibr">[11]</xref> evaluated various peptide fragmentation spectra from nLC-ESI MSMS analysis on a QStar XL and noticed similar moderate to low abundances for the reporter ions. They showed that increasing the CE and changing the collision gas from nitrogen to argon improved the reporter ion abundance, and the accuracy of the peak area ratio, where the expected ratio was 2, from 1.6 (SD 15%) to 1.9 (SD 13%). However, increasing the CE resulted in lower intensity b and y ion fragments, particularly those above 800 Da, thus compromising the protein identification. The QStar Elite instrument, used by Kuzyk et al. <xref rid="bib7" ref-type="bibr">[7]</xref>, employs signal enhancement of the low mass reporter ion region in iTRAQ experiments, which may improve the accuracy of the reporter ion ratios in nLC-ESI MSMS data.</p>
+      </sec>
+      <sec>
+        <label>3.5</label>
+        <title>Precursor ion selection efficiency</title>
+        <p>Poor precursor ion selection efficiency could lead to the selection of a mixed precursor and hence mixed MSMS, which is likely to depress the ratio observed for those peptides showing up- (or down-) regulation, as most species in an experiment will show no change in expression. This was seen by Ow et al. <xref rid="bib17" ref-type="bibr">[17]</xref> who showed reliable quantitation for a simple four protein mix but saw significant suppression of up-regulated reporter ion ratios when a complex mixture of proteins was present, which they attributed to mixed MSMS occurring due to mixed precursor ion selection.</p>
+        <p>Hu et al. <xref rid="bib22" ref-type="bibr">[22]</xref> recommend an efficient LC routine to reduce complexity and eliminate co-eluting peptides, which they found to be a problem with the Applied Biosystems 4700 MALDI TOF/TOF Analyser, which has a relatively broad precursor ion selection window compared to the Applied Biosystems 4800 instrument. Indeed, in our experiment, the 4800 MALDI TOF/TOF Analyser gave more accurate ratios than the QStar XL instrument.</p>
+        <p>Certainly, within the nLC-ESI MSMS data set there were individual measurements, within the series of measurements for a particular <italic>m</italic>/<italic>z</italic>, which showed mixed MSMS where a more intense ion of similar <italic>m</italic>/<italic>z</italic> had ‘bled through’ into the MSMS of the low intensity ion of interest. With this particular peptide mix, visually apparent mixed MSMS occurred at a rate of less than one affected measurement per series of measurements for a particular <italic>m</italic>/<italic>z</italic> and always in measurements from the chromatographic tail. These peaks were removed by applying either the 117 peak area threshold or the chromatographic elution filter. However, it is interesting to note that the ‘iTRAQ analysis settings’ button in Analyst QS2.0 on the QStar Elite, used by Kuzyk et al. <xref rid="bib7" ref-type="bibr">[7]</xref>, isolates only the first (carbon12) isotope, rather than the whole isotope cluster as was selected in this work.</p>
+      </sec>
+      <sec>
+        <label>3.6</label>
+        <title>Analysis of nLC-MALDI MSMS data using Mascot</title>
+        <p>The reporter ion peak areas were calculated using Matrix Science's TS2Mascot software. The user flexibility in the Mascot quantification method configuration was investigated. <xref rid="tbl3" ref-type="table">Table 3</xref> shows the advantage of using the weighted geometric mean (which gives more weight to the more highly represented peptides, and is recommended if the accuracy is limited by counting statistics) over the geometric mean and gives almost the predicted ratios with the combined MALDI data from the triplicate analyses, for both Ald and CAH. <xref rid="tbl3" ref-type="table">Table 3</xref> also shows the ratios obtained when selecting peptides above the ‘homology threshold’ or the ‘identity threshold’. For these MALDI data there appears to be no benefit in selecting the higher Identity Ion Score threshold, which removes only three peptides.</p>
+      </sec>
+      <sec>
+        <label>3.7</label>
+        <title>Analysis of nLC-ESI MSMS data using Mascot</title>
+        <p>The fidelity of the reporter ion peak area extraction by Mascot can be seen by comparing <xref rid="fig5" ref-type="fig">Fig. 5</xref> panels A and B to panels E and F (see also <xref rid="app1" ref-type="sec">Supplementary Table 2</xref>).</p>
+        <p><xref rid="tbl3" ref-type="table">Table 3</xref> shows the weighted and normal geometric mean reporter ion ratios for Ald and CAH. The CAH ratios show very little change when the identity threshold was selected. This contrasted with the Ald results, where there was a significant improvement in the accuracy of the reporter ion ratios if the ‘at least identity’ threshold was used. Approximately 110 data points were removed, from the combined triplicate data set, by using the identity threshold instead of the homology threshold, and the data for four peptides assignments, from those found using the homology threshold, were excluded completely (<xref rid="app1" ref-type="sec">Supplementary Table 3</xref>). Manual inspection of the MSMS for these four assignments did not suggest that they were false positives. The geometric mean for a further five peptide assignments improved upon removal of those matches below the identity threshold, whereas for two assignments there was a decrease in the geometric mean. Some data points are obvious outliers but there is no option to manually deselect such outliers, from the Mascot weighted average calculations and whilst Mascot uses statistical outlier removal methods, there was no change in the ratios obtained with this data set if the appropriate outlier removal method (Rosner's) was selected or no outlier removal method was selected.</p>
+        <p>However, <xref rid="fig6" ref-type="fig">Fig. 6</xref> shows that there is less correlation between the Mascot Ion Score for an individual peptide and the accuracy of the peak area ratios than was seen between the 117 peak area and the peak area ratios (<xref rid="fig3" ref-type="fig">Fig. 3</xref>D–F). Therefore, whilst the Mascot Ion Score and Expect values are an indication of the confidence with which the peaks seen in the MSMS match the peptide sequence, a high Ion Score does not necessarily imply that the quantification will be accurate.</p>
+        <p>As assessment of the Ald raw data (<xref rid="fig3" ref-type="fig">Fig. 3</xref>D–F) suggested that reliable quantification was more closely linked to the intensity of the reporter ions, the mechanisms available in Mascot to exclude peaks below a defined intensity were investigated. Mascot has no option to specifically remove reporter ion peaks below a particular threshold, but there is an option to globally remove MSMS signals below a certain intensity threshold either as a percentage of the most intense peak or an absolute intensity. The peak lists from the merged triplicate data sets were created for a range of peak intensity thresholds, to investigate whether removing the weaker signals from the peak lists (both reporter ions and y and b ions) improved the accuracy of quantification without having an adverse effect on the protein identification score. <xref rid="tbl4" ref-type="table">Table 4</xref> shows the reporter ion ratios and Mascot scores for Ald and CAH obtained with a range of absolute intensity cut-offs for the merged triplicate data sets. Whilst it appears to be beneficial to remove some of the weakest data points, particularly for the Ald data, (compare no intensity threshold with an intensity threshold of 75) no specific intensity cut-off gives optimal ratios across all three reporter ion ratios for both proteins. However, intensity cut-off values in the range of 30 to 75 give the best overall improvement, with a value of 40 appearing to be the best global setting.</p>
+        <p><xref rid="app1" ref-type="sec">Supplementary Table 5</xref> shows the equivalent reporter ion ratios and Mascot scores for Ald and CAH obtained with a range of percentage intensity cut-offs. Again it does appear to be useful to filter out the weakest peaks as seen with an intensity cut-off of 0.5%.</p>
+      </sec>
+      <sec>
+        <label>3.8</label>
+        <title>Analysis of nLC-ESI MSMS and nLC-MALDI MSMS data using ProteinPilot Paragon</title>
+        <p>One of the aims of the ProteinPilot Paragon method is to address the issue of which proteins, from the various isoforms in the database, can be inferred to be present from the peptides identified. To achieve this, it uses the Paragon <xref rid="bib20" ref-type="bibr">[20]</xref> algorithm to determine the raw peptide identifications and then the ProGroup algorithm to group related redundant proteins with the identified protein. For the identification, although the algorithm ranks proteins based only on their unique peptides, it includes all the peptides in the coverage and in calculating the score. In contrast, for quantification only those peptides which are unique to a particular isoform are used in the calculation, as each isoform may be regulated independently and, hence, show different reporter ion ratios.</p>
+        <p><xref rid="fig1" ref-type="fig">Fig. 1</xref> indicates that ProteinPilot underestimates the degree of up-regulation of Ald and down-regulation of CAH to a greater extent than Mascot in both the nLC-ESI MSMS and nLC-MALDI MSMS analyses. The geometric means of the ratios, over the triplicate study, are shown in <xref rid="tbl5" ref-type="table">Table 5</xref>. For Ald, analysed by nLC-ESI MSMS, the ratios show large discrepancies. These are somewhat lower when analysed by nLC-MALDI MSMS. For the down-regulated protein, CAH, the degree of down-regulation was particularly underestimated by nLC-ESI MSMS analysis but within acceptable tolerance, with nLC-MALDI MSMS analysis. <xref rid="fig5" ref-type="fig">Fig. 5</xref> C and D compared to A and B illustrates ProteinPilot Paragon's faithful peak extraction. The ratios obtained for the peptides that fulfilled the criteria of being selected by Mascot using the ‘at least homology’ threshold, having a total ion count for the most intense peak in the spectrum of 12 or above and a complete set of measureable reporter ion peak areas and were also selected by ProteinPilot Paragon are shown in <xref rid="app1" ref-type="sec">Supplementary Tables 1 and 2</xref>. ProteinPilot Paragon uses the following criteria for selecting peptides for quantification. The peptide ID confidence must be &gt; 1, the sum of the signal to noise ratio for all the peak pairs must be &gt; 9 and the peptide must not be shared by more than one protein.</p>
+        <p>The elimination of peptides that are shared can result, in certain cases, in very few peptides being selected for the quantification, particularly for more common proteins, or if performing an “all species” search. In our sample this was particularly striking with Ald, where the rabbit and bovine sequences are very similar, resulting in 11 of the 13 peptides found matching both sequences and hence the quantification being performed on only the two unique rabbit peptides. This effect can be reduced by restricting the search to a specific species, however common proteins can have multiple entries in a database even within one species and so the quantification can be based on low peptide numbers.</p>
+        <p>The eliminated peptides can be manually added back into the quantification, by ticking a check box for each peptide. Adding in peptides with confidence &gt; 95, which were previously eliminated because they were shared, in the case of Ald, increased the ratios from 1.91 to 2.10 (c.f. expected ratio of 2), 2.69 to 3.22 (c.f. expected ratio of 4) and 3.90 to 6.22 (c.f. expected ratio of 8) for the nLC-MALDI MSMS data set 1. This altered the 115:114 ratio from 5% underestimation to 5% overestimation, and reduced the underestimation for the 116:114 and 117:114 ratios from 33% and 51% respectively to 20% and 22%.</p>
+        <p>The power of the ProGroup algorithm is that it does not arbitrarily combine data from peptides that genuinely represent a closely related protein which shows a different pattern of up- or down-regulation to the related protein. However, it would be more powerful if it were capable of assessing whether peptide ratios are outliers and, hence, are likely to represent a differently regulated isoform, or whether they display a similar ratio to the peptides designated to the protein of interest and are therefore likely to have come from that protein.</p>
+      </sec>
+      <sec>
+        <label>3.9</label>
+        <title>Alternative routes to quantifying the iTRAQ reporter ion ratios</title>
+        <p>As there appears to be a tendency for the lower intensity reporter ions to give less accurate ratios, an averaging method that gave less weight to the lower intensity signals and more weight to the more intense signals might give more accurate ratios. This can be achieved by either summing the reporter ion peak areas from all the cycles and calculating the reporter ion ratios from the summed value or by summing the reporter ion peak areas measured for each peptide and calculating a ratio for each peptide from the summed peak areas, rather than averaging the individual ratios, and then calculating the geometric mean of those peptide ratios. A similar method is used by the Peaks algorithm <xref rid="bib19" ref-type="bibr">[19]</xref> which initially calculates a weighting for each peptide ratio allowing peptide ratios from high quality spectra to be considered more reliable than those from spectra where the reporter ions are of low intensity. A related approach is used in the ‘ProRata’ algorithm from Pan et al. <xref rid="bib23" ref-type="bibr">[23]</xref> designed for quantification, at the MS level, of SILAC <xref rid="bib24" ref-type="bibr">[24]</xref> and ICAT <xref rid="bib25" ref-type="bibr">[25]</xref> labelled peptides, where the peptide abundance ratio <xref rid="bib26" ref-type="bibr">[26]</xref> is estimated from the ion intensities across the chromatographic peak and given a score based on a signal-to-noise ratio measure.</p>
+        <p>The simple summing methods described above, for the combined triplicate nLC-ESI MSMS data set for Ald gave ratios of 1.47 (115:114), 2.23 (116:114) and 3.83 (117:114) when all values were summed together and 1.50 (115:114), 2.17 (116:114) and 4.00 (117:114) when the peptides were summed individually. These ratios are closer to the expected values than those calculated by taking the geometric mean of each individual ratio (1.35 (115:114), 1.83 (116:114) and 3.29 (117:114)) but still show large discrepancies from the expected values, especially at higher ratios.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>4</label>
+      <title>Conclusions</title>
+      <p>Although the results show good accuracy for the 4plex iTRAQ analysis at ratios of 1:1, there was a significant underestimation of the extent of protein up-regulation or down-regulation, particularly at higher ratios. This was very apparent in the nLC-ESI MSMS analysis, where the measured ratios for eight times up-regulation showed a 50% or greater underestimation depending on the software used for the analysis. If the degree of up- (or down-) regulation can be underestimated to this extent, large numbers of proteins where the degree of up- (or down-) regulation is measured as being below the significance threshold may actually be experiencing significant up- (or down-) regulation. For example, a protein that is actually up-regulated by a factor of 2.4 would only give a measurement of 1.2. Furthermore, the large standard deviations in ratio measurements also mitigate against successfully recording significant changes in expression levels when they are close to the threshold.</p>
+      <p>The reporter ion ratios measured by nLC-MALDI MSMS were much more accurate than those measured by nLC-ESI MSMS. One reason for this is likely to be the improved reporter ion ionization efficiency, relative to b and y ion fragmentation, seen in MALDI MSMS in our hands, compared to ESI MSMS. Another reason appears to be because in MALDI the reporter ions are measured, normally, only once for each peptide when it is at its chromatographic peak. Conversely in ESI analysis multiple acquisitions are made and those of weaker intensity, from the chromatographic tail, contribute less accurate ratios. We have shown that filtering out these peaks improves the accuracy of the ratios measured and demonstrated how some data filtering can be achieved within Mascot Daemon or the mascot.dll script for Sciex Analyst files. Unlike Ow et al. <xref rid="bib17" ref-type="bibr">[17]</xref>, we do not find widespread visually apparent co transmission of peptide precursors, resulting in mixed fragmentation and reporter ion ratios.</p>
+      <p>iTRAQ remains a useful quantitative method but the degree of up- or down-regulation measured should be treated with caution and proteins showing only small changes in expression level should be followed up using other methods as they may still be experiencing noteworthy changes in expression level.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shiio</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Aebersold</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitative proteome analysis using isotope-coded affinity tags and mass spectrometry</article-title>
+          <source>Nat Protoc</source>
+          <volume>1</volume>
+          <year>2006</year>
+          <fpage>139</fpage>
+          <lpage>145</lpage>
+          <pub-id pub-id-type="pmid">17406225</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ross</surname>
+              <given-names>P.L.</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>Y.N.</given-names>
+            </name>
+            <name>
+              <surname>Marchese</surname>
+              <given-names>J.N.</given-names>
+            </name>
+            <name>
+              <surname>Williamson</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Parker</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Hattan</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiplexed protein quantitation in <italic>Saccharomyces cerevisiae</italic> using amine-reactive isobaric tagging reagents</article-title>
+          <source>Mol Cell Proteomics</source>
+          <volume>3</volume>
+          <year>2004</year>
+          <fpage>1154</fpage>
+          <lpage>1169</lpage>
+          <pub-id pub-id-type="pmid">15385600</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rudella</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friso</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Alonso</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Ecker</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>van Wijk</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Downregulation of ClpR2 leads to reduced accumulation of the ClpPRS protease complex and defects in chloroplast biogenensis in Arabidopsis</article-title>
+          <source>Plant Cell</source>
+          <volume>18</volume>
+          <year>2006</year>
+          <fpage>1704</fpage>
+          <lpage>1721</lpage>
+          <pub-id pub-id-type="pmid">16766689</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Glen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Gan</surname>
+              <given-names>C.S.</given-names>
+            </name>
+            <name>
+              <surname>Hamdy</surname>
+              <given-names>F.C.</given-names>
+            </name>
+            <name>
+              <surname>Eaton</surname>
+              <given-names>C.L.</given-names>
+            </name>
+            <name>
+              <surname>Cross</surname>
+              <given-names>S.C.</given-names>
+            </name>
+            <name>
+              <surname>Catto</surname>
+              <given-names>J.W.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>iTRAQ-facilitated proteomic analysis of human prostate cancer cells identifies proteins associated with progression</article-title>
+          <source>J Proteome Res</source>
+          <volume>7</volume>
+          <year>2008</year>
+          <fpage>897</fpage>
+          <lpage>907</lpage>
+          <pub-id pub-id-type="pmid">18232632</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Radosevich</surname>
+              <given-names>T.J.</given-names>
+            </name>
+            <name>
+              <surname>Reinhardt</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Lippolis</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Bannantine</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Stabel</surname>
+              <given-names>J.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Proteome and differential analysis of membrane cytosolic proteins from mycobacterium avium subsp. paratuberculosis</article-title>
+          <source>J Bacteriol</source>
+          <volume>189</volume>
+          <year>2007</year>
+          <fpage>1109</fpage>
+          <lpage>1117</lpage>
+          <pub-id pub-id-type="pmid">17142399</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Howe</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>D.B.</given-names>
+            </name>
+            <name>
+              <surname>Moser</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Irwin</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>comparison of nLC-ESI-MS/MS and nLC-MALDI-MS/MS for GeLC-based protein identification and iTRAQ-based shotgun quantitative proteomics</article-title>
+          <source>J Biomol Tech</source>
+          <volume>18</volume>
+          <year>2007</year>
+          <fpage>226</fpage>
+          <lpage>230</lpage>
+          <pub-id pub-id-type="pmid">17916795</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kuzyk</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Ohlund</surname>
+              <given-names>L.B.</given-names>
+            </name>
+            <name>
+              <surname>Elliot</surname>
+              <given-names>M.H.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Qian</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Delany</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A comparison of MS/MS-based, stable isotope labelled, quantitation performance on ESI-quadrupole TOF and MALDI-TOF/TOF mass spectrometers</article-title>
+          <source>Proteomics</source>
+          <volume>9</volume>
+          <year>2009</year>
+          <fpage>3328</fpage>
+          <lpage>3340</lpage>
+          <pub-id pub-id-type="pmid">19504495</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stabels</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Cho</surname>
+              <given-names>J.-C.</given-names>
+            </name>
+            <name>
+              <surname>Giovannoni</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Barofsky</surname>
+              <given-names>D.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Proteomic Analysis of Novel Marine Bacteria Using MALDI and ESI Mass Spectrometry</article-title>
+          <source>J Biomol Tech</source>
+          <volume>15</volume>
+          <year>2004</year>
+          <fpage>191</fpage>
+          <lpage>198</lpage>
+          <pub-id pub-id-type="pmid">15331585</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bodnar</surname>
+              <given-names>W.M.</given-names>
+            </name>
+            <name>
+              <surname>Blackburn</surname>
+              <given-names>R.K.</given-names>
+            </name>
+            <name>
+              <surname>Krise</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Moseley</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Exploiting the complementary nature of LC/MALDI/MS/MS and LC/ESI/MS/MS for increased proteome coverage</article-title>
+          <source>J Am Soc Mass Spectrom</source>
+          <volume>14</volume>
+          <year>2003</year>
+          <fpage>971</fpage>
+          <lpage>979</lpage>
+          <pub-id pub-id-type="pmid">12954165</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scheri</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Curtis</surname>
+              <given-names>L.R.</given-names>
+            </name>
+            <name>
+              <surname>Barofsky</surname>
+              <given-names>D.F.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>comparison of relative quantification with isobaric tags on a subset of the murine hepatic proteome using electrospray ionisation quadrupole time of flight and matrix assisted laser desorption ionisation tandem time of flight</article-title>
+          <source>Rapid Commum Mass Spectrom</source>
+          <volume>22</volume>
+          <year>2008</year>
+          <fpage>3137</fpage>
+          <lpage>3146</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wiese</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Reidergeld</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Meyer</surname>
+              <given-names>H.E.</given-names>
+            </name>
+            <name>
+              <surname>Warscheid</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein labelling by iTRAQ: A new tool for quantitative mass spectrometry in proteome research</article-title>
+          <source>Proteomics</source>
+          <volume>7</volume>
+          <year>2007</year>
+          <fpage>340</fpage>
+          <lpage>350</lpage>
+          <pub-id pub-id-type="pmid">17177251</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <label>12</label>
+        <mixed-citation publication-type="other"><ext-link ext-link-type="uri" xlink:href="http://www.abrf.org/ResearchGroups/Proteomics/Studies/ABRF-PRG07Presentation.ppt">http://www.abrf.org/ResearchGroups/Proteomics/Studies/ABRF-PRG07Presentation.ppt</ext-link>.</mixed-citation>
+      </ref>
+      <ref id="bib13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>DeSouza</surname>
+              <given-names>L.V.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Minkoff</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Romaschin</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Colgan</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Absolute Quantification of endogenous levels of a potential cancer marker in cancerous and normal endometrial tissues</article-title>
+          <source>J Proteome Res</source>
+          <volume>7</volume>
+          <year>2008</year>
+          <fpage>3525</fpage>
+          <lpage>3534</lpage>
+          <pub-id pub-id-type="pmid">18630974</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Anderson</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Hunter</surname>
+              <given-names>C.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitive mass spectrometric multiple reaction monitoring assays for major plasma proteins</article-title>
+          <source>Mol Cell Proteomics</source>
+          <volume>5</volume>
+          <year>2006</year>
+          <fpage>573</fpage>
+          <lpage>588</lpage>
+          <pub-id pub-id-type="pmid">16332733</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Patel</surname>
+              <given-names>V.J.</given-names>
+            </name>
+            <name>
+              <surname>Thalassinos</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Slade</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Connolly</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Crombie</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Murrell</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A comparison of labelling and label free mass spectrometry-based proteomic approaches</article-title>
+          <source>J Prot Res</source>
+          <volume>8</volume>
+          <year>2009</year>
+          <fpage>3752</fpage>
+          <lpage>3759</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib16">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pierce</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Unwin</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Griffith</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Carney</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Eight-channel iTRAQ enables comparison of the activity of six leukemogenic tyrosine kinases</article-title>
+          <source>Mol Cell Proteomics</source>
+          <volume>7</volume>
+          <year>2008</year>
+          <fpage>853</fpage>
+          <lpage>863</lpage>
+          <pub-id pub-id-type="pmid">17951628</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ow</surname>
+              <given-names>S.Y.</given-names>
+            </name>
+            <name>
+              <surname>Salim</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Noirel</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Rehman</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Wright</surname>
+              <given-names>P.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>iTRAQ underestimation in simple and complex mixtures: the good, the bad and the ugly</article-title>
+          <source>J Proteome Res</source>
+          <volume>8</volume>
+          <year>2009</year>
+          <fpage>5347</fpage>
+          <lpage>5355</lpage>
+          <pub-id pub-id-type="pmid">19754192</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Farinazzo</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Restuccia</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Bachi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Guerrier</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Fortis</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Boschetti</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Temporal quantitative proteomics by iTRAQ 2D-LC-MS/MS and corresponding mRNA expression analysis identify post-transcriptional modulation of actin-cytoskeleton regulators during TGF-β-Induced Epithelial-Mesenchymal transition</article-title>
+          <source>J Proteome Res</source>
+          <volume>8</volume>
+          <year>2009</year>
+          <fpage>35</fpage>
+          <lpage>47</lpage>
+          <pub-id pub-id-type="pmid">19118450</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib19">
+        <label>19</label>
+        <mixed-citation publication-type="other">Lacerda C.M.R., Xin L., Rogers I., Reardon K.F., Analysis of iTRAQ data using Mascot and Peaks quantification algorithms. Brief Func Genomics Proteomics 2008;7:119-126.</mixed-citation>
+      </ref>
+      <ref id="bib20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shilov</surname>
+              <given-names>I.V.</given-names>
+            </name>
+            <name>
+              <surname>Seymour</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Patel</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>Loboda</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Tang</surname>
+              <given-names>W.H.</given-names>
+            </name>
+            <name>
+              <surname>Keating</surname>
+              <given-names>S.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Paragon Algorithm, a next generation search engine that uses sequence temperature values and feature probabilities to identify peptides from tandem mass spectra</article-title>
+          <source>Mol Cell Proteomics</source>
+          <volume>6</volume>
+          <year>2007</year>
+          <fpage>1638</fpage>
+          <lpage>1655</lpage>
+          <pub-id pub-id-type="pmid">17533153</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Perkins</surname>
+              <given-names>D.N.</given-names>
+            </name>
+            <name>
+              <surname>Pappin</surname>
+              <given-names>D.J.C.</given-names>
+            </name>
+            <name>
+              <surname>Creasy</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Cotrell</surname>
+              <given-names>J.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Probability-based protein identification by searching sequence databases using mass spectrometry data</article-title>
+          <source>Electrophoresis</source>
+          <volume>20</volume>
+          <year>1999</year>
+          <fpage>3551</fpage>
+          <lpage>3567</lpage>
+          <pub-id pub-id-type="pmid">10612281</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Qian</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Borisov</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Pan</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimized oroteomic analysis of a mouse model of cerebellar dysfunction using amine-specific isobaric tags</article-title>
+          <source>Proteomics</source>
+          <volume>6</volume>
+          <year>2006</year>
+          <fpage>4321</fpage>
+          <lpage>4334</lpage>
+          <pub-id pub-id-type="pmid">16800037</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pan</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kora</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Pelletier</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>McDonald</surname>
+              <given-names>W.H.</given-names>
+            </name>
+            <name>
+              <surname>Hurst</surname>
+              <given-names>G.B.</given-names>
+            </name>
+            <name>
+              <surname>Hettish</surname>
+              <given-names>R.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robust estimation of peptide abundance ratios and rigorous scoring of their variability and bias in quantitative shotgun proteomics</article-title>
+          <source>Anal Chem</source>
+          <volume>78</volume>
+          <year>2006</year>
+          <fpage>7110</fpage>
+          <lpage>7120</lpage>
+          <pub-id pub-id-type="pmid">17037910</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ong</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Blagoev</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Kratchmarova</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Kristensen</surname>
+              <given-names>D.B.</given-names>
+            </name>
+            <name>
+              <surname>Steen</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Pandy</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Stable isotope labelling by amino aicds in cell culture, SILAC, as a simple and accurate approach to expression proteomics</article-title>
+          <source>Mol Cell Proteomics</source>
+          <volume>1</volume>
+          <year>2002</year>
+          <fpage>376</fpage>
+          <lpage>386</lpage>
+          <pub-id pub-id-type="pmid">12118079</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gygi</surname>
+              <given-names>S.P.</given-names>
+            </name>
+            <name>
+              <surname>Rist</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Gerber</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Turecek</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Gelb</surname>
+              <given-names>M.H.</given-names>
+            </name>
+            <name>
+              <surname>Aebersold</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitative analysis of complex protein mixtures using isotope-coded affinity tags</article-title>
+          <source>Nat Biotechnol</source>
+          <volume>17</volume>
+          <year>1999</year>
+          <fpage>994</fpage>
+          <lpage>999</lpage>
+          <pub-id pub-id-type="pmid">10504701</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>MacCoss</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Sadygov</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Yates</surname>
+              <given-names>J.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A correlation algorithm for the automated analysis of quantitative ‘shotgun’ proteomics data</article-title>
+          <source>Anal Chem</source>
+          <volume>75</volume>
+          <year>2003</year>
+          <fpage>6912</fpage>
+          <lpage>6921</lpage>
+          <pub-id pub-id-type="pmid">14670053</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec id="app1" sec-type="supplementary-material">
+      <label>Appendix A</label>
+      <title>Supplementary data</title>
+      <p>
+        <supplementary-material content-type="local-data" id="d30e2822">
+          <caption>
+            <title>Table 1 Supplementary material</title>
+            <p>Reporter ion peak areas and peak area ratios for the triplicate nLC-MALDI MSMS data sets, calculated from the raw data using Data Explorer and corrected for isotope impurities, with ratios calculated by Mascot and ProteinPilot Paragon for comparison.</p>
+          </caption>
+          <media xlink:href="mmc1.doc" mimetype="application" mime-subtype="msword"/>
+        </supplementary-material>
+        <supplementary-material content-type="local-data" id="d30e2830">
+          <caption>
+            <title>Table 2 Supplementary material</title>
+            <p>Reporter ion peak areas and peak area ratios for the triplicate nLC-ESI MSMS data sets, calculated from the raw data using Analyst and corrected for isotope impurities, with ratios calculated by Mascot and ProteinPilot Paragon for comparison.</p>
+          </caption>
+          <media xlink:href="mmc2.doc" mimetype="application" mime-subtype="msword"/>
+        </supplementary-material>
+        <supplementary-material content-type="local-data" id="d30e2838">
+          <caption>
+            <title>Table 3 Supplementary material</title>
+            <p>Mascot generated reporter ion ratios for nLC-ESI MSMS merged triplicate data sets.</p>
+          </caption>
+          <media xlink:href="mmc3.doc" mimetype="application" mime-subtype="msword"/>
+        </supplementary-material>
+        <supplementary-material content-type="local-data" id="d30e2846">
+          <caption>
+            <title>Table 4 Supplementary material</title>
+            <p>Ratios from Mascot for merged triplicate ESI datasets.</p>
+          </caption>
+          <media xlink:href="mmc4.doc" mimetype="application" mime-subtype="msword"/>
+        </supplementary-material>
+        <supplementary-material content-type="local-data" id="d30e2854">
+          <caption>
+            <title>Supplementary Table 5</title>
+            <p>Effect of applying Mascot% intensity cut-off thresholds to merged triplicate nLC-ESI MSMS data set.</p>
+          </caption>
+          <media xlink:href="mmc5.doc" mimetype="application" mime-subtype="msword"/>
+        </supplementary-material>
+      </p>
+    </sec>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>We thank Dr Herbert Fruchtl, University of St. Andrews for performing the isotope impurity corrections and Dr David Knight, University of Manchester for useful discussions. SLS is funded by the Wellcome Trust, which has also generously funded the purchase of the mass spectrometers. CHB is partly funded by the BBSRC.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Comparison of iTRAQ quantification analysis for the 8 protein sample. Each protein has 12 ratios plotted, the first 4 show the 115:114 ratio, the next 4 the 116:114 ratio and the last 4 the 117:114 ratio. Blue indicates nLC-ESI MSMS, green indicates nLC-MALDI MSMS. Dark shades are ProteinPilot Paragon analysis, light shades Mascot analysis. Hence<bold>, dark blue</bold>: nLC-ESI MSMS and ProteinPilot Paragon, <bold>light blue</bold>: nLC-ESI MSMS and Mascot, <bold>dark green</bold>: nLC-MALDI MSMS and ProteinPilot Paragon, <bold>light green</bold>: nLC-MALDI MSMS and Mascot. Values plotted are geometric mean ratios of the 3 software derived ratios from the triplicate runs with the 95% confidence level for the geometric standard deviations shown by error bars. CAH, the down-regulated protein, is plotted on the secondary axis on the right.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Reporter ion peak area ratios for Ald peptides. <bold>A</bold> nLC-MALDI MSMS analysis: reporter ion peak area ratios from triplicate analyses, calculated using peak areas from Data Explorer software, and isotope corrected, plotted for each Ald peptide identified with an above ‘homology threshold’ Mascot Ion Score. <bold>B</bold> nLC-ESI MSMS analysis: reporter ion peak area ratios from the triplicate analyses, calculated using peak areas from Analyst software, and isotope corrected, for each Ald peptide identified with an above ‘homology threshold’ Mascot Ion Score, a TIC above 12 for the most intense peak in the spectrum and a complete set of measureable reporter ions. <bold>Black diamonds</bold>: 115:114, <bold>green squares</bold>: 116:114 and <bold>blue triangles</bold>: 117:114. The <bold>black</bold>, <bold>green</bold> and <bold>blue</bold> lines indicate geometric mean for the 115:114, 116:114 and 117:114 data sets respectively. Expected ratios are 2, 4 and 8. Peptides are numbered in order of increasing <italic>m</italic>/<italic>z</italic>.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Plotting log<sub>2</sub> 117 peak area against peak area ratio shows measured ratio tends towards expected ratio at greater 117 peak area. <bold>A</bold><bold>–</bold><bold>C</bold> nLC-MALDI MSMS analysis: reporter ion peak area ratios from the triplicate analyses, calculated using peak areas from Data Explorer software, and isotope corrected, for each Ald peptide with an above ‘homology threshold’ Mascot Ion Score, plotted against log<sub>2</sub> (117 peak area/10,000) as a measure of reporter ion signal intensity. <bold>D</bold><bold>–</bold><bold>F</bold> nLC-ESI MSMS analysis: reporter ion peak area ratios from the triplicate analyses, calculated using peak areas from Analyst software, and isotope corrected, for each Ald peptide with an above ‘homology threshold’ Mascot Ion Score, a TIC above 12 for the most intense peak in the spectrum and a complete set of measureable reporter ions, plotted against log<sub>2</sub> (117 peak area) as a measure of reporter ion signal intensity. <bold>Black line</bold> indicates expected ratio, <bold>green line</bold> indicates geometric mean, <bold>blue</bold> line indicates geometric mean after low intensity (ESI = 4, MALDI = 20,000) points are removed, <bold>red line</bold> is line of best fit. Points highlighted by red circles in <bold>D</bold> are data points collected at the peak (top 50%) of the eluting peptide chromatogram.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Spectra demonstrating the range of relative intensities seen for the iTRAQ reporter ions compared to <italic>y</italic> and <italic>b</italic> ion signal intensity. <bold>A</bold> nLC-MALDI MSMS spectrum for peptide ADDGRPFPQVIK (1630.9 <italic>m</italic>/<italic>z</italic>), <bold>B</bold> nLC-ESI MSMS spectrum for peptide GVVPLAGTNGETTTQGLDGLSER (806.4 <italic>m</italic>/<italic>z</italic>).</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Comparison of raw data for nLC-ESI MSMS iTRAQ reporter ions with ProteinPilot Paragon and Mascot representations. <bold>A</bold> nLC-ESI MSMS cycle 1063, run 1, acquisition software (Analyst) and <bold>B</bold> nLC-ESI MSMS cycle 1535, run 1, acquisition software (Analyst). <bold>C</bold> cycle 1063 and <bold>D</bold> cycle 1535, ProteinPilot Paragon representation. <bold>E</bold> cycle 1063 and <bold>F</bold> cycle 1535, Mascot representation.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>There is poor correlation between Mascot Ion Score and an accurate nLC-ESI MSMS reporter ion peak area ratio. A Reporter ion peak area ratio 117:114 from the triplicate analyses, calculated using peak areas from Analyst software, for each Ald peptide with an above ‘homology threshold’ Mascot Ion Score, a TIC above 12 for the most intense peak in the spectrum and a complete set of measureable reporter ions, plotted against Mascot Ion Score. The ratio is expected to be 8, as shown by horizontal line. <bold>B</bold> Reporter ion peak area ratio 116:114 from the triplicate analyses, calculated using peak areas from Analyst software, for each Ald peptide with an above ‘homology threshold’ Mascot Ion Score, a TIC above 12 for the most intense peak in the spectrum and a complete set of measureable reporter ions, plotted against Mascot Ion Score. The ratio is expected to be 4, as shown by horizontal line. <bold>C</bold> Reporter ion peak area ratio 115:114 from the triplicate analyses, calculated using peak areas from Analyst software, for each Ald peptide with an above ‘homology threshold’ Mascot Ion Score, a TIC above 12 for the most intense peak in the spectrum and a complete set of measureable reporter ions, plotted against Mascot Ion Score. The ratio is expected to be 2, as shown by horizontal line.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <table-wrap id="tbl1" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Protein identifications by ProteinPilot Paragon and Mascot analysis of nLC-ESI MSMS and nLC-MALDI MSMS experiments for aldolase (Ald), carbonic anhydrase (CAH), bovine serum albumin (BSA) β-galactosidase (βGal), transferrin (TF), alcohol dehydrogenase (ADH), cytochrome C (cytoC) and lysozyme C (lysoC).</p>
+      </caption>
+      <table-wrap-foot>
+        <fn>
+          <p>PP = ProteinPilot Paragon, Mas = Mascot, 1, 2, 3 refer to each of the triplicate analyses, unique pep = number of unique peptides identified.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="tblfn1">
+          <label>a</label>
+          <p>indicates where the number of unique peptides is artificially low due to the ProGroup algorithm treatment of redundant protein hits.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="tbl2" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Manually calculated geometric mean values derived from raw data using the triplicate merged data sets.</p>
+      </caption>
+      <table-wrap-foot>
+        <fn>
+          <p>Note: the geometric standard deviation is a factor such that the 95% confidence interval for the 115:114 ratio is from 1.36 to 2.23.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="tbl3" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Comparison of ratios from Mascot search for the ESI and MALDI-acquired merged triplicate data set calculated with weighted geometric and geometric means.</p>
+      </caption>
+      <table-wrap-foot>
+        <fn>
+          <p>NN = not normal and indicates the ratios are not consistent with a normal distribution.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="tbl4" position="float">
+      <label>Table 4</label>
+      <caption>
+        <p>Effect of applying Mascot absolute intensity cut-off thresholds to merged triplicate nLC-ESI-MSMS data set.</p>
+      </caption>
+      <table-wrap-foot>
+        <fn>
+          <p>exp = expected value.</p>
+          <p>Homol = Homology threshold.</p>
+          <p>Ident = Identity threshold.</p>
+          <p>uni = unique peptides.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="tbl5" position="float">
+      <label>Table 5</label>
+      <caption>
+        <p>Protein Pilot Paragon algorithm ratios for nLC-MALDI-MSMS and nLC-ESI-MSMS merged triplicate data sets.</p>
+      </caption>
+    </table-wrap>
+  </floats-group>
+</article>

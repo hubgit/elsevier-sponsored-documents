@@ -1,0 +1,2879 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="review-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title>Neuroimage</journal-title>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2825373</article-id>
+      <article-id pub-id-type="pmid">19914382</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG6726</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2009.11.015</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Review</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Ten simple rules for dynamic causal modeling</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Stephan</surname>
+            <given-names>K.E.</given-names>
+          </name>
+          <email>k.stephan@iew.uzh.ch</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="aff2" ref-type="aff">b</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Penny</surname>
+            <given-names>W.D.</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Moran</surname>
+            <given-names>R.J.</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>den Ouden</surname>
+            <given-names>H.E.M.</given-names>
+          </name>
+          <xref rid="aff3" ref-type="aff">c</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Daunizeau</surname>
+            <given-names>J.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>K.J.</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>a</sup>Laboratory for Social and Neural Systems Research, Institute for Empirical Research in Economics, University of Zurich, Blümlisalpstr. 10, 8006 Zurich, Switzerland</addr-line>
+      </aff>
+      <aff id="aff2">
+        <addr-line><sup>b</sup>Wellcome Trust Centre for Neuroimaging, Institute of Neurology, University College London, 12 Queen Square, London, WC1N 3BG, UK</addr-line>
+      </aff>
+      <aff id="aff3">
+        <addr-line><sup>c</sup>Donders Institute for Brain, Cognition and Behaviour, Centre for Cognitive Neuroimaging, P.O. Box 9101, 6500 HB Nijmegen, The Netherlands</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Laboratory for Social and Neural Systems Research, Institute for Empirical Research in Economics, University of Zurich, Switzerland. Fax: +41 44 6344907. <email>k.stephan@iew.uzh.ch</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>2</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>49</volume>
+      <issue>4</issue>
+      <fpage>3099</fpage>
+      <lpage>3109</lpage>
+      <history>
+        <date date-type="received">
+          <day>3</day>
+          <month>9</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>1</day>
+          <month>11</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>9</day>
+          <month>11</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>Â© 2010 Elsevier Inc.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>Dynamic causal modeling (DCM) is a generic Bayesian framework for inferring hidden neuronal states from measurements of brain activity. It provides posterior estimates of neurobiologically interpretable quantities such as the effective strength of synaptic connections among neuronal populations and their context-dependent modulation. DCM is increasingly used in the analysis of a wide range of neuroimaging and electrophysiological data. Given the relative complexity of DCM, compared to conventional analysis techniques, a good knowledge of its theoretical foundations is needed to avoid pitfalls in its application and interpretation of results. By providing good practice recommendations for DCM, in the form of ten simple rules, we hope that this article serves as a helpful tutorial for the growing community of DCM users.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Effective connectivity</kwd>
+        <kwd>DCM</kwd>
+        <kwd>Bayesian model selection</kwd>
+        <kwd>BMS</kwd>
+        <kwd>Model evidence</kwd>
+        <kwd>Model comparison</kwd>
+        <kwd>Bayes factor</kwd>
+        <kwd>Nonlinear dynamics</kwd>
+        <kwd>fMRI</kwd>
+        <kwd>EEG</kwd>
+        <kwd>MEG</kwd>
+        <kwd>Synaptic plasticity</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Over the last two decades, neuroimaging analyses have become progressively refined and sophisticated. For example, there has been a trend away from the analysis of manually defined regions of interest to whole-brain analyses; from classical frequentist statistics to Bayesian hypothesis testing; and, most recently, efforts to construct mechanistic models of brain function. A representative of the latter is dynamic causal modeling (DCM), a generic approach for inferring hidden (unobserved) neuronal states from measured brain activity. DCM was introduced in 2003 for fMRI data (<xref rid="bib26" ref-type="bibr">Friston et al., 2003</xref>) and made available as open-source software within the Statistical Parametric Mapping (SPM) software. The mathematical basis and implementation of DCM for fMRI have since been refined and extended repeatedly (<xref rid="bib28 bib46 bib52 bib83 bib82" ref-type="bibr">Friston et al., 2007; Kiebel et al., 2007; Marreiros et al., 2008; Stephan et al., 2008, 2007c</xref>). Dynamic causal models (DCMs)<xref rid="fn1" ref-type="fn">1</xref> have also been implemented for a range of measurement techniques other than fMRI, including electroencephalography (EEG), magnetoencephalography (MEG), and local field potentials (LFPs) obtained from invasive recordings in humans or animals, both in the time domain (<xref rid="bib14 bib15 bib45" ref-type="bibr">Daunizeau et al., 2009b; David et al., 2006; Kiebel et al., 2006</xref>) and frequency domain (<xref rid="bib10 bib58 bib59 bib60 bib67" ref-type="bibr">Chen et al., 2008; Moran et al., 2007, 2008, 2009; Penny et al., 2009</xref>).</p>
+      <p>DCMs are generative models of brain responses, which provide posterior estimates of neurobiologically interpretable quantities such as the effective strength of synaptic connections among neuronal populations and their context-dependent modulation. They are defined by five key features. First, DCMs are dynamic, using (linear or nonlinear) differential equations for describing (hidden) neuronal dynamics. Second, they are causal in the sense of control theory, that is, they describe how dynamics in one neuronal population cause dynamics in another and how these interactions are modulated by experimental manipulations or endogenous brain activity. Third, DCMs strive for neurophysiological interpretability. Fourth, they use a biophysically motivated and parameterized forward model to link the modeled neuronal dynamics to specific features of measured data (for example, regional hemodynamic time series in fMRI or spectral densities of electrophysiological data). Fifth, DCMs are Bayesian in all aspects. Each parameter is constrained by a prior distribution, which reflects empirical knowledge about the range of possible parameter values, principled considerations (e.g., certain parameters cannot have negative values) or a conservative attitude (e.g., “shrinkage” priors that express the assumption that coupling parameters are zero). Furthermore, Bayesian inversion not only provides posterior densities for each model parameter but also yields an approximation to the log model evidence, which is used to compare alternative DCMs of the same data.</p>
+      <p>Since their introduction in 2003, DCMs have gradually become part of mainstream neuroimaging analysis techniques. At the time of submitting this article (September 2009), the database PubMed listed more than 100 published papers on DCM. Its applications have concerned a wide range of domains in cognitive neuroscience, including language (<xref rid="bib2 bib3 bib50 bib63 bib73" ref-type="bibr">Allen et al., 2008; Bitan et al., 2005; Leff et al., 2008; Noppeney et al., 2008; Schofield et al., 2009</xref>), motor processes (<xref rid="bib19 bib34 bib35" ref-type="bibr">Eickhoff et al., 2005; Grefkes et al., 2008; Grol et al., 2007</xref>), vision and visual attention (<xref rid="bib20 bib37 bib56 bib77" ref-type="bibr">Fairhall and Ishai, 2007; Haynes et al., 2005; Mechelli et al., 2003; Sonty et al., 2007</xref>), memory (<xref rid="bib76" ref-type="bibr">Smith et al., 2006</xref>), perceptual decision making (<xref rid="bib81 bib87 bib86" ref-type="bibr">Stephan et al., 2007b; Summerfield et al., 2006; Summerfield and Koechlin, 2008</xref>), and learning (<xref rid="bib17 bib31 bib32" ref-type="bibr">den Ouden et al., 2009; Garrido et al., 2008, 2009</xref>). Given the relative complexity of DCM, compared to conventional analyses, many colleagues in the neuroimaging community have expressed an interest in a tutorial-like guide that addresses some of the most common questions about the theoretical foundations and empirical applications of DCM. This article represents an attempt to provide such a tutorial. It follows a recent tradition in the neuroimaging literature, inspired by the popular “10 simple rules” series in <italic>PLoS Computational Biology</italic> (<xref rid="bib4" ref-type="bibr">Bourne, 2005</xref>), which has led to tutorial papers on, for example, voxel-based morphometry (<xref rid="bib72" ref-type="bibr">Ridgway et al., 2008</xref>) and on reporting results from mass-univariate analyses (<xref rid="bib70" ref-type="bibr">Poldrack et al., 2008</xref>).</p>
+      <p>In this article, we provide some generic “good practice” recommendations that address key conceptual and methodological issues in applying DCM to fMRI, EEG, MEG, or LFP measurements. Omitting any equations, we have tried to keep these recommendations as straightforward as possible. The suggestions made in this article should not be mistaken as dogmatic rules; instead, they are meant to provide guidelines for those users who are new to dynamic system theory, Bayesian statistics, and model selection procedures. Furthermore, some of the points below, such as the section on causality, are not concrete rules but outline the conceptual foundations of DCM. We anticipate that some of these guidelines and their underlying concepts may change over the forthcoming years, as both the theoretical foundations as well as the implementation of DCMs are progressively refined.</p>
+    </sec>
+    <sec>
+      <title>Know what is “causal” about dynamic causal models</title>
+      <p>Causality in DCM is based on control theory (<xref rid="bib24" ref-type="bibr">Friston, 2009</xref>): causal interactions among hidden state variables<xref rid="fn2" ref-type="fn">2</xref> (e.g., specific aspects of neuronal population activity) are expressed by differential equations, which describe (i) how the present state of one neuronal population causes dynamics (i.e., rate of change) in another via synaptic connections and (ii) how these interactions change under the influence of external perturbations (i.e., experimental manipulations) or endogenous brain activity. The differential equations endow the system with memory such that future states are influenced by current states; the coupling parameters (rate constants) determine the speed of these influences. The ensuing coupling is influenced by where and when the system is subject to external perturbations; i.e., sensory inputs driving activity in specific neuronal populations or modulatory inputs that render the strength of coupling context-sensitive. In other words, causality in DCM does not only rely on temporal precedence but also takes into account when and where the system is perturbed by external influences.</p>
+      <p>An equivalent perspective is to interpret the state equation of a given DCM as encoding a particular causal structure–function relationship (<xref rid="bib78" ref-type="bibr">Stephan, 2004</xref>). This is because the state equation of a given DCM prescribes explicitly how system dynamics arises from system structure: it specifies formally how neuronal state changes, induced by external inputs, propagate both in space (i.e., according to the system's connectivity structure) and in time (i.e., how current states influence future states). Therefore, changing the pattern of external inputs or the connectivity structure in a given DCM leads to different predictions about the spatiotemporal pattern of measured system responses. By simulating data from models with specified causal mechanisms, it is straightforward to assess whether, for a given level of observation noise, DCM is capable of correctly inferring these mechanisms. This has been done using both the same neuronal equations as in DCM (e.g., <xref rid="bib83" ref-type="bibr">Stephan et al., 2008</xref>) and using independently designed large-scale biophysical models of spiking neurons (<xref rid="bib49" ref-type="bibr">Lee et al., 2006</xref>). Perhaps even more convincingly, several animal studies using independent techniques such as invasive recordings and microdialysis demonstrated that DCM can successfully infer neuronal processes from BOLD responses and field potentials, respectively (<xref rid="bib16 bib59" ref-type="bibr">David et al., 2008; Moran et al., 2008</xref>).</p>
+      <p>Critically, the hidden neuronal states give rise to noisy observations through a forward mapping (e.g., neurovascular coupling in fMRI). This transform is crucial for inferring causal interactions, particularly when it is nonlinear and may differ across brain regions, as is the case in fMRI (<xref rid="bib16 bib79" ref-type="bibr">David et al., 2008; Stephan et al., 2004</xref>). Therefore, in contrast to Granger causality (<xref rid="bib33" ref-type="bibr">Granger, 1969</xref>), causality in DCM does not describe interactions among the observations themselves. Instead, DCM aims to infer interactions among hidden neuronal states that cause noisy observations through a (possibly nonlinear and spatially variable) mapping.</p>
+      <p>It is noteworthy that inferring causal influences among neuronal populations does not necessarily require information about conduction delays. While conduction delays are explicitly represented in (and estimated by) DCMs for electrophysiological data (cf. <xref rid="bib15" ref-type="bibr">David et al., 2006</xref>), axonal conduction delays in either inputs or inter-regional influences do not play a role in DCMs for fMRI. Due to considerable inter-regional variability in hemodynamic response latencies, fMRI data do not posses enough temporal information to enable estimation of inter-regional conduction delays, which are typically in the order of 10–20 ms; for simulations investigating such timing issues, see <xref rid="bib26" ref-type="bibr">Friston et al. (2003)</xref>. Instead, the differential latencies of the hemodynamic response are accommodated by region-specific biophysical parameters in the hemodynamic model (<xref rid="bib25 bib79" ref-type="bibr">Friston et al., 2000; Stephan et al., 2004</xref>). Nevertheless, because it is not only sensitive to temporal order in signal but also to the spatiotemporal structure of inputs to the system, fairly subtle processes can be identified with DCM. For example, a recent rodent study showed that given fMRI data from a network of regions with epileptiform activity, DCM can infer where the seizure originated (<xref rid="bib16" ref-type="bibr">David et al., 2008</xref>); this inference was verified by concurrent invasive electrophysiological recordings.</p>
+      <p>In summary, causality in DCM is embodied by the mathematical form of the differential state equations and does not just reflect temporal precedence but also accounts for the effects of external perturbations. By inverting an explicit forward model,<xref rid="fn3" ref-type="fn">3</xref> DCM infers causal effects among hidden neuronal states that give rise to noisy measurements through a mapping that can be nonlinear and variable across the brain.</p>
+    </sec>
+    <sec id="sec1">
+      <title>Know your hypothesis and how to test it</title>
+      <p>DCM was designed to test hypotheses about the neuronal mechanisms that underlie experimental measurements of brain responses. In other words, DCM allows one to specify a generative model of measured brain data, which is a specific probabilistic mapping from experimentally controlled manipulations via neuronal dynamics to observed data.</p>
+      <p>Importantly, two different types of inference can be obtained with DCM (<xref rid="fig1" ref-type="fig">Fig. 1</xref>). If one is not interested in any specific model parameter but in some aspect of model structure per se, then <italic>inference on model space</italic> is required. For example, one may wish to infer whether a particular neuronal system has a serial or parallel architecture, whether context-sensitive modulation of connectivity concerns forward or backward connections or whether the modulatory mechanism is linear or nonlinear. In other contexts, one may be interested in the neurophysiological mechanisms encoded by specific parameters in a given model; this requires <italic>inference on model parameters</italic>. For example, in a given model, one might want to infer whether a specific connection is more likely to exert an excitatory or an inhibitory effect on its target region. Prior to conducting a DCM study, one should clarify the type of inference required for the question at hand. This choice determines the sequences of data analysis steps as summarized in <xref rid="fig1" ref-type="fig">Fig. 1</xref>. Issues pertaining to inference on model space and parameters, respectively, are dealt with in more detail below.</p>
+      <p>In general, some scientific questions lend themselves more naturally to an analysis by DCM than others. A key feature of DCM is its dependence on experimental perturbations. Its state equations account for the influence of experimental manipulations on the system's dynamics: experimental conditions enter the model as inputs that either drive local responses or change connection strengths, respectively.<xref rid="fn4" ref-type="fn">4</xref> For this reason, DCMs are usually only appropriate for explaining brain responses that are the consequence of specific experimental interventions. In contrast, data sets that were acquired in the absence of experimental control (e.g., resting state, sleep, hallucinations) are not suitable for DCM (a notable exception are DCMs with stochastic terms or inputs; cf. <xref rid="bib13 bib59" ref-type="bibr">Daunizeau et al., 2009a; Moran et al. 2008</xref>). All other current DCMs with no experimentally controlled input predict nothing but a flat line. This is because, by design, they are based on dynamical systems with fixed point attractors. This can be regarded as a prior on brain dynamics that precludes exponential explosions of neuronal activity. (It is conceivable, however, that in the future, DCMs may be introduced that generate autonomous oscillations). This means that any time series chosen for subsequent DCM should, as a minimal requirement, show some relation to the experimental design. In fMRI, for example, this relation is usually established by an initial analysis using conventional statistical parametric mapping (SPM) on the basis of the general linear model (GLM). In fact, as is elaborated in more detail in point 8 below, DCM is typically used to compare different mechanistic explanations for specific activations detected by SPM. It is not unusual to ask questions about the interactions of areas with different response profiles; in this case, the areas included in a DCM are identified by different statistical contrasts in SPM. A typical example is the analysis of stimulus-by-task interactions in an area identified with the appropriate contrast. The response profile of such an area can be explained by task-dependent modulation of (i) one or several afferent connections from other areas identified by testing for a main effect of stimulus or of (ii) its self-connectivity (<xref rid="bib2 bib80" ref-type="bibr">Allen et al., 2008; Stephan et al., 2007a</xref>).</p>
+      <p>Users of DCM (and other models of effective connectivity) sometimes worry that inference about the structure or parameters of a particular model may only be believable if the model as a whole shows a “reasonable” goodness of fit. Strictly speaking, this is an anecdotal concern, as has been noted by previous authors: “Unfortunately, there seems to be a belief that the ability to make inferences about changes in effective connectivity is compromised if the overall model does not fit the data adequately” (<xref rid="bib71" ref-type="bibr">Protzner and McIntosh, 2006</xref>). These authors performed systematic simulation studies on the relation between model fit and inference about effective connectivity in the context of SEM and concluded that “one can detect differences in effective connectivity with SEM even when the overall model does not fit the data.” Having said this, it is usually the case that if the fits (accuracies) of competing models are poor, it is much more difficult to show that one model has greater evidence than another. In other words, a large Bayes factor indicates that the models compared fit the data sufficiently well to enable meaningful model comparison.</p>
+      <p>Some general points on the issue of model fit are worth highlighting here. There are many reasons why a perfectly reasonable model may fit a particular data set poorly, for example, independent observation noise. On the other hand, it is easy to construct complex models with excellent or even perfect fit, which are mechanistically meaningless and do not generalize (“overfitting”). This is why, as explained in the section entitled <xref rid="sec2" ref-type="sec">Use Bayesian model selection as a first step</xref> below, Bayesian model selection is a mandatory component of any DCM study: before making inference about any particular parameter, the model with the best balance between accuracy and complexity is selected from the set of all plausible alternative models (see section entitled <xref rid="sec2" ref-type="sec">Use Bayesian model selection as a first step</xref>). Furthermore, decisions on whether a particular model fit is “sufficient” or not depend on the number of data points. For example, the more data from the same process are available, the more likely it is that a <italic>χ</italic><sup>2</sup> test will reject the null hypothesis of no difference between predicted and observed covariance matrices (<xref rid="bib8" ref-type="bibr">Bullmore et al., 2000</xref>). The opposite behavior is found when evaluating model fit on the basis of the coefficient of determination (<italic>R</italic><sup>2</sup> or “percent variance explained”): here, the longer the same process is observed, the more likely it is that any model will explain a significant amount of variance in the observed data. In summary, while any inference is always conditional on the model chosen, the validity of the model cannot be evaluated on the basis of its fit (cf. <xref rid="bib69" ref-type="bibr">Pitt and Myung, 2002</xref>).</p>
+      <p>In contrast, establishing the validity of a given model requires additional external criteria. For DCM, <italic>face validity</italic> has been explored in terms of simulations (e.g., <xref rid="bib26 bib83" ref-type="bibr">Friston et al., 2003; Stephan et al., 2008</xref>), <italic>construct validity</italic> has been established in relation to other models such as SEM (<xref rid="bib66" ref-type="bibr">Penny et al., 2004b</xref>) and large-scale models of spiking neurons (<xref rid="bib49" ref-type="bibr">Lee et al., 2006</xref>), and <italic>predictive validity</italic> has been addressed by verifying that DCM results fulfill predictions from independent experimental measures such as microdialysis (<xref rid="bib59" ref-type="bibr">Moran et al., 2008</xref>) and invasive electrophysiological recordings (<xref rid="bib16" ref-type="bibr">David et al., 2008</xref>).</p>
+      <p>In conclusion, when making statistical inferences about any particular mechanism underlying the data (as encoded by a combination of model parameters), model fit does not need to be considered explicitly; instead, it is an integral part of the model evidence that is optimized by BMS. The influence of model fit on inference enters vicariously by determining the precision of the estimates; this effect depends on which model parameters the inference is about (cf. standard equations for parameter estimates in a general linear model). This issue is no different for DCM than for standard regression models. In short, we cannot obtain <italic>false inference</italic> simply because of “poor” model fit.</p>
+      <p>Although inference can be about any aspect of model structure or any parameter in a DCM, the focus of DCM studies is typically on context-dependent changes in coupling. This corresponds to identifying physiological processes that change connection strengths at fast time scales ranging from milliseconds to seconds. DCM was developed for investigating these fast modulatory processes because they are critical for understanding the ubiquitous flexibility and context-sensitivity of neuronal circuits (<xref rid="bib22 bib54 bib75 bib78" ref-type="bibr">Friston, 2002; McIntosh, 2000; Sherman and Guillery, 1998; Stephan, 2004</xref>). If specifying the anatomical source of these modulatory processes is not relevant for the scientific question of interest, a bilinear DCM is sufficient (<xref rid="bib26" ref-type="bibr">Friston et al., 2003</xref>). Otherwise nonlinear DCM can be used, in which the strength of any given connection is allowed to depend on activity in remote neuronal populations (<xref rid="bib83" ref-type="bibr">Stephan et al., 2008</xref>).<xref rid="fn5" ref-type="fn">5</xref></p>
+      <p>To avoid erroneous interpretations of DCM results and accurately qualify the tested hypotheses, it is important to understand the neurophysiological mechanisms that underlie such fast modulatory processes. In brief, rapid changes of connection strength can result either from membrane excitability changes, synaptic plasticity, or a combination of both. For example, postsynaptic responses of ionotropic glutamatergic receptors are modulated by metabotropic receptors (<xref rid="bib12" ref-type="bibr">Coutinho and Knopfel, 2002</xref>) and by receptors of various neuromodulatory transmitters (<xref rid="bib53" ref-type="bibr">McCormick and Williamson, 1989</xref>). Alternatively, various forms of short-term synaptic plasticity can lead to fast changes in synaptic strength, e.g. synaptic depression and facilitation (<xref rid="bib90" ref-type="bibr">Zucker and Regehr, 2002</xref>), NMDA- and dopamine-dependent phosphorylation of AMPA receptors (<xref rid="bib9 bib88" ref-type="bibr">Chao et al., 2002; Wang et al., 2005</xref>), or dendritic spine motility (<xref rid="bib41" ref-type="bibr">Holtmaat and Svoboda, 2009</xref>). All of these changes in synaptic strength can unfold within milliseconds to seconds.</p>
+      <p>In most instances, it is not important for the scientific question of interest to disambiguate whether modulatory processes identified with DCM reflect, at the neuronal level, changes in membrane excitability or synaptic plasticity. In fact, the two processes are often closely intertwined (<xref rid="bib64" ref-type="bibr">Oh et al., 2009</xref>). If it is important to evaluate their relative contributions, it is necessary to adjust model structure and experimental design prospectively, using models that can represent both processes separately (<xref rid="bib59" ref-type="bibr">Moran et al., 2008</xref>) or using experimental manipulations that are known to preferentially affect one of the two processes. An in-depth discussion of model-based inference about neuronal (patho)physiology with DCM is beyond the scope of the present article but is presented elsewhere (Stephan et al., in preparation).</p>
+      <p>In summary, DCM tests competing hypotheses about the neuronal mechanisms underlying experimental measurements of brain activity. Inference about putative mechanisms can either concern model structure or estimates of model parameters. DCMs are most appropriate for explaining brain responses that are the consequence of experimental interventions and typically focus on context-dependent changes in coupling that are mediated by fast changes in membrane excitability and/or connection strength. DCM is therefore a potentially useful approach for studying neuromodulation and synaptic plasticity, respectively, particularly when invasive methods are precluded for practical or ethical reasons.</p>
+    </sec>
+    <sec id="sec2">
+      <title>Use Bayesian model selection as a first step</title>
+      <p>As described above, DCM can rely on two different types of inference, <italic>inference on model space</italic> and <italic>inference on parameter space</italic> of any given model, respectively. Here, we emphasize that even when one is interested in inference on model parameters, a first step is usually Bayesian model selection (BMS). BMS is an established procedure in statistics that rests on computing (an approximation to) the model evidence <italic>p</italic>(<italic>y</italic>|<italic>m</italic>), i.e., the probability of the data <italic>y</italic>, given some model <italic>m</italic>.<xref rid="fn6" ref-type="fn">6</xref> The model evidence, which can be considered the “holy grail” of model comparison, quantifies the properties of a good model; that is, that it explains the data as accurately as possible and, at the same time, has minimal complexity. Mathematical explanations of these properties can be found elsewhere (<xref rid="bib28 bib51 bib65 bib84" ref-type="bibr">Friston et al., 2007; MacKay, 1992; Penny et al., 2004a; Stephan et al., 2009a</xref>). In BMS, models are usually compared via their Bayes factor, i.e., the ratio of their respective evidences (<xref rid="bib44" ref-type="bibr">Kass and Raftery, 1995</xref>) or, equivalently, their difference in log-evidence (relative log-evidence).</p>
+      <p>Importantly, the model evidence is also a measure of generalizability (<xref rid="bib69" ref-type="bibr">Pitt and Myung, 2002</xref>), i.e., how well the model generalizes across different data sets, and can thus be seen as an equivalent (but computationally more efficient) approach to procedures like cross-validation (<xref rid="bib51" ref-type="bibr">MacKay, 1992</xref>). This may be easier to understand by noting that the model evidence is the likelihood of the data, having taken into account the natural variability of model parameters or, more formally, the prediction of data under random sampling from the prior densities of its parameters.</p>
+      <p>For inference on model space, BMS is sufficient, but it can be applied in different ways (<xref rid="fig1" ref-type="fig">Fig. 1</xref>). In brief, one can either identify a single optimal model, or one can choose a model space partitioning approach and compare sets or families of models that differ in one or several structural aspects (<xref rid="bib68 bib84" ref-type="bibr">Penny et al., submitted for publication; Stephan et al., 2009a</xref>). Different options for using BMS, in the context of DCM, will be discussed in more detail below.</p>
+      <p>When inferring on model parameters, one needs to evaluate their estimated posterior densities. Critically, however, these posterior densities are conditional on the particular model chosen. For this reason, BMS is usually a requirement even when the hypothesis concerns values of model parameters and not model structure per se.<xref rid="fn7" ref-type="fn">7</xref> Usually, one defines all plausible models in a first step, then uses BMS to select an optimal model from all alternatives, and finally proceeds to reporting posterior or conditional inferences about the parameters of this optimal model. This approach has been used by numerous studies in the recent past (e.g., <xref rid="bib1 bib50 bib81 bib86" ref-type="bibr">Acs and Greenlee, 2008; Leff et al., 2008; Stephan et al., 2007b; Summerfield and Koechlin, 2008</xref>). For single-subject analyses, inference about any particular parameter (or about linear combinations of parameters) is straightforward; one can simply evaluate the posterior density of the parameter of interest, quantifying the probability that the value of the parameter is larger or smaller than some threshold (<xref rid="bib26" ref-type="bibr">Friston et al., 2003</xref>). For multi-subject analyses, two options exist depending on whether one assumes that the parameters of interest are fixed effects in the population (FFX) or are themselves probabilistically distributed in the population (random effects, RFX). These issues are discussed in more depth in the section entitled <xref rid="sec4" ref-type="sec">Choose an appropriate method for group-level inference on parameters</xref>.</p>
+      <p>In summary, model selection is an essential component of any DCM study and is not normally omitted unless there is extremely strong <italic>a priori</italic> knowledge about the model. An important distinction is whether the hypothesis of interest concerns model structure per se or estimates of particular parameters in an optimal model. In the former case, BMS alone is sufficient to address the hypothesis, whereas in the latter case, a hierarchical or sequential procedure is necessary, where inference about particular parameters follows an initial model selection procedure.</p>
+    </sec>
+    <sec id="sec3">
+      <title>Motivate model space carefully</title>
+      <p>For any experimental observation, there exists, in principle, an infinite number of possible models that could explain the data. At first glance, this may appear a daunting state of affairs: how can one ever discover the “true” model, given an infinity of alternatives? It is helpful to remember that models are never true; by construction, they are meant to be helpful caricatures of complex phenomena, such that mechanisms underlying these phenomena can be tested. This insight is reflected in the well-known statement by <xref rid="bib5" ref-type="bibr">Box and Draper (1987)</xref>: “Essentially, all models are wrong, but some are useful” (p. 424). The purpose of model selection is to determine that model, from a set of plausible alternatives, which is most useful, i.e., represents the best balance between accuracy and complexity and thus affords maximal generalizability (<xref rid="bib69" ref-type="bibr">Pitt and Myung, 2002</xref>).</p>
+      <p>The critical question in practice is how many plausible model alternatives exist; in other words, how large is the model space that must be searched? For small systems (i.e., networks or graphs with a small number of nodes), it is possible to investigate all possible connectivity architectures. However, when increasing the number of regions and inputs, evaluating all possible models becomes practically impossible very rapidly. Therefore, one of the first decisions, when conducting a DCM analysis, is to define the relevant model space, i.e., the set of models that are plausible, given prior knowledge about the system. This definition of the relevant model space should be as transparent and systematic as possible, and it should be described clearly in any article.</p>
+      <p>To ensure a clear definition and systematic exploration of model space, it is helpful to specify the important dimensions in model space and construct variations of models along these dimensions systematically. The definition of this space of plausible models could derive from principled considerations (e.g., combinatorial variations of a basic model structure) or could be informed by previous empirical studies using neuroimaging, electrophysiology, TMS, etc. in humans or animals. One option is to parameterize model space itself, where these parameters define a grid from which models can be sampled systematically. For example, models can be defined in terms of their priors, which could be a mathematical function of anatomical connectivity (e.g., tractography measures). Systematically varying the parameters of this function creates a model space (cf., <xref rid="bib85" ref-type="bibr">Stephan et al., 2009b</xref>). Another approach is to create, under appropriate constraints, all possible combinations of components; for example, all possible combinations of modulatory inputs and/or driving inputs (for examples, see <xref rid="bib48 bib50 bib81" ref-type="bibr">Kumar et al., 2007; Leff et al., 2008; Stephan et al., 2007b</xref>). A final option is to structure model space in a factorial fashion (<xref rid="bib11 bib14 bib82" ref-type="bibr">Chen et al., 2009; Daunizeau et al., 2009b; Stephan et al., 2007c</xref>). The advantage of this approach is that it suggests a natural partitioning of model space into equally large subsets or families of models, which, as described below, can be compared collectively.</p>
+      <p>It may be useful to note at this stage that the definition of model space may or may not include variations concerning the regions contained by the model, depending on whether such variations change the data that are to be explained. In brief, for EEG/MEG data, model comparison can be used to decide about the number of regions, whereas for fMRI data, it cannot (see point 6 for details).</p>
+      <p>In summary, defining the dimensions of model space carefully is an important initial step in any DCM study. It prevents the modeler from getting lost in a space of infinite possibilities; it operationalizes the thinking about what constitutes plausible alternatives; and it is the basis for model space partitioning. This allows for powerful inferences about model structure, as described in the next section.</p>
+    </sec>
+    <sec id="sec4">
+      <title>Choose an appropriate method for group-level inference on model structure</title>
+      <p>Several options exist for performing BMS at the group level. As for all group analyses, a choice must be made between fixed-effects (FFX) and random-effects (RFX) analysis. In the FFX case, one assumes that the optimal model is the same for each subject in the population. This assumption is warranted when studying a basic physiological mechanism that is unlikely to vary across the subjects sampled. For example, FFX approaches to group-level BMS have been used to investigate the relation between anatomical connection probability and strength of functional coupling (<xref rid="bib85" ref-type="bibr">Stephan et al., 2009b</xref>) and asymmetries between forward and backward connections in the visual system (<xref rid="bib11" ref-type="bibr">Chen et al., 2009</xref>). Under the FFX assumption, a useful metric is the group Bayes factor (GBF, <xref rid="bib82" ref-type="bibr">Stephan et al., 2007c</xref>), which expresses the evidence for one model relative to the evidence for another model, considering the group as a whole. The GBF has a simple definition: because Bayes factors are probability ratios, which are independent across subjects, the GBF is the product of individual Bayes factors. When comparing more than two models, it is more straightforward to report the group log-evidence for each model, which is just the sum of log-evidences across subjects. In practice, the simplest and most informative way to report the (group) log-evidence is to show a bar chart of log-evidences over models, after subtracting the log-evidence for the model with the least evidence (e.g., <xref rid="bib32 bib85" ref-type="bibr">Garrido et al., 2009; Stephan et al., 2009b</xref>). Readers can then tell at a glance which model(s) had the greatest evidence and whether the differences were quantitatively important. Usually, a difference in log-evidence of three is taken as strong evidence (<xref rid="bib44" ref-type="bibr">Kass and Raftery, 1995</xref>) because the corresponding Bayes factor of exp(3) is about twenty (cf. the <italic>p</italic> &lt; 0.05 criterion often employed in classical inference).</p>
+      <p>However, assuming that the optimal model structure is a fixed effect in the population may not be appropriate. For example, when investigating pathophysiological mechanisms in a spectrum disease or when dealing with cognitive tasks that can be performed with various cognitive strategies (and thus implemented neuronally in different ways), it is more appropriate to adopt a random-effects (RFX) BMS procedure. An early suggestion for a simple RFX index was the positive evidence ratio (PER, <xref rid="bib82" ref-type="bibr">Stephan et al., 2007c</xref>). This is simply the ratio of how many subjects showed positive evidence<xref rid="fn8" ref-type="fn">8</xref> for one model relative to another. The PER can be considered a special case of a general and fully probabilistic RFX procedure for BMS. This generalized method uses variational Bayes (VB) to estimate the posterior probabilities of competing models, given data from a population of subjects (<xref rid="bib84" ref-type="bibr">Stephan et al., 2009a</xref>). Based on this, one can compute how likely it is that a specific model generated the data of a randomly chosen subject (i.e., the expected posterior model probability) as well as the exceedance probability that one model is more likely than any other model, given the group data. Evaluations based on synthetic and empirical data have shown that this method is accurate and robust; in contrast to FFX analyses, outliers have very little impact on the results (<xref rid="bib84" ref-type="bibr">Stephan et al., 2009a</xref>). With the availability of this method in SPM8, the use of the PER should be abandoned.</p>
+      <p>In addition to comparing specific models one can also compare subsets (families) of models, which result from a partition of model space. For example, BMS can be used to quantify the probability that the presence versus the absence of a particular connection improves model performance, regardless of any other differences among the models considered. This type of inference rests on comparing two (or more) subsets of model space, pooling information over models in each subset. This effectively removes uncertainty about any aspect of model structure, other than the attribute of interest (which defines the partition of model space). This approach currently represents the method of choice when the hypothesis to be tested concerns model structure and not any specific parameter. This sort of inference is available for both fixed and random-effects group models (<xref rid="bib68 bib84" ref-type="bibr">Penny et al., submitted for publication; Stephan et al., 2009a</xref>).<xref rid="fn9" ref-type="fn">9</xref><sup>,</sup><xref rid="fn10" ref-type="fn">10</xref></p>
+      <p>In summary, FFX BMS assumes that the optimal model is identical across the population and uses the GBF or group log-evidence to quantify the relative goodness of models. In contrast, RFX BMS accounts for heterogeneity of model structure across subjects and yields posterior model probabilities and exceedance probabilities. In either case, model space partitioning and subsequent comparison of model families (family-level inference) should be considered when the hypothesis of interest concerns model structure and not any particular model parameter.</p>
+    </sec>
+    <sec id="sec5">
+      <title>Know what you can and cannot do with Bayesian model selection</title>
+      <p>BMS based on (approximations to) the log-evidence is a principled and computationally efficient method for determining an optimal model from a set of competing alternatives, given some data.<xref rid="fn11" ref-type="fn">11</xref> For example, one can compare DCMs that differ in terms of which inputs affect the system, where these inputs enter, whether mechanisms are linear or nonlinear, which anatomical connections exist, or which priors are best (<xref rid="bib1 bib11 bib31 bib83 bib85 bib82" ref-type="bibr">Acs and Greenlee, 2008; Chen et al., 2009; Garrido et al., 2008; Stephan et al., 2008, 2009b, 2007c</xref>). In other neuroimaging domains, BMS is not just being used for DCMs but is also routinely employed to decide between alternative source reconstructions procedures for EEG/MEG data (e.g., <xref rid="bib29 bib39 bib47" ref-type="bibr">Friston et al., 2008; Henson et al., 2009; Kiebel et al., 2008</xref>). BMS has also been frequently used in machine learning (<xref rid="bib91 bib51 bib92" ref-type="bibr">Chu et al., 2007; MacKay, 1992; Penny and Roberts, 1999</xref>) and neuroeconomics, for example, to distinguish between competing models of learning and decision making (<xref rid="bib7 bib18 bib36" ref-type="bibr">Brodersen et al., 2008; den Ouden et al., submitted for publication; Hampton et al., 2006</xref>). There are, however, some caveats in using BMS and interpreting its results in the context of DCM that a user should be aware of.</p>
+      <p>A mathematically trivial but practically important issue is that the model evidence is defined with respect to one particular data set. This means that BMS cannot be applied to models that are fitted to different data. Specifically, in DCM for fMRI, one cannot compare models with different numbers of regions, because changing the regions changes the data (this is a consequence of the data reduction used in DCM for fMRI, in which only data from regions of interest are included). In the case of DCM for MEG/EEG, however, the data to which the model is fitted (i.e., the spatiotemporal distribution of electric potentials or magnetic fields at the sensor level) is always the same, regardless of how many regions (sources) are included in the model. In fact, DCM can be considered a source reconstruction approach that exploits information about coupling among sources and can be used to determine the most likely number and deployment of sources (<xref rid="bib45" ref-type="bibr">Kiebel et al., 2006</xref>).</p>
+      <p>A more complicated issue, which frequently occurs in exchanges with reviewers, is that any measure of model goodness is relative, not absolute. This is true for any approximation to the model evidence (e.g., the Akaike and Bayesian information criteria, or free energy) and the ensuing Bayes factor. It also applies to log-odds ratios and other frequentist statistics like the classical coefficient of determination (<italic>R</italic><sup>2</sup>), which, in the context of linear models, is often interpreted as the proportion of variance explained by the model. Although <italic>R</italic><sup>2</sup> may appear, at first glance, like an absolute goodness of fit index, it is simply the result of a model comparison. Mathematically, this can be seen easily from the generalized definition of <italic>R</italic><sup>2</sup> (e.g., <xref rid="bib61" ref-type="bibr">Nagelkerke, 1991</xref>), which reveals that <italic>R</italic><sup>2</sup> is always determined relative to an (implicit) null model. For example, in the context of linear models, this null model is extremely simple, consisting of a constant (or intercept) only. See the section entitled <xref rid="sec1" ref-type="sec">Know your hypothesis and how to test it</xref> for a discussion on why measures such as <italic>R</italic><sup>2</sup> are not useful for evaluating DCMs.</p>
+      <p>The relative nature of inference obtained by BMS also pertains to the RFX BMS procedure described above: here, the posterior model probabilities are a function of the set of models considered. In other words, these estimates can change when reducing or extending model space. Although mathematically this behavior is perfectly reasonable (for details, see <xref rid="bib84" ref-type="bibr">Stephan et al., 2009a</xref>), it can produce seemingly counterintuitive results, when sequentially performing BMS on parts of model space that have a nested or overlapping relationship (<xref rid="bib68" ref-type="bibr">Penny et al., submitted for publication</xref>). To prevent problems of interpretation, such sequential tests should be avoided; instead, one should perform BMS on the entire space of plausible alternative models in one step.</p>
+      <p>In summary, it is important to keep in mind that any result obtained by BMS, or indeed any other model selection procedure, expresses a relative statement about model goodness that is conditional on the model space considered. Again, this highlights the importance of a careful and principled definition of model space (cf. section entitled <xref rid="sec3" ref-type="sec">Motivate model space carefully</xref>).</p>
+    </sec>
+    <sec>
+      <title>Choose an appropriate method for group-level inference on parameters</title>
+      <p>When analyzing parameter estimates across the group, the same decision must be made as for group-level BMS (see section entitled <xref rid="sec3" ref-type="sec">Motivate model space carefully</xref>). That is, the modeler needs to decide whether the mechanisms encoded by the model parameters of interest are likely to exist as fixed or random effects in the population. If they can be considered fixed effects, e.g., when dealing with low-level physiological properties, several alternative procedures exist. One commonly employed method is Bayesian parameter averaging (BPA). This effectively computes a joint posterior density for the entire group by combining the individual posterior densities, treating the posterior from one subject as the prior for the next (<xref rid="bib30 bib62" ref-type="bibr">Garrido et al., 2007; Neumann and Lohmann, 2003</xref>). The mathematical advantage of this commutative procedure is threefold. First, it accounts for posterior covariances among the parameters; second, under Gaussian assumptions about the posterior, it is extremely easy and efficient to compute; and finally, it produces a single posterior density for the entire group that can be used for Bayesian inference (cf. (<xref rid="bib1" ref-type="bibr">Acs and Greenlee, 2008</xref>)). However, BPA also has some disadvantages (<xref rid="bib43" ref-type="bibr">Kasess et al., 2010</xref>). One potential problem is that the posterior covariances can make the posterior estimates behave in a counterintuitive way, even when they are mathematically perfectly sensible. This can become particularly severe for data with a high signal-to-noise ratio where, in the presence of pronounced posterior covariances, the Bayesian average can deviate substantially from the mean of the maximum a posteriori (MAP) estimates across subjects. Other fixed-effects methods do not suffer from this particular problem, although they have other restrictions; for details see <xref rid="bib43" ref-type="bibr">Kasess et al. (2010</xref>). These alternatives include the univariate variant of BPA and simple temporal averaging of the subjects' time series as a pre-processing step (which is only possible if the stimulus timing is identical across subjects).</p>
+      <p>If a fixed-effects analysis is not appropriate and one thinks that the parameters are random effects in the population (e.g., task-induced changes in connection strengths in cognitive paradigms), a simple solution exists. This approach consists of entering the subject-specific MAP estimates into a second-level frequentist test (e.g., a <italic>t</italic>-test or ANOVA). This procedure is simple and robust and has found widespread application. It is conceptually identical to the summary statistic approach used in conventional SPM analyses, only here the summary statistic is a maximum <italic>a posteriori</italic> estimate (as opposed to a maximum likelihood estimate).</p>
+      <p>An alternative approach is Bayesian model averaging (BMA) (<xref rid="bib40 bib68" ref-type="bibr">Hoeting et al., 1999; Penny et al., submitted for publication</xref>).<xref rid="fn12" ref-type="fn">12</xref> This approach abandons the dependence of parameter inference on the particular model chosen. Instead, it uses the entire model space considered (or an optimal family of models, <xref rid="bib68" ref-type="bibr">Penny et al., submitted for publication</xref>) and computes weighted averages of each model parameter, where the weighting is given by the posterior probability for each model. It represents a useful alternative, particularly when none of the models (or model subspaces) considered clearly outperforms all others. In this case, one can take the uncertainty about model structure into account by pooling information across all models in a weighted fashion, as described above. BMA is also a promising method for comparing parameter estimates across groups (e.g., patients versus controls) for cases where BMS indicated a group difference with regard to the optimal model. If one does not wish to restrict the group comparison to inference on model structure, one can use BMA to compute the average parameter estimates across all models and then statistically compare these averages between the two groups.</p>
+      <p>Finally, it should be mentioned that testing hypotheses about multiple parameters requires a correction for multiple comparisons (unless a single contrast, i.e., linear combination of these parameters, is examined). A Bonferroni procedure would be the simplest way to do this, even though this is conservative in the presence of posterior dependencies among the parameters tested.</p>
+      <p>In summary, there are two principled approaches to making group-level inferences about specific model parameters (<xref rid="fig1" ref-type="fig">Fig. 1</xref>). The first approach entails finding an optimal model in an initial BMS step and then examining the parameter estimates across the group, using either FFX or RFX methods. A second possible approach is BMA that computes a weighted average of each model parameter, where the weighting is determined by the posterior probability of each model.</p>
+    </sec>
+    <sec id="sec6">
+      <title>Optimize experimental design and data acquisition</title>
+      <p>A frequently asked question is what experimental designs and acquisition techniques are optimal for DCM analyses. The answer may differ somewhat for hemodynamic and electrophysiological measurements. As a rule of thumb, however, the same optimization strategies for design and data acquisition that apply to conventional generative models of brain activity (e.g., the General Linear Model) also apply to DCM. This is because DCM aims to explain the same phenomena, i.e., regional brain responses, as other generative models, and is thus subject to similar constraints concerning experimental design and data acquisition. The critical difference lies in the mechanisms the models have at their disposal to explain observed data. DCM not only takes into account the direct influence of experimentally controlled variables on regional activity (as the GLM) but considers interactions among neuronal populations and how these interactions are modulated by experimental perturbations. DCM is thus a very generic model and includes other generative models of brain responses as special cases. For example, the GLM for fMRI data and source reconstruction methods for EEG/MEG can be thought of as special cases of DCMs (for details, see <xref rid="bib14 bib45 bib80" ref-type="bibr">Daunizeau et al., 2009b; Kiebel et al., 2006; Stephan et al., 2007a</xref>). Similarly, conventional models of effective connectivity, such as Structural Equation Modeling (SEM; <xref rid="bib8 bib42 bib55" ref-type="bibr">Bullmore et al., 2000; Horwitz et al., 1999; McIntosh and Gonzalez-Lima, 1994</xref>) can be understood as a special case of DCM where states are assumed to have reached equilibrium at the point of observation (<xref rid="bib26" ref-type="bibr">Friston et al., 2003</xref>).</p>
+      <p>In terms of experimental design, DCM is especially useful for factorial designs whose levels can be interpreted as inducing driving effects (such as sensory stimulation) and modulatory effects (such as learning or attention), respectively. Factorial designs are particularly attractive because they naturally embody the notion of interactions among experimental manipulations and thus context-sensitive neuronal responses, which are the typical explanatory target of a DCM study (see section entitled <xref rid="sec1" ref-type="sec">Know your hypothesis and how to test it</xref>). For example, if a conventional SPM analysis indicates a significant interaction between one experimental factor related to sensory stimulation and another factor of a more “modulatory” character (e.g., task demands, attention or learning), one may wish to understand how this interaction or context-sensitive response arises. This can be modeled straightforwardly using DCM with connections that convey stimulus-specific information, but are under the control of modulatory influences. With DCM and BMS one could investigate, for example, which of the many afferents to the target area are subject to modulatory inputs, and whether a specific neuronal population constitutes a likely anatomical source of these modulatory inputs (this requires nonlinear DCM, <xref rid="bib83" ref-type="bibr">Stephan et al., 2008</xref>). Examples of this can be found in several papers (e.g., <xref rid="bib38 bib80" ref-type="bibr">Heim et al., 2009; Stephan et al., 2007a</xref>). Another attractive option for experimental design is to focus on processes that (i) are known to induce synaptic plasticity, and thus changes in effective connectivity and (ii) have a known (or assumed) parametric form. A prototypical example fulfilling both criteria is learning. Here, DCM and BMS can be used to investigate which of several competing learning models best explain changes in connection strength in neuronal circuits involved in learning and which particular connections exhibit synaptic plasticity and thus contribute to learning (for examples, see <xref rid="bib17 bib18" ref-type="bibr">den Ouden et al., 2009, submitted for publication</xref>).</p>
+      <p>Concerning data acquisition, two issues are worth highlighting in relation to DCM for fMRI. Due to the multi-slice acquisition of fMRI data, regional time series are sampled at different times relative to scan onset, and these timing differences represent a potential confound. Simulations indicated that timing differences up to about a second were tolerable and did not lead to significant deviations of parameter estimates from their true values (because these inaccuracies could be explained away by the hemodynamic model; <xref rid="bib26" ref-type="bibr">Friston et al., 2003</xref>). As a consequence, a common recommendation used to be to restrict TA (time to acquisition)<xref rid="fn13" ref-type="fn">13</xref> to 2 s or less and use the middle slice (in time) as reference for defining the inputs. This limitation was overcome by extending DCM for fMRI with a model of slice-specific sampling times (<xref rid="bib46" ref-type="bibr">Kiebel et al., 2007</xref>). This extended model accounts for the times at which regional sampled were sampled and adjusts its predicted hemodynamic output accordingly.<xref rid="fn14" ref-type="fn">14</xref></p>
+      <p>A second important issue in relation to data acquisition in fMRI concerns the order of acquired slices. For DCM, and other models of effective connectivity, a continuous acquisition scheme (with appropriate inter-slice gap) is advantageous, when compared to interleaved acquisition. In the latter scheme, any interpolation across neighboring slices (e.g., during realignment or spatial normalization) or extraction of representative time series from voxels across more than one slice, leads to the mixing of time series that were acquired at different times. This is suboptimal and should be avoided.</p>
+      <p>Concerning the application of DCM to EEG/MEG data, it is worth mentioning that the only strict requirement is to record the electrode positions on the scalp, as well as the usual positioning landmarks (left ear, right ear, and nasion fiducials). These are required to model the spatial expression of neuronal activity as measured electromagnetic fields at the scalp level. Although it is possible, in principle, to invert a DCM given data from a single electrode, model inversion is facilitated by a fine spatial sampling on the scalp.</p>
+      <p>Beyond data acquisition, it is important to decide which aspects of the data are of interest, i.e., feature selection. For example, in fMRI hundreds of thousands of voxel time series are acquired, resulting in a huge spatiotemporal data matrix. To reduce complexity and allow for meaningful inference, DCM for fMRI requires that one summarizes the distributed responses observed across the brain by selecting a few key regions involved in the process of interest. In defining these regions, one is implicitly specifying a structural model, which represents a data reduction or feature selection. From another perspective, this structural model is a parsimonious representation of other possible models, e.g., models with additional intermediate or relay regions. To reduce complexity, it is often possible to analyze a sub-network of key regions involved in a particular task. This is particularly straightforward when dealing with sensory “processing streams” where relay regions can be omitted (cf. <xref rid="bib35" ref-type="bibr">Grol et al., 2007</xref>) because the coupling parameters represent the effective connectivity among regions, and this influence can be mediated polysynaptically (<xref rid="bib21" ref-type="bibr">Friston, 1994</xref>). Also, one can replace endogenous inputs from a sub-network one is not interested in with exogenous (driving) inputs that approximate the influence from this sub-network. For example, one can replace both sensory and cognitive sub-networks with inputs representing the sensory stimuli (<xref rid="bib38 bib76" ref-type="bibr">Heim et al., 2009; Smith et al., 2006</xref>) and the cognitive process (<xref rid="bib18 bib83" ref-type="bibr">den Ouden et al., submitted for publication; Stephan et al., 2008</xref>), respectively. In a next step, it is then possible to optimize this substitute for the omitted sub-network by comparing different spatial distribution of the exogenous inputs using BMS (cf., <xref rid="bib50" ref-type="bibr">Leff et al., 2008</xref>). Given these possibilities for reduction of model complexity, it is perhaps not surprising that some of the most powerful applications of DCM have used networks with as few as two or three nodes. Note that, as explained in the section <xref rid="sec5" ref-type="sec">entitled Know what you can and cannot do with Bayesian model selection</xref>, in DCM for fMRI (but not in DCMs for electrophysiological data) BMS cannot be used to decide whether a region should be included or excluded because the model evidence is defined with regard to a specific data set and changing the regions changes the data.</p>
+      <p>In DCM for fMRI, once the regions have been selected, it is necessary to obtain a summary of their activity. For fMRI, this is usually accessed through the principal eigenvariate of the region of interest. This is just the first principal component of the local multivariate time series (over all voxels in the region). This procedure has advantages over other summary indices like the mean. For example, when dealing with functionally heterogeneous regions, it guarantees that positive and negative responses do not cancel in extracting a summary time series across voxels (<xref rid="bib27" ref-type="bibr">Friston et al., 2006</xref>). In group studies, one wants to ensure that the same regional features are selected from subject to subject. The best way to do this is to operationally define the region in each subject by functional and anatomical criteria (see section <xref rid="sec7" ref-type="sec">entitled Use anatomical information and computational models to refine your DCMs</xref>) and then use the principal eigenvariate centered on each subject-specific region. This regional definition is usually based on the functional specialization revealed by a conventional SPM analysis (i.e., a maximum of an SPM testing for that region's responses).</p>
+      <p>Note that there is no circularity in using the same data to define regions by SPM and analyze their interactions with DCM. This is because, in contrast to SPM, the purpose of DCM is not to test whether any of these regions shows an experimental effect. Instead, as explained above, DCM serves to compare different hypotheses about the mechanisms (in terms of neuronal coupling) that underlie the regional responses detected in conventional analyses. For example, if SPM indicates that an experimental manipulation significantly increases the activity of a particular region, there are numerous possible explanations, which can be disambiguated by DCM. The observed increase in activity might (i) reflect the downstream consequence of a context-sensitive process elsewhere in the network that is conveyed via endogenous connections in a context-independent manner, (ii) result from changes in intra-regional inhibition (i.e., a modulation of the self-connection by the experimental factor), or (iii) arise from a modulation of one or several afferent connections by the experimental factor. Indeed, it would be nonsensical to ask this question of regional responses that did not show experimental effects. Generally, one should use the most revealing <italic>t</italic>- or <italic>F</italic>-contrast for each region, to identify the local maxima in subject-specific SPMs that are nearest to the maximum in the group SPM. One can then take the principal eigenvariate in a local region of interest that is centered on the subject-specific maxima and is ideally informed by additional anatomical criteria (cf. section <xref rid="sec7" ref-type="sec">entitled Use anatomical information and computational models to refine your DCMs</xref>). Future refinements of this procedure include augmenting DCMs with an explicit spatial model of regional responses (<xref rid="bib89" ref-type="bibr">Woolrich et al., 2009</xref>). Alternative approaches can be based on anatomically defined regions of interest where the shape and form of the region depends on the spatial precision of the data. Irrespective of the method for summarizing regional activity, it should be described and motivated clearly and simply (cf. section entitled <xref rid="sec8" ref-type="sec">Report the modeling approach and results in detail</xref>).</p>
+    </sec>
+    <sec id="sec7">
+      <title>Use anatomical information and computational models to refine your DCMs</title>
+      <p>Both knowledge about anatomical structure and computational processes of the system of interest can help to optimize a DCM of that system. For example, neuroanatomical atlases can provide useful constraints for defining the regions included in a DCM. This is particularly relevant for multi-subject studies, which face the challenge of inter-individual variations in the exact location of a given brain area. Here, probabilistic cytoarchitectonic atlases, such as the anatomy toolbox in SPM (<xref rid="bib19" ref-type="bibr">Eickhoff et al., 2005</xref>), can provide anatomical constraints that complement functional criteria (see section entitled <xref rid="sec6" ref-type="sec">Optimize experimental design and data acquisition</xref>) in choosing regional time series; for concrete examples, see <xref rid="bib38" ref-type="bibr">Heim et al. (2009)</xref> and <xref rid="bib81" ref-type="bibr">Stephan et al. (2007b)</xref>.</p>
+      <p>The second useful source of anatomical information concerns the anatomical connectivity between regions of interest. Many previous studies of effective connectivity have used information from invasive tract tracing studies in the Macaque monkey to inform the structure of their models. These data are of high resolution and large quantity but entail potential inter-species differences. Human tractography studies, based on diffusion weighted imaging, do not suffer from this problem, but provide less detailed and non-directional information. Nevertheless, they can provide important structural constraints for defining DCMs. For example, anatomical connectivity information from probabilistic tractography studies can be formally integrated into DCMs in terms of anatomically informed priors (<xref rid="bib85" ref-type="bibr">Stephan et al., 2009b</xref>). This approach rests on the fact that the deployment of anatomical connections constrains effective connectivity but does not fully determine it because synaptic connections can be expressed functionally in a dynamic and context-sensitive fashion (<xref rid="bib6 bib22 bib54 bib83" ref-type="bibr">Breakspear, 2004; Friston, 2002; McIntosh, 2000; Stephan et al., 2008</xref>). A useful corollary is to define connection-specific priors such that the higher the likelihood of a given connection existing anatomically, the larger the prior variance of the corresponding coupling parameter in DCM; hence making it easier for the parameter to deviate from zero (in either direction) and represent a strong effective connection. Incorporating anatomical information in this way can improve the evidence of DCMs (<xref rid="bib85" ref-type="bibr">Stephan et al., 2009b</xref>). Therefore, when available, DCMs can be informed by tractography data; the benefit of such anatomical constraints can then be assessed using BMS.</p>
+      <p>Prior knowledge about the nature of the computations involved in an experimentally induced cognitive process can also help to refine DCMs. For example, if an established computational model exists that predicts the temporal evolution of some cognitive variables, then any trial-by-trial values can enter a DCM, either as driving or as modulatory inputs that change connection strengths (<xref rid="bib78" ref-type="bibr">Stephan, 2004</xref>). This is an attractive option in the context of learning, since this is the paradigmatic experimental manipulation to induce synaptic plasticity and therefore changes in effective connectivity. For example, several theories of learning agree on the notion that synaptic plasticity should be a function of prediction error (<xref rid="bib23 bib57 bib74" ref-type="bibr">Friston, 2005; Montague et al., 1996; Schultz and Dickinson, 2000</xref>). This notion can be tested by augmenting DCMs with computational learning models (such as Rescorla-Wagner, temporal difference learning or Bayesian learning models), which describe the evolution of trial-by-trial prediction errors. These trial-wise prediction error estimates can be used as modulatory inputs in DCM, controlling changes in connection strength during learning (<xref rid="bib17" ref-type="bibr">den Ouden et al., 2009</xref>). In a further step of refinement, nonlinear DCM can be used to specify the source of these modulatory influences anatomically. For example, a study of audio-visual associative learning showed that prediction error activity in the putamen, as modeled by a Bayesian learner, exerted a nonlinear modulatory influence on visuomotor connections, thus gating transfer of sensory information about unexpected stimuli (<xref rid="bib18" ref-type="bibr">den Ouden et al., submitted for publication</xref>).</p>
+      <p>In summary, whenever available, <italic>a priori</italic> information about anatomy and computation should be used for refining DCMs. When anatomical or computational quantities are used as described above, one is effectively performing a form of multimodal integration that uses functional, anatomical as well as behavioral data. This confluence of computational and neurophysiological modeling techniques may prove particularly fruitful for a mechanistic understanding of neuronal systems.</p>
+    </sec>
+    <sec id="sec8">
+      <title>Report the modeling approach and results in detail</title>
+      <p>Although the principles of DCM are generic, understanding the structure of a specific model (or model space) built by someone else can be difficult, unless it is communicated very clearly. When reporting the results of the DCM study, it is helpful to include as many organizing details as possible; e.g., describe your thinking behind the construction of model space and why you included some attributes and not others. It is these choices that define the question you wish to address. This will help others to understand exactly what you have done and to replicate your results. The information that is required concerns all stages of the modeling process. For example, one should report the following:<list list-type="simple"><list-item><p>– the anatomical and/or functional criteria used to define regions of interest and their summary time series;</p></list-item><list-item><p>– the resulting coordinates of regions and their consistency across subjects;</p></list-item><list-item><p>– how model space was motivated by the hypothesis;</p></list-item><list-item><p>– how families of models were defined, when using model space partitioning;</p></list-item><list-item><p>– the BMS procedure and approximation to the log-evidence used;</p></list-item><list-item><p>– BMS results for all models considered (e.g., by tabulating or plotting log-evidences, posterior probabilities, or exceedance probabilities for each model); and</p></list-item><list-item><p>– the parameters of the selected model (or family) in terms of the MAP estimates, or inference using the classical summary statistic approach or BPA.</p></list-item></list></p>
+      <p>Of course, it is not always necessary (or desirable) to include all of this information in the main text of an article; some of the information above can be included in the supplementary material or summarized in graphs and tables.</p>
+    </sec>
+    <sec>
+      <title>Summary</title>
+      <p>DCM is a generic and powerful method for inferring causal mechanisms in systems, whose dynamics are observed indirectly. Following considerable success in its application to many domains of cognitive neuroscience and neurophysiology, the use of DCM is becoming increasingly widespread. However, given that DCM is a nontrivial technique for nonlinear system identification that does not afford “off the shelf” applications, knowledge of its conceptual and mathematical foundations is mandatory. This article has outlined procedures for good practice, focusing on what we perceive as the most relevant and generic issues. Clearly, there are more methodological aspects to DCM than can be addressed in a tutorial paper, and the interested reader is referred to the primary literature we have referenced. We hope that the ten simple rules described above will be helpful for the growing community of DCM users.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the University Research Priority Program “Foundations of Human Social Behaviour” at the University of Zurich (K.E.S.), the NEUROCHOICE project of the Swiss Systems Biology initiative SystemsX.ch (J.D., K.E.S.), the Max Planck Society (R.J.M.), and the Wellcome Trust (W.P., K.J.F.). We are very grateful to our fellow DCM developers in the FIL methods group, particularly Lee Harrison for his comments on the manuscript and the shaping discussions on DCM we have had with him over many years.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1">
+        <label>1</label>
+        <p>We use the acronym DCM both to refer to the general approach (dynamic causal modeling) and to refer to the instantiation of a specific dynamic causal model.</p>
+      </fn>
+      <fn id="fn2">
+        <label>2</label>
+        <p>The term “hidden state variables” refers to time-varying properties of systems that cannot be observed directly.</p>
+      </fn>
+      <fn id="fn3">
+        <label>3</label>
+        <p>A forward model describes how a specific hidden state translates into a measurement. The “inversion” (fitting or solution) of a model describes the opposite process, i.e., to estimate the hidden state given the measurement.</p>
+      </fn>
+      <fn id="fn4">
+        <label>4</label>
+        <p>For electrophysiological data, the driving inputs are parameterized themselves (e.g., in DCM for evoked responses; <xref rid="bib15" ref-type="bibr">David et al. 2006</xref>) and can include stochastic inputs (e.g., white and pink noise in DCM for steady-state responses; <xref rid="bib60" ref-type="bibr">Moran et al. 2009</xref>) that represent neuronal background activity not included in the model.</p>
+      </fn>
+      <fn id="fn5">
+        <label>5</label>
+        <p>In bilinear DCM, the modulation of effective connectivity results from an interaction between neuronal activity in one region and experimentally controlled inputs; this context-dependent change in connectivity is additive. In contrast, in nonlinear DCM, changes in connectivity result from the interaction of neuronal activity in two different regions; this modulation is of a multiplicative nature.</p>
+      </fn>
+      <fn id="fn6">
+        <label>6</label>
+        <p>For numerical reasons, it is often more convenient to use the log-evidence as an index of model goodness. This is equivalent because the logarithm is a strictly monotonic function, i.e., maximizing the log-evidence also maximizes the evidence.</p>
+      </fn>
+      <fn id="fn7">
+        <label>7</label>
+        <p>In some (albeit rare) instances, one may have very strong <italic>a priori</italic> knowledge about the structure of the system of interest and can proceed directly to inference on parameters.</p>
+      </fn>
+      <fn id="fn8">
+        <label>8</label>
+        <p>Following the widely used classification by <xref rid="bib44" ref-type="bibr">Kass and Raftery (1995)</xref>, “positive” evidence for one model versus another exists if the Bayes factor is larger than three.</p>
+      </fn>
+      <fn id="fn9">
+        <label>9</label>
+        <p>At the time of writing this article, family-level inference based on model space partitioning is not yet available via the graphical user interface in SPM8. Instead, users can implement it by directly calling the SPM routine spm_compare_families.</p>
+      </fn>
+      <fn id="fn10">
+        <label>10</label>
+        <p>The VB implementation of the random-effects BMS method is only applicable when the model families contain an equal numbers of models. When comparing model families of unequal size, a Monte Carlo Markov Chain (MCMC) method based on Gibbs sampling must be used instead (Penny et al., <xref rid="bib68" ref-type="bibr">submitted for publication</xref>).</p>
+      </fn>
+      <fn id="fn11">
+        <label>11</label>
+        <p>Computational efficiency of model selection procedures is becoming an increasingly important issue since the model space that is explored by standard neuroimaging studies is continually increasing. For large model sets comprising hundreds or thousands of models, alternative procedures based on sampling, e.g., cross-validation, become prohibitively expensive; cf., <xref rid="bib51" ref-type="bibr">MacKay (1992)</xref>.</p>
+      </fn>
+      <fn id="fn12">
+        <label>12</label>
+        <p>This approach can be used both for single subjects and for groups; see <xref rid="bib68" ref-type="bibr">Penny et al. (submitted for publication)</xref>. An implementation of this procedure will be available in forthcoming SPM versions.</p>
+      </fn>
+      <fn id="fn13">
+        <label>13</label>
+        <p>This is the time required to obtain one brain volume.</p>
+      </fn>
+      <fn id="fn14">
+        <label>14</label>
+        <p>TA is usually equivalent to TR (time to repetition) unless the fMRI acquisition sequence includes a delay between subsequent scans, e.g., in sparse sampling schemes for auditory tasks. The duration of TR has no impact on DCM, and sparsely sampled fMRI data pose no difficulty for DCM analyses; c.f., <xref rid="bib48" ref-type="bibr">Kumar et al. (2007)</xref>.</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Acs</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Greenlee</surname>
+              <given-names>M.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Connectivity modulation of early visual processing areas during covert and overt tracking tasks</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>41</volume>
+          <fpage>380</fpage>
+          <lpage>388</lpage>
+          <pub-id pub-id-type="pmid">18387824</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Allen</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Day</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Dalton</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>McGuire</surname>
+              <given-names>P.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fronto-temporal interactions during overt verbal initiation and suppression</article-title>
+          <source>J. Cogn. Neurosci.</source>
+          <year>2008</year>
+          <volume>20</volume>
+          <fpage>1656</fpage>
+          <lpage>1669</lpage>
+          <pub-id pub-id-type="pmid">18345980</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bitan</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Booth</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Choy</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Burman</surname>
+              <given-names>D.D.</given-names>
+            </name>
+            <name>
+              <surname>Gitelman</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Mesulam</surname>
+              <given-names>M.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Shifts of effective connectivity within a language network during rhyming and spelling</article-title>
+          <source>J. Neurosci.</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>5397</fpage>
+          <lpage>5403</lpage>
+          <pub-id pub-id-type="pmid">15930389</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bourne</surname>
+              <given-names>P.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ten simple rules for getting published</article-title>
+          <source>PLoS Comput. Biol.</source>
+          <year>2005</year>
+          <volume>1</volume>
+          <fpage>e57</fpage>
+          <pub-id pub-id-type="pmid">16261197</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Box</surname>
+              <given-names>G.E.P.</given-names>
+            </name>
+            <name>
+              <surname>Draper</surname>
+              <given-names>N.R.</given-names>
+            </name>
+          </person-group>
+          <source>Empirical Model-Building and Response Surfaces</source>
+          <year>1987</year>
+          <publisher-name>John Wiley and Sons</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breakspear</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>“Dynamic” connectivity in neural systems: theoretical and empirical considerations</article-title>
+          <source>Neuroinformatics</source>
+          <year>2004</year>
+          <volume>2</volume>
+          <fpage>205</fpage>
+          <lpage>226</lpage>
+          <pub-id pub-id-type="pmid">15319517</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brodersen</surname>
+              <given-names>K.H.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ruff</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Duzel</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Integrated Bayesian models of learning and decision making for saccadic eye movements</article-title>
+          <source>Neural Netw.</source>
+          <year>2008</year>
+          <volume>21</volume>
+          <fpage>1247</fpage>
+          <lpage>1260</lpage>
+          <pub-id pub-id-type="pmid">18835129</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bullmore</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Horwitz</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Honey</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Brammer</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Sharma</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>How good is good enough in path analysis of fMRI data?</article-title>
+          <source>NeuroImage</source>
+          <year>2000</year>
+          <volume>11</volume>
+          <fpage>289</fpage>
+          <lpage>301</lpage>
+          <pub-id pub-id-type="pmid">10725185</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chao</surname>
+              <given-names>S.Z.</given-names>
+            </name>
+            <name>
+              <surname>Lu</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>H.K.</given-names>
+            </name>
+            <name>
+              <surname>Huganir</surname>
+              <given-names>R.L.</given-names>
+            </name>
+            <name>
+              <surname>Wolf</surname>
+              <given-names>M.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>D(1) dopamine receptor stimulation increases GluR1 phosphorylation in postnatal nucleus accumbens cultures</article-title>
+          <source>J. Neurochem.</source>
+          <year>2002</year>
+          <volume>81</volume>
+          <fpage>984</fpage>
+          <lpage>992</lpage>
+          <pub-id pub-id-type="pmid">12065610</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of induced responses</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>41</volume>
+          <fpage>1293</fpage>
+          <lpage>1312</lpage>
+          <pub-id pub-id-type="pmid">18485744</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chen</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.N.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Forward and backward connections in the brain: a DCM study of functional asymmetries</article-title>
+          <source>NeuroImage</source>
+          <year>2009</year>
+          <volume>45</volume>
+          <fpage>453</fpage>
+          <lpage>462</lpage>
+          <pub-id pub-id-type="pmid">19162203</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib91">
+        <citation citation-type="other">Chu, W., Sindhwani, V., Ghahramani, Z., Keerthi, S.S., 2007. Relational learning with Gaussian processes. Advances in Neural Information Processing Systems 19, 289–296.</citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Coutinho</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Knopfel</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Metabotropic glutamate receptors: electrical and chemical signaling properties</article-title>
+          <source>Neuroscientist</source>
+          <year>2002</year>
+          <volume>8</volume>
+          <fpage>551</fpage>
+          <lpage>561</lpage>
+          <pub-id pub-id-type="pmid">12467377</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variational Bayesian identification and prediction of stochastic nonlinear dynamic causal models</article-title>
+          <source>Physica, D</source>
+          <year>2009</year>
+          <volume>238</volume>
+          <fpage>2089</fpage>
+          <lpage>2118</lpage>
+          <pub-id pub-id-type="pmid">19862351</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of distributed electromagnetic responses</article-title>
+          <source>NeuroImage</source>
+          <year>2009</year>
+          <volume>47</volume>
+          <fpage>590</fpage>
+          <lpage>601</lpage>
+          <pub-id pub-id-type="pmid">19398015</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modeling of evoked responses in EEG and MEG</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <fpage>1255</fpage>
+          <lpage>1272</lpage>
+          <pub-id pub-id-type="pmid">16473023</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Guillemain</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Saillet</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Reyt</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Deransart</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Segebarth</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Depaulis</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identifying neural drivers with functional MRI: an electrophysiological validation</article-title>
+          <source>PLoS Biol.</source>
+          <year>2008</year>
+          <volume>6</volume>
+          <fpage>2683</fpage>
+          <lpage>2697</lpage>
+          <pub-id pub-id-type="pmid">19108604</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>den Ouden</surname>
+              <given-names>H.E.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Daw</surname>
+              <given-names>N.D.</given-names>
+            </name>
+            <name>
+              <surname>McIntosh</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A dual role for prediction error in associative learning</article-title>
+          <source>Cereb. Cortex</source>
+          <year>2009</year>
+          <volume>19</volume>
+          <fpage>1175</fpage>
+          <lpage>1185</lpage>
+          <pub-id pub-id-type="pmid">18820290</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="other">den Ouden, H.E.M., Daunizeau, J., Roiser, J., Friston, K.J., Stephan, K.E., submitted for publication. Striatal prediction error modulates cortical coupling.</citation>
+      </ref>
+      <ref id="bib19">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eickhoff</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Mohlberg</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Grefkes</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Fink</surname>
+              <given-names>G.R.</given-names>
+            </name>
+            <name>
+              <surname>Amunts</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Zilles</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new SPM toolbox for combining probabilistic cytoarchitectonic maps and functional imaging data</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>1325</fpage>
+          <lpage>1335</lpage>
+          <pub-id pub-id-type="pmid">15850749</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fairhall</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Ishai</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Effective connectivity within the distributed cortical network for face perception</article-title>
+          <source>Cereb. Cortex</source>
+          <year>2007</year>
+          <volume>17</volume>
+          <fpage>2400</fpage>
+          <lpage>2406</lpage>
+          <pub-id pub-id-type="pmid">17190969</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional and effective connectivity in neuroimaging: a synthesis</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>1994</year>
+          <volume>2</volume>
+          <fpage>56</fpage>
+          <lpage>78</lpage>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Beyond phrenology: what can neuroimaging tell us abut distributed circuitry?</article-title>
+          <source>Ann. Rev. Neurosci</source>
+          <year>2002</year>
+          <volume>25</volume>
+          <fpage>221</fpage>
+          <lpage>250</lpage>
+          <pub-id pub-id-type="pmid">12052909</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>A theory of cortical responses</article-title>
+          <source>Philos. Trans. R. Soc. Lond., B Biol. Sci.</source>
+          <year>2005</year>
+          <volume>360</volume>
+          <fpage>815</fpage>
+          <lpage>836</lpage>
+          <pub-id pub-id-type="pmid">15937014</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Causal modelling and brain connectivity in functional magnetic resonance imaging</article-title>
+          <source>PLoS Biol.</source>
+          <year>2009</year>
+          <volume>7</volume>
+          <fpage>e33</fpage>
+          <pub-id pub-id-type="pmid">19226186</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlinear responses in fMRI: the Balloon model, Volterra kernels, and other hemodynamics</article-title>
+          <source>NeuroImage</source>
+          <year>2000</year>
+          <volume>12</volume>
+          <fpage>466</fpage>
+          <lpage>477</lpage>
+          <pub-id pub-id-type="pmid">10988040</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>19</volume>
+          <fpage>1273</fpage>
+          <lpage>1302</lpage>
+          <pub-id pub-id-type="pmid">12948688</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Rotshtein</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Geng</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Sterzer</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.N.</given-names>
+            </name>
+          </person-group>
+          <article-title>A critique of functional localisers</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <fpage>1077</fpage>
+          <lpage>1087</lpage>
+          <pub-id pub-id-type="pmid">16635579</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Trujillo-Barreto</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variational free energy and the Laplace approximation</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>34</volume>
+          <fpage>220</fpage>
+          <lpage>234</lpage>
+          <pub-id pub-id-type="pmid">17055746</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Phillips</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Trujillo-Barreto</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiple sparse priors for the M/EEG inverse problem</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>39</volume>
+          <fpage>1104</fpage>
+          <lpage>1120</lpage>
+          <pub-id pub-id-type="pmid">17997111</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of evoked potentials: a reproducibility study</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>36</volume>
+          <fpage>571</fpage>
+          <lpage>580</lpage>
+          <pub-id pub-id-type="pmid">17478106</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Baldeweg</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The functional anatomy of the MMN: a DCM study of the roving paradigm</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>42</volume>
+          <fpage>936</fpage>
+          <lpage>944</lpage>
+          <pub-id pub-id-type="pmid">18602841</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Baldeweg</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Repetition suppression and plasticity in the human brain</article-title>
+          <source>NeuroImage</source>
+          <year>2009</year>
+          <volume>48</volume>
+          <fpage>269</fpage>
+          <lpage>279</lpage>
+          <pub-id pub-id-type="pmid">19540921</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Granger</surname>
+              <given-names>C.W.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Investigating causal relations by econometric models and cross-spectral methods</article-title>
+          <source>Econometrica</source>
+          <year>1969</year>
+          <volume>37</volume>
+          <fpage>414</fpage>
+          <lpage>&amp;</lpage>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grefkes</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Nowak</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Eickhoff</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Dafotakis</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kust</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Karbe</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Fink</surname>
+              <given-names>G.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cortical connectivity after subcortical stroke assessed with functional magnetic resonance imaging</article-title>
+          <source>Ann. Neurol.</source>
+          <year>2008</year>
+          <volume>63</volume>
+          <fpage>236</fpage>
+          <lpage>246</lpage>
+          <pub-id pub-id-type="pmid">17896791</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grol</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Majdandzic</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Verhagen</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Dijkerman</surname>
+              <given-names>H.C.</given-names>
+            </name>
+            <name>
+              <surname>Bekkering</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Verstraten</surname>
+              <given-names>F.A.</given-names>
+            </name>
+            <name>
+              <surname>Toni</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Parieto-frontal connectivity during visually guided grasping</article-title>
+          <source>J. Neurosci.</source>
+          <year>2007</year>
+          <volume>27</volume>
+          <fpage>11877</fpage>
+          <lpage>11887</lpage>
+          <pub-id pub-id-type="pmid">17978028</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hampton</surname>
+              <given-names>A.N.</given-names>
+            </name>
+            <name>
+              <surname>Bossaerts</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>O'Doherty</surname>
+              <given-names>J.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>The role of the ventromedial prefrontal cortex in abstract state-based inference during decision making in humans</article-title>
+          <source>J. Neurosci.</source>
+          <year>2006</year>
+          <volume>26</volume>
+          <fpage>8360</fpage>
+          <lpage>8367</lpage>
+          <pub-id pub-id-type="pmid">16899731</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Haynes</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Tregellas</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Rees</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Attentional integration between anatomically distinct stimulus representations in early visual cortex</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>14925</fpage>
+          <lpage>14930</lpage>
+          <pub-id pub-id-type="pmid">16192359</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heim</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Eickhoff</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Ischebeck</surname>
+              <given-names>A.K.</given-names>
+            </name>
+            <name>
+              <surname>Friederici</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Amunts</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Effective connectivity of the left BA 44, BA 45, and inferior temporal gyrus during lexical and phonological decisions identified with DCM</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2009</year>
+          <volume>30</volume>
+          <fpage>392</fpage>
+          <lpage>402</lpage>
+          <pub-id pub-id-type="pmid">18095285</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.N.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Phillips</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Selecting forward models for MEG source-reconstruction using model-evidence</article-title>
+          <source>NeuroImage</source>
+          <year>2009</year>
+          <volume>46</volume>
+          <fpage>168</fpage>
+          <lpage>176</lpage>
+          <pub-id pub-id-type="pmid">19457358</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hoeting</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Madigan</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Raftery</surname>
+              <given-names>A.E.</given-names>
+            </name>
+            <name>
+              <surname>Volinsky</surname>
+              <given-names>C.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian model averaging: a tutorial</article-title>
+          <source>Stat. Sci.</source>
+          <year>1999</year>
+          <volume>14</volume>
+          <fpage>382</fpage>
+          <lpage>401</lpage>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Holtmaat</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Svoboda</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Experience-dependent structural synaptic plasticity in the mammalian brain</article-title>
+          <source>Nat. Rev., Neurosci.</source>
+          <year>2009</year>
+          <volume>10</volume>
+          <fpage>647</fpage>
+          <lpage>658</lpage>
+          <pub-id pub-id-type="pmid">19693029</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Horwitz</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Tagamets</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>McIntosh</surname>
+              <given-names>A.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural modeling, functional brain imaging, and cognition</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <year>1999</year>
+          <volume>3</volume>
+          <fpage>91</fpage>
+          <lpage>98</lpage>
+          <pub-id pub-id-type="pmid">10322460</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kasess</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Weissenbacher</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pezawas</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Moser</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Windischberger</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multi-subject analyses with dynamic causal modelling</article-title>
+          <source>NeuroImage</source>
+          <year>2010</year>
+          <volume>49</volume>
+          <fpage>3065</fpage>
+          <lpage>3074</lpage>
+          <pub-id pub-id-type="pmid">19941963</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kass</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Raftery</surname>
+              <given-names>A.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayes factors</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <year>1995</year>
+          <volume>90</volume>
+          <fpage>773</fpage>
+          <lpage>795</lpage>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of evoked responses in EEG/MEG with lead field parameterization</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <fpage>1273</fpage>
+          <lpage>1284</lpage>
+          <pub-id pub-id-type="pmid">16490364</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib46">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Kloppel</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Weiskopf</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modeling: a generative model of slice timing in fMRI</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>34</volume>
+          <fpage>1487</fpage>
+          <lpage>1496</lpage>
+          <pub-id pub-id-type="pmid">17161624</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Phillips</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variational Bayesian inversion of the equivalent current dipole model in EEG/MEG</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>39</volume>
+          <fpage>728</fpage>
+          <lpage>741</lpage>
+          <pub-id pub-id-type="pmid">17951076</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib48">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kumar</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Warren</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Griffiths</surname>
+              <given-names>T.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Hierarchical processing of auditory objects in humans</article-title>
+          <source>PLoS Comput. Biol.</source>
+          <year>2007</year>
+          <volume>3</volume>
+          <fpage>e100</fpage>
+          <pub-id pub-id-type="pmid">17542641</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib49">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Horwitz</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Large-scale neural models and dynamic causal modelling</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <fpage>1243</fpage>
+          <lpage>1254</lpage>
+          <pub-id pub-id-type="pmid">16387513</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib50">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leff</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Schofield</surname>
+              <given-names>T.M.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Crinion</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The cortical dynamics of intelligible speech</article-title>
+          <source>J. Neurosci.</source>
+          <year>2008</year>
+          <volume>28</volume>
+          <fpage>13209</fpage>
+          <lpage>13215</lpage>
+          <pub-id pub-id-type="pmid">19052212</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib51">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>MacKay</surname>
+              <given-names>D.J.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A practical Bayesian framework for backpropagation networks</article-title>
+          <source>Neural Comput.</source>
+          <year>1992</year>
+          <volume>4</volume>
+          <fpage>448</fpage>
+          <lpage>472</lpage>
+        </citation>
+      </ref>
+      <ref id="bib52">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marreiros</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling for fMRI: a two-state model</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>39</volume>
+          <fpage>269</fpage>
+          <lpage>278</lpage>
+          <pub-id pub-id-type="pmid">17936017</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib53">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McCormick</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Williamson</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Convergence and divergence of neurotransmitter action in human cerebral cortex</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>1989</year>
+          <volume>86</volume>
+          <fpage>8098</fpage>
+          <lpage>8102</lpage>
+          <pub-id pub-id-type="pmid">2573061</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib54">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McIntosh</surname>
+              <given-names>A.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards a network theory of cognition</article-title>
+          <source>Neural Netw.</source>
+          <year>2000</year>
+          <volume>13</volume>
+          <fpage>861</fpage>
+          <lpage>870</lpage>
+          <pub-id pub-id-type="pmid">11156197</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib55">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McIntosh</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez-Lima</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural equation modelling and its application to network analysis in functional brain imaging</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>1994</year>
+          <volume>2</volume>
+          <fpage>2</fpage>
+          <lpage>22</lpage>
+        </citation>
+      </ref>
+      <ref id="bib56">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Noppeney</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A dynamic causal modeling study on category effects: bottom-up or top-down mediation?</article-title>
+          <source>J. Cogn. Neurosci.</source>
+          <year>2003</year>
+          <volume>15</volume>
+          <fpage>925</fpage>
+          <lpage>934</lpage>
+          <pub-id pub-id-type="pmid">14628754</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib57">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Montague</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Dayan</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Sejnowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A framework for mesencephalic dopamine systems based on predictive Hebbian learning</article-title>
+          <source>J. Neurosci.</source>
+          <year>1996</year>
+          <volume>16</volume>
+          <fpage>1936</fpage>
+          <lpage>1947</lpage>
+          <pub-id pub-id-type="pmid">8774460</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib58">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moran</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Reilly</surname>
+              <given-names>R.B.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A neural mass model of spectral responses in electrophysiology</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>37</volume>
+          <fpage>706</fpage>
+          <lpage>720</lpage>
+          <pub-id pub-id-type="pmid">17632015</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib59">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moran</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Rombach</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>O'Connor</surname>
+              <given-names>W.T.</given-names>
+            </name>
+            <name>
+              <surname>Murphy</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Reilly</surname>
+              <given-names>R.B.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian estimation of synaptic physiology from the spectral responses of neural masses</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>42</volume>
+          <fpage>272</fpage>
+          <lpage>284</lpage>
+          <pub-id pub-id-type="pmid">18515149</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib60">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moran</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Seidenbecher</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Pape</surname>
+              <given-names>H.C.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal models of steady-state responses</article-title>
+          <source>NeuroImage</source>
+          <year>2009</year>
+          <volume>44</volume>
+          <fpage>796</fpage>
+          <lpage>811</lpage>
+          <pub-id pub-id-type="pmid">19000769</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib61">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nagelkerke</surname>
+              <given-names>N.J.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>A note on a general definition of the coefficient of determination</article-title>
+          <source>Biometrika</source>
+          <year>1991</year>
+          <volume>78</volume>
+          <fpage>691</fpage>
+          <lpage>692</lpage>
+        </citation>
+      </ref>
+      <ref id="bib62">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Neumann</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lohmann</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian second-level analysis of functional magnetic resonance images</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <fpage>1346</fpage>
+          <lpage>1355</lpage>
+          <pub-id pub-id-type="pmid">14568503</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib63">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Noppeney</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Hocking</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The effect of prior visual information on recognition of speech and sounds</article-title>
+          <source>Cereb. Cortex</source>
+          <year>2008</year>
+          <volume>18</volume>
+          <fpage>598</fpage>
+          <lpage>609</lpage>
+          <pub-id pub-id-type="pmid">17617658</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib64">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oh</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>McKay</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Power</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Disterhoft</surname>
+              <given-names>J.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning-related postburst afterhyperpolarization reduction in CA1 pyramidal neurons is mediated by protein kinase A</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>2009</year>
+          <volume>106</volume>
+          <fpage>1620</fpage>
+          <lpage>1625</lpage>
+          <pub-id pub-id-type="pmid">19164584</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib92">
+        <citation citation-type="other">Penny, W.D., Roberts, S.J., 1999. Bayesian neural networks for classification: how useful is the evidence framework? Neural Netw. 12, 877–892.</citation>
+      </ref>
+      <ref id="bib65">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparing dynamic causal models</article-title>
+          <source>NeuroImage</source>
+          <year>2004</year>
+          <volume>22</volume>
+          <fpage>1157</fpage>
+          <lpage>1172</lpage>
+          <pub-id pub-id-type="pmid">15219588</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib66">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modelling functional integration: a comparison of structural equation and dynamic causal models</article-title>
+          <source>NeuroImage</source>
+          <year>2004</year>
+          <volume>23</volume>
+          <issue>Suppl 1</issue>
+          <fpage>S264</fpage>
+          <lpage>274</lpage>
+          <pub-id pub-id-type="pmid">15501096</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib67">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Litvak</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Fuentemilla</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Duzel</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal models for phase coupling</article-title>
+          <source>J. Neurosci. Methods</source>
+          <year>2009</year>
+          <volume>183</volume>
+          <fpage>19</fpage>
+          <lpage>30</lpage>
+          <pub-id pub-id-type="pmid">19576931</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib68">
+        <citation citation-type="other">Penny, W.D., Flandin, G., Daunizeau, J., Stephan, K.E., Friston, K.J., Schofield, T., Leff, A., submitted for publication. Comparing families of dynamic causal models.</citation>
+      </ref>
+      <ref id="bib69">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pitt</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Myung</surname>
+              <given-names>I.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>When a good fit can be bad</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <year>2002</year>
+          <volume>6</volume>
+          <fpage>421</fpage>
+          <lpage>425</lpage>
+          <pub-id pub-id-type="pmid">12413575</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib70">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poldrack</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Fletcher</surname>
+              <given-names>P.C.</given-names>
+            </name>
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.N.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Brett</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Guidelines for reporting an fMRI study</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>40</volume>
+          <fpage>409</fpage>
+          <lpage>414</lpage>
+          <pub-id pub-id-type="pmid">18191585</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib71">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Protzner</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>McIntosh</surname>
+              <given-names>A.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Testing effective connectivity changes with structural equation modeling: what does a bad model tell us?</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2006</year>
+          <volume>27</volume>
+          <fpage>935</fpage>
+          <lpage>947</lpage>
+          <pub-id pub-id-type="pmid">16929548</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib72">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ridgway</surname>
+              <given-names>G.R.</given-names>
+            </name>
+            <name>
+              <surname>Henley</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Rohrer</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Scahill</surname>
+              <given-names>R.I.</given-names>
+            </name>
+            <name>
+              <surname>Warren</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Fox</surname>
+              <given-names>N.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ten simple rules for reporting voxel-based morphometry studies</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>40</volume>
+          <fpage>1429</fpage>
+          <lpage>1435</lpage>
+          <pub-id pub-id-type="pmid">18314353</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib73">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schofield</surname>
+              <given-names>T.M.</given-names>
+            </name>
+            <name>
+              <surname>Iverson</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Crinion</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Leff</surname>
+              <given-names>A.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Changing meaning causes coupling changes within higher levels of the cortical hierarchy</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>2009</year>
+          <volume>106</volume>
+          <fpage>11765</fpage>
+          <lpage>11770</lpage>
+          <pub-id pub-id-type="pmid">19553207</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib74">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schultz</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Dickinson</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neuronal coding of prediction errors</article-title>
+          <source>Annu. Rev. Neurosci.</source>
+          <year>2000</year>
+          <volume>23</volume>
+          <fpage>473</fpage>
+          <lpage>500</lpage>
+          <pub-id pub-id-type="pmid">10845072</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib75">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sherman</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Guillery</surname>
+              <given-names>R.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the actions that one nerve cell can have on another: distinguishing “drivers” from “modulators”</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>1998</year>
+          <volume>95</volume>
+          <fpage>7121</fpage>
+          <lpage>7126</lpage>
+          <pub-id pub-id-type="pmid">9618549</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib76">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Rugg</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Task and content modulate amygdala–hippocampal connectivity in emotional retrieval</article-title>
+          <source>Neuron</source>
+          <year>2006</year>
+          <volume>49</volume>
+          <fpage>631</fpage>
+          <lpage>638</lpage>
+          <pub-id pub-id-type="pmid">16476670</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib77">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sonty</surname>
+              <given-names>S.P.</given-names>
+            </name>
+            <name>
+              <surname>Mesulam</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Weintraub</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>N.A.</given-names>
+            </name>
+            <name>
+              <surname>Parrish</surname>
+              <given-names>T.B.</given-names>
+            </name>
+            <name>
+              <surname>Gitelman</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Altered effective connectivity within the language network in primary progressive aphasia</article-title>
+          <source>J. Neurosci.</source>
+          <year>2007</year>
+          <volume>27</volume>
+          <fpage>1334</fpage>
+          <lpage>1345</lpage>
+          <pub-id pub-id-type="pmid">17287508</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib78">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the role of general system theory for functional neuroimaging</article-title>
+          <source>J. Anat.</source>
+          <year>2004</year>
+          <volume>205</volume>
+          <fpage>443</fpage>
+          <lpage>470</lpage>
+          <pub-id pub-id-type="pmid">15610393</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib79">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Biophysical models of fMRI responses</article-title>
+          <source>Curr. Opin. Neurobiol.</source>
+          <year>2004</year>
+          <volume>14</volume>
+          <fpage>629</fpage>
+          <lpage>635</lpage>
+          <pub-id pub-id-type="pmid">15464897</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib80">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal models of neural system dynamics: current state and future extensions</article-title>
+          <source>J. Biosci.</source>
+          <year>2007</year>
+          <volume>32</volume>
+          <fpage>129</fpage>
+          <lpage>144</lpage>
+          <pub-id pub-id-type="pmid">17426386</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib81">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Marshall</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Fink</surname>
+              <given-names>G.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Interhemispheric integration of visual processing during task-driven lateralization</article-title>
+          <source>J. Neurosci.</source>
+          <year>2007</year>
+          <volume>27</volume>
+          <fpage>3512</fpage>
+          <lpage>3522</lpage>
+          <pub-id pub-id-type="pmid">17392467</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib82">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Weiskopf</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Drysdale</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparing hemodynamic models with DCM</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>38</volume>
+          <fpage>387</fpage>
+          <lpage>401</lpage>
+          <pub-id pub-id-type="pmid">17884583</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib83">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Kasper</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>den Ouden</surname>
+              <given-names>H.E.</given-names>
+            </name>
+            <name>
+              <surname>Breakspear</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlinear dynamic causal models for fMRI</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>42</volume>
+          <fpage>649</fpage>
+          <lpage>662</lpage>
+          <pub-id pub-id-type="pmid">18565765</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib84">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Moran</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian model selection for group studies</article-title>
+          <source>NeuroImage</source>
+          <year>2009</year>
+          <volume>46</volume>
+          <fpage>1004</fpage>
+          <lpage>1017</lpage>
+          <pub-id pub-id-type="pmid">19306932</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib85">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Tittgemeyer</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Knosche</surname>
+              <given-names>T.R.</given-names>
+            </name>
+            <name>
+              <surname>Moran</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tractography-based priors for dynamic causal models</article-title>
+          <source>NeuroImage</source>
+          <year>2009</year>
+          <volume>47</volume>
+          <fpage>1628</fpage>
+          <lpage>1638</lpage>
+          <pub-id pub-id-type="pmid">19523523</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib86">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Summerfield</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Koechlin</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A neural representation of prior information during perceptual inference</article-title>
+          <source>Neuron</source>
+          <year>2008</year>
+          <volume>59</volume>
+          <fpage>336</fpage>
+          <lpage>347</lpage>
+          <pub-id pub-id-type="pmid">18667160</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib87">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Summerfield</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Egner</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Greene</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Koechlin</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Mangels</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Hirsch</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Predictive codes for forthcoming perception in the frontal cortex</article-title>
+          <source>Science</source>
+          <year>2006</year>
+          <volume>314</volume>
+          <fpage>1311</fpage>
+          <lpage>1314</lpage>
+          <pub-id pub-id-type="pmid">17124325</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib88">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>J.Q.</given-names>
+            </name>
+            <name>
+              <surname>Arora</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Parelkar</surname>
+              <given-names>N.K.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Choe</surname>
+              <given-names>E.S.</given-names>
+            </name>
+            <name>
+              <surname>Mao</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Phosphorylation of AMPA receptors: mechanisms and synaptic plasticity</article-title>
+          <source>Mol. Neurobiol.</source>
+          <year>2005</year>
+          <volume>32</volume>
+          <fpage>237</fpage>
+          <lpage>249</lpage>
+          <pub-id pub-id-type="pmid">16385140</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib89">
+        <citation citation-type="other">Woolrich, M., Jbabdi, S., Behrens, T.E., 2009. fMRI dynamic causal modelling with inferred regions of interest. Abstract presented at the annual meeting of the Organsation for Human Brain Mapping, San Francisco.</citation>
+      </ref>
+      <ref id="bib90">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zucker</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Regehr</surname>
+              <given-names>W.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Short-term synaptic plasticity</article-title>
+          <source>Annu. Rev. Physiol.</source>
+          <year>2002</year>
+          <volume>64</volume>
+          <fpage>355</fpage>
+          <lpage>405</lpage>
+          <pub-id pub-id-type="pmid">11826273</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>This schematic summarizes the typical sequence of analysis in DCM, depending on the question of interest. Abbreviations: FFX = fixed effects, RFX = random effects, BMS = Bayesian model selection, BPA = Bayesian parameter averaging, BMA = Bayesian model averaging, ANOVA = analysis of variance.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+  </floats-wrap>
+</article>

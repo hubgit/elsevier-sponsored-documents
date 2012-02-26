@@ -1,0 +1,711 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="brief-report">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">J Microbiol Methods</journal-id>
+      <journal-title-group>
+        <journal-title>Journal of Microbiological Methods</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0167-7012</issn>
+      <issn pub-type="epub">1872-8359</issn>
+      <publisher>
+        <publisher-name>Elsevier Biomedical</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2935961</article-id>
+      <article-id pub-id-type="pmid">20624430</article-id>
+      <article-id pub-id-type="publisher-id">MIMET3433</article-id>
+      <article-id pub-id-type="doi">10.1016/j.mimet.2010.07.009</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Modules for C-terminal epitope tagging of <italic>Tetrahymena</italic> genes</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kataoka</surname>
+            <given-names>Kensuke</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schoeberl</surname>
+            <given-names>Ursula E.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mochizuki</surname>
+            <given-names>Kazufumi</given-names>
+          </name>
+          <email>kazufumi.mochizuki@imba.oeaw.ac.at</email>
+          <xref rid="cr0005" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="af0005">Institute of Molecular Biotechnology of the Austrian Academy of Sciences (IMBA), Dr. Bohr-Gasse 3, A-1030 Vienna, Austria</aff>
+      <author-notes>
+        <corresp id="cr0005"><label>⁎</label>Corresponding author. <email>kazufumi.mochizuki@imba.oeaw.ac.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>9</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>9</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>82</volume>
+      <issue>3</issue>
+      <fpage>342</fpage>
+      <lpage>346</lpage>
+      <history>
+        <date date-type="received">
+          <day>2</day>
+          <month>4</month>
+          <year>2010</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>1</day>
+          <month>7</month>
+          <year>2010</year>
+        </date>
+        <date date-type="accepted">
+          <day>5</day>
+          <month>7</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier B.V.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Although epitope tagging has been widely used for analyzing protein function in many organisms, there are few genetic tools for epitope tagging in <italic>Tetrahymena</italic>. In this study, we describe several C-terminal epitope tagging modules that can be used to express tagged proteins in <italic>Tetrahymena</italic> cells by both plasmid- and PCR-based strategies.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Tetrahymena</kwd>
+        <kwd>Epitope tagging</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <p>In the ciliated protozoan <italic>Tetrahymena thermophila</italic>, chromosomal integration of transgenes predominantly occurs by homologous recombination (<xref rid="bb0015" ref-type="bibr">Cassiby-Hanley et al., 1997</xref>). Therefore, epitope tags can be efficiently introduced into endogenous chromosomal loci in this organism. However, only a few tools for epitope tagging in <italic>Tetrahymena</italic> have been reported (<xref rid="bb0075 bb0080" ref-type="bibr">Wloga et al., 2006, Yao et al., 2007</xref>) and these were designed and produced individually for each gene (for example, see the following: <xref rid="bb0010 bb0030 bb0005 bb0020 bb0065" ref-type="bibr">Bowman &amp; Turkewitz, 2001, Dou et al., 2002, Aronica et al., 2008, Couvillion et al., 2009, Pearson et al. 2009</xref>). In this study, we generated several C-terminal epitope tagging modules for <italic>Tetrahymena</italic>. The general design of the modules is presented in <xref rid="f0005" ref-type="fig">Fig. 1</xref>. The epitope tags are followed by the TGA stop codon, the 3′-flanking sequence of beta-tubulin 1 (<italic>BTU1</italic>), which contains a 3′-UTR and a transcriptional terminator and a neomycin-resistance marker (<italic>neo</italic>) cassette. HA (a Hemagglutinin epitope), EGFP (Enhanced Green Fluorescent Protein), mCherry (a red fluorescent protein) and FZZ (3× FLAG followed by TEV protease cleavage site and ZZ domain of protein A) were selected as epitope tags for the modules. HA, EGFP and mCherry can be used for protein localization and for protein purification; FZZ can be used for tandem affinity protein purification (<xref rid="bb0040" ref-type="bibr">Lee and Collins, 2007</xref>). All of these tags were synthesized for optimal codon usage in <italic>Tetrahymena</italic>. New modules can be created by replacing tags in the existing module with any other epitope tags via the BamHI and SpeI sites. Either <italic>neo3</italic> (<xref rid="bb0070" ref-type="bibr">Shang et al., 2002</xref>) or <italic>neo4</italic> (<xref rid="bb0055" ref-type="bibr">Mochizuki, 2008</xref>) were used as drug resistance markers for the modules. Both markers confer paromomycin resistance to cells in the presence of cadmium ions. All modules are cloned into pBlueScript SK(+) vector (Stratagene). The nucleotide sequences of pHA-neo3, pHA-neo4, pEGFP-neo4, pmCherry-neo4, pFZZ-neo3, and pFZZ-neo4 can be found in DDBJ/EMBL/GenBank AB570107–AB570112AB570107AB570108AB570109AB570110AB570111AB570112.</p>
+    <p>These modules were designed to be used for both plasmid- and PCR-based production of C-terminal tagging constructs. To confirm this, we first tested a plasmid-based method to produce C-terminal HA-tagging constructs for the <italic>RPB2</italic> gene using p<italic>HA-neo4</italic>. The procedures we followed are presented in <xref rid="f0010" ref-type="fig">Fig. 2</xref>A; a list of the primers used in this study can be found in <xref rid="s0005" ref-type="sec">Supplemental information</xref>. We first amplified ~ 0.6 kb sequences from the C-terminus of the coding region of <italic>RPB2</italic> (<italic>RPB2</italic>_C) with the primers RPB2tag5FW and RPB2tag5RV. We then amplified ~ 1.0 kb sequences from the 3′ flanking region of <italic>RPB2</italic> (<italic>RPB2</italic>_3F) with the primers RPB2tag3FW and RPB2tag3RV. The 3′-terminus of RPB2tag5RV and the 5′-terminus of RPB2tag3FW had complementary sequences. Using these sequences, <italic>RPB2</italic>_C and <italic>RPB2</italic>_3F were combined by overlapping PCR with RPB2tag5FW and RPB2tag3RV. All of the PCR reactions described above were performed with PrimeStar HS DNA Polymerase (Takara). The PCR product was cloned into the XbaI and XhoI sites of pBlueScript SK(+). The overlapping PCR produced BamHI and SalI sites between <italic>RPB2</italic>_C and <italic>RPB2</italic>_3F. After digestion by both BamHI and XhoI, the <italic>HA-neo4</italic> module was inserted into these sites. The resulting construct (<italic>RPB2</italic>_C-<italic>HA-neo4</italic>-<italic>RPB2</italic>_3F) was excised, using both XbaI and XhoI, and introduced into <italic>Tetrahymena</italic> cells by homologous recombination. Transfection was performed with a biolistic gun system (<xref rid="bb0015" ref-type="bibr">Cassiby-Hanley et al., 1997).</xref> Successful homologous recombination into the endogenous <italic>RPB2</italic> locus was confirmed by Southern blot (<xref rid="f0010" ref-type="fig">Fig. 2</xref>B). Expression of Rpb2p-HA was analyzed by immunofluorescent staining (<xref rid="bb0045" ref-type="bibr">Loidl and Scherthan, 2004</xref>) using an anti-HA antibody (clone 16B12, Covance). <italic>RPB2</italic> encodes the second largest subunit of RNA polymerase II, and therefore, its product is expected to localize to the transcriptionally-active macronucleus. We found that HA was localized to the macronucleus (<xref rid="f0010" ref-type="fig">Fig. 2</xref>C), indicating that the tagging of HA to Rpb2p was successful.</p>
+    <p>Next, we tested a PCR-based method to produce C-terminal tagging constructs for the <italic>PDD1</italic> gene using p<italic>mCherry-neo4</italic>. The procedures are schematically presented in <xref rid="f0015" ref-type="fig">Fig. 3</xref>A and a detailed protocol can be found in <xref rid="s0005" ref-type="sec">Supplemental information</xref>. We first amplified ~ 0.8 kb sequences from both the coding (<italic>PDD1</italic>_C) and the 3′ flanking (<italic>PDD1</italic>_3F) regions of the <italic>PDD1</italic> genomic locus (<xref rid="f0015" ref-type="fig">Fig. 3</xref>B). In parallel, the <italic>mCherry-neo4</italic> module was amplified from plasmid DNA by PCR (<xref rid="f0015" ref-type="fig">Fig. 3</xref>B). We designed overlapping sequences between the 3′-terminus of <italic>PDD1</italic>_C and the 5′-terminus of <italic>mCherry-neo4</italic>, and between 3′-terminus of <italic>mCherry-neo4</italic> and 5′-terminus of <italic>PDD1</italic>_3F. The three PCR products were combined by overlapping PCR (<xref rid="f0015" ref-type="fig">Fig. 3</xref>B). All of these PCR reactions were performed with PrimeStar HS DNA Polymerase (Takara). Typically, 50 μl of a PCR reaction provides ~ 0.5 μg of construct DNA, which is enough for several transformation experiments. The resulting construct (<italic>PDD1</italic>_C-<italic>mCherry</italic>-<italic>neo4</italic>-<italic>PDD1</italic>_3F) was introduced into <italic>Tetrahymena</italic> cells as described above. The successful integration of the construct into the endogenous <italic>PDD1</italic> locus by homologous recombination was confirmed by PCR (<xref rid="f0015" ref-type="fig">Fig. 3</xref>C). Expression of Pdd1p-mCherry was analyzed by fluorescent microscopy (<xref rid="f0015" ref-type="fig">Fig. 3</xref>D). mCherry fluorescence was localized to both the micronucleus and the macronucleus at early conjugation (the sexual reproduction process of <italic>Tetrahymena</italic>) stages (<xref rid="f0015" ref-type="fig">Fig. 3</xref>D top) and to the new macronucleus at late stages (<xref rid="f0015" ref-type="fig">Fig. 3</xref>D bottom). These localization patterns are indistinguishable from those of endogenous Pdd1p (<xref rid="bb0025" ref-type="bibr">Coyne et al., 1999</xref>). Therefore, we concluded that the strategy presented here can successfully introduce mCherry tags to Pdd1p. Similar PCR-based methods were successful for tagging <italic>DCL1</italic> with EGFP using the <italic>EGFP-neo4</italic> module (<xref rid="f0015" ref-type="fig">Fig. 3</xref>E) and for tagging <italic>NUP4</italic> (MicNUP98A) with HA using the <italic>HA-neo4</italic> module (<xref rid="f0015" ref-type="fig">Fig. 3</xref>F). Dcl1p-EGFP was localized to the meiotic micronuclei in mating cells (<xref rid="f0015" ref-type="fig">Fig. 3</xref>E) and Nup4p-HA was localized to the micronucleus of vegetative cell (<xref rid="f0015" ref-type="fig">Fig. 3</xref>F). These patterns are indistinguishable to the previously reported localizations of Dcl1p-HA (<xref rid="bb0060" ref-type="bibr">Mochizuki and Gorovsky 2005</xref>) and GFP-Nup4p (<xref rid="bb0050 bb0035" ref-type="bibr">Malone et al. 2008, Iwamoto 2009</xref>), respectively. These data suggest that a PCR-based method for the C-terminal tagging of genes with the modules established in this study can be used to quickly generate transformation constructs for epitope tagging experiments in <italic>Tetrahymena</italic>.</p>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bb0005">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aronica</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Bednenko</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Noto</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Desouza</surname>
+              <given-names>L.V.</given-names>
+            </name>
+            <name>
+              <surname>Siu</surname>
+              <given-names>K.W.</given-names>
+            </name>
+            <name>
+              <surname>Loidl</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Pearlman</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Mochizuki</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Study of an RNA helicase implicates small RNA-noncoding RNA interactions in programmed DNA elimination in <italic>Tetrahymena</italic></article-title>
+          <source>Genes &amp; Development</source>
+          <volume>22</volume>
+          <year>2008</year>
+          <fpage>2228</fpage>
+          <lpage>2241</lpage>
+          <pub-id pub-id-type="pmid">18708581</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0010">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bowman</surname>
+              <given-names>G.R.</given-names>
+            </name>
+            <name>
+              <surname>Turkewitz</surname>
+              <given-names>A.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of a mutant exhibiting conditional sorting to dense core secretory granules in <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Genetics</source>
+          <volume>159</volume>
+          <year>2001</year>
+          <fpage>1605</fpage>
+          <lpage>1616</lpage>
+          <pub-id pub-id-type="pmid">11779800</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0015">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cassidy-Hanley</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Bowen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Cole</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>VerPlank</surname>
+              <given-names>L.A.</given-names>
+            </name>
+            <name>
+              <surname>Gaertig</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Bruns</surname>
+              <given-names>P.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Germline and somatic transformation of mating <italic>Tetrahymena thermophila</italic> by particle bombardment</article-title>
+          <source>Genetics</source>
+          <volume>146</volume>
+          <year>1997</year>
+          <fpage>135</fpage>
+          <lpage>147</lpage>
+          <pub-id pub-id-type="pmid">9136007</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0020">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Couvillion</surname>
+              <given-names>M.T.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>S.R.</given-names>
+            </name>
+            <name>
+              <surname>Hogstad</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Malone</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Tonkin</surname>
+              <given-names>L.A.</given-names>
+            </name>
+            <name>
+              <surname>Sachidanandam</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Hannon</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Collins</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sequence, biogenesis, and function of diverse small RNA classes bound to the Piwi family proteins of <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Genes &amp; Development</source>
+          <volume>23</volume>
+          <year>2009</year>
+          <fpage>2016</fpage>
+          <lpage>2032</lpage>
+          <pub-id pub-id-type="pmid">19656801</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0025">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Coyne</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Nikiforov</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Smothers</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Allis</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Yao</surname>
+              <given-names>M.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Parental expression of the chromodomain protein Pdd1p is required for completion of programmed DNA elimination and nuclear differentiation</article-title>
+          <source>Molecular Cell</source>
+          <volume>4</volume>
+          <year>1999</year>
+          <fpage>865</fpage>
+          <lpage>872</lpage>
+          <pub-id pub-id-type="pmid">10619033</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0030">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dou</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Bowen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Phosphorylation and an ATP-dependent process increase the dynamic exchange of H1 in chromatin</article-title>
+          <source>The Journal of Cell Biology</source>
+          <volume>158</volume>
+          <year>2002</year>
+          <fpage>1161</fpage>
+          <lpage>1170</lpage>
+          <pub-id pub-id-type="pmid">12356861</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0035">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Iwamoto</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Mori</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kojidani</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Bunai</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Hori</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Fukagawa</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Hiraoka</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Haraguchi</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Two distinct repeat sequences of Nup98 nucleoporins characterize dual nuclei in the binucleated ciliate <italic>Tetrahymena</italic></article-title>
+          <source>Curr Biol</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>843</fpage>
+          <lpage>847</lpage>
+          <pub-id pub-id-type="pmid">19375312</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0040">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>S.R.</given-names>
+            </name>
+            <name>
+              <surname>Collins</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Physical and functional coupling of RNA-dependent RNA polymerase and Dicer in the biogenesis of endogenous siRNAs</article-title>
+          <source>Nature Structural &amp; Molecular Biology</source>
+          <volume>14</volume>
+          <year>2007</year>
+          <fpage>604</fpage>
+          <lpage>610</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0045">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Loidl</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Scherthan</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Organization and pairing of meiotic chromosomes in the ciliate <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Journal of Cell Science</source>
+          <volume>117</volume>
+          <year>2004</year>
+          <fpage>5791</fpage>
+          <lpage>5801</lpage>
+          <pub-id pub-id-type="pmid">15522890</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0050">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Malone</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Falkowska</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>A.Y.</given-names>
+            </name>
+            <name>
+              <surname>Galanti</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Kanuru</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Lamont</surname>
+              <given-names>E.G.</given-names>
+            </name>
+            <name>
+              <surname>Mazzarella</surname>
+              <given-names>K.C.</given-names>
+            </name>
+            <name>
+              <surname>Micev</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Osman</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Piotrowski</surname>
+              <given-names>N.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nucleus-specific importin alphas and nucleoporins regulate protein import and nuclear division in the bi-nucleate <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Eukaryotic Cell.</source>
+          <volume>7</volume>
+          <year>2008</year>
+          <fpage>1487</fpage>
+          <lpage>1499</lpage>
+          <pub-id pub-id-type="pmid">18676955</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0055">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mochizuki</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>High efficiency transformation of <italic>Tetrahymena</italic> using a codon-optimized neomycin resistance gene</article-title>
+          <source>Gene</source>
+          <volume>425</volume>
+          <year>2008</year>
+          <fpage>79</fpage>
+          <lpage>83</lpage>
+          <pub-id pub-id-type="pmid">18775482</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0060">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mochizuki</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A Dicer-like protein in <italic>Tetrahymena</italic> has distinct functions in genome rearrangement, chromosome segregation, and meiotic prophase</article-title>
+          <source>Genes &amp; Development</source>
+          <volume>19</volume>
+          <year>2005</year>
+          <fpage>77</fpage>
+          <lpage>89</lpage>
+          <pub-id pub-id-type="pmid">15598983</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0065">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pearson</surname>
+              <given-names>C.G.</given-names>
+            </name>
+            <name>
+              <surname>Osborn</surname>
+              <given-names>D.P.</given-names>
+            </name>
+            <name>
+              <surname>Giddings</surname>
+              <given-names>T.H.</given-names>
+              <suffix>Jr.</suffix>
+            </name>
+            <name>
+              <surname>Beales</surname>
+              <given-names>P.L.</given-names>
+            </name>
+            <name>
+              <surname>Winey</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Basal body stability and ciliogenesis requires the conserved component Poc1</article-title>
+          <source>The Journal of Cell Biology</source>
+          <volume>187</volume>
+          <year>2009</year>
+          <fpage>905</fpage>
+          <lpage>920</lpage>
+          <pub-id pub-id-type="pmid">20008567</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0070">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Bowen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Corstanje</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Gaertig</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gorovsky</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A robust inducible-repressible promoter greatly facilitates gene knockouts, conditional expression, and overexpression of homologous and heterologous genes in <italic>Tetrahymena thermophila</italic></article-title>
+          <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+          <volume>99</volume>
+          <year>2002</year>
+          <fpage>3734</fpage>
+          <lpage>3739</lpage>
+          <pub-id pub-id-type="pmid">11891286</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0075">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wloga</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Camba</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Rogowski</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Manning</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Jerka-Dziadosz</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Gaertig</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Members of the NIMA-related kinase family promote disassembly of cilia by multiple mechanisms</article-title>
+          <source>Molecular Biology of the Cell</source>
+          <volume>17</volume>
+          <year>2006</year>
+          <fpage>2799</fpage>
+          <lpage>2810</lpage>
+          <pub-id pub-id-type="pmid">16611747</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0080">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yao</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Yao</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Halasz</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Fuller</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Rexer</surname>
+              <given-names>C.H.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Jain</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Coyne</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Chalker</surname>
+              <given-names>D.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of novel chromatin-associated proteins involved in programmed genome rearrangements in <italic>Tetrahymena</italic></article-title>
+          <source>Journal of Cell Science</source>
+          <volume>120</volume>
+          <year>2007</year>
+          <fpage>1978</fpage>
+          <lpage>1989</lpage>
+          <pub-id pub-id-type="pmid">17519286</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec id="s0005" sec-type="supplementary-material">
+      <label>Appendix A</label>
+      <title>Supplementary data</title>
+      <p>
+        <supplementary-material content-type="local-data" id="ec0005">
+          <caption>
+            <title>Supplemental information</title>
+          </caption>
+          <media xlink:href="mmc1.pdf" mimetype="application" mime-subtype="pdf"/>
+        </supplementary-material>
+      </p>
+    </sec>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This research was funded by the Naito Foundation to KK, the European Research Council (ERC) Starting Grant (204986) under the European Community's Seventh Framework Programme and by the Austrian Academy of Sciences to KM. UES was supported by Doktoratskolleg RNA Biology funded by the Austrian Science Fund (FWF).</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>C-terminal epitope tagging modules for <italic>Tetrahymena.</italic> HA, EGFP, mCherry, and FZZ (3× FLAG followed by TEV protease cleavage site and ZZ domain of protein A) coding-sequences, optimized for <italic>Tetrahymena</italic> codon usage, were synthesized and inserted into both the BamHI and SpeI sites of the common C-terminal tag module schematically drawn on top. Non-unique restriction enzyme sites are marked with asterisks. DNA sequences of individual modules can be found in DDBJ/EMBL/GenBank AB570107–AB570112AB570107AB570108AB570109AB570110AB570111AB570112.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Plasmid-based C-terminal epitope tagging. (A) Production scheme for C-terminal HA tagging construct for the <italic>RPB2</italic> gene. See text for details. (B) Southern blot analysis of an <italic>RPB2-HA</italic> strain of <italic>Tetrahymena</italic>. Genomic DNA from both the wild-type B2086 and <italic>RPB2-HA</italic> (2)-3-4 strains were digested with BamHI (Ba in panel A) and BglII (Bg panel A). The southern blot was prepared using the DNA from these strains and was probed with the DNA fragment shown in panel A. The bands corresponding to both the wild-type <italic>RPB2</italic> and the <italic>RPB2-HA</italic> are marked by arrowheads. (C) Rpb2p-HA localization in a vegetative <italic>Tetrahymena</italic> cell<italic>.</italic> Rpb2p was localized using an anti-HA antibody (magenta). DNA was counter-stained with DAPI (blue). The macro- and micronuclei are marked with “a” and “i”, respectively.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>PCR-based C-terminal epitope tagging. (A) Production scheme for C-terminal mCherry tagging construct for <italic>PDD1</italic> gene. See text for details. (B) Production of C-terminal mCherry tagging construct for <italic>PDD1</italic> gene. The PCR products of <italic>PDD1</italic>_C, <italic>PDD1</italic>_F, <italic>mCherry-neo4</italic> and <italic>PDD1-mCherry-neo4</italic> (overlapping PCR) were analyzed. The position of <italic>PDD1-mCherry-neo4</italic> construct is marked with an arrowhead. (C) PCR analysis of a <italic>PDD1-mCherry</italic> strain. Genomic DNA from both the wild-type B2086 and the <italic>PDD1-mCherry</italic> strains were amplified by PCR using the primers 5Am-Pdd1_Fw and 3Am-Pdd1_Rv. (D) Pdd1p-mCherry localization in <italic>Tetrahymena.</italic> The PDD1-<italic>mCherry</italic> strain shown in (C) was mated to a wild-type strain. Localization of Pdd1p-mCherry at conjugation stages E1 (top) and L1 (bottom) was observed using fluorescent microscopy (red). For reference, see <xref rid="bb0005" ref-type="bibr">Aronica et al. (2008)</xref> for conjugation stages. DNA was counterstained by DAPI (blue). a: macronucleus, i: micronucleus, na: new macronucleus, pa: parental macronucleus. (E) Dcl1p-EGFP localization in <italic>Tetrahymena.</italic> A <italic>DCL1-EGFP</italic> strain was mated to a wild-type strain and localization of Dcl1p-EGFP at conjugation stage E2 was observed under fluorescent microscope (green). DNA was counterstained by DAPI (blue). a: macronucleus, i: micronucleus. (F) Nup4p-HA localization in a vegetative <italic>Tetrahymena</italic> cell<italic>.</italic> Nup4p-HA was localized using an anti-HA antibody (magenta). DNA was counter-stained by DAPI (blue). The macronuclei and micronuclei are marked by “a” and “i”, respectively.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+  </floats-group>
+</article>

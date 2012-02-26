@@ -1,0 +1,1560 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Chem Phys Lett</journal-id>
+      <journal-title-group>
+        <journal-title>Chemical Physics Letters</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0009-2614</issn>
+      <publisher>
+        <publisher-name>North Holland</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3268562</article-id>
+      <article-id pub-id-type="pmid">22298911</article-id>
+      <article-id pub-id-type="publisher-id">CPLETT29332</article-id>
+      <article-id pub-id-type="doi">10.1016/j.cplett.2011.05.060</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Frontiers Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Hydration of highly charged ions</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Hofer</surname>
+            <given-names>Thomas S.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Weiss</surname>
+            <given-names>Alexander K.H.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Randolf</surname>
+            <given-names>Bernhard R.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rode</surname>
+            <given-names>Bernd M.</given-names>
+          </name>
+          <email>bernd.m.rode@uibk.ac.at</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff>Theoretical Chemistry Division, Institute of General, Inorganic and Theoretical Chemistry, University of Innsbruck, Innrain 52a, A-6020 Innsbruck, Austria</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. <email>bernd.m.rode@uibk.ac.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>25</day>
+        <month>8</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>8</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>512</volume>
+      <issue>4-6</issue>
+      <fpage>139</fpage>
+      <lpage>145</lpage>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier B.V.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract abstract-type="graphical">
+        <sec>
+          <title>Graphical abstract</title>
+          <p>
+            <fig id="f0035" position="anchor">
+              <graphic xlink:href="fx1"/>
+            </fig>
+          </p>
+        </sec>
+        <sec>
+          <title>Highlights</title>
+          <p>►Concise treatment of highly charged ions with very different properties. ► Performed by ab initio simulations with the recent QMCF-MD methodology. ► Treating hydrates with extreme stability, labile hydrates and instable systems with (sub-)picosecond proton transfer reactions.</p>
+        </sec>
+      </abstract>
+      <abstract>
+        <p>Based on a series of ab initio quantum mechanical charge field molecular dynamics (QMCF MD) simulations, the broad spectrum of structural and dynamical properties of hydrates of trivalent and tetravalent ions is presented, ranging from extreme inertness to immediate hydrolysis. Main group and transition metal ions representative for different parts of the periodic system are treated, as are 2 threefold negatively charged anions. The results show that simple predictions of the properties of the hydrates appear impossible and that an accurate quantum mechanical simulation in cooperation with sophisticated experimental investigations seems the only way to obtain conclusive results.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>Highly charged metal ions, i.e. those with a formal charge of +3 and +4 are of increasing relevance and interest concerning their behaviour in an aqueous environment. Their properties range from extreme inertness of the hydrates – Ir(III) exchanges a ligand every 300 years <xref rid="b0005" ref-type="bibr">[1]</xref> – to hydrolysis on the femtosecond scale as As(III) <xref rid="b0010" ref-type="bibr">[2]</xref>. In the latter case experimental access to the dynamics is almost impossible. On the other hand, the presence of such ions in industrial waste water and their toxicological effects upon incorporation into an organism make it highly desirable to gain detailed information on their physical and chemical behaviour in aqueous solution.</p>
+      <p>The progress of theoretical approaches and computational facilities has made simulations a practical alternative to access the desired data, in particular after quantum mechanical simulation methods have provided the necessary methodical flexibility and accuracy of results. This approach is of particular importance in the case of highly charged ions, which not only lead to very strong polarization and charge transfer effects, but can – in the course of hydrolysis processes – invoke cleavage and formation of chemical bonds, which require a quantum mechanical description. The polarisation and charge transfer effects also make the construction of classical interaction potentials from 2- or 3-body gas phase quantum chemical calculations almost impossible due to a ‘Coulombic catastrophe’ at larger distances (<xref rid="f0005" ref-type="fig">Figure 1</xref>).</p>
+      <p>Quantum mechanical simulations, in particular of the molecular dynamics (MD) type, can provide a large variety of data relevant to the chemistry of the highly charged ions. Structure and stability of the hydrates and ligand exchange dynamics can be extracted from the simulation trajectories and the strength of the ion–water bond is accessible via the simulated vibrational spectra, which also offer good comparison with experimental data of (stable) hydrates. In those cases where ultrafast hydrolysis reactions take place, the simulation enables the observation of these processes on a sub-picosecond scale and as well as the associated mechanisms.</p>
+      <p>A recently developed QM/MM hybrid method, namely the quantum mechanical charge field molecular dynamics (QMCF MD), has numerous advantages for the treatment of highly charged ions in solution, which will be outlined.</p>
+    </sec>
+    <sec sec-type="methods" id="s0010">
+      <label>2</label>
+      <title>Method</title>
+      <p>An alternative approach to experimental techniques are theoretical methods, in particular statistical simulation techniques such as Monte-Carlo and molecular dynamics <xref rid="b0015 b0020 b0025" ref-type="bibr">[3–5]</xref>. These approaches are based on statistical thermodynamics and employ a microscopic description to investigate the properties of chemical systems. In order to successfully apply these techniques an accurate description of the potential energy surface of the system is required, which can either be achieved by empirical molecular mechanical approaches <xref rid="b0030 b0035" ref-type="bibr">[6,7]</xref> or via quantum chemical methods <xref rid="b0040 b0045 b0050" ref-type="bibr">[8–10]</xref>.</p>
+      <p>In the first case, the interactions within the system are described based on pre-parametrized (i.e. empirical) potential functions. The main advantage of this approach, known as molecular mechanics (MM) of force fields (FF) <xref rid="b0030 b0035" ref-type="bibr">[6,7]</xref>, is its computational efficiency, which is strongly dependent on the considered interaction types (e.g. bonding, non-bonding, polarisation, many-body effects, etc.) and the functional form employed to model the respective contributions. The development and balancing of a reliable parameter set for a particular chemical system is a challenging, tedious and time-consuming task and in many cases, limitations in the applicability, accuracy and transferability are encountered. A further severe limitation of MM approaches results from the harmonic approximation. Many force fields model bonding interactions such as bonds and angles via a harmonic approximation, which prevents the description of the formation and cleavage of chemical bonds.</p>
+      <p>Quantum mechanical (QM) <xref rid="b0040 b0045 b0050" ref-type="bibr">[8–10]</xref> approaches on the other hand do not rely on empirical parameters. These methods employ numerical solutions of Schrödinger’s equation to obtain a quantitative description of the electronic structure, i.e. the electron density surrounding the nuclei. These approaches are more accurate than force field methods, as polarisation, charge-transfer and polarisation effects are automatically taken into account. As no empirical parameters are utilized, these approaches are very general and can be applied to a broad range of chemical systems. The accuracy of quantum chemical approaches is in some cases limited due to an inaccurate treatment of the correlation of electrons. While this may become significant in the case of weakly interacting systems, it was found to be less pronounced when strong interactions are present, as for example in the case of solvated ionic species and hydrogen bonded systems. A hierarchy of corrective treatments <xref rid="b0050" ref-type="bibr">[10]</xref> (such as perturbative approaches or so-called coupled cluster methods) enabling an increasingly accurate treatment of the electron correlation are available. Although the associated computing times prevent the application of these methods in chemical simulations as of yet, preliminary computations of representative systems enable the assessment of the error associated with the inaccurate treatment or, respectively, neglect of correlation of the electrons.</p>
+      <p>Due to the complexity of quantum chemical approaches the associated computing time is orders of magnitude larger than the effort required to treat the system with a molecular mechanical ansatz and a compromise between accuracy and computational effort has to be sought. In the Car-Parinello molecular dynamics (CPMD) framework <xref rid="b0055" ref-type="bibr">[11]</xref>, this balance is achieved by reducing the system size to a critical minimum (typically to the solute and about 30–100 water molecules) and the application of approximate quantum chemical schemes, typically density functional theory (DFT) at the generalised gradient approximation (GGA) level <xref rid="b0060" ref-type="bibr">[12]</xref>. Although this approach has become quite popular due to the comparatively low computational demand, recent data for pure water have revealed a number of method-inherent shortcomings leading to an inaccurate description of hydrogen bonded systems. In this framework, the melting point of water was estimated as approximately 410 K and it was concluded, that the description of water at room-temperature shows the characteristics of a supercooled liquid <xref rid="b0065 b0070" ref-type="bibr">[13,14]</xref>.</p>
+      <p>An alternative approach exploiting the advantages of quantum chemical and molecular mechanical methodologies are hybrid approaches <xref rid="b0075 b0080 b0085 b0090" ref-type="bibr">[15–18]</xref>. In this framework, the system is partitioned into two sub-regions. The chemically most relevant part is treated via a suitable quantum mechanical approach, and molecular mechanical potential functions are considered to be sufficiently accurate to describe the remaining part of the system. While the computation of energies and forces within the respective sub-regions result from the straightforward application of the associated theoretical method, the coupling of the two zones is not trivial and a large number of coupling protocols have been developed <xref rid="b0095" ref-type="bibr">[19]</xref>. An improved simulation technique known as Quantum Mechanical Charge Field (QMCF) ansatz was recently developed <xref rid="b0100 b0105" ref-type="bibr">[20,21]</xref> and successfully applied in investigations of various hydrated systems <xref rid="b0110" ref-type="bibr">[22]</xref>. Due to the use of an enlarged quantum chemical region the coupling between particles located in the center of the QM region (QM core; cf. <xref rid="f0010" ref-type="fig">Figure 2</xref>) and MM atoms requires only the application of Coulombic potentials, because the contribution of the non-Coulombic interactions are negligibly small. This does not apply in the case of particles located in the layer part of the QM region where both Coulombic and non-Coulombic coupling potentials have to be applied.</p>
+      <p>The sizes of all regions have to be set to avoid the occurrence of discontinuities of energies and forces. As solvent molecules are assigned as a whole to either the QM or the MM region, water molecules are never fragmented by the QM/MM interface. To ensure a continuous change of forces upon particle migration to/from the quantum mechanical region a smoothing procedure is invoked to gradually shift the force from the QM to the MM contribution <xref rid="b0105 b0110 b0115 b0120 b0125" ref-type="bibr">[21–25]</xref>. The elimination of the requirement of coupling potentials for the solute located in the QM core enabled QMCF simulations studies of systems showing anisotropic hydration <xref rid="b0130 b0135 b0140 b0145" ref-type="bibr">[26–29]</xref>, in which case the formulation of appropriate interaction potentials is even more difficult.</p>
+      <p>A significant increase in the accuracy of the QMCF methodology was achieved by employing quantum mechanically derived partial charges in the QM–MM Coulombic coupling. This approach incorporates the influence of polarisation, charge-transfer and many-body effects occurring in the QM region into the QM–MM coupling. These QM partial charges are re-evaluated in each step of the simulation, accounting for the influence of all geometrical changes within the QM region. Similarly, the incorporation of all MM partial charges as a perturbational potential into the quantum chemical treatment <xref rid="b0150 b0155" ref-type="bibr">[30,31]</xref> leads to an improved description of the electron density.</p>
+      <p>The latter two improvements were found to effectively eliminate all coupling artifacts close to the QM/MM interface <xref rid="b0100 b0105 b0110" ref-type="bibr">[20–22]</xref> that have been observed in QM/MM simulation studies employing a conventional coupling scheme, which almost always implies the use of solute–solvent potentials with formal charges. It was demonstrated that the application of the QMCF approach improves the accuracy of the simulations significantly, whereas the increase associated to the computational effort is minor.</p>
+      <p>One particularly challenging application is the study of hydrolysis phenomena. In order to assess the capabilities of the QMCF approach, as a first example a solute was chosen that cannot be observed in neutral aqueous environment: the As(III) ion is known to hydrolyse rapidly, for instance if <inline-formula><alternatives><textual-form specific-use="jats-markup">AsCl<sub>3</sub></textual-form><mml:math id="M1" altimg="si30.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mtext>AsCl</mml:mtext></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> is dissolved in water. Indeed, hydrolysis was observed within a very short simulation period <xref rid="b0010" ref-type="bibr">[2]</xref>, confirming the capability of quantum chemical approaches to describe the formation and cleavage of chemical bonds.</p>
+    </sec>
+    <sec id="s0015">
+      <label>3</label>
+      <title>Protocol of simulations</title>
+      <p>For all QMCF simulations presented here a similar protocol was employed, based on a cubic box containing the solute and 1000 water molecules. The density of the system was fixed at <inline-formula><alternatives><textual-form specific-use="jats-markup">0.997 g/cm<sup>3</sup></textual-form><mml:math id="M2" altimg="si31.gif" overflow="scroll"><mml:mrow><mml:mn>0.997</mml:mn><mml:mspace width="0.25em"/><mml:msup><mml:mrow><mml:mtext>g/cm</mml:mtext></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>, which coincides with the density of pure water at the simulation temperature of 298.15 K. The flexible BJH-CF2 water model <xref rid="b0160 b0165" ref-type="bibr">[32,33]</xref> was employed to describe the solvent in the molecular mechanical region. Since the QM treatment as well as the water model enable intramolecular hydrogen motion, a time step of 0.2 fs was chosen. A second-order predictor corrector algorithm of the Adams-Bashforth family was applied to integrate the equations of motion. All simulations were carried out in the canonical (<italic>NVT</italic>) ensemble employing the Berendsen weak-coupling thermostat <xref rid="b0170" ref-type="bibr">[34]</xref> with a relaxation time of 0.1 ps. A general cutoff of 12–15.0 Å was employed. The O–H and H–H non-Coulombic contributions were truncated at 5.0 and 3.0 Å, respectively, and to account for the error of the Coulombic cutoff, the reaction field method was employed.</p>
+      <p>Dunning DZP basis sets <xref rid="b0175" ref-type="bibr">[35]</xref> were assigned to oxygen and hydrogen. For the solutes a number of basis sets have been tested. The results of gas-phase energy minimizations (binding energies and minimum geometries) for various ion–water clusters were utilised to compare the performance of the different basis sets, enabling the choice of the most suitable one. Similarly, comparisons of different levels of theory were routinely performed to assess performance and quality of the respective approaches. As correlated ab initio methods, such as Møller–Plesset perturbation theory or coupled cluster approaches, are too demanding for application in QMCF simulations, the level of theory is limited to the single determinantal level, i.e. density functional theory or ab initio Hartree–Fock. In all studies the latter was found to yield results in better agreement with correlated methods than DFT methods. Therefore, the Hartree–Fock approach was the method of choice in all simulations.</p>
+      <p>The size of the quantum mechanical region was set to include the solute and its first and second hydration shells. Thus, the number of solvent molecules included in the QM region ranged from 18 to 25 water molecules. Due to the enormous computational demand of the quantum chemical treatment, the computation of the energy and forces in the QM region was executed in parallel. Depending on the number of processors and the size of the QM region, the computing time for energy and forces ranges from 90 s to more than four minutes per time step. If a total simulation time of 10 ps is envisaged plus a 2 ps period of equilibration (assuming that a properly pre-equilibrated starting geometry is employed), a total number of 60 000 MD steps is required leading to simulation times between 3 and 8 months. In some cases a longer trajectory was required, leading to even longer computation times.</p>
+      <p>To generate starting geometries either purely classical (i.e. MM) simulations can be employed if suitable solute–solvent interaction potentials are available or geometries of simulations of similar systems can be adopted, e.g. a simulation cube containing Al(III) in aqueous solution can be utilised as starting geometry for hydrated Fe(III).</p>
+    </sec>
+    <sec id="s0020">
+      <label>4</label>
+      <title>Results and discussion</title>
+      <p>The computational effort for a QMCF MD simulation of a trajectory between 10 and 30 ps at ab initio Hartree–Fock level with double zeta plus polarisation basis set (and relativistically corrected ECP basis sets for the heavier atoms) is considerable, amounting to 6–12 months of CP time with 8–16 processors on a high-performance computer cluster. The use of more processors does not improve the performance automatically as the parallelizability of the ab initio calculation of the energies and forces is limited, depending on the QM software used. For these reasons, results are available only for a selection of ions which, however, represent a good sampling of the different characteristics of highly charged ions. In principle, they can be classified as ‘stable’ and ‘instable’ ions, where ‘stability’ means that they do not undergo hydrolysis within the simulation period and are also mostly reported as observable in experiment. As will be shown, the size of the ions and their position in the periodic table of the elements determines their properties, and the selection made thus includes a variety from small and medium sized main group metal to different transition metal ions including lanthanoid examples. Two anions have been selected as examples of stable and instable highly negatively charged systems.</p>
+    </sec>
+    <sec id="s0025">
+      <label>5</label>
+      <title>Stable ions</title>
+      <sec id="s0030">
+        <label>5.1</label>
+        <title>Trivalent ions</title>
+        <p>This category includes a number of threefold charged cations, whose structural hydration characteristic are summarised in <xref rid="t0005" ref-type="table">Table 1</xref> and whose dynamical data are collected in <xref rid="t0010" ref-type="table">Table 2</xref>.</p>
+        <p>Al(III) is a small main group ion, which forms a very stable octahedral first hydration shell and a second shell binding in an almost ideal way via hydrogen bonds to the first shell ligands, thus amounting to ∼12 water molecules. Within the simulation time no hydrolysis of a first shell ligand was observed. An indication of a third shell could be recognised in the radial distribution function (RDF) <xref rid="b0180 b0185" ref-type="bibr">[36,37]</xref>, and the mean residence time (MRT) of second shell ligands of over 17 ps is the highest observed among all ions presented here. The force constant obtained from the vibrational spectrum calculated via Fourier transformation of the velocity autocorrelation functional (VACF) amounts to nearly 200 N/m, which belongs to the upper segment of these values and explains, why no first shell ligand exchange was observed in the simulation.</p>
+        <p>A completely different system is the main group ion Sb(III) with its lone electron pair destabilising the hydrate <xref rid="b0190" ref-type="bibr">[38]</xref>. As this electron pair occupies a considerable space, it induces the formation of two different hydration hemispheres, one with four tightly bound ligands at a distance of ∼2.2 Å and another one on the opposite side with four much more loosely bound water molecules located ∼2.7 Å far from the ion. The latter are responsible for frequent exchanges between first and second hydration sphere, leading to an MRT value of 6 ps for first shell ligands.and a very low MRT <inline-formula><alternatives><textual-form specific-use="jats-markup">( &lt; 2 ps)</textual-form><mml:math id="M3" altimg="si32.gif" overflow="scroll"><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mo>&lt;</mml:mo><mml:mn>2</mml:mn><mml:mspace width="0.25em"/><mml:mtext>ps</mml:mtext><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></alternatives></inline-formula> for those of the second shell, which is equally unsymmetric as the first shell, with ∼5 plus ∼8 ligands.</p>
+        <p>Fe(III) <xref rid="b0195" ref-type="bibr">[39]</xref> and V(III) <xref rid="b0200" ref-type="bibr">[40]</xref> are good representatives for trivalent first row transition metal ions, with very stable octahedral first hydration shells showing no exchange processes, and rapidly exchanging second shells whose coordination numbers vary between 10 and 16, with a mean value deviating from the ‘ideal’ 2:1 ratio based on hydrogen bonding. The force constants for the ion–O bonds of the first shell are of the same magnitude as that of Al(III) <xref rid="b0185" ref-type="bibr">[37]</xref> with values of 193 (Fe) and 203 (V) N/m.</p>
+        <p>Ir(III) has been selected as representative of the heavier transition elements for two reasons: first, it forms the hydrate with the highest ever measured MRT value for first shell ligands as ∼300 years <xref rid="b0005" ref-type="bibr">[1]</xref>, and second for its completely different behaviour from divalent platinum metal ions Pd(II) and Pt(II) <xref rid="b0135 b0140" ref-type="bibr">[27,28]</xref>, characterised by 4 very stable ligands in a square planar arrangement and 2 loosely bound axial ligands. Ir(III) <xref rid="b0205" ref-type="bibr">[41]</xref> forms an enormously stable octahedral arrangement with 6 water molecules and the ion–O force constant resulting from our simulation amounts to 260 N/m, which is the highest one among all reported here and thus in good agreement with the experimentally observed inertness of this hydrate complex.</p>
+        <p>The lanthanoids are a special class of elements, apparently also with regard to their hydrated ions. Their peculiarity can be easily recognised from the simulation results for La(III) <xref rid="b0210" ref-type="bibr">[42]</xref> and Ce(III) <xref rid="b0210" ref-type="bibr">[42]</xref> reported here. Both of them form a first coordination sphere with an average of nine ligands with dominating capped prismatic geometry. The MRT value for La(III) ligands is only ∼13 ps, while no ligand exchange was observed in the first shell of Ce(III), indicating the influence of the remaining valence electron in the latter ion. In both cases the simulation time was extended to &gt;20 ps in order to obtain a reasonable statistics for possible exchange processes. The second shell MRT values, slightly above 2 ps differ only marginally from that of bulk water (1.7 ps <xref rid="b0215 b0220" ref-type="bibr">[43,44]</xref>). The force constants evaluated for the ion–O bonds reflect the relative lability of the hydration shells, with values below 100 N/m and are certainly related to the higher coordination number and thus larger ion–O distances compared to the other trivalent metal cations.</p>
+      </sec>
+      <sec id="s0035">
+        <label>5.2</label>
+        <title>Tetravalent ions</title>
+        <p>Not many of the tetravalent metal ions are present as <inline-formula><alternatives><textual-form specific-use="jats-markup">M<sup>4 + </sup></textual-form><mml:math id="M4" altimg="si33.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mtext>M</mml:mtext></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> in aqueous solution. Some of them immediately form oxonium ions <inline-formula><alternatives><textual-form specific-use="jats-markup"> H<sub>3</sub>O<sup> + </sup></textual-form><mml:math id="M5" altimg="si34.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mspace width="0.35em" height="0.8ex"/><mml:mtext>H</mml:mtext></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mtext>O</mml:mtext></mml:mrow><mml:mrow><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> and are thus reduced to a lower charge state (vide infra), others are present as oxo-ions, e.g. <inline-formula><mml:math id="M6" altimg="si35.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mtext>TiO</mml:mtext></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mo>+</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> <xref rid="b0225" ref-type="bibr">[45]</xref>. There is experimental evidence, however, that zirconium, hafnium. cerium and uranium (IV) exist <xref rid="b0230 b0235" ref-type="bibr">[46,47]</xref>, at least under suitable acidic conditions, as <inline-formula><alternatives><textual-form specific-use="jats-markup">M<sup>4 + </sup></textual-form><mml:math id="M7" altimg="si36.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mtext>M</mml:mtext></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>, and for these ions QMCF MD simulations have been carried out.</p>
+        <p>Although the hydration characteristics are not so different as in the case of trivalent ions, some surprising results have been obtained, which seem relevant for the chemical behaviour of these ions in water. A summary of the results is given in <xref rid="t0015 t0020" ref-type="table">Tables 3 and 4</xref>.</p>
+        <p>The coordination number of all ions is either 8 or 9 <xref rid="b0230 b0235" ref-type="bibr">[46,47]</xref> and the observed basic structure of the hydrates is either a (single capped) square antiprism or a tri-capped trigonal prism, in good agreement with available experimental findings. Sometimes conversion between both geometrical arrangements occurs without any inter-shell exchange process: the first hydration shell does not exchange ligands with the second shell within the simulation time in any case. The lability of second shell ligands shows considerable differences: as expected, the fastest exchanges are observed for Ce(IV), and the MRT value for Zr(IV) is much lower than those for the heavier ions U(IV) and Hf(IV). The strength of the ion–O bonds is similar for Ce(IV) and U(IV), namely ∼150 N/m, and increases for Zr(IV) with ∼190 and Hf(IV) with ∼210 N/m. All of these values are considerably below the value for Ir(III), in good agreement with the experimental characterisation of the Ir(III) hydrate as the most stable one. The strength of the ion–ligand bonds is also a consequence of the coordination number, and the higher coordination number of the tetravalent ions implies for steric reasons, a larger ion–O distance than in the predominantly octahedral aquo-complexes of the trivalent ions.</p>
+        <p>At this point, the stability of the ion–water bonds can be summarised by ordering them according to their ion–O force constants:<disp-formula id="e0005"><alternatives><textual-form specific-use="jats-markup">Ir(III) ≫ Hf(IV) &gt; V(III) &gt; Al(III) ≈ Fe(III) &gt; Zr(IV) &gt; U(IV) &gt; Ce(IV) ≫ La(III) &gt; Ce(III)</textual-form><mml:math id="M8" altimg="si37.gif" overflow="scroll"><mml:mtext>Ir</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mtext>III</mml:mtext><mml:mo stretchy="false">)</mml:mo><mml:mo>≫</mml:mo><mml:mtext>Hf</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mtext>IV</mml:mtext><mml:mo stretchy="false">)</mml:mo><mml:mo>&gt;</mml:mo><mml:mtext>V</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mtext>III</mml:mtext><mml:mo stretchy="false">)</mml:mo><mml:mo>&gt;</mml:mo><mml:mtext>Al</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mtext>III</mml:mtext><mml:mo stretchy="false">)</mml:mo><mml:mo>≈</mml:mo><mml:mtext>Fe</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mtext>III</mml:mtext><mml:mo stretchy="false">)</mml:mo><mml:mo>&gt;</mml:mo><mml:mtext>Zr</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mtext>IV</mml:mtext><mml:mo stretchy="false">)</mml:mo><mml:mo>&gt;</mml:mo><mml:mtext>U</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mtext>IV</mml:mtext><mml:mo stretchy="false">)</mml:mo><mml:mo>&gt;</mml:mo><mml:mtext>Ce</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mtext>IV</mml:mtext><mml:mo stretchy="false">)</mml:mo><mml:mo>≫</mml:mo><mml:mtext>La</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mtext>III</mml:mtext><mml:mo stretchy="false">)</mml:mo><mml:mo>&gt;</mml:mo><mml:mtext>Ce</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mtext>III</mml:mtext><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></disp-formula>As the MRT value of La(III) demonstrates, these bond strength are not always directly related to the exchange dynamics. In <xref rid="f0015 f0020" ref-type="fig">Figures 3 and 4</xref> typical examples of tri- and tetravalent hydrates are shown.</p>
+      </sec>
+      <sec id="s0040">
+        <label>5.3</label>
+        <title>Unstable ions</title>
+        <p>As mentioned in the introductory remarks, some highly charged ions react immediately with first-shell water molecules as soon as a quantum mechanical treatment is invoked, forming oxonium ions <inline-formula><alternatives><textual-form specific-use="jats-markup">H<sub>3</sub>O<sup> + </sup></textual-form><mml:math id="M9" altimg="si38.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mtext>H</mml:mtext></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mtext>O</mml:mtext></mml:mrow><mml:mrow><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> and binding one or more <inline-formula><alternatives><textual-form specific-use="jats-markup">OH<sup> - </sup></textual-form><mml:math id="M10" altimg="si39.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mtext>OH</mml:mtext></mml:mrow><mml:mrow><mml:mo>-</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> groups instead of water ligands, thus reducing the hydrate’s charge.</p>
+        <p>A typical trivalent ion of this sort is As(III), whose immediate hydrolysis in aqueous solution is also known from experiment, for instance when <inline-formula><alternatives><textual-form specific-use="jats-markup">AsCl<sub>3</sub></textual-form><mml:math id="M11" altimg="si40.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mtext>AsCl</mml:mtext></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> is dissolved in water. Within the first picoseconds of the simulation, it transforms in 2 steps to As <inline-formula><alternatives><textual-form specific-use="jats-markup">(OH)<sup>2 + </sup></textual-form><mml:math id="M12" altimg="si41.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mtext>OH</mml:mtext><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> and then As <inline-formula><alternatives><textual-form specific-use="jats-markup">(OH)<sup>2 + </sup></textual-form><mml:math id="M13" altimg="si42.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mtext>OH</mml:mtext><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> <xref rid="b0005" ref-type="bibr">[1]</xref>, the final stable form hydrated by a few more water molecules. A video clip illustrating this process is available at our web page <ext-link ext-link-type="uri" xlink:href="http://www.molvision.com">www.molvision.com</ext-link> under ‘videos’. In the case of this smaller group V cation, the effect of the lone pair is apparently strong enough to cause an immediate hydrolysis, while in the heavier analogue Sb(III) it only leads to a strongly distorted hydration structure (vide supra). <xref rid="f0025" ref-type="fig">Figure 5</xref> shows the result of the hydrolysis process of As(III).</p>
+        <p>The group IV cations <inline-formula><alternatives><textual-form specific-use="jats-markup">Ge<sup>4 + </sup>, Sn<sup>4 + </sup></textual-form><mml:math id="M14" altimg="si43.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mtext>Ge</mml:mtext></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>+</mml:mo></mml:mrow></mml:msup><mml:mtext>,</mml:mtext><mml:mspace width="0.35em"/><mml:msup><mml:mrow><mml:mtext>Sn</mml:mtext></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup">Pb<sup>4 + </sup></textual-form><mml:math id="M15" altimg="si44.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mtext>Pb</mml:mtext></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> <xref rid="b0240" ref-type="bibr">[48]</xref> are other examples of metal ions unstable in water, as they undergo hydrolysis on the picosecond scale, observable in the simulation. While with <inline-formula><alternatives><textual-form specific-use="jats-markup">Ge<sup>4 + </sup></textual-form><mml:math id="M16" altimg="si45.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mtext>Ge</mml:mtext></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> this process produces 3 oxonium ions, leading to the tetracoordinated species <inline-formula><alternatives><textual-form specific-use="jats-markup">Ge(OH)<sub>3</sub>(H<sub>2</sub>O)<sup> + </sup></textual-form><mml:math id="M17" altimg="si46.gif" overflow="scroll"><mml:mrow><mml:mtext>Ge</mml:mtext><mml:msub><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mtext>OH</mml:mtext><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mtext>H</mml:mtext></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mtext>O</mml:mtext><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> both <inline-formula><alternatives><textual-form specific-use="jats-markup">Sn<sup>4 + </sup></textual-form><mml:math id="M18" altimg="si47.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mtext>Sn</mml:mtext></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"> Pb<sup>4 + </sup></textual-form><mml:math id="M19" altimg="si48.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mspace width="0.35em" height="0.8ex"/><mml:mtext>Pb</mml:mtext></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>+</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> form ions of the type <inline-formula><mml:math id="M20" altimg="si49.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mtext>M(OH)</mml:mtext></mml:mrow><mml:mrow><mml:mi mathvariant="italic">aq</mml:mi></mml:mrow><mml:mrow><mml:mo>+</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> which hexacoordinated in the case of Sn(IV) and heptacoordinated with Pb(IV), respectively. These reactions have been visualised on a video clip accessible at <ext-link ext-link-type="uri" xlink:href="http://www.molvision.com">www.molvision.com</ext-link>. <xref rid="f0030" ref-type="fig">Figure 6</xref> shows the result of the hydrolysis process of Ge(IV).</p>
+        <p>With the present QMCF MD code, these simulations can only be performed to the point, where the oxonium ions are leaving the QM region, as the classical water force field is not capable of describing these ions. The planned inclusion of a dissociative reactive force field will overcome this problem. However, the present results already give a good impression of the mechanistic progress of the hydrolysis reactions of these instable cations.</p>
+      </sec>
+      <sec id="s0045">
+        <label>5.4</label>
+        <title>Anions</title>
+        <p>Some anions carrying a high negative charge are stable in aqueous solution, at least at high pH values. The most representative example is probably the phosphate ion <inline-formula><mml:math id="M21" altimg="si50.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mtext>PO</mml:mtext></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow><mml:mrow><mml:mn>3</mml:mn><mml:mo>-</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> for which we summarise the results of a QMCF MD simulation <xref rid="b0245" ref-type="bibr">[49]</xref> here.</p>
+        <p>Binding of water molecules to phosphate is based on hydrogen bonds between water hydrogens and phosphate oxygens. Due to the high charge, each of the 4 oxygens binds on average to 3 water molecules, and the total average coordination number of the first shell is 13.4. These hydrogen bonds are considerably shorter than those between solvent molecules and the stronger binding is reflected in a MRT value of these ligands of 3.6 ps, which is more than double the value for water in the bulk (1.7 ps <xref rid="b0215 b0220" ref-type="bibr">[43,44]</xref>). However, even this value indicates a quite rapid exchange of ligands, many orders of magnitude faster than for ions with a threefold positive charge.</p>
+        <p>How sensitive hydration can be also in the case of anions is best demonstrated by going up in the periodic system from P to As. The analogous anion to phosphate is the arsenate <inline-formula><mml:math id="M22" altimg="si51.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mtext>AsO</mml:mtext></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow><mml:mrow><mml:mn>3</mml:mn><mml:mo>-</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula>, which in contrast to phosphate, undergoes hydrolysis and thus represents an instable ion in the sense of this presentation. This process takes place in the first picoseconds of the simulation <xref rid="b0250 b0255" ref-type="bibr">[50,51]</xref>, and the arsenate captures one proton from a first shell water ligand, releasing an <inline-formula><alternatives><textual-form specific-use="jats-markup">OH<sup> - </sup></textual-form><mml:math id="M23" altimg="si52.gif" overflow="scroll"><mml:mrow><mml:msup><mml:mrow><mml:mtext>OH</mml:mtext></mml:mrow><mml:mrow><mml:mo>-</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula> ion into the solution. The resulting species <inline-formula><mml:math id="M24" altimg="si53.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mtext>As(OH)O</mml:mtext></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:mo>-</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> remained stable in the further course of the trajectory. No such process has been observed in the case of anions carrying two negative charges, e.g. sulfate <xref rid="b0260" ref-type="bibr">[52]</xref>.</p>
+      </sec>
+    </sec>
+    <sec id="s0050">
+      <label>6</label>
+      <title>Conclusions</title>
+      <p>The results presented here demonstrate that contemporary simulation methods are a suitable tool for the investigation of solvation processes, elucidating not only structure and composition of ion solvates, but also their dynamics and stability in solution. In particular in the cases where ultrafast, i.e. picosecond structural changes or solvolysis reactions take place, the theoretical simulation approach can be advantageous or even superior to experimental methods which can reach this timescale only in exceptional cases to date. On the other hand, the data presented here also demonstrate how important it is to include a sufficiently large region with full ab initio quantum chemical treatment and a much larger MM region for an appropriate embedding in bulk in the simulation protocol. Only this approach ensures the necessary accuracy and the possibility to describe reactions involving formation and cleavage of bonds.</p>
+      <p>Although only a limited number of highly charged ions could be presented here, this selection already gives quite some insight, how different the behaviour of such ions can be when they are embedded in water, ranging from extreme inertness until a hydrolytic conversion to new species within picoseconds. Computational facilities will enable to increase the quantitative accuracy of this description by the use of correlated ab initio methods in the simulations in a not too distant future, and the inclusion of counterions as well as the simulation of more concentrated solutions. This will further facilitate the already very fruitful collaborations with experimental research and thus open new horizons for investigations in solution chemistry.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="b0005">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Helm</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Merbach</surname>
+              <given-names>A.E.</given-names>
+            </name>
+          </person-group>
+          <source>Chem. Rev.</source>
+          <volume>105</volume>
+          <issue>6</issue>
+          <year>2005</year>
+          <fpage>1923</fpage>
+          <lpage>1960</lpage>
+          <pub-id pub-id-type="pmid">15941206</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0010">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bhattacharjee</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Pribil</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Chem. Phys. Lett.</source>
+          <volume>473</volume>
+          <issue>1–3</issue>
+          <year>2009</year>
+          <fpage>176</fpage>
+          <lpage>178</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0015">
+        <label>3</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Allen</surname>
+              <given-names>M.P.</given-names>
+            </name>
+            <name>
+              <surname>Tildesley</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Computer Simulation of Liquids</chapter-title>
+          <year>1990</year>
+          <publisher-name>Oxford Science Publications</publisher-name>
+          <publisher-loc>Oxford</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="b0020">
+        <label>4</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frenkel</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Smit</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Understanding Molecular Simulation</chapter-title>
+          <year>2002</year>
+          <publisher-name>Academic Press</publisher-name>
+          <publisher-loc>San Diego, London</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="b0025">
+        <label>5</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tuckerman</surname>
+              <given-names>M.E.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Statistical Mechanics: Theory and Molecular Simulation</chapter-title>
+          <year>2010</year>
+          <publisher-name>Oxford University Press</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="b0030">
+        <label>6</label>
+        <mixed-citation publication-type="other">A.R. Leach, Molecular Modelling, vol. second edn., Prentice-Hall, Harlow, 2001.</mixed-citation>
+      </ref>
+      <ref id="b0035">
+        <label>7</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ramachandran</surname>
+              <given-names>K.I.</given-names>
+            </name>
+            <name>
+              <surname>Deepa</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Namboori</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <source>Computational Chemistry and Molecular Modeling: Principles and Applications</source>
+          <year>2008</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>Berlin</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="b0040">
+        <label>8</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Szabo</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Ostlund</surname>
+              <given-names>N.S.</given-names>
+            </name>
+          </person-group>
+          <source>Modern Quantum Chemistry</source>
+          <year>1996</year>
+          <publisher-name>Dover Publications</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="b0045">
+        <label>9</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Levine</surname>
+              <given-names>I.N.</given-names>
+            </name>
+          </person-group>
+          <source>Quantum Chemistry</source>
+          <edition>fifth edn.</edition>
+          <year>1999</year>
+          <publisher-name>Prentice-Hall</publisher-name>
+          <publisher-loc>New Jersey</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="b0050">
+        <label>10</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Helgaker</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Jørgensen</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Olsen</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>Molecular Electronic Structure Theory</source>
+          <year>2000</year>
+          <publisher-name>Wiley</publisher-name>
+          <publisher-loc>Chichester</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="b0055">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Car</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Parrinello</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. Lett.</source>
+          <volume>55</volume>
+          <issue>22</issue>
+          <year>1985</year>
+          <fpage>2471</fpage>
+          <lpage>2474</lpage>
+          <pub-id pub-id-type="pmid">10032153</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0060">
+        <label>12</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Koch</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Holthausen</surname>
+              <given-names>M.C.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>A Chemist’s Guide to Density Functional Theory</chapter-title>
+          <edition>second edn.</edition>
+          <year>2002</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>Weinheim</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="b0065">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yoo</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Zeng</surname>
+              <given-names>X.C.</given-names>
+            </name>
+            <name>
+              <surname>Xantheas</surname>
+              <given-names>S.S.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Phys.</source>
+          <volume>130</volume>
+          <year>2009</year>
+          <fpage>221102</fpage>
+          <pub-id pub-id-type="pmid">19530755</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0070">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>VandeVondele</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kuo</surname>
+              <given-names>L.-F.W.</given-names>
+            </name>
+            <name>
+              <surname>Sebastiani</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Siepmann</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Hutter</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Mundy</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <volume>113</volume>
+          <year>2009</year>
+          <fpage>11959</fpage>
+          <lpage>11964</lpage>
+          <pub-id pub-id-type="pmid">19663399</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0075">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Warshel</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Levitt</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Biol.</source>
+          <volume>103</volume>
+          <year>1976</year>
+          <fpage>227</fpage>
+          <pub-id pub-id-type="pmid">985660</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0080">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Field</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Bash</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Karplus</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <volume>11</volume>
+          <issue>6</issue>
+          <year>1990</year>
+          <fpage>700</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0085">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gao</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <source>J. Am. Chem. Soc.</source>
+          <volume>115</volume>
+          <year>1993</year>
+          <fpage>2930</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0090">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bakowies</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Thiel</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem.</source>
+          <volume>100</volume>
+          <issue>25</issue>
+          <year>1996</year>
+          <fpage>10580</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0095">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Senn</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Thiel</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>Curr. Opin. Chem. Biol.</source>
+          <volume>11</volume>
+          <year>2007</year>
+          <fpage>182</fpage>
+          <pub-id pub-id-type="pmid">17307018</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0100">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Schwenk</surname>
+              <given-names>C.F.</given-names>
+            </name>
+            <name>
+              <surname>Xenides</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Vchirawongwin</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <source>Theor. Chem. Acc.</source>
+          <volume>115</volume>
+          <year>2006</year>
+          <fpage>77</fpage>
+          <lpage>85</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0105">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Pribil</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Adv. Quantum Chem.</source>
+          <volume>59</volume>
+          <year>2010</year>
+          <fpage>213</fpage>
+          <lpage>246</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0110">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Pribil</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+          </person-group>
+          <source>Adv. Inorg. Chem.</source>
+          <volume>62</volume>
+          <year>2010</year>
+          <fpage>143</fpage>
+          <lpage>175</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0115">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kerdcharoen</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Morokuma</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <source>Chem. Phys. Lett.</source>
+          <volume>335</volume>
+          <year>2002</year>
+          <fpage>257</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0120">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heyden</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Truhlar</surname>
+              <given-names>D.G.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <volume>111</volume>
+          <year>2007</year>
+          <fpage>2231</fpage>
+          <pub-id pub-id-type="pmid">17288477</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0125">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bulo</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Ensing</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Sikkema</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Visscher</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Theory Comput.</source>
+          <volume>5</volume>
+          <issue>9</issue>
+          <year>2009</year>
+          <fpage>2212</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0130">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Pribil</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <volume>127</volume>
+          <issue>4</issue>
+          <year>2005</year>
+          <fpage>14231</fpage>
+          <lpage>14238</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0135">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Persson</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <source>Chem. Phys. Lett.</source>
+          <volume>445</volume>
+          <issue>4-6</issue>
+          <year>2007</year>
+          <fpage>193</fpage>
+          <lpage>197</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0140">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Persson</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <source>Dalton Trans.</source>
+          <year>2009</year>
+          <fpage>1512</fpage>
+          <lpage>1515</lpage>
+          <pub-id pub-id-type="pmid">19421592</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0145">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azam</surname>
+              <given-names>S.S.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Chem. Phys. Lett.</source>
+          <volume>470</volume>
+          <year>2009</year>
+          <fpage>85</fpage>
+          <lpage>89</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0150">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Voloshina</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Gaston</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Paulus</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Phys.</source>
+          <volume>126</volume>
+          <year>2007</year>
+          <fpage>134115</fpage>
+          <pub-id pub-id-type="pmid">17430024</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0155">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lin</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Truhlar</surname>
+              <given-names>D.G.</given-names>
+            </name>
+          </person-group>
+          <source>Theor. Chem. Acc.</source>
+          <volume>117</volume>
+          <year>2007</year>
+          <fpage>185</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0160">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stillinger</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Rahman</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Phys.</source>
+          <volume>68</volume>
+          <issue>2</issue>
+          <year>1978</year>
+          <fpage>666</fpage>
+          <lpage>670</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0165">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bopp</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Janscö</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Heinzinger</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <source>Chem. Phys. Lett.</source>
+          <volume>98</volume>
+          <issue>2</issue>
+          <year>1983</year>
+          <fpage>129</fpage>
+          <lpage>133</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0170">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berendsen</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Madden</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>McDonald</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem.</source>
+          <volume>81</volume>
+          <year>1983</year>
+          <fpage>3684</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0175">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dunning</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Phys.</source>
+          <volume>53</volume>
+          <year>1970</year>
+          <fpage>6026</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0180">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Chem. Chem. Phys.</source>
+          <volume>7</volume>
+          <issue>7</issue>
+          <year>2005</year>
+          <fpage>1382</fpage>
+          <lpage>1387</lpage>
+          <pub-id pub-id-type="pmid">19787958</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0185">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <volume>112</volume>
+          <issue>37</issue>
+          <year>2008</year>
+          <fpage>11726</fpage>
+          <lpage>11733</lpage>
+          <pub-id pub-id-type="pmid">18729393</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0190">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lim</surname>
+              <given-names>L.H.V.</given-names>
+            </name>
+            <name>
+              <surname>Bhattacharjee</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Azam</surname>
+              <given-names>S.S.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Inorg. Chem.</source>
+          <volume>49</volume>
+          <issue>5</issue>
+          <year>2010</year>
+          <fpage>2132</fpage>
+          <lpage>2140</lpage>
+          <pub-id pub-id-type="pmid">20121188</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0195">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moin</surname>
+              <given-names>S.T.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Pribil</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Inorg. Chem.</source>
+          <volume>49</volume>
+          <issue>11</issue>
+          <year>2010</year>
+          <fpage>5101</fpage>
+          <lpage>5106</lpage>
+          <pub-id pub-id-type="pmid">20441160</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0200">
+        <label>40</label>
+        <mixed-citation publication-type="other">L. Canaval, QMCF Simulations of Highly Charged Ions, Master’s Thesis, University of Innsbruck, 2011.</mixed-citation>
+      </ref>
+      <ref id="b0205">
+        <label>41</label>
+        <mixed-citation publication-type="other">P. Pedevilla, Hydration Structure of Iridium(III), Bachelor’s Thesis, University of Innsbruck, 2011.</mixed-citation>
+      </ref>
+      <ref id="b0210">
+        <label>42</label>
+        <mixed-citation publication-type="other">O. Lutz, QMCF MD Simulations of Lanthanoid Ions, Master’s Thesis, University of Innsbruck, 2011.</mixed-citation>
+      </ref>
+      <ref id="b0215">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xenides</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Phys.</source>
+          <volume>122</volume>
+          <year>2005</year>
+          <fpage>4506</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0220">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xenides</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Mol. Liq.</source>
+          <volume>123</volume>
+          <year>2006</year>
+          <fpage>61</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0225">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fatmi</surname>
+              <given-names>Q.M.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <volume>28</volume>
+          <issue>10</issue>
+          <year>2007</year>
+          <fpage>1704</fpage>
+          <lpage>1710</lpage>
+          <pub-id pub-id-type="pmid">17342715</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0230">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Messner</surname>
+              <given-names>C.B.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Chem. Chem. Phys.</source>
+          <volume>13</volume>
+          <issue>1</issue>
+          <year>2011</year>
+          <fpage>224</fpage>
+          <lpage>229</lpage>
+          <pub-id pub-id-type="pmid">21103539</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0235">
+        <label>47</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Messner</surname>
+              <given-names>C.B.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Chem. Phys. Lett.</source>
+          <volume>501</volume>
+          <issue>4–6</issue>
+          <year>2011</year>
+          <fpage>292</fpage>
+          <lpage>295</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0240">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lim</surname>
+              <given-names>L.H.V.</given-names>
+            </name>
+            <name>
+              <surname>Bhattacharjee</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Chem. Chem. Phys.</source>
+          <volume>12</volume>
+          <issue>39</issue>
+          <year>2010</year>
+          <fpage>12423</fpage>
+          <lpage>12426</lpage>
+          <pub-id pub-id-type="pmid">20820570</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0245">
+        <label>49</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pribil</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <volume>29</volume>
+          <issue>14</issue>
+          <year>2008</year>
+          <fpage>2330</fpage>
+          <lpage>2334</lpage>
+          <pub-id pub-id-type="pmid">18473325</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0250">
+        <label>50</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bhattacharjee</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Pribil</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Chem. Chem. Phys</source>
+          <volume>12</volume>
+          <issue>23</issue>
+          <year>2010</year>
+          <fpage>6244</fpage>
+          <lpage>6246</lpage>
+          <pub-id pub-id-type="pmid">20396824</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0255">
+        <label>51</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bhattacharjee</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pribil</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Lim</surname>
+              <given-names>L.H.V.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <volume>114</volume>
+          <issue>11</issue>
+          <year>2010</year>
+          <fpage>3921</fpage>
+          <lpage>3926</lpage>
+          <pub-id pub-id-type="pmid">20192170</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0260">
+        <label>52</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vchirawongkwin</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Persson</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys. Chem. B</source>
+          <volume>111</volume>
+          <issue>16</issue>
+          <year>2007</year>
+          <fpage>4150</fpage>
+          <lpage>4155</lpage>
+          <pub-id pub-id-type="pmid">17402778</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="b0265">
+        <label>53</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frick</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Pribil</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Hofer</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Randolf</surname>
+              <given-names>B.R.</given-names>
+            </name>
+            <name>
+              <surname>Bhattacharjee</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Rode</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <source>Inorg. Chem.</source>
+          <volume>48</volume>
+          <issue>9</issue>
+          <year>2009</year>
+          <fpage>3993</fpage>
+          <lpage>4002</lpage>
+          <pub-id pub-id-type="pmid">19338289</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <bio>
+      <graphic xlink:href="fx2"/>
+      <p><bold>Ass.-Prof. Dr. Thomas Sebastian Hofer</bold> Born 1978 in Innsbruck, Austria. Ph.D. from University of Innsbruck in 2006. Since 2006 assistant professor in theoretical chemistry, promoted to associate professor in 2011. Main research fields are the development, implementation and application of advanced QM/MM methodologies, approaches to probe potential energy landscapes and simulations of biophysical systems.</p>
+    </bio>
+    <bio>
+      <graphic xlink:href="fx3"/>
+      <p><bold>Mag. Alexander Kurt Hermann Weiss</bold> Born 1986 in Rum, Austria. Graduted from University of Innsbruck in 2010. Currently working at University of Innsbruck as a PhD student.</p>
+    </bio>
+    <bio>
+      <graphic xlink:href="fx4"/>
+      <p><bold>Dr. Bernhard Rudolf Randolf</bold> Born 1975 in Vienna, Austria. Ph.D. from University of Innsbruck in 2006. Currently working as senior scientist at the University of Innsbruck. Teaching in the field of computational materials science.</p>
+    </bio>
+    <bio>
+      <graphic xlink:href="fx5"/>
+      <p><bold>Professor Dr. Dr.h.c.mult. Bernd Michael Rode</bold> Born 1946 in Innsbruck, Austria, Ph.D. from University of Innsbruck in 1973. Associate professor in 1976, professor in 1979 at University of Innsbruck. Research stays in Germany, Greece, Japan, Thailand and Indonesia. Main research fields are quantum mechanical simulations of liquids and solutions and prebiotic chemical evolution (experimental).</p>
+    </bio>
+    <ack>
+      <title>Acknowledgement</title>
+      <p>Financial support for this work by the Austrian Science Fund (FWF) is gratefully acknowledged.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Figure 1</label>
+      <caption>
+        <p>Example of the Coulomb catastrophe in the case of an As(III)–<inline-formula><alternatives><textual-form specific-use="jats-markup">H<sub>2</sub>O</textual-form><mml:math id="M25" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mtext>H</mml:mtext></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mtext>O</mml:mtext></mml:mrow></mml:math></alternatives></inline-formula> potential energy scan.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Figure 2</label>
+      <caption>
+        <p>Definition of QM regions (core and layer) and MM region in QMCF MD simulations.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Figure 3</label>
+      <caption>
+        <p>Typical example of a highly charged metal cation in aqueous solution: Ir(III).</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="f0020">
+      <label>Figure 4</label>
+      <caption>
+        <p>Typical example of a highly charged metal cation in aqueous solution: Ce(IV).</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="f0025">
+      <label>Figure 5</label>
+      <caption>
+        <p>Typical example of a highly charged metal cation in aqueous solution: As(III) after the first hydrolysis event.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="f0030">
+      <label>Figure 6</label>
+      <caption>
+        <p>Typical example of a highly charged metal cation in aqueous solution: Ge(IV) after hydrolysis.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <table-wrap id="t0005" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Structural parameters of hydrated trivalent metal cations, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>r</italic><sub>1</sub></textual-form><mml:math id="M26" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>r</italic><sub>2</sub></textual-form><mml:math id="M27" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> are the mean distances of first and second hydration shell, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub>1</sub></textual-form><mml:math id="M28" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub>2</sub></textual-form><mml:math id="M29" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>, the (average) number of ligands in these shells.</p>
+      </caption>
+    </table-wrap>
+    <table-wrap id="t0010" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Dynamical parameters of hydrated trivalent metal cations, <inline-formula><alternatives><textual-form specific-use="jats-markup">MRT<sub>1</sub></textual-form><mml:math id="M30" altimg="si10.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mtext>MRT</mml:mtext></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup">MRT<sub>2</sub></textual-form><mml:math id="M31" altimg="si11.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mtext>MRT</mml:mtext></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> are the mean ligands residence times of water ligands in the first and second hydration shell, <inline-formula><alternatives><textual-form specific-use="jats-markup">K<sub>I0</sub></textual-form><mml:math id="M32" altimg="si12.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mtext>K</mml:mtext></mml:mrow><mml:mrow><mml:mtext>I</mml:mtext><mml:mn>0</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>, the force constant for the ion–O bond.</p>
+      </caption>
+      <table-wrap-foot>
+        <fn>
+          <p>n.o.: no exchange processes observed during simulation time; n.a.: not available.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap id="t0015" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Structural parameters of hydrated tetravalent metal cations, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>r</italic><sub>1</sub></textual-form><mml:math id="M33" altimg="si16.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>r</italic><sub>2</sub></textual-form><mml:math id="M34" altimg="si17.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> are the mean distances of first and second hydration shell, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub>1</sub></textual-form><mml:math id="M35" altimg="si18.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub>2</sub></textual-form><mml:math id="M36" altimg="si19.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>, the (average) number of ligands in these shells.</p>
+      </caption>
+    </table-wrap>
+    <table-wrap id="t0020" position="float">
+      <label>Table 4</label>
+      <caption>
+        <p>Dynamical parameters of hydrated tetravalent metal cations <inline-formula><alternatives><textual-form specific-use="jats-markup">MRT<sub>1</sub></textual-form><mml:math id="M37" altimg="si24.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mtext>MRT</mml:mtext></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup">MRT<sub>2</sub></textual-form><mml:math id="M38" altimg="si25.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mtext>MRT</mml:mtext></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> are the mean ligands residence times of water ligands in the first and second hydration shell, <inline-formula><alternatives><textual-form specific-use="jats-markup">K<sub>I0</sub></textual-form><mml:math id="M39" altimg="si26.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mtext>K</mml:mtext></mml:mrow><mml:mrow><mml:mtext>I</mml:mtext><mml:mn>0</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>, the force constant for the ion–O bond.</p>
+      </caption>
+      <table-wrap-foot>
+        <fn>
+          <p>n.o.: no exchange processes observed during simulation time.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>

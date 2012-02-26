@@ -1,0 +1,1402 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Eng Fract Mech</journal-id>
+      <journal-title-group>
+        <journal-title>Engineering Fracture Mechanics</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0013-7944</issn>
+      <publisher>
+        <publisher-name>Pergamon Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3197331</article-id>
+      <article-id pub-id-type="pmid">22049246</article-id>
+      <article-id pub-id-type="publisher-id">EFM3539</article-id>
+      <article-id pub-id-type="doi">10.1016/j.engfracmech.2011.05.011</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Modeling of the variability of fatigue crack growth using cohesive zone elements</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Beaurepaire</surname>
+            <given-names>P.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schuëller</surname>
+            <given-names>G.I.</given-names>
+          </name>
+          <email>mechanik@uibk.ac.at</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff>Institute of Engineering Mechanics, University of Innsbruck, Technikerstr. 13, 6020 Innsbruck, Austria</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. <email>mechanik@uibk.ac.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>8</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>8</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>78</volume>
+      <issue>12</issue>
+      <fpage>2399</fpage>
+      <lpage>2413</lpage>
+      <history>
+        <date date-type="received">
+          <day>15</day>
+          <month>11</month>
+          <year>2010</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>30</day>
+          <month>3</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>18</day>
+          <month>5</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Ltd.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract abstract-type="graphical">
+        <title>Research highlights</title>
+        <p>► Cohesive zone elements allow to model fatigue crack initiation and growth. ► An algorithm reducing extensively the simulation time with little loss of accuracy was developed. ► The variability inherent in the fatigue life was assessed using a random field model. ► Both crack initiation and propagation are described by the same model.</p>
+      </abstract>
+      <abstract>
+        <p>By its nature, metal fatigue has random characteristics, leading to extensive scatter in the results. Both initiation and propagation of a fatigue crack can be seen as random processes. This manuscript develops a numerical analysis using cohesive zone elements allowing the use of one single model in the finite element simulation of the complete fatigue life. The present formulation includes a damage evolution mechanism that reflects gradual degradation of the cohesive strength under cyclic loading. The uncertainties inherent to the fatigue process are assumed to be caused by the variability of the material properties, which are modeled using random fields. An extrapolation scheme is proposed to reduce the computational time. First, the accuracy of the proposed formulation is assessed considering a deterministic crack growth problem. Second, the effect of randomness in the material properties on the total fatigue life of a structure is then analyzed.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Fatigue</kwd>
+        <kwd>Cohesive zone elements</kwd>
+        <kwd>Monte Carlo simulation</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <def-list>
+      <title>Nomenclature</title>
+      <def-item>
+        <term>
+          <italic>a</italic>
+        </term>
+        <def>
+          <p>first parameter of the cohesive law in case of monotonic loading</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>b</italic>
+        </term>
+        <def>
+          <p>second parameter of the cohesive law in case of monotonic loading</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term><italic>C</italic>(·,·)</term>
+        <def>
+          <p>covariance function</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>D</italic>
+        </term>
+        <def>
+          <p>damage parameter of a cohesive element</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>D</italic>
+          <sub>
+            <italic>t</italic>
+          </sub>
+        </term>
+        <def>
+          <p>damage in a cohesive element at the time <italic>t</italic></p>
+        </def>
+      </def-item>
+      <def-item>
+        <term><italic>E</italic>(·)</term>
+        <def>
+          <p>average operator</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>K</italic>
+        </term>
+        <def>
+          <p>stiffness matrix of a cohesive zone element</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>l</italic>
+          <sub>0</sub>
+        </term>
+        <def>
+          <p>parameter monitoring the decay of the correlation between the value of the realization of a random field elements as the distance increases</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <bold>
+            <italic>N</italic>
+          </bold>
+        </term>
+        <def>
+          <p>matrix of the shape functions</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term><italic>N</italic><sub>1</sub>, <italic>N</italic><sub>2</sub></term>
+        <def>
+          <p>shape functions</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <bold>
+            <italic>R</italic>
+          </bold>
+        </term>
+        <def>
+          <p>matrix linking the displacement in the global coordinate system to the displacement in the cohesive element coordinate system (normal and tangential displacements)</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <bold>
+            <italic>S</italic>
+          </bold>
+        </term>
+        <def>
+          <p>matrix of the material properties of a cohesive element</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>T</italic>
+          <sub>0</sub>
+        </term>
+        <def>
+          <p>fourth parameter of the cohesive law in case of cyclic loading</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <bold>
+            <italic>T</italic>
+          </bold>
+          <sub>
+            <italic>coh</italic>
+          </sub>
+        </term>
+        <def>
+          <p>the cohesive traction vector</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <bold>
+            <italic>T</italic>
+          </bold>
+          <sub>
+            <italic>ext</italic>
+          </sub>
+        </term>
+        <def>
+          <p>the external traction vector</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>T</italic>
+          <sub>
+            <italic>n</italic>
+          </sub>
+        </term>
+        <def>
+          <p>stress in the normal direction</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>T</italic>
+          <sub>
+            <italic>t</italic>
+          </sub>
+        </term>
+        <def>
+          <p>stress in the tangential direction</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <bold>
+            <italic>u</italic>
+          </bold>
+        </term>
+        <def>
+          <p>the displacement vector</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <inline-formula>
+            <mml:math id="M1" altimg="si1.gif" overflow="scroll">
+              <mml:mrow>
+                <mml:msubsup>
+                  <mml:mrow>
+                    <mml:mi>u</mml:mi>
+                  </mml:mrow>
+                  <mml:mrow>
+                    <mml:mi>j</mml:mi>
+                  </mml:mrow>
+                  <mml:mrow>
+                    <mml:mi mathvariant="italic">surface</mml:mi>
+                    <mml:mspace width="0.35em"/>
+                    <mml:mi>i</mml:mi>
+                  </mml:mrow>
+                </mml:msubsup>
+              </mml:mrow>
+            </mml:math>
+          </inline-formula>
+        </term>
+        <def>
+          <p>denotes the displacement of the cohesive surface <italic>i</italic> in the direction <italic>j</italic></p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <inline-formula>
+            <mml:math id="M2" altimg="si2.gif" overflow="scroll">
+              <mml:mrow>
+                <mml:msubsup>
+                  <mml:mrow>
+                    <mml:mi>u</mml:mi>
+                  </mml:mrow>
+                  <mml:mrow>
+                    <mml:mi>i</mml:mi>
+                  </mml:mrow>
+                  <mml:mrow>
+                    <mml:mi>X</mml:mi>
+                  </mml:mrow>
+                </mml:msubsup>
+              </mml:mrow>
+            </mml:math>
+          </inline-formula>
+        </term>
+        <def>
+          <p>the displacement of the node <italic>X</italic> in the direction <italic>i</italic></p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>V</italic>
+        </term>
+        <def>
+          <p>volume</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term><italic>x</italic>, <italic>x</italic><sub>1</sub>, <italic>x</italic><sub>2</sub></term>
+        <def>
+          <p>spacial coordinates</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>Y</italic>
+        </term>
+        <def>
+          <p>random field</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term><italic>Y</italic><sub>1</sub>, <italic>Y</italic><sub>2</sub>, <italic>Y</italic><sub>3</sub></term>
+        <def>
+          <p>random fields used to model the material parameter of cohesive elements</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>α</italic>
+        </term>
+        <def>
+          <p>first parameter of the cohesive law in case of cyclic loading</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>β</italic>
+        </term>
+        <def>
+          <p>second parameter of the cohesive law in case of cyclic loading</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>γ</italic>
+        </term>
+        <def>
+          <p>third parameter of the cohesive law in case of cyclic loading</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <bold>Δ</bold>
+        </term>
+        <def>
+          <p>relative displacement between adjacent cohesive surface</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>ε</italic>
+          <sub>
+            <italic>p</italic>
+          </sub>
+        </term>
+        <def>
+          <p>plastic strain in a bulk element</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>Δ<italic>D</italic><sub>1</sub>, Δ<italic>D</italic><sub>2</sub>, Δ<italic>D</italic><sub>3</sub>, Δ<italic>D</italic><sub>4</sub></term>
+        <def>
+          <p>variation of the damage over on cycle</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>δ</italic>
+          <sub>
+            <italic>n</italic>
+          </sub>
+        </term>
+        <def>
+          <p>normal component of the relative displacement between adjacent cohesive surfaces</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>δ</italic>
+          <sub>
+            <italic>t</italic>
+          </sub>
+        </term>
+        <def>
+          <p>tangential component of the relative displacement between adjacent cohesive surfaces</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>δ</italic>
+          <sub>
+            <bold>
+              <italic>u</italic>
+            </bold>
+          </sub>
+        </term>
+        <def>
+          <p>test field</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>δ</italic>
+          <bold>
+            <italic>ε</italic>
+          </bold>
+        </term>
+        <def>
+          <p>symmetric gradient of the test field</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <bold>
+            <italic>ζ</italic>
+          </bold>
+        </term>
+        <def>
+          <p>set of outcomes of an experiment</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>θ</italic>
+        </term>
+        <def>
+          <p>the angle of a cohesive element with respect to the horizontal direction</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>λ</italic>
+          <sub>
+            <italic>i</italic>
+          </sub>
+        </term>
+        <def>
+          <p>eigenvalue of the correlation matrix</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term><italic>μ</italic>(·)</term>
+        <def>
+          <p>mean function</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>μY</italic>
+        </term>
+        <def>
+          <p>mean value of the random field <italic>Y</italic></p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <bold>
+            <italic>ξ</italic>
+          </bold>
+        </term>
+        <def>
+          <p>set of independent identical distributed standard normal random variables</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term><italic>ρ</italic>(·,·)</term>
+        <def>
+          <p>correlation function</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <bold>
+            <italic>σ</italic>
+          </bold>
+        </term>
+        <def>
+          <p>stress tensor</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term><italic>σ</italic>(·)</term>
+        <def>
+          <p>standard deviation function of the random field <italic>Y</italic></p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>σ</italic>
+        </term>
+        <def>
+          <p>stress in a bulk element</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>σ</italic>
+          <sub>
+            <italic>y</italic>
+          </sub>
+        </term>
+        <def>
+          <p>first parameter of Voce law (yield stress)</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>σ</italic>
+          <sub>
+            <italic>u</italic>
+          </sub>
+        </term>
+        <def>
+          <p>second parameter of Voce law (ultimate stress)</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>Φ</italic>
+        </term>
+        <def>
+          <p>eigenvector of the correlation matrix</p>
+        </def>
+      </def-item>
+      <def-item>
+        <term>
+          <italic>ω</italic>
+        </term>
+        <def>
+          <p>third parameter of Voce law</p>
+        </def>
+      </def-item>
+    </def-list>
+    <sec id="s0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>Fatigue is the dominant failure mode of mechanical components subject to alternating loadings, leading to fracture at a stress level much lower than the yield stress of the material. One or several cracks initiate and propagate into the structure, leading to sudden fracture once a critical length is reached.</p>
+      <p>The most widely used model to predict fatigue crack growth is the Paris–Erdogan equation <xref rid="b0095" ref-type="bibr">[19]</xref> or any of its further implementations <xref rid="b0025 b0140" ref-type="bibr">[5,28]</xref>. They consist of a phenomenological relation between the crack growth rate (<italic>da</italic>/<italic>dn</italic>) and the stress intensity factor range (Δ<italic>K</italic>). Numerical methods have been developed in order to determine the stress intensity factor of complex structures incorporating one or several cracks, such as the finite element alternating method <xref rid="b0135" ref-type="bibr">[27]</xref> or the extended finite element method <xref rid="b0075" ref-type="bibr">[15]</xref>. Such methods can be used in combination with the Paris–Erdogan equation to model fatigue crack growth (see for instance <xref rid="b0145 b0100 b0120" ref-type="bibr">[29,20,24]</xref>). However, specific requirements have to be met to ensure that Paris–Erdogan equation is predictive. A long initial crack must be initially present and yielding at the crack tip must be limited. These conditions do not apply to most engineering structures, where no flaw is initially present.</p>
+      <p>Cohesive zone elements are an alternative method to account for crack growth by means of finite element simulation. Such models have been pioneered by Dugdal <xref rid="b0020" ref-type="bibr">[4]</xref> and Barrenblatt <xref rid="b0005" ref-type="bibr">[1]</xref>. In this context, fracture is considered a gradual phenomenon, with the progressive separation of the lips of an extended crack. Cohesive elements consists of zero-thickness elements that are inserted between the bulk elements (see <xref rid="f0005" ref-type="fig">Fig. 1</xref>) and account for the resistance to crack opening by means of a dedicated traction displacement law. This cohesive force dissipates, at least partially, the energy related to crack formation. De Borst et al. <xref rid="b0015" ref-type="bibr">[3]</xref> introduced a partition of unity based approach, which allows to model cohesive cracks independently from the mesh.</p>
+      <p>The cohesive zone elements described above are not suitable for modeling fatigue crack growth. In such cases, the parameters of the finite element model do no longer evolve after few cycles, leading to crack arrest. Nguyen et al. <xref rid="b0085" ref-type="bibr">[17]</xref> extended the cohesive law to include fatigue crack growth. In order to account for fatigue crack growth, a deterioration of the material properties at each cycle has been introduced. During the unloading–reloading process, the cohesive law shows an hysteresis loop, the slight decay of the stiffness simulates fatigue crack propagation. Such cohesive elements account for both the crack initiation and the crack propagation.</p>
+      <p>Engineers are aware that the fatigue behavior of components is strongly affected by uncertainties, i.e. nominally identical structures undergoing the same load spectrum present extensive scatter in their fatigue life. Crack initiation <xref rid="b0065" ref-type="bibr">[13]</xref> and crack propagation <xref rid="b0125" ref-type="bibr">[25]</xref> can both be seen as uncertain processes. Hence several authors have proposed a probabilistic analysis of the fatigue life of structures. Kebir et al. <xref rid="b0055" ref-type="bibr">[11]</xref> considered a probabilistic S–N curve to model the time to crack initiation. Proppe and Schuëller <xref rid="b0100" ref-type="bibr">[20]</xref> used the equivalent initial flaw size including uncertainties in both the coefficient of Paris–Erdogan equation and the length of the cracks initially introduced. The variability of the crack growth process can alternatively be modeled using stochastic differential equations (see e.g. <xref rid="b0110" ref-type="bibr">[22]</xref>).</p>
+      <p>The time to crack initiation, the growth rate and the final fracture process might all include uncertainties. Most of the methods available in the literature require to set up several probabilistic models which have to be combined in order to account for all kind of uncertainties inherent to fatigue (see <xref rid="b0060" ref-type="bibr">[12]</xref>). Cohesive elements provide an unified framework to describe the whole fatigue life. A formulation for cohesive zone elements was developed in order to describe accurately the fatigue behavior using a single probabilistic model (see Section <xref rid="s0015" ref-type="sec">2.1</xref> of this manuscript).</p>
+      <p>Section <xref rid="s0010" ref-type="sec">2</xref> describes the method of analysis used in this study. The formulation of a cohesive law is proposed and It includes a damage variable which governs fatigue crack growth. Random fields are used to model the variability of material parameters and Samples of the random fields are generated using Monte Carlo simulation. A method reducing the computational time of the finite element simulation of the fatigue life is proposed. Section <xref rid="s0080" ref-type="sec">3</xref> presents two numerical examples. First only deterministic crack growth is considered. In the second example, the variability of the fatigue life is assessed, both crack initiation and propagation, respectively, are considered. The results of the simulations are presented and discussed in Section <xref rid="s0095" ref-type="sec">4</xref>. This document closes with some final remarks and an outlook for possible future extension of the model reported herein.</p>
+    </sec>
+    <sec id="s0010">
+      <label>2</label>
+      <title>Method of analysis</title>
+      <p>A cohesive law for fatigue crack growth has been developed. It includes a memory variable that accounts for the degradation of the material under alternating load. The variability of fatigue crack initiation and propagation can be modeled using random fields. Samples are generated using Monte Carlo simulation and taken as the material parameters of the cohesive element formulation developed in this study. Performing cycle by cycle simulation of the fatigue life would be computationally prohibitive, even considering small finite element models. Hence an extrapolation scheme is proposed to speed up the simulation time.</p>
+      <sec id="s0015">
+        <label>2.1</label>
+        <title>Cohesive law for fatigue cracks</title>
+        <sec id="s0020">
+          <label>2.1.1</label>
+          <title>General remarks</title>
+          <p>The formulation of a cohesive zone element for fatigue cracks is proposed. First the general aspects of the implementation are discussed without accounting for the material properties. Then a cohesive law dedicated to fatigue cracks is introduced.</p>
+        </sec>
+        <sec id="s0025">
+          <label>2.1.2</label>
+          <title>Implementation of a cohesive element</title>
+          <p>Let us consider a solid containing a cohesive surface. Using the principle of virtual work, the mechanical equilibrium can be expressed as:<disp-formula id="e0005"><label>(1)</label><alternatives><textual-form specific-use="jats-markup">∫<sub><italic>V</italic></sub><bold><italic>σ</italic></bold>:δ<bold><italic>ε</italic></bold><italic>dV</italic> - ∫<sub><italic>S</italic><sub><italic>int</italic></sub></sub><bold><italic>T</italic></bold><sub><italic>coh</italic></sub>·δ<bold>Δ</bold><italic>dS</italic> = ∫<sub><italic>S</italic><sub><italic>ext</italic></sub></sub><bold><italic>T</italic></bold><sub><italic>ext</italic></sub>δ<bold><italic>u</italic></bold><italic>dS</italic></textual-form><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:msub><mml:mo>∫</mml:mo><mml:mrow><mml:mi>V</mml:mi></mml:mrow></mml:msub><mml:mi mathvariant="bold-italic">σ</mml:mi><mml:mo>:</mml:mo><mml:mi>δ</mml:mi><mml:mi mathvariant="bold-italic">ε</mml:mi><mml:mi mathvariant="italic">dV</mml:mi><mml:mo>-</mml:mo><mml:msub><mml:mo>∫</mml:mo><mml:mrow><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">int</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">T</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">coh</mml:mi></mml:mrow></mml:msub><mml:mo>·</mml:mo><mml:mi>δ</mml:mi><mml:mi mathvariant="bold">Δ</mml:mi><mml:mi mathvariant="italic">dS</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mo>∫</mml:mo><mml:mrow><mml:msub><mml:mrow><mml:mi>S</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">ext</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">T</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">ext</mml:mi></mml:mrow></mml:msub><mml:mi>δ</mml:mi><mml:mi mathvariant="bold-italic">u</mml:mi><mml:mi mathvariant="italic">dS</mml:mi></mml:math></alternatives></disp-formula>where <italic>V</italic>, <italic>S</italic><sub><italic>int</italic></sub> and <italic>S</italic><sub><italic>ext</italic></sub> are the bulk volume, the cohesive surface and the external surface, <bold><italic>σ</italic></bold>, <bold><italic>T</italic></bold><sub><italic>coh</italic></sub> and <bold><italic>T</italic></bold><sub><italic>ext</italic></sub> denote respectively the stress tensor, the cohesive traction vector and the external traction vector, <italic>δε</italic> is the symmetric gradient of the test field <bold><italic>u</italic></bold>. <bold>Δ</bold> denotes the relative displacement between adjacent cohesive surfaces. The second terms of the left-hand side of Eq. <xref rid="e0005" ref-type="disp-formula">1</xref> represents the contribution of cohesive elements. <bold>Δ</bold> can be expressed independently from the orientation of a cohesive element as:<disp-formula id="e0010"><label>(2)</label><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mi mathvariant="bold">Δ</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow><mml:mo>=</mml:mo><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mi mathvariant="italic">cos</mml:mi><mml:mi>θ</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mi mathvariant="italic">sin</mml:mi><mml:mi>θ</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mo>-</mml:mo><mml:mi mathvariant="italic">cos</mml:mi><mml:mi>θ</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mo>-</mml:mo><mml:mi mathvariant="italic">sin</mml:mi><mml:mi>θ</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mo>-</mml:mo><mml:mi mathvariant="italic">sin</mml:mi><mml:mi>θ</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mi mathvariant="italic">cos</mml:mi><mml:mi>θ</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mi mathvariant="italic">sin</mml:mi><mml:mi>θ</mml:mi></mml:mtd><mml:mtd columnalign="center"><mml:mo>-</mml:mo><mml:mi mathvariant="italic">cos</mml:mi><mml:mi>θ</mml:mi></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow><mml:mo>·</mml:mo><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">surface</mml:mi><mml:mspace width="0.35em"/><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">surface</mml:mi><mml:mspace width="0.35em"/><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">surface</mml:mi><mml:mspace width="0.35em"/><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">surface</mml:mi><mml:mspace width="0.35em"/><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow><mml:mo>=</mml:mo><mml:mi mathvariant="bold-italic">R</mml:mi><mml:mo>·</mml:mo><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">surface</mml:mi><mml:mspace width="0.35em"/><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">surface</mml:mi><mml:mspace width="0.35em"/><mml:mn>1</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">surface</mml:mi><mml:mspace width="0.35em"/><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">surface</mml:mi><mml:mspace width="0.35em"/><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula>where <italic>θ</italic> denotes the angle of a cohesive element with respect to the horizontal (see <xref rid="f0010" ref-type="fig">Fig. 2</xref>), <italic>δ</italic><sub><italic>t</italic></sub> and <italic>δ</italic><sub><italic>n</italic></sub> denote respectively the tangential and the normal component of the relative displacement between adjacent cohesive surfaces (in the coordinate system attached to the element of interest). <inline-formula><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mi>j</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">surface</mml:mi><mml:mspace width="0.25em"/><mml:mi>i</mml:mi></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> denotes the displacement of the cohesive surface <italic>i</italic> in the direction <italic>j</italic> (i.e. in <xref rid="f0010" ref-type="fig">Fig. 2</xref> the cohesive surfaces are the segments AB and CD).</p>
+          <p>Considering an element as shown in <xref rid="f0010" ref-type="fig">Fig. 2</xref>, the displacement of the cohesive surfaces can be related to the nodal displacements:<disp-formula id="e0015"><label>(3)</label><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">CD</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">CD</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">AB</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi mathvariant="italic">AB</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow><mml:mo>=</mml:mo><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mtd><mml:mtd columnalign="center"><mml:mn>0</mml:mn></mml:mtd><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow><mml:mo>·</mml:mo><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>D</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi>D</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>C</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi>C</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>A</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi>A</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>B</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi>B</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow><mml:mo>=</mml:mo><mml:mi mathvariant="bold-italic">N</mml:mi><mml:mo>·</mml:mo><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>D</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi>D</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>C</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi>C</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>A</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi>A</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>B</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mi>B</mml:mi></mml:mrow></mml:msubsup></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula>where <italic>N</italic><sub>1</sub> and <italic>N</italic><sub>2</sub> denote the shape functions, <inline-formula><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow><mml:mrow><mml:mi>X</mml:mi></mml:mrow></mml:msubsup></mml:mrow></mml:math></inline-formula> is the displacement of the node <italic>X</italic> in the direction <italic>i</italic> (<italic>i</italic> being the horizontal or vertical direction in this study, <italic>X</italic> being the node <italic>A</italic>, <italic>B</italic>, <italic>C</italic> or <italic>D</italic> in <xref rid="f0010" ref-type="fig">Fig. 2</xref>). Numerical integration was performed according to Newton–Cotes scheme. Indeed, the integration points are located at the extremities of the center-line of a cohesive element, as shown on <xref rid="f0010" ref-type="fig">Fig. 2</xref>a. Such integration scheme provides better robustness of the implementation by avoiding spurious oscillations in the stress field of the cohesive elements <xref rid="b0105" ref-type="bibr">[21]</xref>. <xref rid="f0010" ref-type="fig">Fig. 2</xref>b presents the aspect of the shape functions.</p>
+          <p>The nominal traction rates are expressed as:<disp-formula id="e0020"><label>(4)</label><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mo>˙</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mo>˙</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow><mml:mo>=</mml:mo><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:mfrac><mml:mrow><mml:mi>∂</mml:mi><mml:msub><mml:mrow><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi>∂</mml:mi><mml:msub><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac></mml:mtd><mml:mtd columnalign="center"><mml:mfrac><mml:mrow><mml:mi>∂</mml:mi><mml:msub><mml:mrow><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi>∂</mml:mi><mml:msub><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:mfrac><mml:mrow><mml:mi>∂</mml:mi><mml:msub><mml:mrow><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi>∂</mml:mi><mml:msub><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac></mml:mtd><mml:mtd columnalign="center"><mml:mfrac><mml:mrow><mml:mi>∂</mml:mi><mml:msub><mml:mrow><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mi>∂</mml:mi><mml:msub><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow><mml:mo>·</mml:mo><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mo>˙</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mo>˙</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow><mml:mo>=</mml:mo><mml:mi mathvariant="bold-italic">S</mml:mi><mml:mo>·</mml:mo><mml:mrow><mml:mfenced open="[" close="]"><mml:mrow><mml:mtable><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mo>˙</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd columnalign="center"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mo>˙</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula>where <italic>T</italic><sub><italic>n</italic></sub> and <italic>T</italic><sub><italic>t</italic></sub> respectively denote the stress in the normal and tangential direction, <inline-formula><mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mo>˙</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></inline-formula> (resp. <inline-formula><mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mo>˙</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></inline-formula>) denotes the normal (resp. tangential) traction rate (see Eq. <xref rid="e0010" ref-type="disp-formula">2</xref>). <bold><italic>S</italic></bold> denotes the matrix of the material properties independently from the geometry of the element. Using Eqs. <xref rid="e0010 e0015 e0020" ref-type="disp-formula">(2)–(4)</xref> the stiffness matrix of one cohesive element can be expressed as:<disp-formula id="e0025"><label>(5)</label><alternatives><textual-form specific-use="jats-markup"><bold><italic>K</italic></bold> = ∫<sub><italic>S</italic></sub><bold><italic>N</italic></bold><sup><italic>T</italic></sup>·<bold><italic>R</italic></bold><sup><italic>T</italic></sup>·<bold><italic>S</italic></bold>·<bold><italic>R</italic></bold>·<bold><italic>N</italic></bold><italic>dS</italic></textual-form><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:mi mathvariant="bold-italic">K</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mo>∫</mml:mo><mml:mrow><mml:mi>S</mml:mi></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mi mathvariant="bold-italic">N</mml:mi></mml:mrow><mml:mrow><mml:mi>T</mml:mi></mml:mrow></mml:msup><mml:mo>·</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="bold-italic">R</mml:mi></mml:mrow><mml:mrow><mml:mi>T</mml:mi></mml:mrow></mml:msup><mml:mo>·</mml:mo><mml:mi mathvariant="bold-italic">S</mml:mi><mml:mo>·</mml:mo><mml:mi mathvariant="bold-italic">R</mml:mi><mml:mo>·</mml:mo><mml:mi mathvariant="bold-italic">N</mml:mi><mml:mi mathvariant="italic">dS</mml:mi></mml:math></alternatives></disp-formula>Eq. <xref rid="e0025" ref-type="disp-formula">(5)</xref> was used as the basis for implementation of a user defined element subroutine in the finite element code FEAP <xref rid="b0115" ref-type="bibr">[23]</xref>.</p>
+          <p>In this study, the cracks are loaded according to mode 1 (opening mode, the stress is perpendicular to the crack direction). Hence the tangential stiffness was neglected and it was not implemented in the formulation proposed here.</p>
+        </sec>
+        <sec id="s0030">
+          <label>2.1.3</label>
+          <title>Monotonic loading</title>
+          <p>The mechanical model proposed by Needleman <xref rid="b0080" ref-type="bibr">[16]</xref> was used in the case of monotonic loading. The cohesive stress is given by:<disp-formula id="e0030"><label>(6)</label><mml:math id="M12" altimg="si12.gif" overflow="scroll"><mml:mi>T</mml:mi><mml:mo>=</mml:mo><mml:mi>a</mml:mi><mml:mo>·</mml:mo><mml:mi>δ</mml:mi><mml:mo>·</mml:mo><mml:mi mathvariant="italic">exp</mml:mi><mml:mrow><mml:mfenced open="(" close=")"><mml:mrow><mml:mo>-</mml:mo><mml:mfrac><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>b</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula>where <italic>a</italic> and <italic>b</italic> are material parameters. The features of the stress–displacement law are shown in <xref rid="f0015" ref-type="fig">Fig. 3</xref>. When a such an element undergoes separation the cohesive force first increases, which models the resistance of material to crack propagation. If the displacement exceeds a critical value, the cohesive force decreases, which accounts for the decay of strength of the damaged material (i.e. voids or microcracks appear ahead of the crack tip). The maximum stress is reached for <italic>δ</italic> = <italic>b</italic>. The value of parameters <italic>a</italic> and <italic>b</italic> has to be selected carefully. Low values of <italic>a</italic> lead to underestimated maximum stress of the cohesive law. During finite element simulations, the yield stress of the bulk material may never be reached, and lead to modeling brittle fracture. High values of <italic>a</italic> lead to a unreasonably high value of the maximum stress of the cohesive law. This stress may never be reached and only plastic collapse is modeled. The coefficient <italic>b</italic> indirectly influences the fracture behavior. It monitors the repartition of stress at the crack tip. It was noticed that the stress ahead of the crack tip decreases faster with the distance for lower values of <italic>b</italic>.</p>
+        </sec>
+        <sec id="s0035">
+          <label>2.1.4</label>
+          <title>Unloading</title>
+          <p>Unloading of a structure can be defined as a decrease of the applied stress. However, this definition cannot be systematically generalized to the behavior of one single cohesive element. Local unloading can be caused by global unloading of the structure, by a change in the repartition of stress as a crack propagates or by interactions between cracks. Since cohesive element show softening, loading (resp. unloading) is defined as a increase (resp. decrease) of the separation. Eq. <xref rid="e0030" ref-type="disp-formula">(6)</xref> does not apply when unloading is considered. Indeed, the behavior of the cohesive elements has to account for irreversibility of crack growth. The stiffness of the cohesive elements is reduced by damage and unloading occurs linearly at constant stiffness so that stress vanishes when the separation is equal to zero.</p>
+        </sec>
+        <sec id="s0040">
+          <label>2.1.5</label>
+          <title>Cyclic loading</title>
+          <p>In conventional formulations of cohesive zone elements, an unloading–reloading cycle is performed at constant stiffness. Such formulations are dedicated to fracture mechanics only. The cohesive law presented up to now is non-dissipative, since there is no degradation of the material properties over a cycle, leading to crack arrest after few cycles. The material law proposed previously was extended to cyclic loading. It consist of a cohesive envelop describing the behavior of an element under monotonic loading and an hysteresis loop accounts for the damage accumulation at each fatigue cycle. When a cohesive elements element undergoes unloading and then reloading, the stiffness is slightly decreased as the stress is increased. The rate of loss of stiffness is driven by Eq. <xref rid="e0035" ref-type="disp-formula">(7)</xref>. When the stress at reloading reaches and exceeds the stress predicted by the cohesive envelop (at given displacement), the behavior of the elements is according to the cohesive envelop (determined by Eq. <xref rid="e0030" ref-type="disp-formula">(6)</xref>). The history of each element is described using a scalar damage parameter whose value is within the range [0–1]:<disp-formula id="e0035"><label>(7)</label><mml:math id="M13" altimg="si13.gif" overflow="scroll"><mml:mover accent="true"><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mo>˙</mml:mo></mml:mrow></mml:mover><mml:mo>=</mml:mo><mml:mi>α</mml:mi><mml:mo>·</mml:mo><mml:msubsup><mml:mrow><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow><mml:mrow><mml:mi>β</mml:mi></mml:mrow></mml:msubsup><mml:mo>·</mml:mo><mml:mi mathvariant="italic">max</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mn>0</mml:mn></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:mn>0</mml:mn><mml:mo stretchy="false">)</mml:mo><mml:msup><mml:mrow><mml:mo> </mml:mo></mml:mrow><mml:mrow><mml:mi>γ</mml:mi></mml:mrow></mml:msup></mml:math></disp-formula>where <italic>α</italic>, <italic>β</italic>, <italic>γ</italic> and <italic>T</italic><sub>0</sub> are material parameters. The parameter <italic>T</italic><sub>0</sub> is the stress at which damage does no longer accumulate in the material. In case of homogeneous reparation of the stress (at least among the crack path), the fatigue limit is equal to the value of <italic>T</italic><sub>0</sub>. The coefficient <italic>α</italic> monitors the rate at which damage accumulates. The coefficients <italic>β</italic> and <italic>γ</italic> monitor sensitivity of damage rate to the stress.</p>
+          <p>At any moment during cyclic loading, the normal stress in a cohesive element is equal to:<disp-formula id="e0040"><label>(8)</label><mml:math id="M14" altimg="si14.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>T</mml:mi></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mi>b</mml:mi></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo>-</mml:mo><mml:mi>D</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:msub><mml:mrow><mml:mi>u</mml:mi></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:math></disp-formula>where <italic>a</italic> and <italic>b</italic> are the parameters of the cohesive envelop law, given by Eq. <xref rid="e0030" ref-type="disp-formula">(6)</xref>, <italic>D</italic> is the total damage accumulated in an element and <italic>u</italic><sub><italic>n</italic></sub> is the relative displacement in the direction normal to the center-line of the element.</p>
+          <p>The case <italic>D</italic> = 0 correspond to virgin material. When the first loading is applied, the behavior of the element is determined by Eq. <xref rid="e0030" ref-type="disp-formula">(6)</xref> until unloading occurs. The case <italic>D</italic> = 1 corresponds to completely damaged elements, which do not transmit any stress. Such elements correspond to the physical crack. The case <italic>D</italic> ≪ 1 and <italic>D</italic> ≫ 0 corresponds to the <italic>cohesive crack tip</italic>.</p>
+        </sec>
+        <sec id="s0045">
+          <label>2.1.6</label>
+          <title>Compression</title>
+          <p>If compressive stress is applied, the crack lips should be in contact with each other. In order to limit overlapping of the bulk elements, the cohesive elements show a penalty stiffness if the separation is less than zero. In this study, the penalty stiffness was arbitrarily set to 10·<italic>a</italic>/<italic>b</italic>. Damage does not accumulate in elements under compression.</p>
+        </sec>
+      </sec>
+      <sec id="s0050">
+        <label>2.2</label>
+        <title>Random field model</title>
+        <p>A random field is a rule for assigning to any set of outcomes of an experiment <bold><italic>ζ</italic></bold> a function <italic>Y</italic>(<bold><italic>x</italic></bold>) = <italic>Y</italic>(<bold><italic>x</italic></bold>, <bold><italic>ζ</italic></bold>). <bold><italic>x</italic></bold> denotes spacial coordinates (scalar or vector), but it can be extended to any other quantity (time, etc.).</p>
+        <p>The dependency towards the outcome <bold><italic>ζ</italic></bold> can be omitted. Then <italic>Y</italic>(<bold><italic>x</italic></bold>) is a set of functions. If coordinate <bold><italic>x</italic></bold> is fixed, <italic>Y</italic>(<bold><italic>x</italic></bold>) is a random variable, called <italic>state</italic> of the random field. In case <bold><italic>ζ</italic></bold> is known, <italic>Y</italic>(<bold><italic>x</italic></bold>) is a deterministic function, called <italic>realization</italic>. If both <bold><italic>ζ</italic></bold> and <bold><italic>x</italic></bold> are fixed, <italic>Y</italic>(<bold><italic>x</italic></bold>) is a number.</p>
+        <p>A random field has a <italic>parametric representation</italic> if an analytical expression links the random field to the spacial coordinate and to the set <bold><italic>ζ</italic></bold>:<disp-formula id="e0045"><label>(9)</label><alternatives><textual-form specific-use="jats-markup"><italic>Y</italic>(<bold><italic>x</italic></bold>) = <italic>f</italic>(<bold><italic>x</italic></bold>,<bold><italic>ζ</italic></bold>)</textual-form><mml:math id="M15" altimg="si15.gif" overflow="scroll"><mml:mi>Y</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mtext>,</mml:mtext><mml:mi mathvariant="bold-italic">ζ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></disp-formula>where <italic>f</italic> is any explicit analytical function. <italic>Y</italic>(<bold><italic>x</italic></bold>) is fully determined by the joint probability density function of the set <italic>Y</italic>. If the later can be determined, realizations of the random field can be computed using the Monte Carlo simulation. The Gaussian random field corresponds to the particular case where the elements of <bold><italic>ζ</italic></bold> are Gaussian distributed random variables.</p>
+        <p>The second moments of a random field provide meaningful information, i.e. its mean (Eq. <xref rid="e0100" ref-type="disp-formula">(10)</xref>) and covariance (Eq. <xref rid="e0105" ref-type="disp-formula">(11)</xref>) functions:<disp-formula id="e0100"><label>(10)</label><alternatives><textual-form specific-use="jats-markup">μ(<bold><italic>x</italic></bold>) = <italic>E</italic>(<italic>Y</italic>(<bold><italic>x</italic></bold>))</textual-form><mml:math id="M16" altimg="si16.gif" overflow="scroll"><mml:mi>μ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>Y</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></disp-formula><disp-formula id="e0105"><label>(11)</label><alternatives><textual-form specific-use="jats-markup"><italic>C</italic>(<bold><italic>x</italic></bold><sub>1</sub>,<bold><italic>x</italic></bold><sub>2</sub>) = <italic>E</italic>((<italic>Y</italic>(<bold><italic>x</italic></bold><sub>1</sub>) - μ(<bold><italic>x</italic></bold><sub>1</sub>))(<italic>Y</italic>(<bold><italic>x</italic></bold><sub>2</sub>) - μ(<bold><italic>x</italic></bold><sub>2</sub>)))</textual-form><mml:math id="M17" altimg="si17.gif" overflow="scroll"><mml:mi>C</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">x</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">x</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi>Y</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">x</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>-</mml:mo><mml:mi>μ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">x</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi>Y</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">x</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>-</mml:mo><mml:mi>μ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">x</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></disp-formula>The correlation function can be used alternatively for the covariance in order to asses the variability of a random field:<disp-formula id="e0050"><label>(12)</label><alternatives><textual-form specific-use="jats-markup">ρ(<bold><italic>x</italic></bold><sub>1</sub>,<bold><italic>x</italic></bold><sub>2</sub>) = ½</textual-form><mml:math id="M18" altimg="si18.gif" overflow="scroll"><mml:mi>ρ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">x</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mtext>,</mml:mtext><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">x</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>E</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>Y</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold-italic">x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>σ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">x</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:mi>σ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold-italic">x</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac></mml:math></alternatives></disp-formula>where <italic>σ</italic>(<bold><italic>x</italic></bold>) is the standard deviation function of <italic>Y</italic>(<bold><italic>x</italic></bold>).</p>
+        <p>A random field is said to be <italic>homogeneous</italic> if the statistical properties do not depend on the coordinates but on the relative distance only. In such a case, it shows a constant mean function, and the correlation (and covariance) function depend only on the distance between points.</p>
+        <p>In practical engineering applications, a finite set of the spacial coordinate <bold><italic>x</italic></bold> = <italic>x</italic><sub>1</sub>, … , <italic>x</italic><sub><italic>n</italic></sub> is considered. In this case, the correlation function can be substituted by a quadratic symmetrical matrix of size <italic>n</italic> × <italic>n</italic>. Realizations from any Gaussian distributed homogeneous random field can be computed using the Karhunen-Loève expansion:<disp-formula id="e0055"><label>(13)</label><mml:math id="M19" altimg="si19.gif" overflow="scroll"><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>μ</mml:mi></mml:mrow><mml:mrow><mml:mi>Y</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:munderover><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mi>n</mml:mi></mml:mrow></mml:munderover><mml:msqrt><mml:mrow><mml:msub><mml:mrow><mml:mi>λ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msqrt><mml:msub><mml:mrow><mml:mi>ξ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi>Φ</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msub></mml:math></disp-formula>where the <italic>λ</italic><sub><italic>i</italic></sub> (resp. <italic>Φ</italic><sub><italic>i</italic></sub>), <italic>i</italic> = 1, … , <italic>n</italic> are the eigenvalues (resp. eigenvectors) of the correlation matrix, <bold><italic>ξ</italic></bold> = <italic>ξ</italic><sub>1</sub>, … , <italic>ξ</italic><sub><italic>n</italic></sub> is a set of independent identical distributed standard normal random variables.</p>
+        <p>The Karhunen-Loève expansion allows accurate representation of a Gaussian field with a truncation of the sum to <italic>m</italic> &lt; <italic>n</italic>, using the <italic>m</italic> largest eigenvalues of the correlation matrix.</p>
+      </sec>
+      <sec id="s0055">
+        <label>2.3</label>
+        <title>Material models</title>
+        <p>This study is focused on the fatigue crack growth in aluminum 2024-T3 alloy. The plastic strain hardening is assumed to be according to the Voce law <xref rid="b0130" ref-type="bibr">[26]</xref>:<disp-formula id="e0060"><label>(14)</label><alternatives><textual-form specific-use="jats-markup">σ = σ<sub><italic>u</italic></sub> + (σ<sub><italic>y</italic></sub> - σ<sub><italic>u</italic></sub>)·<italic>exp</italic>( - ω·<italic>ε</italic><sub><italic>p</italic></sub>)</textual-form><mml:math id="M20" altimg="si20.gif" overflow="scroll"><mml:mi>σ</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>σ</mml:mi></mml:mrow><mml:mrow><mml:mi>u</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>σ</mml:mi></mml:mrow><mml:mrow><mml:mi>y</mml:mi></mml:mrow></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>σ</mml:mi></mml:mrow><mml:mrow><mml:mi>u</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>·</mml:mo><mml:mi mathvariant="italic">exp</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mo>-</mml:mo><mml:mi>ω</mml:mi><mml:mo>·</mml:mo><mml:msub><mml:mrow><mml:mi>ε</mml:mi></mml:mrow><mml:mrow><mml:mi>p</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></disp-formula>where <italic>σ</italic> is the stress, <italic>ε</italic><sub><italic>p</italic></sub> is the plastic strain. <italic>σ</italic><sub><italic>y</italic></sub>, <italic>σ</italic><sub><italic>u</italic></sub> and <italic>ω</italic> denote material parameters. <italic>σ</italic><sub><italic>y</italic></sub> and <italic>σ</italic><sub><italic>u</italic></sub> are respectively the yield stress and the ultimate tensile stress of the material predicted by the Voce model.</p>
+        <p>The parameters of bulk material and of the cohesive envelop (coefficients <italic>a</italic> and <italic>b</italic> of Eq. <xref rid="e0030" ref-type="disp-formula">6</xref>) where determined by fitting the data available in <xref rid="b0045" ref-type="bibr">[9]</xref>.</p>
+        <p><xref rid="t0005" ref-type="table">Table 1</xref> summarizes the material properties used in all the numerical examples in this study.</p>
+        <p>The deterministic values of the coefficients of Eq. <xref rid="e0035" ref-type="disp-formula">7</xref> are determined using the experimental values available in <xref rid="b0070" ref-type="bibr">[14]</xref>. The identification is done by solving an optimization problem. The absolute difference between the experimental and the numerical results is measured at three different points (see <xref rid="f0020" ref-type="fig">Fig. 4</xref>). The method is applied to four stress levels and two different geometries (shown in <xref rid="f0035" ref-type="fig">Fig. 7</xref>b). The sum of the absolute difference is then minimized.</p>
+        <p>The coefficients of Eq. <xref rid="e0035" ref-type="disp-formula">7</xref> are modeled using random fields. <italic>α</italic> is likely to vary over several orders of magnitude. This variation was described using an auxiliary random field <italic>Y</italic>:<disp-formula id="e0065"><label>(15)</label><alternatives><textual-form specific-use="jats-markup">α = 10<sup> - <italic>Y</italic><sub>1</sub></sup></textual-form><mml:math id="M21" altimg="si21.gif" overflow="scroll"><mml:mi>α</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mn>10</mml:mn></mml:mrow><mml:mrow><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>Y</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:msup></mml:math></alternatives></disp-formula>where <italic>Y</italic><sub>1</sub> is a one-dimensional Gaussian random field, its mean is equal to −4.4 and its standard deviation is equal to 0.75. Samples of <italic>Y</italic><sub>1</sub> are generated at the center-point of the elements of the mesh. The correlation function was assumed to be:<disp-formula id="e0070"><label>(16)</label><mml:math id="M22" altimg="si22.gif" overflow="scroll"><mml:mi>ρ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi mathvariant="italic">exp</mml:mi><mml:mrow><mml:mfenced open="(" close=")"><mml:mrow><mml:mo>-</mml:mo><mml:mfrac><mml:mrow><mml:mi>x</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>l</mml:mi></mml:mrow><mml:mrow><mml:mn>0</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula>where <italic>x</italic> denotes the distance between two elements. <italic>l</italic><sub>0</sub> monitors the decay of the correlation between the value of the realization of a random field elements as the distance increases. High values of <italic>l</italic><sub>0</sub> leads to fast evolution of the parameter. The difference of the material parameter in adjacent elements may lead to nonphysical results. Low values of <italic>l</italic><sub>0</sub> leads to an underestimation of the variability. In this study, <italic>l</italic><sub>0</sub> was taken equal to 10 mm.</p>
+        <p>The coefficients of the equations governing fatigue crack growth are assumed to be strongly correlated in order to describe stochastic fatigue crack growth (see for instance <xref rid="b0035 b0050" ref-type="bibr">[7,10]</xref> for an application with Paris–Erdogan equation). In this study, trial and error iterations showed that better results are obtained considering correlation between the parameters <italic>α</italic>, <italic>β</italic> and <italic>γ</italic> of Eq. <xref rid="e0035" ref-type="disp-formula">(7)</xref>. This is caused by the mathematical formulation of the increase of the damage parameter <xref rid="e0035" ref-type="disp-formula">(7)</xref>.<disp-formula id="e0110"><label>(17)</label><alternatives><textual-form specific-use="jats-markup">β = ⅓·(1 - 0.33·(5.5 + <italic>Y</italic><sub>1</sub>)) + <italic>Y</italic><sub>2</sub></textual-form><mml:math id="M23" altimg="si23.gif" overflow="scroll"><mml:mi>β</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo>-</mml:mo><mml:mn>0.33</mml:mn><mml:mo>·</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>5.5</mml:mn><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>Y</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>Y</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></disp-formula><disp-formula id="e0115"><label>(18)</label><alternatives><textual-form specific-use="jats-markup">γ = ⅔·(1 - 0.33·(5.5 + <italic>Y</italic><sub>1</sub>)) + <italic>Y</italic><sub>3</sub></textual-form><mml:math id="M24" altimg="si24.gif" overflow="scroll"><mml:mi>γ</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mn>2</mml:mn></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mo>-</mml:mo><mml:mn>0.33</mml:mn><mml:mo>·</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>5.5</mml:mn><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>Y</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>Y</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></disp-formula>where the coefficient <italic>Y</italic><sub>2</sub> and <italic>Y</italic><sub>3</sub> are one-dimension Gaussian random fields whose mean is equal to 0 and standard deviation is equal to 0.0035. The random field <italic>Y</italic><sub>1</sub> accounts for the increase of the scatter in the fatigue life when the applied stress is decreased. The random fields <italic>Y</italic><sub>2</sub> and <italic>Y</italic><sub>3</sub> increases the dispersion of the results independently from the applied stress. The coefficient <italic>T</italic><sub>0</sub> of Eq. <xref rid="e0035" ref-type="disp-formula">(7)</xref> was set equal to 100 MPa.</p>
+      </sec>
+      <sec id="s0060">
+        <label>2.4</label>
+        <title>Acceleration of simulations</title>
+        <sec id="s0065">
+          <label>2.4.1</label>
+          <title>General remarks</title>
+          <p>For high cycle fatigue applications, cycle by cycle finite element simulation of the complete fatigue life would be computationally prohibitive, even for small structures with a limited number of degrees of freedom. A procedure reducing the simulation time with limited loss of accuracy needs to be developed.</p>
+          <p>Two time scale can be distinguished during the fatigue life. A short time scale correspond to the evolution of the parameters (stress, damage, plastic strain, etc.) over one cycle. The long time scale correspond to the evolution over several cycles. Oskay and Fish <xref rid="b0090" ref-type="bibr">[18]</xref> used temporal homogenization to perform acceleration of convergence, using the long and short time scale state previously.</p>
+          <p>Several authors used extrapolation of the results over one or several cycles. Jiang et al. <xref rid="b0040" ref-type="bibr">[8]</xref> used linear extrapolation of the parameters, based on Taylor expansion with respect to the number of applied cycles. Andrés et al. <xref rid="b0010" ref-type="bibr">[2]</xref> developed an procedure based on interpolation and extrapolation of material parameters. In this study, the proposed algorithm is derived from the Runge–Kutta method for ordinary differential equations. It consists of several estimations of the variation of parameters over one cycle. These data are then used for extrapolation.</p>
+        </sec>
+        <sec id="s0070">
+          <label>2.4.2</label>
+          <title>Algorithm</title>
+          <p>Let us assume that at the instant <italic>t</italic> all the parameters describing a finite element model undergoing fatigue loading is known (i.e. the value of plastic strains, damage, nodal displacement are given). The damage (<italic>D</italic><sub><italic>t</italic></sub>) of each cohesive element is approximated at time <italic>t</italic> + <italic>h</italic> (<italic>h</italic> being a large number of cycles) according to the scheme described below (see <xref rid="f0025" ref-type="fig">Fig. 5</xref>).<list list-type="simple"><list-item><label>•</label><p>The damage in the cohesive elements is initially known (it can be read from the input/output files of a finite element software). A finite element simulation is performed over one cycle. The damage parameter of all cohesive elements is collected after and before the finite element simulation. The variation of the damage over one cycle Δ<italic>D</italic><sub>1</sub> is defined as the difference between damage a the beginning and at the end of the simulation. Damage is then extrapolated at time <inline-formula><mml:math id="M25" altimg="si25.gif" overflow="scroll"><mml:mrow><mml:mi>t</mml:mi><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:mfrac></mml:mrow></mml:math></inline-formula> according to Eq. <xref rid="e0075" ref-type="disp-formula">(19)</xref>.<disp-formula id="e0075"><label>(19)</label><mml:math id="M26" altimg="si26.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mtext>,</mml:mtext><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mi mathvariant="normal">Δ</mml:mi><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:math></disp-formula></p></list-item><list-item><label>•</label><p>The parameters are extrapolated according to Eq. <xref rid="e0075" ref-type="disp-formula">(19)</xref> and introduced in the input file of the finite element software. A simulation is performed over one cycle, the variation of damage is Δ<italic>D</italic><sub>2</sub> is computed, it is the difference between <inline-formula><mml:math id="M27" altimg="si27.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mtext>,</mml:mtext><mml:mn>1</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:math></inline-formula> and the value at the end of the simulation. Damage at time <inline-formula><mml:math id="M28" altimg="si28.gif" overflow="scroll"><mml:mrow><mml:mi>t</mml:mi><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:mfrac></mml:mrow></mml:math></inline-formula> is now extrapolated according to Eq. <xref rid="e0080" ref-type="disp-formula">(20)</xref>.<disp-formula id="e0080"><label>(20)</label><mml:math id="M29" altimg="si29.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mtext>,</mml:mtext><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mi mathvariant="normal">Δ</mml:mi><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></disp-formula></p></list-item><list-item><label>•</label><p>Another finite element simulation is performed, using data extrapolated from Eq. <xref rid="e0080" ref-type="disp-formula">(20)</xref>. Variation of damage over one cycle is denoted Δ<italic>D</italic><sub>3</sub>. Extrapolation at time <italic>t</italic> + <italic>h</italic> is performed according to Eq. <xref rid="e0085" ref-type="disp-formula">(21)</xref>.<disp-formula id="e0085"><label>(21)</label><alternatives><textual-form specific-use="jats-markup"><italic>D</italic><sub><italic>t</italic> + <italic>h</italic></sub> = <italic>D</italic><sub><italic>t</italic></sub> + <italic>h</italic>·Δ<italic>D</italic><sub>3</sub></textual-form><mml:math id="M30" altimg="si30.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi><mml:mo>+</mml:mo><mml:mi>h</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mi>h</mml:mi><mml:mo>·</mml:mo><mml:mi mathvariant="normal">Δ</mml:mi><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></disp-formula></p></list-item><list-item><label>•</label><p>A finite element simulation over one cycle is performed using data approximated at time <italic>t</italic> + <italic>h</italic> (according to Eq. <xref rid="e0085" ref-type="disp-formula">(21)</xref>). Variation of damage over one cycle, denoted Δ<italic>D</italic><sub>4</sub>, is computed.</p></list-item><list-item><label>•</label><p>The damage in cohesive elements is eventually extrapolated using a weighted average of the variations estimated during previous steps (Eqs. <xref rid="e0075 e0080 e0085 e0090" ref-type="disp-formula">(19)–(22)</xref>):<disp-formula id="e0090"><label>(22)</label><mml:math id="M31" altimg="si31.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi><mml:mo>+</mml:mo><mml:mi>h</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mi>t</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:mi>h</mml:mi></mml:mrow><mml:mrow><mml:mn>6</mml:mn></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">Δ</mml:mi><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mo>·</mml:mo><mml:mi mathvariant="normal">Δ</mml:mi><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mn>2</mml:mn><mml:mo>·</mml:mo><mml:mi mathvariant="normal">Δ</mml:mi><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mi mathvariant="normal">Δ</mml:mi><mml:msub><mml:mrow><mml:mi>D</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></disp-formula></p></list-item></list></p>
+          <p>This procedure is also applied for the nodal displacements and plastic strains (without performing extra simulation). <xref rid="f0025" ref-type="fig">Fig. 5</xref> schematizes the procedure of acceleration of the simulations.</p>
+          <p>This procedure is successively repeated until fracture occurs. Then the input file several steps before fracture is restored, and the extrapolation scheme is repeated with a reduce time step in order to improve the accuracy of the method.</p>
+        </sec>
+        <sec id="s0075">
+          <label>2.4.3</label>
+          <title>Efficiency of the proposed procedure</title>
+          <p>The efficiency and accuracy of the proposed scheme were estimated on the structure shown in <xref rid="f0035" ref-type="fig">Fig. 7</xref>b. A crack is assume to initiate at the central hole and propagate on the center-plane of the structure. Hence cohesive elements were inserted at this location. The structure underwent an alternating stress with <italic>σ</italic><sub><italic>max</italic></sub> = 206 MPa and <italic>σ</italic><sub><italic>min</italic></sub> = 70 MPa.</p>
+          <p>The reference fatigue life was obtained with cycle to cycle finite element of the fatigue life (147,595 cycles). Then the proposed algorithm was applied with several time steps.</p>
+          <p><xref rid="f0030" ref-type="fig">Fig. 6</xref>a shows the accuracy of the method. The error caused by the extrapolation is less than 1%. The computation cost was greatly reduced. The full fatigue simulation last approximately 48 h, it was reduced to about 10 min using the extrapolation scheme.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="s0080">
+      <label>3</label>
+      <title>Numerical examples</title>
+      <p>Two finite element models have been used to asses the accuracy of the cohesive element implementation. The first example considers only deterministic growth of a <italic>long</italic> crack. The second example considers uncertainties, initiation and growth of a fatigue crack.</p>
+      <sec id="s0085">
+        <label>3.1</label>
+        <title>Fatigue crack growth</title>
+        <p>McEvily and Illg <xref rid="b0070" ref-type="bibr">[14]</xref> conducted an extensive study to investigate the crack growth rate of aluminum alloy 2024-T3. The specimen developed in this study was modeled using the finite element method. It consist of a rectangular plate with a crack propagating from its center (see <xref rid="f0035" ref-type="fig">Fig. 7</xref>a). A <italic>stress raiser</italic> was introduced at the center, it consists of a circular hole with an initial crack perpendicular to the stress direction. Two structures are considered, the specimen A is approximately 51 mm (2 in. in <xref rid="b0070" ref-type="bibr">[14]</xref>) wide, the specimen B is approximately 305 mm (12 in.) wide.</p>
+        <p>The structure is subject to an alternating stress and the evolution of the crack length with respect to the number of applied cycle is estimated. The investigation of crack growth rate starts once the crack length exceeds 5.04 mm.</p>
+        <p>A finite element mesh of the structure was generated using Patran. Considering the symmetry of the structure, the two tips of the crack were assume to propagate at the same rate. Hence, only one quarter of the specimen was modeled. Cohesive elements were initially introduced at the crack path. At each iteration, the stress, damage and opening of all the cohesive elements are exported for each integration point for further post-processing.</p>
+      </sec>
+      <sec id="s0090">
+        <label>3.2</label>
+        <title>Fatigue life of a structure</title>
+        <p>Illg investigated the fatigue life of specimen subject to various alternating stress levels <xref rid="b0030" ref-type="bibr">[6]</xref>. The specimens consist of a plate with two notches from which crack may initiate and propagate as presented on <xref rid="f0035" ref-type="fig">Fig. 7</xref>. The variability of the fatigue life was investigated using a random field model in combination with the proposed cohesive zone element formulation.</p>
+        <p>Since uncertainties are considered, the structure is no longer symmetrical with respect to the <italic>y</italic>-axis (vertical axis in <xref rid="f0035" ref-type="fig">Fig. 7</xref>): the material properties of cohesive elements are different. Thus a single crack may initiate at one side of the structure and propagate through the specimen. Half of the structure was considered in the finite element simulations (the symmetry among the crack path is still valid).</p>
+        <p>No crack is initially present in the finite element model. Cohesive elements are initially inserted along the expected crack path (the center-line of the structure). These elements account for both crack initiation and propagation.</p>
+        <p>Several values of the pick stress have been investigated: 206, 241, 276 and 345 MPa. The minimum stress was set so that the average stress over a cycle is equal to 138 MPa, with a linear evolution from the minimum to the maximum stress.</p>
+        <p>An <italic>adaptive</italic> time step used in the procedure of acceleration of the simulation. The initial time step was <italic>a priori</italic> set so that, on the average, each simulation is performed in at least approximately 100 iteration (an iteration is defined as performing all the computations described by Eqs. <xref rid="e0075 e0080 e0085 e0090" ref-type="disp-formula">(19)–(22)</xref>). The precision of such a procedure is equal to the value of the time step. Once the final fracture occurs, the situation at the beginning of the previous step is restored and the value of the time step is decreased. This procedure is repeated until the value of the time step is negligible with respect to the total fatigue life. Typically, the final value of the time step is less than 0.1–0.01% of the total fatigue life.</p>
+      </sec>
+    </sec>
+    <sec id="s0095">
+      <label>4</label>
+      <title>Results</title>
+      <p>The proposed formulation could be used successfully to model the behavior of components subject to fatigue. The repartition of the stress predicted using cohesive elements is in good agreement with reference results obtained using the extended finite element method. The proposed formulation could be successfully used to model deterministic fatigue crack growth. Finally, the uncertainties inherent to the fatigue life could be estimated.</p>
+      <sec id="s0100">
+        <label>4.1</label>
+        <title>Stress repartition</title>
+        <p>The repartition of the stress in front of the crack tip was investigated. The stress obtained with cohesive elements were compared to results from the extended finite element method, without accounting for plasticity. The results from the cohesive models were obtained after 2.2 × 10<sup>4</sup> cycles with a pick stress equal to 176 MPa. Hence all the elements are affected by the history of the model. The results using both numerical methods show a good fit (see <xref rid="f0040" ref-type="fig">Fig. 8</xref>). The stress repartition differs slightly at the crack tip according to the method used. It can be explained by the influence of the cohesive elements, which allow a slight displacement of the node ahead of the crack tip (<italic>artificial</italic> crack opening) and also by the fact that plasticity was not modeled with the extended finite element method.</p>
+        <p>The cohesive elements near the center of the plate (lower <italic>x</italic>-coordinates) are completely damaged, i.e. the internal damage parameter is equal to one. Such elements can no longer resist to the crack growth: they do no longer transmit the stress between the two lips of the crack (the stress is equal to zero). The elements whose <italic>x</italic>-coordinate is approximately 25 mm correspond to the cohesive crack tip. The cohesive elements far from the crack tip do not influence the far field stress.</p>
+      </sec>
+      <sec id="s0105">
+        <label>4.2</label>
+        <title>Fatigue crack growth</title>
+        <p><xref rid="f0045" ref-type="fig">Fig. 9</xref> shows the evolution of the crack length with respect to time, compared to the experimental results from Illg <xref rid="b0030" ref-type="bibr">[6]</xref>. The crack length when the fracture occurs is smaller for the specimen A than for the specimen B, i.e. qualitatively, for both the numerical and experimental results. Results from <xref rid="b0030" ref-type="bibr">[6]</xref> show that the crack growth rate is higher for the specimen A than for the specimen B. The proposed approach reflects this trend. The numerical model describes accurately the crack growth for a pick stresses of 100 and 172 MPa. However, the quality of the fit is not as good in the case of the pick stress of 68 and 206 MPa. This may be caused by the method used to determine the coefficients of Eq. <xref rid="e0035" ref-type="disp-formula">(7)</xref>. The crack growth rate was modeled over a wide range of pick stress and the quality of the fit is better at the middle of the stress range than at its bounds.</p>
+      </sec>
+      <sec id="s0110">
+        <label>4.3</label>
+        <title>Fatigue life considering uncertainties</title>
+        <p>The uncertainties inherent to the fatigue life of the structure shown in <xref rid="f0035" ref-type="fig">Fig. 7</xref>b have been assessed using Monte Carlo simulation with 200 samples. As explained in Section <xref rid="s0050" ref-type="sec">2.2</xref>, the coefficients monitoring the damage in cohesive elements are modeled with random fields. <xref rid="f0050" ref-type="fig">Fig. 10</xref> shows the results of the Monte Carlo simulation. The proposed model describes accurately the evolution of the mean of the fatigue life. The cohesive zone elements allow to describe the evolution of the fatigue life considering uncertainties over a wide range of applied stress. The detailed results are shown in Appendix <xref rid="s0120" ref-type="sec">A</xref>.</p>
+      </sec>
+    </sec>
+    <sec id="s0115">
+      <label>5</label>
+      <title>Conclusions</title>
+      <p>Cohesive zone elements are alternatively used to the Paris–Erdogan equation for modeling components subject to fatigue loading. They allowed to model accurately deterministic crack growth. The study was then extended to fatigue crack initiation and propagation considering uncertainties. Cohesive zone elements provide an approach to model fatigue cracks from the initiation until final fracture using a single probabilistic model. Random fields have been used to model the variability of the material properties. The method is based on finite elements simulation and could be extended to more complex structures. In such cases, the fatigue life cannot be estimated from the SN curves and only simulations allow to model fatigue crack initiations and propagation.</p>
+      <p>An extrapolation scheme of the damage variable has been proposed. It allows to reduce extensively the simulation time with acceptable accuracy of the results.</p>
+      <p>The approach has been tested against experimental results available in the literature <xref rid="b0030 b0070" ref-type="bibr">[6,14]</xref>.</p>
+      <p>Having determined the variability inherent to fatigue cracks, a target fatigue life could be assigned. The proposed model could be used in reliability based optimization to determine the best balance between manufacturing costs and structural reliability.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="b0005">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barenblatt</surname>
+              <given-names>G.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>The mathematical theory of equilibrium of cracks in brittle fracture</article-title>
+          <source>Adv Appl Mech</source>
+          <volume>7</volume>
+          <year>1962</year>
+          <fpage>55</fpage>
+          <lpage>129</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0010">
+        <label>2</label>
+        <mixed-citation publication-type="other">de Andres A, Fernandez Alcazar J, Lopez Garcia O. On the use of cohesive interface elements in fracture and fatigue. In: Fifth world congress on computational mechanics (WCCM V); 2002.</mixed-citation>
+      </ref>
+      <ref id="b0015">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>de Borst</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Remmers</surname>
+              <given-names>J.J.C.</given-names>
+            </name>
+            <name>
+              <surname>Needleman</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mesh-independent discrete numerical representations of cohesive-zone models</article-title>
+          <source>Engng Fract Mech</source>
+          <volume>73</volume>
+          <year>2005</year>
+          <fpage>160</fpage>
+          <lpage>177</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0020">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dugdale</surname>
+              <given-names>D.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Yielding of steel sheets containing slits</article-title>
+          <source>J Mech Phys Solids</source>
+          <volume>8</volume>
+          <year>1960</year>
+          <fpage>100</fpage>
+          <lpage>108</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0025">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Forman</surname>
+              <given-names>R.G.</given-names>
+            </name>
+            <name>
+              <surname>Kearney</surname>
+              <given-names>V.E.</given-names>
+            </name>
+            <name>
+              <surname>Engle</surname>
+              <given-names>R.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Numerical analysis of crack propagation in cyclic-loaded structure</article-title>
+          <source>J Basic Engng</source>
+          <volume>89</volume>
+          <year>1968</year>
+          <fpage>459</fpage>
+          <lpage>464</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0030">
+        <label>6</label>
+        <mixed-citation publication-type="other">Illg W. Fatigue tests on notched and unnotched sheet specimens of 2024-t3 and 7075-t6 aluminum alloys and of SAE 4130 steel with special consideration of the life range from 2 to 10,000 cycles. Technical report, National Advisory Committee for Aeronautics; 1956.</mixed-citation>
+      </ref>
+      <ref id="b0035">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jha</surname>
+              <given-names>S.K.</given-names>
+            </name>
+            <name>
+              <surname>Larsen</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Rosenberger</surname>
+              <given-names>A.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards a physics-based description of fatigue variability behavior in probabilistic life-prediction</article-title>
+          <source>Engng Fract Mech</source>
+          <volume>76</volume>
+          <year>2009</year>
+          <fpage>681</fpage>
+          <lpage>694</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0040">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jiang</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Gao</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Srivatsan</surname>
+              <given-names>T.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicting the influence of overload and loading mode on fatigue crack growth: a numerical approach using irreversible cohesive elements</article-title>
+          <source>Finite Elem Anal Des</source>
+          <volume>45</volume>
+          <issue>10</issue>
+          <year>2009</year>
+          <fpage>675</fpage>
+          <lpage>685</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0045">
+        <label>9</label>
+        <mixed-citation publication-type="other">Johnston WM. Influence of crack-tip configurations on the fracture response of 0.04-inch thick 2024-t3 aluminum alloy sheet. Technical report NASA/CR-2002-211442. Hampton (Virginia): Analytical Services and Materials Inc.; 2002.</mixed-citation>
+      </ref>
+      <ref id="b0050">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kala</surname>
+              <given-names>Z.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sensitivity analysis of fatigue behaviour of steel structure under in-plane bending</article-title>
+          <source>Nonlinear Anal Model Control</source>
+          <volume>11</volume>
+          <issue>1</issue>
+          <year>2006</year>
+          <fpage>33</fpage>
+          <lpage>45</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0055">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kebir</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Roelandt</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Gaudin</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Monte-Carlo simulations of life expectancy using the dual boundary element method</article-title>
+          <source>Engng Fract Mech</source>
+          <volume>68</volume>
+          <year>2001</year>
+          <fpage>1371</fpage>
+          <lpage>1384</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0060">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Koutsourelakis</surname>
+              <given-names>P.S.</given-names>
+            </name>
+            <name>
+              <surname>Kuntiyawichai</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Schueller</surname>
+              <given-names>G.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Effect of material uncertainties on fatigue life calculations of aircraft fuselages: a cohesive element model</article-title>
+          <source>Engng Fract Mech</source>
+          <volume>73</volume>
+          <year>2006</year>
+          <fpage>1202</fpage>
+          <lpage>1219</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0065">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Laz</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Craig</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>Hillberry</surname>
+              <given-names>B.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>A probabilistic total fatigue life model incorporating material inhomogeneities, stress level and fracture mechanics</article-title>
+          <source>Int J Fatigue</source>
+          <volume>23</volume>
+          <issue>Suppl. 1</issue>
+          <year>2001</year>
+          <fpage>119</fpage>
+          <lpage>127</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0070">
+        <label>14</label>
+        <mixed-citation publication-type="other">McEvily AJ, Illg W. The rate of fatigue-crack propagation in two aluminium alloys. Technical report, National Advisory Committee for Aeronautics; 1958.</mixed-citation>
+      </ref>
+      <ref id="b0075">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moes</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Dolbow</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Belytschko</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>A finite element method for crack growth without remeshing</article-title>
+          <source>Int J Numer Methods Engng</source>
+          <volume>46</volume>
+          <year>1999</year>
+          <fpage>131</fpage>
+          <lpage>150</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0080">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Needleman</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A continuum model for void nucleation by inclusion debonding</article-title>
+          <source>J Appl Mech</source>
+          <volume>54</volume>
+          <year>1987</year>
+          <fpage>525</fpage>
+          <lpage>531</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0085">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Repetto</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Ortiz</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Radovtzky</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A cohesive model of fatigue crack growth</article-title>
+          <source>Int J Fract</source>
+          <volume>110</volume>
+          <year>2001</year>
+          <fpage>351</fpage>
+          <lpage>369</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0090">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oskay</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Fish</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fatigue life prediction using 2-scale temporal asymptotic homogenization</article-title>
+          <source>Int J Num Methods Engng</source>
+          <volume>61</volume>
+          <year>2004</year>
+          <fpage>329</fpage>
+          <lpage>359</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0095">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Paris</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Erdogan</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>A critical analysis of crack propagation laws</article-title>
+          <source>J Basic Engng Trans ASME</source>
+          <volume>85</volume>
+          <year>1963</year>
+          <fpage>528</fpage>
+          <lpage>534</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0100">
+        <label>20</label>
+        <mixed-citation publication-type="other">Proppe C, Schuëller GI. Effects of uncertainties on lifetime prediction of aircraft components. In: Bathe KJ, editor. Proceedings of the first M.I.T. conference on computational fluid and solid mechanics, M.I.T., Cambridge, MA, USA, June 12–14. Elsevier; 2001. p. 425–8.</mixed-citation>
+      </ref>
+      <ref id="b0105">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schellekens</surname>
+              <given-names>J.C.J.</given-names>
+            </name>
+            <name>
+              <surname>De Borst</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the numerical integration of interface elements</article-title>
+          <source>Int J Numer Methods Engng</source>
+          <volume>36</volume>
+          <issue>1</issue>
+          <year>1993</year>
+          <fpage>43</fpage>
+          <lpage>66</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0110">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Spencer</surname>
+              <given-names>B.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reliability solution for stochastic fatigue crack growth problem</article-title>
+          <source>Engng Fract Mech</source>
+          <volume>34</volume>
+          <issue>2</issue>
+          <year>1989</year>
+          <fpage>219</fpage>
+        </element-citation>
+      </ref>
+      <ref id="b0115">
+        <label>23</label>
+        <mixed-citation publication-type="other">Taylor RL. FEAP – a finite element analysis program. UC Berkeley, version 7.5 ed.; February 2005.</mixed-citation>
+      </ref>
+      <ref id="b0120">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Valdebenito</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Schuëller</surname>
+              <given-names>G.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Design of maintenance schedules for fatigue-prone metallic components using reliability-based optimization</article-title>
+          <source>Comput Methods Appl Mech Engng</source>
+          <volume>199</volume>
+          <year>2010</year>
+          <fpage>2305</fpage>
+          <lpage>2318</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0125">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Virkler</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Hillberry</surname>
+              <given-names>B.M.</given-names>
+            </name>
+            <name>
+              <surname>Goel</surname>
+              <given-names>P.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>The statistical nature of fatigue crack propagation</article-title>
+          <source>J Engng Mater Technol</source>
+          <volume>101</volume>
+          <year>1979</year>
+          <fpage>149</fpage>
+          <lpage>153</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0130">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Voce</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>The relationship between stress and strain for homogeneous deformation</article-title>
+          <source>J Inst Metals</source>
+          <volume>74</volume>
+          <year>1948</year>
+          <fpage>537</fpage>
+          <lpage>562</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0135">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Atluri</surname>
+              <given-names>S.N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Recent advances in the alternating method for elastic and inelastic fracture analyses</article-title>
+          <source>Comput Methods Appl Mech Engng</source>
+          <volume>137</volume>
+          <year>1996</year>
+          <fpage>1</fpage>
+          <lpage>58</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0140">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wheeler</surname>
+              <given-names>O.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spectrum loading and crack growth</article-title>
+          <source>J Basic Engng</source>
+          <volume>94</volume>
+          <year>1972</year>
+          <fpage>351</fpage>
+          <lpage>369</lpage>
+        </element-citation>
+      </ref>
+      <ref id="b0145">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zi</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Budyn</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Belytschko</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>A method for growing multiple cracks without remeshing and ids application to fatigue crack growth</article-title>
+          <source>Model Simul Mater Sci Engng</source>
+          <volume>12</volume>
+          <year>2004</year>
+          <fpage>901</fpage>
+          <lpage>915</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec id="s0120">
+      <label>Appendix A</label>
+      <sec id="s0125">
+        <label>A.1</label>
+        <title>Detailed results</title>
+        <p><xref rid="f0055" ref-type="fig">Fig. 11</xref> shows the histograms of the fatigue life at four stress levels. The histograms match the experimental data for the pick stress of 206 and 345 MPa. For the pick stress of 241, the experimental values are slightly bigger than the mean of the simulations, for the pick stress of 276 MPa, one of the experimental values are on the lower tail of the distribution.</p>
+      </sec>
+      <sec id="s0130">
+        <label>A.2</label>
+        <title>Statistics of the distribution</title>
+        <p>The reference distribution of the fatigue life has been estimated by fitting experimental values from <xref rid="b0030" ref-type="bibr">[6]</xref> with an analytical formula. The fatigue life is taken with a lognormal distribution. The mean value and the standard deviation are assumed to show an exponential evolution with respect to the applied stress. First, the evolution of the mean fatigue life is determined by fitting the data. Then the standard deviation is determined by maximizing the likelihood (over the data at all the stress levels simultaneously). The 200 samples obtained using the Monte Carlo simulations were compared to this fit (see <xref rid="f0060" ref-type="fig">Fig. 12</xref>). Both of the results correctly match. Hence cohesive zone elements are suitable to uncertainties inherent to fatigue crack initiation and fatigue crack growth. The cohesive element models could be extrapolated to any kind of geometry.</p>
+      </sec>
+    </sec>
+    <ack>
+      <title>Acknowledgment</title>
+      <p>This research was partially supported by the Austrian Science Foundation (FWF) under Contract No. P20251-N13, which is gratefully acknowledged by the authors.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Insertion of cohesive zone elements at the interface of bulk elements.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Details about the implementation. (a) Aspect of a deformed cohesive element. Crosses denote the location of integration points. (b) Evolution of the shape functions among the center-line of an element.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Aspect of the traction displacement law for cohesive elements.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="f0020">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Schematic representation of the estimation of the absolute difference between the experimental and the numerical results.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="f0025">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Procedure of the acceleration of convergence (Illustration of Eqs. <xref rid="e0075 e0080 e0085" ref-type="disp-formula">(19)–(21)</xref>). Solid lines represent the evolution of the damage over one cycle, estimate by the mean of finite element simulation. Dash lines represent the extrapolation steps.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="f0030">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Results of the acceleration of convergence. (a) Accuracy of the method. (b) Speedup.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="f0035">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Geometry of the specimens. (a) Specimen used to investigate fatigue crack growth. (b) Specimen used to investigate the total fatigue life.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="f0040">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Comparison of the stress repartition in front of the crack tip using extended finite element method and cohesive elements.</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="f0045">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Prediction of the fatigue crack growth using cohesive model for various stress levels. Solid and dash lines show the numerical results with specimen A and specimen B, respectively (2 and 12 in. wide structures, respectively). Circles and crosses represent experimental results with specimen A and specimen B, respectively, taken from <xref rid="b0030" ref-type="bibr">[6]</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+    <fig id="f0050">
+      <label>Fig. 10</label>
+      <caption>
+        <p>Fatigue life uncertainties. <italic>Probabilistic SN</italic> curve obtained with Monte Carlo simulation. The solid line denotes the mean fatigue life, dash lines denote the 5% and 95% quantiles. Crosses denote the experimental results from <xref rid="b0030" ref-type="bibr">[6]</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr10"/>
+    </fig>
+    <fig id="f0055">
+      <label>Fig. 11</label>
+      <caption>
+        <p>Histograms of the fatigue life obtained for different stress levels. The solid lines show the result of the simulation, the dash lines show the experiment results taken from <xref rid="b0030" ref-type="bibr">[6]</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr11"/>
+    </fig>
+    <fig id="f0060">
+      <label>Fig. 12</label>
+      <caption>
+        <p>Comparison between the results obtained with Monte Carlo simulation and a fit of the data from <xref rid="b0030" ref-type="bibr">[6]</xref>. The solid (resp. dash) lines denote the mean (resp. 5% and 95% quantile) of the fatigue life obtained with Monte Carlo simulation. The solid (resp. hollow) circles denote the mean (resp. 5% and 95% quantile) of the fatigue life obtained fitting the data. Crosses denote the experimental results from <xref rid="b0030" ref-type="bibr">[6]</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr12"/>
+    </fig>
+    <table-wrap id="t0005" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Material properties used in finite element simulations.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <tbody>
+          <tr>
+            <td>Young modulus (MPa)</td>
+            <td>70,000</td>
+          </tr>
+          <tr>
+            <td>Poisson ratio</td>
+            <td>0.3</td>
+          </tr>
+          <tr>
+            <td>Coefficient <italic>σ</italic><sub><italic>y</italic></sub> of Eq. <xref rid="e0060" ref-type="disp-formula">(14)</xref> (MPa)</td>
+            <td>330</td>
+          </tr>
+          <tr>
+            <td>Coefficient <italic>σ</italic><sub><italic>u</italic></sub> of Eq. <xref rid="e0060" ref-type="disp-formula">(14)</xref> (MPa)</td>
+            <td>650</td>
+          </tr>
+          <tr>
+            <td>Coefficient <italic>ω</italic> of Eq. <xref rid="e0060" ref-type="disp-formula">(14)</xref></td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>Coefficient <italic>a</italic> of Eq. <xref rid="e0030" ref-type="disp-formula">(6)</xref> (MPa)</td>
+            <td>1500</td>
+          </tr>
+          <tr>
+            <td>Coefficient <italic>b</italic> of Eq. <xref rid="e0060" ref-type="disp-formula">(14)</xref> (mm)</td>
+            <td>0.05</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-group>
+</article>

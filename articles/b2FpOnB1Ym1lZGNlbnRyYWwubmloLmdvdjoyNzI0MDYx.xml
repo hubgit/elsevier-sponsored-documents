@@ -1,0 +1,2218 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="announcement">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title>Neuroimage</journal-title>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2724061</article-id>
+      <article-id pub-id-type="pmid">17478103</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG4551</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2007.03.021</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Technical Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Detecting subject-specific activations using fuzzy clustering</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Seghier</surname>
+            <given-names>Mohamed L.</given-names>
+          </name>
+          <email>m.seghier@fil.ion.ucl.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>Karl J.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Price</surname>
+            <given-names>Cathy J.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>
+        <addr-line>Wellcome Trust Centre for Neuroimaging, Institute of Neurology, 12 Queen Square, London WC1N 3BG, UK</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Fax: +44 20 7813 1420. <email>m.seghier@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>01</day>
+        <month>7</month>
+        <year>2007</year>
+      </pub-date>
+      <volume>36</volume>
+      <issue>3-3</issue>
+      <fpage>594</fpage>
+      <lpage>605</lpage>
+      <history>
+        <date date-type="received">
+          <day>6</day>
+          <month>10</month>
+          <year>2006</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>26</day>
+          <month>2</month>
+          <year>2007</year>
+        </date>
+        <date date-type="accepted">
+          <day>19</day>
+          <month>3</month>
+          <year>2007</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2007 Elsevier Inc.</copyright-statement>
+        <copyright-year>2007</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>Inter-subject variability in evoked brain responses is attracting attention because it may reflect important variability in structure–function relationships over subjects. This variability could be a signature of degenerate (many-to-one) structure–function mappings in normal subjects or reflect changes that are disclosed by brain damage. In this paper, we describe a non-iterative fuzzy clustering algorithm (FCP: fuzzy clustering with fixed prototypes) for characterizing inter-subject variability in between-subject or second-level analyses of fMRI data. The approach identifies the contribution of each subject to response profiles in voxels surviving a classical <italic>F</italic>-statistic criterion. The output identifies subjects who drive activation in specific cortical regions (local effects) or in voxels distributed across neural systems (global effects). The sensitivity of the approach was assessed in 38 normal subjects performing an overt naming task. FCP revealed that several subjects had either abnormally high or abnormally low responses. FCP may be particularly useful for characterizing outlier responses in rare patients or heterogeneous populations. In these cases, atypical activations may not be detected by standard tests, under parametric assumptions. The advantage of using FCP is that it searches all voxels systematically and can identify atypical activation patterns in a quantitative and unsupervised manner.</p>
+      </abstract>
+      <kwd-group>
+        <title>Abbreviations</title>
+        <kwd>RFX, random-effect analysis</kwd>
+        <kwd>FCM, fuzzy c-mean clustering</kwd>
+        <kwd>FCP, fuzzy clustering with fixed prototypes</kwd>
+        <kwd>D, similarity metric</kwd>
+        <kwd>U, degree of membership</kwd>
+        <kwd>G, degree of contribution</kwd>
+      </kwd-group>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Functional magnetic resonance imaging</kwd>
+        <kwd>Overt object naming</kwd>
+        <kwd>Inter-individual variability</kwd>
+        <kwd>Outliers</kwd>
+        <kwd>Atypical activations</kwd>
+        <kwd>Fuzzy clustering</kwd>
+        <kwd>Second-level analysis</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>In functional neuroimaging, group analyses are used to assess effects of interest at the population level (e.g., <xref rid="bib7 bib11 bib26 bib39 bib42 bib49 bib62" ref-type="bibr">Benali et al., 2003; Bosch, 2000; Friston et al., 1999; Lazar et al., 2002; McNamee and Lazar, 2004; Penny et al., 2003; Svensen et al., 2002</xref>). They assess the reliability or consistency of responses across individuals, in relation to the inter-subject variations that are assumed to be random. In this paper, we are concerned with the identification of ‘outliers’ in group analyses, i.e., data points that deviate markedly (either very high or very low activation) in one subject, compared to the others (<xref rid="bib30 bib52" ref-type="bibr">Grubbs, 1969; Rasmussen, 1988</xref>). Outliers<xref rid="fn1" ref-type="fn">1</xref> inflate the variance and move the mean towards the outlier which is problematic for both parametric and nonparametric statistics (e.g., <xref rid="bib27 bib71" ref-type="bibr">Gastwirth, 1966; Zimmerman, 1994</xref>). Here, we present a new approach for identifying the contribution of each subject to group activations in functional imaging studies.</p>
+      <p>The effect of an outlier on the group activation at a given voxel is illustrated in <xref rid="fig1" ref-type="fig">Fig. 1</xref> using simulated data. When the effect size of one subject (subject 1 in <xref rid="fig1" ref-type="fig">Fig. 1</xref>) is increased or decreased, it perturbs the group mean and dispersion across subjects. In this example, the heightened response from one subject increases the variance and reduces the significance of the group effect (i.e., lowers <italic>t</italic> values). True group effects (i.e., activations that are consistent across subjects) can therefore be lost if one subject has an atypical response.</p>
+      <p>In real data, outliers can reflect technical artefacts and less obvious problems such as sampling from mixtures of populations (for reviews see <xref rid="bib4 bib48" ref-type="bibr">Beckman and Cook, 1983; Osborne and Overbay, 2004</xref>). The importance of identifying the influence of outliers on group effects has been addressed extensively (e.g., <xref rid="bib4 bib48" ref-type="bibr">Beckman and Cook, 1983; Osborne and Overbay, 2004</xref>) and several techniques have been proposed to identify, modify, or remove outliers, before performing statistical tests (<xref rid="bib2 bib4 bib6 bib12 bib14 bib17 bib27 bib30 bib31 bib32 bib33 bib54 bib57" ref-type="bibr">Barnett and Lewis, 1978; Beckman and Cook, 1983; Belsley et al., 1980; Bradlow and Zaslavsky, 1997; Chaloner and Brant, 1988; Davies and Gather, 1993; Gastwirth, 1966; Grubbs, 1969; Hawkins, 1980; Hocking, 1976; Huber, 1981; Rousseeuw and Leroy, 2003; Shapiro and Brady, 1995</xref>). Outlier removal furnishes inferences that are more robust to parametric assumptions. However, in fMRI, only a few attempts have been made to assess the contribution of outliers to the mean effect (<xref rid="bib37" ref-type="bibr">Kherif et al., 2003</xref>) even though it is known that inter-subject variability in activations is higher than within-subject or between-session variability (<xref rid="bib58 bib65" ref-type="bibr">Smith et al., 2005; Wei et al., 2004</xref>).</p>
+      <p>In this context, we present a new approach based on the classification of all voxels according to the clustering principle of fuzzy logic (<xref rid="bib68" ref-type="bibr">Zadeh, 1965</xref>). Fuzzy logic classification (<xref rid="bib8" ref-type="bibr">Bezdek, 1981</xref>) has been employed previously in fMRI data analysis (e.g., <xref rid="bib3 bib13 bib23 bib28 bib35 bib66" ref-type="bibr">Baumgartner et al., 1998; Buerki et al., 2003; Fadili et al., 2000; Golay et al., 1998; Jahanian et al., 2004; Windischberger et al., 2003</xref>), but only for data-driven first-level analyses (e.g., time series classification of all voxels without <italic>a priori</italic> knowledge). Our approach, fuzzy clustering with fixed prototypes (FCP), is specifically tailored to the exploration of inter-subject variability at the second level, where each data point represents an effect (i.e., summary statistic or contrast) from a single subject. By conducting the analysis at the second level, our method also differs from others by being non-iterative and hypothesis-driven with predefined clusters (i.e., prototypes). We demonstrate that FCP can identify regional group effects that are driven or hidden by high or low activation in one subject.</p>
+    </sec>
+    <sec sec-type="methods" id="sec1">
+      <title>Methods</title>
+      <sec>
+        <title>Subjects</title>
+        <p>Thirty-eight healthy right-handed subjects (13 males, 25 females, 32 ± 20 years) gave written informed consent to participate in this study. Subjects were native English speakers, had normal or corrected-to-normal vision, with no history of neurological or psychiatric disorders. This study was approved by the Medical Ethics Committee of the Institute of Neurology.</p>
+      </sec>
+      <sec>
+        <title>Paradigm and stimuli</title>
+        <p>There were two conditions of interest: (a) an activation task that involved object naming and (b) a baseline task that controlled for visual and articulatory processing by requiring participants to articulate “1, 2, 3” in response to pictures of meaningless non-objects. To facilitate task switching, the conditions were blocked with twelve pictures (objects or non-objects) per block. Within a block, the twelve pictures were presented as four sequential stimuli (one stimulus per 4.3 s) with three pictures per stimulus, one above and two below. The participants were asked to name the objects in the same order (top, bottom left, bottom right) or to say “1, 2, 3” to the non-objects while looking at the top, bottom left and bottom right picture. Over the experiment, there were 32 object naming stimuli (96 pictures) and 16 non-object stimuli (48 pictures). These conditions of interest were interspersed with fixation, reading aloud and saying “1,2,3” to meaningless symbols. The total scanning time for all conditions was 12 min in two separate six-minute sessions.</p>
+        <p>To ensure that the task was understood correctly, all subjects were provided with detailed instructions and underwent a short training session before entering the scanner. To minimize artefacts from head motion, subjects were instructed to whisper their response with minimal mouth movement. Subject responses were recorded with an in-house MRI-compatible auditory recording system.</p>
+      </sec>
+      <sec>
+        <title>MRI acquisition</title>
+        <p>Data were acquired on a 1.5 T Siemens system (Siemens Medical Systems, Erlangen, Germany). Functional imaging comprised an EPI GRE sequence (TR/TE/flip = 3600 ms/50 ms/90°, FOV = 192 mm, matrix = 64 × 64, 40 axial slices with 3 × 3 × 3 mm<sup>3</sup> voxel size). The multi-slice volume was positioned on sagittal scout images. Functional scanning was always preceded by 14.4 s of dummy scans to insure tissue steady-state magnetization.</p>
+      </sec>
+      <sec>
+        <title>Data analysis</title>
+        <p>Data processing and statistical analyses were performed with the Statistical Parametric Mapping SPM2 software package (Wellcome Department of Imaging Neuroscience, London UK, <ext-link xlink:href="http://www.fil.ion.ucl.ac.uk/spm/" ext-link-type="uri">http://www.fil.ion.ucl.ac.uk/spm/</ext-link>). All functional volumes were spatially realigned, un-warped, normalized to the MNI space, and smoothed with an isotropic 6-mm FWHM Gaussian kernel, with resulting voxels size of 2 × 2 × 2 mm<sup>3</sup>. Time-series from each voxel were high-pass filtered (1/128 Hz cut-off) to remove low-frequency noise and signal drift. The pre-processed functional volumes of each subject were then submitted to a fixed-effects analysis, using the general linear model at each voxel. Each stimulus onset was modeled as an event encoded in condition-specific ‘stick-functions’. The resulting stimulus functions were convolved with a canonical hemodynamic response function to form regressors for the linear model. Our contrast of interest was the main effect of object naming relative to the non-object baseline. The appropriate summary or contrast image (i.e., a contrast of maximum likelihood parameter estimates) was then entered into a second-level analysis (i.e., random-effects analysis) to enable inferences about the population from which our subjects were drawn. From this second level analysis, we generated a statistical parametric map of the <italic>F</italic> statistic at each voxel SPM{<italic>F</italic>}, which characterized differences in activation (activations and deactivations) for object naming relative to the non-object baseline. The SPM of the <italic>F</italic>-statistic was used to identify candidate voxels for subsequent fuzzy clustering. It would be perfectly possible to include all brain voxels in the clustering analysis (i.e., without selection based on the <italic>F</italic>-statistic); however, one is usually interested in detecting outlier responses in regions that are typically engaged by the experimental paradigm. The clustering itself used the contrasts summarizing the activation for each subject at the candidate voxels. In the absence of outliers, we would expect these contrast values to be normally distributed, by central limit theorem.</p>
+      </sec>
+      <sec>
+        <title>Non-iterative fuzzy clustering with fixed prototypes (FCP)</title>
+        <p>The algorithm for FCP is adapted from Bezdek's fuzzy c-mean (FCM) clustering approach (<xref rid="bib8 bib9" ref-type="bibr">Bezdek, 1981; Bezdek et al., 1997</xref>). In contrast to FCM, FCP is a non-iterative method that uses prototypes (i.e., clusters) that are fixed <italic>a priori</italic>, this means that the number of clusters does not have to be estimated and the procedure can be implemented non-iteratively. See <xref rid="fig2" ref-type="fig">Fig. 2</xref> for a schematic illustration of the FCP algorithm.</p>
+        <p>In practice, we select <italic>N</italic><sub>vox</sub> voxels that we want to assign to <italic>C</italic> clusters. Here, we included all voxels with <italic>F</italic> &gt; 2.0 in the second-level analysis (about 85,000 voxels). As outlier subjects are unknown, all subjects represent plausible classes in our algorithm. Therefore, the number of clusters (i.e., prototypes) is equal to the number of subjects <italic>C</italic> = <italic>N</italic><sub>sub</sub>. This means that each cluster represents the contribution of the corresponding subject to the mean effect at the voxel level. Each voxel <italic>i</italic> has a vector <italic>X</italic><sub><italic>i</italic></sub> of <italic>N</italic><sub>sub</sub> values that correspond to the contrast (i.e., activation) for each subject. The resemblance between each voxel <italic>i</italic> and each cluster (prototype) <italic>j</italic> is characterized by a “similarity metric” <italic>D</italic><sub><italic>ij</italic></sub>. The degree of membership <italic>U</italic><sub><italic>ij</italic></sub> is calculated for each voxel <italic>i</italic> by comparing <italic>D</italic><sub><italic>ij</italic></sub> for each cluster <italic>j</italic> to all other clusters.</p>
+      </sec>
+      <sec>
+        <title>Similarity metric <italic>D</italic></title>
+        <p>We quantify the similarity metric <italic>D</italic><sub><italic>ij</italic></sub> between a voxel <italic>i</italic> and prototype <italic>j</italic> as:<disp-formula><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:msub><mml:mi>D</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mi>tanh</mml:mi><mml:mo>(</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mtext>sub</mml:mtext></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mtext>sub</mml:mtext></mml:msub><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfrac><mml:mo>·</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>X</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>X</mml:mi><mml:mi>¯</mml:mi></mml:mover><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mi>α</mml:mi></mml:mfrac><mml:mo>)</mml:mo><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>−</mml:mo><mml:mi>tanh</mml:mi><mml:mo>(</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mtext>sub</mml:mtext></mml:msub><mml:mo>·</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>X</mml:mi><mml:mi>¯</mml:mi></mml:mover><mml:mi>i</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mrow><mml:msubsup><mml:mi>X</mml:mi><mml:mi>i</mml:mi><mml:mrow><mml:mo>≠</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msubsup></mml:mrow><mml:mi>¯</mml:mi></mml:mover></mml:mrow><mml:mi>α</mml:mi></mml:mfrac><mml:mo>)</mml:mo></mml:math></disp-formula></p>
+        <p>The real constant <italic>α</italic> is a “tuning” parameter that can be adjusted to control the sensitivity of the method to outlier values (see below). tanh is the hyperbolic tangent, <italic>X</italic><sub><italic>ij</italic></sub> is the effect for the <italic>j</italic>-th subject at voxel <italic>i</italic>, <italic>X¯</italic><sub><italic>i</italic></sub> is the mean over subjects and <italic>X</italic><sub><italic>i</italic></sub><sup><italic>≠j¯</italic></sup> is the mean effect without subject <italic>j</italic>. Accordingly, the similarity metric can be interpreted as (i) a measure of how far subject <italic>j</italic> is from the group mean, scaled by <italic>α</italic> or; (ii) a measure of how the mean effect of the group is perturbed when subject <italic>j</italic> is excluded. The latter perspective is important and suggests that our algorithm is formally similar to regression diagnostic methods that assess the extent to which a particular data point influences the model, by determining the change when that point is omitted; for example, the Cook's <italic>D</italic>-distance (<xref rid="bib15" ref-type="bibr">Cook and Weisberg, 1982</xref>) and the DFFITS/DFBETAS statistics (<xref rid="bib6" ref-type="bibr">Belsley et al., 1980</xref>). Note that other resemblance metrics have been employed in previous studies with standard fuzzy classification, including the hyperbolic correlation measure (for more details, see <xref rid="bib23 bib28" ref-type="bibr">Fadili et al., 2000; Golay et al., 1998</xref>).</p>
+        <p>To illustrate the effect of <italic>α</italic>, we considered a voxel <italic>i</italic> with a given mean effect <italic>X¯</italic><sub><italic>i</italic></sub> and a standard deviation equal to one. <xref rid="fig3" ref-type="fig">Fig. 3</xref> illustrates the influence of parameter <italic>α</italic> on <italic>D</italic>. Increasing <italic>α</italic> leads to “smooth” <italic>D</italic> values, suggesting that <italic>α</italic> can be considered as a “smoothness” parameter. Critically, in order to keep the method independent of the scaling of <italic>X</italic>, we set <italic>α</italic> equal to 3 · <italic>α</italic>, where <italic>α</italic> is the standard deviation of the group (i.e., standard deviation over all voxels and all subjects). Voxels that are driven by high positive activation (i.e., large effects) are identified with a positive <italic>α</italic> value (3 · <italic>α</italic>) and voxels that are driven by low or negative effects (e.g., deactivation) are identified with a negative <italic>α</italic> value (− 3 · <italic>α</italic>).</p>
+      </sec>
+      <sec>
+        <title>Degree of membership <italic>U</italic></title>
+        <p>The similarity metric <italic>D</italic> is then used to quantify the degree of membership <italic>U</italic><sub><italic>ij</italic></sub> of voxel <italic>i</italic> to cluster <italic>j</italic> according to the following equation:<disp-formula><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:msub><mml:mi>U</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msubsup><mml:mi>D</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>λ</mml:mi></mml:msubsup></mml:mrow><mml:mrow><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:msubsup><mml:mi>D</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>λ</mml:mi></mml:msubsup></mml:mrow></mml:mfrac></mml:math></disp-formula></p>
+        <p>The parameter <italic>λ</italic> is a negative number that represents the degree of fuzziness (e.g., <xref rid="bib23" ref-type="bibr">Fadili et al., 2000</xref>) or the defuzzification parameter (e.g., <xref rid="bib20" ref-type="bibr">Dimitriadou et al., 2004</xref>) as defined in the FCM approach. The influence of fuzziness on the clustering has been explored in previous studies (e.g., <xref rid="bib8 bib23 bib24 bib38" ref-type="bibr">Bezdek, 1981; Fadili et al., 2000, 2001; Krishnapuram and Keller, 1993</xref>): when <italic>λ</italic> tends to − ∞ the classification becomes hard and <italic>U</italic><sub><italic>ij</italic></sub> takes the value 0 (voxel <italic>i</italic> is not a member of cluster <italic>j</italic>) or 1 (voxel <italic>i</italic> belongs to cluster <italic>j</italic>) but when <italic>λ</italic> goes to 0 the classification is fuzzy (<italic>U</italic><sub><italic>ij</italic></sub> is near to 1/<italic>N</italic><sub>sub</sub>). <xref rid="fig4" ref-type="fig">Fig. 4</xref> illustrates the influence of <italic>λ</italic> on <italic>U</italic> with a range of <italic>D</italic> values. In our approach, classification was fuzzy (<italic>U</italic><sub><italic>ij</italic></sub> was a continuous number between 0 and 1) when <italic>λ</italic> was between − 8 and − 2 (<xref rid="fig4" ref-type="fig">Fig. 4</xref>). We held <italic>λ</italic> constant at − 4 (see below for more details).</p>
+        <p>To localize regions that are driven by subject <italic>j</italic>, the <italic>j</italic>th column of <italic>U</italic> is thresholded at 0.3 and displayed on a normalized anatomical volume. These maps identify the regions that are driven by a particular subject.</p>
+      </sec>
+      <sec>
+        <title>Contribution coefficient <italic>G</italic></title>
+        <p>We assess the contribution of each subject to the distributed response by computing the following coefficient:<disp-formula><label>(3)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:msub><mml:mi>G</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msub><mml:mi>N</mml:mi><mml:mtext>vox</mml:mtext></mml:msub></mml:mrow></mml:mfrac><mml:munder><mml:mo>∑</mml:mo><mml:mi>i</mml:mi></mml:munder><mml:msub><mml:mi>U</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:math></disp-formula></p>
+        <p>This coefficient <italic>G</italic><sub><italic>j</italic></sub>, computed for each cluster, is the relative proportion of the brain volume that belongs to the <italic>j</italic>-th subject (note that <italic>G</italic><sub><italic>j</italic></sub> sums to one). In hard classification (i.e., <italic>λ</italic> → − ∞), <italic>G</italic><sub><italic>j</italic></sub> is simply the proportion of voxels that belong to the <italic>j</italic>-th subject. In fuzzy classification, it is an estimation of how each subject dominates the observed data in a ‘global’ and “relative” way. In this sense, <italic>G</italic><sub><italic>j</italic></sub> reflects the ‘global’ contribution of the <italic>j</italic>-th subject relative to other subjects. The profile of <italic>G</italic><sub><italic>j</italic></sub> over subjects allows one to detect subjects who dominate in their contribution to the overall activations observed.</p>
+      </sec>
+      <sec>
+        <title>Simulations with FCP method</title>
+        <p>Before applying FCP to real fMRI data, we performed several simulations to assess (i) the sensitivity, (ii) the specificity, (iii) the influence of the parameter <italic>λ</italic> and (iv) the distribution of <italic>G</italic> values in a group with or without outlier subjects.</p>
+        <p>To assess the specificity and the sensitivity of FCP, we generated receiver operating characteristic (ROC) curves (<xref rid="bib43 bib59" ref-type="bibr">Metz, 1978; Sorenson and Wang, 1996</xref>) at different values of the parameter <italic>λ</italic>. ROC curves encode the dependence of the true positive rate (sensitivity) on the false positive rate (one minus specificity) for different thresholds on the degree of membership <italic>U</italic>. Practically, 100,000 artificial voxels and 38 subjects were generated from a unit normal distribution (mean = 0, <italic>σ</italic> = 1). In a particular subject (e.g., subject 20), a proportion <italic>q</italic> of voxels (i.e., <italic>q</italic> = 5%, five thousands voxels) was sampled from a different normal distribution (mean = 3, <italic>σ</italic> = 1) and considered as a true positive (i.e., a true outlier). We then ran FCP on these simulated data with <italic>σ</italic> = 3<italic>. G</italic> values were assessed for each subject. This procedure was repeated for several values of <italic>λ</italic> = − 1, − 2, − 3, − 4, − 6, − 8, − 10, − 20 and − 40 and for different outlier distributions (mean = 3, 4 and 5).</p>
+        <p>To assess sensitivity we treated one subject (e.g., subject 20) as an outlier. Two different proportions were used: <italic>q</italic> = 1% (1000 outlier voxels) and <italic>q</italic> = 0.2% (200 outlier voxels). For both proportions, 10,000 simulations were performed. We assessed specificity by generating the null distribution of <italic>G</italic> with <italic>λ</italic> = − 4; we generated 100,000 voxels and 38 subjects from a normal distribution (mean = 0, <italic>σ</italic> = 1) (i.e., with no outliers). This procedure was repeated 10,000 times to provide samples of <italic>G</italic> under the null hypothesis of no outliers. We repeated the simulations but with different number of subjects <italic>N</italic><sub>sub</sub> (with 10,000 iterations for each group size <italic>N</italic><sub>sub</sub>). In these analyses, <italic>N</italic><sub>sub</sub> varied from 10 to 50.</p>
+        <p>Although these simulations used normally distributed data, clustering with fuzzy logic does not assume normality of the data. The only assumption we made was the existence of outliers far from the group mean (irrespective of the distribution of the population) and simply translated this assumption to a resemblance measure <italic>D</italic>.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results</title>
+      <sec>
+        <title>Simulated data</title>
+        <sec>
+          <title>Influence of <italic>λ</italic></title>
+          <p>As shown in <xref rid="fig4" ref-type="fig">Fig. 4</xref>, parameter <italic>λ</italic> affects the assessment of degree of membership <italic>U</italic>. Therefore, the coefficient <italic>G</italic> also depends on this parameter. <xref rid="fig5" ref-type="fig">Fig. 5</xref>A illustrates the influence of <italic>λ</italic> on <italic>G</italic> values when an outlier subject contained voxels with an effect at three standard deviations from the mean. When <italic>λ</italic> is small in absolute value (e.g., − 1 or − 2), the difference between the <italic>G</italic> value of the outlier subject and the <italic>G</italic> values of other subjects is low, suggesting low discrimination. This is due to the fact that <italic>U</italic> values are very similar (near to 1/<italic>N</italic><sub>sub</sub>) when <italic>λ</italic> tends to zero (<xref rid="fig4" ref-type="fig">Fig. 4</xref>). On the other hand, the ROC analyses of sensitivity and specificity at the voxel level showed low sensitivity when <italic>λ</italic> is too high in absolute value (e.g., − 10). This might be explained by the fact that voxel clustering becomes categorical (i.e., <italic>U</italic> = 0|1) when <italic>λ</italic> tends to − ∞ and can miss outlier voxels in the presence of noise, as illustrated by our simulations. Empirically, intermediate values of <italic>λ</italic> (e.g., − 4) appear the best compromise between high sensitivity at the voxel level and high sensitivity at the subject level. The same conclusions were reached when the effect of an outlier is very far from the mean of the group (see <xref rid="fig5" ref-type="fig">Fig. 5</xref>B). When applying FCP to real data, we therefore set <italic>λ</italic> equal to − 4.</p>
+        </sec>
+        <sec>
+          <title>Distribution of <italic>G</italic></title>
+          <p><xref rid="fig6" ref-type="fig">Fig. 6</xref>A showed the distribution of <italic>G</italic> when all subjects are comparable (i.e., no outliers). Over 10,000 simulations, <italic>G</italic> values are stable with a mean equal to 1/<italic>N</italic><sub>sub</sub> (0.026) and a standard deviation of 0.0002. Consequently, we can define a confidence interval with 38 subjects such that <italic>G</italic> values within the interval [0.025, 0.027] indicate that all subjects behave similarly. In other words, a subject with a <italic>G</italic> value of more than 0.027 could be considered atypical. <xref rid="fig6" ref-type="fig">Fig. 6</xref>B illustrates the mean <italic>G</italic> values over all realizations for each subject, for different group sizes. For each number of subjects <italic>N</italic><sub>sub</sub>, a threshold can be computed for <italic>G</italic> (see gray curve in <xref rid="fig6" ref-type="fig">Fig. 6</xref>B). In addition, the sensitivity of coefficient <italic>G</italic> to the presence of an outlier subject is shown in <xref rid="fig6" ref-type="fig">Figs. 6</xref>C and D. For instance, when 1% (<xref rid="fig6" ref-type="fig">Fig. 6</xref>C) or 0.2% (<xref rid="fig6" ref-type="fig">Fig. 6</xref>D) of voxels of a given subject are atypical, the <italic>G</italic> coefficient identifies it (<italic>G</italic> value of the outlier subject is higher than 0.27). Critically, <xref rid="fig6" ref-type="fig">Fig. 6</xref>D suggests that our method can identify outlier subjects even if the outlier effect is present only in a limited number of voxels (e.g., here in 0.2% of 100,000 voxels).</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Object naming data</title>
+        <sec>
+          <title>Contribution (global) — <italic>G</italic></title>
+          <p>Group activation for the main effect of object naming, relative to the non-object baseline, is shown in <xref rid="fig7" ref-type="fig">Fig. 7</xref>A. Positive activations were observed in bilateral fusiform, inferior occipital gyri, cerebellum and SMA, with left lateralized effects in pre-central, inferior frontal, and middle temporal gyri. Negative activations were observed in bilateral inferior and superior parietal regions, precuneus, posterior cingulate and superior frontal gyri, with right lateralized effects in inferior temporal and pre-central gyri. These regions have been observed in previous studies with object naming tasks; see <xref rid="bib51" ref-type="bibr">Price et al., 2005</xref> for review. We also illustrate the percentage overlap between thresholded individual maps (<xref rid="fig7" ref-type="fig">Fig. 7</xref>B). Basically, these maps represent how often each voxel has been observed as “activated” across subjects at a given individual threshold (<italic>p</italic> &lt; 0.01, uncorrected). The common voxels between subjects are not surprisingly less frequent than voxels that have been observed in only one or two subjects, suggesting that, across subjects, activated regions are variable in size, localization and statistical significance.</p>
+          <p>Interestingly, the contribution of each subject, as represented by <italic>G</italic>, is variable across subjects (<xref rid="fig8" ref-type="fig">Fig. 8</xref>). As demonstrated above using simulated data, given that there were 38 subjects, each subject would be expected to contribute equivalently with <italic>G</italic> values less than 0.027. Some subjects have high <italic>G</italic> values when <italic>α</italic> is positive (e.g., subjects 17, 25, 37, and 38), suggesting that regional activation in these subjects is higher than in the other subjects. For example, subject 37 has a <italic>G</italic> value of 0.09, which suggests that this subject has proportionally higher activation compared to other subjects. Likewise, some subjects have high <italic>G</italic> values when <italic>α</italic> is negative (e.g., subjects 3, 19, 33, and 35), suggesting that these subjects have very low activation in some of the regions activated by the group as a whole. For example, subject 19 has a <italic>G</italic> value of 0.07, which suggests that this subject has a globally low activation level in a relatively large number of voxels, compared to the other subjects.</p>
+        </sec>
+        <sec>
+          <title>Contribution (local) — <italic>U</italic></title>
+          <p>In addition to this global measure, our approach identifies local outliers (at the voxel level). <xref rid="fig9" ref-type="fig">Fig. 9</xref> illustrates some of the cortical regions with very different levels of activation in one subject compared to the others. For instance, subject 17 had higher activation in the right supramarginal gyrus (MNI coordinates: <italic>x</italic> = 58, <italic>y</italic> = − 30, <italic>z</italic> = 36) than all the other subjects. In contrast, subject 3 had lower activation in the left inferior occipito-temporal cortex (<italic>x</italic> = − 50, <italic>y</italic> = − 60, <italic>z</italic> = − 10). These regions have high <italic>U</italic> values (i.e., <italic>U</italic> &gt; 0.9), which suggests that activation in these subjects is very far from the mean of the group.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>We have described a new clustering approach, FCP, to identify activations that are driven by one subject relative to the others. Our exploratory analysis for multi-subject fMRI data provides an objective characterization of inter-individual variability. This is usually difficult to achieve by visual inspection alone, particularly when the number of subjects is large. Previous reports have described different ways to discount (i.e., down-weight) the influence of outliers, during first or second-level analyses of fMRI data using, for instance, robust regression approaches (e.g., <xref rid="bib19 bib64" ref-type="bibr">Diedrichsen and Shadmehr, 2005; Wager et al., 2005</xref>). Our method is motivated by the unusual view that outliers are interesting; FCP characterizes variability in individual functional maps to determine whether the variance is meaningful or not. We have illustrated the performance of FCP in a relatively large number of subjects performing an overt naming task. Below, we discuss some potential applications for the analysis of single-case patient studies and the characterization of normal inter-subject variability. We also describe ways that the analysis can be adapted to address specific questions.</p>
+      <sec>
+        <title>Single-case patient studies</title>
+        <p>In clinical fMRI, the identification of activations that are driven by patients more or less than groups of control subjects is important, for example, when determining the effect of brain damage on neuronal responses and the mechanisms supporting recovery (e.g., <xref rid="bib16 bib25 bib45 bib56" ref-type="bibr">Crinion and Price, 2005; Fernandez et al., 2004; Naeser et al., 2004; Seghier et al., 2001</xref>). As there is considerable variability in the site and extent of brain damage, conclusions are often sought on comparing activation in a patient to that in a group of control subjects (e.g., <xref rid="bib25 bib56 bib67" ref-type="bibr">Fernandez et al., 2004; Seghier et al., 2001; Zacks et al., 2004</xref>). The sensitivity of conventional parametric statistical tests (e.g., the two sample <italic>t</italic>-test) in these analyses depends on the variance within the control group as well as the degree to which the patient's activation differs from the mean response. If variance in the control group is high (i.e., inflated by outlier values), then atypical activations in the patient may not be detected, even when the patient response lies outside the range of typical responses. We will demonstrate this in an application paper.</p>
+        <p>Our FCP approach allows a constrained and directed exploration of the data, which can be used to identify where the patient activation pattern is fundamentally different from the regions activated by control subjects. Critically, in this context, FCP facilitates a description of the data in the absence of statistically significant effects, as illustrated here with artificial data (<xref rid="fig6" ref-type="fig">Fig. 6</xref>). For example, when a patient has damage to a region that is activated by groups of control subjects, the expectation is that activation in this region will be significantly less in the patient than controls. However, even if the patient activation is atypically low, it will not be significantly different from controls, if the variance within the control group is high. The advantage of using FCP to explore individual variability is that it searches all the voxels (in the SPM{<italic>F</italic>} or the whole brain), rather than being constrained to <italic>a priori</italic> regions of interest. Thus, FCP can identify the full set of regions (neural system) where patient activation is atypically high (or low) compared to the controls. Finally, because identification of regions showing outlier response is based on fuzzy clustering there is no multiple comparison problem (i.e., <italic>U</italic> and <italic>G</italic> are “relative” measures; e.g., <xref rid="bib36" ref-type="bibr">Kandel et al., 1995</xref>) because there is no categorical declaration of significance of the sort applied to SPMs.</p>
+      </sec>
+      <sec>
+        <title>Atypical activations in healthy populations</title>
+        <p>There are many sources of variability in normal activation patterns that may not be predicted <italic>a priori</italic> (e.g., <xref rid="bib44" ref-type="bibr">Nadeau et al., 1998</xref>). These include the availability of different sensorimotor or cognitive strategies for the same task (see <xref rid="bib21 bib46 bib50 bib60 bib63" ref-type="bibr">Edwards et al., 2005; Noppeney et al., 2004; Price and Friston, 2002; Speer et al., 2003; Tsukiura et al., 2005</xref>) and the influence of different behavioral and demographic variables (e.g., <xref rid="bib29 bib34 bib53 bib55" ref-type="bibr">Gron et al., 2000; Iaria et al., 2003; Rimol et al., 2006; Rypma et al., 2005</xref>). The FCP approach is designed specifically to identify effects that are driven by one or few subjects. It is also useful for highlighting subtle technical problems that were not apparent during pre-processing or first-level statistical analyses. However, FCP is not designed to look at subgroups of subjects that differ in their cognitive approach to a task. Other approaches are being developed for the classification of subgroups including those based on Gaussian Mixture Modeling and Bayesian model comparison procedures (<xref rid="bib47" ref-type="bibr">Noppeney et al., 2006</xref>; see also <xref rid="bib10 bib70" ref-type="bibr">Bogorodzki et al., 2005; Zhong et al., 2004</xref>). In summary, although our approach is not optimized for classifying subjects into subgroups; it can be used to identify (i) subjects with high <italic>G</italic> values who ‘globally’ drive a significant number of ‘distributed’ voxels, and (ii) subjects with high <italic>U</italic> values who ‘locally’ drive specific cortical regions.</p>
+      </sec>
+      <sec>
+        <title>Adapting the analysis to the question of interest</title>
+        <p>Our FCP approach is intrinsically parameterized by different factors with fixed numbers of clusters (set to the number of subjects). Principally, the factor <italic>α</italic> is a tuning parameter that allows the user to adjust the sensitivity of the method to outliers (as detailed in <xref rid="fig3" ref-type="fig">Fig. 3</xref>). In addition, one can use alternative similarity measures (<italic>D</italic>), including the Pearson correlation distance, the hyperbolic correlation distance (<xref rid="bib23 bib28" ref-type="bibr">Fadili et al., 2000; Golay et al., 1998</xref>) or the Cook distance (<xref rid="bib15" ref-type="bibr">Cook and Weisberg, 1982</xref>). The choice of the similarity measure is obviously related to the definition of the prototypes, based here on the known high sensitivity and influence of regression analysis to outlier values (<xref rid="bib18 bib61" ref-type="bibr">Devlin et al., 1975; Stevens, 1984</xref>). Likewise, the definition of the degree of contribution of each subject (<italic>G</italic>) can also be reformulated with other measures. The principal motivation here for <italic>G</italic> was to represent, in one measure, how much a subject contributes to the activation at all voxels. Moreover, the quantification of the degree of membership (<italic>U</italic>) could also be modified to include spatial constraints, in particular, to take into account the spatial dependency between each voxel and its neighbors (e.g., <xref rid="bib1 bib40" ref-type="bibr">Ahmed et al., 2002; Liew et al., 2000</xref>).</p>
+      </sec>
+      <sec>
+        <title>Comparison with previous methods</title>
+        <p>Several approaches have been proposed previously to deal with the presence of outliers. Wager et al. have used robust statistics to down-weight the influence of outliers and assess the mean effects across subjects more accurately (<xref rid="bib64" ref-type="bibr">Wager et al., 2005</xref>). In the same way, a diagnosis suite, called SPMd, identifies outlier scans at the first (within-subject) level by examining the stability of the fMRI signal over time (<xref rid="bib41" ref-type="bibr">Luo and Nichols, 2003</xref>) and then removing outlier scans before statistical analysis. This method has been used recently in the context of multi-subject analysis to identify outlier sessions and subjects (<xref rid="bib69" ref-type="bibr">Zhang et al., 2006</xref>), specifically by computing an “outlier rate” at the global level and exploring the normality of data with the Shapiro–Wilk statistics. With SPMd, it is also possible to generate voxel-specific measures that indicate how far a given subject is from the group mean. The main perspective of these methods is to down-weight or remove effects that are far from other “normal” effects (<xref rid="bib41 bib64" ref-type="bibr">Luo and Nichols, 2003; Wager et al., 2005</xref>). This contrasts with our approach, which “targets” outlier effects in order to characterize them in further analyses. Other approaches have used alternative methods to identify outlier subjects. For instance, <xref rid="bib37" ref-type="bibr">Kherif et al. (2003)</xref> proposed temporal and spatial similarity measures in order to assess the similarity between subjects before group analysis. This approach, based on a multivariate analysis framework and applied in a multi-contrasts context, assesses the relative inter-subject distance using multidimensional scaling tools. It also uses Cook's test, at the global level, to identify outlier subjects. Moreover, other similarity measures based on independent component analysis (ICA) have been proposed in the context of multi-subject fMRI analysis, including the mutual correlation coefficient between estimated independent components (<xref rid="bib22" ref-type="bibr">Esposito et al., 2005</xref>) and components from tensor probabilistic independent component analysis (<xref rid="bib5" ref-type="bibr">Beckmann and Smith, 2005</xref>).</p>
+        <p>To compare our FCP approach to others, we re-analyzed our data using SPMd (<xref rid="bib41" ref-type="bibr">Luo and Nichols, 2003</xref>) and the “distance” toolbox provided by <xref rid="bib37" ref-type="bibr">Kherif et al. (2003)</xref>. With respect to Luo and Nichol's method, we used the recent version “spmd2”, which was developed initially for first (within-subject)-level data diagnosis to ensure the stability of fMRI signals over time. We computed different rates following the multi-subject study of <xref rid="bib69" ref-type="bibr">Zhang et al. (2006)</xref> and compared the “outlier rate” from SPMd with our global <italic>G</italic> values, as illustrated in <xref rid="fig10" ref-type="fig">Fig. 10</xref>A. This demonstrated a number of consistencies between the two approaches. For example, subjects 37, 2, 19, 1, 38 and 29 dominate the activation across voxels, as indicated by our method (<xref rid="fig8" ref-type="fig">Fig. 8</xref>). However, we noticed that (i) at the global level, SPMd did not distinguish between outlier effects that are below the mean from those that are above the mean; this may be important when comparing patients to controls, and (ii) there is no quantitative interpretation of this rate, unlike the FCP approach (<italic>G</italic> values under null hypothesis are equal to 1/<italic>N</italic><sub>sub</sub>, see <xref rid="fig6" ref-type="fig">Fig. 6</xref>). SPMd generates a normality diagnostic image based on Shapiro–Wilk statistics. This allows voxels violating normality (outliers) to be identified. Then, individual images are generated to assess how far a subject is from the group mean at a given voxel (equivalent to our <italic>U</italic> value). The assessment of these images by SPMd is based on the assumption that the population effect is normal. In contrast, our FCP does not assume normality.</p>
+        <p>We also tested the new “distance” toolbox of <xref rid="bib37" ref-type="bibr">Kherif et al. (2003)</xref> on our 38 subjects. We first displayed the mean distance that indicated how far a given subject is from the group (i.e., the mean of distances between subjects). As shown in <xref rid="fig10" ref-type="fig">Fig. 10</xref>B, the mean distance plot suggested that there were no outlier subjects (according also to the Cook test with the default cut off of 0.5). <xref rid="fig10" ref-type="fig">Fig. 10</xref>B indicated that some subjects with high mean distance also had high <italic>G</italic> values with our FCP method (e.g., subjects 1, 29 and 33). However, other subjects did not concord with our results (e.g., 8, 24 and 32). The discrepancy is due mainly to the fact that our method is based on a voxel-by-voxel analysis, whereas the approach in the Kherif et al. toolbox is multivariate. Note also that the distance measure employed does not distinguish between effects that are below or above the group mean. Moreover, measures at the voxel level (as in our local measure <italic>U</italic>) are currently not available in this toolbox.</p>
+        <p>In summary, although outliers can be identified by existing approaches, our approach based on fuzzy set theory is fundamentally different because (i) it acts directly on second (between-subject)-level summary statistics; (ii) it uses fuzzy logic theory which may be more appropriate for vague and ambiguous concepts like typicality and outliers; (iii) it models all subjects explicitly as potential outliers by fixing the prototypes, (iv) it employs a robust local similarity measure (<italic>D</italic>) at the voxel level that can be adapted easily to other contexts; (v) it provides a way to identify outlier subjects (i.e., with the <italic>G</italic> value) at the global level and specifies if this outlier effect is below or above the group mean (i.e., the sign of parameter <italic>α</italic>); and (vi) it furnishes a local measure (i.e., a <italic>U</italic> value) that allows voxels with atypical activation levels to be identified in each subject.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Conclusion</title>
+      <p>Here, we have presented a new approach that identifies subject-driven activations in fMRI data. This method could be used as an exploratory approach in multi-subject fMRI studies. Its sensitivity is illustrated here with both synthetic and real data from a relatively large number of healthy right-handed subjects performing an object naming task. Future investigations will explore the specificity of such approaches in group studies when activation is expected to be heterogeneous, for example in left-handed, multilingual, pediatric or diseased populations.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was funded by the Wellcome Trust and the James S. MacDonnell Foundation (conducted as part of the NRG initiative). The authors would like to thank Will Penny and Ferath Kherif for their valuable suggestions on the manuscript.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1">
+        <label>1</label>
+        <p>In statistics, observations that are far outside the norm of a population have been described under different names, including unrepresentative, influential, “rogue”, contaminant, “maverick”, outlier or fringe-lier observations. For the rest of the paper, we will use the term “outlier” to designate this kind of observation.</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ahmed</surname>
+              <given-names>M.N.</given-names>
+            </name>
+            <name>
+              <surname>Yamany</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Mohamed</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Farag</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>Moriarty</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>A modified fuzzy c-mean algorithm for bias field estimation and segmentation of MRI data</article-title>
+          <source>IEEE Trans. Med. Imaging</source>
+          <year>2002</year>
+          <volume>21</volume>
+          <fpage>193</fpage>
+          <lpage>199</lpage>
+          <pub-id pub-id-type="pmid">11989844</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barnett</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Lewis</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Outliers in Statistical Data</article-title>
+          <year>1978</year>
+          <publisher-name>Wiley</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baumgartner</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Windischberger</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Moser</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantification in functional magnetic resonance imaging: fuzzy clustering vs. correlation analysis</article-title>
+          <source>Magn. Reson. Imaging</source>
+          <year>1998</year>
+          <volume>16</volume>
+          <fpage>115</fpage>
+          <lpage>125</lpage>
+          <pub-id pub-id-type="pmid">9508268</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beckman</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Cook</surname>
+              <given-names>R.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Outlier...........s</article-title>
+          <source>Technometrics</source>
+          <year>1983</year>
+          <volume>25</volume>
+          <fpage>119</fpage>
+          <lpage>149</lpage>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beckmann</surname>
+              <given-names>C.F.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Tensorial extensions of independent component analysis for multisubject FMRI analysis</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>294</fpage>
+          <lpage>311</lpage>
+          <pub-id pub-id-type="pmid">15734364</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Belsley</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Kuh</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Welsch</surname>
+              <given-names>R.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Regression diagnostics</article-title>
+          <year>1980</year>
+          <publisher-name>Wiley</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Benali</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Pelegrini-Issac</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multivariate group effect analysis in functional magnetic resonance imaging</article-title>
+          <source>Inf. Process Med. Imaging</source>
+          <year>2003</year>
+          <volume>18</volume>
+          <fpage>548</fpage>
+          <lpage>559</lpage>
+          <pub-id pub-id-type="pmid">15344487</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bezdek</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Pattern Recognition with Fuzzy Objective Functions Algorithms</article-title>
+          <year>1981</year>
+          <publisher-name>Plenum Press</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bezdek</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>L.O.</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Goldgof</surname>
+              <given-names>D.B.</given-names>
+            </name>
+            <name>
+              <surname>Clarke</surname>
+              <given-names>L.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Medical image analysis with fuzzy models</article-title>
+          <source>Stat. Methods Med. Res.</source>
+          <year>1997</year>
+          <volume>6</volume>
+          <fpage>191</fpage>
+          <lpage>214</lpage>
+          <pub-id pub-id-type="pmid">9339497</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bogorodzki</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Rogowska</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Yurgelun-Todd</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural group classification technique based on regional fMRI BOLD responses</article-title>
+          <source>IEEE Trans. Med. Imaging</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>389</fpage>
+          <lpage>398</lpage>
+          <pub-id pub-id-type="pmid">15754989</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bosch</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical analysis of multi-subject fMRI data: assessment of focal activations</article-title>
+          <source>J. Magn. Reson. Imaging</source>
+          <year>2000</year>
+          <volume>11</volume>
+          <fpage>61</fpage>
+          <lpage>64</lpage>
+          <pub-id pub-id-type="pmid">10676622</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bradlow</surname>
+              <given-names>E.T.</given-names>
+            </name>
+            <name>
+              <surname>Zaslavsky</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Case influence analysis in Bayesian inference</article-title>
+          <source>J. Comput. Graph. Stat.</source>
+          <year>1997</year>
+          <volume>6</volume>
+          <fpage>314</fpage>
+          <lpage>331</lpage>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buerki</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lovblad</surname>
+              <given-names>K.O.</given-names>
+            </name>
+            <name>
+              <surname>Oswald</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Nirkko</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Stein</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Kiefer</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Schroth</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiresolution fuzzy clustering of functional MRI data</article-title>
+          <source>Neuroradiology</source>
+          <year>2003</year>
+          <volume>45</volume>
+          <fpage>691</fpage>
+          <lpage>699</lpage>
+          <pub-id pub-id-type="pmid">12942214</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chaloner</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Brant</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A Bayesian approach to outlier detection and residual analysis</article-title>
+          <source>Biometrika</source>
+          <year>1988</year>
+          <volume>75</volume>
+          <fpage>651</fpage>
+          <lpage>659</lpage>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cook</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Weisberg</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Residuals and Influence in Regression</article-title>
+          <year>1982</year>
+          <publisher-name>Chapman-Hall</publisher-name>
+          <publisher-loc>London</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Crinion</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Right anterior superior temporal activation predicts auditory sentence comprehension following aphasic stroke</article-title>
+          <source>Brain</source>
+          <year>2005</year>
+          <volume>128</volume>
+          <fpage>2858</fpage>
+          <lpage>2871</lpage>
+          <pub-id pub-id-type="pmid">16234297</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Davies</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Gather</surname>
+              <given-names>U.</given-names>
+            </name>
+          </person-group>
+          <article-title>The identification of multiple outliers</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <year>1993</year>
+          <volume>88</volume>
+          <fpage>782</fpage>
+          <lpage>792</lpage>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Devlin</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Gnanadesikan</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Kettenring</surname>
+              <given-names>J.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robust estimation and outlier detection with correlation coefficients</article-title>
+          <source>Biometrika</source>
+          <year>1975</year>
+          <volume>62</volume>
+          <fpage>531</fpage>
+          <lpage>545</lpage>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Diedrichsen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Shadmehr</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting and adjusting for artifacts in fMRI time series data</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>27</volume>
+          <fpage>624</fpage>
+          <lpage>634</lpage>
+          <pub-id pub-id-type="pmid">15975828</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dimitriadou</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Barth</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Windischberger</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Hornik</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Moser</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A quantitative comparison of functional MRI cluster analysis</article-title>
+          <source>Artif. Intell. Med.</source>
+          <year>2004</year>
+          <volume>31</volume>
+          <fpage>57</fpage>
+          <lpage>71</lpage>
+          <pub-id pub-id-type="pmid">15182847</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Edwards</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Pexman</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>Goodyear</surname>
+              <given-names>B.G.</given-names>
+            </name>
+            <name>
+              <surname>Chambers</surname>
+              <given-names>C.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>An fMRI investigation of strategies for word recognition</article-title>
+          <source>Brain Res. Cogn Brain Res.</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>648</fpage>
+          <lpage>662</lpage>
+          <pub-id pub-id-type="pmid">15893458</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Esposito</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Scarabino</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Hyvarinen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Himberg</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Formisano</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Comani</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Tedeschi</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Goebel</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Seifritz</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Di Salle</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Independent component analysis of fMRI group studies by self-organizing clustering</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>193</fpage>
+          <lpage>205</lpage>
+          <pub-id pub-id-type="pmid">15734355</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fadili</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Ruan</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bloyet</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Mazoyer</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>A multistep unsupervised fuzzy clustering analysis of fMRI time series</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2000</year>
+          <volume>10</volume>
+          <fpage>160</fpage>
+          <lpage>178</lpage>
+          <pub-id pub-id-type="pmid">10949054</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fadili</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Ruan</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bloyet</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Mazoyer</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the number of clusters and the fuzziness index for unsupervised FCA application to BOLD fMRI time series</article-title>
+          <source>Med. Image Anal.</source>
+          <year>2001</year>
+          <volume>5</volume>
+          <fpage>55</fpage>
+          <lpage>67</lpage>
+          <pub-id pub-id-type="pmid">11231177</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fernandez</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Cardebat</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Demonet</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Joseph</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Mazaux</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Barat</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Allard</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional MRI follow-up of language processes in health subjects and during recovery in a case of aphasia</article-title>
+          <source>Stroke</source>
+          <year>2004</year>
+          <volume>35</volume>
+          <fpage>2171</fpage>
+          <lpage>2176</lpage>
+          <pub-id pub-id-type="pmid">15297629</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Buchel</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multisubject fMRI studies and conjunction analyses</article-title>
+          <source>NeuroImage</source>
+          <year>1999</year>
+          <volume>10</volume>
+          <fpage>385</fpage>
+          <lpage>396</lpage>
+          <pub-id pub-id-type="pmid">10493897</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gastwirth</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>On robust procedures</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <year>1966</year>
+          <volume>61</volume>
+          <fpage>929</fpage>
+          <lpage>948</lpage>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Golay</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Kollias</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Stoll</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Meier</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Valavanis</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Boesiger</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new correlation-based fuzzy logic clustering algorithm for fMRI</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1998</year>
+          <volume>40</volume>
+          <fpage>249</fpage>
+          <lpage>260</lpage>
+          <pub-id pub-id-type="pmid">9702707</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gron</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Wunderlich</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Spitzer</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Tomczak</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Riepe</surname>
+              <given-names>M.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Brain activation during human navigation: gender-different neural networks as substrate of performance</article-title>
+          <source>Nat. Neurosci.</source>
+          <year>2000</year>
+          <volume>3</volume>
+          <fpage>404</fpage>
+          <lpage>408</lpage>
+          <pub-id pub-id-type="pmid">10725932</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grubbs</surname>
+              <given-names>F.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Procedures for detecting outlying observations in samples</article-title>
+          <source>Technometrics</source>
+          <year>1969</year>
+          <volume>11</volume>
+          <fpage>1</fpage>
+          <lpage>21</lpage>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hawkins</surname>
+              <given-names>D.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of Outliers</article-title>
+          <year>1980</year>
+          <publisher-name>Chapman and Hall</publisher-name>
+          <publisher-loc>London</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hocking</surname>
+              <given-names>R.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>The analysis and selection of variables in linear regression</article-title>
+          <source>Biometrics</source>
+          <year>1976</year>
+          <volume>32</volume>
+          <fpage>1</fpage>
+          <lpage>49</lpage>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huber</surname>
+              <given-names>P.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robust Statistics</article-title>
+          <year>1981</year>
+          <publisher-name>John Wiley and Sons</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Iaria</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Petrides</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Dagher</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pike</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Bohbot</surname>
+              <given-names>V.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cognitive strategies dependent on the hippocampus and caudate nucleus in human navigation: variability and change with practice</article-title>
+          <source>J. Neurosci.</source>
+          <year>2003</year>
+          <volume>23</volume>
+          <fpage>5945</fpage>
+          <lpage>5952</lpage>
+          <pub-id pub-id-type="pmid">12843299</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jahanian</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Hossein-Zadeh</surname>
+              <given-names>G.A.</given-names>
+            </name>
+            <name>
+              <surname>Soltanian-Zadeh</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Ardekani</surname>
+              <given-names>B.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Controlling the false positive rate in fuzzy clustering using randomization: application to fMRI activation detection</article-title>
+          <source>Magn. Reson. Imaging</source>
+          <year>2004</year>
+          <volume>22</volume>
+          <fpage>631</fpage>
+          <lpage>638</lpage>
+          <pub-id pub-id-type="pmid">15172056</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kandel</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Martins</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pacheco</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Discussion: on the very real distinction between fuzzy and statistical methods</article-title>
+          <source>Technometrics</source>
+          <year>1995</year>
+          <volume>37</volume>
+          <fpage>276</fpage>
+          <lpage>281</lpage>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kherif</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Mériaux</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Benali</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Brett</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Group analysis in functional neuroimaging: selecting subjects using similarity measures</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <fpage>2197</fpage>
+          <lpage>2208</lpage>
+          <pub-id pub-id-type="pmid">14683722</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krishnapuram</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Keller</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>A possibilistic approach to clustering</article-title>
+          <source>IEEE Trans. Fuzzy Syst.</source>
+          <year>1993</year>
+          <volume>1</volume>
+          <fpage>98</fpage>
+          <lpage>110</lpage>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lazar</surname>
+              <given-names>N.A.</given-names>
+            </name>
+            <name>
+              <surname>Luna</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Sweeney</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Eddy</surname>
+              <given-names>W.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Combining brains: a survey of methods for statistical pooling of information</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>16</volume>
+          <fpage>538</fpage>
+          <lpage>550</lpage>
+          <pub-id pub-id-type="pmid">12030836</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liew</surname>
+              <given-names>A.W.C.</given-names>
+            </name>
+            <name>
+              <surname>Leung</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Lau</surname>
+              <given-names>W.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fuzzy image clustering incorporating spatial continuity</article-title>
+          <source>IEE Proc. Vision Image Signal Process</source>
+          <year>2000</year>
+          <volume>147</volume>
+          <fpage>185</fpage>
+          <lpage>192</lpage>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Luo</surname>
+              <given-names>W.L.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Diagnosis and exploration of massive univariate neuroimaging models</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>19</volume>
+          <fpage>1014</fpage>
+          <lpage>1032</lpage>
+          <pub-id pub-id-type="pmid">12880829</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McNamee</surname>
+              <given-names>R.L.</given-names>
+            </name>
+            <name>
+              <surname>Lazar</surname>
+              <given-names>N.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessing the sensitivity of fMRI group maps</article-title>
+          <source>NeuroImage</source>
+          <year>2004</year>
+          <volume>22</volume>
+          <fpage>920</fpage>
+          <lpage>931</lpage>
+          <pub-id pub-id-type="pmid">15193623</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Metz</surname>
+              <given-names>C.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Basic principles of ROC analysis</article-title>
+          <source>Semin. Nucl. Med.</source>
+          <year>1978</year>
+          <volume>8</volume>
+          <fpage>283</fpage>
+          <lpage>298</lpage>
+          <pub-id pub-id-type="pmid">112681</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nadeau</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Williamson</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Crosson</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez Rothi</surname>
+              <given-names>L.J.</given-names>
+            </name>
+            <name>
+              <surname>Heilman</surname>
+              <given-names>K.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional imaging: heterogeneity in task strategy and functional anatomy and the case for individual analysis</article-title>
+          <source>Neuropsychiatry Neuropsychol. Behav. Neurol.</source>
+          <year>1998</year>
+          <volume>11</volume>
+          <fpage>83</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="pmid">9652489</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Naeser</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Martin</surname>
+              <given-names>P.I.</given-names>
+            </name>
+            <name>
+              <surname>Baker</surname>
+              <given-names>E.H.</given-names>
+            </name>
+            <name>
+              <surname>Hodge</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Sczerzenie</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Nicholas</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Palumbo</surname>
+              <given-names>C.L.</given-names>
+            </name>
+            <name>
+              <surname>Goodglass</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Wingfield</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Samaraweera</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Harris</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Baird</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Renshaw</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Yurgelun-Todd</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Overt propositional speech in chronic nonfluent aphasia studied with the dynamic susceptibility contrast fMRI method</article-title>
+          <source>NeuroImage</source>
+          <year>2004</year>
+          <volume>22</volume>
+          <fpage>29</fpage>
+          <lpage>41</lpage>
+          <pub-id pub-id-type="pmid">15109995</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib46">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Noppeney</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Degenerate neuronal systems sustaining cognitive functions</article-title>
+          <source>J. Anat.</source>
+          <year>2004</year>
+          <volume>205</volume>
+          <fpage>433</fpage>
+          <lpage>442</lpage>
+          <pub-id pub-id-type="pmid">15610392</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Noppeney</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of degenerate neuronal systems based on intersubject variability</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <fpage>885</fpage>
+          <lpage>890</lpage>
+          <pub-id pub-id-type="pmid">16300969</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib48">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Osborne</surname>
+              <given-names>J.W.</given-names>
+            </name>
+            <name>
+              <surname>Overbay</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The power of outliers (and why researchers should always check for them)</article-title>
+          <source>Pract. Assess., Res. Eval.</source>
+          <year>2004</year>
+          <volume>9</volume>
+          <fpage>6</fpage>
+          <comment>(<ext-link xlink:href="http://PAREonline.net/getvn.asp?v=9&amp;n=6" ext-link-type="uri">http://PAREonline.net/getvn.asp?v=9&amp;n=6</ext-link>)</comment>
+        </citation>
+      </ref>
+      <ref id="bib49">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Random effects analysis</article-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Zeki</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <source>Human Brain Function</source>
+          <year>2003</year>
+          <publisher-name>Academic Press</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib50">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Degeneracy and cognitive anatomy</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <year>2002</year>
+          <volume>6</volume>
+          <fpage>416</fpage>
+          <lpage>421</lpage>
+          <pub-id pub-id-type="pmid">12413574</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib51">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Devlin</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Morton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Laird</surname>
+              <given-names>A.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Meta-analyses of object naming: effect of baseline</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>70</fpage>
+          <lpage>82</lpage>
+          <pub-id pub-id-type="pmid">15846820</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib52">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rasmussen</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evaluating outlier identification tests: mahalanobis D squared and comrey Dk</article-title>
+          <source>Multivar. Behav. Res.</source>
+          <year>1988</year>
+          <volume>23</volume>
+          <fpage>189</fpage>
+          <lpage>202</lpage>
+        </citation>
+      </ref>
+      <ref id="bib53">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rimol</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Specht</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Hugdahl</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Controlling for individual differences in fMRI brain activation to tones, syllables, and words</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <fpage>554</fpage>
+          <lpage>562</lpage>
+          <pub-id pub-id-type="pmid">16343948</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib54">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rousseeuw</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Leroy</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robust Regression and Outlier Detection</article-title>
+          <year>2003</year>
+          <publisher-name>John Wiley and Sons</publisher-name>
+          <publisher-loc>New Jersey, USA</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib55">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rypma</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Berger</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Genova</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Rebbechi</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>D'Esposito</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dissociating age-related changes in cognitive strategy and neural efficiency using event-related fMRI</article-title>
+          <source>Cortex</source>
+          <year>2005</year>
+          <volume>41</volume>
+          <fpage>582</fpage>
+          <lpage>594</lpage>
+          <pub-id pub-id-type="pmid">16042034</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib56">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seghier</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lazeyras</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Momjian</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Annoni</surname>
+              <given-names>J.-M.</given-names>
+            </name>
+            <name>
+              <surname>de Tribolet</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Khateb</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Language representation in a patient with a dominant right hemisphere: fMRI evidence for an intrahemispheric reorganisation</article-title>
+          <source>NeuroReport</source>
+          <year>2001</year>
+          <volume>12</volume>
+          <fpage>2785</fpage>
+          <lpage>2790</lpage>
+          <pub-id pub-id-type="pmid">11588577</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib57">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shapiro</surname>
+              <given-names>L.S.</given-names>
+            </name>
+            <name>
+              <surname>Brady</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Rejecting outliers and estimating errors in an orthogonal-regression framework</article-title>
+          <source>Philos. Trans., Phys. Sci. Eng.</source>
+          <year>1995</year>
+          <volume>350</volume>
+          <fpage>407</fpage>
+          <lpage>439</lpage>
+        </citation>
+      </ref>
+      <ref id="bib58">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Beckmann</surname>
+              <given-names>C.F.</given-names>
+            </name>
+            <name>
+              <surname>Ramnani</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Woolrich</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Bannister</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Jenkinson</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Matthews</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>McGonigle</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variability in fMRI: a re-examination of inter-session differences</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>248</fpage>
+          <lpage>257</lpage>
+          <pub-id pub-id-type="pmid">15654698</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib59">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sorenson</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>ROC methods for evaluation of fMRI techniques</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1996</year>
+          <volume>36</volume>
+          <fpage>737</fpage>
+          <lpage>744</lpage>
+          <pub-id pub-id-type="pmid">8916024</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib60">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Speer</surname>
+              <given-names>N.K.</given-names>
+            </name>
+            <name>
+              <surname>Jacoby</surname>
+              <given-names>L.L.</given-names>
+            </name>
+            <name>
+              <surname>Braver</surname>
+              <given-names>T.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Strategy-dependent changes in memory: effects on behavior and brain activity</article-title>
+          <source>Cogn. Affect. Behav. Neurosci.</source>
+          <year>2003</year>
+          <volume>3</volume>
+          <fpage>155</fpage>
+          <lpage>167</lpage>
+          <pub-id pub-id-type="pmid">14672153</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib61">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stevens</surname>
+              <given-names>J.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Outliers and influential data points in regression analysis</article-title>
+          <source>Psychol. Bull.</source>
+          <year>1984</year>
+          <volume>95</volume>
+          <fpage>334</fpage>
+          <lpage>344</lpage>
+        </citation>
+      </ref>
+      <ref id="bib62">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Svensen</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kruggel</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Benali</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>ICA of fMRI group study data</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>16</volume>
+          <fpage>551</fpage>
+          <lpage>563</lpage>
+          <pub-id pub-id-type="pmid">12169242</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib63">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tsukiura</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Mochizuki-Kawai</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Fujii</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>The effect of encoding strategies on medial temporal lobe activations during the recognition of words: an event-related fMRI study</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>452</fpage>
+          <lpage>461</lpage>
+          <pub-id pub-id-type="pmid">15784424</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib64">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wager</surname>
+              <given-names>T.D.</given-names>
+            </name>
+            <name>
+              <surname>Keller</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Lacey</surname>
+              <given-names>S.C.</given-names>
+            </name>
+            <name>
+              <surname>Jonides</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Increased sensitivity in neuroimaging analyses using robust regression</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>26</volume>
+          <fpage>99</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="pmid">15862210</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib65">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wei</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Yoo</surname>
+              <given-names>S.S.</given-names>
+            </name>
+            <name>
+              <surname>Dickey</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Zou</surname>
+              <given-names>K.H.</given-names>
+            </name>
+            <name>
+              <surname>Guttmann</surname>
+              <given-names>C.R.</given-names>
+            </name>
+            <name>
+              <surname>Panych</surname>
+              <given-names>L.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional MRI of auditory verbal working memory: long-term reproducibility analysis</article-title>
+          <source>NeuroImage</source>
+          <year>2004</year>
+          <volume>21</volume>
+          <fpage>1000</fpage>
+          <lpage>1008</lpage>
+          <pub-id pub-id-type="pmid">15006667</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib66">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Windischberger</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Barth</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lamm</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Schroeder</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Bauer</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Gur</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Moser</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fuzzy cluster analysis of high-field functional MRI data</article-title>
+          <source>Artif. Intell. Med.</source>
+          <year>2003</year>
+          <volume>29</volume>
+          <fpage>203</fpage>
+          <lpage>223</lpage>
+          <pub-id pub-id-type="pmid">14656487</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib67">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zacks</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Michelon</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Vettel</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Ojemann</surname>
+              <given-names>J.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional reorganization of spatial transformations after a parietal lesion</article-title>
+          <source>Neurology</source>
+          <year>2004</year>
+          <volume>63</volume>
+          <fpage>287</fpage>
+          <lpage>292</lpage>
+          <pub-id pub-id-type="pmid">15277622</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib68">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zadeh</surname>
+              <given-names>L.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fuzzy sets</article-title>
+          <source>Inf. Control</source>
+          <year>1965</year>
+          <volume>8</volume>
+          <fpage>338</fpage>
+          <lpage>353</lpage>
+        </citation>
+      </ref>
+      <ref id="bib69">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Luo</surname>
+              <given-names>W.L.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Diagnosis of single-subject and group fMRI data with SPMd</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2006</year>
+          <volume>27</volume>
+          <fpage>442</fpage>
+          <lpage>451</lpage>
+          <pub-id pub-id-type="pmid">16615119</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib70">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhong</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Wu</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Nakamura</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Ohshima</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Mizuhara</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Peculiarity oriented fMRI brain data analysis for studying human multi-perception mechanism</article-title>
+          <source>Cogn. Syst. Res.</source>
+          <year>2004</year>
+          <volume>5</volume>
+          <fpage>241</fpage>
+          <lpage>256</lpage>
+        </citation>
+      </ref>
+      <ref id="bib71">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zimmerman</surname>
+              <given-names>D.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>A note on the influence of outliers on parametric and nonparametric tests</article-title>
+          <source>J. Gen. Psychol.</source>
+          <year>1994</year>
+          <volume>121</volume>
+          <fpage>391</fpage>
+          <lpage>401</lpage>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>(Top) Activation level in all subjects at a given voxel. The activation level in subject 1 is artificially modified to perturb the mean and the standard deviation (SD) across subjects (e.g., dashed line). (Bottom) The influence of activation level in subject 1 (<italic>x</italic>-axis) on the mean (dash-dot line), SD (dashed line) and <italic>t</italic> values (solid line) is illustrated. Significant effect across subjects (<italic>t</italic> values at <italic>p</italic> &lt; 0.001) is indicated by a horizontal gray bar.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Schematic illustration of the FCP algorithm.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>The influence of the parameter <italic>α</italic> on the smoothness of the distance <italic>D</italic>. Values of <italic>α</italic> of 1, 2, 3 and 5 are illustrated in this graph. Solid line represents the value of <italic>α</italic> used for the rest of the paper.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>(Top) Typical <italic>D</italic> values when for instance subject 1 is far from the group. Subject 1 has therefore a lower <italic>D</italic> value than other subjects. (Bottom) the influence of parameter <italic>λ</italic> on <italic>U</italic> values. For instance, for a given voxel <italic>i</italic>, subject 1 has high activation level compared to other subjects, which means that this voxel <italic>i</italic> has high degree of membership <italic>U</italic><sub><italic>i</italic>1</sub> to subject 1. When <italic>λ</italic> tends to − ∞ the classification becomes hard (<italic>U</italic><sub><italic>i</italic>1</sub> = 1, and <italic>U</italic><sub><italic>ij</italic></sub> = 0 for <italic>j</italic> ≠ 1). When <italic>λ</italic> goes to 0 the classification is fuzzy (all <italic>U</italic><sub><italic>ij</italic></sub> are near to 1/<italic>N</italic><sub>sub</sub>). For intermediate <italic>λ</italic> values, <italic>U</italic><sub><italic>ij</italic></sub> is a continuum between 0 and 1. In our case, <italic>λ</italic> is fixed at − 4 (dashed line).</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>A—(left) <italic>G</italic> values on simulated data with subject number 20 as an outlier (with 5% of voxels set to 3<italic>σ</italic> above the mean of the group). <italic>G</italic> values are computed at different <italic>λ</italic> values. (Right-top) ROC curves on simulated data with different <italic>λ</italic> values. (right-bottom) zoom on ROC curves. B—The same as panel A but with outlier voxels set to 4<italic>σ</italic> from the mean. See the <xref rid="sec1" ref-type="sec">Methods section</xref> for more details.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>(Top) Distribution of <italic>G</italic> values on simulated data when all subjects are sampled from the same distribution (no outliers). Bars represent mean <italic>G</italic> values over 10,000 realizations for each subject, and each dot represents the <italic>G</italic> value for each realization (10,000 dots per subject). <italic>G</italic> values under null hypothesis are near to the theoretical value of 1/<italic>N</italic><sub>sub</sub>. (Bottom-left) mean of <italic>G</italic> values (solid line) + 5<italic>σ</italic> (gray line) over all simulations for different sample sizes (<italic>N</italic><sub>sub</sub> from 10 to 50 subjects). (Bottom-right) The same computations as in top but with subject number 20 having a proportion of <italic>q</italic> = 1% or <italic>q</italic> = 0.2% of voxels with outlier values.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Fig. 7</label>
+      <caption>
+        <p>A—(left) group activation for the main effect of object naming relative to the non-object baseline; (right) group activation for the effect of non-object relative to object naming. B—(left) percent of overlap maps that measure how many subjects are activating each voxel at <italic>p</italic> &lt; 0.01 (uncorrected). Voxels observed in one to up twenty subjects are projected as a color-coded map. (Right) Histogram of activated voxels over a given number of subjects. Voxels observed in few subjects (e.g., one or two subjects) represent the majority.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig8">
+      <label>Fig. 8</label>
+      <caption>
+        <p><italic>G</italic> values of all subjects are shown for positive (black bars) and negative (gray bars) <italic>α</italic> value.</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="fig9">
+      <label>Fig. 9</label>
+      <caption>
+        <p>This figure illustrates some of the cortical regions with very different levels of activation in one subject compared to the others. Each functional map (axial view) represents the projection of <italic>U</italic> values (at threshold = 0.3) on a normalized anatomical volume. MNI coordinates of these regions are reported at the top of each functional map. Atypical high activation levels are illustrated for subjects S17 and S25, and atypical low activation levels are illustrated for subjects S03 and S19.</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+    <fig id="fig10">
+      <label>Fig. 10</label>
+      <caption>
+        <p>(A) Outlier identification with “SPMd” toolbox of <xref rid="bib41" ref-type="bibr">Luo and Nichols (2003)</xref>. (B) Outlier identification with “distance” toolbox of <xref rid="bib37" ref-type="bibr">Kherif et al. (2003)</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr10"/>
+    </fig>
+  </floats-wrap>
+</article>

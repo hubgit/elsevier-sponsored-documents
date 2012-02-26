@@ -1,0 +1,1537 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Comput Phys Commun</journal-id>
+      <journal-title-group>
+        <journal-title>Computer Physics Communications</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0010-4655</issn>
+      <publisher>
+        <publisher-name>North-Holland Pub. Co</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3149285</article-id>
+      <article-id pub-id-type="pmid">21822326</article-id>
+      <article-id pub-id-type="publisher-id">COMPHY4454</article-id>
+      <article-id pub-id-type="doi">10.1016/j.cpc.2011.04.015</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>noloco: An efficient implementation of van der Waals density functionals based on a Monte-Carlo integration technique</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Nabok</surname>
+            <given-names>Dmitrii</given-names>
+          </name>
+          <email>dmitrii.nabok@unileoben.ac.at</email>
+          <xref rid="cr0010" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Puschnig</surname>
+            <given-names>Peter</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Ambrosch-Draxl</surname>
+            <given-names>Claudia</given-names>
+          </name>
+          <email>claudia.ambrosch-draxl@unileoben.ac.at</email>
+        </contrib>
+      </contrib-group>
+      <aff>Chair for Atomistic Modelling and Design of Materials, Montanuniversität Leoben, Franz-Josef-Straße 18, A-8700 Leoben, Austria</aff>
+      <author-notes>
+        <corresp id="cr0010"><label>⁎</label>Corresponding author. <email>dmitrii.nabok@unileoben.ac.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>8</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>8</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>182</volume>
+      <issue>8</issue>
+      <fpage>1657</fpage>
+      <lpage>1662</lpage>
+      <history>
+        <date date-type="received">
+          <day>31</day>
+          <month>12</month>
+          <year>2010</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>18</day>
+          <month>4</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>22</day>
+          <month>4</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier B.V.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>The treatment of van der Waals interactions in density functional theory is an important field of ongoing research. Among different approaches developed recently to capture these non-local interactions, the van der Waals density functional (vdW-DF) developed in the groups of Langreth and Lundqvist is becoming increasingly popular. It does not rely on empirical parameters, and has been successfully applied to molecules, surface systems, and weakly-bound solids. As the vdW-DF requires the evaluation of a six-dimensional integral, it scales, however, unfavorably with system size. In this work, we present a numerically efficient implementation based on the Monte-Carlo technique for multi-dimensional integration. It can handle different versions of vdW-DF. Applications range from simple dimers to complex structures such as molecular crystals and organic molecules physisorbed on metal surfaces.</p>
+      </abstract>
+      <abstract abstract-type="graphical">
+        <title>Highlights</title>
+        <p>► We present a numerically efficient implementation of van der Waals DFT. ► The computational efficiency is achieved through the usage of the Monte-Carlo integration technique. ► It scales particularly well for periodic systems. ► The code can be used on top of any DFT code. ► Different flavors of vdW density functionals are included.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Density functional theory</kwd>
+        <kwd>Van der Waals interactions</kwd>
+        <kwd>vdW-DF</kwd>
+        <kwd>Monte-Carlo integration</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="se0010">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>Density functional theory (DFT) <xref rid="br0010" ref-type="bibr">[1]</xref> is the most powerful and popular <italic>ab initio</italic> method for describing structural and electronic properties in a vast variety of materials. The only quantities which require an approximation are the expressions for exchange and correlation in the effective potential and the total-energy functional. The most widely used approximations during the last decades, the local-density approximation (LDA) and different flavors of the generalized gradient approximation (GGA), are based on the well-studied limit of the uniform electron gas. They have been very successful in the description of binding and structural properties of tightly-bound materials such as semiconductors or metals. However, for weakly-bound systems such as graphite, molecular crystals, or molecules physisorbed on surfaces, both types of functionals exhibit severe shortcomings as they cannot capture the long-range tail of the non-local van der Waals (vdW) forces <xref rid="br0020 br0030" ref-type="bibr">[2,3]</xref>. While GGAʼs vastly overestimate equilibrium distances or do not lead to any binding, LDA performs reasonably well in case of overlapping densities, but cannot account for the proper asymptotic behavior. Therefore, the development of density functionals which correctly include vdW interactions is of prime interest.</p>
+      <p>The theoretical description of vdW interactions, and, in particular, a numerically efficient implementation, has been a challenging task for <italic>ab initio</italic> calculations. Recently, several approaches have been developed to include them within the framework of useful DFT approximations. They range from simple schemes utilizing a semi-empirical vdW correction term <xref rid="br0040" ref-type="bibr">[4]</xref> to very sophisticated first-principles methods based on the adiabatic-connection formula <xref rid="br0050 br0060" ref-type="bibr">[5,6]</xref>. Among the latter, the vdW-DF approach by Dion et al. <xref rid="br0070" ref-type="bibr">[7]</xref> attracted considerable interest when demonstrating applicability for a number of vdW-bound systems, as recently reviewed by Langreth et al. <xref rid="br0080" ref-type="bibr">[8]</xref>. In fact, it enabled the treatment of many cases where conventional approximate DFT functionals failed badly, including dimers <xref rid="br0090 br0100" ref-type="bibr">[9,10]</xref>, polymers <xref rid="br0110" ref-type="bibr">[11]</xref>, molecular crystals <xref rid="br0120 br0130" ref-type="bibr">[12,13]</xref>, and molecules adsorbed on surfaces <xref rid="br0140 br0150 br0160 br0170" ref-type="bibr">[14–17]</xref>.</p>
+      <p>vdW-DF theory provides an expression for the non-local correlation energy in terms of a six-dimensional integral based on the knowledge of the electron density. The numerical evaluation of this integral becomes cumbersome for large unit cells and, in particular, for periodic systems. Consequently, a number of recent publications deal with efficient schemes to evaluate the non-local correlation energy <xref rid="br0180 br0190 br0200" ref-type="bibr">[18–20]</xref>. In this work, we present an alternative implementation of vdW-DF which is based on the Monte-Carlo method for multi-dimensional integration. The Monte-Carlo integration technique has a range of advantages over standard quadrature rules in cases where the integration is performed over large data grids, as required for the long-ranged vdW interactions in 2D or 3D periodic systems.</p>
+      <p>We provide a set of examples such as the Ar dimer and graphite to test our implementation in terms of accuracy and computational effort. Moreover, the program is applied to more challenging cases: We evaluate the cohesive energy of the molecular crystal naphthalene and present the non-local correlation energy of thiophene on Cu(110) as a typical system of an organic molecule/metal surface junction.</p>
+    </sec>
+    <sec id="se0020">
+      <label>2</label>
+      <title>Theoretical background</title>
+      <sec id="se0030">
+        <label>2.1</label>
+        <title>The vdW density functional</title>
+        <p>The remarkable achievement of the vdW-DF theory is a simple and computationally attractive expression for the non-local correlation energy. This energy is given by an integral which describes the interaction between electron densities at two points <bold>r</bold> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><bold>r</bold><sup>′</sup></textual-form><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:msup></mml:math></alternatives></inline-formula> <xref rid="br0070" ref-type="bibr">[7]</xref>:<disp-formula id="fm0010"><label>(1)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mo>∫</mml:mo><mml:msup><mml:mi mathvariant="normal">d</mml:mi><mml:mn>3</mml:mn></mml:msup><mml:mi>r</mml:mi><mml:mspace width="0.2em"/><mml:msup><mml:mi mathvariant="normal">d</mml:mi><mml:mn>3</mml:mn></mml:msup><mml:msup><mml:mi>r</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mspace width="0.2em"/><mml:mi>n</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mi>ϕ</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>,</mml:mo><mml:msup><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:mi>n</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:msup><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula> The kernel <italic>ϕ</italic> is a non-local function of the coordinates, the electron densities, and their gradients, which, can be tabulated in advance in terms of the two dimensionless variables, <italic>D</italic> and <italic>δ</italic>, defined by<disp-formula id="fm0020"><label>(2)</label><alternatives><textual-form specific-use="jats-markup"><italic>D</italic> = ½(<italic>d</italic> + <italic>d</italic><sup>′</sup>),  0 ⩽ <italic>D</italic> ⩽  ∞ , </textual-form><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mi>D</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mrow><mml:mo>(</mml:mo><mml:mi>d</mml:mi><mml:mo>+</mml:mo><mml:msup><mml:mi>d</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:mo>,</mml:mo><mml:mspace width="1em"/><mml:mn>0</mml:mn><mml:mo>⩽</mml:mo><mml:mi>D</mml:mi><mml:mo>⩽</mml:mo><mml:mo>∞</mml:mo><mml:mo>,</mml:mo></mml:math></alternatives></disp-formula><disp-formula id="fm0030"><label>(3)</label><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mi>δ</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>d</mml:mi><mml:mo>−</mml:mo><mml:msup><mml:mi>d</mml:mi><mml:mo>′</mml:mo></mml:msup></mml:mrow><mml:mrow><mml:mi>d</mml:mi><mml:mo>+</mml:mo><mml:msup><mml:mi>d</mml:mi><mml:mo>′</mml:mo></mml:msup></mml:mrow></mml:mfrac><mml:mo>,</mml:mo><mml:mspace width="1em"/><mml:mn>0</mml:mn><mml:mo>⩽</mml:mo><mml:mo stretchy="false">|</mml:mo><mml:mi>δ</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mo>⩽</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo></mml:math></disp-formula> where<disp-formula id="fm0040"><label>(4)</label><alternatives><textual-form specific-use="jats-markup"><italic>d</italic> = |<bold>r</bold> − <bold>r</bold><sup>′</sup>|<italic>q</italic><sub>0</sub>(<bold>r</bold>),  <italic>d</italic><sup>′</sup> = |<bold>r</bold> − <bold>r</bold><sup>′</sup>|<italic>q</italic><sub>0</sub>(<bold>r</bold><sup>′</sup>).</textual-form><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mi>d</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo>|</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>−</mml:mo><mml:msup><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>|</mml:mo></mml:mrow><mml:msub><mml:mi>q</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:mspace width="2em"/><mml:msup><mml:mi>d</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>=</mml:mo><mml:mrow><mml:mo>|</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>−</mml:mo><mml:msup><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>|</mml:mo></mml:mrow><mml:msub><mml:mi>q</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mrow><mml:mo>(</mml:mo><mml:msup><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></alternatives></disp-formula> <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>q</italic><sub>0</sub>(<bold>r</bold>)</textual-form><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:msub><mml:mi>q</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is, by construction <xref rid="br0070" ref-type="bibr">[7]</xref>, a function of the electron density and its gradient at a given point <bold>r</bold>. When both <italic>d</italic> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>d</italic><sup>′</sup></textual-form><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:msup><mml:mi>d</mml:mi><mml:mo>′</mml:mo></mml:msup></mml:math></alternatives></inline-formula> are large, a simplified asymptotic form of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϕ</italic>(<italic>d</italic>, <italic>d</italic><sup>′</sup>)</textual-form><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>d</mml:mi><mml:mo>,</mml:mo><mml:msup><mml:mi>d</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> can be used<disp-formula id="fm0050"><label>(5)</label><mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:mi>ϕ</mml:mi><mml:mo>→</mml:mo><mml:mo>−</mml:mo><mml:mfrac><mml:mi>C</mml:mi><mml:mrow><mml:msup><mml:mi>d</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:msup><mml:mi>d</mml:mi><mml:mrow><mml:mo>′</mml:mo><mml:mspace width="0.2em"/><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mi>d</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mi>d</mml:mi><mml:mrow><mml:mo>′</mml:mo><mml:mspace width="0.2em"/><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:math></disp-formula> with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>C</italic> = 12(4<italic>π</italic> / 9)<sup>3</sup><italic>m</italic><italic>e</italic><sup>4</sup></textual-form><mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mi>C</mml:mi><mml:mo>=</mml:mo><mml:mn>12</mml:mn><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mn>4</mml:mn><mml:mi>π</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:mn>9</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mn>3</mml:mn></mml:msup><mml:mi>m</mml:mi><mml:msup><mml:mi>e</mml:mi><mml:mn>4</mml:mn></mml:msup></mml:math></alternatives></inline-formula>. Thus, the interaction energy has the correct <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>r</italic><sup> − 6</sup></textual-form><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:msup><mml:mi>r</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>6</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> dependence for large separation <italic>r</italic>.</p>
+      </sec>
+      <sec id="se0040">
+        <label>2.2</label>
+        <title>Multi-dimensional integration</title>
+        <p>Numerical quadrature algorithms are known to be the best method for low-dimensional integrals <xref rid="br0210 br0220" ref-type="bibr">[21,22]</xref>. However, their efficiency declines when the dimensionality of the integral increases. As an example, an integral of a <italic>d</italic>-dimensional function <italic>f</italic> over the hypercube <inline-formula><alternatives><textual-form specific-use="jats-markup">[0, 1]<sup><italic>d</italic></sup></textual-form><mml:math id="M12" altimg="si12.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mo stretchy="false">[</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">]</mml:mo></mml:mrow><mml:mi>d</mml:mi></mml:msup></mml:math></alternatives></inline-formula>, evaluated with the help of the trapezoidal rule is expressed as<disp-formula id="fm0060"><label>(6)</label><mml:math id="M13" altimg="si13.gif" overflow="scroll"><mml:mi>I</mml:mi><mml:mo>≡</mml:mo><mml:mo>∫</mml:mo><mml:msup><mml:mi>d</mml:mi><mml:mi>d</mml:mi></mml:msup><mml:mi>u</mml:mi><mml:mspace width="0.2em"/><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>u</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:msub><mml:mi>u</mml:mi><mml:mi>d</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:msup><mml:mi>n</mml:mi><mml:mi>d</mml:mi></mml:msup></mml:mfrac><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:msub><mml:mi>j</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:mo>…</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:msub><mml:mi>j</mml:mi><mml:mi>d</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>0</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:msub><mml:mi>w</mml:mi><mml:msub><mml:mi>j</mml:mi><mml:mn>1</mml:mn></mml:msub></mml:msub><mml:mo>…</mml:mo><mml:msub><mml:mi>w</mml:mi><mml:msub><mml:mi>j</mml:mi><mml:mi>d</mml:mi></mml:msub></mml:msub><mml:mi>f</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mfrac><mml:msub><mml:mi>j</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mi>n</mml:mi></mml:mfrac><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mfrac><mml:msub><mml:mi>j</mml:mi><mml:mi>d</mml:mi></mml:msub><mml:mi>n</mml:mi></mml:mfrac><mml:mo>)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mi>O</mml:mi><mml:mrow><mml:mo>(</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:msup><mml:mi>n</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mfrac><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula> Here <italic>n</italic> is the number of grid points in each dimension and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>w</italic><sub><italic>j</italic></sub></textual-form><mml:math id="M14" altimg="si14.gif" overflow="scroll"><mml:msub><mml:mi>w</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:math></alternatives></inline-formula> are the weight factors, depending on the integration scheme. To obtain the integral value, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic> = (<italic>n</italic> + 1)<sup><italic>d</italic></sup> ≈ <italic>n</italic><sup><italic>d</italic></sup></textual-form><mml:math id="M15" altimg="si15.gif" overflow="scroll"><mml:mi>N</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>n</mml:mi><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mi>d</mml:mi></mml:msup><mml:mo>≈</mml:mo><mml:msup><mml:mi>n</mml:mi><mml:mi>d</mml:mi></mml:msup></mml:math></alternatives></inline-formula> evaluations of the integrand function are required. Moreover, with increasing dimension <italic>d</italic>, the error estimate <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>O</italic>(<italic>N</italic><sup> − 2 / <italic>d</italic></sup>)</textual-form><mml:math id="M16" altimg="si16.gif" overflow="scroll"><mml:mi>O</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mi>N</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="false">/</mml:mo><mml:mi>d</mml:mi></mml:mrow></mml:msup><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> deteriorates drastically. In Monte-Carlo integration techniques, on the other hand, the error estimate scales as <inline-formula><mml:math id="M17" altimg="si17.gif" overflow="scroll"><mml:mn>1</mml:mn><mml:mo stretchy="false">/</mml:mo><mml:msqrt><mml:mi>N</mml:mi></mml:msqrt></mml:math></inline-formula>, independent of the number of dimensions. Hence, the Monte-Carlo method becomes more attractive for numerical integration in high dimensions.</p>
+        <p>The Monte-Carlo method gives the estimate <italic>E</italic> for the integral on the left-hand side of Eq. <xref rid="fm0060" ref-type="disp-formula">(6)</xref> using <italic>N</italic> random samples of the integrand at points <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>x</italic><sub><italic>n</italic></sub></textual-form><mml:math id="M18" altimg="si18.gif" overflow="scroll"><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:math></alternatives></inline-formula> <xref rid="br0220 br0230" ref-type="bibr">[22,23]</xref><disp-formula id="fm0070"><label>(7)</label><mml:math id="M19" altimg="si19.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mi>N</mml:mi></mml:mfrac><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>N</mml:mi></mml:munderover><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>.</mml:mo></mml:math></disp-formula> The law of large numbers ensures that the Monte-Carlo estimate converges to the true value of the integral, i.e.,<disp-formula id="fm0080"><label>(8)</label><mml:math id="M20" altimg="si20.gif" overflow="scroll"><mml:munder><mml:mi mathvariant="normal">lim</mml:mi><mml:mrow><mml:mi>N</mml:mi><mml:mo>→</mml:mo><mml:mo>∞</mml:mo></mml:mrow></mml:munder><mml:mfrac><mml:mn>1</mml:mn><mml:mi>N</mml:mi></mml:mfrac><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>N</mml:mi></mml:munderover><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>I</mml:mi><mml:mo>.</mml:mo></mml:math></disp-formula> In contrast to quadrature rules, the accuracy of the Monte-Carlo integration has a probabilistic error bound. One can show that<disp-formula id="fm0090"><label>(9)</label><mml:math id="M21" altimg="si21.gif" overflow="scroll"><mml:mo>∫</mml:mo><mml:mi>d</mml:mi><mml:mi>x</mml:mi><mml:mspace width="0.2em"/><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>E</mml:mi><mml:mo>−</mml:mo><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mi>σ</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi>f</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mi>N</mml:mi></mml:mfrac><mml:mo>,</mml:mo></mml:math></disp-formula> where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>σ</italic>(<italic>f</italic>)</textual-form><mml:math id="M22" altimg="si22.gif" overflow="scroll"><mml:mi>σ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>f</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is the standard deviation of the function <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>f</italic>(<italic>x</italic>)</textual-form><mml:math id="M23" altimg="si23.gif" overflow="scroll"><mml:mi>f</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. In other words, the Monte-Carlo error estimate is on the average <inline-formula><mml:math id="M24" altimg="si24.gif" overflow="scroll"><mml:mi>σ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>f</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">/</mml:mo><mml:msqrt><mml:mi>N</mml:mi></mml:msqrt></mml:math></inline-formula> and scales as <inline-formula><mml:math id="M25" altimg="si25.gif" overflow="scroll"><mml:mn>1</mml:mn><mml:mo stretchy="false">/</mml:mo><mml:msqrt><mml:mi>N</mml:mi></mml:msqrt></mml:math></inline-formula> independent of the dimension <italic>d</italic>. However, the convergence of the integral to the true value is rather slow as the number of sampling points increases. Fortunately, several techniques have been developed to improve the situation and make Monte-Carlo integration more efficient from a practical point of view <xref rid="br0220 br0230 br0240" ref-type="bibr">[22–24]</xref>. The most important variance-reducing techniques are stratified sampling, importance sampling, globally adaptive subdivision, and quasi-random sequences. These are widely used in general, and, in particular, in the CUBA library <xref rid="br0240" ref-type="bibr">[24]</xref> which is utilized in our implementation.</p>
+      </sec>
+    </sec>
+    <sec id="se0050">
+      <label>3</label>
+      <title>Implementation</title>
+      <sec id="se0060">
+        <label>3.1</label>
+        <title>Technical details</title>
+        <p>We proceed describing our implementation to evaluate the 6-dimensional integral in Eq. <xref rid="fm0010" ref-type="disp-formula">(1)</xref>. In order to calculate the integrand one only needs information about the electron density distribution. The three-dimensional total electron density is provided on a regular three-dimensional grid, which can be generated by any DFT code. In the current implementation, the density, the density gradients (optional), and the information on the unit cell parameters are read in a format which is also used for visualization in the XCrySDen package <xref rid="br0250" ref-type="bibr">[25]</xref>.</p>
+        <p>The kernel <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϕ</italic>(<italic>D</italic>, <italic>δ</italic>)</textual-form><mml:math id="M26" altimg="si27.gif" overflow="scroll"><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>D</mml:mi><mml:mo>,</mml:mo><mml:mi>δ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> has been pre-calculated and tabulated on a fine grid, i.e., <inline-formula><alternatives><textual-form specific-use="jats-markup">400×21</textual-form><mml:math id="M27" altimg="si28.gif" overflow="scroll"><mml:mn>400</mml:mn><mml:mo>×</mml:mo><mml:mn>21</mml:mn></mml:math></alternatives></inline-formula> points in the ranges <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>D</italic> ∈ [0.01, 20]</textual-form><mml:math id="M28" altimg="si29.gif" overflow="scroll"><mml:mi>D</mml:mi><mml:mo>∈</mml:mo><mml:mo stretchy="false">[</mml:mo><mml:mn>0.01</mml:mn><mml:mo>,</mml:mo><mml:mn>20</mml:mn><mml:mo stretchy="false">]</mml:mo></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>δ</italic> ∈ [0, 1]</textual-form><mml:math id="M29" altimg="si30.gif" overflow="scroll"><mml:mi>δ</mml:mi><mml:mo>∈</mml:mo><mml:mo stretchy="false">[</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">]</mml:mo></mml:math></alternatives></inline-formula>. As the kernel <italic>ϕ</italic> diverges for small <italic>D</italic> values, the starting value is chosen <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>D</italic> = 0.01</textual-form><mml:math id="M30" altimg="si31.gif" overflow="scroll"><mml:mi>D</mml:mi><mml:mo>=</mml:mo><mml:mn>0.01</mml:mn></mml:math></alternatives></inline-formula>. For values <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>D</italic> &lt; 0.01</textual-form><mml:math id="M31" altimg="si32.gif" overflow="scroll"><mml:mi>D</mml:mi><mml:mo>&lt;</mml:mo><mml:mn>0.01</mml:mn></mml:math></alternatives></inline-formula>, a constant value of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϕ</italic>(<italic>D</italic>, <italic>δ</italic>) = <italic>ϕ</italic>(0.01, <italic>δ</italic>)</textual-form><mml:math id="M32" altimg="si33.gif" overflow="scroll"><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>D</mml:mi><mml:mo>,</mml:mo><mml:mi>δ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mn>0.01</mml:mn><mml:mo>,</mml:mo><mml:mi>δ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is assumed. This choice of parameters has been checked to have no influence on the final result of the integral. For values <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>D</italic> &gt; 20</textual-form><mml:math id="M33" altimg="si34.gif" overflow="scroll"><mml:mi>D</mml:mi><mml:mo>&gt;</mml:mo><mml:mn>20</mml:mn></mml:math></alternatives></inline-formula>, the asymptotic form of Eq. <xref rid="fm0050" ref-type="disp-formula">(5)</xref> is used. In <xref rid="fg0010" ref-type="fig">Fig. 1</xref>, a plot of <inline-formula><alternatives><textual-form specific-use="jats-markup">4<italic>π</italic><italic>D</italic><sup>2</sup><italic>ϕ</italic></textual-form><mml:math id="M34" altimg="si35.gif" overflow="scroll"><mml:mn>4</mml:mn><mml:mi>π</mml:mi><mml:msup><mml:mi>D</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mi>ϕ</mml:mi></mml:math></alternatives></inline-formula> vs <italic>D</italic> for several values of <italic>δ</italic> is shown, which agrees perfectly with published data <xref rid="br0260" ref-type="bibr">[26]</xref>. Since the Monte-Carlo integration requires the evaluation of the integrand at random points, we use a trilinear interpolation <xref rid="br0270" ref-type="bibr">[27]</xref> to compute the values of the kernel, the electron density, and its gradients at those points.</p>
+        <p>noloco is a FORTRAN program and makes use of the CUBA library for multi-dimensional integration <xref rid="br0240" ref-type="bibr">[24]</xref>. Among the four different Monte-Carlo integration algorithms implemented in the CUBA library, the routine DIVONNE has been chosen. This routine shows the best results in terms of numerical stability and computational time for our purpose.</p>
+      </sec>
+      <sec id="se0070">
+        <label>3.2</label>
+        <title>Input</title>
+        <p>The noloco input file is presented in <xref rid="fg0020" ref-type="fig">Fig. 2</xref> for the example of the argon dimer. In line 2 one needs to specify the location of the tabulated vdW-DF kernel. The corresponding file kernel.dat can be found in the program source directory. Line 3 contains the information on the flavor of the vdW-DF functional to be used. ‘vdW-DF’ refers to the version by Dion et al. <xref rid="br0070" ref-type="bibr">[7]</xref>, ‘vdW-DF2’ to the latest release by Lee et al. <xref rid="br0280" ref-type="bibr">[28]</xref>, and ‘VV09’ stands for the version by Vydrov and Voorhis <xref rid="br0290" ref-type="bibr">[29]</xref>. In line 4, the user specifies the size of a supercell which is used for periodic systems to evaluate <inline-formula><mml:math id="M35" altimg="si39.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula>. The supercell is created as shown in <xref rid="fg0030" ref-type="fig">Fig. 3</xref>. Here, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>x</italic></sub>,  <italic>n</italic><sub><italic>y</italic></sub>,  <italic>n</italic><sub><italic>z</italic></sub></textual-form><mml:math id="M36" altimg="si40.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:mtext> </mml:mtext><mml:msub><mml:mi>n</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:mtext> </mml:mtext><mml:msub><mml:mi>n</mml:mi><mml:mi>z</mml:mi></mml:msub></mml:math></alternatives></inline-formula> denote the number of translational images along the three lattice vectors, corresponding to a total number of unit cells<disp-formula id="fm0100"><label>(10)</label><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>c</italic><italic>e</italic><italic>l</italic><italic>l</italic></sub> = (2<italic>n</italic><sub><italic>x</italic></sub> + 1)(2<italic>n</italic><sub><italic>y</italic></sub> + 1)(2<italic>n</italic><sub><italic>z</italic></sub> + 1).</textual-form><mml:math id="M37" altimg="si41.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mrow><mml:mi>c</mml:mi><mml:mi>e</mml:mi><mml:mi>l</mml:mi><mml:mi>l</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>2</mml:mn><mml:msub><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>2</mml:mn><mml:msub><mml:mi>n</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>2</mml:mn><mml:msub><mml:mi>n</mml:mi><mml:mi>z</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo><mml:mo>.</mml:mo></mml:math></alternatives></disp-formula></p>
+        <p>Setting <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>n</italic><sub><italic>x</italic></sub> <italic>n</italic><sub><italic>y</italic></sub> <italic>n</italic><sub><italic>z</italic></sub>)</textual-form><mml:math id="M38" altimg="si42.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>z</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> equal to <inline-formula><alternatives><textual-form specific-use="jats-markup">(0 0 0)</textual-form><mml:math id="M39" altimg="si43.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:mn>0</mml:mn><mml:mspace width="0.25em"/><mml:mn>0</mml:mn><mml:mspace width="0.25em"/><mml:mn>0</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> corresponds to the case of an isolated molecule, i.e., <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>c</italic><italic>e</italic><italic>l</italic><italic>l</italic></sub> = 1</textual-form><mml:math id="M40" altimg="si44.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mrow><mml:mi>c</mml:mi><mml:mi>e</mml:mi><mml:mi>l</mml:mi><mml:mi>l</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></alternatives></inline-formula>. In this case, the molecule must be placed at the center of a primitive cell which should be large enough to prevent wave-function overlap with periodic images. Note that noloco does not take into account the symmetry of the cell since typical systems in which vdW interactions play an important role (e.g., molecular crystals or molecule/surfaces interfaces), generally have rather low symmetry. In case of periodic structures, due to the translational symmetry of the electron density, the kernel, and hence the whole integrand, fulfills the condition <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϕ</italic>(<bold>r</bold> + <bold>R</bold>, <bold>r</bold><sup>′</sup> + <bold>R</bold>) = <italic>ϕ</italic>(<bold>r</bold>, <bold>r</bold><sup>′</sup>)</textual-form><mml:math id="M41" altimg="si45.gif" overflow="scroll"><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>+</mml:mo><mml:mi mathvariant="bold">R</mml:mi><mml:mo>,</mml:mo><mml:msup><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>+</mml:mo><mml:mi mathvariant="bold">R</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>ϕ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">r</mml:mi><mml:mo>,</mml:mo><mml:msup><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. Therefore, the region of integration over the variable <bold>r</bold> runs over one unit cell only, while the integration region for <inline-formula><alternatives><textual-form specific-use="jats-markup"><bold>r</bold><sup>′</sup></textual-form><mml:math id="M42" altimg="si46.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:msup></mml:math></alternatives></inline-formula> is the supercell. The ultimate size of the supercell is determined by the convergence of <inline-formula><mml:math id="M43" altimg="si47.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula> with increasing number of translational images <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>x</italic></sub>,  <italic>n</italic><sub><italic>y</italic></sub>,  <italic>n</italic><sub><italic>z</italic></sub></textual-form><mml:math id="M44" altimg="si48.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:mtext> </mml:mtext><mml:msub><mml:mi>n</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:mtext> </mml:mtext><mml:msub><mml:mi>n</mml:mi><mml:mi>z</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, depending on the individual system under investigation.</p>
+        <p>The main parameter required for a Monte-Carlo integration is the requested accuracy of the final value of the integral. This value, which serves as the stopping criterion of the integration, can be chosen either as relative (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>r</italic><italic>e</italic><italic>l</italic></sub></textual-form><mml:math id="M45" altimg="si49.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mrow><mml:mi>r</mml:mi><mml:mi>e</mml:mi><mml:mi>l</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, line 5) or absolute accuracy (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M46" altimg="si50.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, line 6). The integrator tries to find an estimate <italic>E</italic> (Eq. <xref rid="fm0070" ref-type="disp-formula">(7)</xref>) for the integral <italic>I</italic> which fulfills the relation <inline-formula><alternatives><textual-form specific-use="jats-markup">|<italic>E</italic> − <italic>I</italic>| ⩽ max(<italic>ϵ</italic><sub><italic>abs</italic></sub>, <italic>ϵ</italic><sub><italic>r</italic><italic>e</italic><italic>l</italic></sub><italic>I</italic>)</textual-form><mml:math id="M47" altimg="si51.gif" overflow="scroll"><mml:mo stretchy="false">|</mml:mo><mml:mi>E</mml:mi><mml:mo>−</mml:mo><mml:mi>I</mml:mi><mml:mo stretchy="false">|</mml:mo><mml:mo>⩽</mml:mo><mml:mi mathvariant="normal">max</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>ϵ</mml:mi><mml:mrow><mml:mi>r</mml:mi><mml:mi>e</mml:mi><mml:mi>l</mml:mi></mml:mrow></mml:msub><mml:mi>I</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> <xref rid="br0240" ref-type="bibr">[24]</xref>.</p>
+        <p>The CUBA library provides the possibility to specify a variety of methods to obtain the integrand estimate: a Korobov <xref rid="br0420" ref-type="bibr">[30]</xref> or Sobolʼ <xref rid="br0430" ref-type="bibr">[31]</xref> quasi-random sampling, a Mersenne–Twister <xref rid="br0320" ref-type="bibr">[32]</xref> pseudo-random sampling, or the cubature rules of Genz and Malik <xref rid="br0330" ref-type="bibr">[33]</xref>. Here, we use the quasi-random Korobov <xref rid="br0420" ref-type="bibr">[30]</xref> sequences choosing the number of sampling points in the order of <inline-formula><alternatives><textual-form specific-use="jats-markup">10<sup>5</sup>–10<sup>6</sup></textual-form><mml:math id="M48" altimg="si52.gif" overflow="scroll"><mml:msup><mml:mn>10</mml:mn><mml:mn>5</mml:mn></mml:msup><mml:mtext>–</mml:mtext><mml:msup><mml:mn>10</mml:mn><mml:mn>6</mml:mn></mml:msup></mml:math></alternatives></inline-formula>, which is given in line 7. The maximum total number of the integrand evaluations can be specified in line 8. This parameter is only used if the desired convergence has not been reached already.</p>
+        <p>Finally, the name of the file containing the structural data and 3D electron density is specified in line 12. It depends on the code and the underlying band-structure method whether the full density (all-electron codes), the pseudo-density (pseudopotential codes), or the quasi-all-electron density (PAW-based codes) are read in. The flag in line 11 specifies whether the density is given in e/bohr<sup>3</sup> or <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>e</italic> / <italic>Å</italic><sup>3</sup></textual-form><mml:math id="M49" altimg="si53.gif" overflow="scroll"><mml:mi mathvariant="normal">e</mml:mi><mml:mo stretchy="false">/</mml:mo><mml:msup><mml:mi>Å</mml:mi><mml:mn>3</mml:mn></mml:msup></mml:math></alternatives></inline-formula>. In line 13, the user can specify a file which contains the density gradients on the same grid as the electron density. In case this data is not available, noloco calculates the density gradients using a three-point formula.</p>
+      </sec>
+    </sec>
+    <sec id="se0080">
+      <label>4</label>
+      <title>Applications</title>
+      <p>We illustrate our program with applications to several prototypical vdW-bound systems such as the Ar dimer and graphite, which already have been studied with vdW-DF <xref rid="br0070 br0100 br0140" ref-type="bibr">[7,10,14]</xref>. In addition, we provide two more involved examples, the molecular crystal naphthalene <xref rid="br0120" ref-type="bibr">[12]</xref> as well as thiophene on Cu(110) <xref rid="br0160" ref-type="bibr">[16]</xref>. We test both reliability and computational efficiency of our implementation. The total energy calculations have been carried out using Quantum ESPRESSO <xref rid="br0340" ref-type="bibr">[34]</xref>. The information regarding computational time refers to a desktop computer with an Opteron processor, 2.4 GHz and 2 GB RAM.</p>
+      <p>The computational procedure of vdW-DF is a post-scf scheme <xref rid="br0070" ref-type="bibr">[7]</xref>. In the first step, the crystal or molecular electron density is calculated using the GGA functional according to Perdew, Burke and Ernzerhof (PBE) <xref rid="br0350" ref-type="bibr">[35]</xref>. In the second step, the non-local correlation energy <inline-formula><mml:math id="M50" altimg="si61.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula> is evaluated using the self-consistent electron density obtained in the previous step. In the final step, the vdW-DF total energy is determined as<disp-formula id="fm0110"><label>(11)</label><mml:math id="M51" altimg="si62.gif" overflow="scroll"><mml:msup><mml:mi>E</mml:mi><mml:mrow><mml:mi mathvariant="italic">vdW</mml:mi><mml:mtext>-</mml:mtext><mml:mi mathvariant="italic">DF</mml:mi></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:msup><mml:mi>E</mml:mi><mml:mi mathvariant="italic">PBE</mml:mi></mml:msup><mml:mo>−</mml:mo><mml:msubsup><mml:mi>E</mml:mi><mml:mrow><mml:mi>x</mml:mi><mml:mi>c</mml:mi></mml:mrow><mml:mi mathvariant="italic">PBE</mml:mi></mml:msubsup><mml:mo>+</mml:mo><mml:mrow><mml:mo>(</mml:mo><mml:msubsup><mml:mi>E</mml:mi><mml:mi>x</mml:mi><mml:mtext>revPBE</mml:mtext></mml:msubsup><mml:mo>+</mml:mo><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">LDA</mml:mi></mml:msubsup><mml:mo>+</mml:mo><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup><mml:mo>)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:math></disp-formula></p>
+      <p>We use the vdW-DF flavor <xref rid="br0070" ref-type="bibr">[7]</xref> in all the examples presented here. Other variants <xref rid="br0280 br0290" ref-type="bibr">[28,29]</xref> are, however, also implemented in our package.</p>
+      <sec id="se0090">
+        <label>4.1</label>
+        <title>Argon dimer</title>
+        <p>A typical vdW-bound system, in which standard xc functionals are known to fail, is the Ar dimer. Since the Ar atom has a fully occupied 3p shell, the binding in the dimer is purely due to dispersion forces. Self-consistent calculations were performed by putting two Ar atoms in a cubic supercell of 30 bohr and using a plane-wave energy cutoff of 60 Ry.</p>
+        <p>We first consider the convergence of <inline-formula><mml:math id="M52" altimg="si63.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula> by choosing different values for the parameter <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M53" altimg="si64.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula> which governs the absolute accuracy of the Monte-Carlo integration (line 6 of the input file). The results are presented in <xref rid="fg0040" ref-type="fig">Fig. 4</xref> and <xref rid="tl0010" ref-type="table">Table 1</xref> which also contains the CPU time and the numbers of evaluation <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>eval</italic></sub></textual-form><mml:math id="M54" altimg="si65.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi mathvariant="italic">eval</mml:mi></mml:msub></mml:math></alternatives></inline-formula> needed to achieve the corresponding accuracy. For comparison, the total number of evaluations which would be required by a quadrature rule, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>quad</italic></sub></textual-form><mml:math id="M55" altimg="si66.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi mathvariant="italic">quad</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, is of order <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>n</italic><sub><italic>c</italic><italic>e</italic><italic>l</italic><italic>l</italic></sub> ⋅ (<italic>N</italic><sub><italic>x</italic></sub> ⋅ <italic>N</italic><sub><italic>y</italic></sub> ⋅ <italic>N</italic><sub><italic>z</italic></sub>)<sup>2</sup></textual-form><mml:math id="M56" altimg="si67.gif" overflow="scroll"><mml:msub><mml:mi>n</mml:mi><mml:mrow><mml:mi>c</mml:mi><mml:mi>e</mml:mi><mml:mi>l</mml:mi><mml:mi>l</mml:mi></mml:mrow></mml:msub><mml:mo>⋅</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mo>⋅</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mo>⋅</mml:mo><mml:msub><mml:mi>N</mml:mi><mml:mi>z</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup></mml:math></alternatives></inline-formula>, where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>x</italic></sub></textual-form><mml:math id="M57" altimg="si68.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>x</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>y</italic></sub></textual-form><mml:math id="M58" altimg="si69.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>y</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>z</italic></sub></textual-form><mml:math id="M59" altimg="si70.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi>z</mml:mi></mml:msub></mml:math></alternatives></inline-formula> are the numbers of grid points along the unit cell vectors where the electron density is represented. As we use 150 points in each direction in this example, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>quad</italic></sub></textual-form><mml:math id="M60" altimg="si71.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi mathvariant="italic">quad</mml:mi></mml:msub></mml:math></alternatives></inline-formula> is of the order 10<sup>13</sup> which corresponds to at least three orders of magnitude higher computing time compared to our approach.</p>
+        <p><xref rid="fg0040" ref-type="fig">Fig. 4</xref> shows the non-local interaction energy for the Ar dimer as a function of the interatomic distance for different parameters <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M61" altimg="si72.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula>. It turns out that a value of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub> = 10<sup> − 5</sup> Ha</textual-form><mml:math id="M62" altimg="si73.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>5</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:mtext>Ha</mml:mtext></mml:math></alternatives></inline-formula> is sufficient to obtain converged results. These are in agreement with the corresponding curves from literature <xref rid="br0070 br0360" ref-type="bibr">[7,36]</xref>.</p>
+      </sec>
+      <sec id="se0100">
+        <label>4.2</label>
+        <title>Graphite</title>
+        <p>Another prototypical vdW system is graphite, for which the interaction between adjacent graphene sheets is of vdW type.</p>
+        <p>For the self-consistent calculations, an energy cutoff of 35 Ry and an <inline-formula><alternatives><textual-form specific-use="jats-markup">8×8×4</textual-form><mml:math id="M63" altimg="si74.gif" overflow="scroll"><mml:mn>8</mml:mn><mml:mo>×</mml:mo><mml:mn>8</mml:mn><mml:mo>×</mml:mo><mml:mn>4</mml:mn></mml:math></alternatives></inline-formula> k-mesh are used. The in-plane lattice parameter is fixed to the experimental value of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>a</italic> = 2.4612 Å</textual-form><mml:math id="M64" altimg="si75.gif" overflow="scroll"><mml:mi>a</mml:mi><mml:mo>=</mml:mo><mml:mn>2.4612</mml:mn><mml:mtext> </mml:mtext><mml:mtext>Å</mml:mtext></mml:math></alternatives></inline-formula>, while the inter-plane distance is varied. As mentioned in Section <xref rid="se0050" ref-type="sec">3</xref>, for periodic systems one needs to check the long-range behavior of <inline-formula><mml:math id="M65" altimg="si76.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula>. The results of such a test is presented in <xref rid="tl0020" ref-type="table">Table 2</xref>, where, for simplicity, we only change the lateral supercell size. Note that there are two layers in the unit cell, such that the non-local interaction of the carbon atoms in one plane with those of the other plane is probed. Fortunately, there is almost no dependence of the CPU time on the number of translational images for <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>n</italic><sub><italic>x</italic></sub> <italic>n</italic><sub><italic>y</italic></sub> <italic>n</italic><sub><italic>z</italic></sub>)</textual-form><mml:math id="M66" altimg="si77.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>z</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> values larger than (1 1 0). This demonstrates the efficiency of the chosen integration scheme when dealing with periodic systems.</p>
+        <p>The binding energy of the graphene sheets in a graphite crystal as a function of the interlayer distance is presented in <xref rid="fg0050" ref-type="fig">Fig. 5</xref>. <inline-formula><mml:math id="M67" altimg="si78.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula> is calculated using the integration parameters <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>n</italic><sub><italic>x</italic></sub> <italic>n</italic><sub><italic>y</italic></sub> <italic>n</italic><sub><italic>z</italic></sub>) = (8 8 4)</textual-form><mml:math id="M68" altimg="si79.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>z</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>8</mml:mn><mml:mspace width="0.25em"/><mml:mn>8</mml:mn><mml:mspace width="0.25em"/><mml:mn>4</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub> = 10<sup> − 5</sup> Ha</textual-form><mml:math id="M69" altimg="si80.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>5</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:mtext>Ha</mml:mtext></mml:math></alternatives></inline-formula>. The curves obtained are fully consistent with those previously reported <xref rid="br0140" ref-type="bibr">[14]</xref>. For comparison, results for some widely used approximate xc functionals are shown also.</p>
+      </sec>
+      <sec id="se0110">
+        <label>4.3</label>
+        <title>Crystalline naphthalene</title>
+        <p>Naphthalene is the simplest representative of the oligoacene family. Its crystal structure is visualized in the center of <xref rid="fg0060" ref-type="fig">Fig. 6</xref>. The dependence of the non-local energy on the parameter <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M70" altimg="si92.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula> is displayed in the left panel together with the corresponding CPU time for the molecular crystal as well as the isolated molecule computed within the same unit cell. <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>n</italic><sub><italic>x</italic></sub> <italic>n</italic><sub><italic>y</italic></sub> <italic>n</italic><sub><italic>z</italic></sub>)</textual-form><mml:math id="M71" altimg="si93.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>z</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> are fixed to <inline-formula><alternatives><textual-form specific-use="jats-markup"> = (1 1 1)</textual-form><mml:math id="M72" altimg="si94.gif" overflow="scroll"><mml:mo>=</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mspace width="0.25em"/><mml:mn>1</mml:mn><mml:mspace width="0.25em"/><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. One can see that a value of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub> = 10<sup> − 3</sup> Ha</textual-form><mml:math id="M73" altimg="si95.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>3</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:mtext>Ha</mml:mtext></mml:math></alternatives></inline-formula> is sufficient to obtain the non-local energy within 1 mHa. The calculation at this accuracy level only takes around 5 min on a desktop machine. As the computing time, however, increases exponentially with this input parameter, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M74" altimg="si96.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula> needs to be chosen carefully in case of such complex systems.</p>
+        <p>The right panel is dedicated to the convergence with respect to the number of periodic images. The results for the naphthalene crystal show quick convergence of the non-local energy as a function of the integration volume. It is interesting to note that the characteristic fluctuations of the integral values are of the order of the requested integration accuracy. As in the case of graphite, there is almost no dependence of the computing time on the integration volume.</p>
+      </sec>
+      <sec id="se0120">
+        <label>4.4</label>
+        <title>Thiophene on Cu(110)</title>
+        <p>As the last example we consider the adsorption of an organic molecule on a metal surface. Thiophene (C<sub>4</sub>H<sub>4</sub>S<sub>1</sub>) on Cu(110) has been studied in detail in Ref. <xref rid="br0160" ref-type="bibr">[16]</xref> where it turned out that vdW interaction is a substantial contribution to the binding mechanism. We consider a geometry as depicted in the central panel of <xref rid="fg0070" ref-type="fig">Fig. 7</xref>, with a molecule–metal distance of 2.6 Å. As in the previous case, we test the convergence behavior as a function of the parameter <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M75" altimg="si97.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula> (left panel) and the supercell size (right panel). <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub> = 10<sup> − 4</sup> Ha</textual-form><mml:math id="M76" altimg="si98.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:mtext>Ha</mml:mtext></mml:math></alternatives></inline-formula> is required to obtain the non-local energy within 0.5 mHa. <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>n</italic><sub><italic>x</italic></sub> <italic>n</italic><sub><italic>y</italic></sub> <italic>n</italic><sub><italic>z</italic></sub>) = (4 4 0)</textual-form><mml:math id="M77" altimg="si99.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>z</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>4</mml:mn><mml:mspace width="0.25em"/><mml:mn>4</mml:mn><mml:mspace width="0.25em"/><mml:mn>0</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is found to be sufficient for the same accuracy. Again, the computing time hardly increases with the number of periodic images, but increases exponentially with <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M78" altimg="si100.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula>. Since the electron density is small in the region between the molecule and the surface, a dense grid is required. That would render a geometry relaxation with standard integration techniques for such systems hardly doable.</p>
+      </sec>
+    </sec>
+    <sec id="se0130">
+      <label>5</label>
+      <title>Conclusions</title>
+      <p>We have presented a numerically efficient implementation of the Langreth–Lundqvist vdW-DF which is shown to be very useful, in particular, when dealing with periodic systems. The computational efficiency is achieved through the usage of the Monte-Carlo integration technique as implemented in the CUBA library <xref rid="br0240" ref-type="bibr">[24]</xref>. noloco is freely distributed and can be downloaded from <ext-link ext-link-type="uri" xlink:href="http://amadm.unileoben.ac.at/software.html">http://amadm.unileoben.ac.at/software.html</ext-link> or <ext-link ext-link-type="uri" xlink:href="http://exciting-code.org">http://exciting-code.org</ext-link>. Our code presented here is carefully tested, has different flavors of vdW density functionals included, and can be used on top of any DFT code. So far, it has been used in combination with Quantum Espresso <xref rid="br0120 br0390" ref-type="bibr">[12,39]</xref>, Blöchelʼs PAW code <xref rid="br0160" ref-type="bibr">[16]</xref>, VASP <xref rid="br0170" ref-type="bibr">[17]</xref>, exciting <xref rid="br0400" ref-type="bibr">[40]</xref>, Wien2k, and FHI-AIMS <xref rid="br0410" ref-type="bibr">[41]</xref> being applied to a variety of vdW bound systems, ranging from molecular dimers to surface systems <xref rid="br0160 br0170" ref-type="bibr">[16,17]</xref>, molecular crystals and their surface energies <xref rid="br0120" ref-type="bibr">[12]</xref> as well as for investigating the role of non-local correlations in the coinage metals <xref rid="br0410" ref-type="bibr">[41]</xref>.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="br0010">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kohn</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>Rev. Mod. Phys.</source>
+          <volume>71</volume>
+          <year>1999</year>
+          <fpage>1253</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0020">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dobson</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>McLennan</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Rubio</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gould</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Le</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Dinte</surname>
+              <given-names>B.P.</given-names>
+            </name>
+          </person-group>
+          <source>Aust. J. Chem.</source>
+          <volume>54</volume>
+          <year>2001</year>
+          <fpage>513</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0030">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dobson</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Dinte</surname>
+              <given-names>B.P.</given-names>
+            </name>
+            <name>
+              <surname>McLennan</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Le</surname>
+              <given-names>H.M.</given-names>
+            </name>
+          </person-group>
+          <source>Int. J. Quantum Chem.</source>
+          <volume>101</volume>
+          <year>2005</year>
+          <fpage>579</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0040">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Grimme</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>J. Comput. Chem.</source>
+          <volume>27</volume>
+          <year>2006</year>
+          <fpage>1787</fpage>
+          <pub-id pub-id-type="pmid">16955487</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0050">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Langreth</surname>
+              <given-names>D.C.</given-names>
+            </name>
+            <name>
+              <surname>Perdew</surname>
+              <given-names>J.P.</given-names>
+            </name>
+          </person-group>
+          <source>Solid State Comm.</source>
+          <volume>17</volume>
+          <year>1975</year>
+          <fpage>1425</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0060">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gunnarsson</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Lundqvist</surname>
+              <given-names>B.I.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. B</source>
+          <volume>13</volume>
+          <year>1976</year>
+          <fpage>4274</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0070">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dion</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Rydberg</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Schröder</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Langreth</surname>
+              <given-names>D.C.</given-names>
+            </name>
+            <name>
+              <surname>Lundqvist</surname>
+              <given-names>B.I.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. Lett.</source>
+          <volume>92</volume>
+          <year>2004</year>
+          <fpage>246401</fpage>
+          <pub-id pub-id-type="pmid">15245113</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0080">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Langreth</surname>
+              <given-names>D.C.</given-names>
+            </name>
+            <name>
+              <surname>Lundqvist</surname>
+              <given-names>B.I.</given-names>
+            </name>
+            <name>
+              <surname>Chakarova-Käck</surname>
+              <given-names>S.D.</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>V.R.</given-names>
+            </name>
+            <name>
+              <surname>Dion</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Hyldgaard</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Kelkkanen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kleis</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kong</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Moses</surname>
+              <given-names>P.G.</given-names>
+            </name>
+            <name>
+              <surname>Murray</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Puzder</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Rydberg</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Schröder</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Thonhauser</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys.: Condens. Matter</source>
+          <volume>21</volume>
+          <year>2009</year>
+          <fpage>084203</fpage>
+          <pub-id pub-id-type="pmid">21817355</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0090">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Puzder</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Dion</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Langreth</surname>
+              <given-names>D.C.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Phys.</source>
+          <volume>124</volume>
+          <year>2006</year>
+          <fpage>164105</fpage>
+          <pub-id pub-id-type="pmid">16674127</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0100">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thonhauser</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Puzder</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Langreth</surname>
+              <given-names>D.C.</given-names>
+            </name>
+          </person-group>
+          <source>J. Chem. Phys.</source>
+          <volume>124</volume>
+          <year>2006</year>
+          <fpage>164106</fpage>
+          <pub-id pub-id-type="pmid">16674128</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0110">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kleis</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lundqvist</surname>
+              <given-names>B.I.</given-names>
+            </name>
+            <name>
+              <surname>Langreth</surname>
+              <given-names>D.C.</given-names>
+            </name>
+            <name>
+              <surname>Schröder</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. B</source>
+          <volume>76</volume>
+          <year>2007</year>
+          <fpage>100201(R)</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0120">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nabok</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Puschnig</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Ambrosch-Draxl</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. B</source>
+          <volume>77</volume>
+          <year>2008</year>
+          <fpage>245316</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0130">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ambrosch-Draxl</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Nabok</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Puschnig</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Meisenbichler</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>New J. Phys.</source>
+          <volume>11</volume>
+          <year>2009</year>
+          <fpage>125010</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0140">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chakarova-Käck</surname>
+              <given-names>S.D.</given-names>
+            </name>
+            <name>
+              <surname>Schröder</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Lundqvist</surname>
+              <given-names>B.I.</given-names>
+            </name>
+            <name>
+              <surname>Langreth</surname>
+              <given-names>D.C.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. Lett.</source>
+          <volume>96</volume>
+          <year>2006</year>
+          <fpage>146107</fpage>
+          <pub-id pub-id-type="pmid">16712103</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0150">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chakarova-Käck</surname>
+              <given-names>S.D.</given-names>
+            </name>
+            <name>
+              <surname>Borck</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Schröder</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Lundqvist</surname>
+              <given-names>B.I.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. B</source>
+          <volume>74</volume>
+          <year>2006</year>
+          <fpage>155402</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0160">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sony</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Puschnig</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Nabok</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Ambrosch-Draxl</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. Lett.</source>
+          <volume>99</volume>
+          <year>2007</year>
+          <fpage>176401</fpage>
+          <pub-id pub-id-type="pmid">17995351</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0170">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Romaner</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Nabok</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Puschnig</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Zojer</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Ambrosch-Draxl</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <source>New J. Phys.</source>
+          <volume>11</volume>
+          <year>2009</year>
+          <fpage>053010</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0180">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gulans</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Puska</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Nieminen</surname>
+              <given-names>R.M.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. B</source>
+          <volume>79</volume>
+          <year>2009</year>
+          <fpage>201105(R)</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0190">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Roman-Perez</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Soler</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. Lett.</source>
+          <volume>103</volume>
+          <year>2009</year>
+          <fpage>096102</fpage>
+          <pub-id pub-id-type="pmid">19792809</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0200">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lazic</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Atodiresei</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Alaei</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Caciuc</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Blügel</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Brako</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Comput. Phys. Comm.</source>
+          <volume>181</volume>
+          <year>2010</year>
+          <fpage>371</fpage>
+          <lpage>379</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0210">
+        <label>21</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Davis</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Rabinowitz</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Methods of Numerical Integration</chapter-title>
+          <year>1975</year>
+          <publisher-name>Academic Press</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="br0220">
+        <label>22</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Press</surname>
+              <given-names>W.H.</given-names>
+            </name>
+            <name>
+              <surname>Flannery</surname>
+              <given-names>B.P.</given-names>
+            </name>
+            <name>
+              <surname>Teukolsky</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Vetterling</surname>
+              <given-names>W.T.</given-names>
+            </name>
+          </person-group>
+          <series>Numerical Recipies in Fortran</series>
+          <volume>vol. 77</volume>
+          <year>2005</year>
+          <publisher-name>Cambridge Univ. Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="br0230">
+        <label>23</label>
+        <element-citation publication-type="other">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Weinzierl</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <ext-link ext-link-type="uri" xlink:href="arxiv:hep-ph/0006269">hep-ph/0006269</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="br0240">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hahn</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <source>Comput. Phys. Comm.</source>
+          <volume>168</volume>
+          <year>2005</year>
+          <fpage>78</fpage>
+          <ext-link ext-link-type="uri" xlink:href="http://www.feynarts.de/cuba">http://www.feynarts.de/cuba</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="br0250">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kokalj</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>Comput. Mater. Sci.</source>
+          <volume>28</volume>
+          <year>2003</year>
+          <fpage>155</fpage>
+          <comment>Code available from</comment>
+          <ext-link ext-link-type="uri" xlink:href="http://www.xcrysden.org">http://www.xcrysden.org</ext-link>
+        </element-citation>
+      </ref>
+      <ref id="br0260">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dion</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Rydberg</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Schröder</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Langreth</surname>
+              <given-names>D.C.</given-names>
+            </name>
+            <name>
+              <surname>Lundqvist</surname>
+              <given-names>B.I.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. Lett.</source>
+          <volume>95</volume>
+          <year>2005</year>
+          <fpage>109902(E)</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0270">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gordon</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>SIAM J. Numer. Anal.</source>
+          <volume>8</volume>
+          <year>1971</year>
+          <fpage>158</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0280">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lee</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Murray</surname>
+              <given-names>E.D.</given-names>
+            </name>
+            <name>
+              <surname>Kong</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Lundqvist</surname>
+              <given-names>B.I.</given-names>
+            </name>
+            <name>
+              <surname>Langreth</surname>
+              <given-names>D.C.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. B</source>
+          <volume>82</volume>
+          <year>2010</year>
+          <fpage>081101</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0290">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vydrov</surname>
+              <given-names>O.A.</given-names>
+            </name>
+            <name>
+              <surname>Voorhis</surname>
+              <given-names>T.V.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. Lett.</source>
+          <volume>103</volume>
+          <year>2009</year>
+          <fpage>063004</fpage>
+          <pub-id pub-id-type="pmid">19792562</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0420">
+        <label>30</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Korobov</surname>
+              <given-names>N.M.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Number-Theoretic Methods of Approximate Analysis</chapter-title>
+          <year>1963</year>
+          <publisher-name>Fizmatgiz</publisher-name>
+          <publisher-loc>Moscow</publisher-loc>
+          <comment>p. 85 (in Russian)</comment>
+        </element-citation>
+      </ref>
+      <ref id="br0430">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bratley</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Fox</surname>
+              <given-names>B.L.</given-names>
+            </name>
+          </person-group>
+          <source>ACM Trans. Math. Software</source>
+          <volume>14</volume>
+          <year>1988</year>
+          <fpage>88</fpage>
+        </element-citation>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sobolʼ</surname>
+              <given-names>I.M.</given-names>
+            </name>
+          </person-group>
+          <source>Zh. Vych. Mat. Mat. Fiz.</source>
+          <volume>7</volume>
+          <year>1967</year>
+          <fpage>784</fpage>
+          <comment>(in Russian)</comment>
+          <source>U.S.S.R. Comput. Math. Math. Phys.</source>
+          <volume>7</volume>
+          <year>1967</year>
+          <fpage>86</fpage>
+          <lpage>112</lpage>
+          <comment>(in English)</comment>
+        </element-citation>
+      </ref>
+      <ref id="br0320">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Matsumoto</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Nishimura</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <source>ACM Trans. Modeling Comp. Simulation</source>
+          <volume>8</volume>
+          <year>1998</year>
+          <fpage>3</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0330">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Genz</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Malik</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>SIAM J. Numer. Anal.</source>
+          <volume>20</volume>
+          <year>1983</year>
+          <fpage>580</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0340">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Giannozzi</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Baroni</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bonini</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Calandra</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Car</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Cavazzoni</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Ceresoli</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Chiarotti</surname>
+              <given-names>G.L.</given-names>
+            </name>
+            <name>
+              <surname>Cococcioni</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Dabo</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Corso</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>de Gironcoli</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Fabris</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Fratesi</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Gebauer</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Gerstmann</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Gougoussis</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kokalj</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lazzeri</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Martin-Samos</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Marzari</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Mauri</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Mazzarello</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Paolini</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Pasquarello</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Paulatto</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Sbraccia</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Scandolo</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Sclauzero</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Seitsonen</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Smogunov</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Umari</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Wentzcovitch</surname>
+              <given-names>R.M.</given-names>
+            </name>
+          </person-group>
+          <source>J. Phys.: Condens. Matter</source>
+          <volume>21</volume>
+          <year>2009</year>
+          <fpage>395502</fpage>
+          <pub-id pub-id-type="pmid">21832390</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0350">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Perdew</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Burke</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Ernzerhof</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. Lett.</source>
+          <volume>77</volume>
+          <year>1996</year>
+          <fpage>3865</fpage>
+          <pub-id pub-id-type="pmid">10062328</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="br0360">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thonhauser</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>V.R.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Puzder</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hyldgaard</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Langreth</surname>
+              <given-names>D.C.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. B</source>
+          <volume>76</volume>
+          <year>2007</year>
+          <fpage>125112</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0370">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Benedict</surname>
+              <given-names>L.X.</given-names>
+            </name>
+            <name>
+              <surname>Chopra</surname>
+              <given-names>N.G.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Zettl</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Louie</surname>
+              <given-names>S.G.</given-names>
+            </name>
+            <name>
+              <surname>Crespi</surname>
+              <given-names>V.H.</given-names>
+            </name>
+          </person-group>
+          <source>Chem. Phys. Lett.</source>
+          <volume>286</volume>
+          <year>1998</year>
+          <fpage>490</fpage>
+          <lpage>496</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br0380">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zacharia</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Ulbricht</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Hertel</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. B</source>
+          <volume>69</volume>
+          <year>2004</year>
+          <fpage>155406</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0390">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rudenko</surname>
+              <given-names>A.N.</given-names>
+            </name>
+            <name>
+              <surname>Keil</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Katsnelson</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Lichtenstein</surname>
+              <given-names>A.I.</given-names>
+            </name>
+          </person-group>
+          <source>Phys. Rev. B</source>
+          <volume>82</volume>
+          <year>2010</year>
+          <fpage>035427</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br0400">
+        <label>40</label>
+        <element-citation publication-type="other">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ambrosch-Draxl</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Sagmeister</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Meisenbichler</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Spitaler</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <ext-link ext-link-type="uri" xlink:href="http://exciting-code.org">http://exciting-code.org</ext-link>
+          <year>2009</year>
+        </element-citation>
+      </ref>
+      <ref id="br0410">
+        <label>41</label>
+        <mixed-citation publication-type="other">L. Romaner, X. Ren, C. Ambrosch-Draxl, M. Scheffler, Phys. Rev. Lett. (2011), submitted for publication.</mixed-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This work was supported by the Austrian Science Fund, project S9714. We thank Lorenz Romaner for careful tests and the implementation of the VV09 functional.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fg0010">
+      <label>Fig. 1</label>
+      <caption>
+        <p>The vdW-DF non-local correlation kernel <italic>ϕ</italic> (multiplied by <inline-formula><alternatives><textual-form specific-use="jats-markup">4<italic>π</italic><italic>D</italic><sup>2</sup></textual-form><mml:math id="M79" altimg="si26.gif" overflow="scroll"><mml:mn>4</mml:mn><mml:mi>π</mml:mi><mml:msup><mml:mi>D</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:math></alternatives></inline-formula>) as a function of <italic>D</italic> for various values of <italic>δ</italic>.</p>
+      </caption>
+      <graphic xlink:href="gr001"/>
+    </fig>
+    <fig id="fg0020">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Input file as used for the calculation of the non-local energy contribution for the argon dimer, <xref rid="fg0040" ref-type="fig">Fig. 4</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr002"/>
+    </fig>
+    <fig id="fg0030">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Construction of a supercell to evaluate the non-local energy, <inline-formula><mml:math id="M80" altimg="si36.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula>, for a periodic crystal according to Eq. <xref rid="fm0010" ref-type="disp-formula">(1)</xref>. <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>n</italic><sub><italic>x</italic></sub> <italic>n</italic><sub><italic>y</italic></sub> <italic>n</italic><sub><italic>z</italic></sub>)</textual-form><mml:math id="M81" altimg="si37.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>z</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> denote the numbers of translational images along the three lattice vectors. While the variable <bold>r</bold> is considered in the unit cell (gray area), <inline-formula><alternatives><textual-form specific-use="jats-markup"><bold>r</bold><sup>′</sup></textual-form><mml:math id="M82" altimg="si38.gif" overflow="scroll"><mml:msup><mml:mi mathvariant="bold">r</mml:mi><mml:mo>′</mml:mo></mml:msup></mml:math></alternatives></inline-formula> needs to be taken into account in the whole supercell.</p>
+      </caption>
+      <graphic xlink:href="gr003"/>
+    </fig>
+    <fig id="fg0040">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Binding energy of the Ar dimer as a function of the interatomic distance, as obtained with the vdW-DF, for different parameters, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M83" altimg="si60.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, governing the accuracy of the Monte-Carlo integration.</p>
+      </caption>
+      <graphic xlink:href="gr004"/>
+    </fig>
+    <fig id="fg0050">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Binding energy of graphene sheets in graphite as a function of the inter-layer separation. For comparison, we also include results for different xc potentials and experimental data (Exp. 1 <xref rid="br0370" ref-type="bibr">[37]</xref>, Exp. 2 <xref rid="br0380" ref-type="bibr">[38]</xref>).</p>
+      </caption>
+      <graphic xlink:href="gr005"/>
+    </fig>
+    <fig id="fg0060">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Convergence tests for naphthalene. The crystal structure (center) is depicted together with the non-local energy and CPU time as a function of the parameter <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M84" altimg="si86.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula> (left) and the supercell size (right). In the left panel, we used <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>n</italic><sub><italic>x</italic></sub> <italic>n</italic><sub><italic>y</italic></sub> <italic>n</italic><sub><italic>z</italic></sub>) = (1 1 1)</textual-form><mml:math id="M85" altimg="si87.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mi>n</mml:mi><mml:mi>x</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>y</mml:mi></mml:msub><mml:mspace width="0.25em"/><mml:msub><mml:mi>n</mml:mi><mml:mi>z</mml:mi></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:mn>1</mml:mn><mml:mspace width="0.25em"/><mml:mn>1</mml:mn><mml:mspace width="0.25em"/><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>. Results are shown for the crystal as well as for the isolated molecule. In the right panel, data are depicted for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub> = 10<sup> − 3</sup></textual-form><mml:math id="M86" altimg="si88.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>3</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub> = 10<sup> − 4</sup> Ha</textual-form><mml:math id="M87" altimg="si89.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:mtext>Ha</mml:mtext></mml:math></alternatives></inline-formula>.</p>
+      </caption>
+      <graphic xlink:href="gr006"/>
+    </fig>
+    <fig id="fg0070">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Convergence tests for thiophene on Cu(110). The adsorption geometry (center) is depicted together with the non-local energy and CPU time as a function of the parameter <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M88" altimg="si90.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula> (left) and the supercell size (right). In the left panel, the integration volume is confined to one unit cell. In the right panel, the data correspond to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub> = 10<sup> − 3</sup> Ha</textual-form><mml:math id="M89" altimg="si91.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>3</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:mtext>Ha</mml:mtext></mml:math></alternatives></inline-formula>.</p>
+      </caption>
+      <graphic xlink:href="gr007"/>
+    </fig>
+    <table-wrap id="tl0010" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Non-local correlation energy <inline-formula><mml:math id="M90" altimg="si54.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula> of the Ar dimer for different parameters <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M91" altimg="si55.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula> which govern the accuracy of the Monte-Carlo integration. The corresponding CPU times and numbers of integrand evaluations, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>eval</italic></sub></textual-form><mml:math id="M92" altimg="si56.gif" overflow="scroll"><mml:msub><mml:mi>N</mml:mi><mml:mi mathvariant="italic">eval</mml:mi></mml:msub></mml:math></alternatives></inline-formula>, are included.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th><inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M93" altimg="si57.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula> [Ha]</th>
+            <th><inline-formula><mml:math id="M94" altimg="si58.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula> [Ha]</th>
+            <th align="left">CPU time</th>
+            <th>
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">
+                    <italic>N</italic>
+                    <sub>
+                      <italic>eval</italic>
+                    </sub>
+                  </textual-form>
+                  <mml:math id="M95" altimg="si59.gif" overflow="scroll">
+                    <mml:msub>
+                      <mml:mi>N</mml:mi>
+                      <mml:mi mathvariant="italic">eval</mml:mi>
+                    </mml:msub>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>10<sup>−4</sup></td>
+            <td>0.18098870</td>
+            <td>1 min 48 s</td>
+            <td>0.8⋅10<sup>8</sup></td>
+          </tr>
+          <tr>
+            <td>10<sup>−5</sup></td>
+            <td>0.18097679</td>
+            <td>8 min 41 s</td>
+            <td>0.4⋅10<sup>9</sup></td>
+          </tr>
+          <tr>
+            <td>10<sup>−6</sup></td>
+            <td>0.18097998</td>
+            <td>84 min 55 s</td>
+            <td>0.2⋅10<sup>10</sup></td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap id="tl0020" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Convergence of the non-local correlation energy <inline-formula><mml:math id="M96" altimg="si81.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula> (in Hartree) of graphite with respect to the number of translational images together with the corresponding CPU time. The parameter <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ϵ</italic><sub><italic>abs</italic></sub></textual-form><mml:math id="M97" altimg="si82.gif" overflow="scroll"><mml:msub><mml:mi>ϵ</mml:mi><mml:mi mathvariant="italic">abs</mml:mi></mml:msub></mml:math></alternatives></inline-formula> has been chosen as <inline-formula><alternatives><textual-form specific-use="jats-markup">10<sup> − 4</sup> Ha</textual-form><mml:math id="M98" altimg="si83.gif" overflow="scroll"><mml:msup><mml:mn>10</mml:mn><mml:mrow><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:mtext>Ha</mml:mtext></mml:math></alternatives></inline-formula>.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup">(<italic>n</italic><sub><italic>x</italic></sub> <italic>n</italic><sub><italic>y</italic></sub> <italic>n</italic><sub><italic>z</italic></sub>)</textual-form>
+                  <mml:math id="M99" altimg="si84.gif" overflow="scroll">
+                    <mml:mo stretchy="false">(</mml:mo>
+                    <mml:msub>
+                      <mml:mi>n</mml:mi>
+                      <mml:mi>x</mml:mi>
+                    </mml:msub>
+                    <mml:mspace width="0.25em"/>
+                    <mml:msub>
+                      <mml:mi>n</mml:mi>
+                      <mml:mi>y</mml:mi>
+                    </mml:msub>
+                    <mml:mspace width="0.25em"/>
+                    <mml:msub>
+                      <mml:mi>n</mml:mi>
+                      <mml:mi>z</mml:mi>
+                    </mml:msub>
+                    <mml:mo stretchy="false">)</mml:mo>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </th>
+            <th><inline-formula><mml:math id="M100" altimg="si85.gif" overflow="scroll"><mml:msubsup><mml:mi>E</mml:mi><mml:mi>c</mml:mi><mml:mi mathvariant="italic">nl</mml:mi></mml:msubsup></mml:math></inline-formula> [Ha]</th>
+            <th>CPU time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>(0 0 0)</td>
+            <td>0.19687</td>
+            <td>1 min 31 s</td>
+          </tr>
+          <tr>
+            <td>(1 1 0)</td>
+            <td>0.12717</td>
+            <td>2 min 48 s</td>
+          </tr>
+          <tr>
+            <td>(2 2 0)</td>
+            <td>0.12332</td>
+            <td>2 min 56 s</td>
+          </tr>
+          <tr>
+            <td>(3 3 0)</td>
+            <td>0.12284</td>
+            <td>3 min 07 s</td>
+          </tr>
+          <tr>
+            <td>(4 4 0)</td>
+            <td>0.12268</td>
+            <td>2 min 53 s</td>
+          </tr>
+          <tr>
+            <td>(5 5 0)</td>
+            <td>0.12261</td>
+            <td>3 min 28 s</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-group>
+</article>

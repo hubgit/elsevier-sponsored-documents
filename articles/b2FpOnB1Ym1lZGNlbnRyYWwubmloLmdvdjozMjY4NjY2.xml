@@ -1,0 +1,1049 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">J Sound Vib</journal-id>
+      <journal-title-group>
+        <journal-title>Journal of Sound and Vibration</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0022-460X</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3268666</article-id>
+      <article-id pub-id-type="pmid">22298915</article-id>
+      <article-id pub-id-type="publisher-id">YJSVI10671</article-id>
+      <article-id pub-id-type="doi">10.1016/j.jsv.2011.07.036</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Investigation of model uncertainties in Bayesian structural model updating</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Goller</surname>
+            <given-names>B.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schuëller</surname>
+            <given-names>G.I.</given-names>
+          </name>
+          <email>G.I.Schueller@uibk.ac.at</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff>Institute of Engineering Mechanics, University of Innsbruck, Technikerstr. 13, 6020 Innsbruck, Austria</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. <email>G.I.Schueller@uibk.ac.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>05</day>
+        <month>12</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>12</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>330</volume>
+      <issue>25-15</issue>
+      <fpage>6122</fpage>
+      <lpage>6136</lpage>
+      <history>
+        <date date-type="received">
+          <day>10</day>
+          <month>1</month>
+          <year>2011</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>28</day>
+          <month>7</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>28</day>
+          <month>7</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Ltd.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Model updating procedures are applied in order to improve the matching between experimental data and corresponding model output. The updated, i.e. improved, finite element (FE) model can be used for more reliable predictions of the structural performance in the target mechanical environment. The discrepancies between the output of the FE-model and the results of tests are due to the uncertainties that are involved in the modeling process. These uncertainties concern the structural parameters, measurement errors, the incompleteness of the test data and also the FE-model itself. The latter type of uncertainties is often referred to as model uncertainties and is caused by simplifications of the real structure that are made in order to reduce the complexity of reality. Several approaches have been proposed for taking model uncertainties into consideration, where the focus of this manuscript will be set on the updating procedure within the Bayesian statistical framework. A numerical example involving different degrees of nonlinearity will be used for demonstrating how this type of uncertainty is considered within the Bayesian updating procedure.</p>
+      </abstract>
+      <abstract abstract-type="graphical">
+        <title>Highlights</title>
+        <p>► In this study, the consideration of model uncertainties is investigated. ► The study focuses on the field of Bayesian model updating. ► The investigated model uncertainties consist of not considered nonlinearities.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>The topic of model updating has been in the focus of intensive research for over four decades and it continues to be a topic of high importance for the accurate prediction of structural performance of dynamic systems <xref rid="bib1 bib2 bib3" ref-type="bibr">[1–3]</xref>. The need for taking uncertainties into account within the model updating process has been widely recognized and it has led to the development of several approaches for performing model updating under the consideration of uncertainties. The thereby involved spectrum of uncertainties is interpreted in different ways by the two main schools for probability interpretations, namely the frequentist and Bayesian interpretation, respectively.</p>
+      <p>The frequentist interpretation of probability leads to a differentiation of uncertainties into two categories: the first category comprises the uncertainty in the parameters and is denoted aleatoric uncertainty. Its source is seen to be the inherent randomness of physical parameters <xref rid="bib4" ref-type="bibr">[4]</xref>. Model uncertainties (or epistemic uncertainties) on the other hand arise from the complexity of physical processes that have not been understood sufficiently enough in order to be explicitly modeled <xref rid="bib5" ref-type="bibr">[5]</xref>. The uncertainties in the modeling process must therefore form another category since the probability of a model is questionable if probability is interpreted as the relative frequency of a random event in the long run.</p>
+      <p>In order to consider the whole spectrum of uncertainties in the analysis, different approaches have been proposed. One way to treat epistemic uncertainties consists of the shift of model uncertainties to parameter uncertainties and in considering them as variables describing events in the long run, i.e. in a frequentist interpretation of probability (see <xref rid="bib6 bib7" ref-type="bibr">[6,7]</xref>). Another way to treat model uncertainties is given by the non-parametric approach <xref rid="bib8 bib9" ref-type="bibr">[8,9]</xref>. Within this approach, the relaxation of the topological connectivity of the structural matrices aims at a consideration of the uncertainties in processes that are not modeled explicitly by structural parameters. This approach broadens the set of structural models (i.e. all stiffness matrices which are symmetric and positive definite) and uses the Principle of Maximum Entropy to construct a PDF over this set. Applications of the non-parametric model in context with structural model updating are shown in e.g. <xref rid="bib10" ref-type="bibr">[10]</xref>. Alternative approaches for taking epistemic uncertainties into account consist in using the possibility theory and fuzzy sets. In e.g. <xref rid="bib11 bib12" ref-type="bibr">[11,12]</xref> it is discussed how this method is fitted into the robust updating process with the aim of damage detection.</p>
+      <p>The Bayesian interpretation of probability does not distinguish between these two categories, since all uncertainties are seen as epistemic uncertainties <xref rid="bib13 bib14" ref-type="bibr">[13,14]</xref>. In this context, probability is not interpreted as the relative occurrence of a random event in the long run, but as the plausibility of a hypothesis. Probability quantifies the uncertainty about propositions and therefore its domain contains both physical variables and models by themselves. The wider scope of the interpretation of probability in the Bayesian sense leads to the fact that the reason of uncertainty of both parameters and models is seen in the incomplete available information. The potential of Bayesian analysis has led to the development and enhancement of various Bayesian methods (see e.g. <xref rid="bib15 bib16" ref-type="bibr">[15,16]</xref>) and to applications in various fields, such as natural sciences, economics and engineering, where in case of the latter the areas of structural dynamics (e.g. <xref rid="bib3 bib17" ref-type="bibr">[3,17]</xref>), fatigue (e.g. <xref rid="bib18" ref-type="bibr">[18]</xref>), risk analysis (e.g. <xref rid="bib19" ref-type="bibr">[19]</xref>) and geology (e.g. <xref rid="bib20 bib21" ref-type="bibr">[20,21]</xref>) are mentioned as examples.</p>
+      <p>In this paper, the approach for considering the entire spectrum of uncertainties within the Bayesian statistical framework is discussed. First, the basic principles of Bayesian updating procedures are summarized (Section <xref rid="s0010" ref-type="sec">2</xref>), where the prediction error, which takes into account the discrepancies between model output and measurement, is a subject of a thorough discussion in <xref rid="s0015" ref-type="sec">Section 3</xref>. Finally, in <xref rid="s0020" ref-type="sec">Section 4</xref>, a linear beam model is updated where the reference data derives from nonlinear models involving different degrees of nonlinearity. This provides a means for investigating quantitatively the effect of model uncertainties.</p>
+    </sec>
+    <sec id="s0010">
+      <label>2</label>
+      <title>Bayesian model updating</title>
+      <p>The concept of the Bayesian statistical framework is to embed a deterministic model in a class of probability models as introduced in <xref rid="bib22 bib23" ref-type="bibr">[22,23]</xref>. Each probability model in the chosen model class is described by probability distributions of the unknown parameters and the prediction error. Based on the available data, the initial knowledge of the range of the unknown parameters is updated, making some parameter ranges more plausible if the data provide the necessary information. This embedment of the deterministic model in a model class is performed by the use of Bayes’ Theorem which is given by<disp-formula id="eq0005"><label>(1)</label><alternatives><textual-form specific-use="jats-markup"><italic>p</italic>(<bold>θ</bold>|<bold>D</bold>, <italic>M</italic>) = <italic>c</italic><sup> − 1</sup><italic>p</italic>(<bold>D</bold>|<bold>θ</bold>, <italic>M</italic>)<italic>p</italic>(<bold>θ</bold>|<italic>M</italic>), </textual-form><mml:math id="M1" altimg="si0084.gif" overflow="scroll"><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>|</mml:mo><mml:mi mathvariant="bold">D</mml:mi><mml:mo>,</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">D</mml:mi><mml:mo>|</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>,</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>|</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo></mml:math></alternatives></disp-formula>where <bold>θ</bold> is the vector of the unknown (adjustable) parameters, <bold>D</bold> denotes the set of available data points and <italic>M</italic> is the chosen model class. The term <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic>(<bold>D</bold>|<bold>θ</bold>, <italic>M</italic>)</textual-form><mml:math id="M2" altimg="si0087.gif" overflow="scroll"><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">D</mml:mi><mml:mo>|</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>,</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is called <italic>likelihood</italic> and expresses the probability of the data conditional on the structural parameters, i.e. a probability model for the measured data. This term describes the discrepancies between model output and measurement through the prediction error, which is introduced in order to bridge the gap between model output and measurements and which will be discussed in <xref rid="s0015" ref-type="sec">Section 3</xref>. The factor <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic>(<bold>θ</bold>|<italic>M</italic>)</textual-form><mml:math id="M3" altimg="si0088.gif" overflow="scroll"><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>|</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is the <italic>prior PDF</italic>, which quantifies the initial plausibility of each model defined by the parameters <bold>θ</bold> within the model class <italic>M</italic>. The product of these two terms determines the shape of the <italic>posterior PDF</italic> <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic>(<bold>θ</bold>|<bold>D</bold>, <italic>M</italic>)</textual-form><mml:math id="M4" altimg="si0090.gif" overflow="scroll"><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>|</mml:mo><mml:mi mathvariant="bold">D</mml:mi><mml:mo>,</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>, which reflects the updated, relative plausibility of each model within the model class after incorporating the information contained in the data <bold>D</bold>.</p>
+      <p>The normalizing constant <italic>c</italic> is given by <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic> = ∫<italic>p</italic>(<bold>D</bold>|<bold>θ</bold>, <italic>M</italic>)<italic>p</italic>(<bold>θ</bold>|<italic>M</italic>) <italic>d</italic><bold>θ</bold></textual-form><mml:math id="M5" altimg="si0092.gif" overflow="scroll"><mml:mi>c</mml:mi><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">D</mml:mi><mml:mo>|</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>,</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>|</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">d</mml:mi><mml:mi mathvariant="bold">θ</mml:mi></mml:math></alternatives></inline-formula>. This constant <italic>c</italic> is actually <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>p</italic>(<bold>D</bold>|<italic>M</italic>)</textual-form><mml:math id="M6" altimg="si0093.gif" overflow="scroll"><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">D</mml:mi><mml:mo>|</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>, which is called the <italic>evidence</italic> of the model class <italic>M</italic>. The evidence is used for performing model class comparison and selection, where posterior probabilities are assigned to a set of competing model classes <xref rid="bib24 bib25 bib26" ref-type="bibr">[24–26]</xref>. In this way, the uncertainty in selecting the best approximating model among a set of possibilities, which is also classified as model uncertainty in <xref rid="bib27" ref-type="bibr">[27]</xref>, can be treated quantitatively. However, the Bayesian approach also allows for consideration of model uncertainties when performing model updating within one model class, which will be addressed in detail in this manuscript.</p>
+    </sec>
+    <sec id="s0015">
+      <label>3</label>
+      <title>The prediction error within the Bayesian updating procedure</title>
+      <p>Due to the complexity of real systems and the therefore arising necessity for reducing the complexity of the model, an established numerical model cannot predict exactly reality. Within the Bayesian updating procedure, the parameter values are updated in order to better represent the real structure, where the updating process is directed by the prior information and the information contained in the measurements of the investigated structure. However, since the model does not represent an exact picture of reality, there is no true parameter value and there remains a gap between model output and measurement which is taken into account by the so-called prediction error. The prediction error therefore makes it possible to go outside of the domain of the model class. As already pointed out, in the Bayesian sense, uncertainties in model parameters and in the model itself are interpreted as a lack of knowledge and therefore both types of uncertainties fall into the category of epistemic uncertainty. If model uncertainty is interpreted as the type of uncertainty that cannot be considered within the structural parameters, the prediction error can be understood as an approach for considering this type of uncertainties. Hence, the prediction error provides a means for considering those uncertainties that cause the remaining lack of knowledge which prohibits a perfect matching between model and real system.</p>
+      <p>In general terms, the connection between the analytical output vector of the system <inline-formula><alternatives><textual-form specific-use="jats-markup"><bold>y</bold>(<bold>θ</bold>)</textual-form><mml:math id="M7" altimg="si0094.gif" overflow="scroll"><mml:mi mathvariant="bold">y</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> and the corresponding test values <bold>q</bold> is given by<disp-formula id="eq0010"><label>(2)</label><alternatives><textual-form specific-use="jats-markup"><bold>q</bold> = <bold>y</bold>(<bold>θ</bold>) + <bold>e</bold>.</textual-form><mml:math id="M8" altimg="si0096.gif" overflow="scroll"><mml:mi mathvariant="bold">q</mml:mi><mml:mo>=</mml:mo><mml:mi mathvariant="bold">y</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>+</mml:mo><mml:mi mathvariant="bold">e</mml:mi><mml:mo>.</mml:mo></mml:math></alternatives></disp-formula>The choice of the PDF for the prediction error is based on the Principle of Maximum Entropy <xref rid="bib28 bib29" ref-type="bibr">[28,29]</xref>. Using the given knowledge that on average model and measurement agree (i.e. zero mean) and that the variance is finite, a Gaussian probability density function maximizes the uncertainty. It should be noted that the prediction error variance is not taken as a known value, but it is included in the vector of uncertain parameters and it is updated based on the data.</p>
+      <p>In this work, model updating is performed using modal data. The formulation of the likelihood function using modal data that is employed in this manuscript is derived in <xref rid="bib30" ref-type="bibr">[30]</xref> and is summarized in the following. Alternative expressions for the likelihood function are formulated in <xref rid="bib31 bib3" ref-type="bibr">[31,3]</xref>. The experimental data <bold>D</bold> from the structure is assumed to consist of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>s</italic></sub></textual-form><mml:math id="M9" altimg="si0098.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> sets of modal data <inline-formula><mml:math id="M10" altimg="si0099.gif" overflow="scroll"><mml:mi mathvariant="bold">D</mml:mi><mml:mo>=</mml:mo><mml:msubsup><mml:mrow><mml:mo stretchy="false">{</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>…</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mspace width="0.33em"/><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>…</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">}</mml:mo></mml:mrow><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msubsup></mml:math></inline-formula>, composed of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>m</italic></sub></textual-form><mml:math id="M11" altimg="si0100.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> modal frequencies <inline-formula><mml:math id="M12" altimg="si0101.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:math></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>m</italic></sub></textual-form><mml:math id="M13" altimg="si0102.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> incomplete mode shape vectors <inline-formula><mml:math id="M14" altimg="si0103.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>∈</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="double-struck">R</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>o</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msup></mml:math></inline-formula> where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>o</italic></sub></textual-form><mml:math id="M15" altimg="si0104.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>o</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> is the number of observed degrees of freedom. The model output <inline-formula><alternatives><textual-form specific-use="jats-markup"><bold>q</bold>(<bold>θ</bold>)</textual-form><mml:math id="M16" altimg="si0105.gif" overflow="scroll"><mml:mi mathvariant="bold">q</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> is then the corresponding modal properties of the structural model defined by the parameter vector <inline-formula><alternatives><textual-form specific-use="jats-markup"><bold>θ</bold> ∈ <bold>Θ</bold> ∈ ℝ<sup><italic>N</italic><sub><italic>p</italic></sub></sup></textual-form><mml:math id="M17" altimg="si0106.gif" overflow="scroll"><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>∈</mml:mo><mml:mi mathvariant="bold">Θ</mml:mi><mml:mo>∈</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="double-struck">R</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>p</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>, that is, eigenfrequencies <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ω</italic><sub><italic>r</italic></sub>(<bold>θ</bold>)</textual-form><mml:math id="M18" altimg="si0107.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> and partial eigenvectors <inline-formula><alternatives><textual-form specific-use="jats-markup"><bold>ψ</bold><sub><italic>r</italic></sub>(<bold>θ</bold>)</textual-form><mml:math id="M19" altimg="si0108.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>.</p>
+      <p>First, the use of Eq. <xref rid="eq0010" ref-type="disp-formula">(2)</xref> for the mode shape vectors yields<disp-formula id="eq0015"><label>(3)</label><mml:math id="M20" altimg="si0109.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mspace width="1.0em"/><mml:mi>r</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mspace width="0.5em"/><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo></mml:math></disp-formula>where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>a</italic><sub><italic>r</italic></sub></textual-form><mml:math id="M21" altimg="si0110.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>a</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> is a scaling factor which relates the scaling of the model mode shape vector <inline-formula><alternatives><textual-form specific-use="jats-markup"><bold>ψ</bold><sub><italic>r</italic></sub>(<bold>θ</bold>)</textual-form><mml:math id="M22" altimg="si0111.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> to that of the experimental mode shape vector <inline-formula><mml:math id="M23" altimg="si0112.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:math></inline-formula>.</p>
+      <p>Using the principle of maximum entropy as the basis for the probabilistic characterization of the prediction error variance, a Gaussian distribution with zero mean and a diagonal covariance matrix <inline-formula><alternatives><textual-form specific-use="jats-markup"><bold>C</bold><sub><italic>r</italic></sub></textual-form><mml:math id="M24" altimg="si0113.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="bold">C</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> of size <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub>0</sub>×<italic>N</italic><sub>0</sub></textual-form><mml:math id="M25" altimg="si0114.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>0</mml:mn></mml:mrow></mml:msub><mml:mo>×</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>0</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> with the diagonal entries equal to <inline-formula><mml:math id="M26" altimg="si0115.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula> is used to describe the error <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>e</italic><sub><bold>ψ</bold><sub><italic>r</italic></sub></sub></textual-form><mml:math id="M27" altimg="si0116.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> under the assumption that the variances <inline-formula><mml:math id="M28" altimg="si0117.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula> are assumed to be equal for all observed degrees of freedom (DOFs) <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>j</italic> = 1, …, <italic>N</italic><sub>0</sub></textual-form><mml:math id="M29" altimg="si0118.gif" overflow="scroll"><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>0</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, and under the condition of normalized experimental mode shape vectors, i.e. <inline-formula><mml:math id="M30" altimg="si0119.gif" overflow="scroll"><mml:mo stretchy="false">∥</mml:mo><mml:mover accent="true"><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover><mml:mo stretchy="false">∥</mml:mo><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:math></inline-formula>. The likelihood function for the mode shape vector is then given by <xref rid="bib30" ref-type="bibr">[30]</xref><disp-formula id="eq0020"><label>(4)</label><mml:math id="M31" altimg="si0120.gif" overflow="scroll"><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>|</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>,</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>1</mml:mn></mml:mrow></mml:msub><mml:mspace width="0.25em"/><mml:mi>exp</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:msubsup><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">T</mml:mi></mml:mrow></mml:msubsup><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">I</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:msubsup><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">T</mml:mi></mml:mrow></mml:msubsup><mml:mo stretchy="false">)</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">∥</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mo stretchy="false">∥</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced><mml:mo>,</mml:mo></mml:math></disp-formula>where <bold>I</bold> is the identity matrix of size <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>o</italic></sub>×<italic>N</italic><sub><italic>o</italic></sub></textual-form><mml:math id="M32" altimg="si0121.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>o</mml:mi></mml:mrow></mml:msub><mml:mo>×</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>o</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>δ</italic><sup>2</sup></textual-form><mml:math id="M33" altimg="si0122.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> denotes the prediction error variance (assumed to be equal for all <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>m</italic></sub></textual-form><mml:math id="M34" altimg="si0123.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> modes).</p>
+      <p>Second, Eq. <xref rid="eq0010" ref-type="disp-formula">(2)</xref> is formulated for the squared eigenfrequencies, which yields<disp-formula id="eq0025"><label>(5)</label><mml:math id="M35" altimg="si0124.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:msubsup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup><mml:mo>+</mml:mo><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msubsup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:msub><mml:mo>.</mml:mo></mml:math></disp-formula>Using again a Gaussian probability model with zero mean and prediction error variance <inline-formula><mml:math id="M36" altimg="si0125.gif" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:math></inline-formula> for the statistical description of the discrepancies between analytical and experimental eigenfrequencies, the likelihood function can be written as <xref rid="bib30" ref-type="bibr">[30]</xref><disp-formula id="eq0030"><label>(6)</label><mml:math id="M37" altimg="si0126.gif" overflow="scroll"><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msubsup><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup><mml:mo>|</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>,</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mspace width="0.25em"/><mml:mi>exp</mml:mi><mml:mfenced open="[" close="]"><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:mfrac><mml:mrow><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msubsup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup><mml:mo>/</mml:mo><mml:msubsup><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow><mml:mrow><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced><mml:mo>,</mml:mo></mml:math></disp-formula>where <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup>2</sup></textual-form><mml:math id="M38" altimg="si0127.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> denotes the prediction error variance of the normalized squared eigenfrequencies (again assumed to be equal for all <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>m</italic></sub></textual-form><mml:math id="M39" altimg="si0128.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> modes).</p>
+      <p>Due to the assumed statistical independence between the mode shape vectors and the modal frequencies, between the different modes and between one data set to another, the resulting likelihood function can be written as<disp-formula id="eq0035"><label>(7)</label><mml:math id="M40" altimg="si0129.gif" overflow="scroll"><mml:mi>p</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">D</mml:mi><mml:mo>|</mml:mo><mml:mi mathvariant="bold">θ</mml:mi><mml:mo>,</mml:mo><mml:mi>M</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mspace width="0.25em"/><mml:mi>exp</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mrow><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:mfrac><mml:munderover><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:munderover><mml:munderover><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:munderover><mml:mfenced open="[" close="]"><mml:mrow><mml:mfrac><mml:mrow><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msubsup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup><mml:mo>/</mml:mo><mml:msubsup><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow><mml:mrow><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:mfrac><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:msubsup><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">T</mml:mi></mml:mrow></mml:msubsup><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="bold">I</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:msubsup><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">T</mml:mi></mml:mrow></mml:msubsup><mml:mo stretchy="false">)</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msup><mml:mrow><mml:mi>δ</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">∥</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mo stretchy="false">∥</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced></mml:mrow></mml:mfenced><mml:mo>.</mml:mo></mml:math></disp-formula>In the following investigation, a quantitative assessment of those uncertainties that cannot be captured by model parameters is carried out and it is shown how these uncertainties are taking into account within the Bayesian model updating procedure. The focus will thereby be set on the parameters taking into account these uncertainties, namely the prediction error variances corresponding to the eigenvectors and squared, normalized eigenfrequencies.</p>
+    </sec>
+    <sec id="s0020">
+      <label>4</label>
+      <title>Numerical example</title>
+      <sec id="s0025">
+        <label>4.1</label>
+        <title>Problem statement</title>
+        <p>As a numerical example a beam model as shown in <xref rid="f0005" ref-type="fig">Fig. 1</xref> has been chosen in order to quantitatively analyze the uncertainty by which the updating procedure is affected. The model used for structural model updating is a linear model with a nominal Young's modulus of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic> = 9.45×10<sup>7</sup> <italic>N</italic> / <italic>m</italic><sup>2</sup></textual-form><mml:math id="M41" altimg="si0130.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:mo>=</mml:mo><mml:mn>9.45</mml:mn><mml:mo>×</mml:mo><mml:msup><mml:mrow><mml:mn>10</mml:mn></mml:mrow><mml:mrow><mml:mn>7</mml:mn></mml:mrow></mml:msup><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">N</mml:mi><mml:mo>/</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="normal">m</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>, the density is given by the nominal value of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ρ</italic> = 1800 kg / <italic>m</italic><sup>3</sup></textual-form><mml:math id="M42" altimg="si0131.gif" overflow="scroll"><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>1800</mml:mn><mml:mspace width="0.25em"/><mml:mi>kg</mml:mi><mml:mo>/</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="normal">m</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> and the nominal stiffness of the springs modeling the supports is assumed to be <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic> = 3.0×10<sup>4</sup> <italic>N</italic> / <italic>m</italic></textual-form><mml:math id="M43" altimg="si0132.gif" overflow="scroll"><mml:mi>c</mml:mi><mml:mo>=</mml:mo><mml:mn>3.0</mml:mn><mml:mo>×</mml:mo><mml:msup><mml:mrow><mml:mn>10</mml:mn></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow></mml:msup><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">N</mml:mi><mml:mo>/</mml:mo><mml:mi mathvariant="normal">m</mml:mi></mml:math></alternatives></inline-formula>. The thicknesses of the plates forming the I-section of the beam are 9 mm for the flange and 5 mm for the web, respectively. The structure is clamped at the left end (visualized in <xref rid="f0005" ref-type="fig">Fig. 1</xref>) and six springs (where only the respective three front springs are visible) connect the structure to the ground. The FE-model involves a total number of 341 elements and 2247 degrees of freedom. It has been modeled within the FE-program MSC.Patran, where the structural matrices are imported into Matlab which is used for the analysis. The beam structure consists solely of quadrilateral (QUAD4) elements and for the springs CELAS2 elements are used.</p>
+        <p>Three cases of model updating are performed in the following which differ by the type of model which is used for simulating the reference data, i.e. the modal data:<list list-type="simple"><list-item><label><italic>Case</italic>1.</label><p>A linear model is used for generating the modal data set <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>N</italic><sub><italic>s</italic></sub> = 1)</textual-form><mml:math id="M44" altimg="si0133.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula>, which consists of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>m</italic></sub> = 5</textual-form><mml:math id="M45" altimg="si0134.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>5</mml:mn></mml:math></alternatives></inline-formula> modes where the partial mode shape vectors have a length of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>o</italic></sub> = 129</textual-form><mml:math id="M46" altimg="si0135.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>o</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>129</mml:mn></mml:math></alternatives></inline-formula>. This model differs from the model employed for updating as described above solely by its values of the structural parameters. These deterministic parameter values are equal to <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic> = 9.0×10<sup>7</sup> <italic>N</italic> / <italic>m</italic><sup>2</sup></textual-form><mml:math id="M47" altimg="si0136.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:mo>=</mml:mo><mml:mn>9.0</mml:mn><mml:mo>×</mml:mo><mml:msup><mml:mrow><mml:mn>10</mml:mn></mml:mrow><mml:mrow><mml:mn>7</mml:mn></mml:mrow></mml:msup><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">N</mml:mi><mml:mo>/</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="normal">m</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ρ</italic> = 2000 kg / <italic>m</italic><sup>3</sup></textual-form><mml:math id="M48" altimg="si0137.gif" overflow="scroll"><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>2000</mml:mn><mml:mspace width="0.25em"/><mml:mi>kg</mml:mi><mml:mo>/</mml:mo><mml:msup><mml:mrow><mml:mi mathvariant="normal">m</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic> = 2.0×10<sup>4</sup> <italic>N</italic> / <italic>m</italic></textual-form><mml:math id="M49" altimg="si0138.gif" overflow="scroll"><mml:mi>c</mml:mi><mml:mo>=</mml:mo><mml:mn>2.0</mml:mn><mml:mo>×</mml:mo><mml:msup><mml:mrow><mml:mn>10</mml:mn></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow></mml:msup><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">N</mml:mi><mml:mo>/</mml:mo><mml:mi mathvariant="normal">m</mml:mi></mml:math></alternatives></inline-formula>. Due to the linearity of the model, the modal properties have been determined as the solution of the generalized eigenvalue problem.</p></list-item><list-item><label><italic>Case</italic>2.</label><p>A slightly nonlinear model is used, with the model characteristics and structural parameters chosen as in case 1, where however the supports involve nonlinearities, i.e. the springs are only active when pressured. Hence, the structure itself is linear, but slight nonlinearities are present in the supports since there is no equivalence between the upper degree of freedom of the springs and the related degree of freedom of the beam structure. The values of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>s</italic></sub></textual-form><mml:math id="M50" altimg="si0139.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>m</italic></sub></textual-form><mml:math id="M51" altimg="si0140.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub>0</sub></textual-form><mml:math id="M52" altimg="si0141.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>0</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> remain unchanged in comparison to case 1. The involved nonlinearity does not allow for a computation of the modal properties by solving the generalized eigenvalue problem as performed in case 1, but they are determined by mimicking experimental modal analysis <xref rid="bib32" ref-type="bibr">[32]</xref>.</p><p>For this purpose, two deterministic point loads are applied to the structure as shown in <xref rid="f0005" ref-type="fig">Fig. 1</xref>. These point loads form a sine-sweep excitation, where the frequency content is in the range from 0 to 12 Hz with a sweet rate of 2 Hz/min. The extracted modal frequencies are determined from the peaks of the resulting frequency response function of some observed node. The frequency of each of the maximum responses is taken as a natural frequency of that mode. Clearly, in this approach there is the underlying assumption that the response can be attributed to the respective one single mode, which is the case for the analyzed lowest, distinct modes.</p><p>The mode shape vectors are defined as the displacement of the structure due to an excitation characterized by a frequency equal to one of the modal frequencies. Hence, for the purpose of identifying the mode shape vectors, the stationary responses of the structure due to periodic deterministic point loads (acting as shown in <xref rid="f0005" ref-type="fig">Fig. 1</xref>) with the frequency equal to each of the five identified modal frequencies are computed. For the determination of the mode shape vectors, the initial, static deflection of the beam due to self-load is subtracted from the response due to both periodic excitation and gravity load. The selection of the time instant when the response is judged as stationary is based on visual inspection of the responses due to the point loads with frequencies equal to the eigenfrequencies. <xref rid="f0015" ref-type="fig">Fig. 3</xref> shows as an example the response of one DOF due to a periodic, deterministic excitation with frequency equal to the first eigenfrequency. The time instant when the response is used for the determination of the mode shape is selected to be at <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>t</italic> = 20 <italic>s</italic></textual-form><mml:math id="M53" altimg="si0142.gif" overflow="scroll"><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mn>20</mml:mn><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">s</mml:mi></mml:math></alternatives></inline-formula>. In order to excite both bending and torsional modes, the relative phase between the load history of the two forces is set once to 0 and in the second case to <italic>π</italic>. The respective magnitudes of the point loads are 10 N and 15 N, respectively. Of course, the extracted modal properties are a function of the value of the applied load.</p></list-item><list-item><label><italic>Case</italic>3.</label><p>The reference model in case 3 is the same as in case 2 where additionally the width <italic>b</italic> of the supports is considered, whose dimension is given by <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>b</italic> = 4 cm</textual-form><mml:math id="M54" altimg="si0144.gif" overflow="scroll"><mml:mi>b</mml:mi><mml:mo>=</mml:mo><mml:mn>4</mml:mn><mml:mspace width="0.25em"/><mml:mi>cm</mml:mi></mml:math></alternatives></inline-formula>. This accounts for the fact that a supporting point is not one-dimensional, but it has a certain extent which leads to the observation of a slight tilting movement instead of a pure rotation of the beam around the supporting point. The differences in the boundary conditions of these three investigated cases are also shown in <xref rid="f0010" ref-type="fig">Fig. 2</xref>. The values of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>s</italic></sub></textual-form><mml:math id="M55" altimg="si0145.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub><italic>m</italic></sub></textual-form><mml:math id="M56" altimg="si0146.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mi>m</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>N</italic><sub>0</sub></textual-form><mml:math id="M57" altimg="si0147.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>N</mml:mi></mml:mrow><mml:mrow><mml:mn>0</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> are unchanged with respect to case 2. The modal properties are determined as described above for case 2.</p></list-item></list></p>
+        <p> In <xref rid="t0005 t0010 t0015" ref-type="table">Tables 1–3</xref> the comparison of the initial modal properties of the three cases is shown. The experimental values are obtained with the three deterministic models as described above and the analytical results refer to the initial, nominal model to be updated. These modal data are compared by means of (i) eigenfrequencies <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ω</italic><sub><italic>r</italic></sub></textual-form><mml:math id="M58" altimg="si0148.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> for <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>r</italic> = 1, …, 5</textual-form><mml:math id="M59" altimg="si0149.gif" overflow="scroll"><mml:mi>r</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mn>5</mml:mn></mml:math></alternatives></inline-formula> obtained with the linear model to be employed for model updating and the modal frequencies of the three reference models <inline-formula><mml:math id="M60" altimg="si0150.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub></mml:math></inline-formula> and (ii) the modal assurance criterion (MAC) of the first five modes defined by<disp-formula id="eq0040"><label>(8)</label><mml:math id="M61" altimg="si0151.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>MAC</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">rr</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mo>|</mml:mo><mml:msubsup><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">T</mml:mi></mml:mrow></mml:msubsup><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:msup><mml:mrow><mml:mo>|</mml:mo></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow><mml:mrow><mml:mo>|</mml:mo><mml:msubsup><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">T</mml:mi></mml:mrow></mml:msubsup><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mo>^</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:mo>|</mml:mo><mml:mo>·</mml:mo><mml:mo>|</mml:mo><mml:msubsup><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="normal">T</mml:mi></mml:mrow></mml:msubsup><mml:msub><mml:mrow><mml:mi mathvariant="bold">ψ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:mo>|</mml:mo></mml:mrow></mml:mfrac><mml:mo>,</mml:mo><mml:mspace width="1.0em"/><mml:mn>0.0</mml:mn><mml:mo>≤</mml:mo><mml:msub><mml:mrow><mml:mi>MAC</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:mo>≤</mml:mo><mml:mn>1.0</mml:mn></mml:math></disp-formula>where a MAC-value of 1.0 expresses full correlation and a MAC-value of 0.0 arises in case of orthogonal vectors.</p>
+        <p>In this context it shall be noted that there are only minor differences in the results for modes 1–3. Hence, in this example these three modes are not sensitive with respect to the boundary conditions, or in other words, the modal properties of these three first modes contain no information about the boundary conditions of the model. This shows that the use of incomplete data within the model updating process might lead to the situation that the prior uncertainty of the parameters cannot be reduced remarkably if the used data do not contain the therefore necessary information.</p>
+      </sec>
+      <sec id="s0030">
+        <label>4.2</label>
+        <title>Bayesian model updating</title>
+        <p>In order to express the prior knowledge about the parameter values, truncated Gaussian distributions with mean values equal to the nominal values and coefficients of variation of 10 percent are assigned to the Young's moduli and the densities, where for both properties two independent variables are used for the flange and the web of the beam. Uniform distributions within the bounds <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic><sub><italic>i</italic></sub> ∼ <italic>U</italic>([1.5,  4.5]×10<sup>4</sup> <italic>N</italic> / <italic>m</italic>),  <italic>i</italic> = 1, 2, 3</textual-form><mml:math id="M62" altimg="si0152.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mi>i</mml:mi></mml:mrow></mml:msub><mml:mo>∼</mml:mo><mml:mi>U</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mo stretchy="false">[</mml:mo><mml:mn>1.5</mml:mn><mml:mo>,</mml:mo><mml:mspace width="0.33em"/><mml:mn>4.5</mml:mn><mml:mo stretchy="false">]</mml:mo><mml:mo>×</mml:mo><mml:msup><mml:mrow><mml:mn>10</mml:mn></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow></mml:msup><mml:mspace width="0.25em"/><mml:mi mathvariant="normal">N</mml:mi><mml:mo>/</mml:mo><mml:mi mathvariant="normal">m</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>,</mml:mo><mml:mspace width="0.33em"/><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mn>2</mml:mn><mml:mo>,</mml:mo><mml:mn>3</mml:mn></mml:math></alternatives></inline-formula> are used as prior PDFs for the stiffnesses of the supports, where two springs constituting one support <italic>i</italic> are fully correlated.</p>
+        <p>In order to update the initial knowledge about the seven uncertain parameters and hence to obtain the updated probability density functions, Eq. <xref rid="eq0005" ref-type="disp-formula">(1)</xref> has to be solved. This can be most efficiently carried out by applying advanced sampling algorithms, where the so-called transitional Markov Chain Monte Carlo algorithm <xref rid="bib33" ref-type="bibr">[33]</xref>, a multilevel Metropolis-Hastings algorithm, is employed for the present example.</p>
+      </sec>
+      <sec id="s0035">
+        <label>4.3</label>
+        <title>Updated structural parameters</title>
+        <p>As a first step, the updated PDFs of the structural parameters are investigated, where scatter plots of the stiffness values of the 2 supports located at the longer side of the beam (see <xref rid="f0005" ref-type="fig">Fig. 1</xref>) are shown in <xref rid="f0020 f0025 f0030" ref-type="fig">Figs. 4–6</xref>. The prior and posterior samples of these two parameters are depicted for the three investigated cases as discussed above. These figures point out that for case 1, which is the linear case, true parameter values exist and therefore the posterior samples are concentrated around this reference point (depicted by the larger circle), while for cases 2 and 3 no true values exist due to the involved nonlinearity. However, also for the linear case, the solution is not unique and the posterior PDF reveals a certain dispersion (see <xref rid="f0020" ref-type="fig">Fig. 4</xref>), although the underlying modeling assumptions are the same for both models. The reason for this remaining uncertainty lies in the fact that the data used for updating are incomplete and therefore not only one single parameter vector constitutes the solution, but there is a set of identified parameters that forms the solution space for <inline-formula><alternatives><textual-form specific-use="jats-markup">{<italic>c</italic><sub>2</sub>,  <italic>c</italic><sub>3</sub>}</textual-form><mml:math id="M63" altimg="si0153.gif" overflow="scroll"><mml:mo stretchy="false">{</mml:mo><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">}</mml:mo></mml:math></alternatives></inline-formula>. Hence, more than one solution point led to a model which can reproduce this subset of modal properties taken from the complete set of modal frequencies and mode shape vectors.</p>
+        <p>In case 2 (<xref rid="f0025" ref-type="fig">Fig. 5</xref>), the degree of nonlinearity affects only slightly the reference data used for model updating which results in posterior samples that express that values of these parameters in the upper, prior interval of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic><sub>3</sub></textual-form><mml:math id="M64" altimg="si0154.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> are less probable. In other words, the reference data contain the information that parameter values in the upper region of the interval of the prior uniform distribution have small probabilities. With respect to the parameter <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic><sub>2</sub></textual-form><mml:math id="M65" altimg="si0155.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, there is little information contained in the available modal data for which reason posterior samples populate the full prior range. This figure shows that the posterior samples have a considerably higher dispersion if compared with case 1 which leads to the conclusion that the posterior prediction error variance is higher than in case 1.</p>
+        <p>The posterior samples of case 3 (see <xref rid="f0030" ref-type="fig">Fig. 6</xref>) show no clear difference to the prior samples since they cover the entire support of the prior PDF. Hence, since the springs are only active when pressured and due to the additionally considered widths of the supports there is no information about the constant stiffness values <inline-formula><alternatives><textual-form specific-use="jats-markup">{<italic>c</italic><sub>2</sub>,  <italic>c</italic><sub>3</sub>}</textual-form><mml:math id="M66" altimg="si0156.gif" overflow="scroll"><mml:mo stretchy="false">{</mml:mo><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mspace width="0.25em"/><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo stretchy="false">}</mml:mo></mml:math></alternatives></inline-formula> in the reference data and therefore no decrease of the prior uncertainty is obtained. This result leads to the conclusion that the model class is <italic>unidentifiable</italic>, which means that there exist an infinite number of most probable points. This classification of model classes into <italic>identifiable</italic> (there exists one global maximum of the posterior PDF), <italic>locally identifiable</italic> (there exists a finite number of local maxima) and <italic>unidentifiable</italic> model classes has been introduced in <xref rid="bib22 bib23" ref-type="bibr">[22,23]</xref>.</p>
+        <p>The first- and second-order statistics of all seven updated parameters are listed in <xref rid="t0020 t0025" ref-type="table">Tables 4 and 5</xref> and the correlation coefficients are visualized in <xref rid="f0035 f0040 f0045" ref-type="fig">Figs. 7–9</xref> for the three investigated cases. <xref rid="t0020" ref-type="table">Table 4</xref> shows that the posterior mean values of the two Young's moduli and the two densities exhibit negligible differences. Hence, as opposed to the spring stiffnesses, which are most affected by the fact that the reference data derives from models with locally concentrated nonlinearities at the supports, these parameters can be identified well for all the three cases. This conclusion is affirmed by the decrease from the prior to the posterior standard deviations (<xref rid="t0025" ref-type="table">Table 5</xref>), which is remarkably more pronounced for the first four parameters. In addition, this table also shows that the posterior scatter is larger with increasing case number which is due to the aforementioned nonlinearity which cannot be captured by the linear model. In case of the posterior correlation coefficients (<xref rid="f0035 f0040 f0045" ref-type="fig">Figs. 7–9</xref>), one can see that aside from the parameters 2 and 4 <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>E</italic><sub>flange</sub></textual-form><mml:math id="M67" altimg="si0157.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>E</mml:mi></mml:mrow><mml:mrow><mml:mi>flange</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ρ</italic><sub>flange</sub></textual-form><mml:math id="M68" altimg="si0158.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>ρ</mml:mi></mml:mrow><mml:mrow><mml:mi>flange</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>) only negligible values appear. The correlation of <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic><sub>flange</sub></textual-form><mml:math id="M69" altimg="si0159.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>E</mml:mi></mml:mrow><mml:mrow><mml:mi>flange</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ρ</italic><sub>flange</sub></textual-form><mml:math id="M70" altimg="si0160.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>ρ</mml:mi></mml:mrow><mml:mrow><mml:mi>flange</mml:mi></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> might be due to fact that the common increase of these two values has the biggest effect on the increase of the eigenfrequencies (the reference eigenfrequencies are always smaller in comparison to the eigenfrequencies of the initial model to be updated.)</p>
+        <p>In this context it shall also be mentioned that the posterior distribution is affected by the choice of the prior distribution. This distribution is a mean to incorporate initial knowledge about the uncertain parameters into the identification process and it is subjective in the sense that people with different experience may use different priors leading to broader ranges of the solution in case lesser amount of prior information is available. The selection can therefore be seen as part of the modeling process since also the model itself is affected by a certain amount of subjectivity of the designer. Hence, another choice of the prior would lead to a different solution where the degree of differences depends on the respective prior distribution. However, a large amount of data decreases the influence of the prior distribution on the posterior distribution which might lead—in the limiting case—to negligible differences in the posterior distribution (except in the regions with zero prior probability mass in case of e.g. regions outside the intervals of uniform distributions).</p>
+        <p>The posterior scatter of the PDFs is a qualitative indication of the remaining model uncertainties after incorporating the information contained in the data. A decrease in the standard deviation of the parameters indicates also a decrease of the involved model uncertainty since parameter values can be identified which lead to a smaller gap between the system output and the reference data. The effect of the reduction of initial uncertainty of the structural parameters on the posterior model uncertainty is investigated in the following. Hence, a quantitative assessment of the remaining model uncertainty after the updating process is carried out.</p>
+      </sec>
+      <sec id="s0040">
+        <label>4.4</label>
+        <title>Quantification of model uncertainty</title>
+        <sec id="s0045">
+          <label>4.4.1</label>
+          <title>Eigenfrequencies</title>
+          <p>In <xref rid="f0050 f0055 f0060" ref-type="fig">Figs. 10–12</xref>, the prior (dashed-dotted line) and the posterior histograms (shaded bars) are shown exemplary for mode no. 5, where also the nominal and measured eigenfrequencies of the three cases are included in the figures. It can be observed that due to the incorporation of the information contained in the modal data, the prior distributions are shifted towards the reference values leading to a considerably better match. As already observed for the posterior structural parameter values, the distributions of the three cases show a larger prediction error variance with increasing degree of nonlinearity, which is visible through the scatter of the posterior histograms corresponding to the three investigated cases. The scatter of the eigenfrequencies corresponding to the updated structural parameters indicates by which degree of model uncertainties the updated numerical model is affected. Under the condition of the prior knowledge about the structural parameters and the information contained in the available data set, these remaining differences of the reference data and the computed output cannot be further reduced by changing the values of the structural parameters.</p>
+          <p>In order to analyze a possible bias in the model error, <xref rid="f0065" ref-type="fig">Fig. 13</xref> shows the differences <inline-formula><mml:math id="M71" altimg="si0161.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msubsup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:msub></mml:math></inline-formula> of the fourth squared posterior eigenfrequencies with respect to the reference value (see Eq. <xref rid="eq0025" ref-type="disp-formula">(5)</xref>). The assumption that model output and reference data agree on average, can be confirmed for the linear case, i.e. for case 1, since the histogram of the model errors is centered at <inline-formula><mml:math id="M72" altimg="si0162.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msubsup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:msub><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mn>0.009</mml:mn></mml:math></inline-formula>. For the two cases involving data from nonlinear models, a bias can be observed which is larger for the case with the higher degree of nonlinearity. For case 2, the mean value of the differences amounts to <inline-formula><mml:math id="M73" altimg="si0163.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msubsup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:msub><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mn>1.172</mml:mn></mml:math></inline-formula>, and for case 3 to <inline-formula><mml:math id="M74" altimg="si0164.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msubsup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msubsup></mml:mrow></mml:msub><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mn>2.909</mml:mn></mml:math></inline-formula>. When using the updated models for prediction, this bias and scatter of the prediction error has to be considered which has been achieved in recent publications by the so-called adjustment factor (see <xref rid="bib34 bib27" ref-type="bibr">[34,27]</xref>).</p>
+          <p>Next, a statistical characterization of the variance <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>ɛ</italic><sup>2</sup></textual-form><mml:math id="M75" altimg="si0165.gif" overflow="scroll"><mml:msup><mml:mrow><mml:mi>ɛ</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula> of the prediction error <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>e</italic><sub><italic>ω</italic><sup>2</sup></sub></textual-form><mml:math id="M76" altimg="si0166.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:msub></mml:math></alternatives></inline-formula>, which is represented by one single random variable for all five modes (see Eq. <xref rid="eq0030" ref-type="disp-formula">(6)</xref>), is carried out. <xref rid="f0070 f0075 f0080" ref-type="fig">Figs. 14–16</xref> show the posterior prediction error variances stemming from the three cases. Theses figures represent a quantitative assessment of the variances of the model errors by which the posterior models are affected. If comparing the ranges of the histograms, it is clearly visible that the increasing degree of nonlinearity of the reference models leads to increasing model uncertainty and therefore increasing prediction error variances.</p>
+        </sec>
+        <sec id="s0050">
+          <label>4.4.2</label>
+          <title>Eigenvectors</title>
+          <p>As a next step the effects of model uncertainties on the agreement of the eigenvectors is investigated. In <xref rid="f0085 f0090 f0095" ref-type="fig">Figs. 17–19</xref> the correlations of the five modes with the respective reference mode shape are plotted by means of the MAC-values. The figures show the histograms of the MAC-values corresponding to the prior (dashed-dotted lines) and the posterior samples (shaded bars). In addition, the MAC-values computed with the initial and measured modes are included in the figure (dashed lines). Again, the differences of the eigenvectors with the reference data become larger with increasing degree of nonlinearity. This effect arises especially in case 3 for mode no. 5 (<xref rid="f0095" ref-type="fig">Fig. 19</xref>), where the eigenvector of the model used for updating cannot be matched to the 5th mode shape of the nonlinear reference model, since all respective MAC-values are smaller than 0.3.</p>
+          <p>The fifth mode of the linear model used for model updating is characterized by a vibration in the <italic>z</italic>-direction while for the corresponding reference mode the torsion of the middle part of the front part is more pronounced with only a slight vibration in the <italic>z</italic>-direction (see <xref rid="f0100 f0105" ref-type="fig">Figs. 20 and 21</xref>). The different boundary conditions of the two models lead to the situation where no mode in the investigated frequency range can be matched to a corresponding analytical mode. It might be that the mode corresponding to a higher eigenfrequency can be paired to this fifth analytical mode which has however not been pursued in this approach due to thereby arising larger discrepancies in the eigenfrequencies. Hence, the differences between cases 2 and 3 lead to the appearance of additional modes in the analyzed frequency range for case 3. Under these conditions, the underlying model class does not allow for a change of the vibration characteristics in order to obtain a better agreement with the reference data. In addition, it shall be pointed out that the posterior histograms of all modes do not show considerable changes with respect to the prior histograms which means that the prior space of the linear model does not span the full solution space and no better agreement can be reached. This remaining gap to an optimal match characterized by <inline-formula><alternatives><textual-form specific-use="jats-markup">MAC<sub><italic>r</italic>, <italic>r</italic></sub> = 1.0,  <italic>r</italic> = 1, …, 5</textual-form><mml:math id="M77" altimg="si0167.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>MAC</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mo>,</mml:mo><mml:mi>r</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mn>1.0</mml:mn><mml:mo>,</mml:mo><mml:mspace width="0.33em"/><mml:mi>r</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mn>5</mml:mn></mml:math></alternatives></inline-formula> cannot be decreased by parameter changes and reflects therefore the degree of posterior model uncertainty.</p>
+          <p>Finally, in <xref rid="f0110" ref-type="fig">Fig. 22</xref>, the bias of the model error corresponding to the eigenvectors is shown exemplary for DOF no. 129 of the fourth mode shape vector. The discrepancies <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>e</italic><sub><italic>Ψ</italic><sub>4, 129</sub></sub></textual-form><mml:math id="M78" altimg="si0168.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>Ψ</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>,</mml:mo><mml:mn>129</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> (see Eq. <xref rid="eq0015" ref-type="disp-formula">(3)</xref>) after performing model updating are shown for the 3 cases, where the solid line corresponds to case 1, the dashed line to case 2 and the dashed-dotted line represents the results of case 3. The assumption that the model is unbiased can be corroborated for case 1 <inline-formula><alternatives><textual-form specific-use="jats-markup">(<italic>E</italic>[<italic>e</italic><sub><italic>Ψ</italic><sub>4, 129</sub></sub>] =  − 1.8×10<sup> − 5</sup>)</textual-form><mml:math id="M79" altimg="si0169.gif" overflow="scroll"><mml:mo stretchy="false">(</mml:mo><mml:mi>E</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>Ψ</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>,</mml:mo><mml:mn>129</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mn>1.8</mml:mn><mml:mo>×</mml:mo><mml:msup><mml:mrow><mml:mn>10</mml:mn></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>5</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></inline-formula> however the histograms of cases 2 and 3 are shifted by <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>[<italic>e</italic><sub><italic>Ψ</italic><sub>4, 129</sub></sub>] =  − 0.006</textual-form><mml:math id="M80" altimg="si0170.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>Ψ</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>,</mml:mo><mml:mn>129</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mo>−</mml:mo><mml:mn>0.006</mml:mn></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>E</italic>[<italic>e</italic><sub><italic>Ψ</italic><sub>4, 129</sub></sub>] = 6.3×10<sup> − 4</sup></textual-form><mml:math id="M81" altimg="si0171.gif" overflow="scroll"><mml:mi>E</mml:mi><mml:mo stretchy="false">[</mml:mo><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>Ψ</mml:mi></mml:mrow><mml:mrow><mml:mn>4</mml:mn><mml:mo>,</mml:mo><mml:mn>129</mml:mn></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">]</mml:mo><mml:mo>=</mml:mo><mml:mn>6.3</mml:mn><mml:mo>×</mml:mo><mml:msup><mml:mrow><mml:mn>10</mml:mn></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msup></mml:math></alternatives></inline-formula>, respectively.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="s0055">
+      <label>5</label>
+      <title>Conclusions</title>
+      <p>This paper has discussed the application of Bayesian model updating for dynamic systems using modal properties. This framework allows for an improvement of the numerical model by incorporating the information contained in the available data, where the focus of this paper was set on the investigation of the remaining uncertainty after performing model updating and on the approach to consider this type of uncertainty, i.e. the model uncertainties, in the updating process.</p>
+      <p>The quantification of model uncertainties is carried out by means of the prediction error which has been analyzed in context with updating a numerical model where the reference data derive from models affected by different degrees of nonlinearity. An assessment of the model uncertainties is carried out by investigating the remaining discrepancies of both eigenfrequencies and eigenvectors with respect to the reference data. It has been shown that these nonlinearities which cannot be captured by the structural parameters of the linear model used for model updating lead to larger prediction errors and hence larger prediction error variances. The results point out that an improvement of the prior model, which is conditional on the model class, can be achieved and that the prediction error variance provides a means for bridging this remaining gap between the reference data and the computed output. In addition, a quantitative appraisal of the bias of the models is performed which has to be considered when applying the updated model for prediction.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>1</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friswell</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Mottershead</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Finite Element Model Updating in Structural Dynamics</chapter-title>
+          <year>1995</year>
+          <publisher-name>Kluwer Academic Publishers</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Calvi</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Uncertainty-based loads analysis for spacecraft: finite element model validation and dynamic responses</article-title>
+          <source>Computers &amp; Structures</source>
+          <volume>83</volume>
+          <issue>14</issue>
+          <year>2005</year>
+          <fpage>1103</fpage>
+          <lpage>1112</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <label>3</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yuen</surname>
+              <given-names>K.-V.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Bayesian Methods for Structural Dynamics and Civil Engineering</chapter-title>
+          <year>2010</year>
+          <publisher-name>John Wiley &amp; Sons</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schuëller</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the treatment of uncertainties in structural mechanics and analysis</article-title>
+          <source>Computers &amp; Structures</source>
+          <volume>85</volume>
+          <issue>5–6</issue>
+          <year>2007</year>
+          <fpage>235</fpage>
+          <lpage>243</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Soize</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A comprehensive overview of a non-parametric probabilistic approach of model uncertainties for predictive models in structural dynamics</article-title>
+          <source>Journal of Sound and Vibration</source>
+          <volume>288</volume>
+          <issue>3</issue>
+          <year>2005</year>
+          <fpage>623</fpage>
+          <lpage>652</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <label>6</label>
+        <mixed-citation publication-type="other">R. Menezes, C. Brenner, On mechanical modeling uncertainties in view of failure data, in: G. Schuëller, M. Shinozuka, J. Yao (Eds.), <italic>Structural Safety and Reliability</italic>, <italic>ICOSSAR</italic> 1993, Balkema, Rotterdam, 1994, pp. 305–308.</mixed-citation>
+      </ref>
+      <ref id="bib7">
+        <label>7</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Menezes</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Schuëller</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>On structural reliability assessment considering mechanical model uncertainties</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Natke</surname>
+              <given-names>H.G.</given-names>
+            </name>
+            <name>
+              <surname>Ben-Haim</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <series>Uncertainty: Models and Measures: Proceedings of the International Workshop, Lambrecht, Germany, July 22–24</series>
+          <volume>Vol. 1</volume>
+          <year>1996</year>
+          <publisher-name>Akademie Verlag</publisher-name>
+          <publisher-loc>Berlin</publisher-loc>
+          <fpage>175</fpage>
+          <lpage>186</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Soize</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A nonparametric model of random uncertainties for reduced matrix models in structural dynamics</article-title>
+          <source>Probabilistic Engineering Mechanics</source>
+          <volume>15</volume>
+          <year>2000</year>
+          <fpage>277</fpage>
+          <lpage>294</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Soize</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Maximum entropy approach for modeling random uncertainties in transient elastodynamics</article-title>
+          <source>Journal of the Acoustical Society of America</source>
+          <volume>109</volume>
+          <year>2001</year>
+          <fpage>1979</fpage>
+          <lpage>1996</lpage>
+          <pub-id pub-id-type="pmid">11386552</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Capiez-Lernout</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Soize</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robust design optimization in computational mechanics</article-title>
+          <source>Journal of Applied Mechanics</source>
+          <volume>75</volume>
+          <issue>2</issue>
+          <year>2008</year>
+          <fpage>1</fpage>
+          <lpage>11</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Degrauwe</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Roeck</surname>
+              <given-names>G.D.</given-names>
+            </name>
+            <name>
+              <surname>Lombaert</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Uncertainty quantification in the damage assessment of a cable-stayed bridge by means of fuzzy numbers</article-title>
+          <source>Computers &amp; Structures</source>
+          <volume>87</volume>
+          <issue>17–18</issue>
+          <year>2009</year>
+          <fpage>1077</fpage>
+          <lpage>1084</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Altunok</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Taha</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Ross</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Possibilistic approach for damage detection in structural health monitoring</article-title>
+          <source>Journal of Structural Engineering</source>
+          <volume>133</volume>
+          <issue>9</issue>
+          <year>2007</year>
+          <fpage>1247</fpage>
+          <lpage>1256</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cox</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Probability, frequency and reasonable expectation</article-title>
+          <source>American Journal of Physics</source>
+          <volume>14</volume>
+          <issue>1</issue>
+          <year>1946</year>
+          <fpage>1</fpage>
+          <lpage>13</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib14">
+        <label>14</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cox</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>The Algebra of Probable Inference</chapter-title>
+          <year>1961</year>
+          <publisher-name>Johns Hopkins Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="bib15">
+        <label>15</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sivia</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Data Analysis. A Bayesian Tutorial</chapter-title>
+          <year>1996</year>
+          <publisher-name>Oxford University Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="bib16">
+        <label>16</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robert</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>The Bayesian Choice. Springer Texts in Statistics</chapter-title>
+          <edition>second ed.</edition>
+          <year>2001</year>
+          <publisher-name>Springer Verlag</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib17">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fraccone</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Volovoi</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Ruzzene</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian estimation of a dynamic structure's response</article-title>
+          <source>Journal of Sound and Vibration</source>
+          <volume>329</volume>
+          <issue>1</issue>
+          <year>2010</year>
+          <fpage>21</fpage>
+          <lpage>42</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib18">
+        <label>18</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Mahadevan</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Model uncertainty and Bayesian updating in reliability-based inspection</article-title>
+          <source>Structural Safety</source>
+          <volume>22</volume>
+          <issue>2</issue>
+          <year>2000</year>
+          <fpage>145</fpage>
+          <lpage>160</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib19">
+        <label>19</label>
+        <mixed-citation publication-type="other">E. Sibilio, Seismic Risk Assessment of Structures by Means of Stochastic Simulation Techniques, PhD Thesis, University of Braunschweig and University of Florence, 2006.</mixed-citation>
+      </ref>
+      <ref id="bib20">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rivas</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Matías</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Taboada</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Argüelles</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Application of Bayesian networks to the evaluation of roofing slate quality</article-title>
+          <source>Engineering Geology</source>
+          <volume>94</volume>
+          <issue>1–2</issue>
+          <year>2007</year>
+          <fpage>27</fpage>
+          <lpage>37</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib21">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Christie</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Demyanov</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Erbas</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Uncertainty quantification for porous media flows</article-title>
+          <source>Journal of Computational Physics</source>
+          <volume>217</volume>
+          <issue>1</issue>
+          <year>2006</year>
+          <fpage>143</fpage>
+          <lpage>158</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib22">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beck</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Katafygiotis</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Updating models and their uncertainties. I: Bayesian statistical framework</article-title>
+          <source>Journal of Engineering Mechanics</source>
+          <volume>128</volume>
+          <issue>4</issue>
+          <year>1998</year>
+          <fpage>380</fpage>
+          <lpage>391</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib23">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Katafygiotis</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Updating models and their uncertainties. II: model identifiability</article-title>
+          <source>Journal of Engineering Mechanics</source>
+          <volume>124</volume>
+          <issue>4</issue>
+          <year>1998</year>
+          <fpage>463</fpage>
+          <lpage>467</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib24">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beck</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Yuen</surname>
+              <given-names>K.-V.</given-names>
+            </name>
+          </person-group>
+          <article-title>Model selection using response measurements: Bayesian probabilistic approach</article-title>
+          <source>Journal of Engineering Mechanics</source>
+          <volume>130</volume>
+          <issue>2</issue>
+          <year>2004</year>
+          <fpage>192</fpage>
+          <lpage>203</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib25">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Muto</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian updating and model class selection using stochastic simulation</article-title>
+          <source>Journal of Vibration and Control</source>
+          <volume>14</volume>
+          <year>2008</year>
+          <fpage>7</fpage>
+          <lpage>34</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib26">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cheung</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Calculation of posterior probabilities for Bayesian model class assessment and averaging from posterior samples based on dynamic system data</article-title>
+          <source>Computer-Aided Civil and Infrastructure Engineering</source>
+          <volume>25</volume>
+          <year>2010</year>
+          <fpage>304</fpage>
+          <lpage>321</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib27">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Park</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Amarchinta</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Grandhi</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A Bayesian approach for quantification of model uncertainty</article-title>
+          <source>Reliability Engineering and System Safety</source>
+          <volume>95</volume>
+          <issue>7</issue>
+          <year>2010</year>
+          <fpage>777</fpage>
+          <lpage>785</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib28">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jaynes</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Information theory and statistical mechanics</article-title>
+          <source>The Physical Review</source>
+          <volume>106</volume>
+          <issue>4</issue>
+          <year>1957</year>
+          <fpage>620</fpage>
+          <lpage>630</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib29">
+        <label>29</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jaynes</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Probability Theory: The Logic of Science</chapter-title>
+          <year>2003</year>
+          <publisher-name>Cambridge University Press</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="bib30">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vanik</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Au</surname>
+              <given-names>S.-K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian probabilistic approach to structural health monitoring</article-title>
+          <source>Journal of Engineering Mechanics</source>
+          <volume>126</volume>
+          <year>2000</year>
+          <fpage>738</fpage>
+          <lpage>745</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib31">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ching</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Muto</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural model updating and health monitoring with incomplete modal data using Gibbs sampler</article-title>
+          <source>Computer-Aided Civil and Infrastructure Engineering</source>
+          <volume>21</volume>
+          <year>2006</year>
+          <fpage>242</fpage>
+          <lpage>257</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib32">
+        <label>32</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ewins</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Modal Testing: Theory, Practice, and Application</chapter-title>
+          <edition>second ed.</edition>
+          <year>2001</year>
+          <publisher-name>Research Studies Press</publisher-name>
+          <publisher-loc>Baldock</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib33">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ching</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Y.-C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transitional Markov Chain Monte Carlo method for Bayesian updating, model class selection, and model averaging</article-title>
+          <source>Journal of Engineering Mechanics</source>
+          <volume>133</volume>
+          <year>2007</year>
+          <fpage>816</fpage>
+          <lpage>832</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib34">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Droguett</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Mosley</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian methodology for model uncertainty using model performance data</article-title>
+          <source>Risk Analysis</source>
+          <volume>28</volume>
+          <issue>5</issue>
+          <year>2008</year>
+          <fpage>1457</fpage>
+          <lpage>1476</lpage>
+          <pub-id pub-id-type="pmid">18793282</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This research was partially supported by the European Space Agency (ESA) under Project No. 20829/07/NL/EM which is gratefully acknowledged by the authors. The first author is a recipient of a DOC-fForte-fellowship of the Austrian Academy of Science at the Institute of Engineering Mechanics (University of Innsbruck).</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>FE-model of the beam used for model updating with applied loads.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Differences in the boundary conditions of the three investigated cases.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Response of one DOF due to a periodic, deterministic excitation with frequency equal to the first eigenfrequency.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="f0020">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Prior and posterior samples of the spring stiffnesses <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic><sub>2</sub></textual-form><mml:math id="M82" altimg="si0001.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic><sub>3</sub></textual-form><mml:math id="M83" altimg="si0002.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> (case 1).</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="f0025">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Prior and posterior samples of the spring stiffnesses <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic><sub>2</sub></textual-form><mml:math id="M84" altimg="si0003.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic><sub>3</sub></textual-form><mml:math id="M85" altimg="si0004.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> (case 2).</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="f0030">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Prior and posterior samples of the spring stiffnesses <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic><sub>2</sub></textual-form><mml:math id="M86" altimg="si0005.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> and <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>c</italic><sub>3</sub></textual-form><mml:math id="M87" altimg="si0006.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mn>3</mml:mn></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> (case 3).</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="f0035">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Posterior correlation coefficients for case 1 (for parameter no. see <xref rid="t0020" ref-type="table">Table 4</xref>).</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="f0040">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Posterior correlation coefficients for case 2 (for parameter no. see <xref rid="t0020" ref-type="table">Table 4</xref>).</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="f0045">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Posterior correlation coefficients for case 3 (for parameter no. see <xref rid="t0020" ref-type="table">Table 4</xref>).</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+    <fig id="f0050">
+      <label>Fig. 10</label>
+      <caption>
+        <p>Prior and posterior histograms of the fifth eigenfrequencies and corresponding reference and nominal values (case 1).</p>
+      </caption>
+      <graphic xlink:href="gr10"/>
+    </fig>
+    <fig id="f0055">
+      <label>Fig. 11</label>
+      <caption>
+        <p>Prior and posterior histograms of the fifth eigenfrequencies and corresponding reference and nominal values (case 2).</p>
+      </caption>
+      <graphic xlink:href="gr11"/>
+    </fig>
+    <fig id="f0060">
+      <label>Fig. 12</label>
+      <caption>
+        <p>Prior and posterior histograms of the fifth eigenfrequencies and corresponding reference and nominal values (case 3).</p>
+      </caption>
+      <graphic xlink:href="gr12"/>
+    </fig>
+    <fig id="f0065">
+      <label>Fig. 13</label>
+      <caption>
+        <p>Posterior histograms of the prediction errors of the fourth eigenfrequency (cases 1–3).</p>
+      </caption>
+      <graphic xlink:href="gr13"/>
+    </fig>
+    <fig id="f0070">
+      <label>Fig. 14</label>
+      <caption>
+        <p>Posterior histogram of the prediction error variance <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>e</italic><sub><italic>ω</italic><sup>2</sup></sub></textual-form><mml:math id="M88" altimg="si0007.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> (case 1).</p>
+      </caption>
+      <graphic xlink:href="gr14"/>
+    </fig>
+    <fig id="f0075">
+      <label>Fig. 15</label>
+      <caption>
+        <p>Posterior histogram of the prediction error variance <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>e</italic><sub><italic>ω</italic><sup>2</sup></sub></textual-form><mml:math id="M89" altimg="si0008.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> (case 2).</p>
+      </caption>
+      <graphic xlink:href="gr15"/>
+    </fig>
+    <fig id="f0080">
+      <label>Fig. 16</label>
+      <caption>
+        <p>Posterior histogram of the prediction error variance <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>e</italic><sub><italic>ω</italic><sup>2</sup></sub></textual-form><mml:math id="M90" altimg="si0009.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>e</mml:mi></mml:mrow><mml:mrow><mml:msup><mml:mrow><mml:mi>ω</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:msub></mml:math></alternatives></inline-formula> (case 3).</p>
+      </caption>
+      <graphic xlink:href="gr16"/>
+    </fig>
+    <fig id="f0085">
+      <label>Fig. 17</label>
+      <caption>
+        <p>Prior and posterior histograms of the MAC-values of the first five eigenvectors and nominal values (case 1).</p>
+      </caption>
+      <graphic xlink:href="gr17"/>
+    </fig>
+    <fig id="f0090">
+      <label>Fig. 18</label>
+      <caption>
+        <p>Prior and posterior histograms of the MAC-values of the first five eigenvectors and nominal values (case 2).</p>
+      </caption>
+      <graphic xlink:href="gr18"/>
+    </fig>
+    <fig id="f0095">
+      <label>Fig. 19</label>
+      <caption>
+        <p>Prior and posterior histograms of the MAC-values of the first five eigenvectors and nominal values (case 3).</p>
+      </caption>
+      <graphic xlink:href="gr19"/>
+    </fig>
+    <fig id="f0100">
+      <label>Fig. 20</label>
+      <caption>
+        <p>Fifth eigenvector of the nominal model used for model updating.</p>
+      </caption>
+      <graphic xlink:href="gr20"/>
+    </fig>
+    <fig id="f0105">
+      <label>Fig. 21</label>
+      <caption>
+        <p>Fifth eigenvector of the nonlinear model used for generating the reference data of case 3.</p>
+      </caption>
+      <graphic xlink:href="gr21"/>
+    </fig>
+    <fig id="f0110">
+      <label>Fig. 22</label>
+      <caption>
+        <p>Posterior histograms of the prediction errors of DOF no. 129 of the fourth mode shape (cases 1–3).</p>
+      </caption>
+      <graphic xlink:href="gr22"/>
+    </fig>
+    <table-wrap id="t0005" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Initial comparison of modal properties (case 1).</p>
+      </caption>
+    </table-wrap>
+    <table-wrap id="t0010" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Initial comparison of modal properties (case 2).</p>
+      </caption>
+    </table-wrap>
+    <table-wrap id="t0015" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Initial comparison of modal properties (case 3).</p>
+      </caption>
+    </table-wrap>
+    <table-wrap id="t0020" position="float">
+      <label>Table 4</label>
+      <caption>
+        <p>Prior and posterior mean values for cases 1–3.</p>
+      </caption>
+    </table-wrap>
+    <table-wrap id="t0025" position="float">
+      <label>Table 5</label>
+      <caption>
+        <p>Prior and posterior standard deviations for cases 1–3.</p>
+      </caption>
+    </table-wrap>
+  </floats-group>
+</article>

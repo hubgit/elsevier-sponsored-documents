@@ -1,0 +1,2611 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="brief-report">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title-group>
+        <journal-title>Neuroimage</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3221045</article-id>
+      <article-id pub-id-type="pmid">20132892</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG7022</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2010.01.098</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Technical Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>A dynamic causal model study of neuronal population dynamics</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Marreiros</surname>
+            <given-names>André C.</given-names>
+          </name>
+          <email>a.marreiros@fil.ion.ucl.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kiebel</surname>
+            <given-names>Stefan J.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>Karl J.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>The Wellcome Trust Centre for Neuroimaging, Institute of Neurology, University College London, UCL, 12 Queen Square, London, UK WC1N 3BG, UK</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Fax: +44 207 813 1445. <email>a.marreiros@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>15</day>
+        <month>5</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>5</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>51</volume>
+      <issue>1-3</issue>
+      <fpage>91</fpage>
+      <lpage>101</lpage>
+      <history>
+        <date date-type="received">
+          <day>27</day>
+          <month>12</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>27</day>
+          <month>1</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Inc.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>In this paper, we compare mean-field and neural-mass models of electrophysiological responses using Bayesian model comparison. In previous work, we presented a mean-field model of neuronal dynamics as observed with magnetoencephalography and electroencephalography. Unlike neural-mass models, which consider only the mean activity of neuronal populations, mean-field models track the distribution (e.g., mean and dispersion) of population activity. This can be important if the mean affects the dispersion or <italic>vice versa</italic>. Here, we introduce a dynamical causal model based on mean-field (i.e., population density) models of neuronal activity, and use it to assess the evidence for a coupling between the mean and dispersion of hidden neuronal states using observed electromagnetic responses. We used Bayesian model comparison to compare homologous mean-field and neural-mass models, asking whether empirical responses support a role for population variance in shaping neuronal dynamics. We used the mismatch negativity (MMN) and somatosensory evoked potentials (SEP) as representative neuronal responses in physiological and non-physiological paradigms respectively. Our main conclusion was that although neural-mass models may be sufficient for cognitive paradigms, there is clear evidence for an effect of dispersion at the high levels of depolarization evoked in SEP paradigms. This suggests that (i) the dispersion of neuronal states within populations generating evoked brain signals can be manifest in observed brain signals and that (ii) the evidence for their effects can be accessed with dynamic causal model comparison.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Neural-mass models</kwd>
+        <kwd>Nonlinear</kwd>
+        <kwd>Modelling</kwd>
+        <kwd>Laplace assumption</kwd>
+        <kwd>Mean-field</kwd>
+        <kwd>Neuronal</kwd>
+        <kwd>Bayesian</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Neuronal activity generated by coupled neuronal populations can be autonomous or elicited by sensorimotor or cognitive perturbation. Neural models have been in used to study this activity for many years (e.g., <xref rid="bib55 bib39 bib16 bib32 bib25 bib27 bib54 bib6" ref-type="bibr">Wilson and Cowan 1972; Nunez 1974; Freeman 1975; Lopes da Silva et al., 1976; Jansen and Rit, 1995; Jirsa and Haken 1996; Valdes et al., 1999; David and Friston 2003</xref>). These models form the basis for understanding the genesis of neuroimaging signals (e.g., <xref rid="bib45" ref-type="bibr">Riera et al., 2007</xref>). We continue this modelling initiative, by using the formulation of population dynamics described by <xref rid="bib34" ref-type="bibr">Marreiros et al. (2009)</xref> as the basis of a dynamic causal model (DCM) of evoked electromagnetic responses. We try to establish its face validity using Bayesian model comparison and evaluate its ability to explain empirical data, in relation to simpler variants.</p>
+      <p>This is the third and final paper in a trilogy that tries to integrate the Fokker-Planck formalism and stochastic formulations of neuronal dynamics with DCM. The first (<xref rid="bib33" ref-type="bibr">Marreiros et al. 2008</xref>) introduced the idea that the sigmoid activation could be regarded as accommodating dispersion of neuronal states (as opposed to dispersion of the threshold). The second (<xref rid="bib34" ref-type="bibr">Marreiros et al. 2009</xref>) used this perspective to motivate a simple method-of-moments scheme to model density dynamics in terms of the mean and dispersion of neuronal states. This simplicity is important because the current paper uses this scheme in dynamic casual models of real data.</p>
+      <p>This work rests on a key distinction between models that summarize the activity of a neuronal population with a single state (e.g., its mean activity) and those that model the distribution of states in terms of probability densities (i.e., density dynamics). We follow the terminology established in <xref rid="bib9" ref-type="bibr">Deco et al. (2008)</xref>, which adopts a pragmatic approach: if the model can be cast as a set of ordinary differential equations describing the evolution of neuronal states, it is called a neural-mass model (NMM; e.g., <xref rid="bib16 bib32" ref-type="bibr">Freeman 1975; Lopes da Silva et al., 1976</xref>; <xref rid="bib50" ref-type="bibr">Rodrigues et al., 2006</xref>). This is motivated by treating the current state as a point ‘mass’ (i.e., delta function) approximation to the underlying density on the population's states. Conversely, models based on stochastic differential equations that include random fluctuations are referred to as mean-field models (MFM; e.g., <xref rid="bib29 bib30 bib51 bib40 bib41 bib15 bib23" ref-type="bibr">Knight 1972a,b; Sampolinsky and Zippelius, 1982; Nykamp and Tranchina 2000; Omurtag et al. 2000; Frank et al., 2001; Haskell et al., 2001</xref>). This nomenclature appeals to the use of the term ‘mean-field’ in statistical physics and machine learning. A mean-field assumption approximates a full density (on the states of a population of neurons or multiple populations) with a density that factorises into a series of simpler marginal densities; where the marginals influence each other through average or mean-field effects. These models necessary entail a stochastic or probabilistic representation of activity, which is usually encoded by the sufficient statistics of a probability density (like the mean and variance of a Gaussian distribution). Although we will not deal with them in this paper, models that are formulated as partial differential equations of space and time are referred to as neural field models (NFM; e.g., <xref rid="bib55 bib2 bib3 bib48" ref-type="bibr">Wilson and Cowan 1972; Amari 1972; 1975; Robinson et al., 2005</xref>), because they model the spatiotemporal dynamics on spatially extensive (e.g., cortical) fields.</p>
+      <p>It should be noted that this operational taxonomy of models is insensitive to the deep history of their development or their original descriptions; for example, there is a fundamental difference between the work of <xref rid="bib55" ref-type="bibr">Wilson and Cowan (1972)</xref> and that of <xref rid="bib2 bib3" ref-type="bibr">Amari (1972; 1975</xref>) on ‘neural fields’ and that of <xref rid="bib16" ref-type="bibr">Freeman (1975)</xref> and that of <xref rid="bib32" ref-type="bibr">Lopes da Silva et al. (1976)</xref> on ‘neural-masses’: the former provides spatiotemporal descriptions of neuronal dynamics, without recourse to experimental evidence; whereas the latter are derived from observing empirical population responses and writing down equations that reproduce physiological responses. Both neural field and mass models are parsimonious models of mean activity (e.g., firing rate or membrane potential) and have been used to emulate a wide range of brain rhythms and dynamics. Neural-mass models are particularly appropriate for data that reflect the average behaviour of neuronal populations; such as the electroencephalogram (EEG) and magnetoencephalogram (MEG) (<xref rid="bib7 bib34" ref-type="bibr">David et al., 2006; Marreiros et al., 2009</xref>).</p>
+      <p>In a previous paper (<xref rid="bib34" ref-type="bibr">Marreiros et al., 2009</xref>) we formulated neural-mass models, currently used as generative models in dynamic causal modelling, as a limiting case of mean-field models; in which the variance of the activity in any one neuronal population is fixed. Unlike neural-mass models, mean-field models consider the full density on the hidden states of neuronal populations including the variance or dispersion. We derived a generic mean-field treatment of neuronal populations or ensembles based on a Laplace or Gaussian approximation to the population or ensemble density. The Laplace approximation (also known as a saddle-point approximation) approximates the integral of an exponential function using a second-order Taylor expansion. When the function is a probability density, the implicit assumption is that the density is approximately Gaussian. Because a Gaussian density can be specified in terms of its first two moments, the ensuing scheme is formally identical to the second-moment method described by <xref rid="bib49" ref-type="bibr">Rodriguez and Tuckwell (1996)</xref>. This scheme summarizes density dynamics with (ordinary differential) equations of motion for the sufficient statistics of the ensemble density. This reduces to a neural-mass model when the second-order statistics (<italic>i.e</italic>., variance) of neuronal states is assumed to be constant. The key behaviour we were interested in was the coupling between the mean and variance under the Laplace approximation, which is lost in neural-mass approximations. In this work, we use the mean-field density dynamics as the basis of a dynamic causal model (DCM) of observed data. The resulting framework allows one to adjudicate between models which include (or not) the high-order statistics of hidden neuronal states when predicting EEG/MEG time series. This adjudication is based on the relative evidence for different models of the same data that obtain from Bayesian inversion (i.e., fitting) of the models.</p>
+      <p>The aim of this work was to evaluate dynamic causal models based on density dynamics and compare them to established neural-mass models. DCM is a natural extension of the convolution models used in the standard analysis of biological time series (see David et al., <xref rid="bib7" ref-type="bibr">2006</xref>). DCM models neuronal dynamics in each source or region and interactions within and between distributed sources. Currently, DCM uses neural-mass models and implicitly considers only the mean neuronal state for each population; i.e., special cases of the more general population density formulation, in which we ignore all but the first-order statistics (i.e., the mean). Here, we replace the neural-mass model with second-order dynamics under the Laplace approximation using the Fokker-Planck formalism (<xref rid="bib14" ref-type="bibr">Frank, 2004</xref>) to give a mean-field model (<xref rid="bib34" ref-type="bibr">Marreiros et al., 2009</xref>). This allows us to model the interactions between mean neuronal states (e.g., firing rates) and their dispersion within each population and to compare homologous DCMs based on neural-mass and mean-field models in terms of their model evidence. This enabled us to ask whether including density dynamics is warranted; i.e., to see if there is any evidence for an effect of second-order statistics or dispersion.</p>
+      <p>The paper is composed of two sections. In the first, we summarize density dynamics under mean-field and Laplace assumptions and describe the resulting DCM framework. In the second section, we use two EEG data sets and Bayesian model comparison (BMC) to assess the relative evidence for neural-mass and mean-field models. In addition, we establish the face validity of neural-mass DCMs and their mean-field generalizations using synthetic data, generated using the conditional estimates of the network parameters, for each of the empirical examples.</p>
+    </sec>
+    <sec>
+      <title>Theory</title>
+      <p>Neural-mass and field models can reproduce neuronal dynamics reminiscent of observed evoked responses. However, to emulate more complex dynamics we may need to take into account the high-order statistics of ensemble dynamics. In a previous paper (<xref rid="bib34" ref-type="bibr">Marreiros et al., 2009</xref>) we derived a generic mean-field treatment of neuronal dynamics, based on a Laplace approximation to the ensemble density. This model is formulated in terms of equations of motion for the moments of the ensemble density, reducing to an NMM when the second-order moment (variance) is ignored. The interesting behaviour in these mean-field models arises from the coupling between the mean and variance of ensemble activity, which is ignored in neural-mass approximations. Here, we will use the Laplace and neural-mass approximations in DCMs of electrophysiological responses to sensory input. We start by reviewing briefly mean-field and neural-mass models (MFM and NMM) for M/EEG and then turn to Bayesian estimation, inference and model comparison in the context of DCM.</p>
+      <sec>
+        <title>Modelling neuronal dynamics with mean-field models</title>
+        <p>In DCM, neural-mass models are used to model the evolution of the mean response of neuronal populations to exogenous or experimental perturbations (<xref rid="bib7 bib28" ref-type="bibr">David et al., 2006; Kiebel et al., 2008</xref>). Mean-field approximations go further and model the distribution of the population response. However, employing MFMs can be computationally expensive, because one has to consider the density at all points in neuronal state-space, as opposed to a single quantity (e.g., the mean). In other words, to represent the full probability distribution of states over a population, we would need to encode the probability of finding a neuron in every state at each point in time, which would require an infinite number of variables. Under the Laplace approximation, the population or ensemble density reduces to a Gaussian form, whose sufficient statistics is composed of only the conditional mean and covariance. This simplification allows one to model interactions between the first two moments (i.e., mean and variance) of neuronal states in an efficient and tractable way.</p>
+        <p>In brief, the dynamics of neurons in an ensemble can be described with the stochastic differential equation <italic>dx</italic> = <italic>f</italic>(<italic>x,u</italic>)<italic>dt</italic> + <italic>ωd</italic>Γ, where <italic>f</italic>(<italic>x,u</italic>) corresponds to the equations of motion describing neuronal processes and <italic>ω</italic> controls the amplitude of uncorrelated random fluctuations <italic>d</italic>Γ (i.e., a Weiner process) in neuronal states <italic>x</italic>(<italic>t</italic>)∈ℜ<sup><italic>n</italic></sup>. Here, <italic>u</italic>(<italic>t</italic>)∈ℜ<sup><italic>m</italic></sup> is a real valued vector of time-dependent exogenous or experimental inputs. To compute the associated density dynamics, one can use the Fokker-Planck formalism: ˙<italic>q</italic> = −▿·<italic>fq</italic> <italic>+</italic> ▿·<italic>D</italic>▿<italic>q</italic>, where <italic>q</italic>(<italic>x,t</italic>) is an approximate density on neuronal states (e.g., post synaptic potentials and conductances) and <italic>D</italic>(<italic>ω</italic>) is a diffusion tensor. The time-dependent density <italic>q</italic>(<italic>x,t</italic>) is an ensemble density, which approximates the probability of finding a neuron from the ensemble in state <italic>x</italic> and time <italic>t</italic>. The high dimensionality and complexity of this Fokker-Planck formalism can be finessed with a mean-field approximation, <italic>q</italic>(<italic>x,t</italic>) ≈ Π <italic>q</italic>(<italic>x</italic><sup>(<italic>i</italic>)</sup>,<italic>t</italic>), which describes the evolution of separable ensembles that are coupled by mean-field effects. Moreover, the Laplace assumption allows us to summarize the ensemble density with a Gaussian density, described by the mean and variance of the states of the <italic>i</italic>-th population. By parameterizing the densities in terms of these time-dependent sufficient statistics, we have; <italic>q</italic>(<italic>x</italic><sup>(<italic>i</italic>)</sup>,<italic>t</italic>) = <italic>N</italic>(<italic>μ</italic><sup>(<italic>i</italic>)</sup>,Σ<sup>(<italic>i</italic>)</sup>). Please see <xref rid="bib34" ref-type="bibr">Marreiros et al. (2009)</xref> for a fuller explanation.</p>
+        <p>Crucially, the Laplace assumption allows the density dynamics (based on stochastic differential equations) to be expressed as an ordinary differential equation for its sufficient statistics (mean and variance) in a compact form (<xref rid="bib34" ref-type="bibr">Marreiros et al., 2009</xref>)<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si9.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:msubsup><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>.</mml:mo></mml:mover><mml:mi>j</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:msubsup><mml:mi>f</mml:mi><mml:mi>j</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo stretchy="true">(</mml:mo><mml:mi>μ</mml:mi><mml:mo>,</mml:mo><mml:mi>u</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mi>t</mml:mi><mml:mi>r</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:msup><mml:mi>Σ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:msubsup><mml:mo>∂</mml:mo><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:msubsup><mml:mi>f</mml:mi><mml:mi>j</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo stretchy="true">)</mml:mo></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msup><mml:mover accent="true"><mml:mi>Σ</mml:mi><mml:mo>.</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:msub><mml:mo>∂</mml:mo><mml:mi>x</mml:mi></mml:msub><mml:msup><mml:mi>f</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:msup><mml:mi>Σ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mi>Σ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:msub><mml:mo>∂</mml:mo><mml:mi>x</mml:mi></mml:msub><mml:msup><mml:mi>f</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mi>T</mml:mi></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mi>D</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mi>D</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mi>T</mml:mi></mml:mrow></mml:msup></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>This allows one to describe the population dynamics knowing only the flow, its gradient and curvature at each point in state-space. The reason that there are no superscripts on the sufficient statistics <italic>μ</italic>:= {<italic>μ</italic><sup>(1)</sup>, <italic>μ</italic><sup>(2)</sup>,…,Σ<sup>(1)</sup>,Σ<sup>(2)</sup>,…,} is that the sufficient statistics of one population can influence the sufficient statistics of another through extrinsic and intrinsic connections. Eq. (<xref rid="fd1" ref-type="disp-formula">1</xref>) shows explicitly how the first and second moments of the density depend on each other; the variance affects the mean when the curvature of the flow is nonzero (which is always the case when the equations of motion are nonlinear in the states). The effect of the mean on the variance depends on the gradients of the flow, which only change with the mean, when the curvature is nonzero. Therefore, the MFM formulation enables us to model interactions between the mean of neuronal states (e.g., postsynaptic potentials) and their variance over each population modelled (cf., <xref rid="bib22" ref-type="bibr">Harrison et al., 2005</xref>).</p>
+        <p>A special case of the MFM is obtained if we assume Σ<sup>(<italic>i</italic>)</sup> is fixed for all populations. This is the NMM, where we ignore all but the first moment of the density (<italic>i.e</italic>., the mean or mode). Because the curvature ∂<sub><italic>x</italic></sub><sup>2</sup><italic>f</italic><sub><italic>j</italic></sub><sup>(<italic>i</italic>)</sup> is generally constant and negative, this induces a decay term, giving density dynamics of the form<disp-formula id="fd2"><label>(2)</label><mml:math id="M2" altimg="si10.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mover accent="true"><mml:mi>μ</mml:mi><mml:mo>.</mml:mo></mml:mover><mml:mi>j</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:msubsup><mml:mi>f</mml:mi><mml:mi>j</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo stretchy="true">(</mml:mo><mml:mi>μ</mml:mi><mml:mo>,</mml:mo><mml:mi>u</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mi>t</mml:mi><mml:mi>r</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:msup><mml:mi>Σ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:msubsup><mml:mo>∂</mml:mo><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:msubsup><mml:mi>f</mml:mi><mml:mi>j</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></disp-formula></p>
+        <p>This corresponds to a neural-mass model and will be the NMM used in this paper. The value for Σ<sup>(<italic>i</italic>)</sup> we used was the stationary solution to Eq. (<xref rid="fd1" ref-type="disp-formula">1</xref>), in the absence of input (i.e., the same steady-state value as in the MFM). Further assuming that Σ<sup>(<italic>i</italic>)</sup> is spherical (i.e., all off-diagonal terms are zero) means the decay terms disappears because the leading diagonal; ∂<sub><italic>x</italic></sub><sup>2</sup><italic>f</italic><sub><italic>j</italic></sub><sup>(<italic>i</italic>)</sup> is generally 0 for most neuronal models. This is because the self-decay terms are generally linear in the states (see Eq. (<xref rid="fd3" ref-type="disp-formula">3</xref>) below for an example). In this case, we can ignore the second-order statistics completely and the dynamics reduce to the original equations of motion for a single neuron: ˙<italic>μ</italic><sup>(<italic>i</italic>)</sup> = <italic>f</italic><sup>(<italic>i</italic>)</sup>(<italic>μ,u</italic>).</p>
+        <p>The equations of motion <italic>f</italic><sup>(<italic>i</italic>)</sup> for each population considered in this paper are described in <xref rid="bib34" ref-type="bibr">Marreiros et al. (2009)</xref> and conform to a simplified <xref rid="bib36" ref-type="bibr">Morris and Lecar (1981)</xref> model, where the states are composed of transmembrane potential and three conductances: leaky, excitatory and inhibitory. This conductance-based model can be expressed with the equations of motion for the states of the <italic>i</italic>-th population<disp-formula id="fd3"><label>(3)</label><mml:math id="M3" altimg="si11.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:msup><mml:mi>x</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msup><mml:mi>V</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msubsup><mml:mi>g</mml:mi><mml:mi>E</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msubsup><mml:mi>g</mml:mi><mml:mi>I</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo stretchy="true">]</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow/></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msup><mml:mi>f</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mi>C</mml:mi></mml:mfrac><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>g</mml:mi><mml:mi>L</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>L</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msup><mml:mi>V</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:msubsup><mml:mi>g</mml:mi><mml:mi>E</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>E</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msup><mml:mi>V</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:msubsup><mml:mi>g</mml:mi><mml:mi>I</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>I</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msup><mml:mi>V</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:msubsup><mml:mi>γ</mml:mi><mml:mi>i</mml:mi><mml:mi>u</mml:mi></mml:msubsup><mml:mi>u</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>κ</mml:mi><mml:mi>E</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:msubsup><mml:mo>ς</mml:mo><mml:mi>E</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:msubsup><mml:mi>g</mml:mi><mml:mi>E</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>κ</mml:mi><mml:mi>I</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:msubsup><mml:mo>ς</mml:mo><mml:mi>I</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:msubsup><mml:mi>g</mml:mi><mml:mi>I</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo stretchy="true">]</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow/></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msubsup><mml:mo>ς</mml:mo><mml:mi>k</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>j</mml:mi></mml:munder><mml:mrow><mml:msubsup><mml:mi>γ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow><mml:mi>k</mml:mi></mml:msubsup><mml:mi>σ</mml:mi><mml:mo stretchy="true">(</mml:mo></mml:mrow><mml:msubsup><mml:mi>μ</mml:mi><mml:mi>V</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mo>−</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>R</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msup><mml:mi>Σ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>j</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="true">)</mml:mo></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>The presynaptic input <italic>ς</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup>:<italic>k</italic>∈<italic>E</italic>,<italic>I</italic> scales with the expected firing rate in all populations, where the sigmoid function <italic>σ</italic>(·) is a Gaussian cumulative density on the depolarization (<xref rid="bib33" ref-type="bibr">Marreiros et al., 2008</xref>) and the coupling parameters <italic>γ</italic><sub><italic>ij</italic></sub><sup><italic>k</italic></sup> specify the connectivity among populations. <italic>V</italic><sub><italic>R</italic></sub> is the threshold potential for neuronal firing. These parameters can be used to ensure that each population couples to one and only one conductance type (<italic>i.e</italic>., each population can only release one sort of neurotransmitter). Critically, in this work, the model also allows for conduction delays on the connections (not shown in the equations for simplicity). Given Eq. (<xref rid="fd3" ref-type="disp-formula">3</xref>) we can write down the derivatives that are required to evaluate the density dynamics in Eq. (<xref rid="fd1" ref-type="disp-formula">1</xref>) (cf. Eq. (18) in <xref rid="bib34" ref-type="bibr">Marreiros et al. 2009</xref>), where, dropping superscripts for clarity:<disp-formula id="fd4"><label>(4)</label><mml:math id="M4" altimg="si12.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:msub><mml:mo>∂</mml:mo><mml:mi>x</mml:mi></mml:msub><mml:mi>f</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mi>C</mml:mi></mml:mfrac><mml:munder><mml:mo>∑</mml:mo><mml:mi>k</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>g</mml:mi><mml:mi>k</mml:mi></mml:msub></mml:mrow></mml:mrow></mml:mtd><mml:mtd><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mi>C</mml:mi></mml:mfrac><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>E</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>V</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd><mml:mtd><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mi>C</mml:mi></mml:mfrac><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>V</mml:mi><mml:mi>I</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:mi>V</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi>κ</mml:mi><mml:mi>E</mml:mi></mml:msub></mml:mrow></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi>κ</mml:mi><mml:mi>I</mml:mi></mml:msub></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo stretchy="true">]</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow/></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msubsup><mml:mo>∂</mml:mo><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:msub><mml:mi>f</mml:mi><mml:mi>V</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mi>C</mml:mi></mml:mfrac></mml:mrow></mml:mtd><mml:mtd><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mi>C</mml:mi></mml:mfrac></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mi>C</mml:mi></mml:mfrac></mml:mrow></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mi>C</mml:mi></mml:mfrac></mml:mrow></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo stretchy="true">]</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow/></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msubsup><mml:mo>∂</mml:mo><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:msub><mml:mi>f</mml:mi><mml:mi>g</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mn>0</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo stretchy="true">]</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula>This particular form of neuronal model is among the simplest that are nonlinear in the states (note that the rate of change of voltage depends on conductance times voltage). This nonlinearity is critical in the present context because, as discussed above, in its absence there is no coupling between the mean and dispersion (i.e., the neural-mass and mean-field formulations would behave identically). We are not suggesting, in the choice of this model, that it is a sufficient or complete model of neuronal dynamics; this would be a wider question for model comparison. We are using this minimal model to ask whether mean-field formulations provide a better account of observed neuronal responses than their neural-mass counterparts.</p>
+        <p>Having established the form of the ordinary differential equations (Eqs. (<xref rid="fd1" ref-type="disp-formula">1</xref>) and (<xref rid="fd2" ref-type="disp-formula">2</xref>)) for the mean-field and neural-mass models of population activity, we now describe how they are embedded in a DCM to provide a spatiotemporal forward model of observed electromagnetic responses.</p>
+      </sec>
+      <sec>
+        <title>Dynamic causal modelling for EEG/MEG</title>
+        <p>Dynamic causal modelling provides a generative model for M/EEG responses (<xref rid="bib7 bib28" ref-type="bibr">David et al., 2006; Kiebel et al., 2008</xref>). The idea behind this approach is that M/EEG data are the response of a distributed network of interacting neuronal sources to experimental inputs. Here every source contains different neuronal populations, each described by a NMM or a MFM. Each population has its own (intrinsic) dynamics governed by the neural-mass or the mean-field equations above, but also receives extrinsic input, either directly as sensory input or from other sources. The dynamics of these sources are specified fully by a set of first-order differential equations that are formally related to other neural-mass and mean-field models of M/EEG (e.g., <xref rid="bib4 bib50" ref-type="bibr">Breakspear et al. 2006; Rodrigues et al. 2006</xref>).</p>
+        <p>DCM for event related potential models the activity of a source using three neural subpopulations, each assigned to one of three cortical layers; an excitatory subpopulation in the granular layer, an inhibitory subpopulation in the supra-granular layer and a population of deep pyramidal cells in the infra-granular layer. These are connected using the connectivity rules described in the study of <xref rid="bib13" ref-type="bibr">Felleman and Van Essen (1991)</xref>. See <xref rid="fig1" ref-type="fig">Fig. 1</xref>. Here, it is assumed that the depolarization of pyramidal cell populations gives rise to observed M/EEG data, which are expressed in the sensors through a conventional lead-field. The full spatiotemporal model takes the form of a nonlinear state-space model with hidden states modelling (unobserved) neuronal dynamics, while the observation (lead-field) equation is instantaneous and linear in the states. The ensuing DCM is specified in terms of its state-equation (Eqs. (<xref rid="fd1" ref-type="disp-formula">1</xref>) or (<xref rid="fd2" ref-type="disp-formula">2</xref>)) and an observer or output equation<disp-formula id="fd5"><label>(5)</label><mml:math id="M5" altimg="si13.gif" overflow="scroll"><mml:mrow><mml:mi>h</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mo>ϑ</mml:mo><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mi>L</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>θ</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:msubsup><mml:mi>μ</mml:mi><mml:mi>V</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mn>2</mml:mn></mml:msub><mml:msubsup><mml:mi>μ</mml:mi><mml:mi>V</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mo>⋮</mml:mo></mml:mtd></mml:mtr></mml:mtable></mml:mrow><mml:mo stretchy="true">]</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula>where <italic>μ</italic><sub><italic>V</italic></sub><sup>(<italic>i</italic>)</sup> is the mean depolarization of the <italic>i</italic>-th population and <italic>h</italic>(<italic>θ</italic>) is the predicted EEG or MEG signal. Here, <italic>ϑ</italic>⊃{<italic>θ</italic>,<italic>α<sub>i</sub></italic>,<italic>γ<sub>ij</sub><sup>k</sup></italic>,<italic>κ</italic><sub><italic>I</italic></sub>,<italic>κ</italic><sub><italic>E</italic></sub>,<italic>ω</italic>…) are the unknown quantities that parameterize the state and observer equations (<xref rid="bib7" ref-type="bibr">David et al., 2006</xref>). The parameters also control any unknown attributes of the stimulus function encoding exogenous input; we use Gaussian bump functions parameterized by their latencies and dispersions. We assume the MEG or EEG signal is a linear mixture of depolarizations in the pyramidal populations; where the columns of <italic>L</italic>(<italic>θ</italic>) are conventional lead-fields, which account for passive conduction of the electromagnetic field from the sources to the sensors (<xref rid="bib37" ref-type="bibr">Mosher et al. 1999</xref>). The parameters of the lead-field, <italic>θ</italic> encode the location and orientation of the underlying sources and <italic>α</italic> scale their contribution to the dipole. Please see <xref rid="bib7 bib28" ref-type="bibr">David et al. (2006) and Kiebel et al. (2008)</xref> for further background and <xref rid="bib8" ref-type="bibr">Daunizeau et al. (2009)</xref> for details of the particular spatial model we used in this study.</p>
+        <p>The predicted signal <italic>h</italic>(<italic>θ</italic>) corresponds to a generalized convolution of exogenous inputs (i.e., experimental stimulus functions). Under Gaussian assumptions about measurement noise, this generalized convolution gives a likelihood model for observed M/EEG data:<disp-formula id="fd6"><label>(6)</label><mml:math id="M6" altimg="si14.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi>y</mml:mi><mml:mo>=</mml:mo><mml:mtext>vec</mml:mtext><mml:mo stretchy="true">(</mml:mo><mml:mi>h</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mo>ϑ</mml:mo><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:mi>X</mml:mi><mml:mi>β</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:mi>ɛ</mml:mi><mml:mo>⇒</mml:mo></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mo>ϑ</mml:mo><mml:mo>,</mml:mo><mml:mi>λ</mml:mi></mml:mrow></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mtext>vec</mml:mtext><mml:mo stretchy="true">(</mml:mo><mml:mi>h</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mo>ϑ</mml:mo><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:mi>X</mml:mi><mml:mi>β</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>,</mml:mo><mml:mtext>diag</mml:mtext><mml:mo stretchy="true">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>⊗</mml:mo><mml:mi>V</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>Observation noise, <italic>ɛ</italic>, is assumed to be zero-mean Gaussian and independent over channels, where <italic>λ</italic> is a vector of unknown channel-specific error variances and <italic>V</italic> represents a temporal autocorrelation matrix. Low-frequency noise or drift components are modelled by confounding variables in the columns of the matrix, <italic>X</italic> (this was simply a constant term in this paper) with associated parameters β ⊂ <italic>ϑ</italic>. For computational expediency, we reduce the dimensionality of the sensor data, while retaining the maximum amount of information. This is assured by projecting the data onto a subspace defined by its principal modes; computed using singular value decomposition; see <xref rid="bib56" ref-type="bibr">Fastenrath et al. (2009)</xref>. Having established how the mean-field and neural-mass models specify a likelihood model for observed signals, we now consider how the ensuing DCM is fitted or inverted.</p>
+      </sec>
+      <sec>
+        <title>Bayesian estimation, conditional inference and model comparison</title>
+        <p>A DCM is fitted to data by tuning the free parameters to minimize the discrepancy between predicted and observed MEG/EEG time series, under complexity constraints. In addition to minimizing prediction error, the parameters are constrained by a prior specification of the range they are likely to lie in the study of Friston et al. (<xref rid="bib18" ref-type="bibr">2003</xref>). These constraints, which take the form of a prior density −<italic>p</italic>(<italic>ϑ</italic>), are combined with the likelihood, <italic>p</italic>(<italic>y</italic>|<italic>ϑ</italic>), to form a posterior density <italic>p</italic>(<italic>ϑ</italic>|<italic>y</italic>) ∝ <italic>p</italic>(<italic>y</italic>|<italic>ϑ</italic>)<italic>p</italic>(<italic>ϑ</italic>) according to Bayes' rule. The priors <italic>p</italic>(<italic>ϑ</italic>) are usually specified under log-normal assumptions to impose positivity constraints; and are therefore specified by the prior mean and variance of log-parameters. <xref rid="tbl1" ref-type="table">Table 1</xref> lists the priors for the free parameters of the neuronal model and the values we used for its fixed parameters.</p>
+        <p>For a given DCM, say model <italic>m</italic>, inversion corresponds to approximating the moments of the posterior or conditional distribution given by Bayes' rule<disp-formula id="fd7"><label>(7)</label><mml:math id="M7" altimg="si15.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mo>ϑ</mml:mo><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mo>ϑ</mml:mo><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mo>ϑ</mml:mo><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula></p>
+        <p>The estimation procedure employed in DCM is described in the study of <xref rid="bib18" ref-type="bibr">Friston et al. (2003)</xref>. The posterior moments (mean and covariance) are updated iteratively using variational Bayes under a fixed-form Laplace (i.e., Gaussian) approximation to the conditional density −<italic>q</italic>(<italic>ϑ</italic>). This can be regarded as an expectation-maximization (EM) algorithm that employs a local linear approximation of the predicted responses (Eq. (<xref rid="fd6" ref-type="disp-formula">6</xref>)) about the current conditional expectation. The E-step conforms to a Fisher-scoring scheme (<xref rid="bib12" ref-type="bibr">Fahrmeir and Tutz 1994</xref>) that performs a descent on a variational free-energy <italic>F</italic>(<italic>q</italic>,<italic>λ</italic>,<italic>m</italic>), with respect to the conditional moments. In the M-step, the error variances <italic>λ</italic> are updated in exactly the same way to provide their maximum likelihood. The estimation scheme can be summarized as follows:<disp-formula id="fd8"><label>(8)</label><mml:math id="M8" altimg="si16.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi mathvariant="bold">E</mml:mi><mml:mtext>−step</mml:mtext><mml:mo>:</mml:mo><mml:mi>q</mml:mi><mml:mo>←</mml:mo><mml:munder><mml:mrow><mml:mi>min</mml:mi></mml:mrow><mml:mi>q</mml:mi></mml:munder><mml:mi>F</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>q</mml:mi><mml:mo>,</mml:mo><mml:mi>λ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi mathvariant="bold">M</mml:mi><mml:mtext>−step</mml:mtext><mml:mo>:</mml:mo><mml:mi>λ</mml:mi><mml:mo>←</mml:mo><mml:munder><mml:mrow><mml:mi>min</mml:mi></mml:mrow><mml:mi>λ</mml:mi></mml:munder><mml:mi>F</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>q</mml:mi><mml:mo>,</mml:mo><mml:mi>λ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow/></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>F</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>q</mml:mi><mml:mo>,</mml:mo><mml:mi>λ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:msub><mml:mrow><mml:mo>〈</mml:mo><mml:mrow><mml:mi>ln</mml:mi><mml:mi>q</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mo>ϑ</mml:mo><mml:mo stretchy="true">)</mml:mo><mml:mo>−</mml:mo><mml:mi>ln</mml:mi><mml:mi>p</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mo>ϑ</mml:mo><mml:mo>,</mml:mo><mml:mi>λ</mml:mi></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo><mml:mo>−</mml:mo><mml:mi>ln</mml:mi><mml:mi>p</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mo>ϑ</mml:mo><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>〉</mml:mo></mml:mrow><mml:mi>q</mml:mi></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mo>=</mml:mo><mml:mi>K</mml:mi><mml:mi>L</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>q</mml:mi><mml:mrow><mml:mo>‖</mml:mo><mml:mrow><mml:mi>p</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mo>ϑ</mml:mo><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:mi>λ</mml:mi></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo><mml:mo>−</mml:mo><mml:mi>ln</mml:mi><mml:mi>p</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi>λ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>The free-energy is simply a function of the log-likelihood, the log-prior and the approximation to the conditional density we seek. The free-energy is the Kullback-Leibler divergence between the real and approximate conditional density minus the log-likelihood. This means that when the free-energy is minimized, the discrepancy between the true and approximate conditional density is suppressed (because the divergence is non-negative). At this point the free-energy approximates the negative log-evidence <italic>F</italic> ≈ −ln <italic>p</italic>(<italic>y</italic>|<italic>λ</italic>,<italic>m</italic>). This scheme is identical to that employed by DCM for fMRI and evoked responses (<xref rid="bib18 bib7" ref-type="bibr">Friston et al., 2003; David et al., 2006</xref>).</p>
+        <p>The log-evidence is an important quantity because it allows one to compare different models (<xref rid="bib43" ref-type="bibr">Penny et al. 2004</xref>). We can approximate the log-evidence for model <italic>m</italic> with ln <italic>p</italic>(<italic>y</italic>|<italic>m</italic>) ≈ −<italic>F</italic>. The most likely model is the one with the largest log-evidence. Model comparison rests on the likelihood ratio (i.e., Bayes-Factor) of the evidence or relative log-evidence for two models. For models <italic>i</italic> and <italic>j</italic> the Bayes-Factor is<disp-formula id="fd9"><label>(9)</label><mml:math id="M9" altimg="si17.gif" overflow="scroll"><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:msub><mml:mi>B</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:msub><mml:mi>m</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mfrac></mml:mrow></mml:mtd><mml:mtd><mml:mo>⇒</mml:mo></mml:mtd><mml:mtd><mml:mrow><mml:mi>ln</mml:mi><mml:msub><mml:mi>B</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mi>ln</mml:mi><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi>m</mml:mi><mml:mo>=</mml:mo><mml:mi>i</mml:mi></mml:mrow></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:mi>ln</mml:mi><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi>m</mml:mi><mml:mo>=</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+        <p>Strong evidence in favour of one model typically requires the difference in log-evidence to be three or more (<xref rid="bib43" ref-type="bibr">Penny et al. 2004</xref>). Under flat priors on models this corresponds to a conditional confidence that the winning model is exp(3) ≈ 20 times more likely than the alternative. This indicates that the data provide ‘strong’ (10:1 to 30:1) evidence in favour of one model over the other. See <ext-link ext-link-type="uri" xlink:href="http://en.wikipedia.org/wiki/Bayes_factor">http://en.wikipedia.org/wiki/Bayes_factor</ext-link> for the range of Bayes factors indicating ‘very strong’ (30:1 to 100:1) and ‘decisive’ (more than 100:1) evidence for a model. In the next section, we will use the free-energy bound on log-evidence to compare the different models elaborated above.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Simulations and empirical results</title>
+      <p>Our key question was: can we find evidence for coupling between the mean and dispersion of neuronal states in empirical data? However, we anticipated that the answer would be context sensitive; in the sense that some evoked responses may induce large fluctuations in dispersion, whereas others may not. This context sensitivity can be seen from the form of Eq. (<xref rid="fd1" ref-type="disp-formula">1</xref>), where changes in the dispersion of neuronal states depend upon the systems Jacobian ∂<italic><sub>x</sub> f</italic><sup>(<italic>i</italic>)</sup> or rate of change of flow with state. The Jacobian depends on depolarization and conductance (Eq. (<xref rid="fd4" ref-type="disp-formula">4</xref>)), which depends on presynaptic input <italic>ς</italic><sub><italic>k</italic></sub><sup>(<italic>i</italic>)</sup>. This implies that we would expect to see large fluctuations in dispersion and the ensuing effect on the mean under high levels of extrinsic presynaptic input. We therefore chose to perform our model comparison using two sorts of evoked responses. The first used a traditional ‘cognitive’ paradigm (a mismatch negativity paradigm) in which auditory stimuli can be regarded as delivering low amplitude physiological inputs to cortical sources. In contrast, the second paradigm was a somatosensory evoked potential (SEP) paradigm; in which neuronal sources are excited with a non-physiological electrical stimulus, eliciting transient but high amplitude presynaptic inputs. We predicted that if there was any evidence for the mean-field model, relative to the neural-mass model, then we would be more likely to see it in the SEP paradigm, relative to the mismatch negativity paradigm. In what follows, we describe these paradigms and the results of our model comparisons.</p>
+      <sec>
+        <title>Mismatch negativity paradigm</title>
+        <p>In this section, we analyze data from a multi-subject mismatch negativity (MMN) study (<xref rid="bib19" ref-type="bibr">Garrido et al. 2007a</xref>). This analysis is largely the same as we have presented previously when looking at plasticity using DCM. The only difference here is that we used the conductance-based neuronal model described in <xref rid="bib34" ref-type="bibr">Marreiros et al. (2009)</xref> and compared the neural-mass and mean-field variants of this model. In brief, the MMN is the differential response to an unexpected (rare or oddball) auditory stimulus relative to an expected (standard) stimulus. The MMN has been studied extensively and is regarded as a marker for error detection, caused by a deviation from a learned regularity, or familiar auditory context. According to <xref rid="bib38" ref-type="bibr">Näätänen et al. (2001)</xref> the MMN is caused by two underlying functional processes, a sensory memory mechanism and an automatic attention-switching process that might engage frontal generators (<xref rid="bib21" ref-type="bibr">Giard et al. 1990</xref>). It has been shown that the temporal and frontal MMN sources have distinct behaviours over time (<xref rid="bib46" ref-type="bibr">Rinne et al. 2000</xref>) and that these sources interact with each other (<xref rid="bib26" ref-type="bibr">Jemel et al. 2002</xref>). Thus the MMN could be generated by a temporofrontal network (<xref rid="bib10 bib42 bib11" ref-type="bibr">Doeller et al. 2003; Opitz et al. 2002; Escera et al. 2003</xref>), as revealed by M/EEG and fMRI studies. In a predictive coding framework, these findings can also be framed as adaptation and experience-dependent plasticity in an auditory network (<xref rid="bib24 bib17 bib19 bib20" ref-type="bibr">Jääskeläinen et al., 2004; Friston, 2005; Garrido et al., 2007a,b</xref>).</p>
+        <p>Using DCM, we modelled the MMN generators with a temporofrontal network composed of bilateral sources over the primary and secondary auditory and frontal cortex. Following <xref rid="bib19" ref-type="bibr">Garrido et al. (2007a)</xref>, we used a five-source network with forward and backward extrinsic (between-source) connections. Exogenous or auditory input (modelled with <italic>u</italic>(<italic>t</italic>)∈ℜ, a parameterized bump function of time; see <xref rid="tbl1" ref-type="table">Table 1</xref>) enters via subcortical structures into two bilateral sources in posterior auditory cortex (lA1 and rA1). These have forward connections to two bilateral sources in anterior auditory cortex; i.e., superior temporal gyri (lSTG and rSTG). These sources are laterally and reciprocally connected via the corpus callosum. The fifth source is located in the right inferior frontal gyrus (rIFG) and is connected to the rSTG with reciprocal unilateral connections. Using these sources and prior knowledge about the functional anatomy cited above, we specified the DCM network in <xref rid="fig2" ref-type="fig">Fig. 2</xref>. Here, we were interested in comparing the NMM and MFM formulations of this network, in terms of their negative free-energy. To simplify the analysis, we modelled only the responses evoked by standard stimuli (from 0 ms to 256 ms).</p>
+      </sec>
+      <sec>
+        <title>Empirical results</title>
+        <p>Two DCMs (NMM and MFM variants) were inverted for all twelve subjects and compared using their log-evidence. <xref rid="fig3" ref-type="fig">Fig. 3</xref> shows the differences in log-evidences for each subject. For all but one subject, there was decisive evidence for the NMM over the MFM. The log-evidence at the group level (&gt; 100), pooled over all subjects (given the data are conditionally independent over subjects) was similarly decisive. Although the relative log-evidence is quantitatively meaningful in its own right, one can also treat it as a log-odds ratio and use its distribution over subjects to compute a classical <italic>p</italic>-value (<xref rid="bib53" ref-type="bibr">Stephan et al., 2010</xref>). In this instance, a one-sample <italic>t</italic>-test was extremely significant (<italic>T</italic> = 3.58, df = 11, <italic>p</italic> = 0.002). This means that we can reject the null hypothesis that the data are explained equally well by neural-mass and mean-field formulations of the same neuronal model.</p>
+        <p>These results suggest the NMM is a better model for explaining evoked auditory responses. Note that the complexities of the NMM and MFM are the same; the MFM has more states but does not have more unknown parameters. This may seem counterintuitive because the dispersion in the MFM may appear to make it more complicated. However, the dispersion is a sufficient static of a density on hidden states and is not itself subject to random effects. This means, given the model parameters, it is a deterministic quantity and does not add to model complexity (i.e., it is specified by the same parameters as the neural-mass model). This is important because the results in <xref rid="fig3" ref-type="fig">Fig. 3</xref> are remarkably consistent over subjects and cannot be explained by differences in model complexity. In short, the NMM provides a better prediction of the observed responses than the MFM, in this paradigm. Furthermore, the differences between the NMM and MFM predictions are fairly subtle (see <xref rid="fig4" ref-type="fig">Fig. 4</xref>). This suggests that the population variance is actually quite stable over peristimulus time, because the model selection clearly favours the predictions from the neural-mass model (<xref rid="fig5" ref-type="fig">Fig. 5</xref>).</p>
+      </sec>
+      <sec>
+        <title>Simulations</title>
+        <p>We next performed some comparative evaluations and validations of DCM using neural-mass and mean-field models, using synthetic data based on the empirical results above. These are presented to show that the empirical model comparison above is sufficiently sensitive to disambiguate between neural-mass and mean-field variants of the same model. After generating data from a known model, we used model comparison to ask whether one can recover the correct model over its alternative. We integrated the NMM and MFM with known (true) model parameters derived from the real data above (the conditional means from a DCM of the grand average over subjects) and added random measurement noise with a standard deviation of 10% of the peak response in channel space. This was roughly the amplitude of noise in the real data—see <xref rid="fig4" ref-type="fig">Fig. 4</xref>. Finally, we used the synthetic data generated by both models to invert the neural-mass and mean-field DCMs. <xref rid="tbl2" ref-type="table">Table 2</xref> lists the resulting log-evidences. Each column contains the log-evidences for each data set. The maximum values are found on the diagonal; i.e., the true model had the greatest evidence and the relative evidence for the correct model was ‘decisive’. These results confirm that these models can be disambiguated using DCM, under empirically realistic levels of noise.</p>
+      </sec>
+      <sec>
+        <title>Somatosensory evoked potential paradigm</title>
+        <p>To explore the context sensitivity of these results, we analyzed data from a study of paired associative stimulation (PAS) (<xref rid="bib31" ref-type="bibr">Litvak et al., 2007</xref>), which involves repetitive magnetic cortical stimulation timed to interact with median nerve stimulation-induced peripheral signals from the hand. The PAS paradigm has been shown to induce long-lasting changes in somatosensory evoked potentials (Wolters et al., 2005) as measured by single-channel recordings overlying somatosensory cortex. The SEP generators evoked by compound nerve stimulation have been studied extensively with both invasive and non-invasive methods in humans and in animal models (<xref rid="bib1" ref-type="bibr">Allison et al., 1991</xref>). Litvak et al. (2007) characterised the topographical distribution of PAS-induced excitability changes as a function of the timing and composition of afferent somatosensory stimulation, with respect to a transcranial magnetic stimulation (TMS). The temporal response pattern of the SEP is composed of a P14 component generated subcortically and then an N20–P30 complex from the sensorimotor cortex, which is followed by a P25–N35 complex (<xref rid="bib1" ref-type="bibr">Allison et al. 1991</xref>). The remainder of the SEP can be explained by a source originating from the hand representation in S1 (<xref rid="bib31" ref-type="bibr">Litvak et al., 2007</xref>).</p>
+        <p>We chose these data as examples of fast sensory transients that might engage a more circumscribed network than the auditory stimuli in the MMN paradigm above. We anticipated that the density dynamics of neuronal populations that were stimulated electromagnetically, may disclose the effects of dispersion (see above). We analyzed the SEP data from eleven subjects following median nerve stimulation (i.e., in the absence of transcranial magnetic stimulation) as above. The network architecture was based on previous reports (<xref rid="bib5 bib44 bib31" ref-type="bibr">Buchner et al., 1995; Ravazzani et al., 1995, Litvak et al., 2007</xref>): we modelled the somatosensory system with three sources, each comprising three neuronal populations. In this model (see <xref rid="fig2" ref-type="fig">Fig. 2</xref>, <xref rid="bib31 bib33" ref-type="bibr">Litvak et al., 2007 and Marreiros et al. 2008</xref>) exogenous input was delivered to the brainstem source (BS), which accounts for early responses in the medulla. The input was a mixture of two parameterized bump functions with prior latencies based on known conduction delays (see <xref rid="tbl1" ref-type="table">Table 1</xref>). This region connects to two sources SI and SII in Brodmann area 3 (<xref rid="bib33" ref-type="bibr">Marreiros et al., 2008</xref>). We inverted the resulting DCMs using the sensor data from 4 ms to 64 ms, following stimulation. We report the results form the first ten subjects because the DCM inversion failed to converge for the last subject.</p>
+      </sec>
+      <sec>
+        <title>Empirical results</title>
+        <p><xref rid="fig3" ref-type="fig">Fig. 3</xref> (right) shows the log-evidence differences. In stark contrast to the MMN results, there was ‘decisive’ evidence in all but one subject for the MFM over the NMM. Moreover, the large group difference in log-evidence of (&gt; 100) favours the MFM model; i.e., if we had to account for the data from all subjects with the same model, then the evidence for the MFM was decisive. The classical <italic>p</italic>-value was similarly significant (<italic>T</italic> = 2.19, df = 9, <italic>p</italic> = 0.028) but less significant than in the MMN analyses due to larger inter-subject variability. These results indicate that the MFM is, in this instance, a demonstrably better explanation for somatosensory evoked potentials. It is important to appreciate that exactly the same model was used for the MMN and SEP data, including the prior density on the free parameters (with the exception of the exogenous input). However, the results of model comparison are, as anticipated, completely the opposite and remarkably consistent over subjects for both paradigms.</p>
+        <p>Anecdotally, the superior performance of the mean-field model seemed to be its ability to fit both the early N20–P30 complex and later waveform components of the SEP (although no model was able to fit the P14 components convincingly). This contrasts with the neural-mass model that was unable to reproduce the fast initial transients but was able to model the slower components that followed. The results from the first subject in channel space illustrate this difference nicely (<xref rid="fig6" ref-type="fig">Fig. 6</xref>); showing that the predictions of both models are almost indistinguishable after 30 ms. Phenomenologically, this means that the dispersion of neuronal states in the MFM confers a greater range on the time constants of population dynamics, which allows the MFM to reproduce fast, large-amplitude responses in, we presume, relatively circumscribed neuronal populations responding synchronously to extrinsic afferents.</p>
+      </sec>
+      <sec>
+        <title>Simulations</title>
+        <p>To ensure the model comparison retained its sensitivity in this SEP setting, we again generated synthetic data using the conditional means of the parameters estimated from the empirical SEP data. We used an NMM and an MFM for generation and inversion and evaluated all combinations to ensure that model selection identified the correct model. For the integration of the forward models, we used the conditional means of parameters over subjects. We added random noise to these synthetic data, with a standard deviation that was 5% of the peak response in sensor space. We used the three-source model above (<xref rid="bib31 bib33" ref-type="bibr">Litvak et al., 2007; Marreiros et al., 2008</xref>) to generate and model data. <xref rid="tbl3" ref-type="table">Table 3</xref> presents the log-evidences for each of the four inversions. The highest evidences were obtained for the models that were used to generate the synthetic data: these correspond to the diagonal entries. Again, the results conform that model comparison can identify the correct model of these somatosensory responses, and do so decisively.</p>
+      </sec>
+      <sec>
+        <title>A quantitative illustration of density dynamics</title>
+        <p><xref rid="fig7" ref-type="fig">Fig. 7</xref> (upper left panel), shows the sufficient statistics of population activity for source in the first SEP subject. These are the <italic>mean</italic> and <italic>covariance</italic> of neuronal states, in source space. These are obtained by integrating the ensemble dynamics in <xref rid="fd1" ref-type="disp-formula">Eq. (1</xref>), using the equations of motion in <xref rid="fd3" ref-type="disp-formula">Eq. (3</xref>) and <xref rid="fig1" ref-type="fig">Fig. 1</xref> and the conditional parameter estimates. Generally, when the mean depolarization increases, the covariance decreases, getting close to zero when the mean approaches its maximum. This is seen here at about 30 ms. This concentration of neuronal states augments the decay of mean depolarization (see <xref rid="fd1" ref-type="disp-formula">Eq. (1</xref>)). Note that at around 20 ms the N20 is modelled by polyphasic dynamics in the mean depolarization that rests on a coupling with dispersion. These coupling and ensuing dynamics are the ones missing in the neural-mass model. In the lower panel, we see the conditional response estimate, in sensor space, in terms of the observed (dotted lines) and predicted (solid lines) time series for all modes. These results are representative of DCM prediction accuracy.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>We have introduced a mean-field DCM for M/EEG data, which approximates the full density dynamics of population activity in neuronal sources of observed electromagnetic responses with a Gaussian density. This work was motivated by the observation that neural-mass models, which consider only the first moment of the density of each neuronal population, can be seen as a limiting case of mean-field models (<xref rid="bib34" ref-type="bibr">Marreiros et al., 2009</xref>). The mean-field model used physiological plausible priors with the hope of creating a reasonably realistic conductance-based model (cf., <xref rid="bib50" ref-type="bibr">Rodrigues et al., 2006</xref>). We have shown, using model inversion and simulations that one can disambiguate between MFM and NMM models (<xref rid="tbl2 tbl3" ref-type="table">Tables 2 and 3</xref>) and found that the NMM was the best model for explaining the MMN data. In contrast, we found that the MFM was a better model of the SEP data (<xref rid="fig3" ref-type="fig">Fig. 3</xref>), in the vast majority of subjects and at the group level. We deliberately chose these distinct data sets in the hope of disclosing this dissociation between neural-mass and mean-field models.</p>
+      <p>This difference in performance between the two models on the two data sets lies in the difference between Eqs. (<xref rid="fd1" ref-type="disp-formula">1</xref>) and (<xref rid="fd2" ref-type="disp-formula">2</xref>). Our results suggest that the MFM captures the faster SEP population dynamics better than the NMM. This may be because the SEP paradigm evokes larger presynaptic inputs to small circumscribed neuronal populations as compared to the MMN and related cognitive paradigms. It is this input that induces changes in conductance which synchronise hidden states and cause a subsequent suppression of mean activity. It can be seen from <xref rid="fd1" ref-type="disp-formula">Eq. (1</xref>) that changes in covariance depend on the derivative of flow. <xref rid="fd4" ref-type="disp-formula">Eq. (4</xref>) shows that this depends on depolarization and conductance. In support of this, the MFM solutions for the SEP data do indeed show a reciprocal coupling between mean depolarization and variance (see <xref rid="fig7" ref-type="fig">Fig. 7</xref>). Having said this, the appropriateness of a model for any particular data or paradigm data cannot necessarily be deduced analytically. The aim of this paper was to show that questions about density dynamics of this sort can be answered using Bayesian model comparison. Future studies with NMM and MFM may provide heuristics about the relative utility of these models. In particular, it will be interesting to use MFMs when more complex dynamics are induced by extreme perturbations from steady-state dynamics (e.g., transcranial magnetic stimulation).</p>
+      <p>Most DCMs in the literature are deterministic; in that they allow for observation noise on the sensors but do not consider random fluctuations on hidden states. Here, the hidden states in mean-field DCMs are sufficient statistics of a density, which accommodates random fluctuations on neuronal states. This is important because it means we can model systems specified in terms of stochastic differential equations (cf., <xref rid="fd3" ref-type="disp-formula">Eq. (3</xref>)) with ordinary differential equations (Eq. (1)) through the Fokker-Planck formalism. A potential application of this approach, beyond finessing prediction of EEG signals, could be in the context of EEG-fMRI fusion; where the second-order statistics of neuronal activity (cf., power) may be an important predictor of BOLD signals.</p>
+      <p>It is important to appreciate that the scheme described in this paper is not tied to any particular model of neuronal dynamics. The same comparisons presented above could be repeated easily, using any model of neuronal dynamics that are entailed by their equations of motion. Indeed, we anticipate that people will want to compare neural-mass and mean-field implementations of different models (see software note). The only constraint on these comparisons is that the equations of motion should be nonlinear in the neuronal states. This is because linear models preclude a coupling of first and second-order moments and render the behaviour of the neural-mass and mean-field formulation identical.</p>
+      <sec>
+        <title>Conclusion</title>
+        <p>We have shown that it is possible to implement a mean-field DCM, which considers the mean and variance of neuronal population activity. The modulation of second-order statistics may be a useful extension of DCM for evoked responses, as measured with magnetoencephalography and electroencephalography. Critically, the role of higher moments can be assessed empirically in a Bayesian model comparison framework. In this initial work, we conclude that, although conventional neural-mass models may be sufficient for modelling responses in conventional cognitive paradigms, it is easy to find evidence for coupling among the moments of neuronal ensemble densities in observed EEG data.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Software note</title>
+      <p>Matlab demonstration and analysis routines referred to in this paper are available as academic freeware as part of the SPM software from <ext-link ext-link-type="uri" xlink:href="http://www.fil.ion.ucl.ac.uk/spm">http://www.fil.ion.ucl.ac.uk/spm</ext-link>.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Allison</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>McGarthy</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Wood</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>S.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Potentials evoked in human and monkey cerebral cortex by stimulation of the median nerve. A review of scalp and intracranial recordings</article-title>
+          <source>Brain</source>
+          <volume>114</volume>
+          <year>1991</year>
+          <fpage>2465</fpage>
+          <lpage>2503</lpage>
+          <pub-id pub-id-type="pmid">1782527</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Amari</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Characteristics of random nets of analog neuron-like elements</article-title>
+          <source>IEEE Trans. Syst. Man Cybern.</source>
+          <volume>2</volume>
+          <issue>5</issue>
+          <year>1972</year>
+          <fpage>643</fpage>
+          <lpage>657</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Amari</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Homogeneous nets of neuron-like elements</article-title>
+          <source>Biol. Cybern.</source>
+          <volume>17</volume>
+          <year>1975</year>
+          <fpage>211</fpage>
+          <lpage>220</lpage>
+          <pub-id pub-id-type="pmid">1125349</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breakspear</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Roberts</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Terry</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Rodrigues</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Mahant</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A unifying explanation of primary generalized seizures through nonlinear brain modeling and bifurcation analysis</article-title>
+          <source>Cereb. Cortex</source>
+          <volume>16</volume>
+          <year>2006</year>
+          <fpage>1296</fpage>
+          <lpage>1313</lpage>
+          <pub-id pub-id-type="pmid">16280462</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Buchner</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Adams</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Muller</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Ludwig</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Knepper</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Thron</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Niemann</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Scherg</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Somatotopy of human hand somatosensory cortex revealed by dipole source analysis of early somatosensory evoked potentials and 3D-NMR tomography</article-title>
+          <source>Electroencephalogr. Clin. Neurophysiol.</source>
+          <volume>96</volume>
+          <year>1995</year>
+          <fpage>121</fpage>
+          <lpage>134</lpage>
+          <pub-id pub-id-type="pmid">7535218</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A neural-mass model for MEG/EEG: coupling and neuronal dynamics</article-title>
+          <source>NeuroImage</source>
+          <volume>20</volume>
+          <year>2003</year>
+          <fpage>1743</fpage>
+          <lpage>1755</lpage>
+          <pub-id pub-id-type="pmid">14642484</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modeling of evoked responses in EEG and MEG</article-title>
+          <source>NeuroImage</source>
+          <volume>30</volume>
+          <issue>4</issue>
+          <year>2006</year>
+          <fpage>1255</fpage>
+          <lpage>1272</lpage>
+          <pub-id pub-id-type="pmid">16473023</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of distributed electromagnetic responses</article-title>
+          <source>Neuroimage</source>
+          <volume>47</volume>
+          <issue>2</issue>
+          <year>2009 Aug 15</year>
+          <fpage>590</fpage>
+          <lpage>601</lpage>
+          <pub-id pub-id-type="pmid">19398015</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deco</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Jirsa</surname>
+              <given-names>V.K.</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Breakspear</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The dynamic brain: from spiking neurons to neural-masses and cortical fields</article-title>
+          <source>PLoS Comput. Biol.</source>
+          <volume>4</volume>
+          <issue>8</issue>
+          <year>2008</year>
+          <fpage>e1000092</fpage>
+          <pub-id pub-id-type="pmid">18769680</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Doeller</surname>
+              <given-names>C.F.</given-names>
+            </name>
+            <name>
+              <surname>Opitz</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Mecklinger</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Krick</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Reith</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Schroger</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Prefrontal cortex involvement in preattentive auditory deviance detection: neuroimaging and electrophysiological evidence</article-title>
+          <source>Neuroimage</source>
+          <volume>20</volume>
+          <year>2003</year>
+          <fpage>1270</fpage>
+          <lpage>1282</lpage>
+          <pub-id pub-id-type="pmid">14568496</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Escera</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Yago</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Corral</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Corbera</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Nunez</surname>
+              <given-names>M.I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Attention capture by auditory significant stimuli: semantic analysis follows attention switching</article-title>
+          <source>Eur. J. Neurosci.</source>
+          <volume>18</volume>
+          <year>2003</year>
+          <fpage>2408</fpage>
+          <lpage>2412</lpage>
+          <pub-id pub-id-type="pmid">14622204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fahrmeir</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Tutz</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Multivariate Statistical Modelling Based on Generalized Linear Models</chapter-title>
+          <year>1994</year>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib56">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fastenrath</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamical causal modelling for M/EEG: spatial and temporal symmetry constraints</article-title>
+          <source>NeuroImage</source>
+          <volume>44</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <fpage>154</fpage>
+          <lpage>163</lpage>
+          <pub-id pub-id-type="pmid">18718870</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Felleman</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Van Essen</surname>
+              <given-names>D.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distributed hierarchical processing in the primate cerebral cortex</article-title>
+          <source>Cereb. Cortex</source>
+          <volume>1</volume>
+          <year>1991</year>
+          <fpage>1</fpage>
+          <lpage>47</lpage>
+          <pub-id pub-id-type="pmid">1822724</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib14">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frank</surname>
+              <given-names>T.D.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Nonlinear Fokker-Planck Equations: Fundamentals and Applications</chapter-title>
+          <source>Springer Series in Synergetics</source>
+          <year>2004</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>Berlin</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib15">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frank</surname>
+              <given-names>T.D.</given-names>
+            </name>
+            <name>
+              <surname>Daffertshofer</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Beek</surname>
+              <given-names>P.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multivariate Ornstein-Uhlenbeck processes with mean-field dependent coefficients: application to postural sway</article-title>
+          <source>Phys. Rev. E. Stat. Nonlin. Soft Matter Phys.</source>
+          <volume>63</volume>
+          <issue>011</issue>
+          <year>2001</year>
+          <fpage>905</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bib16">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Freeman</surname>
+              <given-names>W.J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Mass Action in the Nervous System</chapter-title>
+          <year>1975</year>
+          <publisher-name>Academic Press</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib17">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <source>Philos. Trans. R. Soc. Lond., B Biol. Sci.</source>
+          <volume>360</volume>
+          <year>2005</year>
+          <fpage>815</fpage>
+          <lpage>836</lpage>
+          <pub-id pub-id-type="pmid">15937014</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib18">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling</article-title>
+          <source>NeuroImage</source>
+          <volume>19</volume>
+          <issue>4</issue>
+          <year>2003</year>
+          <fpage>1273</fpage>
+          <lpage>1302</lpage>
+          <pub-id pub-id-type="pmid">12948688</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib19">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of evoked potentials: a reproducibility study</article-title>
+          <source>NeuroImage</source>
+          <volume>36</volume>
+          <year>2007</year>
+          <fpage>571</fpage>
+          <lpage>580</lpage>
+          <pub-id pub-id-type="pmid">17478106</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib20">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evoked brain responses are generated by feedback loops</article-title>
+          <source>PNAS</source>
+          <volume>104</volume>
+          <issue>52</issue>
+          <year>2007</year>
+          <fpage>20961</fpage>
+          <lpage>20966</lpage>
+          <pub-id pub-id-type="pmid">18087046</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib21">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Giard</surname>
+              <given-names>M.H.</given-names>
+            </name>
+            <name>
+              <surname>Perrin</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Pernier</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Bouchet</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Brain generators implicated in the processing of auditory stimulus deviance: a topographic event-related potential study</article-title>
+          <source>Psychophysiology</source>
+          <volume>27</volume>
+          <year>1990</year>
+          <fpage>627</fpage>
+          <lpage>640</lpage>
+          <pub-id pub-id-type="pmid">2100348</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib22">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <source>Philos. Trans. R. Soc. Lond. B Biol. Sci.</source>
+          <volume>360</volume>
+          <issue>1457</issue>
+          <year>2005</year>
+          <fpage>1075</fpage>
+          <lpage>1091</lpage>
+          <pub-id pub-id-type="pmid">16087449</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib23">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Haskell</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Nykamp</surname>
+              <given-names>D.Q.</given-names>
+            </name>
+            <name>
+              <surname>Tranchina</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Population density methods for large-scale modelling of neuronal networks with realistic synaptic kinetics: cutting the dimension down to size</article-title>
+          <source>Network</source>
+          <volume>12</volume>
+          <year>2001</year>
+          <fpage>141</fpage>
+          <lpage>174</lpage>
+          <pub-id pub-id-type="pmid">11405420</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib24">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jääskeläinen</surname>
+              <given-names>I.P.</given-names>
+            </name>
+            <name>
+              <surname>Ahveninen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Bonmassar</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Ilmoniemi</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Levänen</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>F.H.</given-names>
+            </name>
+            <name>
+              <surname>May</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Melcher</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Stufflebeam</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Tiitinen</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Belliveau</surname>
+              <given-names>J.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Human posterior auditory cortex gates novel sounds to consciousness</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <volume>101</volume>
+          <year>2004</year>
+          <fpage>6809</fpage>
+          <lpage>6814</lpage>
+          <pub-id pub-id-type="pmid">15096618</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib25">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jansen</surname>
+              <given-names>B.H.</given-names>
+            </name>
+            <name>
+              <surname>Rit</surname>
+              <given-names>V.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electroencephalogram and visual evoked potential generation in a mathematical model of coupled cortical columns</article-title>
+          <source>Biol. Cybern.</source>
+          <volume>73</volume>
+          <year>1995</year>
+          <fpage>357</fpage>
+          <lpage>366</lpage>
+          <pub-id pub-id-type="pmid">7578475</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib26">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jemel</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Achenbach</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Muller</surname>
+              <given-names>B.W.</given-names>
+            </name>
+            <name>
+              <surname>Ropcke</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Oades</surname>
+              <given-names>R.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mismatch negativity results from bilateral asymmetric dipole sources in the frontal and temporal lobes</article-title>
+          <source>Brain Topogr.</source>
+          <volume>15</volume>
+          <year>2002</year>
+          <fpage>13</fpage>
+          <lpage>27</lpage>
+          <pub-id pub-id-type="pmid">12371672</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib27">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jirsa</surname>
+              <given-names>VK</given-names>
+            </name>
+            <name>
+              <surname>Haken</surname>
+              <given-names>H</given-names>
+            </name>
+          </person-group>
+          <article-title>Field theory of electromagnetic brain activity</article-title>
+          <source>Phys. Rev. Lett.</source>
+          <volume>77</volume>
+          <issue>5</issue>
+          <year>1996 Jul 29</year>
+          <fpage>960</fpage>
+          <lpage>963</lpage>
+          <pub-id pub-id-type="pmid">10062950</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib28">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Moran</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling for EEG and MEG</article-title>
+          <source>Cogn. Neurodyn.</source>
+          <volume>2</volume>
+          <issue>2</issue>
+          <year>2008</year>
+          <fpage>121</fpage>
+          <lpage>136</lpage>
+          <pub-id pub-id-type="pmid">19003479</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib29">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Knight</surname>
+              <given-names>B.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>The relationship between the firing rate of a single neuron and the level of activity in a population of neurons. Experimental evidence for resonant enhancement in the population response</article-title>
+          <source>J. Gen. Physiol.</source>
+          <volume>59</volume>
+          <year>1972</year>
+          <fpage>767</fpage>
+          <lpage>778</lpage>
+          <pub-id pub-id-type="pmid">5025749</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib30">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Knight</surname>
+              <given-names>B.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamics of encoding in a population of neurons</article-title>
+          <source>J. Gen. Physiol.</source>
+          <volume>59</volume>
+          <year>1972</year>
+          <fpage>734</fpage>
+          <lpage>766</lpage>
+          <pub-id pub-id-type="pmid">5025748</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib31">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Litvak</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Zeller</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Oostenveld</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Maris</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Schramm</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Gentner</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Zaaroor</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Pratt</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Classen</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>LTP-like changes induced by paired associative stimulation of the primary somatosensory cortex in humans: source analysis and associated changes in behaviour</article-title>
+          <source>Eur. J. Neurosci.</source>
+          <volume>25</volume>
+          <issue>9</issue>
+          <year>2007</year>
+          <fpage>2862</fpage>
+          <lpage>2874</lpage>
+          <pub-id pub-id-type="pmid">17561848</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib32">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lopes da Silva</surname>
+              <given-names>F.H</given-names>
+            </name>
+            <name>
+              <surname>van Rotterdam</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Barts</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>van Heusden</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Burr</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Models of neuronal populations: the basic mechanisms of rhythmicity</article-title>
+          <source>Prog. Brain Res.</source>
+          <volume>45</volume>
+          <year>1976</year>
+          <fpage>281</fpage>
+          <lpage>308</lpage>
+          <pub-id pub-id-type="pmid">1013341</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib33">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marreiros</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Population dynamics: variance and the sigmoid activation function</article-title>
+          <source>Neuroimage</source>
+          <volume>42</volume>
+          <issue>1</issue>
+          <year>2008</year>
+          <fpage>147</fpage>
+          <lpage>157</lpage>
+          <pub-id pub-id-type="pmid">18547818</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib34">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marreiros</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Population dynamics under the Laplace assumption</article-title>
+          <source>Neuroimage</source>
+          <volume>44</volume>
+          <issue>3</issue>
+          <year>2009</year>
+          <fpage>701</fpage>
+          <lpage>714</lpage>
+          <pub-id pub-id-type="pmid">19013532</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib36">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morris</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Lecar</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Voltage oscillations in the barnacle giant muscle fiber</article-title>
+          <source>Biophys. J.</source>
+          <volume>35</volume>
+          <year>1981</year>
+          <fpage>193</fpage>
+          <lpage>213</lpage>
+          <pub-id pub-id-type="pmid">7260316</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib37">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mosher</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Leahy</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Lewis</surname>
+              <given-names>P.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>EEG and MEG: forward solutions for inverse methods</article-title>
+          <source>IEEE Trans. Biomed. Eng.</source>
+          <volume>46</volume>
+          <year>1999</year>
+          <fpage>245</fpage>
+          <lpage>259</lpage>
+          <pub-id pub-id-type="pmid">10097460</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib38">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Näätänen</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Tervaniemi</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sussman</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Paavilainen</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Winkler</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>“Primitive intelligence” in the auditory cortex</article-title>
+          <source>Trends Neurosci.</source>
+          <volume>24</volume>
+          <year>2001</year>
+          <fpage>283</fpage>
+          <lpage>288</lpage>
+          <pub-id pub-id-type="pmid">11311381</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib39">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nunez</surname>
+              <given-names>P.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>The brain wave equation: a model for the EEG</article-title>
+          <source>Math. Biosci.</source>
+          <volume>21</volume>
+          <year>1974</year>
+          <fpage>279</fpage>
+          <lpage>297</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib40">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nykamp</surname>
+              <given-names>D.Q.</given-names>
+            </name>
+            <name>
+              <surname>Tranchina</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>A population density approach that facilitates large-scale modeling of neural networks: analysis and an application to orientation tuning</article-title>
+          <source>J. Comput. Neurosci.</source>
+          <volume>8</volume>
+          <year>2000</year>
+          <fpage>19</fpage>
+          <lpage>50</lpage>
+          <pub-id pub-id-type="pmid">10798498</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib41">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Omurtag</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Knight</surname>
+              <given-names>B.W.</given-names>
+            </name>
+            <name>
+              <surname>Sirovich</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the simulation of large populations of neurons</article-title>
+          <source>J. Comput. Neurosci.</source>
+          <volume>8</volume>
+          <year>2000</year>
+          <fpage>51</fpage>
+          <lpage>63</lpage>
+          <pub-id pub-id-type="pmid">10798499</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib42">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Opitz</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Rinne</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Mecklinger</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>von Cramon</surname>
+              <given-names>D.Y.</given-names>
+            </name>
+            <name>
+              <surname>Schroger</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Differential contribution of frontal and temporal cortices to auditory change detection: fMRI and ERP results</article-title>
+          <source>Neuroimage</source>
+          <volume>15</volume>
+          <year>2002</year>
+          <fpage>167</fpage>
+          <lpage>174</lpage>
+          <pub-id pub-id-type="pmid">11771985</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib43">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparing dynamic causal models</article-title>
+          <source>NeuroImage</source>
+          <volume>22</volume>
+          <year>2004</year>
+          <fpage>1157</fpage>
+          <lpage>1172</lpage>
+          <pub-id pub-id-type="pmid">15219588</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib44">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ravazzani</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Tognola</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Grandori</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Budai</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Locatelli</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Cursi</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Di Benedetto</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Comi</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Temporal segmentation and multiple source analysis of short-latency median nerve SEPs</article-title>
+          <source>J. Med. Eng. Technol.</source>
+          <volume>19</volume>
+          <year>1995</year>
+          <fpage>70</fpage>
+          <lpage>76</lpage>
+          <pub-id pub-id-type="pmid">7494213</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib45">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Riera</surname>
+              <given-names>JJ</given-names>
+            </name>
+            <name>
+              <surname>Jimenez</surname>
+              <given-names>JC</given-names>
+            </name>
+            <name>
+              <surname>Wan</surname>
+              <given-names>X</given-names>
+            </name>
+            <name>
+              <surname>Kawashima</surname>
+              <given-names>R</given-names>
+            </name>
+            <name>
+              <surname>Ozaki</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlinear local electrovascular coupling. II: from data to neuronal masses</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>28</volume>
+          <issue>4</issue>
+          <year>2007 Apr</year>
+          <fpage>335</fpage>
+          <lpage>354</lpage>
+          <pub-id pub-id-type="pmid">16933303</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib46">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rinne</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Alho</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Ilmoniemi</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Virtanen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Näätänen</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Separate time behaviors of the temporal and frontal mismatch negativity sources</article-title>
+          <source>Neuroimage</source>
+          <volume>12</volume>
+          <year>2000</year>
+          <fpage>14</fpage>
+          <lpage>19</lpage>
+          <pub-id pub-id-type="pmid">10875898</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib48">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robinson</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Rennie</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Rowe</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>O'Connor</surname>
+              <given-names>S.C.</given-names>
+            </name>
+            <name>
+              <surname>Gordon</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multiscale brain modelling</article-title>
+          <source>Phil. Trans. Roy. Soc. B</source>
+          <volume>360</volume>
+          <year>2005</year>
+          <fpage>1043</fpage>
+          <lpage>1050</lpage>
+          <pub-id pub-id-type="pmid">16087447</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib49">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rodriguez</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Tuckwell</surname>
+              <given-names>H.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical properties of stochastic nonlinear dynamical models of single spiking neurons and neural networks</article-title>
+          <source>Phys. Rev. E</source>
+          <volume>54</volume>
+          <year>1996</year>
+          <fpage>5585</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bib50">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rodrigues</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Terry</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Breakspear</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the genesis of spikewave oscillations in a mean-field model of human thalamic and corticothalamic dynamics</article-title>
+          <source>Phys. Lett. A</source>
+          <volume>355</volume>
+          <year>2006</year>
+          <fpage>352</fpage>
+          <lpage>357</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib51">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sampolinsky</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Zippelius</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Relaxational dynamics of the Edwards-Anderson model of the mean-field theory of spin-glasses</article-title>
+          <source>Physical Review B</source>
+          <volume>25</volume>
+          <issue>11</issue>
+          <year>1982</year>
+          <fpage>6860</fpage>
+          <lpage>6875</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib53">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Moran</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>den Ouden</surname>
+              <given-names>H.E.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ten simple rules for dynamic causal modeling</article-title>
+          <source>Neuroimage</source>
+          <volume>49</volume>
+          <issue>4</issue>
+          <year>2010 Nov 12</year>
+          <fpage>3099</fpage>
+          <lpage>3109</lpage>
+          <pub-id pub-id-type="pmid">19914382</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib54">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Valdes</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Jimenez</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Riera</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Biscay</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Ozaki</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlinear EEG analysis based on a neural-mass model</article-title>
+          <source>Biol. Cybern.</source>
+          <volume>81</volume>
+          <year>1999</year>
+          <fpage>415</fpage>
+          <lpage>424</lpage>
+          <pub-id pub-id-type="pmid">10592017</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib55">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wilson</surname>
+              <given-names>H.R.</given-names>
+            </name>
+            <name>
+              <surname>Cowan</surname>
+              <given-names>J.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Excitatory and inhibitory interactions in localized populations of model neurons</article-title>
+          <source>Biophys. J.</source>
+          <volume>12</volume>
+          <year>1972</year>
+          <fpage>1</fpage>
+          <lpage>24</lpage>
+          <pub-id pub-id-type="pmid">4332108</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>The Portuguese Foundation for Science and Technology and the Wellcome Trust supported this work. We thank Marta Garrido for the MMN data and Vladimir Litvak and Joseph Classen for the SEP data.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Neuronal state-equations for a source model with a layered architecture composed of three interconnected populations (spiny-stellate, interneurons, and pyramidal cells), each of which has three different states (voltage, excitatory and inhibitory conductances).</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>DCM networks used for the mismatch negativity (MMN) and somatosensory evoked potential (SEP) paradigms. Forward connections (solid lines), backward connections (dashed lines) and lateral connections (dotted lines) couple sources. The inserts shows the prior locations of sources; these are composed of vertices on a canonical cortical mesh within 16 mm of the source locations shown in the Talairach and Tournoux coordinates. See text and <xref rid="bib19" ref-type="bibr">Garrido et al. (2007a</xref>) for a full model description.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Bayesian model comparisons for NMM in relation to MFM. Right: relative log-evidence for the NMM for each subject using the network in <xref rid="fig2" ref-type="fig">Fig. 2</xref>. The NMM log-evidences are consistently better than the MFM log-evidences, with a pooled difference &gt; 100 over subjects. Left: the same results for the SEP data; the group log-evidence difference was &gt; 100 in favour of the MFM. The solid lines indicate the mean over subjects.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Upper panels: observed (left) and predicted (right) evoked responses over 128 channels and peristimulus time. Each coloured line corresponds to a different channel. These results are from the neural-mass DCM of the first subject from the MMN paradigm. Lower panels: the same but showing MFM predictions. The observed response is duplicated because it is adjusted for the confounding DC or constant term in our model (see Eq. (<xref rid="fd5" ref-type="disp-formula">5</xref>)). This adjustment renders the observed data slightly different, depending on the model fit.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>These are the same data as shown in <xref rid="fig4" ref-type="fig">Fig. 4</xref> but in image format. Upper panels: observed (left) and predicted (right) evoked responses over 128 channels and peristimulus time (grey scale normalised to the maximum of each image). These results are from the NMM-DCM of the first subject from the MMN paradigm. Lower panels: the same but showing MFM predictions.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Observed and predicted responses from the SEP paradigm in the first subject. These images adopt the same format as <xref rid="fig5" ref-type="fig">Fig. 5</xref> but showing responses over 64 channels and 4 ms to 64 ms of peristimulus time. The key thing to note here is the failure of the neural-mass DCM to model the early (N20) components of the SEP (white rectangle), relative to its mean-field homologue.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Standard DCM output for MFM of the SEP data. Upper panel: conditional estimates of the mean (solid lines) and covariance (dotted lines) of neuronal states, in source space (coloured lines correspond to different neuronal subpopulations). Lower panel: conditional estimates of responses, in sensor space (coloured lines correspond to different spatial modes; solid line: predicted; dotted line: observed).</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <table-wrap id="tbl1" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Prior densities on the neuronal parameters.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th colspan="2" valign="top">Free parameters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top">Extrinsic coupling parameters</td>
+            <td valign="top">
+              <inline-formula>
+                <mml:math id="M10" altimg="si1.gif" overflow="scroll">
+                  <mml:mrow>
+                    <mml:mtable>
+                      <mml:mtr>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:msubsup>
+                              <mml:mi>γ</mml:mi>
+                              <mml:mrow>
+                                <mml:mi>i</mml:mi>
+                                <mml:mi>j</mml:mi>
+                              </mml:mrow>
+                              <mml:mi>E</mml:mi>
+                            </mml:msubsup>
+                            <mml:mo>=</mml:mo>
+                            <mml:mrow>
+                              <mml:mo stretchy="true">{</mml:mo>
+                              <mml:mrow>
+                                <mml:mtable>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mfrac>
+                                          <mml:mn>1</mml:mn>
+                                          <mml:mn>2</mml:mn>
+                                        </mml:mfrac>
+                                        <mml:msup>
+                                          <mml:mi>e</mml:mi>
+                                          <mml:mi>θ</mml:mi>
+                                        </mml:msup>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mtext>forward</mml:mtext>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mfrac>
+                                          <mml:mn>1</mml:mn>
+                                          <mml:mn>4</mml:mn>
+                                        </mml:mfrac>
+                                        <mml:msup>
+                                          <mml:mi>e</mml:mi>
+                                          <mml:mi>θ</mml:mi>
+                                        </mml:msup>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mtext>backward</mml:mtext>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mfrac>
+                                          <mml:mn>1</mml:mn>
+                                          <mml:mn>4</mml:mn>
+                                        </mml:mfrac>
+                                        <mml:msup>
+                                          <mml:mi>e</mml:mi>
+                                          <mml:mi>θ</mml:mi>
+                                        </mml:msup>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mtext>lateral</mml:mtext>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                </mml:mtable>
+                              </mml:mrow>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtd>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:mi>p</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mi>θ</mml:mi>
+                            <mml:mo stretchy="true">)</mml:mo>
+                            <mml:mo>=</mml:mo>
+                            <mml:mi>N</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mn>0</mml:mn>
+                            <mml:mo>,</mml:mo>
+                            <mml:mn>1</mml:mn>
+                            <mml:mo stretchy="true">)</mml:mo>
+                          </mml:mrow>
+                        </mml:mtd>
+                      </mml:mtr>
+                    </mml:mtable>
+                  </mml:mrow>
+                </mml:math>
+              </inline-formula>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Intrinsic coupling parameters</td>
+            <td valign="top">
+              <inline-formula>
+                <mml:math id="M11" altimg="si2.gif" overflow="scroll">
+                  <mml:mrow>
+                    <mml:mtable>
+                      <mml:mtr>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:msubsup>
+                              <mml:mi>γ</mml:mi>
+                              <mml:mrow>
+                                <mml:mi>i</mml:mi>
+                                <mml:mi>j</mml:mi>
+                              </mml:mrow>
+                              <mml:mi>E</mml:mi>
+                            </mml:msubsup>
+                            <mml:mo>=</mml:mo>
+                            <mml:msup>
+                              <mml:mi>e</mml:mi>
+                              <mml:mi>θ</mml:mi>
+                            </mml:msup>
+                            <mml:mrow>
+                              <mml:mo stretchy="true">[</mml:mo>
+                              <mml:mrow>
+                                <mml:mtable>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mfrac>
+                                          <mml:mn>1</mml:mn>
+                                          <mml:mn>2</mml:mn>
+                                        </mml:mfrac>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>1</mml:mn>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mfrac>
+                                          <mml:mn>1</mml:mn>
+                                          <mml:mn>2</mml:mn>
+                                        </mml:mfrac>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                </mml:mtable>
+                              </mml:mrow>
+                              <mml:mo stretchy="true">]</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtd>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:msubsup>
+                              <mml:mi>γ</mml:mi>
+                              <mml:mrow>
+                                <mml:mi>i</mml:mi>
+                                <mml:mi>j</mml:mi>
+                              </mml:mrow>
+                              <mml:mi>I</mml:mi>
+                            </mml:msubsup>
+                            <mml:mo>=</mml:mo>
+                            <mml:msup>
+                              <mml:mi>e</mml:mi>
+                              <mml:mi>θ</mml:mi>
+                            </mml:msup>
+                            <mml:mrow>
+                              <mml:mo stretchy="true">[</mml:mo>
+                              <mml:mrow>
+                                <mml:mtable>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mfrac>
+                                          <mml:mn>1</mml:mn>
+                                          <mml:mn>4</mml:mn>
+                                        </mml:mfrac>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>1</mml:mn>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>1</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                </mml:mtable>
+                              </mml:mrow>
+                              <mml:mo stretchy="true">]</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtd>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:mi>p</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mi>θ</mml:mi>
+                            <mml:mo stretchy="true">)</mml:mo>
+                            <mml:mo>=</mml:mo>
+                            <mml:mi>N</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mn>0</mml:mn>
+                            <mml:mo>,</mml:mo>
+                            <mml:mfrac>
+                              <mml:mn>1</mml:mn>
+                              <mml:mrow>
+                                <mml:mn>32</mml:mn>
+                              </mml:mrow>
+                            </mml:mfrac>
+                            <mml:mo stretchy="true">)</mml:mo>
+                          </mml:mrow>
+                        </mml:mtd>
+                      </mml:mtr>
+                    </mml:mtable>
+                  </mml:mrow>
+                </mml:math>
+              </inline-formula>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Capacitance</td>
+            <td valign="top">
+              <inline-formula>
+                <mml:math id="M12" altimg="si3.gif" overflow="scroll">
+                  <mml:mrow>
+                    <mml:mtable>
+                      <mml:mtr>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:mi>C</mml:mi>
+                            <mml:mo>=</mml:mo>
+                            <mml:mn>8</mml:mn>
+                            <mml:msup>
+                              <mml:mi>e</mml:mi>
+                              <mml:mi>θ</mml:mi>
+                            </mml:msup>
+                          </mml:mrow>
+                        </mml:mtd>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:mi>p</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mi>θ</mml:mi>
+                            <mml:mo stretchy="true">)</mml:mo>
+                            <mml:mo>=</mml:mo>
+                            <mml:mi>N</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mn>0</mml:mn>
+                            <mml:mo>,</mml:mo>
+                            <mml:mfrac>
+                              <mml:mn>1</mml:mn>
+                              <mml:mrow>
+                                <mml:mn>32</mml:mn>
+                              </mml:mrow>
+                            </mml:mfrac>
+                            <mml:mo stretchy="true">)</mml:mo>
+                          </mml:mrow>
+                        </mml:mtd>
+                      </mml:mtr>
+                    </mml:mtable>
+                  </mml:mrow>
+                </mml:math>
+              </inline-formula>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Time constants</td>
+            <td valign="top">
+              <inline-formula>
+                <mml:math id="M13" altimg="si4.gif" overflow="scroll">
+                  <mml:mrow>
+                    <mml:mtable>
+                      <mml:mtr>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:msub>
+                              <mml:mi>τ</mml:mi>
+                              <mml:mi>e</mml:mi>
+                            </mml:msub>
+                            <mml:mo>=</mml:mo>
+                            <mml:mfrac>
+                              <mml:mn>1</mml:mn>
+                              <mml:mrow>
+                                <mml:msub>
+                                  <mml:mi>κ</mml:mi>
+                                  <mml:mi>e</mml:mi>
+                                </mml:msub>
+                              </mml:mrow>
+                            </mml:mfrac>
+                            <mml:mo>=</mml:mo>
+                            <mml:mn>4</mml:mn>
+                            <mml:msup>
+                              <mml:mi>e</mml:mi>
+                              <mml:mi>θ</mml:mi>
+                            </mml:msup>
+                            <mml:mtext>ms</mml:mtext>
+                          </mml:mrow>
+                        </mml:mtd>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:msub>
+                              <mml:mi>τ</mml:mi>
+                              <mml:mi>i</mml:mi>
+                            </mml:msub>
+                            <mml:mo>=</mml:mo>
+                            <mml:mfrac>
+                              <mml:mn>1</mml:mn>
+                              <mml:mrow>
+                                <mml:msub>
+                                  <mml:mi>κ</mml:mi>
+                                  <mml:mi>i</mml:mi>
+                                </mml:msub>
+                              </mml:mrow>
+                            </mml:mfrac>
+                            <mml:mo>=</mml:mo>
+                            <mml:mn>16</mml:mn>
+                            <mml:mtext>ms</mml:mtext>
+                          </mml:mrow>
+                        </mml:mtd>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:mi>p</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mi>θ</mml:mi>
+                            <mml:mo stretchy="true">)</mml:mo>
+                            <mml:mo>=</mml:mo>
+                            <mml:mi>N</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mn>0</mml:mn>
+                            <mml:mo>,</mml:mo>
+                            <mml:mfrac>
+                              <mml:mn>1</mml:mn>
+                              <mml:mrow>
+                                <mml:mn>32</mml:mn>
+                              </mml:mrow>
+                            </mml:mfrac>
+                            <mml:mo stretchy="true">)</mml:mo>
+                          </mml:mrow>
+                        </mml:mtd>
+                      </mml:mtr>
+                    </mml:mtable>
+                  </mml:mrow>
+                </mml:math>
+              </inline-formula>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Diffusion tensor</td>
+            <td valign="top">
+              <inline-formula>
+                <mml:math id="M14" altimg="si5.gif" overflow="scroll">
+                  <mml:mrow>
+                    <mml:mtable>
+                      <mml:mtr>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:mi>D</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mi>ω</mml:mi>
+                            <mml:mo stretchy="true">)</mml:mo>
+                            <mml:mo>=</mml:mo>
+                            <mml:msup>
+                              <mml:mi>e</mml:mi>
+                              <mml:mi>θ</mml:mi>
+                            </mml:msup>
+                            <mml:mrow>
+                              <mml:mo stretchy="true">[</mml:mo>
+                              <mml:mrow>
+                                <mml:mtable>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mfrac>
+                                          <mml:mn>1</mml:mn>
+                                          <mml:mn>8</mml:mn>
+                                        </mml:mfrac>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>1</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>0</mml:mn>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mn>1</mml:mn>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                </mml:mtable>
+                              </mml:mrow>
+                              <mml:mo stretchy="true">]</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtd>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:mi>p</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mi>θ</mml:mi>
+                            <mml:mo stretchy="true">)</mml:mo>
+                            <mml:mo>=</mml:mo>
+                            <mml:mi>N</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mn>0</mml:mn>
+                            <mml:mo>,</mml:mo>
+                            <mml:mfrac>
+                              <mml:mn>1</mml:mn>
+                              <mml:mrow>
+                                <mml:mn>64</mml:mn>
+                              </mml:mrow>
+                            </mml:mfrac>
+                            <mml:mo stretchy="true">)</mml:mo>
+                          </mml:mrow>
+                        </mml:mtd>
+                      </mml:mtr>
+                    </mml:mtable>
+                  </mml:mrow>
+                </mml:math>
+              </inline-formula>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Conduction delays</td>
+            <td valign="top">
+              <inline-formula>
+                <mml:math id="M15" altimg="si6.gif" overflow="scroll">
+                  <mml:mrow>
+                    <mml:mtable>
+                      <mml:mtr>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:msub>
+                              <mml:mi>Δ</mml:mi>
+                              <mml:mrow>
+                                <mml:mi>i</mml:mi>
+                                <mml:mi>j</mml:mi>
+                              </mml:mrow>
+                            </mml:msub>
+                            <mml:mo>=</mml:mo>
+                            <mml:mrow>
+                              <mml:mo stretchy="true">{</mml:mo>
+                              <mml:mrow>
+                                <mml:mtable>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mn>2</mml:mn>
+                                        <mml:msup>
+                                          <mml:mi>e</mml:mi>
+                                          <mml:mi>θ</mml:mi>
+                                        </mml:msup>
+                                        <mml:mtext>ms</mml:mtext>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mtext>intrinsic</mml:mtext>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                  <mml:mtr>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mn>16</mml:mn>
+                                        <mml:msup>
+                                          <mml:mi>e</mml:mi>
+                                          <mml:mi>θ</mml:mi>
+                                        </mml:msup>
+                                        <mml:mtext>ms</mml:mtext>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                    <mml:mtd>
+                                      <mml:mrow>
+                                        <mml:mtext>extrinsic</mml:mtext>
+                                      </mml:mrow>
+                                    </mml:mtd>
+                                  </mml:mtr>
+                                </mml:mtable>
+                              </mml:mrow>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtd>
+                        <mml:mtd>
+                          <mml:mrow>
+                            <mml:mi>p</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mi>θ</mml:mi>
+                            <mml:mo stretchy="true">)</mml:mo>
+                            <mml:mo>=</mml:mo>
+                            <mml:mi>N</mml:mi>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mn>0</mml:mn>
+                            <mml:mo>,</mml:mo>
+                            <mml:mfrac>
+                              <mml:mn>1</mml:mn>
+                              <mml:mrow>
+                                <mml:mn>128</mml:mn>
+                              </mml:mrow>
+                            </mml:mfrac>
+                            <mml:mo stretchy="true">)</mml:mo>
+                          </mml:mrow>
+                        </mml:mtd>
+                      </mml:mtr>
+                    </mml:mtable>
+                  </mml:mrow>
+                </mml:math>
+              </inline-formula>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Stimulus function parameters</td>
+            <td valign="top">
+              <inline-formula>
+                <mml:math id="M16" altimg="si7.gif" overflow="scroll">
+                  <mml:mrow>
+                    <mml:mi>u</mml:mi>
+                    <mml:mrow>
+                      <mml:mo stretchy="true">(</mml:mo>
+                      <mml:mi>t</mml:mi>
+                      <mml:mo stretchy="true">)</mml:mo>
+                    </mml:mrow>
+                    <mml:mo>=</mml:mo>
+                    <mml:mi>exp</mml:mi>
+                    <mml:mrow>
+                      <mml:mo stretchy="true">(</mml:mo>
+                      <mml:mrow>
+                        <mml:mo>−</mml:mo>
+                        <mml:mfrac>
+                          <mml:mrow>
+                            <mml:msup>
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mo stretchy="true">(</mml:mo>
+                                  <mml:mrow>
+                                    <mml:mi>t</mml:mi>
+                                    <mml:mo>−</mml:mo>
+                                    <mml:msub>
+                                      <mml:mi>τ</mml:mi>
+                                      <mml:mi>u</mml:mi>
+                                    </mml:msub>
+                                    <mml:msup>
+                                      <mml:mi>e</mml:mi>
+                                      <mml:mrow>
+                                        <mml:mi>θ</mml:mi>
+                                        <mml:mtext>latency</mml:mtext>
+                                      </mml:mrow>
+                                    </mml:msup>
+                                  </mml:mrow>
+                                  <mml:mo stretchy="true">)</mml:mo>
+                                </mml:mrow>
+                              </mml:mrow>
+                              <mml:mn>2</mml:mn>
+                            </mml:msup>
+                          </mml:mrow>
+                          <mml:mrow>
+                            <mml:msub>
+                              <mml:mi>τ</mml:mi>
+                              <mml:mi>u</mml:mi>
+                            </mml:msub>
+                            <mml:msup>
+                              <mml:mi>e</mml:mi>
+                              <mml:mrow>
+                                <mml:mi>θ</mml:mi>
+                                <mml:mtext>duration</mml:mtext>
+                              </mml:mrow>
+                            </mml:msup>
+                          </mml:mrow>
+                        </mml:mfrac>
+                      </mml:mrow>
+                      <mml:mo stretchy="true">)</mml:mo>
+                    </mml:mrow>
+                    <mml:mo>:</mml:mo>
+                    <mml:mrow>
+                      <mml:mo stretchy="true">{</mml:mo>
+                      <mml:mrow>
+                        <mml:mtable>
+                          <mml:mtr>
+                            <mml:mtd>
+                              <mml:mrow>
+                                <mml:msub>
+                                  <mml:mi>τ</mml:mi>
+                                  <mml:mi>u</mml:mi>
+                                </mml:msub>
+                                <mml:mo>=</mml:mo>
+                                <mml:mn>128</mml:mn>
+                                <mml:mtext>ms:MMN</mml:mtext>
+                              </mml:mrow>
+                            </mml:mtd>
+                          </mml:mtr>
+                          <mml:mtr>
+                            <mml:mtd>
+                              <mml:mrow>
+                                <mml:msub>
+                                  <mml:mi>τ</mml:mi>
+                                  <mml:mi>u</mml:mi>
+                                </mml:msub>
+                                <mml:mo>=</mml:mo>
+                                <mml:mn>16</mml:mn>
+                                <mml:mo>&amp;</mml:mo>
+                                <mml:mn>32</mml:mn>
+                                <mml:mtext>ms:SEP</mml:mtext>
+                              </mml:mrow>
+                            </mml:mtd>
+                          </mml:mtr>
+                        </mml:mtable>
+                        <mml:mtext/>
+                        <mml:mi>p</mml:mi>
+                        <mml:mrow>
+                          <mml:mo stretchy="true">(</mml:mo>
+                          <mml:mrow>
+                            <mml:msub>
+                              <mml:mi>θ</mml:mi>
+                              <mml:mi>i</mml:mi>
+                            </mml:msub>
+                          </mml:mrow>
+                          <mml:mo stretchy="true">)</mml:mo>
+                        </mml:mrow>
+                        <mml:mo>=</mml:mo>
+                        <mml:mi>N</mml:mi>
+                        <mml:mrow>
+                          <mml:mo stretchy="true">(</mml:mo>
+                          <mml:mrow>
+                            <mml:mn>0</mml:mn>
+                            <mml:mo>,</mml:mo>
+                            <mml:mfrac>
+                              <mml:mn>1</mml:mn>
+                              <mml:mrow>
+                                <mml:mn>16</mml:mn>
+                              </mml:mrow>
+                            </mml:mfrac>
+                          </mml:mrow>
+                          <mml:mo stretchy="true">)</mml:mo>
+                        </mml:mrow>
+                      </mml:mrow>
+                    </mml:mrow>
+                  </mml:mrow>
+                </mml:math>
+              </inline-formula>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" valign="top">Fixed parameters</td>
+          </tr>
+          <tr>
+            <td valign="top">Potentials</td>
+            <td valign="top">
+              <inline-formula>
+                <alternatives>
+                  <textual-form specific-use="jats-markup"><italic>V</italic><sub><italic>L</italic></sub> = −70μV <italic>V</italic><sub><italic>E</italic></sub> = 60μV <italic>V</italic><sub><italic>I</italic></sub> = −90μV<sub>1</sub><italic>V</italic><sub><italic>R</italic></sub> = −40μV</textual-form>
+                  <mml:math id="M17" altimg="si8.gif" overflow="scroll">
+                    <mml:mrow>
+                      <mml:msub>
+                        <mml:mi>V</mml:mi>
+                        <mml:mi>L</mml:mi>
+                      </mml:msub>
+                      <mml:mo>=</mml:mo>
+                      <mml:mo>−</mml:mo>
+                      <mml:mn>70</mml:mn>
+                      <mml:mi>μ</mml:mi>
+                      <mml:mtext>V </mml:mtext>
+                      <mml:msub>
+                        <mml:mi>V</mml:mi>
+                        <mml:mi>E</mml:mi>
+                      </mml:msub>
+                      <mml:mo>=</mml:mo>
+                      <mml:mn>60</mml:mn>
+                      <mml:mi>μ</mml:mi>
+                      <mml:mtext>V </mml:mtext>
+                      <mml:msub>
+                        <mml:mi>V</mml:mi>
+                        <mml:mi>I</mml:mi>
+                      </mml:msub>
+                      <mml:mo>=</mml:mo>
+                      <mml:mo>−</mml:mo>
+                      <mml:mn>90</mml:mn>
+                      <mml:msub>
+                        <mml:mrow>
+                          <mml:mi>μ</mml:mi>
+                          <mml:mtext>V</mml:mtext>
+                        </mml:mrow>
+                        <mml:mtext>1</mml:mtext>
+                      </mml:msub>
+                      <mml:mtext/>
+                      <mml:msub>
+                        <mml:mi>V</mml:mi>
+                        <mml:mi>R</mml:mi>
+                      </mml:msub>
+                      <mml:mo>=</mml:mo>
+                      <mml:mo>−</mml:mo>
+                      <mml:mn>40</mml:mn>
+                      <mml:mi>μ</mml:mi>
+                      <mml:mtext>V</mml:mtext>
+                    </mml:mrow>
+                  </mml:math>
+                </alternatives>
+              </inline-formula>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">Conductance</td>
+            <td valign="top"><italic>g</italic><sub><italic>L</italic></sub> = 1</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap id="tbl2" position="float">
+      <label>Table 2</label>
+      <caption>
+        <p>Log-evidences for neural-mass (NMM) and mean-field (MFM) models using synthetic data generated by a five-source MMN model (see <xref rid="fig2" ref-type="fig">Fig. 2</xref>) using NMM and MFM formulations. The diagonal values in bold show higher log-evidences for the true model.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th valign="top">Models</th>
+            <th valign="top">Synthetic data</th>
+            <th valign="top"/>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top"/>
+            <td valign="top">NMM</td>
+            <td valign="top">MFM</td>
+          </tr>
+          <tr>
+            <td valign="top">NMM</td>
+            <td valign="top">
+              <bold>− 662.7</bold>
+            </td>
+            <td valign="top">− 952.9</td>
+          </tr>
+          <tr>
+            <td valign="top">MFM</td>
+            <td valign="top">− 844.2</td>
+            <td valign="top">
+              <bold>− 665.5</bold>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap id="tbl3" position="float">
+      <label>Table 3</label>
+      <caption>
+        <p>Log-evidences for neural-mass (NMM) and mean-field (MFM) models using synthetic data generated by a three-source SEP model (see <xref rid="fig2" ref-type="fig">Fig. 2</xref>) using NMM and MFM formulations. The diagonal values in bold show higher log-evidences for the true model.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th valign="top">Models</th>
+            <th colspan="2" valign="top">Synthetic data</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td valign="top"/>
+            <td valign="top">NMM</td>
+            <td valign="top">MFM</td>
+          </tr>
+          <tr>
+            <td valign="top">NMM</td>
+            <td valign="top">
+              <bold>− 185.0</bold>
+            </td>
+            <td valign="top"><bold>−</bold> 175.8</td>
+          </tr>
+          <tr>
+            <td valign="top">MFM</td>
+            <td valign="top"><bold>−</bold> 369.6</td>
+            <td valign="top">
+              <bold>− 102.1</bold>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-group>
+</article>

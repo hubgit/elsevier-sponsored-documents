@@ -1,0 +1,737 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="brief-report">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title-group>
+        <journal-title>Neuroimage</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3112494</article-id>
+      <article-id pub-id-type="pmid">21459150</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG8199</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2011.03.062</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Technical Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title><italic>Post hoc</italic> Bayesian model selection</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>Karl</given-names>
+          </name>
+          <email>k.friston@fil.ion.ucl.ac.uk</email>
+          <xref rid="cr0005" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Penny</surname>
+            <given-names>Will</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff id="af0005">The Wellcome Trust Centre for Neuroimaging, University College London, Queen Square, London, UK</aff>
+      <author-notes>
+        <corresp id="cr0005"><label>⁎</label>Corresponding author at: The Wellcome Trust Centre for Neuroimaging, Institute of Neurology, Queen Square, London WC1N 3BG, UK. Fax: + 44 207 813 1445. <email>k.friston@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>15</day>
+        <month>6</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>6</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>56</volume>
+      <issue>4-2</issue>
+      <fpage>2089</fpage>
+      <lpage>2099</lpage>
+      <history>
+        <date date-type="received">
+          <day>7</day>
+          <month>1</month>
+          <year>2011</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>20</day>
+          <month>3</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>25</day>
+          <month>3</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Inc.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>This note describes a Bayesian model selection or optimization procedure for <italic>post hoc</italic> inferences about reduced versions of a full model. The scheme provides the evidence (marginal likelihood) for any reduced model as a function of the posterior density over the parameters of the full model. It rests upon specifying models through priors on their parameters, under the assumption that the likelihood remains the same for all models considered. This provides a quick and efficient scheme for scoring arbitrarily large numbers of models, after inverting a single (full) model. In turn, this enables the selection among discrete models that are distinguished by the presence or absence of free parameters, where free parameters are effectively removed from the model using very precise shrinkage priors. An alternative application of this <italic>post hoc</italic> model selection considers continuous model spaces, defined in terms of hyperparameters (sufficient statistics) of the prior density over model parameters. In this instance, the prior (model) can be optimized with respect to its evidence. The expressions for model evidence become remarkably simple under the Laplace (Gaussian) approximation to the posterior density. Special cases of this scheme include Savage–Dickey density ratio tests for reduced models and automatic relevance determination in model optimization. We illustrate the approach using general linear models and a more complicated nonlinear state-space model.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Bayesian model evidence</kwd>
+        <kwd>Model selection</kwd>
+        <kwd>Automatic relevance determination</kwd>
+        <kwd>Savage–Dickey density ratio</kwd>
+        <kwd>Hyperparameters</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s0005">
+      <title>Introduction</title>
+      <p>This paper is about optimizing or selecting among a large number of models using their Bayesian model evidence. It addresses the class of problems, under which different models can be formed by changing prior beliefs about their parameters; for example, by switching off various parameters or by changing their prior variance. The main point made in this paper is that it is only necessary to fit or invert a full model to access the model evidence or marginal likelihood (and the posterior density on the parameters) of any reduced model. This can greatly finesse the scoring of models, when exploring large model spaces in a <italic>post hoc</italic> fashion.</p>
+      <p>Conceptually, this treatment of model evidence highlights the connection between Bayesian model selection and the optimization of a (full) model, in terms of its priors. In both cases, one is maximizing model evidence by changing hyperparameters that encode the prior density over the parameters of a likelihood function. Operationally this is a form of empirical Bayes, in the sense that the priors are optimized using observed data. As such, it rests upon an implicit or explicit hierarchical structure in the form of the prior. This perspective unifies a number of model optimization and selection schemes, including parametric empirical Bayes (<xref rid="bb0025 bb0055" ref-type="bibr">Efron and Morris, 1973; Kass and Steffey, 1989</xref>), automatic relevance determination (<xref rid="bb0065 bb0075" ref-type="bibr">Mackay and Takeuchi, 1996; Tipping, 2001</xref>) and Bayesian model comparison (<xref rid="bb0060 bb0070" ref-type="bibr">Kass and Raftery, 1995; Penny et al., 2004</xref>). We will try to illustrate this perspective with a few toy examples. A real world application of this scheme can be found in the context of network discovery, using dynamic causal modeling in <xref rid="bb0040" ref-type="bibr">Friston et al (2010a)</xref>.</p>
+      <p>In classical parametric statistics, it is standard practice to invert or optimize the parameters of a generative (observation) model and then interrogate reduced forms (e.g., using the extra sum of squares principle and <italic>post hoc t</italic>-tests) to test a series of null hypotheses entailed by model reduction. Generally, it is not necessary to re-fit the parameters for each inference about a reduced model (null hypothesis) in relation to a full model (alternate hypothesis). In what follows, we describe the same sort of procedure for Bayesian model inversion and ensuing inference on models. The underlying theory is simple and follows from well known results; here, we highlight its potential to finesse the computational burden associated with scoring large numbers of models. This search over models is becoming an increasingly important problem in data-mining and causal modeling in the biological sciences. The sorts of models we have in mind here are those in which priors are required to resolve ill-posed inverse problems (for example the electromagnetic inverse problem in source reconstruction of electrical signals from the brain) and generalized convolution or state-space models used to explain biological time-series. In many instances, one is interested in eliminating redundant or irrelevant model parameters to find an efficient and parsimonious explanation for how data are generated. In a Bayesian context, this usually appeals to maximizing model evidence, which subsumes both accuracy and complexity. This evidence maximization emerges in a number of guises; for example automatic model selection (<xref rid="bb0035" ref-type="bibr">Friston et al., 2007</xref>) and relevance determination (<xref rid="bb0065 bb0075" ref-type="bibr">Mackay and Takeuchi, 1996; Tipping 2001</xref>), which aim to switch off or suppress irrelevant model parameters. Crucially, this suppression or elimination can be formulated in terms of priors on the free parameters of a model, where increasing the precision (inverse variance) of appropriate shrinkage priors effectively sets these parameters to zero. However, this is just a special instance of optimizing the priors of a model, in relation to model evidence. We exploit this by noting that the evidence <italic>per se</italic> can be derived relatively simply from the posterior density over model parameters, under uninformative priors.</p>
+      <p>This note comprises two sections: In the first, we present the assumptions and derivations that motivate the scheme. We start with some general assumptions about the existence of a full model, which shares the same likelihood with a set of reduced models with different prior densities. Under these assumptions, it is simple to derive the evidence of any reduced model as a function of the posterior and prior densities of the full model (to within an additive constant). In the limiting case, when a subset of parameters is fixed at zero, we recover the well known Savage–Dickey density ratio (<xref rid="bb0020 bb0080" ref-type="bibr">Dickey, 1971; Verdinelli and Wasserman, 1995</xref>). Our particular focus will be on the expression for model evidence under Gaussian assumptions about the form of the posterior over model parameters. This Laplace assumption is particularly relevant for variational or ensemble learning schemes, which predominate in many practical modeling applications (<xref rid="bb0005 bb0035" ref-type="bibr">Beal and Ghahramani, 2003; Friston et al., 2007</xref>). In this context, the model evidence and posterior density over its parameters reduces to a simple analytic function of the means and precisions of the full prior and posterior. In the second section, we illustrate the use of this expression when optimizing priors or selecting among models defined in terms of their priors. We will use three examples of increasing complexity. The first uses a simple general linear model and looks at optimizing the priors on precision parameters, to highlight the potential usefulness of this approach in model optimization. The second example turns to model selection and focuses on optimizing shrinkage priors on unknown parameters, to identify key combinations of explanatory variables and eliminate redundant parameters. Finally, we consider a more complicated simulation using a nonlinear state-space model to illustrate both model selection and optimization.</p>
+    </sec>
+    <sec id="s0010">
+      <title>Theoretical background</title>
+      <p>In this section, we outline the overall approach in terms of the assumptions that define the problem we are interested in. We try to relate the results to established procedures such as those based upon the Savage–Dickey density ratio. In the subsequent section, we apply these results to toy examples to illustrate their usefulness. We address the problem of scoring large numbers (thousands or millions) of models or exploring continuous model spaces. This problem is addressed by exploiting situations in which each model can be formed from a full model by changing the priors over its parameters. In brief, this means we can compute the evidence and posterior density over the parameters of any reduced model that is nested within a full model, given the evidence and posterior of a full model. This rests on the following arguments:</p>
+      <p>Let a generative model <italic>m</italic><sub><italic>i</italic></sub> ∈ ℳ specify a joint density on the some data γ ∈ ℝ and their causes <italic>ϑ</italic> ∈ ℝ (model parameters), in terms of a likelihood and prior:<disp-formula id="fo0005"><label>(1)</label><alternatives><textual-form specific-use="jats-markup"><italic>p</italic>(<italic>y</italic>,<italic>ϑ</italic>|<italic>m</italic><sub><italic>i</italic></sub>) = <italic>p</italic>(<italic>y</italic>|<italic>ϑ</italic>, <italic>m</italic><sub><italic>i</italic></sub>)<italic>p</italic>(<italic>ϑ</italic>|<italic>m</italic><sub><italic>i</italic></sub>)</textual-form><mml:math id="M1" altimg="si9.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mtext>,</mml:mtext><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>ϑ</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:math></alternatives></disp-formula></p>
+      <p>Where <italic>p</italic>(<italic>ϑ</italic>|<italic>m</italic><sub><italic>i</italic></sub>) ≜ <italic>p</italic><sub><italic>m</italic><sub><italic>i</italic></sub></sub>(<italic>ϑ</italic>) denotes a family of distributions over models. We assume the existence of a full model <italic>m</italic><sub>F</sub> ∈ ℳ that satisfies the following conditions for all models considered<disp-formula id="fo0010"><label>(2)</label><mml:math id="M2" altimg="si11.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>≺</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:mo>⇔</mml:mo><mml:mo stretchy="true">{</mml:mo><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>ϑ</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>ϑ</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msub><mml:mi>Ω</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>⊂</mml:mo><mml:msub><mml:mi>Ω</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:mo>:</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo>∈</mml:mo><mml:msub><mml:mi>Ω</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>&gt;</mml:mo><mml:mn>0</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:math></disp-formula></p>
+      <p>Here, Ω<sub><italic>i</italic></sub> denotes the support of the prior of the <italic>i</italic>-th model and ∀<italic>i</italic>:<italic>m</italic><sub><italic>i</italic></sub> ≺ <italic>m</italic><sub>F</sub> are reduced versions of the full model. Note that all models share the same likelihood but differ in their priors. The second condition just ensures the existence of the density ratios used below. A simple example may clarify what reduced means in this context: Let <italic>m</italic><sub><italic>i</italic></sub> ∈ ℳ denote the class of general linear models and let <italic>ϑ</italic> range over values of variances of noise terms and linear coefficients. We say that <italic>m</italic><sub><italic>i</italic></sub> ≺ <italic>m</italic><sub><italic>j</italic></sub> if, for every coefficient <italic>ϑ</italic><sub><italic>k</italic></sub>, we have <italic>p</italic>(<italic>ϑ</italic><sub><italic>k</italic></sub>|<italic>m</italic><sub><italic>i</italic></sub>) = 0 when <italic>p</italic>(<italic>ϑ</italic><sub><italic>k</italic></sub>|<italic>m</italic><sub><italic>j</italic></sub>) = 0 (but not conversely) and that the probability of the data is the same under both models for any assignment of values to the parameters.</p>
+      <p>Eq. <xref rid="fo0010" ref-type="disp-formula">(2)</xref> is not saying anything very deep; it is just defining a set or space of reduced models that can be formed from a full model by collapsing the prior density over one or more parameters. This effectively converts free-parameters into known (reduced) parameters that usually have a prior mean of zero. Note that the number or dimensionality of the parameters is the same for all models: What distinguishes models is whether their priors allow specific parameters to take non trivial values. This definition of a reduced model means that model optimization (selection) can be cast as optimizing the priors over the parameters of the full model, where the optimum prior (model) maximizes the marginal likelihood or evidence:<disp-formula id="fo0015"><label>(3)</label><mml:math id="M3" altimg="si13.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mrow><mml:mo>∫</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>ϑ</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mtext>d</mml:mtext><mml:mi>ϑ</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mo>=</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced><mml:mrow><mml:mo>∫</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac></mml:mrow><mml:mtext>d</mml:mtext><mml:mi>ϑ</mml:mi></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+      <p>Here, we have used Bayes rule and the fact that the likelihoods of the reduced and full model are the same. Crucially, the marginal likelihood or evidence under the reduced model is just the evidence under the full model times the posterior expectation of the prior density ratio. This means the quantities required to evaluate the evidence of any reduced model are furnished by the inversion of the full model (namely its evidence <italic>p</italic>(<italic>y</italic>|<italic>m</italic><sub>F</sub>) and posterior density <italic>p</italic>(<italic>ϑ</italic>|<italic>y</italic>, <italic>m</italic><sub>F</sub>)).</p>
+      <p>The equivalence of the likelihood in Eq. <xref rid="fo0010" ref-type="disp-formula">(2)</xref> also allows us express the posterior under the reduced model in terms of the posterior under the full model<disp-formula id="fo0020"><label>(4)</label><mml:math id="M4" altimg="si14.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula></p>
+      <p>In fact, Eq. <xref rid="fo0015" ref-type="disp-formula">(3)</xref> obtains from Eq. <xref rid="fo0020" ref-type="disp-formula">(4)</xref> by integrating both sides over the parameters. In general, this marginalization only needs to be over the subset of (reduced) parameters <italic>ϑ</italic><sub><italic>i</italic></sub> ⊂ <italic>ϑ</italic> for which the priors differ. Given a bipartition <italic>ϑ</italic> = {<italic>ϑ</italic><sub><italic>i</italic></sub>, <italic>ϑ</italic><sub><italic>\i</italic></sub>} where <italic>p</italic>(<italic>ϑ</italic><sub><italic>\i</italic></sub>|<italic>m</italic><sub><italic>i</italic></sub>) = <italic>p</italic>(<italic>ϑ</italic><sub><italic>\i</italic></sub>|<italic>m</italic><sub>F</sub>), we can write Eq. <xref rid="fo0015" ref-type="disp-formula">(3)</xref> as a Bayes factor (<xref rid="bb0060" ref-type="bibr">Kass and Raftery 1995</xref>):<disp-formula id="fo0025"><label>(5)</label><mml:math id="M5" altimg="si15.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>F</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mrow><mml:mo>∬</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>ϑ</mml:mi><mml:mrow><mml:mo>\</mml:mo><mml:mi>i</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac></mml:mrow><mml:mtext>d</mml:mtext><mml:msub><mml:mi>ϑ</mml:mi><mml:mrow><mml:mo>\</mml:mo><mml:mi>i</mml:mi></mml:mrow></mml:msub><mml:mi>d</mml:mi><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mo>=</mml:mo><mml:mrow><mml:mo>∫</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac></mml:mrow><mml:mtext>d</mml:mtext><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+      <p>This expression only involves integrating over the marginal densities of the reduced parameters. Note that Eq. <xref rid="fo0025" ref-type="disp-formula">(5)</xref> does not make any assumptions about the form of the prior densities, provided they satisfy Eq. <xref rid="fo0010" ref-type="disp-formula">(2)</xref>. We can further simplify things when the reduced prior is a point mass, (delta function) <italic>p</italic>(ϑ<sub><italic>i</italic></sub>|<italic>m</italic><sub><italic>i</italic></sub>) = <italic>δ</italic>(<italic>θ</italic><sub><italic>i</italic></sub>) that fixes a subset of parameters to a particular value, <italic>θ</italic><sub><italic>i</italic></sub>. In this case, Eq. <xref rid="fo0025" ref-type="disp-formula">(5)</xref> reduces to the well-known Savage–Dickey density ratio (usually considered when <italic>θ</italic><sub><italic>i</italic></sub> = 0)<disp-formula id="fo0030"><label>(6)</label><mml:math id="M6" altimg="si16.gif" overflow="scroll"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>θ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>ϑ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>θ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula></p>
+      <p>In other words, the Savage–Dickey density ratio is a special case of the reduced evidence ratio that obtains when the reduced prior shrinks to a point mass. Eq. <xref rid="fo0030" ref-type="disp-formula">(6)</xref> is sensible, in that a conditional density on the reduced parameters that is far from its prior expectation indicates the reduced parameters are needed to explain the data and the reduced model has relatively low evidence.</p>
+      <sec id="s0015">
+        <title>Model optimization under the Laplace assumption</title>
+        <p><xref rid="bb0080" ref-type="bibr">Verdinelli and Wasserman (1995)</xref> consider generalized Savage–Dickey density ratios using the above arguments from point of view of sampling approximations. Here, we consider Eq. <xref rid="fo0015" ref-type="disp-formula">(3)</xref> under the Laplace approximation to the posterior. This is a useful and generic approximation exploited in variational Bayes and related free-energy schemes (<xref rid="bb0010 bb0005 bb0035" ref-type="bibr">Beal, 1998; Beal and Ghahramani 2003; Friston et al., 2007</xref>). In these schemes, a variational density <italic>q</italic>(ϑ|<italic>m</italic><sub>F</sub>) is optimized with respect to a free-energy bound on the log-evidence:<disp-formula id="fo0035"><label>(7)</label><mml:math id="M7" altimg="si17.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi mathvariant="script">F</mml:mi><mml:mo>(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:mi>q</mml:mi></mml:mrow><mml:mo>)</mml:mo><mml:mo>=</mml:mo><mml:mo>ln</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mo>−</mml:mo><mml:mi mathvariant="script">D</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>q</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mo stretchy="true">|</mml:mo><mml:mo stretchy="true">|</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mo>=</mml:mo><mml:mrow><mml:mo>∫</mml:mo><mml:mi>q</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced></mml:mrow><mml:mo>ln</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>ϑ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mi>d</mml:mi><mml:mi>ϑ</mml:mi><mml:mo>−</mml:mo><mml:mi mathvariant="script">D</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>q</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mo stretchy="true">|</mml:mo><mml:mo stretchy="true">|</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced></mml:mrow></mml:mfenced></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>Here, 𝒟 denotes Kullback–Leibler divergence. Maximizing free-energy makes it an approximation to the log-evidence and makes the variational density an approximate posterior. The second equality expresses free-energy as a mixture of accuracy (expected log-likelihood) and complexity (divergence between the posterior and prior). This means the model with the greatest free-energy is the most parsimonious but accurate explanation for the data; see <xref rid="bb0070" ref-type="bibr">Penny et al. (2004)</xref>. There are numerous schemes that use this approach. We use it extensively under the Laplace assumption, with log-normal forms for non-negative scale parameters (e.g., <xref rid="bb0030 bb0035" ref-type="bibr">Friston et al., 2003; Friston et al., 2007</xref>).</p>
+        <p>Our focus here is not on these variational schemes but on how to exploit their outputs; namely, the (approximate) log-evidence ℱ(<italic>y</italic>, <italic>q</italic>) ≈ ln <italic>p</italic>(<italic>y</italic>|<italic>m</italic>) and (approximate) posterior <italic>q</italic>(<italic>ϑ</italic>|m) ≈ <italic>p</italic>(<italic>ϑ</italic>|<italic>y</italic>, <italic>m</italic>) of a model. From now on, we will assume the posterior and prior are Gaussian densities (this is known as Variational Laplace)<disp-formula id="fo0040"><label>(8)</label><mml:math id="M8" altimg="si20.gif" overflow="scroll"><mml:mtable columnalign="left"><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mi>q</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mtext>μ</mml:mtext><mml:mi>i</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi mathvariant="script">C</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>:</mml:mo><mml:msub><mml:mi mathvariant="script">C</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>P</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:msup><mml:mrow/><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mtext>η</mml:mtext><mml:mi>i</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>Σ</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>:</mml:mo><mml:msub><mml:mi>Σ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>Π</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:msup><mml:mrow/><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>In this context, we have remarkably simple expressions for the log-evidence and posterior for any reduced model in terms of the sufficient statistics of a full model<disp-formula id="fo0045"><label>(9)</label><mml:math id="M9" altimg="si21.gif" overflow="scroll"><mml:mtable columnalign="center"><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mfrac><mml:mrow><mml:mi>q</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac><mml:mtext>d</mml:mtext><mml:mi>ϑ</mml:mi></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mo>⇒</mml:mo></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:msub><mml:mi mathvariant="script">F</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mo>ln</mml:mo><mml:mfrac><mml:mrow><mml:mfenced open="|" close="|"><mml:msub><mml:mi>Π</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mfenced><mml:mfenced open="|" close="|"><mml:msub><mml:mi>P</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mfenced></mml:mrow><mml:mrow><mml:mfenced open="|" close="|"><mml:msub><mml:mi>P</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mfenced><mml:mfenced open="|" close="|"><mml:msub><mml:mi>Π</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mfenced></mml:mrow></mml:mfrac><mml:mo>−</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mn>2</mml:mn></mml:mfrac><mml:mfenced open="(" close=")"><mml:mrow><mml:msubsup><mml:mi>μ</mml:mi><mml:mtext>F</mml:mtext><mml:mtext>T</mml:mtext></mml:msubsup><mml:msub><mml:mi>P</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:msub><mml:mi>μ</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:mo>+</mml:mo><mml:msubsup><mml:mi>η</mml:mi><mml:mi>i</mml:mi><mml:mtext>T</mml:mtext></mml:msubsup><mml:msub><mml:mi>Π</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:msub><mml:mi>η</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msubsup><mml:mi>η</mml:mi><mml:mtext>F</mml:mtext><mml:mtext>T</mml:mtext></mml:msubsup><mml:msub><mml:mi>Π</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:msub><mml:mi>η</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:mo>−</mml:mo><mml:msubsup><mml:mi>μ</mml:mi><mml:mi>i</mml:mi><mml:mtext>T</mml:mtext></mml:msubsup><mml:msub><mml:mi>P</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:msub><mml:mi>μ</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>+</mml:mo><mml:msub><mml:mi mathvariant="script">F</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:mi>q</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>μ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>,</mml:mo><mml:msub><mml:mi>C</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msub><mml:mi>P</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi>P</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mi>Π</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>Π</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msub><mml:mi>μ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:msub><mml:mi mathvariant="script">C</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mfenced open="(" close=")"><mml:mrow><mml:msub><mml:mi>P</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:msub><mml:mi>μ</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:mo>+</mml:mo><mml:msub><mml:mi>Π</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:msub><mml:mi>η</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>Π</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:msub><mml:mi>η</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mfenced></mml:mtd></mml:mtr></mml:mtable></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>Eq. <xref rid="fo0045" ref-type="disp-formula">(9)</xref> says that the posterior precision of the reduced model is the posterior precision of the full model minus the difference between the full and reduced precisions. The posterior expectation is a mixture of precision-weighted expectations. Note that when a parameter is removed from the model, by shrinking its prior variance to zero, the prior and posterior moments become the same and the parameter no longer contributes to the reduced free-energy.</p>
+        <p>Crucially, we can now compare two models in terms of their log-evidence, ℱ<sub><italic>i</italic></sub> − ℱ<sub><italic>j</italic></sub>. This is a log-Bayes factor and is usually considered significant if it exceeds three (i.e., an odds ratio of about twenty to one). Alternatively, we can optimize the prior (and associated posterior) explicitly, with respect to the log-evidence in Eq. <xref rid="fo0045" ref-type="disp-formula">(9)</xref>. Furthermore, we can consider any hyperparameterization of the prior <italic>p</italic>(ϑ|<italic>m</italic>(<italic>λ</italic>)) = <italic>N</italic>(<italic>η</italic>(λ), ∑(<italic>λ</italic>))) that induces a model. Here the hyperparameters <italic>λ</italic> control the prior mean <italic>η</italic><sub><italic>i</italic></sub> ≜ <italic>η</italic>(<italic>λ</italic>) and precision <italic>Π</italic><sub><italic>i</italic></sub> ≜ <italic>Π</italic>(<italic>λ</italic>) to produce a log-evidence, <inline-formula><alternatives><textual-form specific-use="jats-markup">ℱ<sub><italic>i</italic></sub> ≜ ℱ(<italic>λ</italic>)</textual-form><mml:math id="M10" altimg="si24.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi mathvariant="script">F</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>≜</mml:mo><mml:mi mathvariant="script">F</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math></alternatives></inline-formula>. This perspective takes us away from the notion of discrete models <italic>m</italic><sub><italic>i</italic></sub> : <italic>i</italic> ∈ ℕ and into a model space supported by the hyperparameters, <italic>m</italic>(<italic>λ</italic>): <italic>λ ∈</italic> ℝ. In this context, the optimum model and posterior are:<disp-formula id="fo0050"><label>(10)</label><mml:math id="M11" altimg="si25.gif" overflow="scroll"><mml:mtable columnalign="center"><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:msup><mml:mi>λ</mml:mi><mml:mo>∗</mml:mo></mml:msup><mml:mo>=</mml:mo><mml:munder><mml:mrow><mml:mo>arg</mml:mo><mml:mo>max</mml:mo></mml:mrow><mml:mi>λ</mml:mi></mml:munder><mml:mi mathvariant="script">F</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:mi>q</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:msup><mml:mi>m</mml:mi><mml:mo>∗</mml:mo></mml:msup></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mo>(</mml:mo><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mo>∗</mml:mo></mml:msup><mml:mtext>,</mml:mtext><mml:mspace width="0.12em"/><mml:msup><mml:mi mathvariant="script">C</mml:mi><mml:mo>∗</mml:mo></mml:msup></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:msup><mml:mi>P</mml:mi><mml:mo>∗</mml:mo></mml:msup><mml:mo>=</mml:mo><mml:mi>P</mml:mi><mml:msub><mml:mrow><mml:mspace width="0.12em"/></mml:mrow><mml:mtext>F</mml:mtext></mml:msub><mml:mo>+</mml:mo><mml:mi>Π</mml:mi><mml:mo>(</mml:mo><mml:msup><mml:mi>λ</mml:mi><mml:mo>∗</mml:mo></mml:msup><mml:mo>)</mml:mo><mml:mo>−</mml:mo><mml:msub><mml:mi>Π</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:msup><mml:mi>μ</mml:mi><mml:mo>∗</mml:mo></mml:msup><mml:mo>=</mml:mo><mml:msup><mml:mi mathvariant="script">C</mml:mi><mml:mo>∗</mml:mo></mml:msup><mml:mo>(</mml:mo><mml:mrow><mml:msub><mml:mi>P</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:msub><mml:mi>μ</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:mo>+</mml:mo><mml:mi>Π</mml:mi><mml:mo>(</mml:mo><mml:msup><mml:mi>λ</mml:mi><mml:mo>∗</mml:mo></mml:msup><mml:mo>)</mml:mo><mml:mi>η</mml:mi><mml:mo>(</mml:mo><mml:msup><mml:mi>λ</mml:mi><mml:mo>∗</mml:mo></mml:msup><mml:mo>)</mml:mo><mml:mo>−</mml:mo><mml:msub><mml:mi>Π</mml:mi><mml:mtext>F</mml:mtext></mml:msub><mml:msub><mml:mi>η</mml:mi><mml:mtext>F</mml:mtext></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>In what follows, we will illustrate both perspectives; namely, model selection, <italic>i</italic><sup>∗</sup> = arg max<sub><italic>i</italic></sub> ℱ<sub><italic>i</italic></sub> and optimization, <italic>λ</italic><sup>∗</sup> = arg max<sub><italic>λ</italic></sub> ℱ(<italic>λ</italic>) and try to connect these to automatic relevance determination (ARD) and related schemes.</p>
+      </sec>
+    </sec>
+    <sec id="s0020">
+      <title>Some examples</title>
+      <p>In this section, we use some simulated examples to illustrate the use of the scoring method described in the previous section. This section illustrates model optimization, in terms of optimizing the sufficient statistics or hyperparameters of prior densities, and model selection, by searching over large model spaces.</p>
+      <sec id="s0025">
+        <title>Model optimization</title>
+        <p>We start with a very simple example; namely the optimization of the priors on the precision parameters of a general linear model. To illustrate this, we formed simulated data (response variables) by adding four regressors sampled from the normal distribution.<disp-formula id="fo0055"><label>(11)</label><mml:math id="M12" altimg="si28.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi>y</mml:mi><mml:mo>=</mml:mo><mml:mi>X</mml:mi><mml:mi>β</mml:mi><mml:mo>+</mml:mo><mml:mi>ε</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>X</mml:mi><mml:mo>∈</mml:mo><mml:msup><mml:mi mathvariant="double-struck">R</mml:mi><mml:mrow><mml:mn>64</mml:mn><mml:mo>×</mml:mo><mml:mn>4</mml:mn></mml:mrow></mml:msup><mml:mo>:</mml:mo><mml:msub><mml:mi>X</mml:mi><mml:mi mathvariant="italic">ij</mml:mi></mml:msub><mml:mo>~</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:mfenced></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>β</mml:mi><mml:mo>∈</mml:mo><mml:msup><mml:mi mathvariant="double-struck">R</mml:mi><mml:mrow><mml:mn>4</mml:mn><mml:mo>×</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>:</mml:mo><mml:msub><mml:mi>β</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>:</mml:mo><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mn>4</mml:mn></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>ε</mml:mi><mml:mo>∈</mml:mo><mml:msup><mml:mi mathvariant="double-struck">R</mml:mi><mml:mrow><mml:mn>64</mml:mn><mml:mo>×</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mo>:</mml:mo><mml:msub><mml:mi>ε</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>~</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mo>(</mml:mo><mml:mrow><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mo>exp</mml:mo><mml:mo>(</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi>γ</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow><mml:mo>)</mml:mo></mml:mrow><mml:mo>)</mml:mo><mml:mo>:</mml:mo><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mn>2</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>After adding random noise with a log-precision of two to the first half of the data and a log-precision of one to the second half, we then estimated the noise precision, allowing for different precisions over the first and second half of the observations. This model has six parameters, four regression parameters <italic>β</italic> ⊂ <italic>ϑ</italic> and two log-precision <italic>γ</italic> ⊂ <italic>ϑ</italic> parameters. These parameters were estimated using a standard variational EM scheme (<xref rid="bb0015" ref-type="bibr">Dempster et al., 1977</xref>), as described in <xref rid="bb0035" ref-type="bibr">Friston et al. (2007)</xref>. Crucially, the posterior density on all parameters was assumed to be Gaussian. As is usual in these Variational Laplace schemes, we assumed the posterior density over the log-precisions is Gaussian (i.e., posterior precisions have a log-normal form). In short, we estimated the regression coefficients and log-precisions to provide a Gaussian posterior. The priors on the parameters were uninformative Gaussian shrinkage priors with a mean of zero and variance of 32.</p>
+        <p>After model inversion (using the Variational Laplace scheme described in <xref rid="bb0035" ref-type="bibr">Friston et al., 2007</xref>), we evaluated the model evidence under different priors on the log-precisions <italic>P</italic>(<italic>γ</italic><sub><italic>j</italic></sub>|<italic>m</italic>(<italic>λ</italic>))=𝒩(<italic>λ</italic><sub>1</sub>, <italic>λ</italic><sub>2</sub>). <xref rid="f0005" ref-type="fig">Fig. 1</xref> (upper left panel) shows the log-evidence profile over the range of prior expectations and variances (<italic>λ</italic><sub>1</sub>, <italic>λ</italic><sub>2</sub>) we considered. It can be seen that the model evidence is greatest with a prior mean of just below two and a variance of about a quarter. This is shown more clearly in the upper right panel, which plots the model evidence (the normalized exponential of the free-energy approximation) as a function of prior variance for the optimum prior mean. If we now examine the implicit posterior from a model with these optimized priors (Eq. <xref rid="fo0050" ref-type="disp-formula">10</xref>), one can see a characteristic shrinkage (increased precision) of the posterior to the optimized prior mean. The lower panel of <xref rid="f0005" ref-type="fig">Fig. 1</xref> shows the posterior distribution over the first precision parameter for the full model and the optimized (reduced) model. In this example, the ensuing shrinkage has improved the posterior expectation, in relation to the true value (vertical line). Although this is not a very useful application of model optimization in a practical sense, it illustrates the notion of optimizing models through their priors and, implicitly, optimizing a posterior. There are two further points this example highlights:</p>
+        <p>First, the inversion scheme used to fit this model used a mean-field approximation that is ubiquitous in variational schemes. This assumes that the posterior over various subsets of parameters can be factorized. In this case, the factorization was between the regression and log-precision parameters; <italic>q</italic>(<italic>β</italic>, <italic>γ</italic>|<italic>m</italic>) = <italic>q</italic>(<italic>β</italic>|<italic>m</italic>)<italic>q</italic>(<italic>γ</italic>|<italic>m</italic>). Clearly this renders the posterior density an approximate density; however, it does not confound automatic model optimization. This is because the optimization of the priors on the log-precisions does not depend upon the posterior density over the regression parameters or posterior dependencies between the regression and log-precision parameters. This follows from Eq. <xref rid="fo0025" ref-type="disp-formula">(5)</xref>, which shows that the model evidence depends only on the marginal densities of those subsets of parameters that are being optimized; in this instance, the log-precision parameters. This point holds true generally and may be of particular relevance for the large number of schemes that rest upon on a mean-field (conditional independence) assumption.</p>
+        <p>The second point is that this scheme allows one to optimize priors under any hyperparameterization. Indeed, it is the form of this hyperparameterization and the implicit constraints on the priors that make the optimization meaningful. This is meant in the sense that optimized priors are empirical priors, which benefit from formal constraints on the generative model. These constraints are implicit in the way the priors are hyperparameterized. This effectively adds a hierarchical level to the model, enabling further optimization of the model in relation to its evidence. In the example above, this hierarchical constraint was that, <italic>a priori</italic>, we believe that the two log-precisions are the same. In the absence of any constraints on the hyperparameterization of the priors, they would collapse to a point mass over their maximum likelihood value. This is intuitive, in the sense that empirical priors are informed by data and, in the absence of constraints, the best empirical estimate is the maximum likelihood. More formally, it is obvious from Eq. <xref rid="fo0035" ref-type="disp-formula">(7)</xref> that if there are no restrictions on the form of the optimum prior, it minimizes complexity when <italic>p</italic>(<italic>ϑ</italic>|<italic>m</italic>) = <italic>q</italic>(<italic>ϑ</italic>|<italic>m</italic>), leaving <italic>q</italic>(<italic>ϑ</italic>|<italic>m</italic>) free to maximize accuracy: accuracy is maximized when <italic>q</italic>(<italic>ϑ</italic>|<italic>m</italic>) has a point mass over the maximum likelihood. We will return to this in the discussion. In short, in the absence of constraints the best empirical prior is a point mass over the maximum likelihood value. This would have been the case had we hyperparameterized the prior on both log-precisions separately (results not shown). This selective collapse of prior densities is exactly the sort of behavior harnessed in model selection, which we turn to next.</p>
+      </sec>
+      <sec id="s0030">
+        <title>Model selection</title>
+        <p>Here, we focus on selecting among a number of discrete models using exactly the same approach as above but using a formally different hyperparameterization of the prior density. In the example below, prior variances can only take one of two values; zero or a fixed prior variance. One could regard this as a hyperparameterization of the prior covariance with switched variables along the leading diagonal.<disp-formula id="fo0060"><label>(12)</label><mml:math id="M13" altimg="si30.gif" overflow="scroll"><mml:mtable columnalign="center"><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>β</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mi>Π</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="center"><mml:mtd columnalign="center"><mml:mrow><mml:mi>Π</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>λ</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mi>d</mml:mi><mml:mi>a</mml:mi><mml:mi>i</mml:mi><mml:mi>g</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>γ</mml:mi><mml:mi>λ</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>:</mml:mo><mml:msub><mml:mi>λ</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>∈</mml:mo><mml:mo stretchy="true">{</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">}</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+        <p>Here, <italic>γ</italic> is the fixed prior variance. The objective here is to find the best permutation of zero and non-zero hyperparameters <italic>λ</italic> ∈ {0,1} that furnishes the greatest model evidence. We will illustrate this with another simple general linear model.</p>
+        <p>In this example, we formed data by taking the sum of four regressors <bold><italic>X</italic></bold> ∈ ℝ<sup>16 × 4</sup> drawn from the unit normal distribution as above and adding noise with a precision of two. We then inverted the model as above. Crucially, we added a further eight random regressors to the model before inversion. Effectively, this means we have to find a small number of relevant regressors (with non-zero regression parameters, <italic>β</italic> ∈ ℝ<sup>12 × 1</sup>) in a larger number. We do not known how many “needles” there are in this haystack but can use automatic model selection to find the optimum combination, in the hope of recovering the original four regressors. In this example, there are 4096 permutations of the hyperparameters, each corresponding to a different model. Although a large number, these models can be scored in under a second with an exhaustive <italic>post hoc</italic> search using Equation <xref rid="fo0045" ref-type="disp-formula">9</xref>. The resulting log-evidences over all permutations of prior variances is shown in the upper left panel of <xref rid="f0010" ref-type="fig">Fig. 2</xref>, using <italic>γ</italic> = 8. The irregular profile of this scoring suggests that some regression parameters are more relevant than others. Crucially, there is a reasonably clear optimum model. This can be seen by reformulating the log-evidence in terms of model-evidence, shown on the upper right. Happily, the model selected was the true model in which the (first) four regression parameters had a non-zero prior variance, while the remaining (irrelevant) regressors were subject to very precise shrinkage priors. In terms of the posterior probability over models (under flat priors on models <italic>per se</italic>) we can be more than 50% confident that this is the most likely model. The lower panel of <xref rid="f0010" ref-type="fig">Fig. 2</xref> shows the 12 regression parameter estimates in terms of their posterior mean for the full model, the reduced model and their true values. One can see immediately the benefit of model selection, in that the eight irrelevant parameters have been effectively switched off by very precise shrinkage priors. Interestingly, the four relevant parameters also improved, in terms of their distance from the true values. This reflects the fact that the optimized priors suppress irrelevant conditional dependencies among the posterior estimators.</p>
+        <p>Again, this is a rather trivial example that starts to get more interesting when considering ill-posed problems that call for some regularization or shrinkage priors. Although this example used 16 data-points and 12 regressors, exactly the same sorts of results obtain with underdetermined problems (results not shown). Because the scoring of each model is so quick, one can consider exhaustive searches of up to thousands or millions of discrete models.</p>
+        <p>It is interesting to relate the automatic detection of relevant model parameters above to automatic relevance determination (ARD). <xref rid="f0015" ref-type="fig">Fig. 3</xref> illustrates the basis of this ARD or switching off behavior in terms of the dependency of the evidence on the shrinkage priors of relevant and irrelevant parameters. The key thing to take from <xref rid="f0015" ref-type="fig">Fig. 3</xref> is that the log-evidence for relevant parameters (here the first parameter) has a maxima at non-zero values. Conversely, the equivalent function for irrelevant parameters continues to increase as the prior variance approaches zero. This qualitative change in the points of inflexion induces a thresholding like behavior in the automatic model optimization, which explains the switching off of certain (irrelevant) parameters, when the maximum disappears. This behavior turns model optimization into categorical model selection. The irrelevant parameter here was the 8th regression parameter.</p>
+        <p>Automatic relevance determination (<xref rid="bb0065 bb0075" ref-type="bibr">Mackay and Takeuchi, 1996; Tipping, 2001</xref>) is based on exactly the same model evidence maximization approach used above but calls upon particular forms for the prior densities that lead to sparse conditional means. Here, we were able to reproduce this automatic determination under the Laplace assumption, with a simple hyperparameterization of the priors on the model parameters. The reason that this works is because of the formal prior or constraint implied by the hyperparameterization; in which prior variances can only take one of two values. This gives the optimization of the hyperparameters the look and feel of a model selection procedure, as opposed to the optimization of continuous hyperparameters. The examples above highlight the deep connection between the optimization of the parameters of hierarchical generative models and the hyperparameters of non hierarchical models used here for model optimization and selection. In essence, all these procedures are trying to maximize the evidence for a model through placing formal constraints of a hierarchical sort on the model. In the final example, we will pursue both the model selection and optimization perspectives, in the context of a problem that has a growing and pragmatic appeal.</p>
+      </sec>
+      <sec id="s0035">
+        <title>Network discovery and automatic model selection</title>
+        <p>In this final example, we turn to a much more complicated generative model and a more specific sort of problem. The model that we use to generate data here is used as a generative model for brain imaging time series recorded from different parts of the brain. The problem that we are interested in is trying to discover the network of connections (i.e., an underlying dependency graph) that is responsible for observed brain responses. The details of the model we used (<xref rid="bb0030" ref-type="bibr">Friston et al., 2003</xref>) and the scheme we used to invert this model (<xref rid="bb0045" ref-type="bibr">Friston et al., 2010b</xref>) are not important here, because our focus is on how to use the posterior of a full model to discover the underlying network in terms of its adjacency matrix (the presence or absence of connections among observed brain regions). In brief, the model has a series of hidden neuronal and physiological states for each region <italic>x</italic>(<italic>t</italic>) ⊂ ϑ, whose dependencies are modeled using nonlinear random differential equations <inline-formula><mml:math id="M14" altimg="si31.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo stretchy="true">˙</mml:mo></mml:mover><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mi>f</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>+</mml:mo><mml:mi>ω</mml:mi></mml:mrow></mml:math></inline-formula>. These equations of motion mimic real physiological and neuronal processes in the brain and accommodate random or endogenous fluctuations <inline-formula><mml:math id="M15" altimg="si32.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>ω</mml:mi><mml:mo stretchy="true">˜</mml:mo></mml:mover><mml:mo>~</mml:mo><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mi>Σ</mml:mi><mml:mfenced open="(" close=")"><mml:mi>ϑ</mml:mi></mml:mfenced></mml:mrow></mml:mfenced></mml:mrow></mml:math></inline-formula> on these states (<inline-formula><mml:math id="M16" altimg="si33.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>ω</mml:mi><mml:mo stretchy="true">˜</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="true">[</mml:mo><mml:mi>ω</mml:mi><mml:mo>,</mml:mo><mml:msup><mml:mi>ω</mml:mi><mml:mo>′</mml:mo></mml:msup><mml:mo>,</mml:mo><mml:msup><mml:mi>ω</mml:mi><mml:mo>″</mml:mo></mml:msup><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo stretchy="true">]</mml:mo></mml:mrow><mml:mi>T</mml:mi></mml:msup></mml:mrow></mml:math></inline-formula> denotes states in generalized coordinates of motion). The parameters of this model govern the dynamics intrinsic to each brain region and, crucially, the coupling between regions. These (extrinsic) between-region couplings are parameterized by a parameter matrix <italic>A</italic> ⊂ <italic>ϑ</italic> that can be viewed as a coupling matrix. This matrix plays the same role as a weighted adjacency matrix in graph theory, where a zero entry denotes no connection. The objective is to find the optimum adjacency matrix that specifies the underlying functional architecture; i.e., discover the network that explains the observed responses best. This example is used to show that automatic model selection works using a simplifying Laplace assumption, even with a highly nonlinear and dynamic (state-space) model with thousands of parameters (note the parameters include the generalized motions of all hidden states at each point in time).</p>
+        <p>We generated synthetic brain responses by driving each of four nodes or regions with smooth random fluctuations (with a log-precision of six). The resulting neuronal fluctuations cause changes in hidden physiological states, both within each region and in other regions to produce observed (hemodynamic) signals of the sort measured in fMRI experiments. This signal is effectively a generalized convolution of the underlying neuronal activity, where the characteristic time constant of the implicit convolution kernel is about four seconds. Examples of these fluctuating inputs and the resulting signals are shown in <xref rid="f0020" ref-type="fig">Fig. 4</xref>. In addition, <xref rid="f0020" ref-type="fig">Fig. 4</xref> (upper right panel) shows the hidden neuronal and physiological states that mediate between the hidden causes (fluctuating inputs) and signal (outputs). To generate these data, we used a simple (bidirectional) connectivity structure, where four regions (nodes) were coupled reciprocally in a chain (lower right insert). Data were generated over 256 time bins (each corresponding to 3.22 seconds of simulated time) and the model used to generate these data was inverted using Generalized Filtering and the usual Gaussian priors (see <xref rid="bb0030" ref-type="bibr">Friston et al., 2003</xref>). Generalized Filtering is a Bayesian filtering scheme in generalized coordinates of motion that retains the Laplace assumption but dispenses with mean field approximations (see <xref rid="bb0045" ref-type="bibr">Friston et al., 2010b</xref>). Further details about the generation and treatment of these sorts of synthetic data can be found in <xref rid="bb0040" ref-type="bibr">Friston et al. (2010a)</xref>. Model inversion (Generalized Filtering) provided the posterior or conditional means and covariances for the coupling parameters, which entered Eq. <xref rid="fo0045" ref-type="disp-formula">(9)</xref> to furnish the free-energy and conditional moments of all reduced models.</p>
+        <p><xref rid="f0025" ref-type="fig">Fig. 5</xref> shows the results of Generalized Filtering and subsequent model selection. The upper right panel shows the posterior density and true values of the (sixteen) connections among the four simulated brain regions. The right hand panels show the profile of log-evidences and evidences (i.e., the posterior probability of each model under flat model priors). It can be seen immediately that one model has been selected with nearly 100% posterior confidence. The model space here was created by considering all permutations of the prior variances on connections that could take values of zero or two. In the full model, all connections had a prior variance of two. There were only 64 such models because we included the additional constraint that if a connection existed in one direction, it should (<italic>a priori</italic>) exist in the other direction. This is a structural constraint that respects the known neuroanatomy of extrinsic connections in the brain. The real model had three bidirectional connections and, happily, was the model selected automatically. This example highlights the bilateral sensitivity of evidence to accuracy and complexity. The lower left panel of <xref rid="f0025" ref-type="fig">Fig. 5</xref> shows the log-evidence of each of the 64 models grouped according to the number of connections (free coupling parameters). This is equivalent to graph size. It can be seen that, in general, as the number of parameters increases so does the evidence. This reflects the fact that the accuracy of the fit improves with the degrees of freedom that are endowed by additional coupling parameters. However, this increase in accuracy comes at a cost of complexity. Within each subset of models the most likely model (of graph size three or more used to generate the data) becomes unnecessarily complex when redundant connections are added and its evidence falls.</p>
+        <p>Finally, to illustrate model optimization, we simply optimized the prior variance of each connection using Eq. <xref rid="fo0050" ref-type="disp-formula">(10)</xref> and a Gauss-Newton Scheme (as implemented in spm_argmax; <ext-link ext-link-type="uri" xlink:href="http://www.fil.ion.ucl.ac.uk/spm">http://www.fil.ion.ucl.ac.uk/spm</ext-link>). As anticipated, the prior variance collapsed to zero on connections that were absent, such that the optimized prior variance (organized as a weighted adjacency matrix) reflects the true connectivity structure (see <xref rid="f0030" ref-type="fig">Fig. 6</xref>). Note that in this hyperparameterization of the prior covariance, there was no formal constraint on reciprocal connections and yet a reciprocal connectivity has been selected automatically. In other words, we see automatic model selection emerging from optimization of hyperparameters that define a continuum of models (i.e., model space).</p>
+      </sec>
+    </sec>
+    <sec id="s0040">
+      <title>Conclusion</title>
+      <p>In conclusion, we hope to have described an efficient <italic>post hoc</italic> scoring scheme based upon Bayesian model evidence. In essence, this scheme can be regarded as an add-on to any inversion scheme that can handle models with large numbers of unknown states and parameters. A particularly efficient version of <italic>post hoc</italic> model selection (optimization) obtains under the Laplace assumption. This is useful because the Laplace assumption is commonplace in many variational schemes of the sort illustrated above. Although not pursued here, <italic>post hoc</italic> model optimization provides an internal validation of the approximations implicit in variational schemes. This is because one can invert reduced models and ensure that the free-energy bound on log-evidence (and the approximate posterior densities) are roughly the same as those anticipated by inversion of a full model. We pursue this and empirical applications elsewhere, with a special focus on network discovery in the context of Dynamic Causal Modeling (<xref rid="bb0040" ref-type="bibr">Friston et al., 2010a</xref>). Another (practical) issue we have not pursued here is the pooling of evidence over units or subjects in group studies. The <italic>post hoc</italic> estimate of log-evidence (free-energy) in Eq. <xref rid="fo0045" ref-type="disp-formula">(9)</xref> can be treated in exactly the same way as in standard Bayesian model averaging or selection over subjects. For example, when treating models as fixed effects over subjects, the log-evidence inherent in multi-subject data is just the sum of log-evidences over subjects (under the assumption that subject-specific data are conditionally independent). This means that one can optimize models based on the summed log-evidence over subjects, following inversion of each subject's full model.</p>
+      <p>Although, in principle, <italic>post hoc</italic> model selection with the reduced free-energy finesses the computational problems of inverting large numbers of models, it still leaves open the problematic issue of searching over very large model spaces. For example, a dynamic causal model with eight nodes or sources has 2<sup>8 × 8</sup> = 1.84 × 10<sup>19</sup> permutations of connections that can be turned on or off. In our current implementation of <italic>post hoc</italic> model selection, we use a greedy search for very large model spaces. This entails identifying a subset of parameters, with the least evidence and searching over all reduced models within that subset. Redundant parameters and then removed and the procedure repeated until all model parameters have been considered or no further parameters can be removed. The appendix describes some of the pragmatic details, in terms of software notes for some of the key routines in SPM8.</p>
+      <p>The aim of this paper was to highlight the pragmatic utility of some simple results that follow from Bayes rule and show that the same sort of <italic>post hoc</italic> statistical model comparisons performed routinely in classical inference can be reproduced in a Bayesian setting. However, it struck us that the resulting scheme also provides a nice perspective on Bayesian model, optimization and selection: To reiterate our introductory comments; in both cases, one is maximizing the evidence by changing the hyperparameters of the prior density over the parameters of a likelihood function. Furthermore, as noted above, when there are no restrictions on the form of the empirical prior, it becomes the maximum likelihood (see Eq. <xref rid="fo0035" ref-type="disp-formula">(7)</xref>). In other words, this limiting case of model optimization is simply model inversion. This perspective unifies model inversion, optimization and selection schemes; including classical random effects modeling, parametric empirical Bayes (<xref rid="bb0025 bb0055" ref-type="bibr">Efron and Morris, 1973; Kass and Steffey, 1989</xref>), automatic relevance determination (<xref rid="bb0065 bb0075" ref-type="bibr">Mackay and Takeuchi, 1996; Tipping, 2001</xref>) and Bayesian model comparison (<xref rid="bb0060 bb0070" ref-type="bibr">Kass and Raftery, 1995; Penny et al., 2004</xref>). The basic idea here is to recast any generative model in terms of parameters and hyperparameters and regard all model inversion, optimization and selection as maximizing the evidence with respect to the hyperparameters.<disp-formula id="fo0065"><label>(13)</label><mml:math id="M17" altimg="si34.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:msup><mml:mi>λ</mml:mi><mml:mo>∗</mml:mo></mml:msup><mml:mo>=</mml:mo><mml:munder><mml:mrow><mml:mo>arg</mml:mo><mml:mo>max</mml:mo></mml:mrow><mml:mi>λ</mml:mi></mml:munder><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi><mml:mfenced open="(" close=")"><mml:mi>λ</mml:mi></mml:mfenced></mml:mrow></mml:mfenced></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi><mml:mfenced open="(" close=")"><mml:mi>λ</mml:mi></mml:mfenced></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>ϑ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>λ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+      <p>Here, the parameters can be thought of as the sufficient statistics of the likelihood function, while the hyperparameters become sufficient statistics of the prior on the parameters. Nearly all generative models and their optimization can be framed in this way. For example, take the hierarchical linear model underlying parametric empirical Bayes:<disp-formula id="fo0070"><label>(14)</label><mml:math id="M18" altimg="si35.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi>y</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mi>X</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:msup><mml:mi>β</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mi>ε</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msup><mml:mi>β</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:msup><mml:mi>X</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:msup><mml:mi>β</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mi>ε</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mo>⋮</mml:mo></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msup><mml:mi>β</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:msup><mml:mi>X</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:msup><mml:mi>β</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mi>ε</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msup><mml:mi>ε</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>~</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mo>(</mml:mo><mml:mn>0</mml:mn><mml:mo>,</mml:mo><mml:mi>Σ</mml:mi><mml:mo>(</mml:mo><mml:mrow><mml:msup><mml:mi>γ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup></mml:mrow><mml:mo>)</mml:mo></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+      <p>Here, <italic>X</italic><sup>(i)</sup> <italic>β</italic><sup>(i)</sup> are linear mixtures of parameters that specify the form of the generative model. Eq. <xref rid="fo0070" ref-type="disp-formula">(14)</xref> can be written in terms of Eq. <xref rid="fo0065" ref-type="disp-formula">(13)</xref> as follows<disp-formula id="fo0075"><label>(15)</label><mml:math id="M19" altimg="si36.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>y</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>ϑ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:msup><mml:mover accent="true"><mml:mi>X</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:msup><mml:mi>β</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>,</mml:mo><mml:msup><mml:mover accent="true"><mml:mi>Σ</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="true">)</mml:mo></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>ϑ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>λ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>β</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>λ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>γ</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>λ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msup><mml:mi>β</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="true">|</mml:mo><mml:mi>λ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msubsup><mml:mi>μ</mml:mi><mml:mi>β</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mfenced open="(" close=")"><mml:mi>λ</mml:mi></mml:mfenced><mml:mo>,</mml:mo><mml:msubsup><mml:mi>Σ</mml:mi><mml:mi>β</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mfenced open="(" close=")"><mml:mi>λ</mml:mi></mml:mfenced></mml:mrow></mml:mfenced></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>p</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msup><mml:mi>γ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="true">|</mml:mo><mml:mi>λ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi mathvariant="script">N</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:msubsup><mml:mi>μ</mml:mi><mml:mi>γ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mfenced open="(" close=")"><mml:mi>λ</mml:mi></mml:mfenced><mml:mo>,</mml:mo><mml:msubsup><mml:mi>Σ</mml:mi><mml:mi>γ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup><mml:mfenced open="(" close=")"><mml:mi>λ</mml:mi></mml:mfenced></mml:mrow></mml:mfenced></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msup><mml:mover accent="true"><mml:mi>X</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mrow><mml:munderover><mml:mo>∏</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:msup><mml:mi>X</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msup><mml:mover accent="true"><mml:mi>Σ</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:msup><mml:mover accent="true"><mml:mi>X</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mi>Σ</mml:mi><mml:mfenced open="(" close=")"><mml:msup><mml:mi>γ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup></mml:mfenced><mml:msup><mml:mover accent="true"><mml:mi>X</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>i</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo><mml:mi>T</mml:mi></mml:mrow></mml:msup></mml:mrow><mml:mo>:</mml:mo><mml:msup><mml:mover accent="true"><mml:mi>X</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>0</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo>=</mml:mo><mml:mi>I</mml:mi></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+      <p>This form shows that one has the latitude to optimize the model in terms of hyperparameters controlling the prior expectations μ<sub>ϑ</sub><sup>(<italic>i</italic>)</sup> (λ) or covariances Σ<sub>ϑ</sub><sup>(<italic>i</italic>)</sup> (λ) of the regression <italic>β</italic> ⊂ <italic>ϑ</italic> or precision (covariance) <italic>γ</italic> ⊂ <italic>ϑ</italic> parameters. For example, optimizing <italic>μ</italic><sub><italic>β</italic></sub><sup>(<italic>n</italic>)</sup> (λ) with Σ<sub><italic>β</italic></sub><sup>(<italic>n</italic>)</sup> = 0 simply returns the maximum likelihood estimate of the parameters, while optimizing Σ<sub><italic>β</italic></sub><sup>(<italic>n</italic>)</sup> = (<italic>λ</italic>) with <italic>μ</italic><sub><italic>β</italic></sub><sup>(<italic>n</italic>)</sup> = 0 optimizes their shrinkage priors (cf, ARD). Conversely, optimizing <italic>μ</italic><sub><italic>γ</italic></sub><sup>(<italic>i</italic>)</sup> (<italic>λ</italic>) with Σ<sub><italic>γ</italic></sub><sup>(<italic>i)</italic></sup> = 0, returns the restricted maximum likelihood (ReML) estimate of the covariance of random effects (<xref rid="bb0050" ref-type="bibr">Harville, 1977</xref>). Indeed, the ReML objective function is formally identical to the free-energy bound on log-evidence in Eq. <xref rid="fo0035" ref-type="disp-formula">(7)</xref> (<xref rid="bb0035" ref-type="bibr">Friston et al., 2007</xref>). <xref rid="t0005" ref-type="table">Table 1</xref> summarizes these and other examples. The point here is that, in principle, all these schemes could be implemented using Eqs. <xref rid="fo0045 fo0050" ref-type="disp-formula">(9) and (10)</xref>, under the Laplace assumption (following the inversion of a likelihood model with uninformative priors). We will pursue this in subsequent work.</p>
+      <p>As with all modelling initiatives, even exhaustive searches of model space will not disclose the optimum model, if the space does not include that model. For example, there could be unmodeled influences that, when included in the model, would increase its evidence. The scoring procedure described in this paper does not resolve the issue of how to define model spaces; it simply provides a computationally efficient way of searching those spaces, once they have been defined.</p>
+      <p>Evaluating the evidence for a model is the holy grail of most statistical and modeling endeavors. In this sense, the procedures described in this paper address an important problem. We have tried to stress their generality, with a particular emphasis on optimizing the priors of a model with respect to its reduced log-evidence or free-energy. This optimization goes much further than conventional uses of the underlying formalism, which are currently restricted to comparing models with and without various parameters, (e.g., with the Savage–Dickey density ratio). We have also emphasized the simplicity and efficiency with which one can score models under the Laplace assumption. However, this comes at a cost: for highly nonlinear models the true posterior density will not be Gaussian. This means that the free-energy will only bound log-evidence and may not be an accurate approximation. This raises two issues: First, is the free-energy a good approximation to the underlying log-evidence? Second, is the reduced free-energy a good proxy for the free-energy of reduced models? Clearly, these questions can only be resolved with access to the true posteriors and evidences. This is a focus of current work using Gibbs sampling. At present, our experience with mildly nonlinear models (such as those used in dynamic causal modeling of fMRI time series) suggests that the free-energy provides a reasonable approximation. However, this has yet to be established for more strongly nonlinear models. The second issue raises an interesting question. If the reduced free energy is not the same as the free energy of the reduced model, which is the best approximation? One might conjecture that the reduced free-energy may be a more reliable proxy for log-evidence because it is based on the free-energy of the full model, which may be less prone to reporting local minima. Clearly, to test this conjecture one needs the true log-evidence, which again speaks to the use of sampling approximations to the posterior densities. We are currently pursuing this. Our early impressions are that the reduced free-energy and free-energy of the reduced model are reasonably consistent for weakly nonlinear models and that the free-energy provides better approximations than other alternatives (such as the Akaike and Bayesian information criteria).</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bb0005">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beal</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Ghahramani</surname>
+              <given-names>Z.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>The variational Bayesian EM algorithm for incomplete Data: with application to scoring graphical model structures</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Bernardo</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Bayarri</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Berger</surname>
+              <given-names>J.O.</given-names>
+            </name>
+            <name>
+              <surname>Dawid</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Heckerman</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>A.F.M.</given-names>
+            </name>
+            <name>
+              <surname>West</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Bayesian Statistics</source>
+          <year>2003</year>
+          <publisher-name>OUP</publisher-name>
+          <publisher-loc>UK</publisher-loc>
+          <comment>Chapter 7</comment>
+        </element-citation>
+      </ref>
+      <ref id="bb0010">
+        <mixed-citation publication-type="other">Beal M.J. (1998) Variational algorithms for approximate Bayesian inference, PhD Thesis:<ext-link ext-link-type="uri" xlink:href="http://www.cse.buffalo.edu/faculty/mbeal/thesis/">http://www.cse.buffalo.edu/faculty/mbeal/thesis/- p58.</ext-link></mixed-citation>
+      </ref>
+      <ref id="bb0015">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dempster</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Laird</surname>
+              <given-names>N.M.</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+            </name>
+          </person-group>
+          <article-title>Maximum likelihood from incomplete data via the EM algorithm</article-title>
+          <source>J. Roy. Stat. Soc. B</source>
+          <volume>39</volume>
+          <year>1977</year>
+          <fpage>1</fpage>
+          <lpage>38</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0020">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dickey</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The weighted likelihood ratio, linear hypotheses on normal location parameters</article-title>
+          <source>Ann. Stat.</source>
+          <volume>42</volume>
+          <year>1971</year>
+          <fpage>204</fpage>
+          <lpage>223</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0025">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Efron</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Stein's estimation rule and its competitors—an empirical Bayes approach</article-title>
+          <source>J. Am. Stats. Assoc.</source>
+          <volume>68</volume>
+          <year>1973</year>
+          <fpage>117</fpage>
+          <lpage>130</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0030">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling</article-title>
+          <source>Neuroimage</source>
+          <volume>19</volume>
+          <year>2003</year>
+          <fpage>1273</fpage>
+          <lpage>1302</lpage>
+          <pub-id pub-id-type="pmid">12948688</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0035">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Trujillo-Barreto</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variational free energy and the Laplace approximation</article-title>
+          <source>Neuroimage</source>
+          <volume>34</volume>
+          <issue>1</issue>
+          <year>2007</year>
+          <fpage>220</fpage>
+          <lpage>234</lpage>
+          <pub-id pub-id-type="pmid">17055746</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0040">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Network discovery with DCM</article-title>
+          <source>Neuroimage</source>
+          <year>2010</year>
+          <comment>Dec 21. [Epub ahead of print]</comment>
+        </element-citation>
+      </ref>
+      <ref id="bb0045">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Generalised Filtering</chapter-title>
+          <series>Mathematical Problems in Engineering</series>
+          <volume>vol. 2010</volume>
+          <year>2010</year>
+          <comment>Article ID 621670</comment>
+        </element-citation>
+      </ref>
+      <ref id="bb0050">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harville</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Maximum likelihood approaches to variance component estimation and to related problems</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <volume>72</volume>
+          <year>1977</year>
+          <fpage>320</fpage>
+          <lpage>338</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0055">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kass</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Steffey</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Approximate Bayesian inference in conditionally independent hierarchical models (parametric empirical Bayes models)</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <volume>407</volume>
+          <year>1989</year>
+          <fpage>717</fpage>
+          <lpage>726</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0060">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kass</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Raftery</surname>
+              <given-names>A.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayes factors</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <volume>90</volume>
+          <year>1995</year>
+          <fpage>773</fpage>
+          <lpage>795</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0065">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mackay</surname>
+              <given-names>D.J.C.</given-names>
+            </name>
+            <name>
+              <surname>Takeuchi</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Interpolation models with multiple hyperparameters</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Skilling</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sibisi</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>
+            <italic>Maximum Entropy &amp; Bayesian Methods</italic>
+          </source>
+          <year>1996</year>
+          <publisher-name>Kluwer</publisher-name>
+          <fpage>249</fpage>
+          <lpage>257</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0070">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparing dynamic causal models</article-title>
+          <source>Neuroimage</source>
+          <volume>22</volume>
+          <year>2004</year>
+          <fpage>1157</fpage>
+          <lpage>1172</lpage>
+          <pub-id pub-id-type="pmid">15219588</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0075">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tipping</surname>
+              <given-names>M.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sparse Bayesian learning and the Relevance Vector Machine</article-title>
+          <source>J. Mach. Learn. Res.</source>
+          <volume>1</volume>
+          <year>2001</year>
+          <fpage>211</fpage>
+          <lpage>244</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0080">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Verdinelli</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Wasserman</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computing Bayes factors using a generalization of the Savage–Dickey density ratio <italic>J</italic></article-title>
+          <source>Am. Stat. Assoc.</source>
+          <volume>90</volume>
+          <issue>430</issue>
+          <year>1995</year>
+          <fpage>614</fpage>
+          <lpage>618</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <sec id="s0050">
+      <label>Appendix and software notes</label>
+      <p>This appendix describes the key routines used in <italic>post hoc</italic> model selection and optimization currently available in our academic freeware. These are available as MATLAB scripts from (<ext-link ext-link-type="uri" xlink:href="http://www.fil.ion.ucl.ac.uk/spm">http://www.fil.ion.ucl.ac.uk/spm</ext-link>).</p>
+      <p>spm_dcm_post_hoc: <italic>Post hoc</italic> optimization (under Laplace approximation).</p>
+      <p>This routine searches over all possible reduced models of a full model (DCM) and uses <italic>post hoc</italic> model selection to select the best. Reduced models mean all permutations of free parameters (parameters with a non-zero prior covariance), where models are defined in terms of their prior covariance. The full model should be inverted prior to <italic>post hoc</italic> optimization. If there are more than 16 free-parameters, this routine will implement a greedy search: This entails searching over all permutations of the 8 parameters whose removal (shrinking the prior variance to zero) produces the smallest reduction (greatest increase) in model evidence. This procedure is repeated until all 8 parameters are retained in the best model or there are no more parameters to consider. When several DCMs are optimized together (as in group studies), they are checked to ensure the same free parameters have been specified and the log-evidences are pooled in a fixed effects fashion. The outputs of this routine are graphics reporting the model reduction (optimization) and an optimized DCM (for every input DCM) that contains reduced conditional parameters estimates.</p>
+      <p>This application of <italic>post hoc</italic> optimization assumes the DCMs that are optimized are the same model of different data. Normally, this would be a full model, in the sense of having the maximum number of free parameters, such that the set of reduced models is as large as possible. In contrast spm_dcm_search operates on different DCMs of the same data to identify the best model:</p>
+      <p>spm_dcm_search: <italic>Post hoc</italic> selection (under Laplace approximation)</p>
+      <p>spm_dcm_search operates on different DCMs of the same data to identify the best model. It will invert the full model, whose free-parameters are the union (superset) of all free parameters in each model specified. The routine then uses <italic>post hoc</italic> selection to evaluate the log-evidence (reduced free-energy) and conditional density over free-parameters of each model specified. The DCM specified does not need to be estimated: spm_dcm_search will invert the requisite (full DCM) automatically. The outputs of this routine are graphics reporting the model space search (optimization) and a structure containing the fields:</p>
+      <p>
+        <italic>DCM.P—character/cell array of DCM filenames</italic>
+      </p>
+      <p>
+        <italic>DCM.PF—their associated (reduced) free-energies</italic>
+      </p>
+      <p>
+        <italic>DCM.PP—and posterior (model) probabilities</italic>
+      </p>
+      <p>In addition, the reduced free-energies and posterior estimates of each model in <italic>DCM.P</italic> are saved for subsequent searches over different partitions of model space.</p>
+      <p>spm_dcm_optimise: Optimizes the priors of a model (under Laplace approximation)</p>
+      <p>This routine optimizes the prior covariance on the free parameters of any model (DCM) under the Laplace approximation. In other words, it assumes that the prior means are fixed and will maximize model evidence with respect to the hyperparameters of a function that returns the prior covariance. This optimization uses the reduced free-energy, based upon the posterior and prior densities of the full model supplied. If the prior covariance function is not specified, this routine will assume a simple diagonal form with a single hyperparameter. In principle, this routine can be used in a flexible and powerful way to emulate hierarchical modeling by using suitable prior covariance functions with unknown hyperparameters. The outputs are the prior moments (mean and covariance) of the optimum model.</p>
+    </sec>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>The Wellcome Trust funded this work. We are very grateful to Marcia Bennett for helping prepare this manuscript and to our two reviewers for helpful guidance and ideas.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Model evidence and posterior densities on the precision parameters of a general linear model. Upper left: the (exponential of the) free-energy bound on log-evidence as a function of prior mean and variance of the log-precision parameters of a general linear model. Lighter areas denote higher evidence. The dashed line represents the optimum prior mean that maximizes evidence. Upper right panel: this shows the model evidence as a function of prior variance at the optimum prior mean. Lower panel: this shows the posterior density on the first of two precision parameters. The solid line shows the (optimized) posterior, based upon the optimum priors, using Eq. <xref rid="fo0050" ref-type="disp-formula">(10)</xref> in the main text. The broken line represents the same quantity but under the full priors. The vertical doted line corresponds to the value (precision) of observation noise used to generate the data.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Model evidence and posteriors on the parameters of a linear model. Upper left panel: this shows the log-evidence over several thousand models that are distinguished by the permutation of priors on their regression parameters. These priors could take the value of zero or eight. Given there were twelve free regression parameters, this gives 2<sup>12</sup> = 4096 models. Upper right: the same data as on the left but expressed in terms of evidence (the exponential of free-energy, normalized to a sum of one). Lower panel: the conditional means of the twelve parameters of this linear model. The black bars show the posterior means under the full model, the grey bars under a reduced model and the white bars show the true values. The key thing to note here is that (redundant) parameters have shrunk to zero, under the priors selected by automatic model selection.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Model evidence as a function of prior variance for relevant and irrelevant parameters. This example comes from the inversion described in the previous figure and highlights the qualitative difference in the dependency of model evidence on prior variance. The important thing here is that only relevant parameters (that were used in generating data) have a maximum at a non-zero variance (marked with an arrow).</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="f0020">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Example of synthetic data used for network discovery. Upper left panel: the simulated data over 256 (3.22 s) time bins comprising signal (solid lines) and correlated observation noise (broken lines). These simulated data were selected from two regions and were generated as a nonlinear function of region-specific hidden states shown on the upper left. These hidden states evolve dynamically according to equations of motion that model a physiological transduction of neuronal activity into measurable blood flow (hemodynamic) changes in the brain. The original perturbation to these dynamics arises from the hidden causes shown on the lower left. These were simply smooth random fluctuations sampled from a Gaussian distribution with a log-precision of eight. Examples of two hidden causes shown here correspond to the two colored regions in the graph (insert on the lower right). This graph depicts four nodes (brain regions) and all possible edges (putative connections). Hidden causes drive each of the four nodes to produce data. Crucially, the neuronal dynamics simulated in each node are communicated to other nodes through bidirectional connections (double headed arrows). When generating synthetic data we chose three out of a maximum of six connections. These are shown as solid arrows.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="f0025">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Results of model inversion and automated selection. Upper left panel: this shows the conditional means following inversion of the full model. The posterior means (grey bars) and 90% confidence intervals (red bars) are superimposed on the true values (black bars). It can be seen in most instances the true values fall within 90% confidence intervals. We have only shown the connections between brain regions in this figure; six of which were zero. Upper left: profile of log-evidences (or log-posterior of each model under flat model priors) over 64 models corresponding to different combinations of connections among the four nodes. Lower left: the same data but plotted as a function of graph size (number of bidirectional connections). The red dot corresponds to the model with the highest evidence, which was also the true model used to generate the data. Lower right: this portrays the same data as in the corresponding upper panel but here it is shown as a model posterior.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="f0030">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Adjacency matrices defining the connections between the four nodes in the simulated data of the previous figure. Left panel: this adjacency matrix defines a serially coupled chain with bidirectional connections and describes the connectivity used to generate data. Right panel: the optimized prior variance on each of the coupling parameters. This shows that the optimization of prior variance has identified the correct sparsity structure of connections and has assigned roughly equal prior variance to existing connections that were actually present. The gray scale is arbitrary.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <table-wrap id="t0005" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>A brief summary of how various procedures can be cast as optimizing priors on model parameters, with respect to hyperparameters (sufficient statists of the prior density).</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">Hyperparameterization of prior</th>
+            <th align="left">Procedure</th>
+            <th align="left">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left"><italic>p</italic>(<italic>β</italic> |<italic>λ</italic>, <italic>m</italic>) = 𝒩 (<italic>λ</italic>, 0)</td>
+            <td align="left">Maximum likelihood (ML)</td>
+            <td align="left"><italic>λ</italic> ϵ ℝ<sup><italic>N</italic></sup> become ML parameter estimates</td>
+          </tr>
+          <tr>
+            <td align="left">
+              <inline-formula>
+                <mml:math id="M20" altimg="si2.gif" overflow="scroll">
+                  <mml:mrow>
+                    <mml:mi>p</mml:mi>
+                    <mml:mfenced open="(" close=")">
+                      <mml:mrow>
+                        <mml:mi>γ</mml:mi>
+                        <mml:mo stretchy="true">|</mml:mo>
+                        <mml:mi>λ</mml:mi>
+                        <mml:mtext>,</mml:mtext>
+                        <mml:mspace width="0.12em"/>
+                        <mml:mi>m</mml:mi>
+                      </mml:mrow>
+                    </mml:mfenced>
+                    <mml:mo>=</mml:mo>
+                    <mml:mi mathvariant="script">N</mml:mi>
+                    <mml:mfenced open="(" close=")">
+                      <mml:mrow>
+                        <mml:munder>
+                          <mml:mo>∑</mml:mo>
+                          <mml:mi>i</mml:mi>
+                        </mml:munder>
+                        <mml:msup>
+                          <mml:mi>λ</mml:mi>
+                          <mml:mrow>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mi>i</mml:mi>
+                            <mml:mo stretchy="true">)</mml:mo>
+                          </mml:mrow>
+                        </mml:msup>
+                        <mml:msup>
+                          <mml:mover accent="true">
+                            <mml:mi>X</mml:mi>
+                            <mml:mo stretchy="true">˜</mml:mo>
+                          </mml:mover>
+                          <mml:mrow>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mi>i</mml:mi>
+                            <mml:mo>−</mml:mo>
+                            <mml:mn>1</mml:mn>
+                            <mml:mo stretchy="true">)</mml:mo>
+                          </mml:mrow>
+                        </mml:msup>
+                        <mml:msup>
+                          <mml:mover accent="true">
+                            <mml:mi>X</mml:mi>
+                            <mml:mo stretchy="true">˜</mml:mo>
+                          </mml:mover>
+                          <mml:mrow>
+                            <mml:mo stretchy="true">(</mml:mo>
+                            <mml:mi>i</mml:mi>
+                            <mml:mo>−</mml:mo>
+                            <mml:mn>1</mml:mn>
+                            <mml:mo stretchy="true">)</mml:mo>
+                            <mml:mi>T</mml:mi>
+                          </mml:mrow>
+                        </mml:msup>
+                        <mml:mtext>,</mml:mtext>
+                        <mml:mspace width="0.12em"/>
+                        <mml:mn>0</mml:mn>
+                      </mml:mrow>
+                    </mml:mfenced>
+                  </mml:mrow>
+                </mml:math>
+              </inline-formula>
+            </td>
+            <td align="left">Restricted maximum likelihood (ReML)</td>
+            <td align="left"><italic>λ</italic> ϵ ℝ<sup><italic>M</italic></sup> become restricted ML covariance component estimates</td>
+          </tr>
+          <tr>
+            <td align="left"><italic>p</italic>(<italic>β</italic> |<italic>λ</italic>, <italic>m</italic>) = 𝒩 (<italic>λ</italic>, Σ<sub><italic>β</italic></sub>)</td>
+            <td align="left">Maximum <italic>a posteriori</italic> (MAP)</td>
+            <td align="left"><italic>λ</italic> ϵ ℝ<sup><italic>N</italic></sup> become MAP estimators</td>
+          </tr>
+          <tr>
+            <td align="left"><italic>p</italic>(<italic>β</italic> |<italic>λ</italic>, <italic>m</italic>) = 𝒩 (0, <italic>diag</italic> (λ))</td>
+            <td align="left">Automatic relevance determination (ARD)</td>
+            <td align="left"><italic>λ</italic> ϵ ℝ<sup><italic>N</italic></sup> optimize shrinkage priors on each parameter</td>
+          </tr>
+          <tr>
+            <td align="left"><italic>p</italic>(<italic>β</italic> |<italic>λ</italic>, <italic>m</italic>) = 𝒩 (0, <italic>diag</italic> (<italic>λ</italic> × Σ<sub><italic>β</italic></sub>))</td>
+            <td align="left">Automatic model selection (AMS)</td>
+            <td align="left"><italic>λ</italic> ϵ {0,1} switch off parameter combinations</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>These examples pertain to a generative model with <italic>β</italic> ϵ ℝ<sup><italic>N</italic></sup> and <italic>γ</italic> ϵ ℝ<sup><italic>M</italic></sup> parameters (sufficient statistics) specifying the mean and covariance a Gaussian likelihood, <italic>p</italic>(<italic>γ</italic>|<italic>ϑ</italic>, <italic>m</italic>) = 𝒩(<italic>μ</italic> (<italic>β</italic>), Σ(γ))<italic>.</italic> Here 𝒩(<italic>λ</italic>, 0) = <italic>δ</italic>(<italic>λ</italic>) denotes a point mass.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>

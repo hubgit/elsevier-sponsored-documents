@@ -1,0 +1,1027 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title>Neuroimage</journal-title>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2640482</article-id>
+      <article-id pub-id-type="pmid">17478106</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG4553</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2007.03.014</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Dynamic causal modelling of evoked potentials: A reproducibility study</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Garrido</surname>
+            <given-names>Marta I.</given-names>
+          </name>
+          <email>m.garrido@fil.ion.ucl.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kilner</surname>
+            <given-names>James M.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kiebel</surname>
+            <given-names>Stefan J.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Stephan</surname>
+            <given-names>Klaas E.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>Karl J.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>
+        <addr-line>The Wellcome Dept. of Imaging Neuroscience, University College London, Queen Square, London, WC1N 3BG, UK</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Wellcome Trust Centre for Neuroimaging, Institute of Neurology, UCL, 12 Queen Square, London, WC1N 3BG, UK. Fax: +44 020 7813 1445. <email>m.garrido@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>01</day>
+        <month>7</month>
+        <year>2007</year>
+      </pub-date>
+      <volume>36</volume>
+      <issue>3-3</issue>
+      <fpage>571</fpage>
+      <lpage>580</lpage>
+      <history>
+        <date date-type="received">
+          <day>19</day>
+          <month>10</month>
+          <year>2006</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>25</day>
+          <month>1</month>
+          <year>2007</year>
+        </date>
+        <date date-type="accepted">
+          <day>19</day>
+          <month>3</month>
+          <year>2007</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2007 Elsevier Inc.</copyright-statement>
+        <copyright-year>2007</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>Dynamic causal modelling (DCM) has been applied recently to event-related responses (ERPs) measured with EEG/MEG. DCM attempts to explain ERPs using a network of interacting cortical sources and waveform differences in terms of coupling changes among sources. The aim of this work was to establish the validity of DCM by assessing its reproducibility across subjects. We used an oddball paradigm to elicit mismatch responses. Sources of cortical activity were modelled as equivalent current dipoles, using a biophysical informed spatiotemporal forward model that included connections among neuronal subpopulations in each source. Bayesian inversion provided estimates of changes in coupling among sources and the marginal likelihood of each model. By specifying different connectivity models we were able to evaluate three different hypotheses: differences in the ERPs to rare and frequent events are mediated by changes in forward connections (F-model), backward connections (B-model) or both (FB-model).</p>
+        <p>The results were remarkably consistent over subjects. In all but one subject, the forward model was better than the backward model. This is an important result because these models have the same number of parameters (i.e., the complexity). Furthermore, the FB-model was significantly better than both, in 7 out of 11 subjects. This is another important result because it shows that a more complex model (that can fit the data more accurately) is not necessarily the most likely model. At the group level the FB-model supervened. We discuss these findings in terms of the validity and usefulness of DCM in characterising EEG/MEG data and its ability to model ERPs in a mechanistic fashion.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>In dynamical causal modelling, one views the brain as a dynamic network of interacting sources that produces observable responses. This perspective furnishes spatiotemporal, generative or forward models for evoked responses as measured with EEG/MEG (<xref rid="bib2 bib10" ref-type="bibr">David et al., 2005; Friston et al., 2003</xref>). In brief, DCM entails specification of a plausible model of electrodynamic responses. This model is inverted by optimising a variational free energy bound on the model evidence to provide the conditional density of the model parameters and the models evidence for model comparison. This is an important advance over conventional analyses of evoked responses because it places natural constraints on the inversion; namely, activity in one source has to be caused by activity in another. We have focused on establishing the face-validity of DCM for ERPs (see <xref rid="bib2 bib3 bib15" ref-type="bibr">David et al., 2005, 2006; Kiebel et al., 2006</xref>). In this work, we address predictive-validity in terms of the reproducibility of DCM over subjects. In brief, if DCM discloses true underlying brain network, then the results of model comparison in one subject should predict the results in another (i.e., they should be consistent over subjects). To ensure we engaged the same network in all subjects, we used a mismatch negativity (MMN) paradigm. This represents one of the most well studied and reproducible phenomena in ERP research (<xref rid="bib18" ref-type="bibr">Näätänen et al., 2001</xref>).</p>
+      <sec>
+        <title>Dynamic causal modelling</title>
+        <p>Previous work suggests that event-related responses can be modelled as perturbations of cortical networks (<xref rid="bib2 bib14" ref-type="bibr">David et al., 2005; Jansen and Rit, 1995</xref>). In particular, we have shown that dynamic causal models (DCMs) can explain event-related potentials (ERPs) and fields (ERFs) measured with electroencephalography (EEG) and magnetoencephalography (MEG), respectively. Furthermore, <xref rid="bib3" ref-type="bibr">David et al. (2006)</xref> showed that differences in evoked responses can be explained by changes in effective connectivity or coupling among neuronal sources. DCM can be regarded as an elaboration of conventional spatial forward models of EEG/MEG data, in which the sources are coupled according to biological constraints. The inversion of a DCM provides information about the underlying cortical pathways and their causal architecture. In this work, we accessed the reproducibility of DCM by testing hypotheses about cortical networks suggested by a predictive coding view of novelty or mismatch responses. Predictive coding is a formulation of perceptual learning and inference that rests on hierarchical Bayes (<xref rid="bib23 bib9" ref-type="bibr">Rao and Ballard, 1999; Friston, 2003</xref>). Critically, by formulating different implementations of perceptual learning in terms of different DCMs we were able to adjudicate among competing hypotheses using Bayesian model comparison. We were then able to assess the reproducibility of model comparison over subjects.</p>
+        <p>Bayesian model comparison (<xref rid="bib21" ref-type="bibr">Penny et al., 2004</xref>) selects the model, among competing models, that best explains the data. Given equal prior probabilities for the models considered, they are compared using their marginal likelihood or evidence for each model. In this work, we assessed the predictive validity of DCM by testing its reproducibility in a multi-subject study, under an auditory oddball paradigm. Specifically, we looked at reproducibility, in terms of model comparison, from subject to subject. The choice of the oddball paradigm was motivated by the large body of work in this field and current interest in the mechanisms underlying the generation of the MMN; in particular, the specific hypotheses about these mechanisms furnished by theoretical treatments (<xref rid="bib26 bib11" ref-type="bibr">Winkler et al., 1996; Friston, 2005</xref>).</p>
+      </sec>
+      <sec>
+        <title>Mismatch responses</title>
+        <p>Small changes in the acoustic environment initiate involuntary attentional capture, which may be engaged automatically by an auditory change detection mechanism indexed by the MMN. It has been proposed that a temporo-prefrontal network generates the MMN by comparing sensory input with the memory trace of previous stimuli. Novel events (oddballs) embedded in a stream of repeated or familiar events (standards) produce a distinct response that can be recorded non-invasively with electrophysiological techniques such as EEG and MEG. The MMN is the negative component of the waveform obtained by subtracting the event-related response to a standard from the response to an oddball, also called a deviant in the literature. This pre-attentive response, to sudden changes in stimulation, peaks at ≈ 100–200 ms from change onset; with the greatest intensity located over the frontal region (channels Fz and FCz). Given its automatic nature, the MMN has been associated with pre-attentive cognitive operations in audition and has, for this reason, been proposed as a reflection of ‘primitive intelligence’ in the auditory cortex (<xref rid="bib18" ref-type="bibr">Näätänen et al., 2001</xref>).</p>
+        <p>There have been several compelling mechanistic accounts of how the MMN might arise, many focussing on plasticity or adaptation at a synaptic and neuronal level (e.g. <xref rid="bib17" ref-type="bibr">May et al., 1999</xref>). <xref rid="bib26" ref-type="bibr">Winkler et al. (1996)</xref> suggested that the MMN might arise from a model-adjustment process, whereby the auditory system adjusts its perceptual model to adapt to the stimuli encountered. A similar conclusion was reached from a theoretical treatment of perceptual inference and learning based on hierarchical Bayes (<xref rid="bib11" ref-type="bibr">Friston, 2005</xref>). In this framework, evoked responses correspond to prediction error that is explained away (within trial) by self-organising neuronal dynamics during perception and is suppressed (between trials) by changes in synaptic efficacy during learning. The suppression of evoked responses, to a repeated event, is a ubiquitous phenomenon in neuroscience. It is seen at the level of single-unit responses (where it is referred to as repetition suppression; <xref rid="bib4" ref-type="bibr">Desimone, 1996</xref>) and is a long-standing observation in human neuroimaging (where it is often referred to as adaptation, e.g., cerebellar adaptation during motor repetitions; <xref rid="bib7" ref-type="bibr">Friston et al., 1992</xref> or repetition effects in visual studies; <xref rid="bib12" ref-type="bibr">Henson et al., 2003</xref>).</p>
+        <p>In the present context, changes in synaptic connections, during the repeated presentation of standards may render suppression of prediction error more efficient. This would lead to a reduction in evoked responses and the emergence of a mismatch response, when an unlearned stimulus is presented. In the theoretical accounts this differential response is mediated by differences in effective connectivity or coupling between cortical levels. In short, mechanistic theories about the MMN posit changes in synaptic efficacy that, in a hierarchical setting, may involve forward and/or backward extrinsic (between cortical sources) connections or intrinsic (local) connectivity. In what follows, we use DCM and model comparison to ask whether differences in ERPs to frequent and rare events are better explained by changes in forward connections, backward connections or both.</p>
+      </sec>
+    </sec>
+    <sec sec-type="materials|methods">
+      <title>Materials and methods</title>
+      <sec>
+        <title>Dynamic causal modelling</title>
+        <p>Most approaches to connectivity in the MEG/EEG literature use functional connectivity measures, such as phase-synchronisation, temporal correlations or coherence, to establish statistical dependencies between activities in two sources. Although functional connectivity can be used to establish a statistical dependency it does not provide information about the causal architecture of the interactions. DCM uses the concept of effective connectivity, as opposed to functional connectivity. Effective connectivity refers explicitly to the influence one neuronal system exerts over another. This influence is parameterised in a causal model, which can then be estimated using model inversion. In DCM, the brain is regarded as a deterministic nonlinear dynamic system that is subject to inputs and produces outputs (<xref rid="bib10" ref-type="bibr">Friston et al., 2003</xref>). Effective connectivity is estimated by perturbing the system and measuring the response using Bayesian model inversion. DCM provides an account of the interactions among cortical regions and allows one to make inferences about system parameters and investigate how these parameters are influenced by experimental factors. Furthermore, by taking the marginal likelihood over the conditional density of the model parameters, one can estimate the probability of the data, given a particular model. This is known as the marginal likelihood or evidence and can be used to compare different models.</p>
+        <sec>
+          <title>Hierarchical MEG/EEG neural mass models</title>
+          <p>DCMs for MEG/EEG use neural mass models (<xref rid="bib1" ref-type="bibr">David and Friston, 2003</xref>) to explain source activity in terms of the ensemble dynamics of the interacting inhibitory and excitatory subpopulations of neurons, based on the model of <xref rid="bib14" ref-type="bibr">Jansen and Rit (1995)</xref>. This model emulates the activity of a source using three neural subpopulations, each assigned to one of three cortical layers; an excitatory subpopulation in the granular layer, an inhibitory subpopulation in the supra-granular layer and a population of deep pyramidal cells in the infra-granular layer. The excitatory pyramidal cells receive excitatory and inhibitory input from local interneurons (via intrinsic connections, confined to the cortical sheet), and send excitatory outputs to remote cortical areas via extrinsic connections. <xref rid="bib2" ref-type="bibr">David et al. (2005)</xref> describe a hierarchical model using extrinsic connections among multiple sources that conform to the connectivity rules described in (<xref rid="bib6" ref-type="bibr">Felleman and Van Essen, 1991</xref>). These rules allow one to build a network of coupled sources linked by extrinsic connections. Within this model, bottom-up or forward connections originate in the infra-granular layers and terminate in the granular layer; top-down or backward connections link agranular layers and lateral connections originate in infra-granular layers and target all layers. All these extrinsic cortico-cortical connections are excitatory and are mediated through the axons of pyramidal cells. Exogenous inputs to the model have the same characteristics as forward connections and deliver exogenous (i.e., sensory) input, <italic>u</italic>, to the granular layer.</p>
+          <p>The DCM is specified in terms of some state equations that summarise the average synaptic dynamics in terms of spike-rate-dependent current and voltage changes, for each subpopulation<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>x</mml:mi><mml:mo>·</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:mi>f</mml:mi><mml:mo>(</mml:mo><mml:mi>x</mml:mi><mml:mo>,</mml:mo><mml:mi>u</mml:mi><mml:mo>,</mml:mo><mml:mi>θ</mml:mi><mml:mo>)</mml:mo></mml:math></disp-formula></p>
+          <p>This means that the evolution of the neuronal state <italic>x</italic> is a function (parameterised by <italic>θ</italic>) of the state and the input. An output equation couples specific states (the average depolarisation of pyramidal cells in each source), <italic>x</italic><sub>0</sub>, to the MEG/EEG signals, <italic>y</italic>, using a conventional linear electromagnetic forward model.<disp-formula id="fd2"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mi>y</mml:mi><mml:mo>=</mml:mo><mml:mi>L</mml:mi><mml:mo>(</mml:mo><mml:mi>θ</mml:mi><mml:mo>)</mml:mo><mml:msub><mml:mi>x</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo>+</mml:mo><mml:mi>ε</mml:mi></mml:math></disp-formula></p>
+          <p>Eq. <xref rid="fd1" ref-type="disp-formula">(1)</xref> summarises the state equations specifying the rate of change of the potentials as a function of the current and how currents change as a function of the currents and the potentials (see <xref rid="bib2 bib3 bib1" ref-type="bibr">David et al., 2005, 2006; David and Friston, 2003</xref> for details). The state equations embody the connection rules described above, where <italic>θ</italic> includes the parameters for forward, backward and lateral connections and their modulation. These are the parameters we want to estimate. Eq. <xref rid="fd2" ref-type="disp-formula">(2)</xref> links the neuronal states to observed channel data. In this application, the lead field <italic>L</italic>(<italic>θ</italic>) was parameterised in terms of the location and orientation of each source as described in <xref rid="bib15" ref-type="bibr">Kiebel et al. (2006)</xref>.</p>
+        </sec>
+        <sec>
+          <title>Bayesian model comparison</title>
+          <p>Inversion of a specific DCM, <italic>m</italic>, corresponds to approximating the posterior probability on the parameters, which is proportional to the probability of the data (the likelihood) conditioned upon the model and its parameters, times the prior probability on the parameters<disp-formula><label>(3)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mi>p</mml:mi><mml:mo>(</mml:mo><mml:mi>θ</mml:mi><mml:mo>|</mml:mo><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi><mml:mo>)</mml:mo><mml:mo>∝</mml:mo><mml:mi>p</mml:mi><mml:mo>(</mml:mo><mml:mi>y</mml:mi><mml:mo>|</mml:mo><mml:mi>θ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi><mml:mo>)</mml:mo><mml:mi>p</mml:mi><mml:mo>(</mml:mo><mml:mi>θ</mml:mi><mml:mo>|</mml:mo><mml:mi>m</mml:mi><mml:mo>)</mml:mo></mml:math></disp-formula></p>
+          <p>This approximation uses variational Bayes that is formally identical to Expectation–Maximisation (EM), as described in <xref rid="bib8" ref-type="bibr">Friston (2002)</xref>. The EM can be formulated in analogy to statistical mechanics as a gradient descent on the free energy, <italic>F</italic>, of a system. The aim is to minimise the free energy with respect to a variational density <italic>q</italic>(<italic>θ</italic>). When the free energy is minimised <italic>q</italic>(<italic>θ</italic>) = <italic>p</italic>(<italic>θ</italic>|<italic>y</italic>,<italic>m</italic>), the free energy <italic>F</italic> = − ln <italic>p</italic>(<italic>y</italic>|<italic>m</italic>) is the negative marginal log-likelihood or negative log-evidence. After convergence and minimisation of the free energy, the variational density is used as an approximation to the desired conditional density and the log-evidence is used for model comparison.</p>
+          <p>One often wants to compare different models and select the best before making statistical inferences on the basis of the conditional density. The best model, given the data, is the one with highest log-evidence ln <italic>p</italic>(<italic>y</italic>|<italic>m</italic>) (assuming a uniform prior over models). Given two models <italic>m</italic><sub>1</sub> and <italic>m</italic><sub>2</sub> one can compare them by computing their Bayes factor (<xref rid="bib21" ref-type="bibr">Penny et al., 2004</xref>) or, equivalently, the difference in their log-evidences ln <italic>p</italic>(<italic>y</italic>|<italic>m</italic><sub>1</sub>) − ln <italic>p</italic>(<italic>y</italic>|<italic>m</italic><sub>2</sub>). If this difference is greater than about three (i.e., their relative likelihood is more then 20:1) then one asserts there is strong evidence in favour of the first model.</p>
+          <p>The formalism described above is suitable for comparing different models of a given data set, for instance data acquired from a single subject. However, one may wish to select the model that best explains multiple data sets, i.e., the best model at the group level. Assuming each data set is independent of the others (i.e., all subjects are independent of each other), we can simply multiply the marginal likelihoods, or, equivalently, add the log-evidences from each subject<disp-formula id="fd3"><label>(4)</label><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mi>ln</mml:mi><mml:mi>p</mml:mi><mml:mo>(</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mi>…</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>)</mml:mo><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:mi>ln</mml:mi><mml:mi>p</mml:mi><mml:mo>(</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>|</mml:mo><mml:msub><mml:mi>m</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:math></disp-formula>to obtain the log-evidence for the <italic>i</italic>th model across all <italic>n</italic> subjects.</p>
+        </sec>
+        <sec>
+          <title>Parameter estimation at the group level</title>
+          <p>Bayes’ theorem updates our belief about a parameter in the light of new evidence from the data. Bayesian inference can be particularly useful at the second (between-subject) level of statistical analysis (<xref rid="bib19" ref-type="bibr">Neumann and Lohmann, 2003</xref>). In particular, it is easy to combine the conditional densities from several subjects to obtain a single conditional density for the group. The conditional probability of the parameters given data from all subjects is<disp-formula><label>(5)</label><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mi>p</mml:mi><mml:mo>(</mml:mo><mml:mi>θ</mml:mi><mml:mo>|</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mi>…</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>)</mml:mo><mml:mo>∝</mml:mo><mml:mi>p</mml:mi><mml:mo>(</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>,</mml:mo><mml:mi>…</mml:mi><mml:mo>,</mml:mo><mml:msub><mml:mi>y</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>|</mml:mo><mml:mi>θ</mml:mi><mml:mo>)</mml:mo><mml:mi>p</mml:mi><mml:mo>(</mml:mo><mml:mi>θ</mml:mi><mml:mo>)</mml:mo></mml:math></disp-formula></p>
+          <p>If the conditional densities for each subject <italic>p</italic>(<italic>θ</italic><sub><italic>j</italic></sub>|<italic>y</italic><sub><italic>j</italic></sub>) = <italic>N</italic>(<italic>μ</italic><sub><italic>j</italic></sub>,<italic>Σ</italic><sub><italic>j</italic></sub>) have a Gaussian form, the mean <italic>μ</italic> and the precision <italic>Λ</italic> = <italic>Σ</italic><sup>− 1</sup> of the conditional density of the parameters at the group level can be calculated from the individual mean <italic>μ</italic><sub><italic>j</italic></sub> and precision matrices <italic>Λ</italic><sub><italic>j</italic></sub> = <italic>Σ</italic><sub><italic>j</italic></sub><sup>− 1</sup>.<disp-formula id="fd4"><label>(6)</label><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mi>μ</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mi>Λ</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:msub><mml:mi>Λ</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:msub><mml:mi>μ</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:math></disp-formula><disp-formula><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:mi>Λ</mml:mi><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:msub><mml:mi>Λ</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:math></disp-formula></p>
+          <p>This provides a useful way to summarise the results of several DCMs from different subjects.</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Experimental design</title>
+        <sec>
+          <title>Subjects</title>
+          <p>We studied a group of 13 healthy volunteers aged 24–35 (5 female). Each subject gave signed informed consent before the study, which proceeded under local ethical committee guidelines.</p>
+        </sec>
+        <sec>
+          <title>Task</title>
+          <p>Subjects sat on a comfortable chair in front of a desk in a dimly illuminated room. Electroencephalographic activity was measured during an auditory ‘oddball’ paradigm, in which subjects heard of “standard” (1000 Hz) and “deviant” tones (2000 Hz), occurring 80% (480 trials) and 20% (120 trials) of the time, respectively, in a pseudo-random sequence. The stimuli were presented binaurally via headphones for 15 min every 2 s. The duration of each tone was 70 ms with 5 ms rise and fall times. The subjects were instructed not to move, to keep their eyes closed and to count the deviant tones.</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Data acquisition and processing</title>
+        <p>EEG was recorded with a <italic>Biosemi</italic> system with 128 scalp electrodes. Data were recorded at a sampling rate of 512 Hz. Vertical and horizontal eye movements were monitored using EOG (electro-oculograms) electrodes. The data were epoched offline, with a peri-stimulus window of − 100 to 400 ms, down-sampled to 200 Hz, band-pass filtered between 0.5 and 40 Hz and re-referenced to the average of the right and left ear lobes. Trials in which the absolute amplitude of the signal exceeded 100 μV were excluded. Two subjects were eliminated from further analysis due to excessive trials containing artefacts. In the remaining subjects, an average 18% of trials were excluded. For computational expediency the dimensionality of the data was reduced to three channel mixtures or spatial modes. These were the principal modes of a singular value decomposition of the channel data between 0 and 250 ms, from both trial types. The use of three principal eigenvariates preserved more than 73% of the variance in all subjects.</p>
+      </sec>
+      <sec>
+        <title>DCM specification</title>
+        <p>In this section we specify three plausible models defined by a given architecture and dynamics, which we use here to test the validity of DCM.</p>
+        <p>The network architecture was motivated by recent electrophysiological and neuroimaging studies looking at the sources underlying the MMN (<xref rid="bib20 bib5" ref-type="bibr">Opitz et al., 2002; Doeller et al., 2003</xref>). We assumed five sources, modelled as equivalent current dipoles (ECDs), over left and right primary auditory cortices (A1), left and right superior temporal gyrus (STG) and right inferior frontal gyrus (IFG). Our mechanistic model attempts to explain the generation of each individual response (i.e., responses to standards and responses to deviants). Therefore, left and right A1 were chosen as cortical input stations for processing the auditory information. <xref rid="bib20" ref-type="bibr">Opitz et al. (2002)</xref> identified sources for the differential response, with fMRI and EEG measures, in both left and right STG, and right IFG. Here we employ the coordinates reported by <xref rid="bib20" ref-type="bibr">Opitz et al. (2002)</xref> (for left and right STG and right IFG) and <xref rid="bib22" ref-type="bibr">Rademacher et al. (2001)</xref> (for left and right A1) as prior source location means, with a prior variance of 32 mm. We converted these coordinates, given in the literature in Talairach space, to MNI space using the algorithm described in <ext-link xlink:href="http://imaging.mrc-cbu.cam.ac.uk/imaging/MniTalairach" ext-link-type="uri">http://imaging.mrc-cbu.cam.ac.uk/imaging/MniTalairach</ext-link>. The moment parameters had prior mean of 0 and a variance of 8 in each direction. We have used these parameters as priors to estimate, for each individual subject, the posterior locations and moments of the ECDs (<xref rid="tbl1" ref-type="table">Table 1</xref>).</p>
+        <p>Using these sources and prior knowledge about the functional anatomy we constructed the following DCM: An extrinsic input entered bilaterally to primary auditory cortex (A1), which were connected to their ipsilateral STG. Right STG was connected with the right IFG. Inter-hemispheric (lateral) connections were placed between left and right STG. All connections were reciprocal (i.e., connected with forward and backward connections or with bilateral connections).</p>
+        <p>Given this connectivity graph, specified in terms of its nodes and connections, we tested three models. These models differed in the connections which could show putative learning-related changes, i.e., differences between listening to standard or deviant tones. Models F, B and FB allowed changes in forward, backward and both forward and backward connections, respectively (<xref rid="fig1" ref-type="fig">Fig. 1</xref>). All three models were compared against a baseline or null model. The null model had the same architecture described above but precluded any coupling changes between standard and deviant trials.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results</title>
+      <sec>
+        <title>Event-related potentials</title>
+        <p>The difference between the ERPs evoked by the standard and deviant tones revealed a standard MMN (<xref rid="fig2" ref-type="fig">Fig. 2</xref>). This negativity was present from 90–190 ms (<xref rid="fig2" ref-type="fig">Figs. 2</xref>a–c) and had a broad spatial pattern, encompassing electrodes previously associated with auditory and frontal areas (<xref rid="fig2" ref-type="fig">Fig. 2</xref>d).</p>
+      </sec>
+      <sec>
+        <title>Model selection</title>
+        <p>Four different DCMs, forward only (F-model), backward only (B-model), forward and backward (FB-model) and the null were inverted for each subject. <xref rid="fig3" ref-type="fig">Fig. 3</xref> illustrates the model comparison based on the increase in log-evidence over the null model, for all subjects. <xref rid="fig3" ref-type="fig">Fig. 3</xref>a shows the log-evidence for the three models, relative to the null model, for each subject, revealing that the three models were significantly better than the null in all subjects. The diamond attributed to each subject identifies the best model on the basis of the highest log-evidence. The FB-model was significantly better in 7 out of 11 subjects. The F-model was better in four subjects but only significantly so in three (for one of these subjects [subject 6], model comparison revealed only weak evidence in favour of the F-model over the FB-model, though still very strong evidence over the B-model. In all but one subject, the F and FB-models were better than the B-model. <xref rid="fig3" ref-type="fig">Fig. 3</xref>b shows the log-evidences for the three models at the group level (i.e., using. Eq. <xref rid="fd3" ref-type="disp-formula">(4)</xref>). Both F and FB are clearly more likely than B and, over subjects, there is very strong evidence in favour of model FB over model F.</p>
+        <p><xref rid="fig4" ref-type="fig">Fig. 4</xref>a shows, for the best model FB, the predicted responses at each node of the network for each trial type (i.e., standard or deviant) for a single subject (subject 9). The coupling gains and the conditional probability of the gains being greater or smaller than one are shown for each connection in the network. The values on each connection represent a scaling effect, for example, a coupling change of 2.04 from lA1 to lSTG in model means that the effective connectivity increased 104% for rare events relative to frequent events. The response, in measurement space, of the three principal spatial modes is shown on the right (<xref rid="fig4" ref-type="fig">Fig. 4</xref>b). This figure shows a remarkable agreement between predicted (solid) and observed (dotted) responses.</p>
+        <p><xref rid="fig5" ref-type="fig">Fig. 5</xref> summarises the conditional densities of the coupling parameters for the F-model (<xref rid="fig5" ref-type="fig">Fig. 5</xref>a) and FB-model (<xref rid="fig5" ref-type="fig">Fig. 5</xref>b). The coupling gains and the conditional probability of the gains being greater or smaller than one, pooled over subjects, are shown for each connection in the network (i.e., using Eq. <xref rid="fd4" ref-type="disp-formula">(6)</xref>). For the F-model the effective connectivity has increased in all connections with a conditional probability of 100%. For the FB-model the effective connectivity has changed in all forward and backward connections with a probability of 100%. Equivalently, and in accord with theoretical predictions, all extrinsic connections (i.e., influences) were modulated for rare events as compared to frequent events.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>This study evaluated the predictive validity of DCM by looking at its reproducibility over subjects in the context of the MMN. To this end we used DCM to explain differences in ERPs in terms of changes in effective connectivity. For each subject we used three models of connectivity, within the same underlying cortical architecture but differing in modulations of specific types of connections. There was a very reproducible pattern of results across subjects. Model comparison revealed that conjoint changes in forward and backward connections (FB-model), relative to changes in forward (F-model) or backward connections alone (B-model) are consistently better across subjects. In every subject, these models were better than a null model that precluded any coupling changes. The evidences for models F and FB were, overall, much bigger than the model evidence for B. A similar consistency was observed quantitatively, in terms of the conditional densities of each connection; as predicted, the coupling estimates change between the two event types, i.e., standards and deviants.</p>
+      <p>In all but one subject the F-model was better than the B-model. This is an important result because both of these models had the same number of parameters. This means that any difference in the model evidences can only be explained by their ability to predict the observed response. The probability that 10 out of 11 comparisons would select the same model, by chance is exceedingly small. This suggests the DCM is sensitive to a systematic difference in ERPs to oddballs and standards and that difference, formally, lies in the network architectures used to model the observed responses. Furthermore, the FB-model was significantly better than both, in 7 out of 11 subjects. This is another important result because it shows that a more complex model (that can fit the data more accurately) is not necessarily the most likely model.</p>
+      <sec>
+        <title>Choice of paradigm</title>
+        <p>We have deliberately chosen a paradigm that evokes two responses exhibiting a large difference over peri-stimulus time. Note that this is not a classical oddball paradigm, as employed in the MMN literature. The large pitch difference between responses to standards and deviants elicits large differences for both N1 and MMN components, which cannot be disentangled. In this sense, this paradigm is not necessarily appropriate for modelling the MMN alone, but suitable for assessing the reproducibility of DCM: DCM is a model of dynamic responses or transients that are continuous in time. This means that the DCM is not an explanation for a particular response component (e.g., the MMN) but the compound response over all peristimulus times; it is likely that our paradigm induced N1 effects (due to the large different in standard and oddball tones) and, at least phenomenologically, a P300-like component (although the analysis presented here only went up to 250 ms). However, all these components could be explained by differences in a simple network model of interacting neuronal populations. It will be interesting to assess the ontological status of response components (e.g., N1, MMN, and P300) in the light of mechanistic models like DCM (see below).</p>
+      </sec>
+      <sec>
+        <title>Choice of model</title>
+        <p>DCM is not an exploratory technique; it does not explore all possible models: DCM tests specific models of connectivity and, through model selection, can provide evidence in favour of one model relative to others. The results of a DCM analysis depend explicitly upon the models evaluated, which are generally motivated by mechanistic hypotheses. This means there may exist other equally or more plausible models with different architectures (in respect of the areas and connections involved). The network we chose for our DCMs was motivated by the results of previous MMN (<xref rid="bib20 bib5" ref-type="bibr">Opitz et al., 2002; Doeller et al., 2003</xref>). It has been shown that the generators of the MMN lie bilaterally on the temporal cortex. In addition, some studies have shown bilateral generators on the frontal cortex, which are activated later than the auditory cortex generators (<xref rid="bib24" ref-type="bibr">Rinne et al., 2000</xref>). Recent studies showed a double peak over frontal scalp locations suggesting the existence of two sub-components for the MMN (<xref rid="bib20" ref-type="bibr">Opitz et al., 2002</xref> and <xref rid="bib5" ref-type="bibr">Doeller et al., 2003</xref>). The early component is reported to peak around 90–120 ms and can be modelled with sources located bilaterally in the superior temporal gyrus (STG). Components within peaking around 140–170 ms have been shown to be modelled effectively with dipoles in both left and right inferior frontal gyrus (IFG) that are usually stronger in the right hemisphere. Moreover, the right IFG is reported more consistently as in the literature than the homologous source on the left. This is why we used a unilateral right IFG. The inclusion of both left and right primary auditory cortices was necessary because DCM attempts to explain each ERP individually and any differences (in this case, responses to standards and deviants and the implicit mismatch). Therefore, left and right A1 were chosen as the cortical targets of thalamic input, for processing the auditory information.</p>
+        <p>Indeed there may be other plausible models. <italic>So, why not include more sources in the model, for example left IFG?</italic> This is an important question that has a principled answer. Each model is defined by its number of sources and their connectivity. Given a particular model, DCM will optimise the parameters of that model. To explore the space of models, one uses the marginal likelihood or log-evidence to compare one model with another. This enables one to adjudicate between different models with different number of sources. This is potentially an important application of DCM in the context of model selection. In this paper, we focussed on reproducibility of different connectivity architectures. In our next paper, we will present an exploration of model space.</p>
+      </sec>
+      <sec>
+        <title>Mechanisms of ERP generation</title>
+        <p>The mechanism of MMN generation is unknown. Two sorts of hypotheses have been suggested. Traditionally, this response is thought to be associated with an automatic cortical change-detection process, which detects a difference between the current and the preceding input. It has been proposed that the MMN would reflect modifications to existing parts of a model of the acoustic environment. This model adjustment hypothesis discusses the existence of a dynamic system of change detection which updates its model of sensory input as the changes occur (<xref rid="bib26 bib25" ref-type="bibr">Winkler et al., 1996; Sussman and Winkler, 2001</xref>). <xref rid="bib5" ref-type="bibr">Doeller et al. (2003)</xref> suggested that the prefrontal cortex is involved in a top-down modulation of the deviance detection system in the temporal cortices. The traditional interpretation has been criticised by <xref rid="bib13" ref-type="bibr">Jääskeläinen et al. (2004)</xref> who proposed that the MMN results from an <italic>adaptation</italic> mechanism (see also <xref rid="bib17" ref-type="bibr">May et al., 1999</xref>) and is erroneously interpreted as a separate component generated by change-specific neurons. The N1 response to standard (or ‘non-novel’) sounds is thought to be delayed and suppressed (or <italic>attenuated</italic>) as a function of its similarity to the preceding auditory events, reflecting short-lived adaptation of auditory cortex neurons. Under this hypothesis, the response termed as MMN, would therefore be a product of an N1 differential wave emerging in the subtraction of the standards from the deviant’s ERP. Recently, the MMN has been framed within a predictive coding scheme, interpreted as a failure to suppress prediction error, which can be explained quantitatively in terms of coupling changes among cortical regions (<xref rid="bib11" ref-type="bibr">Friston, 2005</xref>). This predicts the adjustment of a generative model of current stimulus trains (<italic>cf</italic>., the model adjustment hypothesis) using plastic changes in synaptic connections (<italic>cf</italic>. the adaptation hypothesis).</p>
+      </sec>
+      <sec>
+        <title>Frequently asked questions</title>
+        <p>In presenting this work to our colleagues and for peer review a number of key questions arose. In what follows, we summarise these questions and attempt to answer them briefly.</p>
+        <p><italic>What is the relationship between “inverting” a DCM and inverting a classical electromagnetic forward model to locate intra-cranial source locations?</italic> Model inversion is used in exactly the same way in both contexts. In fact, inverting a DCM subsumes the inversion of a conventional forward model. This is because DCM has two components; a neural-mass model of the interactions among a small number of dipole sources and a classical electromagnetic forward model that links these sources to extra-cranial measurements. Inverting the DCM implicitly optimises the location and orientation of the sources. Indeed, if we removed the neuronal part of the model, DCM would reduce to a conventional forward model. The current implementation of DCM for ERPs uses the electromagnetic forward model solutions encoded in the fieldtrip software (<ext-link xlink:href="http://www2.ru.nl/fcdonders/fieldtrip" ext-link-type="uri">http://www2.ru.nl/fcdonders/fieldtrip</ext-link>).</p>
+        <p>In this paper we used informative priors on source locations. <italic>How important are prior source locations in DCM?</italic> Not very important; in other words, changing the location priors would not change the results very much. This is because there is very little information in the EEG or MEG measurements about the spatial location of sources. In contrast, there is an enormous amount of information about their orientation. A usual heuristic is to imagine that one is trying to infer the location and orientation of a pen-torch that is illuminating the inside of a balloon. When looking at the balloon from outside, a small change in the position of the torch will have only a small effect on the pattern of illumination. Conversely, changing its orientation will have a large impact. In brief, location is not an important quantity, whereas orientation is. For this reason, we put relatively informative priors on location but leave the orientation parameters free. It is relatively straightforward to assess the impact of different location priors using model selection.</p>
+        <p>Here we used three eigenmodes to invert the DCM. <italic>Does DCM deal only with three channel data?</italic> No, DCM will fit any number of channels or modes. For computational reasons, the channel data are projected onto their principal eigenmodes to reduce the size of the matrices the inversion scheme has to handle. Generally, one would use the same number of modes as there are sources. This is because data generated by an <italic>n</italic>-source model can only span an <italic>n</italic>-dimensional subspace of sensor space. Provided the signal is large, relative to noise, the first <italic>n</italic> principal eigenvariates should capture the majority of signal.</p>
+        <p><italic>What does DCM actually operate on, the channel data or some estimate of source dynamics?</italic> DCM operates on the channel data in the same way as sources are reconstructed in a conventional setting. In both cases, one needs to specify the number of sources and how their activity is expressed in sensor space. The only difference is that, with DCM, one also has to specify the connections among the sources and which sources receive sensorimotor input.</p>
+        <p><italic>How is the significance of the difference between models evaluated at the between-subject level?</italic> For a single subject, a difference in log-evidence of about three is considered strong evidence in favour of the more likely model. This is because a difference of three means the evidence for the more likely model is about 20 times the evidence for the other. This can be compared to the use of <italic>p</italic> = 0.05 = 1/20 in classical inference. When pooling log-evidences from several subjects, one adds the evidences and, implicitly the differences. This is because adding logs is the same as multiplying probabilities and the probability of getting two independent sets of data is simply the product of the probabilities of getting each alone. It can be seen that one will quickly reach a threshold of three if, and only if, the difference in log-evidences is consistent over subjects.</p>
+        <p><italic>How does one reconcile different results from different DCMs?</italic> In this paper, we have looked at the reproducibility of DCMs in terms of consistency over subjects in model space. Although not the focus of this paper, it is also interesting to address the consistency of the model parameters. Inference on the parameters of a particular DCM is conditional upon the specific model and data used. Clearly, one could get very different conclusions by changing the model, as we find here for F and FB models (see <xref rid="fig5" ref-type="fig">Fig. 5</xref>). One may be very confident about contradictory results from two different models. This contradiction is resolved by considering the relative likelihoods of the two models. Generally, one only considers inference on the parameters of the best model. It is possible to use Bayesian model averaging; however, this is most useful when the models have roughly the same probability. If the results change under the <italic>same</italic> model with <italic>different</italic> datasets, then this speaks to inter-subject variability that may be real. Clearly, it would be re-assuring to see that the parameters estimates from each model were also consistent over subjects. This can be addressed with a second, between-subject analysis of the parameter estimates. To illustrate the consistency of DCM inversion in terms of model parameters, we used a classical multivariate statistical analysis (MANOVA) of subject-specific parameter estimates, from the best model (FB). In this analysis, we summarised the interesting DCM parameters using: the average coupling changes for the forward connections and the average changes for backward connections. Using just two dependent summary variables ensured we had sufficient (i.e., nine) degrees of freedom to infer the group averages where significantly different from zero. The resulting <italic>F</italic>-value (based on Wilk's lambda; <italic>df</italic> 2,9) was 4.725 corresponding to a <italic>p</italic>-value of 0.04. This implies a systematic and consistent pattern of changes over forward and backward connections, over subjects. The average change in forward connections was 80% and the average change in backward connections was 57%. This is in conformity with the average change in forward and backward connections for the DCM analysis of grand mean data, which was 42% and 52% respectively. A more informed way of addressing this issue would involve a hierarchical Bayesian model that includes random effects from each subject. Thus will be focus of future work.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Conclusion</title>
+      <p>In this paper, we have looked at possible mechanisms underlying the generation of the MMN at the level of coupling among sources, and the extent to which the ensuing inferences generalise over subjects. Our specific model comparison addressed hierarchical implementations of predictive coding, in terms of extrinsic forward and backward connections. Testing the adaptation hypothesis would require modulations of intrinsic connections (i.e., among neural subpopulations within cortical units). In a subsequent paper we will look at the relative roles of extrinsic and intrinsic connectivity changes (<xref rid="bib16" ref-type="bibr">Kiebel et al., 2007</xref>).</p>
+      <p>In summary, this study suggests that the emergence of the MMN can be explained by repetition-dependent change in forward and backward connections. This was found consistently across the group of subjects studied. Changes in forward connections might be associated with the construction of higher-level representations of sensory data. This is consistent with our conjecture that the MMN reflects perceptual learning of standards, using predictive coding. Prediction error, defined as the difference between the input observed and that predicted by a generative model and inferred causes, is minimised in predictive coding schemes. Under this framework, forward connections provide feedback by conveying prediction error to higher levels and backward connections provide contextual guidance to lower levels. Hence, the MMN could represent a failure to predict bottom-up input and consequently a failure to suppress prediction error. This might be expressed as apparent increases in bottom-up influences when stimuli are unpredicted or deviant. Here we have shown that DCM for ERPs/ERFs behaves consistently across subjects and presented the first attempt to invert a mechanistic model for the MMN using empirical data.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>The Wellcome Trust funded this work. MIG holds a FCT doctoral scholarship, Ministry of Science, Portugal. We thank David Bradbury for technical support and the volunteers for participating in this study.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A neural mass model for MEG/EEG: coupling and neuronal dynamics</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <fpage>1743</fpage>
+          <lpage>1755</lpage>
+          <pub-id pub-id-type="pmid">14642484</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modelling event-related responses in the brain</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>756</fpage>
+          <lpage>770</lpage>
+          <pub-id pub-id-type="pmid">15808977</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of evoked responses in EEG and MEG</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <fpage>1255</fpage>
+          <lpage>1272</lpage>
+          <pub-id pub-id-type="pmid">16473023</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Desimone</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neural mechanisms for visual memory and their role in attention</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>1996</year>
+          <volume>93</volume>
+          <fpage>13494</fpage>
+          <lpage>13499</lpage>
+          <pub-id pub-id-type="pmid">8942962</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Doeller</surname>
+              <given-names>C.F.</given-names>
+            </name>
+            <name>
+              <surname>Opitz</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Mecklinger</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Krick</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Reith</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Schröger</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Prefrontal cortex involvement in preattentive auditory deviance detection: neuroimaging and electrophysiological evidence</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <fpage>1270</fpage>
+          <lpage>1282</lpage>
+          <pub-id pub-id-type="pmid">14568496</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Felleman</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Van Essen</surname>
+              <given-names>D.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distributed hierarchical processing in the primate cerebral cortex</article-title>
+          <source>Cereb. Cortex</source>
+          <year>1991</year>
+          <volume>1</volume>
+          <fpage>1</fpage>
+          <lpage>47</lpage>
+          <pub-id pub-id-type="pmid">1822724</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian estimation of dynamical systems: an application to fMRI</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>16</volume>
+          <fpage>513</fpage>
+          <lpage>530</lpage>
+          <pub-id pub-id-type="pmid">12030834</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Learning and inference in the brain</article-title>
+          <source>Neural Netw.</source>
+          <year>2003</year>
+          <volume>16</volume>
+          <fpage>1325</fpage>
+          <lpage>1352</lpage>
+          <pub-id pub-id-type="pmid">14622888</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>A theory of cortical responses</article-title>
+          <source>Philos. Trans. R. Soc. Lond., B. Biol. Sci.</source>
+          <year>2005</year>
+          <volume>360</volume>
+          <fpage>815</fpage>
+          <lpage>836</lpage>
+          <pub-id pub-id-type="pmid">15937014</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Passingham</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Liddle</surname>
+              <given-names>P.F.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Motor practice and neurophysiological adaptation in the cerebellum: a positron tomography study</article-title>
+          <source>Proc. Biol. Sci.</source>
+          <year>1992</year>
+          <volume>248</volume>
+          <fpage>223</fpage>
+          <lpage>228</lpage>
+          <pub-id pub-id-type="pmid">1354360</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>19</volume>
+          <fpage>1273</fpage>
+          <lpage>1302</lpage>
+          <pub-id pub-id-type="pmid">12948688</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.N.</given-names>
+            </name>
+            <name>
+              <surname>Goshen-Gottstein</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Ganel</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Otten</surname>
+              <given-names>L.J.</given-names>
+            </name>
+            <name>
+              <surname>Quayle</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Rugg</surname>
+              <given-names>M.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electrophysiological and haemodynamic correlates of face perception, recognition and priming</article-title>
+          <source>Cereb. Cortex</source>
+          <year>2003</year>
+          <volume>13</volume>
+          <fpage>793</fpage>
+          <lpage>805</lpage>
+          <pub-id pub-id-type="pmid">12816895</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jääskeläinen</surname>
+              <given-names>I.P.</given-names>
+            </name>
+            <name>
+              <surname>Ahveninen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Bonmassar</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Ilmoniemi</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Levänen</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>F.H.</given-names>
+            </name>
+            <name>
+              <surname>May</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Melcher</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Stufflebeam</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Tiitinen</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Belliveau</surname>
+              <given-names>J.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Human posterior auditory cortex gates novel sounds to consciousness</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>2004</year>
+          <volume>101</volume>
+          <fpage>6809</fpage>
+          <lpage>6814</lpage>
+          <pub-id pub-id-type="pmid">15096618</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jansen</surname>
+              <given-names>B.H.</given-names>
+            </name>
+            <name>
+              <surname>Rit</surname>
+              <given-names>V.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electroencephalogram and visual evoked potential generation in a mathematical model of coupled cortical columns</article-title>
+          <source>Biol. Cybern.</source>
+          <year>1995</year>
+          <volume>73</volume>
+          <fpage>357</fpage>
+          <lpage>366</lpage>
+          <pub-id pub-id-type="pmid">7578475</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>David</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of evoked responses in EEG/MEG with lead field parameterization</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>30</volume>
+          <fpage>1273</fpage>
+          <lpage>1284</lpage>
+          <pub-id pub-id-type="pmid">16490364</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Garrido</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal modelling of evoked responses: The role of intrinsic connections</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>36</volume>
+          <fpage>571</fpage>
+          <lpage>580</lpage>
+          <comment>
+            <ext-link xlink:href="doi:10.1016/j.neuroimage.2007.02.046" ext-link-type="uri">doi:10.1016/j.neuroimage.2007.02.046</ext-link>
+          </comment>
+          <pub-id pub-id-type="pmid">17478106</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>May</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Tiitinen</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Ilmoniemi</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Nyman</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>J.G.</given-names>
+            </name>
+            <name>
+              <surname>Näätänen</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Frequency change detection in human auditory cortex</article-title>
+          <source>J. Comput. Neurosci.</source>
+          <year>1999</year>
+          <volume>6</volume>
+          <fpage>99</fpage>
+          <lpage>120</lpage>
+          <pub-id pub-id-type="pmid">10333158</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Näätänen</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Tervaniemi</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Sussman</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Paavilainen</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Winkler</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>“Primitive intelligence” in the auditory cortex</article-title>
+          <source>Trends Neurosci.</source>
+          <year>2001</year>
+          <volume>24</volume>
+          <fpage>283</fpage>
+          <lpage>288</lpage>
+          <pub-id pub-id-type="pmid">11311381</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Neumann</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lohmann</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian second-level analysis of functional magnetic resonance images</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <fpage>1346</fpage>
+          <lpage>1355</lpage>
+          <pub-id pub-id-type="pmid">14568503</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Opitz</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Rinne</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Mecklinger</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>von Cramon</surname>
+              <given-names>D.Y.</given-names>
+            </name>
+            <name>
+              <surname>Schröger</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Differential contribution of frontal and temporal cortices to auditory change detection: fMRI and ERP results</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>15</volume>
+          <fpage>167</fpage>
+          <lpage>174</lpage>
+          <pub-id pub-id-type="pmid">11771985</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparing dynamic causal models</article-title>
+          <source>NeuroImage</source>
+          <year>2004</year>
+          <volume>22</volume>
+          <fpage>1157</fpage>
+          <lpage>1172</lpage>
+          <pub-id pub-id-type="pmid">15219588</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rademacher</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Morosan</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Schormann</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Schleicher</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Werner</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Freund</surname>
+              <given-names>H.-J.</given-names>
+            </name>
+            <name>
+              <surname>Zilles</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Probabilistic mapping and volume measurement of human primary auditory cortex</article-title>
+          <source>NeuroImage</source>
+          <year>2001</year>
+          <volume>13</volume>
+          <fpage>669</fpage>
+          <lpage>683</lpage>
+          <pub-id pub-id-type="pmid">11305896</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rao</surname>
+              <given-names>R.P.</given-names>
+            </name>
+            <name>
+              <surname>Ballard</surname>
+              <given-names>D.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Predictive coding in the visual cortex: a functional interpretation of some extra-classical receptive-field effects</article-title>
+          <source>Nat. Neurosci.</source>
+          <year>1999</year>
+          <volume>2</volume>
+          <fpage>79</fpage>
+          <lpage>87</lpage>
+          <pub-id pub-id-type="pmid">10195184</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rinne</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Alho</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Ilmoniemi</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Virtanen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Näätänen</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Separate time behaviors of the temporal and frontal mismatch negativity sources</article-title>
+          <source>NeuroImage</source>
+          <year>2000</year>
+          <volume>12</volume>
+          <fpage>14</fpage>
+          <lpage>19</lpage>
+          <pub-id pub-id-type="pmid">10875898</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sussman</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Winkler</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic sensory updating in the auditory system</article-title>
+          <source>Brain Res. Cogn. Brain Res.</source>
+          <year>2001</year>
+          <volume>12</volume>
+          <fpage>431</fpage>
+          <lpage>439</lpage>
+          <pub-id pub-id-type="pmid">11689303</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Winkler</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Karmos</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Näätänen</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Adaptive modelling of the unattended acoustic environment reflected in the mismatch negativity event-related potential</article-title>
+          <source>Brain Res.</source>
+          <year>1996</year>
+          <volume>742</volume>
+          <fpage>239</fpage>
+          <lpage>252</lpage>
+          <pub-id pub-id-type="pmid">9117400</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Model specification. The sources comprising the network are connected with forward (dark grey), backward (grey) or lateral (light grey) connections as shown. A1: primary auditory cortex, STG: superior temporal gyrus, IFG: inferior temporal gyrus. Three different models were tested within the same architecture (a–c), allowing for learning-related changes in forward F, backward B and forward and backward FB connections, respectively. The broken lines indicate the connections we allowed to change. Sources of activity, modelled as dipoles (estimated posterior moments and locations), are superimposed in an MRI of a standard brain in MNI space (d).</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Grand mean ERPs, i.e., averaged over all subjects. (a) ERP responses to the standard and deviant tones overlaid on a whole scalp map of 128 EEG electrodes. (b) ERP responses to the standard and deviant tones at channel C21 (fronto-central). (c) MMN, the difference wave obtained by subtracting grand-average ERP to standards from ERP to deviants, at channel C21. (d) grand mean MMN response averaged across subjects and over the time window of [100, 200] ms interpolated for a 3D scalp topography.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Bayesian model selection among DCMs for the three models, F, B and FB, expressed relative to a DCM in which no connections were allowed to change (null model). The graphs show the free energy approximation to the log-evidence. (a) Log-evidence for models F, B and FB for each subject (relative to the null model). The diamond attributed to each subject identifies the best model on the basis of the subject's highest log-evidence. (b) Log-evidence at the group level, i.e., pooled over subjects, for the three models.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>DCM results for a single subject [subject 9] (FB model). (a) Reconstructed responses for each source and changes in coupling adjacent to the connections during oddball processing relative to standards. The mismatch response is expressed in nearly every source. (b) Predicted (solid) and observed (broken) responses in measurement space, which result from a projection of the scalp data onto their first three spatial modes.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Coupling gains and their conditional probability estimated over subjects for each connection in the network for models F (a) and FB (b). There are widespread learning-related changes in all connections, expressed as modulations of coupling for deviants relative to standards.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <table-wrap position="float" id="tbl1">
+      <label>Table 1</label>
+      <caption>
+        <p>Prior coordinates for the locations of the equivalent current dipoles in MNI space (mm)</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <tbody>
+          <tr>
+            <td valign="top">Left primary auditory cortex (lA1)</td>
+            <td align="right" valign="top">− 42, − 22, 7</td>
+          </tr>
+          <tr>
+            <td valign="top">Right primary auditory cortex (rA1)</td>
+            <td align="right" valign="top">46, − 14, 8</td>
+          </tr>
+          <tr>
+            <td valign="top">Left superior temporal gyrus (lSTG)</td>
+            <td align="right" valign="top">− 61, − 32, 8</td>
+          </tr>
+          <tr>
+            <td valign="top">Right superior temporal gyrus (rSTG)</td>
+            <td align="right" valign="top">59, − 25, 8</td>
+          </tr>
+          <tr>
+            <td valign="top">Right inferior frontal gyrus (rIFG)</td>
+            <td align="right" valign="top">46, 20, 8</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-wrap>
+</article>

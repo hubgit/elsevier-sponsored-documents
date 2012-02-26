@@ -1,0 +1,2182 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="review-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Curr Opin Microbiol</journal-id>
+      <journal-title-group>
+        <journal-title>Current Opinion in Microbiology</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1369-5274</issn>
+      <issn pub-type="epub">1879-0364</issn>
+      <publisher>
+        <publisher-name>Current Biology</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3025319</article-id>
+      <article-id pub-id-type="pmid">20888288</article-id>
+      <article-id pub-id-type="publisher-id">COMICR815</article-id>
+      <article-id pub-id-type="doi">10.1016/j.mib.2010.09.009</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Studying bacterial transcriptomes using RNA-seq</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Croucher</surname>
+            <given-names>Nicholas J</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Thomson</surname>
+            <given-names>Nicholas R</given-names>
+          </name>
+          <email>nrt@sanger.ac.uk</email>
+        </contrib>
+      </contrib-group>
+      <aff>The Wellcome Trust Sanger Institute, Wellcome Trust Genome Campus, Hinxton, Cambridge, Cambridgeshire, CB10 1SA, UK</aff>
+      <pub-date pub-type="pmc-release">
+        <month>10</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>10</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>13</volume>
+      <issue>5</issue>
+      <fpage>619</fpage>
+      <lpage>624</lpage>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Ltd.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Genome-wide studies of bacterial gene expression are shifting from microarray technology to second generation sequencing platforms. RNA-seq has a number of advantages over hybridization-based techniques, such as annotation-independent detection of transcription, improved sensitivity and increased dynamic range. Early studies have uncovered a wealth of novel coding sequences and non-coding RNA, and are revealing a transcriptional landscape that increasingly mirrors that of eukaryotes. Already basic RNA-seq protocols have been improved and adapted to looking at particular aspects of RNA biology, often with an emphasis on non-coding RNAs, and further refinements to current techniques will improve our understanding of gene expression, and genome content, in the future.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec0005">
+      <title>Introduction</title>
+      <p>The advent of second generation sequencing technologies has created many opportunities to improve functional genomics experiments, including quantitative gene expression studies. Most previous transcriptional analysis methods have relied on hybridization of targeted oligonucleotides to particular loci for their sequence specificity: either primers binding to target cDNA in quantitative reverse transcription polymerase chain reaction (qRT-PCR), labeled probes binding to RNA in Northern blotting or hybridization of cDNA to probes on microarray chips. RNA-seq is different in principle in that data are matched to genes by sequence alignment instead.</p>
+      <p>This has intrinsic advantages: first, because no probe sequences are specified, all transcription is studied in an unbiased manner, and experimental design does not need to be altered in accordance with differences in genome sequence. This promises to be a particular advantage in the study of bacteria with large amounts of genetic variation between strains [<xref rid="bib0005" ref-type="bibr">1</xref>]. It also allows the discovery of novel genetic features, as well as permitting the delineation of operons and untranslated regions, allowing the improvement and extension of sequence annotation.</p>
+      <p>Second, mapping of sequence data is more precise than hybridization between oligonucleotides. This allows transcription to be studied at a much higher resolution by sequencing, thereby also permitting the study of more repetitive regions of the genome. Additionally, it means quantification of gene expression by RNA-seq does not suffer from the issues of interference between genes due to non-specific hybridization of cDNA to probes [<xref rid="bib0010 bib0015" ref-type="bibr">2,3</xref>].</p>
+      <p>Third, whereas hybridization-based methods measure gene expression levels through detection of fluorescence or radioactivity, RNA-seq uses the amount of data matching a given coding sequence (CDS), typically quantified as reads per kilobase CDS length per million reads analyzed (RPKM) [<xref rid="bib0020" ref-type="bibr">4</xref>]. This measure cannot be saturated in the way the detection of light or radioactivity can, hence RNA-seq has a much greater dynamic range for measuring variability in expression levels. Consequently, it can also be much more discriminatory both at high levels of gene expression and more sensitive at very low levels of expression, given sufficient sequencing depth.</p>
+    </sec>
+    <sec id="sec0010">
+      <title>Preparation of cDNA</title>
+      <p>RNA is typically extracted using organic solvents or commercially available kits; however, care should be taken to ensure the method does not bias the sampling of the transcriptome [<xref rid="bib0025" ref-type="bibr">5</xref>] and is capable of harvesting sufficient starting material needed to construct a sequencing library, as more RNA is typically needed than for microarray experiments. Furthermore, the exclusion of highly expressed transcripts, which risk saturating the dataset, is also more difficult than with microarray experiments, where probes can be omitted from the chip design as required. As ribosomal RNA comprises the vast majority of the extracted RNA population, depletion of these molecules through hybridization to magnetic bead-linked complementary oligonucleotides [<xref rid="bib0025 bib0030 bib0035 bib0040 bib0045 bib0050 bib0055" ref-type="bibr">5–10,11<sup>•</sup></xref>], or the use of terminator exonucleases that specifically degrade transcripts with a 5′ monophosphate group [<xref rid="bib0060" ref-type="bibr">12<sup>••</sup></xref>], has been used in efforts to increase the coverage of mRNA and ncRNA. However, the rapid increase in the productivity of the second generation sequencing technologies renders the expensive depletion processes largely unnecessary, especially given the opportunity for sample degradation and bias it presents [<xref rid="bib0050" ref-type="bibr">10</xref>]. Nevertheless, saturation of sequence data by abundant transcripts will remain an issue in some cases; for instance, when analyzing bacterial gene expression within host tissues, where eukaryotic RNA will be far more abundant than that of the prokaryote.</p>
+      <p>In the original RNA-seq protocols, following extensive DNase treatment, RNA was typically converted into cDNA through random hexamer-primed reverse transcription followed by second DNA strand synthesis [<xref rid="bib0025 bib0030 bib0035 bib0040 bib0045 bib0065" ref-type="bibr">5–9,13<sup>•</sup></xref>]. However, using double stranded cDNA for making sequencing libraries results in equal levels of signal on both the sense and antisense strands, thereby losing information regarding the direction of transcription. A simple method for maintaining the directional signal in RNA-seq data is to construct Illumina libraries from only first strand cDNA [<xref rid="bib0050" ref-type="bibr">10</xref>]. Alternative techniques used to maintain directional fidelity involve sequentially ligating adapters onto RNA molecules in an orientation-specific manner [<xref rid="bib0070 bib0075" ref-type="bibr">14,15</xref>], with one approach implemented in studies of <italic>Mycoplasma pneumoniae</italic> and <italic>Pseudomonas syringae</italic> transcriptomes [<xref rid="bib0080 bib0085" ref-type="bibr">16<sup>••</sup>,17<sup>•</sup></xref>] and another used for RNA-seq in <italic>Helicobacter pylori</italic> and <italic>Salmonella enterica</italic> Typhimurium [<xref rid="bib0060 bib0090" ref-type="bibr">12<sup>••</sup>,18<sup>•</sup></xref>] (<xref rid="fig0005" ref-type="fig">Figure 1</xref>). Other methods for maintaining directional information pioneered in studies of eukaryotes include the use of template switching PCR [<xref rid="bib0095" ref-type="bibr">19</xref>], bisulfite-induced conversion of cytosine to uracil in transcripts before reverse transcription [<xref rid="bib0100" ref-type="bibr">20</xref>], addition of sequence tags into the primers used for reverse transcription [<xref rid="bib0105" ref-type="bibr">21</xref>] and incorporation of deoxyuridine into the second strand of cDNA, which can subsequently be degraded using uracil-<italic>N</italic>-glycosylase [<xref rid="bib0110" ref-type="bibr">22</xref>]. The importance of this information in characterizing ncRNA and observing antisense transcription is becoming increasingly evident.</p>
+    </sec>
+    <sec id="sec0015">
+      <title>Alternative applications of RNA-seq</title>
+      <p>As well as surveying the entire transcriptomes of bacterial strains, RNA-seq can be adapted to other experiments as well. For instance, techniques have been developed to specifically sequence the 5′ region of RNA molecules, allowing the identification of putative transcriptional start sites and helping to define operons and ncRNA [<xref rid="bib0060 bib0065" ref-type="bibr">12<sup>••</sup>,13<sup>•</sup></xref>] (<xref rid="fig0005" ref-type="fig">Figure 1</xref>). In <italic>S.</italic> Typhimurium, coimmunoprecipitation of RNA molecules with Hfq, a chaperone that facilitates hybridization between ncRNA and mRNA, was used to enrich a sample for transcripts participating in such interactions [<xref rid="bib0090" ref-type="bibr">18<sup>•</sup></xref>], while in <italic>Vibrio cholerae</italic>, a very stringent depletion and size-selection process was used to specifically sequence small ncRNA [<xref rid="bib0115" ref-type="bibr">23</xref>]. RNA-seq has also been applied to whole environments, leading to the development of techniques for sampling the metatranscriptomes of marine [<xref rid="bib0120 bib0125" ref-type="bibr">24,25</xref>] and soil communities [<xref rid="bib0130" ref-type="bibr">26</xref>].</p>
+    </sec>
+    <sec id="sec0020">
+      <title>Analysis of sequence data</title>
+      <p>Illumina, 454 and SOLiD sequencing platforms have been used in bacterial RNA-seq studies [<xref rid="bib0135 bib0140 bib0145" ref-type="bibr">27–29</xref>]. Each offers a different compromise between the length of reads, which determines what proportion of the genome data can be uniquely mapped to, and depth of coverage, which determines the dynamic range over which gene expression can be quantified.</p>
+      <p>However, above a certain threshold, obtaining longer reads results in a relatively small increase in the amount of the genome that can be studied, hence read depth will be the more important consideration in almost all cases.</p>
+      <p>After sequencing, reads can be assembled using software either based on overlap graphs, such as EDENA [<xref rid="bib0150" ref-type="bibr">30</xref>], or de Bruijn graphs, for instance ABySS [<xref rid="bib0155" ref-type="bibr">31</xref>], ALLPATHS [<xref rid="bib0160" ref-type="bibr">32</xref>] or Velvet [<xref rid="bib0165" ref-type="bibr">33</xref>], which features a strand-specific assembly mode. Alternatively, the reads can be mapped onto a reference sequence. Some studies have used BLAST-based or nucmer-based algorithms [<xref rid="bib0170 bib0175" ref-type="bibr">34,35</xref>] to align sequence reads to the genome, but a number of programs have been developed specifically for mapping short read data [<xref rid="bib0180 bib0185 bib0190 bib0195" ref-type="bibr">36–39</xref>], which often have the advantages of considering base quality and read pair information when performing alignments. The results of mapping analyses have commonly been visualized as a graph of sequence read coverage across a genome, displayed using software such as the Integrated Genome Browser [<xref rid="bib0200" ref-type="bibr">40</xref>] or Artemis [<xref rid="bib0205" ref-type="bibr">41</xref>]. With the introduction of specialist tools such as BamView [<xref rid="bib0210" ref-type="bibr">42</xref>], raw sequence data can be visualized as well as coverage graphs, allowing a more intuitive understanding of the transcriptional landscape (<xref rid="fig0010" ref-type="fig">Figure 2</xref>).</p>
+      <p>RNA-seq, as with comparable methods, requires biological replicates for robust quantification of differential expression. However, the greater cost of sequencing relative to microarray hybridization makes such repetition expensive, so statistical methods have been developed to overcome this by modeling the expected distributions of sequence reads mapping to a locus in different samples. DEGseq [<xref rid="bib0215" ref-type="bibr">43</xref>] uses a Poisson distribution to model the variation between datasets [<xref rid="bib0220" ref-type="bibr">44</xref>], whereas the approaches of edgeR [<xref rid="bib0225" ref-type="bibr">45</xref>] and DEseq [<xref rid="bib0230" ref-type="bibr">46</xref>] are based on the negative binomial distribution, which is suggested to be more appropriate for modeling the variation inherent between biological replicates [<xref rid="bib0235" ref-type="bibr">47</xref>].</p>
+    </sec>
+    <sec id="sec0025">
+      <title>Characteristics of bacterial transcriptomes</title>
+      <p>The results of bacterial RNA-seq studies have done much to refine our understanding of bacterial gene expression. One initial insight was that genome-wide CDS expression levels appear to be continuously distributed, with no obvious division between actively expressed genes and a ‘background’ transcription level [<xref rid="bib0030 bib0035" ref-type="bibr">6,7</xref>]. By contrast, marine metatranscriptome studies have found that gene sequences that are most highly represented in cDNA samples are often rare, or absent, from the corresponding genomic DNA samples, suggesting some bacteria may be transcribing a set of uncharacterized genes at an unusually high level [<xref rid="bib0120 bib0125" ref-type="bibr">24,25</xref>].</p>
+      <p>Annotation of CDSs has been significantly improved using RNA-seq data. Novel CDSs have been identified in most studies [<xref rid="bib0035 bib0040 bib0045 bib0055 bib0065 bib0085" ref-type="bibr">7–9,11<sup>•</sup>,13<sup>•</sup>,17<sup>•</sup></xref>], including that of <italic>M. pneumoniae</italic>, which has a genome just 816 kb in size [<xref rid="bib0080" ref-type="bibr">16<sup>••</sup></xref>]. Existing gene models have been refined, often involving correcting the choice of start codon, and associated with one another into operons, which can include the identification of untranslated regions.</p>
+      <p>However, in both <italic>M. pneumoniae</italic> and <italic>H. pylori</italic>, annotation of transcriptional units was complicated by an unexpectedly high level of flexibility in the structure of operons [<xref rid="bib0060 bib0080" ref-type="bibr">12<sup>••</sup>,16<sup>••</sup></xref>]. Evidence from both tiling microarray and RNA-seq data indicated different promoters appeared to be driving expression of the same genes under different conditions, leading to the division of genes into ‘suboperons’. The level of such alternative transcript forms in <italic>M. pneumoniae</italic> was estimated to be similar to that in some eukaryotes [<xref rid="bib0080" ref-type="bibr">16<sup>••</sup></xref>].</p>
+      <p>All these amendments to genome annotation are aided by having information on the 5′ ends of transcripts; in <italic>Sulfolobus solfataricus</italic>, mapping these ends was also used to detect putative transcript degradation products. Enrichment of such sites was found to inversely correlate with the half life of the RNA molecule, suggesting an endoribonucleolytic cleavage mechanism may be important in gene regulation [<xref rid="bib0065" ref-type="bibr">13<sup>•</sup></xref>].</p>
+      <p>Bacterial whole transcriptome studies have thus far had a very high success rate of ncRNA discovery. Such transcripts have even been identified and mapped to genomes from marine metatranscriptome data, where certain putative ncRNA showed distinct spatial distributions throughout the water column [<xref rid="bib0240" ref-type="bibr">48</xref>]. Validation using RT-PCR and Northern blots has been largely successful [<xref rid="bib0030 bib0060 bib0080 bib0090 bib0115" ref-type="bibr">6,12<sup>••</sup>,16<sup>••</sup>,18<sup>•</sup>,23</xref>], and work has even begun on functionally characterizing these targets. In <italic>H. pylori</italic>, both <italic>in silico</italic> analysis and mutational inactivation suggested that one novel ncRNA uncovered by RNA-seq regulated a chemotaxis receptor as an antisense RNA [<xref rid="bib0060" ref-type="bibr">12<sup>••</sup></xref>], and a similar mechanism was posited for a novel ncRNA in <italic>V. cholerae</italic>, which was found to down regulate mannitol metabolism [<xref rid="bib0115" ref-type="bibr">23</xref>].</p>
+      <p>Directional RNA-seq data are particularly helpful in annotating ncRNA, as it allows reads to be assigned to a particular strand. Furthermore, it has allowed the detection of large amounts of <italic>cis</italic> antisense ncRNA: regions of CDSs that are bidirectionally transcribed, and suggested to act to block expression of the encoded protein [<xref rid="bib0060 bib0065 bib0080 bib0085" ref-type="bibr">12<sup>••</sup>,13<sup>•</sup>,16<sup>••</sup>,17<sup>•</sup></xref>]. Such transcripts, identified from both whole genome RNA-seq and on the basis of transcriptional start site identification, have been detected and characterized before [<xref rid="bib0245" ref-type="bibr">49</xref>], but the genome-wide scale of their prevalence is only now being appreciated.</p>
+      <p>Overall, bacterial transcription is starting to appear to more closely mirror that of eukaryotes. Rather than operons being fixed polycistronic transcriptional units, they may represent one way, of several, of transcribing a particular gene, with CDSs having a greater than expected level of independence from their neighbors. Additionally, antisense RNAs, acting either in <italic>cis</italic> or <italic>trans</italic>, may prove to be much more important than previously appreciated.</p>
+    </sec>
+    <sec id="sec0030">
+      <title>Limitations, problems and future directions</title>
+      <p>RNA-seq datasets have proved to be highly consistent, when comparing either technical or biological replicates, making them appropriate for expression studies [<xref rid="bib0050 bib0250" ref-type="bibr">10,50</xref>]. However, there are technical issues still awaiting resolution, such as the highly variable nature of the coverage across genes and operons, thought to be the combined result of transcript secondary structure and biases introduced through random hexamer priming of reverse transcription and second strand synthesis [<xref rid="bib0020 bib0255" ref-type="bibr">4,51</xref>]. This variability, which is generally reproducible between replicate experiments [<xref rid="bib0055" ref-type="bibr">11<sup>•</sup></xref>], introduces uncertainty into the quantification of RNA abundance. More even coverage has been achieved in eukaryotic datasets through reducing transcript secondary structure by using metal ion-catalyzed hydrolysis to fragment the RNA before reverse transcription [<xref rid="bib0020" ref-type="bibr">4</xref>], and it has been demonstrated that bacterial RNA can be fragmented in a similar manner [<xref rid="bib0025 bib0060 bib0075 bib0085" ref-type="bibr">5,12<sup>••</sup>,15,17<sup>•</sup></xref>]. There is also the issue of the PCR amplification stages of sequence library construction for all three second generation sequencing platforms, which result in redundant sequence reads and bias the final dataset.</p>
+      <p>To circumvent such issues, techniques such as direct RNA sequencing [<xref rid="bib0260" ref-type="bibr">52</xref>] and FRT-seq [<xref rid="bib0265" ref-type="bibr">53</xref>], which sequence RNA directly without cDNA intermediates, have been developed. These promise to eventually replace current methods, but suffer from the disadvantage of requiring ribonuclease-free sequencing environments, difficult to maintain in a high throughput sequencing facility. Efforts are also being made to reduce the quantity of starting material required for RNA-seq, with the aim of characterizing the transcriptomes of individual cells [<xref rid="bib0270" ref-type="bibr">54</xref>].</p>
+    </sec>
+    <sec id="sec0035">
+      <title>Conclusions</title>
+      <p>RNA-seq promises to gradually replace microarrays in most, if not all, genome-wide gene expression studies. Both technologies have their own limitations, but the opportunity to quantitatively study transcription to single nucleotide resolution makes RNA-seq increasingly attractive as sequencing become cheaper and easier. The use of protocols that sequence RNA in a strand-specific manner, and identify transcriptional start sites, will prove especially useful in the identification of ncRNA and defining the operons to which genes belong. Hence there is the potential for this technique to greatly refine our understanding of bacterial gene regulation.</p>
+    </sec>
+    <sec id="sec0040">
+      <title>References and recommended reading</title>
+      <p>Papers of particular interest, published within the period of review, have been highlighted as:<list list-type="simple"><list-item><p>• of special interest</p></list-item><list-item><p>•• of outstanding interest</p></list-item></list></p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib0005">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tettelin</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Riley</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Cattuto</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Medini</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparative genomics: the bacterial pan-genome</article-title>
+          <source>Curr Opin Microbiol</source>
+          <volume>11</volume>
+          <year>2008</year>
+          <fpage>472</fpage>
+          <lpage>477</lpage>
+          <pub-id pub-id-type="pmid">19086349</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0010">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cloonan</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Grimmond</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcriptome content and dynamics at single-nucleotide resolution</article-title>
+          <source>Genome Biol</source>
+          <volume>9</volume>
+          <year>2008</year>
+          <fpage>234</fpage>
+          <pub-id pub-id-type="pmid">18828881</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0015">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kane</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Jatkoe</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Stumpf</surname>
+              <given-names>C.R.</given-names>
+            </name>
+            <name>
+              <surname>Lu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Madore</surname>
+              <given-names>S.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessment of the sensitivity and specificity of oligonucleotide (50mer) microarrays</article-title>
+          <source>Nucleic Acids Res</source>
+          <volume>28</volume>
+          <year>2000</year>
+          <fpage>4552</fpage>
+          <lpage>4557</lpage>
+          <pub-id pub-id-type="pmid">11071945</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0020">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mortazavi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Williams</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>McCue</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Schaeffer</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Wold</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mapping and quantifying mammalian transcriptomes by RNA-Seq</article-title>
+          <source>Nat Methods</source>
+          <volume>5</volume>
+          <year>2008</year>
+          <fpage>621</fpage>
+          <lpage>628</lpage>
+          <pub-id pub-id-type="pmid">18516045</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0025">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Oliver</surname>
+              <given-names>H.F.</given-names>
+            </name>
+            <name>
+              <surname>Orsi</surname>
+              <given-names>R.H.</given-names>
+            </name>
+            <name>
+              <surname>Ponnala</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Keich</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Sun</surname>
+              <given-names>Q.</given-names>
+            </name>
+            <name>
+              <surname>Cartinhour</surname>
+              <given-names>S.W.</given-names>
+            </name>
+            <name>
+              <surname>Filiatrault</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Wiedmann</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Boor</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Deep RNA sequencing of <italic>L. monocytogenes</italic> reveals overlapping and extensive stationary phase and sigma B-dependent transcriptomes, including multiple highly transcribed noncoding RNAs</article-title>
+          <source>BMC Genomics</source>
+          <volume>10</volume>
+          <year>2009</year>
+          <fpage>641</fpage>
+          <pub-id pub-id-type="pmid">20042087</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0030">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yoder-Himes</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Chain</surname>
+              <given-names>P.S.</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Wurtzel</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>E.M.</given-names>
+            </name>
+            <name>
+              <surname>Tiedje</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Sorek</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mapping the <italic>Burkholderia cenocepacia</italic> niche response via high-throughput sequencing</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <volume>106</volume>
+          <year>2009</year>
+          <fpage>3976</fpage>
+          <lpage>3981</lpage>
+          <pub-id pub-id-type="pmid">19234113</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0035">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Passalacqua</surname>
+              <given-names>K.D.</given-names>
+            </name>
+            <name>
+              <surname>Varadarajan</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Ondov</surname>
+              <given-names>B.D.</given-names>
+            </name>
+            <name>
+              <surname>Okou</surname>
+              <given-names>D.T.</given-names>
+            </name>
+            <name>
+              <surname>Zwick</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>Bergman</surname>
+              <given-names>N.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure and complexity of a bacterial transcriptome</article-title>
+          <source>J Bacteriol</source>
+          <volume>191</volume>
+          <year>2009</year>
+          <fpage>3203</fpage>
+          <lpage>3211</lpage>
+          <pub-id pub-id-type="pmid">19304856</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0040">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Camarena</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Bruno</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Euskirchen</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Poggio</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Snyder</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular mechanisms of ethanol-induced pathogenesis revealed by RNA-sequencing</article-title>
+          <source>PLoS Pathog</source>
+          <volume>6</volume>
+          <year>2010</year>
+          <fpage>e1000834</fpage>
+          <pub-id pub-id-type="pmid">20368969</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0045">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mao</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Jensen</surname>
+              <given-names>R.V.</given-names>
+            </name>
+            <name>
+              <surname>Sobral</surname>
+              <given-names>B.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of new genes in <italic>Sinorhizobium meliloti</italic> using the Genome Sequencer FLX system</article-title>
+          <source>BMC Microbiol</source>
+          <volume>8</volume>
+          <year>2008</year>
+          <fpage>72</fpage>
+          <pub-id pub-id-type="pmid">18454850</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0050">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Croucher</surname>
+              <given-names>N.J.</given-names>
+            </name>
+            <name>
+              <surname>Fookes</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Perkins</surname>
+              <given-names>T.T.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Marguerat</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Keane</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Quail</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Assefa</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bahler</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A simple method for directional transcriptome sequencing using Illumina technology</article-title>
+          <source>Nucleic Acids Res</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>e148</fpage>
+          <pub-id pub-id-type="pmid">19815668</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0055">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Perkins</surname>
+              <given-names>T.T.</given-names>
+            </name>
+            <name>
+              <surname>Kingsley</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Fookes</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Gardner</surname>
+              <given-names>P.P.</given-names>
+            </name>
+            <name>
+              <surname>James</surname>
+              <given-names>K.D.</given-names>
+            </name>
+            <name>
+              <surname>Yu</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Assefa</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>He</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Croucher</surname>
+              <given-names>N.J.</given-names>
+            </name>
+            <name>
+              <surname>Pickard</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A strand-specific RNA-Seq analysis of the transcriptome of the typhoid bacillus <italic>Salmonella typhi</italic></article-title>
+          <source>PLoS Genet</source>
+          <volume>5</volume>
+          <year>2009</year>
+          <fpage>e1000569</fpage>
+          <pub-id pub-id-type="pmid">19609351</pub-id>
+        </element-citation>
+        <note>
+          <p>An interesting analysis of the transcription of the accessory genome and non-coding RNAs of <italic>Salmonella enterica</italic> Typhi.</p>
+        </note>
+      </ref>
+      <ref id="bib0060">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sharma</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Hoffmann</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Darfeuille</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Reignier</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Findeiss</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Sittka</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Chabas</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Reiche</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Hackermuller</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Reinhardt</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>The primary transcriptome of the major human pathogen <italic>Helicobacter pylori</italic></article-title>
+          <source>Nature</source>
+          <volume>464</volume>
+          <year>2010</year>
+          <fpage>250</fpage>
+          <lpage>255</lpage>
+          <pub-id pub-id-type="pmid">20164839</pub-id>
+        </element-citation>
+        <note>
+          <p>A highly informative study, particularly with regard to the unexpectedly high levels of non-coding RNA expression and antisense transcription.</p>
+        </note>
+      </ref>
+      <ref id="bib0065">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wurtzel</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Sapra</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Simmons</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>Sorek</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A single-base resolution map of an archaeal transcriptome</article-title>
+          <source>Genome Res</source>
+          <volume>20</volume>
+          <year>2010</year>
+          <fpage>133</fpage>
+          <lpage>141</lpage>
+          <pub-id pub-id-type="pmid">19884261</pub-id>
+        </element-citation>
+        <note>
+          <p>This description of transcription in an archeal organism makes an interesting comparison to those performed in eubacteria.</p>
+        </note>
+      </ref>
+      <ref id="bib0070">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lister</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>O’Malley</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Tonti-Filippini</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gregory</surname>
+              <given-names>B.D.</given-names>
+            </name>
+            <name>
+              <surname>Berry</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Millar</surname>
+              <given-names>A.H.</given-names>
+            </name>
+            <name>
+              <surname>Ecker</surname>
+              <given-names>J.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Highly integrated single-base resolution maps of the epigenome in Arabidopsis</article-title>
+          <source>Cell</source>
+          <volume>133</volume>
+          <year>2008</year>
+          <fpage>523</fpage>
+          <lpage>536</lpage>
+          <pub-id pub-id-type="pmid">18423832</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0075">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vivancos</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Guell</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Dohm</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Serrano</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Himmelbauer</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Strand-specific deep sequencing of the transcriptome</article-title>
+          <source>Genome Res</source>
+          <volume>20</volume>
+          <year>2010</year>
+          <fpage>989</fpage>
+          <lpage>999</lpage>
+          <pub-id pub-id-type="pmid">20519413</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0080">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guell</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>van Noort</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Yus</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>W.H.</given-names>
+            </name>
+            <name>
+              <surname>Leigh-Bell</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Michalodimitrakis</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Yamada</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Arumugam</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Doerks</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kuhner</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcriptome complexity in a genome-reduced bacterium</article-title>
+          <source>Science</source>
+          <volume>326</volume>
+          <year>2009</year>
+          <fpage>1268</fpage>
+          <lpage>1271</lpage>
+          <pub-id pub-id-type="pmid">19965477</pub-id>
+        </element-citation>
+        <note>
+          <p>This study is of particular interest because of the analysis of antisense RNA and alternative transcript forms observed across the genome.</p>
+        </note>
+      </ref>
+      <ref id="bib0085">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Filiatrault</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Stodghill</surname>
+              <given-names>P.V.</given-names>
+            </name>
+            <name>
+              <surname>Bronstein</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Moll</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Lindeberg</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Grills</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Schweitzer</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Schroth</surname>
+              <given-names>G.P.</given-names>
+            </name>
+            <name>
+              <surname>Luo</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcriptome analysis of <italic>Pseudomonas syringae</italic> identifies new genes, noncoding RNAs, and antisense activity</article-title>
+          <source>J Bacteriol</source>
+          <volume>192</volume>
+          <year>2010</year>
+          <fpage>2359</fpage>
+          <lpage>2372</lpage>
+          <pub-id pub-id-type="pmid">20190049</pub-id>
+        </element-citation>
+        <note>
+          <p>An interesting discussion of non-coding RNAs, antisense expression and transcriptional read-through of adjacent genes.</p>
+        </note>
+      </ref>
+      <ref id="bib0090">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sittka</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lucchini</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Papenfort</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Sharma</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Rolle</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Binnewies</surname>
+              <given-names>T.T.</given-names>
+            </name>
+            <name>
+              <surname>Hinton</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Vogel</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Deep sequencing analysis of small noncoding RNA and mRNA targets of the global post-transcriptional regulator, Hfq</article-title>
+          <source>PLoS Genet</source>
+          <volume>4</volume>
+          <year>2008</year>
+          <fpage>e1000163</fpage>
+          <pub-id pub-id-type="pmid">18725932</pub-id>
+        </element-citation>
+        <note>
+          <p>A good example of the use of RNA-seq for a specific application, targeted at studying Hfq-mediated interactions between transcripts.</p>
+        </note>
+      </ref>
+      <ref id="bib0095">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cloonan</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Forrest</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Kolle</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Gardiner</surname>
+              <given-names>B.B.</given-names>
+            </name>
+            <name>
+              <surname>Faulkner</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>M.K.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>D.F.</given-names>
+            </name>
+            <name>
+              <surname>Steptoe</surname>
+              <given-names>A.L.</given-names>
+            </name>
+            <name>
+              <surname>Wani</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bethel</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Stem cell transcriptome profiling via massive-scale mRNA sequencing</article-title>
+          <source>Nat Methods</source>
+          <volume>5</volume>
+          <year>2008</year>
+          <fpage>613</fpage>
+          <lpage>619</lpage>
+          <pub-id pub-id-type="pmid">18516046</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0100">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>He</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Vogelstein</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Velculescu</surname>
+              <given-names>V.E.</given-names>
+            </name>
+            <name>
+              <surname>Papadopoulos</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Kinzler</surname>
+              <given-names>K.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>The antisense transcriptomes of human cells</article-title>
+          <source>Science</source>
+          <volume>322</volume>
+          <year>2008</year>
+          <fpage>1855</fpage>
+          <lpage>1857</lpage>
+          <pub-id pub-id-type="pmid">19056939</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0105">
+        <label>21</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Armour</surname>
+              <given-names>C.D.</given-names>
+            </name>
+            <name>
+              <surname>Castle</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Babak</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Loerch</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Jackson</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>J.K.</given-names>
+            </name>
+            <name>
+              <surname>Dey</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Rohl</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Digital transcriptome profiling using selective hexamer priming for cDNA synthesis</article-title>
+          <source>Nat Methods</source>
+          <volume>6</volume>
+          <year>2009</year>
+          <fpage>647</fpage>
+          <lpage>649</lpage>
+          <pub-id pub-id-type="pmid">19668204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0110">
+        <label>22</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Parkhomchuk</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Borodina</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Amstislavskiy</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Banaru</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Hallen</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Krobitsch</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Lehrach</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Soldatov</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Transcriptome analysis by strand-specific sequencing of complementary DNA</article-title>
+          <source>Nucleic Acids Res</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>e123</fpage>
+          <pub-id pub-id-type="pmid">19620212</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0115">
+        <label>23</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Livny</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lawrence</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Kimball</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Waldor</surname>
+              <given-names>M.K.</given-names>
+            </name>
+            <name>
+              <surname>Camilli</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Experimental discovery of sRNAs in <italic>Vibrio cholerae</italic> by direct cloning, 5S/tRNA depletion and parallel sequencing</article-title>
+          <source>Nucleic Acids Res</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>e46</fpage>
+          <pub-id pub-id-type="pmid">19223322</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0120">
+        <label>24</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frias-Lopez</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Shi</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Tyson</surname>
+              <given-names>G.W.</given-names>
+            </name>
+            <name>
+              <surname>Coleman</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Schuster</surname>
+              <given-names>S.C.</given-names>
+            </name>
+            <name>
+              <surname>Chisholm</surname>
+              <given-names>S.W.</given-names>
+            </name>
+            <name>
+              <surname>Delong</surname>
+              <given-names>E.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microbial community gene expression in ocean surface waters</article-title>
+          <source>Proc Natl Acad Sci U S A</source>
+          <volume>105</volume>
+          <year>2008</year>
+          <fpage>3805</fpage>
+          <lpage>3810</lpage>
+          <pub-id pub-id-type="pmid">18316740</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0125">
+        <label>25</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gilbert</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Field</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Edwards</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Gilna</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Joint</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detection of large numbers of novel sequences in the metatranscriptomes of complex marine microbial communities</article-title>
+          <source>PLoS One</source>
+          <volume>3</volume>
+          <year>2008</year>
+          <fpage>e3042</fpage>
+          <pub-id pub-id-type="pmid">18725995</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0130">
+        <label>26</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Urich</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Lanzen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Qi</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Huson</surname>
+              <given-names>D.H.</given-names>
+            </name>
+            <name>
+              <surname>Schleper</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Schuster</surname>
+              <given-names>S.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Simultaneous assessment of soil microbial community structure and function through analysis of the meta-transcriptome</article-title>
+          <source>PLoS One</source>
+          <volume>3</volume>
+          <year>2008</year>
+          <fpage>e2527</fpage>
+          <pub-id pub-id-type="pmid">18575584</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0135">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bentley</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Balasubramanian</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Swerdlow</surname>
+              <given-names>H.P.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>G.P.</given-names>
+            </name>
+            <name>
+              <surname>Milton</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>C.G.</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>K.P.</given-names>
+            </name>
+            <name>
+              <surname>Evers</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Barnes</surname>
+              <given-names>C.L.</given-names>
+            </name>
+            <name>
+              <surname>Bignell</surname>
+              <given-names>H.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Accurate whole human genome sequencing using reversible terminator chemistry</article-title>
+          <source>Nature</source>
+          <volume>456</volume>
+          <year>2008</year>
+          <fpage>53</fpage>
+          <lpage>59</lpage>
+          <pub-id pub-id-type="pmid">18987734</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0140">
+        <label>28</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ronaghi</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Uhlen</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Nyren</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>A sequencing method based on real-time pyrophosphate</article-title>
+          <source>Science</source>
+          <volume>281</volume>
+          <year>1998</year>
+          <comment>363, 365</comment>
+        </element-citation>
+      </ref>
+      <ref id="bib0145">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shendure</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Porreca</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Reppas</surname>
+              <given-names>N.B.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>McCutcheon</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Rosenbaum</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Mitra</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Church</surname>
+              <given-names>G.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Accurate multiplex polony sequencing of an evolved bacterial genome</article-title>
+          <source>Science</source>
+          <volume>309</volume>
+          <year>2005</year>
+          <fpage>1728</fpage>
+          <lpage>1732</lpage>
+          <pub-id pub-id-type="pmid">16081699</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0150">
+        <label>30</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hernandez</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Francois</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Farinelli</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Osteras</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Schrenzel</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title><italic>De novo</italic> bacterial genome sequencing: millions of very short reads assembled on a desktop computer</article-title>
+          <source>Genome Res</source>
+          <volume>18</volume>
+          <year>2008</year>
+          <fpage>802</fpage>
+          <lpage>809</lpage>
+          <pub-id pub-id-type="pmid">18332092</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0155">
+        <label>31</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Simpson</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Jackman</surname>
+              <given-names>S.D.</given-names>
+            </name>
+            <name>
+              <surname>Schein</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Birol</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>ABySS: a parallel assembler for short read sequence data</article-title>
+          <source>Genome Res</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>1117</fpage>
+          <lpage>1123</lpage>
+          <pub-id pub-id-type="pmid">19251739</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0160">
+        <label>32</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Maccallum</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Przybylski</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Gnerre</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Burton</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Shlyakhter</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Gnirke</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Malek</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>McKernan</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Ranade</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Shea</surname>
+              <given-names>T.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>ALLPATHS 2: small genomes assembled accurately and with high continuity from short paired reads</article-title>
+          <source>Genome Biol</source>
+          <volume>10</volume>
+          <year>2009</year>
+          <fpage>R103</fpage>
+          <pub-id pub-id-type="pmid">19796385</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0165">
+        <label>33</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zerbino</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Birney</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Velvet: algorithms for de novo short read assembly using de Bruijn graphs</article-title>
+          <source>Genome Res</source>
+          <volume>18</volume>
+          <year>2008</year>
+          <fpage>821</fpage>
+          <lpage>829</lpage>
+          <pub-id pub-id-type="pmid">18349386</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0170">
+        <label>34</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Altschul</surname>
+              <given-names>S.F.</given-names>
+            </name>
+            <name>
+              <surname>Gish</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Myers</surname>
+              <given-names>E.W.</given-names>
+            </name>
+            <name>
+              <surname>Lipman</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Basic local alignment search tool</article-title>
+          <source>J Mol Biol</source>
+          <volume>215</volume>
+          <year>1990</year>
+          <fpage>403</fpage>
+          <lpage>410</lpage>
+          <pub-id pub-id-type="pmid">2231712</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0175">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Delcher</surname>
+              <given-names>A.L.</given-names>
+            </name>
+            <name>
+              <surname>Phillippy</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Carlton</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Salzberg</surname>
+              <given-names>S.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast algorithms for large-scale genome alignment and comparison</article-title>
+          <source>Nucleic Acids Res</source>
+          <volume>30</volume>
+          <year>2002</year>
+          <fpage>2478</fpage>
+          <lpage>2483</lpage>
+          <pub-id pub-id-type="pmid">12034836</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0180">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Homer</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>A survey of sequence alignment algorithms for next-generation sequencing</article-title>
+          <source>Brief Bioinform</source>
+          <year>2010</year>
+        </element-citation>
+      </ref>
+      <ref id="bib0185">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ning</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Cox</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Mullikin</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>SSAHA: a fast search method for large DNA databases</article-title>
+          <source>Genome Res</source>
+          <volume>11</volume>
+          <year>2001</year>
+          <fpage>1725</fpage>
+          <lpage>1729</lpage>
+          <pub-id pub-id-type="pmid">11591649</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0190">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Ruan</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Durbin</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mapping short DNA sequencing reads and calling variants using mapping quality scores</article-title>
+          <source>Genome Res</source>
+          <volume>18</volume>
+          <year>2008</year>
+          <fpage>1851</fpage>
+          <lpage>1858</lpage>
+          <pub-id pub-id-type="pmid">18714091</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0195">
+        <label>39</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Li</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Durbin</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast and accurate long-read alignment with Burrows-Wheeler transform</article-title>
+          <source>Bioinformatics</source>
+          <volume>26</volume>
+          <year>2010</year>
+          <fpage>589</fpage>
+          <lpage>595</lpage>
+          <pub-id pub-id-type="pmid">20080505</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0200">
+        <label>40</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nicol</surname>
+              <given-names>J.W.</given-names>
+            </name>
+            <name>
+              <surname>Helt</surname>
+              <given-names>G.A.</given-names>
+            </name>
+            <name>
+              <surname>Blanchard</surname>
+              <given-names>S.G.</given-names>
+              <suffix>Jr</suffix>
+            </name>
+            <name>
+              <surname>Raja</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Loraine</surname>
+              <given-names>A.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Integrated Genome Browser: free software for distribution and exploration of genome-scale datasets</article-title>
+          <source>Bioinformatics</source>
+          <volume>25</volume>
+          <year>2009</year>
+          <fpage>2730</fpage>
+          <lpage>2731</lpage>
+          <pub-id pub-id-type="pmid">19654113</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0205">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carver</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Berriman</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Tivey</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Patel</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bohme</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Barrell</surname>
+              <given-names>B.G.</given-names>
+            </name>
+            <name>
+              <surname>Parkhill</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Rajandream</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Artemis and ACT: viewing, annotating and comparing sequences stored in a relational database</article-title>
+          <source>Bioinformatics</source>
+          <volume>24</volume>
+          <year>2008</year>
+          <fpage>2672</fpage>
+          <lpage>2676</lpage>
+          <pub-id pub-id-type="pmid">18845581</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0210">
+        <label>42</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Carver</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Bohme</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Otto</surname>
+              <given-names>T.D.</given-names>
+            </name>
+            <name>
+              <surname>Parkhill</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Berriman</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>BamView: viewing mapped read alignment data in the context of the reference sequence</article-title>
+          <source>Bioinformatics</source>
+          <volume>26</volume>
+          <year>2010</year>
+          <fpage>676</fpage>
+          <lpage>677</lpage>
+          <pub-id pub-id-type="pmid">20071372</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0215">
+        <label>43</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Feng</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X.</given-names>
+            </name>
+          </person-group>
+          <article-title>DEGseq: an R package for identifying differentially expressed genes from RNA-seq data</article-title>
+          <source>Bioinformatics</source>
+          <volume>26</volume>
+          <year>2010</year>
+          <fpage>136</fpage>
+          <lpage>138</lpage>
+          <pub-id pub-id-type="pmid">19855105</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0220">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jiang</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Wong</surname>
+              <given-names>W.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical inferences for isoform expression in RNA-Seq</article-title>
+          <source>Bioinformatics</source>
+          <volume>25</volume>
+          <year>2009</year>
+          <fpage>1026</fpage>
+          <lpage>1032</lpage>
+          <pub-id pub-id-type="pmid">19244387</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0225">
+        <label>45</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robinson</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>McCarthy</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Smyth</surname>
+              <given-names>G.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>edgeR: a Bioconductor package for differential expression analysis of digital gene expression data</article-title>
+          <source>Bioinformatics</source>
+          <volume>26</volume>
+          <year>2010</year>
+          <fpage>139</fpage>
+          <lpage>140</lpage>
+          <pub-id pub-id-type="pmid">19910308</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0230">
+        <label>46</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Anders</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Huber</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Differential expression analysis for sequence count data</article-title>
+          <source>Nat Precedings</source>
+          <year>2010</year>
+        </element-citation>
+      </ref>
+      <ref id="bib0235">
+        <label>47</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Robinson</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Oshlack</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A scaling normalization method for differential expression analysis of RNA-seq data</article-title>
+          <source>Genome Biol</source>
+          <volume>11</volume>
+          <year>2010</year>
+          <fpage>R25</fpage>
+          <pub-id pub-id-type="pmid">20196867</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0240">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shi</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Tyson</surname>
+              <given-names>G.W.</given-names>
+            </name>
+            <name>
+              <surname>DeLong</surname>
+              <given-names>E.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Metatranscriptomics reveals unique microbial small RNAs in the ocean's water column</article-title>
+          <source>Nature</source>
+          <volume>459</volume>
+          <year>2009</year>
+          <fpage>266</fpage>
+          <lpage>269</lpage>
+          <pub-id pub-id-type="pmid">19444216</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0245">
+        <label>49</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brantl</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Regulatory mechanisms employed by cis-encoded antisense RNAs</article-title>
+          <source>Curr Opin Microbiol</source>
+          <volume>10</volume>
+          <year>2007</year>
+          <fpage>102</fpage>
+          <lpage>109</lpage>
+          <pub-id pub-id-type="pmid">17387036</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0250">
+        <label>50</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marioni</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Mason</surname>
+              <given-names>C.E.</given-names>
+            </name>
+            <name>
+              <surname>Mane</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Stephens</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Gilad</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>RNA-seq: an assessment of technical reproducibility and comparison with gene expression arrays</article-title>
+          <source>Genome Res</source>
+          <volume>18</volume>
+          <year>2008</year>
+          <fpage>1509</fpage>
+          <lpage>1517</lpage>
+          <pub-id pub-id-type="pmid">18550803</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0255">
+        <label>51</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hansen</surname>
+              <given-names>K.D.</given-names>
+            </name>
+            <name>
+              <surname>Brenner</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Dudoit</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Biases in Illumina transcriptome sequencing caused by random hexamer priming</article-title>
+          <source>Nucleic Acids Res</source>
+          <volume>38</volume>
+          <issue>12</issue>
+          <year>2010</year>
+          <fpage>e131</fpage>
+          <pub-id pub-id-type="pmid">20395217</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0260">
+        <label>52</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ozsolak</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Platt</surname>
+              <given-names>A.R.</given-names>
+            </name>
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Reifenberger</surname>
+              <given-names>J.G.</given-names>
+            </name>
+            <name>
+              <surname>Sass</surname>
+              <given-names>L.E.</given-names>
+            </name>
+            <name>
+              <surname>McInerney</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Thompson</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Bowers</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Jarosz</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Milos</surname>
+              <given-names>P.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Direct RNA sequencing</article-title>
+          <source>Nature</source>
+          <volume>461</volume>
+          <year>2009</year>
+          <fpage>814</fpage>
+          <lpage>818</lpage>
+          <pub-id pub-id-type="pmid">19776739</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0265">
+        <label>53</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mamanova</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Andrews</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>James</surname>
+              <given-names>K.D.</given-names>
+            </name>
+            <name>
+              <surname>Sheridan</surname>
+              <given-names>E.M.</given-names>
+            </name>
+            <name>
+              <surname>Ellis</surname>
+              <given-names>P.D.</given-names>
+            </name>
+            <name>
+              <surname>Langford</surname>
+              <given-names>C.F.</given-names>
+            </name>
+            <name>
+              <surname>Ost</surname>
+              <given-names>T.W.</given-names>
+            </name>
+            <name>
+              <surname>Collins</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>FRT-seq: amplification-free, strand-specific transcriptome sequencing</article-title>
+          <source>Nat Methods</source>
+          <volume>7</volume>
+          <year>2010</year>
+          <fpage>130</fpage>
+          <lpage>132</lpage>
+          <pub-id pub-id-type="pmid">20081834</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0270">
+        <label>54</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tang</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Barbacioru</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Nordman</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Bodeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tuch</surname>
+              <given-names>B.B.</given-names>
+            </name>
+            <name>
+              <surname>Siddiqui</surname>
+              <given-names>A</given-names>
+            </name>
+            <name>
+              <surname>Lao</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Surani</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>mRNA-Seq whole-transcriptome analysis of a single cell</article-title>
+          <source>Nat Methods</source>
+          <volume>6</volume>
+          <issue>5</issue>
+          <year>2009</year>
+          <fpage>377</fpage>
+          <lpage>382</lpage>
+          <pub-id pub-id-type="pmid">19349980</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>We thank Adam Reid, Maria Fookes and Julian Parkhill for their comments on this manuscript. The authors are funded by the Wellcome Trust.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig0005">
+      <label>Figure 1</label>
+      <caption>
+        <p>Methods for preparation of cDNA. All methods require the extraction of nucleic acids from a sample of cells, followed by the enzymatic removal of DNA. Ribosomal RNA may then be depleted to increase the sequence coverage of other transcripts. To identify putative transcriptional start sites, samples are first treated with tobacco acid pyrophosphatase (TAP), which converts the triphosphate group at the 5′ end of intact transcripts to a monophosphate. This is required for the ligation reaction to attach an adapter to the 5′ end; polyadenylation or oxidation of the 3′ end of the RNA is used to ensure the specificity in the orientation of this reaction. This allows the 3′ part of the cDNA, corresponding to the extreme 5′ end of the original transcript, to be targeted for sequencing. In order to obtain sequence data covering the entire transcriptome, small cDNA molecules must be randomly generated from throughout the RNA sample. This has frequently been achieved through random hexamer-primed reverse transcription; using only the first strand for sequencing library construction allows information on the direction of transcription to be maintained. Alternatively, the RNA may be fragmented, and information on the template strand for transcription retained through orientation-specific, stepwise attachment of adapters. One method involves dephosphorylating the 5′ end so the first adapter can only be ligated to the 3′ end of the transcript; the complementary approach is to polyadenylate the 3′ end such that the first adapter is only found attached the 5′ end of the RNA. One technique not shown is the use of fragmented RNA as a template for random hexamer-primed reverse transcription, as performed by Oliver <italic>et al.</italic> A wider range of methods has been applied in obtaining similar information from eukaryotic transcriptomes (see text).</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig0010">
+      <label>Figure 2</label>
+      <caption>
+        <p>Display of RNA-seq data. Data from a <italic>Salmonella bongori</italic> transcriptome, prepared as described in Ref. [<xref rid="bib0045" ref-type="bibr">9</xref>], displayed using Artemis. Using BamView, the total coverage is shown displayed as a plot <bold>(a)</bold>, as raw reads aligned against the reference sequence <bold>(b)</bold> and as reads assigned separately to the two strands of the genome <bold>(c)</bold>. A strand-specific coverage plot is also shown <bold>(d)</bold> and the genome annotation is displayed underneath.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+  </floats-group>
+</article>

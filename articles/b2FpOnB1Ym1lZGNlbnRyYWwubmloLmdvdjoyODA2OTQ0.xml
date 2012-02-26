@@ -1,0 +1,1092 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">J Struct Biol</journal-id>
+      <journal-title>Journal of Structural Biology</journal-title>
+      <issn pub-type="ppub">1047-8477</issn>
+      <issn pub-type="epub">1095-8657</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2806944</article-id>
+      <article-id pub-id-type="pmid">19666126</article-id>
+      <article-id pub-id-type="publisher-id">YJSBI5631</article-id>
+      <article-id pub-id-type="doi">10.1016/j.jsb.2009.08.002</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Contrast transfer function correction applied to cryo-electron tomography and sub-tomogram averaging</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Zanetti</surname>
+            <given-names>Giulia</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Riches</surname>
+            <given-names>James D.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Fuller</surname>
+            <given-names>Stephen D.</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Briggs</surname>
+            <given-names>John A.G.</given-names>
+          </name>
+          <email>briggs@embl.de</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>a</sup>Structural and Computational Biology Unit, European Molecular Biology Laboratory, Meyerhofstrasse 1, Heidelberg, Germany</addr-line>
+      </aff>
+      <aff id="aff2">
+        <addr-line><sup>b</sup>University of Oxford, Division of Structural Biology, Wellcome Trust Centre for Human Genetics, Henry Wellcome Building for Genomic Medicine, Oxford, United Kingdom</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Fax: +49 (0) 62213878519. <email>briggs@embl.de</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <month>11</month>
+        <year>2009</year>
+      </pub-date>
+      <volume>168</volume>
+      <issue>2-24</issue>
+      <fpage>305</fpage>
+      <lpage>312</lpage>
+      <history>
+        <date date-type="received">
+          <day>13</day>
+          <month>3</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>1</day>
+          <month>8</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>4</day>
+          <month>8</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2009 Elsevier Inc.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>Cryo-electron tomography together with averaging of sub-tomograms containing identical particles can reveal the structure of proteins or protein complexes in their native environment. The resolution of this technique is limited by the contrast transfer function (CTF) of the microscope. The CTF is not routinely corrected in cryo-electron tomography because of difficulties including CTF detection, due to the low signal to noise ratio, and CTF correction, since images are characterised by a spatially variant CTF. Here we simulate the effects of the CTF on the resolution of the final reconstruction, before and after CTF correction, and consider the effect of errors and approximations in defocus determination. We show that errors in defocus determination are well tolerated when correcting a series of tomograms collected at a range of defocus values. We apply methods for determining the CTF parameters in low signal to noise images of tilted specimens, for monitoring defocus changes using observed magnification changes, and for correcting the CTF prior to reconstruction. Using bacteriophage PRD1 as a test sample, we demonstrate that this approach gives an improvement in the structure obtained by sub-tomogram averaging from cryo-electron tomograms.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Cryo-electron tomography</kwd>
+        <kwd>Sub-tomogram averaging</kwd>
+        <kwd>CTF correction</kwd>
+        <kwd>PRD1</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <label>1</label>
+      <title>Introduction</title>
+      <p>The three-dimensional (3D) structure of biological specimens such as proteins, protein complexes or viruses can be determined to high resolution by cryo-transmission electron microscopy. TEM images can be approximated to 2D projections of the specimen; its 3D structure can be obtained by combining projection views from different angles. In single particle experiments, multiple individual images of untilted specimens are sufficient for obtaining a reconstruction (see <xref rid="bib27" ref-type="bibr">Zhou (2008)</xref> for a recent review). In cryo-electron tomography (CET) the projection views are obtained by tilting the specimen holder and collecting a series of images of the same object at defined angular increments (a “tilt series”). A 3D reconstruction is then calculated, normally using weighted back-projection. CET presents advantages when dealing with heterogeneous samples, because the 3D reconstruction can be obtained from a single object (<xref rid="bib14" ref-type="bibr">Lucic et al., 2005</xref>). Vitrified biological specimens are sensitive to beam damage, and the tolerable electron dose must hence be distributed over the tilt series. In each image of a CET tilt series the electron dose is usually of the order of 1–2 e<sup>−</sup>/Å<sup>2</sup>, as a consequence, the signal to noise ratio (SNR) is particularly low.</p>
+      <p>The resolution of tomographic reconstructions of vitrified biological specimens is anisotropic because the maximum tilt-angle is limited by the slab geometry of the sample holder. The isotropic, high SNR structure of a protein or protein complex can be obtained by averaging multiple sub-tomograms containing identical copies of the complex studied (<xref rid="bib4 bib7 bib8 bib13 bib25 bib28" ref-type="bibr">Briggs et al., 2009; Forster and Hegerl, 2007; Forster et al., 2005; Liu et al., 2008; Zanetti et al., 2006; Zhu et al., 2006</xref>). CET combined with sub-tomogram averaging is hence the technique of choice when aiming at elucidating the 3D structure of protein complexes <italic>in situ</italic>, where their 2D projections overlap with cellular or viral elements and the complexes can be computationally extracted and analysed only upon 3D reconstruction.</p>
+      <p>The individual images in the tomographic tilt-series are modulated in a spatial frequency-dependent manner by the contrast transfer function (CTF), described by Eq. <xref rid="fd1" ref-type="disp-formula">(1.0)</xref> (<xref rid="bib5 bib22" ref-type="bibr">Erickson and Klug, 1971; Wade, 1992</xref>)<disp-formula id="fd1"><label>(1.0)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mtext>CTF</mml:mtext><mml:mo stretchy="false">(</mml:mo><mml:mi>f</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>A</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">sin</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>π</mml:mi><mml:mi>λ</mml:mi><mml:msup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">Δ</mml:mi><mml:mi>z</mml:mi><mml:mo>-</mml:mo><mml:mn>0.5</mml:mn><mml:msup><mml:mrow><mml:mi>λ</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mtext>s</mml:mtext></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>+</mml:mo><mml:mi>B</mml:mi><mml:mi mathvariant="normal">cos</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>π</mml:mi><mml:mi>λ</mml:mi><mml:msup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:mo stretchy="false">(</mml:mo><mml:mi mathvariant="normal">Δ</mml:mi><mml:mi>z</mml:mi><mml:mo>-</mml:mo><mml:mn>0.5</mml:mn><mml:msup><mml:mrow><mml:mi>λ</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mn>2</mml:mn></mml:mrow></mml:msup><mml:msub><mml:mrow><mml:mi>c</mml:mi></mml:mrow><mml:mrow><mml:mtext>s</mml:mtext></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo stretchy="false">)</mml:mo></mml:math></disp-formula>where the independent variable is the spatial frequency (<italic>f</italic>), Δ<italic>z</italic> is the defocus, <italic>c</italic><sub>s</sub> is the spherical aberration, <italic>λ</italic> is the electron wavelength. <italic>A</italic> is a defocus-dependent envelope function describing the decay of the signal for an instrument with a given angular aperture (<xref rid="bib21" ref-type="bibr">Wade, 1978</xref>, and <xref rid="app1" ref-type="sec">Supplementary materials</xref>), and <italic>B</italic> is the fraction of amplitude contrast.</p>
+      <p>The microscope parameters do not usually vary within an imaging session, except the defocus. In order to obtain a faithful representation of the 3D object it is necessary to correct the signal, by phase flipping or Wiener filtering (<xref rid="bib9" ref-type="bibr">Frank, 2006</xref>). Since the oscillatory nature of the CTF causes the signal intensity to be zero at certain spatial frequencies, different defocus values must be combined for complete restoration. In single particle reconstruction several images must be collected at different defoci, whereas this is not strictly necessary for images of tilted specimens which are characterised by a defocus gradient (<xref rid="bib24" ref-type="bibr">Winkler and Taylor, 2003</xref>). In order to perform CTF correction appropriately it is necessary to determine the shape of the CTF for each image contributing to the reconstruction. Typically, an approximate shape for the function is calculated using expected values for the parameters. The parameters are then refined by fitting a theoretical CTF curve into the rotationally averaged power spectrum of the image. This approach becomes unfeasible when the SNR in the power spectrum is too low to detect the CTF oscillations. This is the case in CET where the electron dose must be distributed over several images.</p>
+      <p>To achieve sufficient contrast for image processing purposes in CET, the defocus values used are typically higher than those used for single particle reconstruction. At a defocus of 4 μm on a 300-kV microscope, the CTF has its first node at about 1/28 Å<sup>−1</sup>. The resolution of the reconstruction will be limited to this spatial frequency if the CTF is not corrected. At this intermediate resolution tentative fitting of atomic structures into the electron density map can be incorrect, and it is desirable to perform CTF correction in order to increase the resolution of the reconstruction.</p>
+      <p>Substantial difficulties are encountered in the process of CTF-correcting cryo-tomographic data: first, instrumental inaccuracies do not guarantee that the defocus of each image in a tilt series is maintained. Second, the low SNR hinders detection of the CTF signal on individual images. Third, images of tilted specimens present a defocus gradient, and CTF correction cannot be applied uniformly to the whole image.</p>
+      <p>Here we demonstrate the feasibility of applying CTF correction to obtain higher resolution reconstructions using sub-tomogram averaging. For clarity, we consider the problem in four stages:<list list-type="simple"><list-item><label>1.</label><p>Simulations of the effects of the CTF, and of CTF correction.</p></list-item></list></p>
+      <p>The assumption that the defocus is the same for all images might not be correct. After measuring the defocus on tilt series of a carbon film sample we find that the holder instability can cause shifts in the defocus at the tilt axis of up to 2.5 μm. Here we simulate the effect of inaccuracies in defocus determination when correcting tilt images. We demonstrate that an imprecise defocus determination can still allow CTF correction to give a substantial improvement in resolution.<list list-type="simple"><list-item><label>2.</label><p>Approaches for measuring and approximating the defoci of the images.</p></list-item></list></p>
+      <p>The low SNR on cryo-tomographic images does not permit the identification of the signal oscillations attributable to the CTF directly from the power spectrum. Several methods for detecting the CTF in tilted specimens have been proposed in the past. <xref rid="bib16" ref-type="bibr">Mindell and Grigorieff (2003)</xref> calculate the power spectrum of sub-regions extracted from the image to give an estimate of local defocus. This approach is based on data collected with the electron dose used for single particle studies, usually about 20 e<sup>−</sup>/Å<sup>2</sup>, which generates images with sufficient SNR to detect CTF oscillations. <xref rid="bib24" ref-type="bibr">Winkler and Taylor (2003)</xref> rotate the images with their tilt axis horizontal, so that image strips with almost invariant defocus can be used to compute the rotationally averaged power spectrum. The latter study is performed on plastic embedded samples, which are again characterised by a SNR higher than cryo-samples. Fernandez and Crowther (<xref rid="bib6" ref-type="bibr">Fernandez et al., 2006</xref>) determine the CTF of tilted cryo-images by strip based periodogram averaging. The defocus at the tilt axis is assumed to be the same for all images in a tilt series. Areas of similar defocus value are extracted from all images and their mean power spectrum calculated. The defocus values used in the latter study ranged between 6 and 26 μm, which are particularly high, even for CET. None of the published methods have been applied to CET and sub-tomogram averaging for defocus values lower than 5 μm.<list list-type="simple"><list-item><label>3.</label><p>Approaches for correcting the CTF.</p></list-item></list></p>
+      <p>Another challenge in the process of CTF correction in tomographic images is posed by the defocus gradient perpendicular to the tilt axis, as correction of the whole image with a uniform CTF is not appropriate. Several studies have proposed methods to correct the CTF on images of tilted specimens. For crystalline specimens, <xref rid="bib10" ref-type="bibr">Henderson et al. (1990)</xref> have expressed the CTF at each spatial frequency as a function of the defocus (the tilt transfer function), and they used it to correct areas of the Fourier transform of the crystal images. This approach is not well suited for non-crystalline specimens, where the information is distributed continuously on all spatial frequencies. Fernandez et al. and Winkler et al. (<xref rid="bib6 bib24" ref-type="bibr">Fernandez et al., 2006; Winkler and Taylor, 2003</xref>) both propose a strip based correction, in which the image is rotated with the tilt axis horizontal, and correction of strips is performed after interpolation. In this paper, we divide the tilted image into tiles, and perform CTF correction prior to rotation.<list list-type="simple"><list-item><label>4.</label><p>Testing of these approaches in sub-tomogram averaging of cryo-tomograms of bacteriophage PRD1.</p></list-item></list></p>
+      <p>We test our method on averaged sub-tomograms of the bacteriophage PRD1 (<xref rid="bib1" ref-type="bibr">Abrescia et al., 2004</xref>). Our results show an increase in resolution upon CTF correction from 29 to 22 Å, as judged from the Fourier shell correlation between half datasets at the 3<italic>σ</italic> threshold criterion. We also see a significant improvement in the correlation between the averaged tomographic map and the electron density derived from the atomic structure of the PRD1 capsid (<xref rid="bib1" ref-type="bibr">Abrescia et al., 2004</xref>). This is reflected in improvement of the quality of the electron density maps.</p>
+    </sec>
+    <sec sec-type="materials|methods">
+      <label>2</label>
+      <title>Materials and methods</title>
+      <p>The PRD1 bacteriophage samples were grown in DS88 (<italic>Salmonella enteritica serovar typhimurium</italic>) (<xref rid="bib2" ref-type="bibr">Bamford and Bamford, 1990</xref>), and purified via sucrose gradient centrifugation before pelleting and resuspension in potassium phosphate buffer (pH 7.2) (<xref rid="bib3 bib23" ref-type="bibr">Bamford and Bamford, 1991; Walin et al., 1994</xref>). The sample was mixed with protein-A colloidal gold, suspended in PBS and plunge frozen with the Vitrobot (FEI, Eindhoven, The Netherlands). Three microliters were deposited on a glow discharged C flat grid (2 μm holes with 1 μm spacing on 300 mesh, Protochips, Raleigh, North Carolina, United States). Carbon film samples were prepared by depositing diluted gold solution deposited on a continuous carbon film.</p>
+      <p>Data were recorded using an FEI Tecnai F30 ‘Polara’ transmission electron microscope (FEI, Eindhoven, The Netherlands), equipped with a 300-kV field emission gun, Gatan GIF 2002 post-column energy filter, and 2k∗2k Multiscan CCD camera (Gatan, Pleasanton, California, United States). All data collection was performed at 300 kV, with the energy filter operated in the zero-loss mode. Tilt series were typically recorded from −63° to +63° with an angular increment of 3°. The total dose was between 45 and 70 e<sup>−</sup>/Å<sup>2</sup>, higher tilt images were imaged with longer exposure times in order to account for the increased thickness. The defocus was between 3 and 5 μm. The nominal magnification was 27,500 times, which corresponded to a pixel size of 4.7 Å at the specimen level.</p>
+      <p>Tilted images were aligned using gold beads as fiducial markers to within a maximum bead positioning error of less than 1 pixel (4.7 Å). The bead positioning error was marginally higher for beads further from the centre of the tomogram, with a mean error of 0.64 pixel for the closest half of the beads and a mean error of 0.74 for the furthest. Three-dimensional reconstructions were obtained using weighted back projections. Alignment of the tilt series and tomographic reconstruction were performed using the IMOD software package (<xref rid="bib12" ref-type="bibr">Kremer et al., 1996</xref>).</p>
+      <p>All simulations and sub-tomogram processing was performed using MATLAB (Mathworks, Natick, Massachusetts, USA). Scripts for sub-tomogram alignment and averaging were adapted from the TOM and AV3 software packages (<xref rid="bib8 bib17" ref-type="bibr">Forster et al., 2005; Nickell et al., 2005</xref>). Scripts for CTF correction are described in the results section. On a modern linux workstation correction of a whole tomogram requires 4–5 min when sampling every 128<sup>2</sup> pixels and calculating 256<sup>2</sup> FFTs, and more than 10 times as much if the images are sampled every 32<sup>2</sup> pixels. The resolution was assessed by Fourier shell correlation (FSC). Datasets were divided in halves and the FSC between the maps obtained by averaging each half was calculated using Imagic (<xref rid="bib20" ref-type="bibr">van Heel et al., 1996</xref>). A simple spherical-shell mask with inner and outer radii of 45 and 80 pixels (211.5 and 376 Å) and an edge softened over 20 pixels (94 Å) was applied to both maps prior to computing the FSC.</p>
+      <p>FSCs were also calculated between the averaged tomographic maps and the electron density map obtained from the crystal structure. An electron density map of the PRD1 capsid shell was created from the atomic model of PRD1 asymmetric unit (PDB 1W8X) containing the P3, P30, P31, and P16 proteins only. To do this, adapted model_fc.inp and model_map.inp input files from the program CNS were used, and icosahedral symmetry was applied to recreate electron density correspondent to a whole virion. The electron density was scaled to the same pixel size as the tomographic maps for comparison, and prior to computing the FSCs, the atomic model-derived map was aligned to the average of corrected and uncorrected tomographic maps, after filtering the EM data to 30 Å. The maps were masked with the soft-edged spherical shell described above.</p>
+    </sec>
+    <sec>
+      <label>3</label>
+      <title>Results</title>
+      <sec>
+        <label>3.1</label>
+        <title>Simulations of the effects of the CTF, and of CTF correction</title>
+        <sec>
+          <label>3.1.1</label>
+          <title>Stability of defocus in a tomographic series</title>
+          <p>In an electron microscope, the amount of defocus, for a set of lenses with invariant current, depends on the position of the object along the optical axis (the <italic>z</italic> axis in the convention used here), and can be changed by moving the specimen holder along this axis. The mean defocus characterising an image of a tilted specimen corresponds to the defocus at the image’s central point. During the acquisition of a tilt series the holder is rotated about its eucentric axis. If the physical tilt axis of the specimen does not intersect the centre of the image, or if the <italic>z</italic>-position of the physical tilt axis does not remain constant throughout a tilt series, the mean defocus value of an image changes at different tilt angles. To assess the extent of the defocus variation in the data considered in this paper, we collected a number of high-dose tilt series of a carbon film sample, and measured the defocus of each of the images. The software package we have used for data collection, UCSF Tomography (<xref rid="bib26" ref-type="bibr">Zheng et al., 2007</xref>), collects the first half of the tilt series starting from the flat 0° position by increasing the tilt angle in one direction, and then rotates the holder back to zero degrees to collect the second half of the tilt series, in the opposite direction. The software does not measure the defocus after each tilt image. The mean defocus changed within a tilt series, as shown in <xref rid="fig1" ref-type="fig">Fig. 1</xref>. Most series show a jump in defocus between the two halves of the series. The range of defocus within a tilt series was between 1.5 and 2.5 μm. The pattern of change is similar in all series collected with the same software, but the exact value of defocus is not predictable.</p>
+        </sec>
+        <sec>
+          <label>3.1.2</label>
+          <title>Simulation of the effect of errors in defocus determination on CTF correction</title>
+          <p>Defocus variations within a tilt series originate from both changes in the <italic>z</italic>-position of the sample at the centre of the image and from the tilting of the specimen. The tilt produces a defocus gradient across the image which can be calculated by knowing the tilt axis and angle. The shifts in the <italic>z</italic>-height throughout a tilt series cannot be determined experimentally because the SNR of individual images is too low to measure the defocus. To determine how the variations in defocus due to <italic>z</italic>-shifts may affect our ability to perform CTF correction we have simulated the effects of errors in defocus determination on a tomographic reconstruction.</p>
+          <p>Simulations were performed using defocus, tilt angles and number of tilt images from some of the datasets in <xref rid="fig1" ref-type="fig">Fig. 1</xref>. We assumed that a final reconstruction, after sub-tomogram averaging, is formed from particles placed in random areas of the tomogram, in random orientations. To simulate the signal modulation by the CTF applied onto the final reconstruction, we calculated the mean CTF from all sub-regions of all images in one or more tilt series. This mean CTF approximates the 3D CTF characterising the averaged structure.</p>
+          <p>In order to do this, we applied the following steps:<list list-type="simple"><list-item><label>(a)</label><p>We divided each 2048<sup>2</sup> image in a tilt series into 128<sup>2</sup> tiles.</p></list-item><list-item><label>(b)</label><p>We calculated a defocus value for each tile based on its distance from the tilt axis, the tilt angle and the mean defocus of the image. The tilt angles and mean defocus values for each of the images in the series were from datasets in <xref rid="fig1" ref-type="fig">Fig. 1</xref>.</p></list-item><list-item><label>(c)</label><p>Using the calculated defocus values, CTF functions were computed for all tiles in all images in the tilt series, and the mean CTF was calculated. This mean function simulates the CTF modulating the final reconstruction after sub-tomogram averaging in the absence of correction.</p></list-item><list-item><label>(d)</label><p>For each tile, a defocus value for correction was determined. In some simulations this corresponded with the true defocus value used for generating the CTF (appropriate correction). Other simulations were carried out in which the defocus value for correction was different from the value calculated in step c because the tilt of the images was not taken into account, or because the <italic>z</italic>-shifts due to holder instabilities were not considered, or because a random error in the determination of defocus at the tilt axis was simulated.</p></list-item><list-item><label>(e)</label><p>The CTF functions computed in step c for each tile were phase flipped within frequency ranges calculated based on the defocus values determined in step d. The flipped CTFs from all tiles of all images of all tomograms were then averaged. This mean function simulates the effect of the CTF on the final reconstruction after sub-tomogram averaging when appropriate or approximate CTF correction has been applied.</p></list-item></list></p>
+          <p>When averaging sub-tomograms distributed throughout the tomogram with random orientations, the mean CTF approximates the 3D CTF characterising the averaged structure.</p>
+          <p>We first calculated the effect of the uncorrected CTF on a tomographic reconstruction. In <xref rid="fig2" ref-type="fig">Fig. 2</xref>A, the simulated CTF for a reconstruction from a series with mean defocus value of 3.94 μm and a variation of defocus at the tilt axis due to holder instabilities of 2.43 μm is shown (solid curve). The dotted curve represents a theoretical CTF curve according to Eq. <xref rid="fd1" ref-type="disp-formula">(1.0)</xref>, with the following parameters: voltage = 300 kV, spherical aberration = 2 mm, fraction of amplitude contrast = 10% (see <xref rid="app1" ref-type="sec">Supplementary materials</xref>), defocus = 3.94 μm (the mean defocus of the series). The two functions oscillate approximately in phase up to a spatial frequency of 1/20 Å<sup>−1</sup>. The first node of the two functions occurs at the same spatial frequency of 1/28 Å<sup>−1</sup>. The limit to the resolution achievable from an uncorrected set of images collected at a range of different defoci is hence determined by the position of the first zero of the CTF at the mean defocus value. Whereas the first node of the CTF calculated at a single defocus value reflects absence of information, the corresponding node in the function describing the mean of all CTFs results from summing positive with negative contributions, and can be recovered by CTF correction of the contributing images.</p>
+          <p>The effect of CTF correction was simulated on the same dataset. Each tile containing the previously defined CTF was corrected by phase flipping before calculating the mean CTF. In a first experiment all tiles were corrected using their exact defocus values: the information in the 3D reconstruction was transmitted with the same sign in the entire frequency domain (<xref rid="fig2" ref-type="fig">Fig. 2</xref>B, orange line).</p>
+          <p>We next simulated the effect of errors in the estimation of the defocus for each image. The simplest correction approach is to correct every tile using the mean defocus value of the entire tilt series, thereby assuming there is no <italic>z</italic>-shift (i.e. variation of defocus at the tilt axis) during data acquisition, and ignoring the tilting of the images (<xref rid="fig2" ref-type="fig">Fig. 2</xref>B, blue line). For the tilt series used here, this gives in a maximum error in the defocus estimation of 1.2 μm. After correction, the information between the first and second nodes now has the correct sign. The nodes themselves are not eliminated by flipping the curve at an invariable frequency. At higher frequencies, small regions of inverted signal are seen between the nodes of the uncorrected mean CTF (solid line in <xref rid="fig2" ref-type="fig">Fig. 2</xref>A) and of the CTF used for correction (dotted line in <xref rid="fig2" ref-type="fig">Fig. 2</xref>A).</p>
+          <p>A better approach is to assume that the mean defocus of each image corresponds to the mean defocus of the series, but to take the tilt geometry into account when calculating the defocus of each tile. This approach (<xref rid="fig2" ref-type="fig">Fig. 2</xref>C, blue line) results in a partial gain of signal at the nodes. The frequency at which the phase flip is performed is slightly different for each tile, and if the direction of the tilt is set correctly, the positive contributions outweigh the negative contributions. Nevertheless, the defocus range covered within an image of a tilted specimen is quite low, and the information close to the CTF nodes remains weak.</p>
+          <p>A recovery of the signal at all frequencies is expected when a number of tomograms with significantly different defocus values are combined. In <xref rid="fig2" ref-type="fig">Fig. 2</xref>D, the effect of combining data from five tilt series (from <xref rid="fig1" ref-type="fig">Fig. 1</xref>) with defocus values ranging between 3 and 4 μm is shown. An analogous simulation was performed for tomograms in which the defocus values ranged between 2 and 3 μm, and is reported in <xref rid="app1" ref-type="sec">Supplementary Fig. S2</xref>. Accurate correction is shown as an orange curve, and correction based on the mean defocus value, and considering the tilt geometry, is shown as a blue curve. Signal is transferred with the correct sign up to a spatial frequency of about 1/14 Å<sup>−1</sup>. This indicates that an increase in resolution can be obtained by using the mean defocus value of a tilt series to correct all of the images, even with the large variation in <italic>z</italic>-height characteristic of our system. If the variation in the <italic>z</italic>-height during data acquisition is reduced, by using a more stable holder for example, the error associated with attributing the same mean defocus value to all images in a tilt series is smaller, and higher resolutions can be achieved. This is illustrated in <xref rid="app1" ref-type="sec">Supplementary Fig. S3</xref>.</p>
+          <p>A different approach we tested relies on the ability of estimating the defocus value at the tilt axis of each of the images in the tilt series with a certain approximation. <xref rid="fig2" ref-type="fig">Fig. 2</xref>E shows the effect of a random error in the defocus determination for each image of 0.5 μm (light green line), and 1.2 μm (dark green line) when five tomograms are combined. When compared to properly corrected dataset the efficiency of contrast transfer becomes progressively lower at increasing spatial frequencies. From our simulations it is not possible to predict at which resolution the signal to noise ratio allows the Fourier shell correlation between two half datasets to be significant, because this depends on several factors such as the number of particles averaged. An error in the determination of the defocus of 1.2 μm allows a potential improvement in resolution with respect to the absence of any CTF correction similar to that obtained for the correction of all images using the mean defocus value of the series. The result of the simulation performed with an error in the defocus determination of 0.5 μm shows that up to spatial frequencies of about 1/18 Å<sup>−1</sup> the efficiency of contrast transfer is comparable with the properly corrected data. The simulations described above suggest that it is possible to improve the resolution of a structure derived from sub-tomogram averaging using CTF correction, even if only the mean defocus value of the series can be determined, or the defocus value of each image can be approximately estimated.</p>
+        </sec>
+      </sec>
+      <sec>
+        <label>3.2</label>
+        <title>Approaches for measuring and approximating the defoci of the images</title>
+        <sec>
+          <label>3.2.1</label>
+          <title>Measuring mean defocus of a tilt series</title>
+          <p>As shown in <xref rid="fig2" ref-type="fig">Fig. 2</xref>A, for tilt series which reflect the conditions of real data collection, the curve which describes the mean of the CTFs in a tilt series approximately overlaps at low frequencies with the CTF of a single image at the mean defocus value. This suggests that the standard method for defocus determination in cryo-EM: fitting the curve described by Eq. <xref rid="fd1" ref-type="disp-formula">(1.0)</xref> to the mean of the rotationally averaged power spectra of the tiles, could be applied to the tomographic series if sufficient signal was present, and if only the low frequency region of the curve was considered. We tested this on a number of tilt series of a carbon film. The mean defocus value for a tilt series was determined by fitting a standard CTF curve to the mean of the power spectra using a least square curve fitting algorithm (Fernando, personal communication). One example is shown in <xref rid="fig3" ref-type="fig">Fig. 3</xref>A, where a CTF curve is fitted to the experimental data obtained by calculating the mean of the power spectra of images in a tilt series and subtracting the background. The defocus value is 3.4 μm. The mean defocus value of individual images from the same tilt series measured using the EMAN program CTFIT (<xref rid="bib15" ref-type="bibr">Ludtke et al., 1999</xref>) is 3.3 μm. Considering 10 tilt series the error in the defocus estimate was 0.3 ± 0.2 μm.</p>
+          <p>The same method was then applied to a number of cryo-tilt series of a test sample, the bacteriophage PRD1 (an example is shown in <xref rid="fig3" ref-type="fig">Fig. 3</xref>B). Despite the very low SNR, one significant oscillation can be fitted by the CTF curve. For our data, we were unable to obtain a measurement of the defocus using the TOMOPS and TOMOCTFFIND programs (<xref rid="bib6" ref-type="bibr">Fernandez et al., 2006</xref>).</p>
+        </sec>
+        <sec>
+          <label>3.2.2</label>
+          <title>Measuring defocus on individual images using their relative magnification</title>
+          <p>We next attempted to improve our estimate of the mean defocus of individual images based on their relative magnifications. In a system with non-parallel illumination, defocus and magnification are linearly related for unvarying Condenser 2 lens settings (see <xref rid="app1" ref-type="sec">Supplementary materials</xref>; <xref rid="bib19" ref-type="bibr">van Duinen et al., 2005</xref>). The gradient depends mainly on the convergence of the beam on the specimen, i.e. the strength of the Condenser 2 lens. For an over-focused condenser lens, specimens at higher defocus have lower magnification.</p>
+          <p>To determine the defocus/magnification ratio at our cryo-tomographic experimental settings, series of images of gold beads on carbon film were collected. Within each series of images, the defocus was varied by changing the <italic>z</italic>-height of the microscope stage, thereby moving the sample relative to the objective lens. By measuring defocus and magnification changes throughout these series the defocus/magnification ratio for various Condenser 2 lens conditions could be assessed. The magnification was measured by comparing the positions of about 10 gold beads in all images. The results are shown in <xref rid="fig4" ref-type="fig">Fig. 4</xref>A. The data are well fitted by linear equations (reported in the <xref rid="app1" ref-type="sec">Supplementary materials</xref>). The gradient of the line is reproducible within each dataset and the absolute value of the gradient is higher for lower dose conditions, consistent with what is predicted by the geometry of the system (<xref rid="app1" ref-type="sec">Supplementary materials</xref>). At the microscope settings used for CET we obtained a value for the gradient of −440 μm.</p>
+          <p>This was then tested on tilt series of carbon film collected at high dose, for which the mean defocus value was measurable at each tilt by fitting a CTF curve to the oscillating signal. The magnification was measured using IMOD, where it can be iteratively refined together with the tilt angle and the direction of the tilt axis until the alignment error between subsequent images is minimised. A defocus value was obtained for each image from its magnification using the defocus measured from the mean power spectrum as a reference. The calculated values were then compared with the defocus measured directly from each image. The average error in the determination of the defocus value is less than 0.5 μm, although it increases at higher tilt angles (<xref rid="fig4" ref-type="fig">Fig. 4</xref>B). An error in defocus determination might result if the magnification is measured on gold beads which have a centre of gravity that does not correspond to the centre of the tomogram, and this effect is maximised at high tilt angles. It is hence important that gold beads are well distributed on the tomogram. Knowing the magnification change for all images and the mean defocus value of the series, it is therefore possible to estimate the defocus at the tilt axis of all the images in a tilt series.</p>
+        </sec>
+      </sec>
+      <sec>
+        <label>3.3</label>
+        <title>Approaches for correcting the CTF</title>
+        <p>We developed a series of scripts for correcting images within a tilt series with a defocus gradient in a tile-by-tile based approach. These apply CTF correction to tilted images prior to image rotation. For each tilt series, a parameter file adapted from the IMOD alignment log file is generated, in which the direction of the tilt axis, the tilt angle, and the relative magnifications are defined. The mean defocus value of the series is also provided. The scripts assign the defocus value at the tilt axis of each image either by using the mean defocus value of the tilt series, or by calculating it from the relative magnifications.</p>
+        <p>The image is then divided into a number of tiles of a specified size, for example 128<sup>2</sup> pixels. For each tile, the defocus value is calculated based on the position of the central pixel and on the defocus at the tilt axis. A square box is then extracted from the image around each tile. The box must be bigger than the tile, for example 256<sup>2</sup> pixels. The Fourier Transform of the box is calculated and corrected for the appropriate CTF by phase flipping. The central 128<sup>2</sup> pixels of the corrected box are then pasted into the corrected final image. The errors due to approximation of the tile to a flat sub-image can be reduced by choosing a smaller tile size, although increasing computational time can be a limiting factor.</p>
+      </sec>
+      <sec>
+        <label>3.4</label>
+        <title>Testing of these approaches in sub-tomogram averaging of cryo-tomograms of bacteriophage PRD1</title>
+        <sec>
+          <label>3.4.1</label>
+          <title>Sub-tomogram averaging of PRD1</title>
+          <p>The CTF detection and correction methods described above were applied to a set of cryo-tomograms of PRD1. This bacteriophage was used as a test sample since its structure is known from previous crystallography and electron microscopy studies (<xref rid="bib1 bib18" ref-type="bibr">Abrescia et al., 2004; San Martin et al., 2002</xref>).</p>
+          <p>A total of 311 sub-tomograms (200<sup>3</sup> voxels) containing individual viruses were extracted from 24 uncorrected tomographic reconstructions. The EM map of PRD1 (<xref rid="bib18" ref-type="bibr">San Martin et al., 2002</xref>, EMDB1011) was used as a starting reference for alignment of sub-tomograms, after applying a heavy low-pass filter at 1/80 Å<sup>−1</sup>. All alignment iterations were carried out using a soft-edged spherical mask. An initial alignment was performed allowing rotation of psi and theta in the whole icosahedral asymmetric unit, the angle phi was allowed a 360° rotation. Angles were defined according to the convention of the TOM and AV3 software packages used, as described in <xref rid="bib8" ref-type="bibr">Forster et al. (2005)</xref>. In each iteration the overall angular range searched was decreased, down to a sampling of 1°. An appropriately shaped missing wedge was applied to the Fourier transform of the rotated references in each alignment before cross-correlation with each particle. The aligned sub-tomograms were averaged, excluding those with poor cross-correlation with the reference (lower than 0.5 of the mean cross-correlation value).</p>
+          <p>Icosahedral symmetry was applied to the averaged map using Bsoft (<xref rid="bib11" ref-type="bibr">Heymann, 2001</xref>) before using it as a reference for the next iteration.</p>
+          <p>Using this approach, a map of PRD1 was obtained from uncorrected images with a resolution of 30 Å at the 3<italic>σ</italic> threshold and of 31 Å at the 0.5 threshold of the FSC (<xref rid="fig5" ref-type="fig">Fig. 5</xref>A, blue line).</p>
+        </sec>
+        <sec>
+          <label>3.4.2</label>
+          <title>Correction of PRD1 tomograms using the series mean defocus value</title>
+          <p>The mean defocus value was measured from the summed power spectra of each tomogram, and a range between 3 and 5.6 μm was obtained. The average mean defocus was 4 μm, this generates a CTF with its first node falling at 1/28 Å<sup>−1</sup>, corresponding to the local minimum observed in the FSC.</p>
+          <p>In a first correction experiment, each image in the tilt series was CTF corrected setting the defocus at the tilt axis to be the mean defocus of the series. Images were corrected using the tile-by-tile approach described above. The corrected tiles extended over 128<sup>2</sup> pixels (at a tilt angle of 60° the defocus variation across a tile of this size is 0.05 μm), while FFTs were computed over 256<sup>2</sup> pixels. The tilt axis direction and the tilt angle were calculated during the alignments performed with IMOD.</p>
+          <p>Sub-tomograms containing PRD1 viruses were extracted from the corrected 3D reconstructions, and an averaged map was created using parameters from an intermediate alignment step of the uncorrected data. Subsequently, further alignment iterations were carried out exactly as for the uncorrected dataset. The resolution assessed from the FSC at the 3<italic>σ</italic> threshold improved upon correction from 29 to 22 Å and from 30 to 27 with the 0.5 threshold criterion (<xref rid="fig5" ref-type="fig">Fig. 5</xref>A, red line). As expected, the dip in the FSC at 1/28 Å<sup>−1</sup> corresponding to the first node of the CTF of the mean defocus is filled in after correction.</p>
+          <p>We also plotted the FSC between the averaged tomographic maps and the electron density map obtained from the atomic structure of PRD1 (<xref rid="bib1" ref-type="bibr">Abrescia et al., 2004</xref>). We obtained a dramatic improvement upon CTF correction, with the recovery of a region of negative correlation in the FSC (<xref rid="fig5" ref-type="fig">Fig. 5</xref>B). An improvement can also be visually appreciated by comparing the two maps (<xref rid="fig5" ref-type="fig">Fig. 5</xref>C and D).</p>
+        </sec>
+        <sec>
+          <label>3.4.3</label>
+          <title>Correcting PRD1 tomograms using the relative magnification to predict the defocus</title>
+          <p>In another experiment all 24 PRD1 tomograms were corrected using a defocus value for each image derived from its magnification relative to the other images within the same tomogram. The magnification was measured on the position of about 20 gold beads, adjusted for the tilt. The centre of mass of the gold beads used for determining the magnification must correspond to the centre of the tomogram for the defocus assessment to be correct. In our data, the average distance of the centre of mass of gold beads with respect to the centre of the tomogram was 88 pixel, leading to an error in defocus determination of 0.072 μm for an image tilted to 60°, which is not significant.</p>
+          <p><xref rid="fig5" ref-type="fig">Fig. 5</xref>A, orange line, shows the FSC curves between half datasets for the viruses corrected after calculation of the defocus value from the relative magnification. The resolution does not significantly differ from the resolution of the reconstruction corrected using the mean defocus value. This indicates that the error in the determination of the defocus value for the cryo-tomographic datasets based on the relative magnification of the images is comparable to the error present when using the mean defocus value.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec>
+      <label>4</label>
+      <title>Discussion</title>
+      <p>In order to improve the resolution of a 3D structure obtained in single particle projects, CTF correction is routinely performed on images of cryo-specimens. The defocus value which determines the shape of the correction curve is obtained experimentally upon detection of the signal oscillations in the images power spectrum. The difficulty of detecting the signal oscillations in low SNR images has so far discouraged the implementation of CTF correction in CET. In this study we showed with simulated data that a certain margin of error in measurement of the defocus still allows the CTF to be corrected to give improvement in resolution. Strikingly, we found that an error in the defocus determination of 1.2 μm in a tilt series with mean defocus value of 4 μm allows the signal to be restored with satisfactory intensity for resolutions up to 24 Å, and an error in the order of 0.5 μm leads to a restoration of the signal up to resolutions of 17 Å.</p>
+      <p>Two methods for assigning an approximate defocus value were analysed in this study: the first corrects all images in a tilt series by using the mean defocus of all images, which can be detected in their mean power spectrum. This approach is equivalent to making the assumption that there are no <italic>z</italic>-shifts at the tilt axis between subsequent images. The second approach is based on the fact that a variation in defocus between images in a tilt series is reflected in a change in magnification. Applied on data of carbon film, this approach gives estimates of defocus with an average error of less than 0.5 μm.</p>
+      <p>The two methods for assigning the defocus were tested by generating 3D maps of the bacteriophage PRD1 by sub-tomogram alignment and averaging. The CTF correction of the tilted images was carried out using a tile-by-tile approach.</p>
+      <p>Datasets corrected using either method showed an improvement in resolution with respect to the uncorrected data, from 29 to 22 Å. This improvement is significant, especially in the context of fitting atomic structures into electron density maps. There was no significant difference in the performance of the two methods. This probably indicates that the estimate of defocus based on relative magnification is not as precise for cryo-images as it is in the case of images of carbon film. This may reflect larger errors in magnification measurements due to small movement of the gold beads within the cryo-sample upon exposure to the electron beam. CTF correction based on the mean defocus value over the whole tilt series leads to better results if the range of defoci is small (<xref rid="app1" ref-type="sec">Supplementary Fig. S3</xref>). This implies that addition of a selection step in which only the lowest change in defocus (i.e. with lowest change in magnifications) tomograms are added to the final averaged reconstruction might be key to further resolution improvements.</p>
+      <p>The ability to align close-to-focus data is highly sample-dependent, as the contrast obtained at low defocus may not permit the alignment of sub-tomograms of smaller proteins or protein complexes. Furthermore, CTF correction on tomograms with smaller defocus values is more difficult, as the first CTF node occurs at higher frequency, where the signal intensity is lower, making it harder to detect the signal from the mean power spectrum of the tilt series. As illustrated in <xref rid="app1" ref-type="sec">Supplementary Fig. S2</xref>, reconstructions from corrected tomograms collected at higher defocus values may provide better resolution than those obtained from non-corrected closer-to-focus tomograms. CTF correction of further-from-focus data may therefore present advantages for higher resolution reconstruction, when compared to using close-to-focus data.</p>
+      <p>In conclusion, clear improvements in reconstruction quality can be obtained by applying CTF correction in sub-tomogram averaging from CET. Imprecise defocus measurements are sufficient to allow useful correction, and it is possible to determine defocus from cryo-tomograms within appropriate bounds of error. This provides a framework for generating higher resolution reconstructions of protein complexes <italic>in situ</italic>.</p>
+    </sec>
+    <sec sec-type="supplementary-material">
+      <label>Appendix A</label>
+      <title>Supplementary data</title>
+      <p>Supplementary data associated with this article can be found, in the online version, at <ext-link xlink:href="doi:10.1016/j.jsb.2009.08.002" ext-link-type="uri">doi:10.1016/j.jsb.2009.08.002</ext-link>.</p>
+    </sec>
+    <sec sec-type="supplementary-material" id="app1">
+      <label>Appendix A</label>
+      <title>Supplementary data</title>
+      <p>
+        <supplementary-material content-type="local-data" id="N0x1d12c60N0x2f27bd0">
+          <caption>
+            <title>Supplementary material</title>
+          </caption>
+          <p>Supplementary information.</p>
+          <media xlink:href="mmc1.doc" mimetype="application" mime-subtype="msword"/>
+        </supplementary-material>
+      </p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>The authors thank Carly Banner for providing the PRD1 sample, Vince Fernando for the CTF fitting scripts and helpful discussion, Nicola Abrescia and Kamel Omari for help with calculating the electron density map for PRD1 and Doryen Bubeck, Daniel Castano Diez, Achilleas Frangakis and Margot Scheffer for careful reading of the manuscript. G.Z. was supported by a Wellcome Trust structural biology studentship. This work was supported by the Wellcome Trust H5RCYV0.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Abrescia</surname>
+              <given-names>N.G.</given-names>
+            </name>
+            <name>
+              <surname>Cockburn</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Grimes</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Sutton</surname>
+              <given-names>G.C.</given-names>
+            </name>
+            <name>
+              <surname>Diprose</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Butcher</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Fuller</surname>
+              <given-names>S.D.</given-names>
+            </name>
+            <name>
+              <surname>San Martin</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Burnett</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Stuart</surname>
+              <given-names>D.I.</given-names>
+            </name>
+            <name>
+              <surname>Bamford</surname>
+              <given-names>D.H.</given-names>
+            </name>
+            <name>
+              <surname>Bamford</surname>
+              <given-names>J.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Insights into assembly from structural analysis of bacteriophage PRD1</article-title>
+          <source>Nature</source>
+          <year>2004</year>
+          <volume>432</volume>
+          <fpage>68</fpage>
+          <lpage>74</lpage>
+          <pub-id pub-id-type="pmid">15525981</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bamford</surname>
+              <given-names>J.K.</given-names>
+            </name>
+            <name>
+              <surname>Bamford</surname>
+              <given-names>D.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Capsomer proteins of bacteriophage PRD1, a bacterial virus with a membrane</article-title>
+          <source>Virology</source>
+          <year>1990</year>
+          <volume>177</volume>
+          <fpage>445</fpage>
+          <lpage>451</lpage>
+          <pub-id pub-id-type="pmid">2196741</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bamford</surname>
+              <given-names>J.K.</given-names>
+            </name>
+            <name>
+              <surname>Bamford</surname>
+              <given-names>D.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Large-scale purification of membrane-containing bacteriophage PRD1 and its subviral particles</article-title>
+          <source>Virology</source>
+          <year>1991</year>
+          <volume>181</volume>
+          <fpage>348</fpage>
+          <lpage>352</lpage>
+          <pub-id pub-id-type="pmid">1994582</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Briggs</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Riches</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Glass</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Bartonova</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Zanetti</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Kräusslich</surname>
+              <given-names>H.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure and assembly of immature HIV</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2009</year>
+          <volume>106</volume>
+          <issue>27</issue>
+          <fpage>11090</fpage>
+          <lpage>11095</lpage>
+          <pub-id pub-id-type="pmid">19549863</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Erickson</surname>
+              <given-names>H.P.</given-names>
+            </name>
+            <name>
+              <surname>Klug</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Measurement and compensation of defocusing and aberrations by fourier processing of electron micrographs</article-title>
+          <source>Philos. Trans. R. Soc. Lond. B</source>
+          <year>1971</year>
+          <volume>261</volume>
+          <fpage>105</fpage>
+          <lpage>118</lpage>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fernandez</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Crowther</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>CTF determination and correction in electron cryotomography</article-title>
+          <source>Ultramicroscopy</source>
+          <year>2006</year>
+          <volume>106</volume>
+          <fpage>587</fpage>
+          <lpage>596</lpage>
+          <pub-id pub-id-type="pmid">16616422</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Forster</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Hegerl</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structure determination in situ by averaging of tomograms</article-title>
+          <source>Methods Cell Biol.</source>
+          <year>2007</year>
+          <volume>79</volume>
+          <fpage>741</fpage>
+          <lpage>767</lpage>
+          <pub-id pub-id-type="pmid">17327182</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Forster</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Medalia</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Zauberman</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Baumeister</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Fass</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Retrovirus envelope protein complex structure in situ studied by cryo-electron tomography</article-title>
+          <source>Proc. Natl. Acad. Sci. USA</source>
+          <year>2005</year>
+          <volume>102</volume>
+          <fpage>4729</fpage>
+          <lpage>4734</lpage>
+          <pub-id pub-id-type="pmid">15774580</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frank</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Three-dimensional Electron Microscopy of Macromolecular Assemblies: Visualization of Biological Molecules in Their Native State</article-title>
+          <year>2006</year>
+          <publisher-name>Oxford University Press</publisher-name>
+          <publisher-loc>USA</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Henderson</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Baldwin</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Ceska</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Zemlin</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Beckmann</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Downing</surname>
+              <given-names>K.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Model for the structure of bacteriorhodopsin based on high-resolution electron cryo-microscopy</article-title>
+          <source>J. Mol. Biol.</source>
+          <year>1990</year>
+          <volume>213</volume>
+          <fpage>899</fpage>
+          <lpage>929</lpage>
+          <pub-id pub-id-type="pmid">2359127</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heymann</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bsoft: image and molecular processing in electron microscopy</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>2001</year>
+          <volume>133</volume>
+          <fpage>156</fpage>
+          <lpage>169</lpage>
+          <pub-id pub-id-type="pmid">11472087</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kremer</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Mastronarde</surname>
+              <given-names>D.N.</given-names>
+            </name>
+            <name>
+              <surname>McIntosh</surname>
+              <given-names>J.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computer visualization of three-dimensional image data using IMOD</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>1996</year>
+          <volume>116</volume>
+          <fpage>71</fpage>
+          <lpage>76</lpage>
+          <pub-id pub-id-type="pmid">8742726</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Liu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Bartesaghi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Borgnia</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Sapiro</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Subramaniam</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Molecular architecture of native HIV-1 gp120 trimers</article-title>
+          <source>Nature</source>
+          <year>2008</year>
+          <volume>455</volume>
+          <fpage>109</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="pmid">18668044</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lucic</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Forster</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Baumeister</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural studies by electron tomography: from cells to molecules</article-title>
+          <source>Annu. Rev. Biochem.</source>
+          <year>2005</year>
+          <volume>74</volume>
+          <fpage>833</fpage>
+          <lpage>865</lpage>
+          <pub-id pub-id-type="pmid">15952904</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ludtke</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Baldwin</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Chiu</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>EMAN: semiautomated software for high-resolution single-particle reconstructions</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>1999</year>
+          <volume>128</volume>
+          <fpage>82</fpage>
+          <lpage>97</lpage>
+          <pub-id pub-id-type="pmid">10600563</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mindell</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Grigorieff</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Accurate determination of local defocus and specimen tilt in electron microscopy</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>2003</year>
+          <volume>142</volume>
+          <fpage>334</fpage>
+          <lpage>347</lpage>
+          <pub-id pub-id-type="pmid">12781660</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nickell</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Forster</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Linaroudis</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Net</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Hegerl</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Baumeister</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Plitzko</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>TOM software toolbox: acquisition and analysis for electron tomography</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>2005</year>
+          <volume>149</volume>
+          <fpage>227</fpage>
+          <lpage>234</lpage>
+          <pub-id pub-id-type="pmid">15721576</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>San Martin</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Huiskonen</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Bamford</surname>
+              <given-names>J.K.</given-names>
+            </name>
+            <name>
+              <surname>Butcher</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Fuller</surname>
+              <given-names>S.D.</given-names>
+            </name>
+            <name>
+              <surname>Bamford</surname>
+              <given-names>D.H.</given-names>
+            </name>
+            <name>
+              <surname>Burnett</surname>
+              <given-names>R.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Minor proteins, mobile arms and membrane-capsid interactions in the bacteriophage PRD1 capsid</article-title>
+          <source>Nat. Struct. Biol.</source>
+          <year>2002</year>
+          <volume>9</volume>
+          <fpage>756</fpage>
+          <lpage>763</lpage>
+          <pub-id pub-id-type="pmid">12219080</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van Duinen</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>van Heel</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Patwardhan</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Magnification variations due to illumination curvature and object defocus in transmission electron microscopy</article-title>
+          <source>Optics Express</source>
+          <year>2005</year>
+          <volume>13</volume>
+          <fpage>9085</fpage>
+          <lpage>9093</lpage>
+          <pub-id pub-id-type="pmid">19498945</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van Heel</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Harauz</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Orlova</surname>
+              <given-names>E.V.</given-names>
+            </name>
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Schatz</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new generation of the IMAGIC image processing system</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>1996</year>
+          <volume>116</volume>
+          <fpage>17</fpage>
+          <lpage>24</lpage>
+          <pub-id pub-id-type="pmid">8742718</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wade</surname>
+              <given-names>R.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Phase-contrast characteristics in bright field electron-microscopy</article-title>
+          <source>Ultramicroscopy</source>
+          <year>1978</year>
+          <volume>3</volume>
+          <fpage>329</fpage>
+          <lpage>334</lpage>
+          <pub-id pub-id-type="pmid">734788</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wade</surname>
+              <given-names>R.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>A brief look at imaging and contrast transfer</article-title>
+          <source>Ultramicroscopy</source>
+          <year>1992</year>
+          <volume>46</volume>
+          <fpage>145</fpage>
+          <lpage>156</lpage>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Walin</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Tuma</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Thomas</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Bamford</surname>
+              <given-names>D.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Purification of viruses and macromolecular assemblies for structural investigations using a novel ion exchange method</article-title>
+          <source>Virology</source>
+          <year>1994</year>
+          <volume>201</volume>
+          <fpage>1</fpage>
+          <lpage>7</lpage>
+          <pub-id pub-id-type="pmid">8178473</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Winkler</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>K.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Focus gradient correction applied to tilt series image data used in electron tomography</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>2003</year>
+          <volume>143</volume>
+          <fpage>24</fpage>
+          <lpage>32</lpage>
+          <pub-id pub-id-type="pmid">12892723</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zanetti</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Briggs</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Grunewald</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Sattentau</surname>
+              <given-names>Q.J.</given-names>
+            </name>
+            <name>
+              <surname>Fuller</surname>
+              <given-names>S.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cryo-electron tomographic structure of an immunodeficiency virus envelope complex in situ</article-title>
+          <source>PLoS Pathog.</source>
+          <year>2006</year>
+          <volume>2</volume>
+          <fpage>e83</fpage>
+          <pub-id pub-id-type="pmid">16933990</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zheng</surname>
+              <given-names>S.Q.</given-names>
+            </name>
+            <name>
+              <surname>Keszthelyi</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Branlund</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Lyle</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Braunfeld</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>Sedat</surname>
+              <given-names>J.W.</given-names>
+            </name>
+            <name>
+              <surname>Agard</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>UCSF tomography: an integrated software suite for real-time electron microscopic tomographic data collection, alignment, and reconstruction</article-title>
+          <source>J. Struct. Biol.</source>
+          <year>2007</year>
+          <volume>157</volume>
+          <fpage>138</fpage>
+          <lpage>147</lpage>
+          <pub-id pub-id-type="pmid">16904341</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhou</surname>
+              <given-names>Z.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards atomic resolution structural determination by single-particle cryo-electron microscopy</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <year>2008</year>
+          <volume>18</volume>
+          <fpage>218</fpage>
+          <lpage>228</lpage>
+          <pub-id pub-id-type="pmid">18403197</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhu</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Bess</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Chertova</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Lifson</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Grise</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Ofek</surname>
+              <given-names>G.A.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Roux</surname>
+              <given-names>K.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distribution and three-dimensional structure of AIDS virus envelope spikes</article-title>
+          <source>Nature</source>
+          <year>2006</year>
+          <volume>441</volume>
+          <fpage>847</fpage>
+          <lpage>852</lpage>
+          <pub-id pub-id-type="pmid">16728975</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Defocus change over tilt series. Defocus measured from images of 10 tilt series of a carbon film, shown as a function of the tilt angle.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Simulation of the CTF effects on a tomographic reconstruction. (A) The CTF of a reconstruction from a single uncorrected tomogram (solid line), and the CTF of a single untilted image with a defocus equal to the mean defocus of the tomogram (dotted line). (B) Black solid line as in (A). The CTF of a reconstruction from a single tomogram corrected accurately (orange line), or corrected based on the mean defocus of the series (blue line), without taking the tilt into account. (C) Black solid line as in (A). The CTF of a reconstruction from a single tomogram corrected accurately (orange line), or corrected based on the mean defocus of the series with the tilt taken into account (blue line). (D) The same curves as in (C) for a reconstruction calculated using data from five tomograms collected at a range of defoci. (E) The CTF of a reconstruction from five tomograms, corrected based on a defocus measured with an error of ±0.5 μm (light green line) or ±1.2 μm (dark green line). Black and orange lines as in (D). See text for further details. Three resolution ranges are highlighted with vertical grey bars for clarity.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>CTF fitted in the mean power spectrum of tilt series. The mean of rotationally averaged, background subtracted power spectra of all images of a tilt series were calculated (black lines). A CTF curve (dotted red line) was fitted using least square deviation methods. (A) Example from a tilt series of carbon film. The mean defocus value of the series is 3.5 μm. (B) Example from a cryo-tilt series of PRD1. The mean defocus value is 4 μm. The <italic>y</italic> axis in (B) is scaled up 20 times with respect to (A).</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Relationship between magnification and defocus. (A) The change in defocus is plotted against the relative magnification for a series of images of carbon collected at settings of C2 and beam intensity corresponding to those used in cryo-tomography experiments. Changes in defocus and magnification are relative to the closest to focus image. (B) Error in defocus determination from nine series of carbon film. Defocus values were measured directly from the images and calculated using their relative magnification values, and the two estimates subtracted. The absolute value of the error is plotted against tilt angle.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Effect of correction on averaged PRD1 sub-tomograms. (A) Fourier shell correlation between averaged maps obtained from aligned sub-tomograms split in two datasets. The 0.5 and the 3<italic>σ</italic> threshold curves are plotted for comparison. Blue line: uncorrected, the resolution is 29 Å at 3<italic>σ</italic>. Red line: corrected using the mean defocus value for all images, the resolution is 22 Å at 3<italic>σ</italic>. Orange line: corrected using the defocus value calculated from the relative magnification, the resolution is 22 Å at 3<italic>σ</italic>. (B) FSC between averaged maps obtained from aligned sub-tomograms and an appropriately scaled and aligned electron density map obtained from the available atomic model (PDB 1W8X). The colour code corresponds to that in (A). (C) Portion of the 3D map obtained from uncorrected sub-tomogram averaging. (D) Corresponding portion of the 3D map obtained from averaging of sub-tomograms after correction based on the mean defocus value. Scale bar is 100 Å.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+  </floats-wrap>
+</article>

@@ -1,0 +1,926 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Theor Comp Sci</journal-id>
+      <journal-title-group>
+        <journal-title>Theoretical Computer Science</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0304-3975</issn>
+      <publisher>
+        <publisher-name>Elsevier BV, North-Holland, 1970-</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3197330</article-id>
+      <article-id pub-id-type="pmid">22031791</article-id>
+      <article-id pub-id-type="publisher-id">TCS8014</article-id>
+      <article-id pub-id-type="doi">10.1016/j.tcs.2010.09.032</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Synchronous consensus under hybrid process and link failures<sup><xref ref-type="fn" rid="d30e14">☆</xref></sup></article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Biely</surname>
+            <given-names>Martin</given-names>
+          </name>
+          <email>biely@ecs.tuwien.ac.at</email>
+          <xref rid="cor000005" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Schmid</surname>
+            <given-names>Ulrich</given-names>
+          </name>
+          <email>s@ecs.tuwien.ac.at</email>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Weiss</surname>
+            <given-names>Bettina</given-names>
+          </name>
+          <email>bw@ecs.tuwien.ac.at</email>
+        </contrib>
+      </contrib-group>
+      <aff id="af000005">Technische Universität Wien, Institut für Technische Informatik, Embedded Computing Systems Group E182/2, Treitlstraße 1–3, A-1040 Vienna, Austria</aff>
+      <author-notes>
+        <corresp id="cor000005"><label>⁎</label>Corresponding author. <email>biely@ecs.tuwien.ac.at</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>16</day>
+        <month>9</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>16</day>
+        <month>9</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>412</volume>
+      <issue>40</issue>
+      <fpage>5602</fpage>
+      <lpage>5630</lpage>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier B.V.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>We introduce a comprehensive hybrid failure model for synchronous distributed systems, which extends a conventional hybrid process failure model by adding communication failures: Every process in the system is allowed to commit up to <inline-formula><mml:math id="M1" altimg="si1.gif" display="inline" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>ℓ</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msubsup></mml:math></inline-formula> send link failures and experience up to <inline-formula><mml:math id="M2" altimg="si2.gif" display="inline" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>ℓ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msubsup></mml:math></inline-formula> receive link failures per round here, without being considered faulty; up to some <inline-formula><mml:math id="M3" altimg="si3.gif" display="inline" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>ℓ</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi><mml:mi>a</mml:mi></mml:mrow></mml:msubsup><mml:mo>≤</mml:mo><mml:msubsup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>ℓ</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msubsup></mml:math></inline-formula> and <inline-formula><mml:math id="M4" altimg="si4.gif" display="inline" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>ℓ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mi>a</mml:mi></mml:mrow></mml:msubsup><mml:mo>≤</mml:mo><mml:msubsup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>ℓ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msubsup></mml:math></inline-formula> among those may even cause erroneous messages rather than just omissions. In a companion paper (Schmid et al. (2009) <xref rid="br000070" ref-type="bibr">[14]</xref>), devoted to a complete suite of related impossibility results and lower bounds, we proved that this model surpasses all existing link failure modeling approaches in terms of the assumption coverage in a simple probabilistic setting.</p>
+        <p>In this paper, we show that several well-known synchronous consensus algorithms can be adapted to work under our failure model, provided that the number of processes required for tolerating process failures is increased by small integer multiples of <inline-formula><mml:math id="M5" altimg="si5.gif" display="inline" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>ℓ</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi></mml:mrow></mml:msubsup></mml:math></inline-formula>, <inline-formula><mml:math id="M6" altimg="si6.gif" display="inline" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>ℓ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi></mml:mrow></mml:msubsup></mml:math></inline-formula>, <inline-formula><mml:math id="M7" altimg="si7.gif" display="inline" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>ℓ</mml:mi></mml:mrow><mml:mrow><mml:mi>s</mml:mi><mml:mi>a</mml:mi></mml:mrow></mml:msubsup></mml:math></inline-formula>, <inline-formula><mml:math id="M8" altimg="si8.gif" display="inline" overflow="scroll"><mml:msubsup><mml:mrow><mml:mi>f</mml:mi></mml:mrow><mml:mrow><mml:mi>ℓ</mml:mi></mml:mrow><mml:mrow><mml:mi>r</mml:mi><mml:mi>a</mml:mi></mml:mrow></mml:msubsup></mml:math></inline-formula>. This is somewhat surprising, given that consensus in the presence of unrestricted link failures and mobile (moving) process omission failures is impossible. We provide detailed formulas for the required number of processes and rounds, which reveal that the lower bounds established in our companion paper are tight. We also explore the power and limitations of authentication in our setting, and consider uniform consensus algorithms, which guarantee their properties also for benign faulty processes.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Fault-tolerant distributed systems</kwd>
+        <kwd>Byzantine agreement</kwd>
+        <kwd>Hybrid failure models</kwd>
+        <kwd>Link failures</kwd>
+        <kwd>Uniform consensus</kwd>
+        <kwd>Authentication</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="br000005">
+        <label>1</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lynch</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Distributed Algorithms</chapter-title>
+          <year>1996</year>
+          <publisher-name>Morgan Kaufman Publishers, Inc.</publisher-name>
+          <publisher-loc>San Francisco, USA</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="br000010">
+        <label>2</label>
+        <mixed-citation publication-type="other">M. Raynal, Consensus in synchronous systems: A concise guided tour., in: Proceedings 9th Pacific Rim International Symposium on Dependable Computing, PRDC 2002, Tsukuba-City, Ibarski, Japan, 2002, pp. 221–228.</mixed-citation>
+      </ref>
+      <ref id="br000015">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Perry</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Distributed agreement in the presence of processor and communication faults</article-title>
+          <source>IEEE Transactions on Software Engineering</source>
+          <volume>SE-12</volume>
+          <issue>3</issue>
+          <year>1986</year>
+          <fpage>477</fpage>
+          <lpage>482</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000020">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lamport</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Shostak</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Pease</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Byzantine generals problem</article-title>
+          <source>ACM Transactions on Programming Languages and Systems</source>
+          <volume>4</volume>
+          <issue>3</issue>
+          <year>1982</year>
+          <fpage>382</fpage>
+          <lpage>401</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000025">
+        <label>5</label>
+        <mixed-citation publication-type="other">F.J. Meyer, D.K. Pradhan, Consensus with dual failure modes, in: In Digest of Papers of the 17th International Symposium on Fault-Tolerant Computing, Pittsburgh, 1987, pp. 48–54.</mixed-citation>
+      </ref>
+      <ref id="br000030">
+        <label>6</label>
+        <mixed-citation publication-type="other">P.M. Thambidurai, Y.K. Park, Interactive consistency with multiple failure modes, in: Proceedings 7th Symposium on Reliable Distributed Systems, 1988, pp. 93–100.</mixed-citation>
+      </ref>
+      <ref id="br000035">
+        <label>7</label>
+        <mixed-citation publication-type="other">J.A. Garay, K.J. Perry, A continuum of failure models for distributed computing, in: Proceedings WDAG, 1992, pp. 153–165.</mixed-citation>
+      </ref>
+      <ref id="br000040">
+        <label>8</label>
+        <mixed-citation publication-type="other">P. Lincoln, J. Rushby, A formally verified algorithm for interactive consistency under a hybrid fault model, in: Proceedings Fault Tolerant Computing Symposium 23, Toulouse, France, 1993, pp. 402–411.</mixed-citation>
+      </ref>
+      <ref id="br000045">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Walter</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Suri</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>The customizable fault/error model for dependable distributed systems</article-title>
+          <source>Theoretical Computer Science</source>
+          <volume>290</volume>
+          <year>2002</year>
+          <fpage>1223</fpage>
+          <lpage>1251</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000050">
+        <label>10</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Santoro</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Widmayer</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Time is not a healer</chapter-title>
+          <source>Proc. 6th Annual Symposium on Theor. Aspects of Computer Science</source>
+          <conf-name>STACS’89</conf-name>
+          <series>LNCS</series>
+          <volume>vol. 349</volume>
+          <year>1989</year>
+          <publisher-name>Springer-Verlag</publisher-name>
+          <publisher-loc>Paderborn, Germany</publisher-loc>
+          <fpage>304</fpage>
+          <lpage>313</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000055">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Afek</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Attiya</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Fekete</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Fischer</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lynch</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Mansour</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>D.-W.</given-names>
+            </name>
+            <name>
+              <surname>Zuck</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reliable communication over unreliable channels</article-title>
+          <source>Journal of the ACM (JACM)</source>
+          <volume>41</volume>
+          <issue>6</issue>
+          <year>1994</year>
+          <fpage>1267</fpage>
+          <lpage>1297</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000060">
+        <label>12</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Basu</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Charron-Bost</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Crash failures vs. crash  +  link failures</chapter-title>
+          <source>Proceedings of the Fifteenth Annual ACM Symposium on Principles of Distributed Computing</source>
+          <year>1996</year>
+          <publisher-name>ACM Press</publisher-name>
+          <publisher-loc>Philadelphia, Pennsylvania, United States</publisher-loc>
+          <fpage>246</fpage>
+        </element-citation>
+      </ref>
+      <ref id="br000065">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aguilera</surname>
+              <given-names>M.K.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Failure detection and consensus in the crash-recovery model</article-title>
+          <source>Distributed Computing</source>
+          <volume>13</volume>
+          <issue>2</issue>
+          <year>2000</year>
+          <fpage>99</fpage>
+          <lpage>125</lpage>
+          <comment>
+            <ext-link ext-link-type="uri" xlink:href="http://www.cs.cornell.edu/home/sam/FDpapers/crash-recovery-finaldcversion.ps" id="ir000005">http://www.cs.cornell.edu/home/sam/FDpapers/crash-recovery-finaldcversion.ps</ext-link>
+          </comment>
+        </element-citation>
+      </ref>
+      <ref id="br000070">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmid</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Weiss</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Keidar</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Impossibility results and lower bounds for consensus under link failures</article-title>
+          <source>SIAM Journal on Computing</source>
+          <volume>38</volume>
+          <issue>5</issue>
+          <year>2009</year>
+          <fpage>1912</fpage>
+          <lpage>1951</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000075">
+        <label>15</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gray</surname>
+              <given-names>J.N.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Notes on data base operating systems</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Bayer</surname>
+              <given-names>G.S.R.</given-names>
+            </name>
+            <name>
+              <surname>Graham</surname>
+              <given-names>R.M.</given-names>
+            </name>
+          </person-group>
+          <source>Operating Systems: An Advanced Course</source>
+          <series>Lecture Notes in Computer Science</series>
+          <volume>vol. 60</volume>
+          <year>1978</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+          <fpage>465</fpage>
+          <comment>(Chapter 3.F)</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000080">
+        <label>16</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Santoro</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Widmayer</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Agreement in synchronous networks with ubiquitous faults</article-title>
+          <source>Theoretical Computer Sciences</source>
+          <volume>384</volume>
+          <issue>2–3</issue>
+          <year>2007</year>
+          <fpage>232</fpage>
+          <lpage>249</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000085">
+        <label>17</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reischuk</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new solution for the Byzantine generals problem</article-title>
+          <source>Information and Control</source>
+          <volume>64</volume>
+          <issue>1–3</issue>
+          <year>1985</year>
+          <fpage>23</fpage>
+          <lpage>42</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000090">
+        <label>18</label>
+        <mixed-citation publication-type="other">S.S. Pinter, I. Shinahr, Distributed agreement in the presence of communication and process failures, in: Proceedings of the 14th IEEE Convention of Electrical &amp; Electronics Engineers in Israel, 1985.</mixed-citation>
+      </ref>
+      <ref id="br000095">
+        <label>19</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sayeed</surname>
+              <given-names>H.M.</given-names>
+            </name>
+            <name>
+              <surname>Abu-Amara</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Abu-Amara</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimal asynchronous agreement and leader election algorithm for complete networks with Byzantine faulty links</article-title>
+          <source>Distributed Computing</source>
+          <volume>9</volume>
+          <issue>3</issue>
+          <year>1995</year>
+          <fpage>147</fpage>
+          <lpage>156</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000100">
+        <label>20</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Siu</surname>
+              <given-names>H.-S.</given-names>
+            </name>
+            <name>
+              <surname>Chin</surname>
+              <given-names>Y.-H.</given-names>
+            </name>
+            <name>
+              <surname>Yang</surname>
+              <given-names>W.-P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Byzantine agreement in the presence of mixed faults on processors and links</article-title>
+          <source>IEEE Transactions on Parallel and Distributed Systems</source>
+          <volume>9</volume>
+          <issue>4</issue>
+          <year>1998</year>
+          <fpage>335</fpage>
+          <lpage>345</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000105">
+        <label>21</label>
+        <mixed-citation publication-type="other">B. Weiss, U. Schmid, Consensus with written messages under link faults, in: 20th Symposium on Reliable Distributed Systems, SRDS’01, New Orleans, LA, USA, 2001, pp. 194–197.</mixed-citation>
+      </ref>
+      <ref id="br000110">
+        <label>22</label>
+        <mixed-citation publication-type="other">U. Schmid, B. Weiss, J. Rushby, Formally verified Byzantine agreement in presence of link faults, in: 22nd International Conference on Distributed Computing Systems, ICDCS’02, Vienna, Austria, 2002, pp. 608–616.</mixed-citation>
+      </ref>
+      <ref id="br000115">
+        <label>23</label>
+        <mixed-citation publication-type="other">M. Biely, An optimal Byzantine agreement algorithm with arbitrary node and link failures, in: Proc. 15th Annual IASTED International Conference on Parallel and Distributed Computing and Systems, PDCS’03, Marina Del Rey, California, USA, 2003, pp. 146–151.</mixed-citation>
+      </ref>
+      <ref id="br000120">
+        <label>24</label>
+        <mixed-citation publication-type="other">J. Rushby, Formal verification of hybrid Byzantine agreement under link faults, Tech. rep., Computer Science Laboratory, SRI International, Menlo Park, CA, 2001.</mixed-citation>
+      </ref>
+      <ref id="br000125">
+        <label>25</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gafni</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Round-by-round fault detectors (extended abstract): unifying synchrony and asynchrony</chapter-title>
+          <source>Proceedings of the Seventeenth Annual ACM Symposium on Principles of Distributed Computing</source>
+          <year>1998</year>
+          <publisher-name>ACM Press</publisher-name>
+          <publisher-loc>Puerto Vallarta, Mexico</publisher-loc>
+          <fpage>143</fpage>
+          <lpage>152</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000130">
+        <label>26</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Biely</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Charron-Bost</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Gaillard</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hutle</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Schiper</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Widder</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Tolerating corrupted communication</chapter-title>
+          <source>Proceedings of the 26th ACM Symposium on Principles of Distributed Computing</source>
+          <conf-name>PODC’07</conf-name>
+          <year>2007</year>
+          <publisher-name>ACM</publisher-name>
+          <publisher-loc>Portland, OR, USA</publisher-loc>
+          <fpage>244</fpage>
+          <lpage>253</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000135">
+        <label>27</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Charron-Bost</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Schiper</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Heard-Of model: computing in distributed systems with benign faults</article-title>
+          <source>Distributed Computing</source>
+          <volume>22</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <fpage>49</fpage>
+          <lpage>71</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000140">
+        <label>28</label>
+        <mixed-citation publication-type="other">U. Schmid, Failure model coverage under transient link failures, Research Report 2/2004, Technische Universität Wien, Institut für Technische Informatik, Treitlstraße 3, A-1040 Vienna, Austria, 2004.</mixed-citation>
+      </ref>
+      <ref id="br000145">
+        <label>29</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Srikanth</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Simulating authenticated broadcasts to derive simple fault-tolerant algorithms</article-title>
+          <source>Distributed Computing</source>
+          <volume>2</volume>
+          <year>1987</year>
+          <fpage>80</fpage>
+          <lpage>94</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000150">
+        <label>30</label>
+        <mixed-citation publication-type="other">L. Gong, P. Lincoln, J. Rushby, Byzantine agreement with authentication: observations and applications in tolerating hybrid and link faults, in: Proceedings Dependable Computing for Critical Applications-5, Champaign, IL, 1995, pp. 139–157.</mixed-citation>
+      </ref>
+      <ref id="br000155">
+        <label>31</label>
+        <mixed-citation publication-type="other">P. Berman, J.A. Garay, K.J. Perry, Asymptotically optimal distributed consensus, (A combination of results from ICALP’89, FOCS’89, and WDAG’91), 1992.</mixed-citation>
+      </ref>
+      <ref id="br000160">
+        <label>32</label>
+        <mixed-citation publication-type="other">J. Rushby, A formally verified algorithm for clock sychronization under a hybrid fault model, in: Proceedings ACM Principles of Distributed Computing, PODC’94, Los Angeles, CA, 1994, pp. 304–313.</mixed-citation>
+      </ref>
+      <ref id="br000165">
+        <label>33</label>
+        <mixed-citation publication-type="other">C.J. Walter, N. Suri, M.M. Hugue, Continual on-line diagnosis of hybrid faults, in: Proceedings DCCA-4, 1994, pp. 233–249.</mixed-citation>
+      </ref>
+      <ref id="br000170">
+        <label>34</label>
+        <mixed-citation publication-type="other">F. Cristian, C. Fetzer, Fault-tolerant internal clock synchronization, in: Proceedings of the Thirteenth Symposium on Reliable Distributed Systems, Dana Point, Ca., 1994, pp. 22–31.</mixed-citation>
+      </ref>
+      <ref id="br000175">
+        <label>35</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azadmanesh</surname>
+              <given-names>M.H.</given-names>
+            </name>
+            <name>
+              <surname>Kieckhafer</surname>
+              <given-names>R.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>New hybrid fault models for asynchronous approximate agreement</article-title>
+          <source>IEEE Transactions on Computers</source>
+          <volume>45</volume>
+          <issue>4</issue>
+          <year>1996</year>
+          <fpage>439</fpage>
+          <lpage>449</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000180">
+        <label>36</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmid</surname>
+              <given-names>U.</given-names>
+            </name>
+          </person-group>
+          <article-title>Orthogonal accuracy clock synchronization</article-title>
+          <source>Chicago Journal of Theoretical Computer Science</source>
+          <volume>2000</volume>
+          <issue>3</issue>
+          <year>2000</year>
+          <fpage>3</fpage>
+          <lpage>77</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000185">
+        <label>37</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmid</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Schossmaier</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>How to reconcile fault-tolerant interval intersection with the Lipschitz condition</article-title>
+          <source>Distributed Computing</source>
+          <volume>14</volume>
+          <issue>2</issue>
+          <year>2001</year>
+          <fpage>101</fpage>
+          <lpage>111</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000190">
+        <label>38</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Azadmanesh</surname>
+              <given-names>M.H.</given-names>
+            </name>
+            <name>
+              <surname>Kieckhafer</surname>
+              <given-names>R.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Exploiting omissive faults in synchronous approximate agreement</article-title>
+          <source>IEEE Transactions on Computers</source>
+          <volume>49</volume>
+          <issue>10</issue>
+          <year>2000</year>
+          <fpage>1031</fpage>
+          <lpage>1042</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000195">
+        <label>39</label>
+        <mixed-citation publication-type="other">N. Santoro, P. Widmayer, Distributed function evaluation in the presence of transmission faults., in: SIGAL International Symposium on Algorithms, 1990, pp. 358–367.</mixed-citation>
+      </ref>
+      <ref id="br000200">
+        <label>40</label>
+        <mixed-citation publication-type="other">Z. Lipták, A. Nickelsen, Broadcasting in complete networks with dynamic edge faults, in: 4th International Conference on Principles of Distributed Systems, OPODIS’00, 2000, pp. 123–142.</mixed-citation>
+      </ref>
+      <ref id="br000205">
+        <label>41</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cristian</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Aghili</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Strong</surname>
+              <given-names>H.R.</given-names>
+            </name>
+            <name>
+              <surname>Dolev</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Atomic broadcast: from simple message diffusion to byzantine agreement</article-title>
+          <source>Information and Computation</source>
+          <volume>118</volume>
+          <issue>1</issue>
+          <year>1995</year>
+          <fpage>158</fpage>
+          <lpage>179</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000210">
+        <label>42</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hadzilacos</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Toueg</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Fault-tolerant broadcasts and related problems</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>S.</surname>
+              <given-names>Mullender</given-names>
+            </name>
+          </person-group>
+          <source>Distributed Systems</source>
+          <edition>2nd Edition</edition>
+          <year>1993</year>
+          <publisher-name>Addison-Wesley</publisher-name>
+          <fpage>97</fpage>
+          <lpage>145</lpage>
+          <comment>(Chapter 5)</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000215">
+        <label>43</label>
+        <mixed-citation publication-type="other">L. Lamport, Lower bounds on consensus, (unpublished manuscript, available via <ext-link ext-link-type="uri" xlink:href="http://lamport.org" id="ir000010">http://lamport.org</ext-link>, 2000).</mixed-citation>
+      </ref>
+      <ref id="br000220">
+        <label>44</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hadzilacos</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <article-title>Connectivity requirements for Byzantine agreement under restricted types of failures</article-title>
+          <source>Distributed Computing</source>
+          <volume>2</volume>
+          <year>1987</year>
+          <fpage>95</fpage>
+          <lpage>103</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000225">
+        <label>45</label>
+        <mixed-citation publication-type="other">G. Varghese, N.A. Lynch, A tradeoff between safety and liveness for randomized coordinated attack protocols, in: Proceedings of the 11th Annual ACM Symposium on Principles of Distributed Computing, Vancouver, British Columbia, Canada, 1992, pp. 241–250.</mixed-citation>
+      </ref>
+      <ref id="br000230">
+        <label>46</label>
+        <mixed-citation publication-type="other">U. Schmid, C. Fetzer, Randomized asynchronous consensus with imperfect communications, in: 22nd Symposium on Reliable Distributed Systems, SRDS’03, Florence, Italy, 2003, pp. 361–370.</mixed-citation>
+      </ref>
+      <ref id="br000235">
+        <label>47</label>
+        <mixed-citation publication-type="other">U. Schmid, C. Fetzer, Randomized asynchronous consensus with imperfect communications, Tech. Rep. 183/1-120, Department of Automation, Technische Universität Wien, (Extended version of <xref rid="br000230" ref-type="bibr">[46]</xref>) (January 2002).</mixed-citation>
+      </ref>
+      <ref id="br000240">
+        <label>48</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dolev</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Byzantine generals strike again</article-title>
+          <source>Journal of Algorithms</source>
+          <volume>3</volume>
+          <issue>1</issue>
+          <year>1982</year>
+          <fpage>14</fpage>
+          <lpage>30</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000245">
+        <label>49</label>
+        <mixed-citation publication-type="other">D. Powell, Failure mode assumptions and assumption coverage, in: Proc. 22nd IEEE Int. Symp. on Fault-Tolerant Computing, FTCS-22, Boston, MA, USA, 1992, pp. 386–395, (Revised version available as LAAS-CNRS Research Report 91462, 1995).</mixed-citation>
+      </ref>
+      <ref id="br000250">
+        <label>50</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Charron-Bost</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Schiper</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Uniform consensus is harder than consensus</article-title>
+          <source>Journal of Algorithms</source>
+          <volume>51</volume>
+          <issue>1</issue>
+          <year>2004</year>
+          <fpage>15</fpage>
+          <lpage>37</lpage>
+          <comment>also published as Tech. Rep. DSC/2000/028, Ecole Polytechnique Fédérale de Lausanne</comment>
+        </element-citation>
+      </ref>
+      <ref id="br000255">
+        <label>51</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Attiya</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Welch</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Distributed Computing</chapter-title>
+          <edition>2nd Edition</edition>
+          <year>2004</year>
+          <publisher-name>John Wiley &amp; Sons</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="br000260">
+        <label>52</label>
+        <mixed-citation publication-type="other">M. Biely, U. Schmid, B. Weiss, Synchronous consensus under hybrid process and link failures, Research Report 58/2009, Technische Universität Wien, Institut für Technische Informatik, Treitlstr. 1-3/182-2, 1040 Vienna, Austria (2009).</mixed-citation>
+      </ref>
+      <ref id="br000265">
+        <label>53</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dolev</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Strong</surname>
+              <given-names>H.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Authenticated algorithms for byzantine agreement</article-title>
+          <source>SIAM Journal on Computing</source>
+          <volume>12</volume>
+          <issue>4</issue>
+          <year>1983</year>
+          <fpage>656</fpage>
+          <lpage>666</lpage>
+        </element-citation>
+      </ref>
+      <ref id="br000270">
+        <label>54</label>
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schneier</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Applied Cryptography</chapter-title>
+          <edition>2nd Edition</edition>
+          <year>1996</year>
+          <publisher-name>John Wiley &amp; Sons</publisher-name>
+        </element-citation>
+      </ref>
+      <ref id="br000275">
+        <label>55</label>
+        <mixed-citation publication-type="other">D. Dolev, H.R. Strong, Polynomial algorithms for multiple processor agreement, in: Proceedings 14th Annual ACM Symposium on Theory of Computing, STOC’82, San Francisco, 1982, pp. 401–407.</mixed-citation>
+      </ref>
+      <ref id="br000280">
+        <label>56</label>
+        <mixed-citation publication-type="other">U. Schmid, How to model link failures: A perception-based fault model, in: Proceedings of the International Conference on Dependable Systems and Networks, DSN’01, Göteborg, Sweden, 2001, pp. 57–66.</mixed-citation>
+      </ref>
+      <ref id="br000285">
+        <label>57</label>
+        <mixed-citation publication-type="other">U. Schmid, B. Weiss, Synchronous Byzantine agreement under hybrid process and link failures, Tech. Rep. 183/1-124, Department of Automation, Technische Universität Wien (Nov. 2002).</mixed-citation>
+      </ref>
+    </ref-list>
+    <fn-group>
+      <fn id="d30e14">
+        <label>☆</label>
+        <p>This research has been supported by the Austrian START programme Y41-MAT, the FWF project P18264 (SPAWN), and the FIT-IT project 812205 (TRAFT).</p>
+      </fn>
+    </fn-group>
+  </back>
+</article>

@@ -1,0 +1,1345 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="announcement">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title>Neuroimage</journal-title>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2791519</article-id>
+      <article-id pub-id-type="pmid">19732837</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG6533</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2009.08.051</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Technical Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Bayesian model selection maps for group studies</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rosa</surname>
+            <given-names>M.J.</given-names>
+          </name>
+          <email>mjoao@fil.ion.ucl.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bestmann</surname>
+            <given-names>S.</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Harrison</surname>
+            <given-names>L.</given-names>
+          </name>
+          <xref rid="aff3" ref-type="aff">c</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Penny</surname>
+            <given-names>W.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>a</sup>Wellcome Trust Centre for Neuroimaging, UCL Institute of Neurology, University College London, 12 Queen Square, WC1N 3BG, UK</addr-line>
+      </aff>
+      <aff id="aff2">
+        <addr-line><sup>b</sup>Sobell Department of Motor Neuroscience and Movement Disorders, UCL Institute of Neurology, University College London, 33 Queen Square, WC1N 3BG, UK</addr-line>
+      </aff>
+      <aff id="aff3">
+        <addr-line><sup>c</sup>York Neuroimaging Centre, University of York, YO10 5DG, York, UK</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. <email>mjoao@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>01</day>
+        <month>1</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>49</volume>
+      <issue>1-3</issue>
+      <fpage>217</fpage>
+      <lpage>224</lpage>
+      <history>
+        <date date-type="received">
+          <day>30</day>
+          <month>3</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>16</day>
+          <month>6</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>23</day>
+          <month>8</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Inc.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>This technical note describes the construction of posterior probability maps (PPMs) for Bayesian model selection (BMS) at the group level. This technique allows neuroimagers to make inferences about regionally specific effects using imaging data from a group of subjects. These effects are characterised using Bayesian model comparisons that are analogous to the <italic>F</italic>-tests used in statistical parametric mapping, with the advantage that the models to be compared do not need to be nested. Additionally, an arbitrary number of models can be compared together. This note describes the integration of the Bayesian mapping approach with a random effects analysis model for BMS using group data. We illustrate the method using fMRI data from a group of subjects performing a target detection task.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Given a set of candidate hypotheses, or models, scientists can use Bayesian inference to update their beliefs about the respective hypotheses, in light of new experimental data. The most likely hypothesis can then be identified using Bayesian model selection (BMS).</p>
+      <p>BMS is based on the model evidence, i.e., the probability of obtaining observed data, <italic>y</italic>, given model <italic>m</italic>, <italic>p</italic>(<italic>y</italic>|<italic>m</italic>). In a group study, one obtains a separate evidence value for each model and for each subject. Under the assumption that the data are independent from subject to subject, these evidence values can be multiplied together to produce a single evidence value for each model. The ratio of resulting model evidences then forms what is known as the group Bayes factor (<xref rid="bib29" ref-type="bibr">Stephan and Penny, 2007</xref>).</p>
+      <p>In more recent work, <xref rid="bib31" ref-type="bibr">Stephan et al. (2009)</xref> have shown that the group Bayes factor approach corresponds to what is more generally known as a fixed effects analysis (<xref rid="bib22" ref-type="bibr">Penny and Holmes, 2006</xref>). The fixed effects (FFX) approach can be understood from a generative model perspective in which a vector of values <italic>r</italic> correspond to the frequencies of models used in the population at large. FFX then assigns a model, drawn using <italic>r</italic>, to be used by all members of the group. A drawback of the FFX approach is that it does not account for between-subject variability which can make the resulting inferences over-confident. Additionally, it is not robust to the presence of outliers.</p>
+      <p><xref rid="bib31" ref-type="bibr">Stephan et al. (2009)</xref> contrast the FFX approach with a proposed random effects (RFX) approach, in which a (potentially different) model is assigned to each member of the group. <xref rid="bib31" ref-type="bibr">Stephan et al. (2009)</xref> then describe Bayesian estimation procedures for obtaining the posterior distribution <italic>p</italic>(<italic>r</italic>|<italic>Y</italic>), where <italic>Y</italic> comprises data from all subjects. Contrary to the FFX approach, this method correctly takes into account the variability between subjects and is also robust to outliers.</p>
+      <p>In earlier work, <xref rid="bib26" ref-type="bibr">Penny et al. (2007)</xref> have developed Bayesian spatiotemporal models for fMRI data, which provide within-subject model evidence maps. Voxel-wise comparison of these maps allows neuroimagers to make inferences about regionally specific effects. These comparisons are analogous to the <italic>F</italic>-tests used in statistical parametric mapping (<xref rid="bib11" ref-type="bibr">Friston et al., 2007</xref>), with the advantage that the models to be compared do not need to be nested. Additionally, an arbitrary number of models can be compared together.</p>
+      <p>The Bayesian approach is useful when there is no natural nesting of hypotheses. A trend in recent neuroimaging research, for example, is to fit computational models to behavioural data, and then to use variables from these data fits as regressors in general linear models of fMRI data (<xref rid="bib19 bib4" ref-type="bibr">Montague et al., 2004; Behrens et al., 2008</xref>). A natural extension of this approach is to derive different sets of regressors from different computational models, and so allow fMRI to provide evidence in favour of one model or another. An example in the field of behavioural control would be to compare different models of ‘value updating’ (e.g., the Rescorla–Wagner model versus the ‘temporal difference’ model (<xref rid="bib19" ref-type="bibr">Montague et al., 2004</xref>)).</p>
+      <p>In this technical note, we describe the combination of the mapping approach for providing log-evidence maps for each model and subject, with the RFX approach described in <xref rid="bib31" ref-type="bibr">Stephan et al. (2009)</xref>. This procedure constructs posterior probability maps (PPMs) for BMS inference at the group level. We illustrate the method using fMRI data from a group of subjects performing a cued two-choice reaction time task and compare it with a FFX analysis of the same data.</p>
+      <p>The note is structured as follows. In the next section, we briefly revisit the model evidence. We then describe the commonly used FFX approach, and the recently developed RFX approach for BMS at the group level. We then proceed to describe how BMS maps can be constructed from previously estimated log-evidence maps and, in the Results section, apply this method to fMRI group data from a target detection task.</p>
+    </sec>
+    <sec>
+      <title>Theory</title>
+      <sec>
+        <title>Model evidence</title>
+        <p>The model evidence, <italic>p</italic>(<italic>y</italic>|<italic>m</italic>), is the probability of obtaining observed data, <italic>y</italic>, given model, <italic>m</italic>, and is at the heart of Bayesian model selection (BMS). In general, the model evidence is not straightforward to compute, since this computation involves integrating out the dependency on the model parameters, <italic>θ</italic>:<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mo>∫</mml:mo><mml:mrow><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi>θ</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>θ</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>d</mml:mi><mml:mi>θ</mml:mi></mml:mrow></mml:mrow></mml:math></disp-formula></p>
+        <p>Sampling or iterative analytic methods can be used to approximate the above integral. A common technique used in neuroimaging is the variational Bayes (VB) approach (<xref rid="bib23" ref-type="bibr">Penny et al., 2003</xref>). This is an analytic method that can be formulated by analogy with statistical physics as a gradient ascent on the “negative free energy,” <italic>F</italic>(<italic>m</italic>), of the system. In other words, the aim of VB is to maximise <italic>F</italic>(<italic>m</italic>) with respect to a variational density, or approximate posterior density <italic>q</italic>(<italic>θ</italic>), maximising a lower bound on the logarithm of the model evidence (log-model evidence) (<xref rid="bib3" ref-type="bibr">Beal, 2003</xref>):<disp-formula id="fd2"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mtext>log</mml:mtext><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>F</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>m</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mi>K</mml:mi><mml:mi>L</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>q</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>θ</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:mo>||</mml:mo><mml:mi>p</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mi>θ</mml:mi><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi>y</mml:mi><mml:mo>,</mml:mo><mml:mi>m</mml:mi></mml:mrow></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:mrow></mml:math></disp-formula></p>
+        <p>The last term in Eq. (<xref rid="fd2" ref-type="disp-formula">2</xref>) is the Kullback–Leibler (KL) divergence between the approximate posterior density, <italic>q</italic>(<italic>θ</italic>), and the true posterior, <italic>p</italic>(<italic>θ</italic>|<italic>y</italic>, <italic>m</italic>). This quantity is always positive, or zero when the densities are identical, and therefore log <italic>p</italic>(<italic>y</italic>|<italic>m</italic>) is bounded below by <italic>F</italic>(<italic>m</italic>). By iterative optimisation, the KL divergence is minimised and <italic>F</italic>(<italic>m</italic>) becomes an increasingly tighter lower bound on the desired log-model evidence. Under the assumption that this bound is tight, BMS can then proceed using <italic>F</italic>(<italic>m</italic>) as a surrogate for the log-model evidence.</p>
+        <p>The variational Free Energy is but one approximation to the model evidence, albeit one that is widely used in neuroimaging (<xref rid="bib35 bib28" ref-type="bibr">Woolrich et al., 2004a; Sato et al., 2004</xref>). Other approximations include the computationally more expensive Annealed Importance Sampling (AIS) method (<xref rid="bib2" ref-type="bibr">Beal and Ghahramani, 2003</xref>), and the simpler but potentially less accurate Bayesian Information Criterion (BIC) and Akaike Information Criterion (AIC) measures (<xref rid="bib24" ref-type="bibr">Penny et al., 2004</xref>). In extensive simulations of graphical model structures, <xref rid="bib2" ref-type="bibr">Beal and Ghahramani (2003)</xref> found that the variational approach outperformed BIC, at relatively little extra computational cost, and approached the performance of AIS, but with much less computational cost.</p>
+      </sec>
+      <sec>
+        <title>Bayesian model selection</title>
+        <p>The ratio of model evidences is known as the Bayes factor (BF). Given uniform priors over models, the posterior model probability is greater than 0.95 if the BF is greater than 20. Bayes factors have also been stratified into different ranges deemed to correspond to different strengths of evidence. ‘Strong’ evidence, for example, corresponds to a BF of over 20 (<xref rid="bib16" ref-type="bibr">Kass and Raftery, 1995</xref>). In a group study, one obtains a separate model evidence value for each model <italic>k</italic> and for each subject <italic>n</italic>. The following sections describe two different approaches for model inference at the group level.</p>
+        <sec>
+          <title>Fixed effects</title>
+          <p>Until very recently, most group studies have adopted what is known as the group Bayes factor (GBF) approach (<xref rid="bib29" ref-type="bibr">Stephan and Penny, 2007</xref>). The GBF can be obtained by simply multiplying the individual BFs for all <italic>N</italic> subjects (assuming subjects are independent):<disp-formula id="fd3"><label>(3)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:msub><mml:mtext>GBF</mml:mtext><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:munderover><mml:mo>∏</mml:mo><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>N</mml:mi></mml:munderover><mml:mrow><mml:msubsup><mml:mrow><mml:mtext>BF</mml:mtext></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>n</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msubsup></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mtext>log</mml:mtext><mml:msub><mml:mtext>GBF</mml:mtext><mml:mrow><mml:mi>i</mml:mi><mml:mo>,</mml:mo><mml:mi>j</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>N</mml:mi></mml:munderover><mml:mrow><mml:mtext>log</mml:mtext><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mrow><mml:mrow><mml:msub><mml:mi>y</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow><mml:msub><mml:mi>m</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>i</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo>−</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>N</mml:mi></mml:munderover><mml:mrow><mml:mtext>log</mml:mtext><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mrow><mml:mrow><mml:msub><mml:mi>y</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow><mml:msub><mml:mi>m</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>j</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>,</mml:mo></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula>where the subscripts <italic>i</italic> and <italic>j</italic> denote the <italic>i</italic>-th and <italic>j</italic>-th models being compared. The log GBF is therefore simply the difference of the model evidences aggregated over subjects. Although this is a straightforward method for model selection and has been used in a number of neuroimaging studies (<xref rid="bib33 bib30" ref-type="bibr">Summerfield and Koechlin, 2008; Stephan et al., 2007</xref>), <xref rid="bib31" ref-type="bibr">Stephan et al. (2009)</xref> have recently shown that the group Bayes factor approach corresponds to what is more generally known as a fixed effects (FFX) analysis. The FFX approach can be understood from a generative model perspective in which a probability vector, <italic>r</italic> = [<italic>r</italic><sub>1</sub>, ..., <italic>r</italic><sub><italic>K</italic></sub>], with 0 ≤ <italic>r</italic><sub><italic>k</italic></sub> ≤ 1 and <mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>K</mml:mi></mml:msubsup><mml:mrow><mml:msub><mml:mi>r</mml:mi><mml:mi>k</mml:mi></mml:msub></mml:mrow><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:math>, represents frequencies of models used in the population at large. FFX then assigns a model (from the <italic>K</italic> models considered), drawn using <italic>r</italic>, to be used by all members of the group (<xref rid="fig1" ref-type="fig">Fig. 1</xref>A). This approach, as is the case with FFX approaches based on effect size (<xref rid="bib22" ref-type="bibr">Penny and Holmes, 2006</xref>), does not therefore correctly take into account between-subject variability.</p>
+        </sec>
+        <sec>
+          <title>Random effects</title>
+          <p>In contrast to the FFX approach, <xref rid="bib31" ref-type="bibr">Stephan et al. (2009)</xref> have developed a hierarchical model for making inferences on the posterior density of the model frequencies themselves, <italic>p</italic>(<italic>r</italic>|<italic>Y</italic>), given the data from all subjects, <italic>Y</italic>. This method can be viewed as a random effects (RFX) approach, in which a (potentially different) model is assigned to each member of the group (<xref rid="fig1" ref-type="fig">Fig. 1</xref>B). In other words, the assignment of different models to subjects is treated as a random process. The corresponding random variables are drawn from a density, <italic>p</italic>(<italic>r</italic>|<italic>α</italic>), which then defines a distribution on how likely it is that model <italic>k</italic> generated the data for subject <italic>n</italic>, <italic>p</italic>(<italic>m</italic><sub><italic>nk</italic></sub>  = 1) = <italic>r</italic><sub><italic>k</italic></sub>, where <italic>m</italic><sub><italic>nk</italic></sub> ∈ {0, 1} and <mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:msubsup><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>K</mml:mi></mml:msubsup><mml:mrow><mml:msub><mml:mi>m</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:math>. Because, for each subject, this latter distribution has a multinomial form (i.e., each subject uses either model <italic>k</italic> = 1, 2, ..., <italic>K</italic>), it is natural to choose <italic>p</italic>(<italic>r</italic>|<italic>α</italic>) as a Dirichlet density, as the Dirichlet is conjugate to the multinomial (<xref rid="bib5" ref-type="bibr">Bernardo and Smith, 2001</xref>). The parameters of this Dirichlet, <italic>α</italic> = [<italic>α</italic><sub>1</sub>, ..., <italic>α</italic><sub><italic>K</italic></sub>], are related to the unobserved ‘occurrences’ of the models in the population.</p>
+          <p>The same authors then describe an estimation procedure to invert this hierarchical model and estimate the posterior distribution over <italic>r</italic>. Briefly, this optimisation scheme begins by assuming that each model has been ‘observed’ once, <italic>α</italic><sub>0</sub> = [1, ..., 1], and proceeds by updating estimates of <italic>α</italic> until convergence. The following pseudo-code schematizes this iterative procedure and the quantities computed at each step:<disp-formula id="fd4"><label>(4)</label><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:mi>α</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mn>0</mml:mn></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mtext>until convergence</mml:mtext></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mspace width="1em" height="0.3ex"/><mml:msub><mml:mtext>compute g</mml:mtext><mml:mrow><mml:mi>n</mml:mi><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mspace width="1em" height="0.3ex"/><mml:mtext>compute </mml:mtext><mml:mi>β</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mspace width="1em" height="0.3ex"/><mml:mtext>update </mml:mtext><mml:mi>α</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo>+</mml:mo><mml:mi>β</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mtext>end</mml:mtext><mml:mtext>.</mml:mtext></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+          <p>In the first step, the normalised posterior belief that model <italic>k</italic> generated the data from subject <italic>n</italic>, <italic>g</italic><sub><italic>nk</italic></sub>, is computed using the following equations:<disp-formula id="fd5"><label>(5)</label><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:msub><mml:mi>u</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mtext>exp</mml:mtext><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mtext>log</mml:mtext><mml:mspace width="0.35em" height="0.3ex"/><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mrow><mml:mrow><mml:msub><mml:mi>y</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow><mml:msub><mml:mi>m</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>+</mml:mo><mml:mi>Ψ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mi>k</mml:mi></mml:msub></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:mi>Ψ</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mi>S</mml:mi></mml:msub></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msub><mml:mi>u</mml:mi><mml:mi>n</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>K</mml:mi></mml:munderover><mml:mrow><mml:msub><mml:mi>u</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:msub><mml:mi>g</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>k</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mi>u</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>u</mml:mi><mml:mi>n</mml:mi></mml:msub></mml:mrow></mml:mfrac><mml:mo>,</mml:mo></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula>where log <italic>p</italic>(<italic>y</italic><sub><italic>n</italic></sub>|<italic>m</italic><sub><italic>nk</italic></sub>) is the log-model evidence from subject <italic>n</italic> and model <italic>k</italic>, <italic>Ψ</italic> is the digamma function, <italic>Ψ</italic>(<italic>α</italic><sub><italic>k</italic></sub>) = ∂logΓ(<italic>α</italic><sub><italic>k</italic></sub>) / ∂<italic>α</italic><sub><italic>k</italic></sub>, and <italic>α</italic><sub><italic>S</italic></sub> = Σ<sub><italic>k</italic></sub><italic>α</italic><sub><italic>k</italic></sub>. For the results in this paper, we use the variational free energy approximation to the model evidence, as described in <xref rid="bib26" ref-type="bibr">Penny and Flandin (2007)</xref>. In the next step, the expected number of subjects whose data are believed to have been generated by model <italic>k</italic> is computed for all models:<disp-formula id="fd6"><label>(6)</label><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>β</mml:mi><mml:mi>k</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:munder><mml:mo>∑</mml:mo><mml:mi>n</mml:mi></mml:munder><mml:mrow><mml:msub><mml:mi>g</mml:mi><mml:mrow><mml:mi>n</mml:mi><mml:mi>k</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mo>.</mml:mo></mml:mrow></mml:math></disp-formula></p>
+          <p>Finally, using the result from the previous step, the <italic>α</italic> parameters are updated (Eq. (<xref rid="fd4" ref-type="disp-formula">4</xref>)).</p>
+          <p>After optimisation, the posterior distribution <italic>p</italic>(<italic>r</italic>|<italic>Y</italic>; <italic>α</italic>) can be used for model inference at the group level. One can, for instance, use this distribution to compute the expected multinomial parameters, 〈<italic>r</italic><sub><italic>k</italic></sub>〉, which encode the expected posterior probability of model <italic>k</italic> being selected for a randomly chosen subject:<disp-formula id="fd7"><label>(7)</label><mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:mrow><mml:mrow><mml:mo>〈</mml:mo><mml:mrow><mml:msub><mml:mi>r</mml:mi><mml:mi>k</mml:mi></mml:msub></mml:mrow><mml:mo>〉</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mrow><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mi>k</mml:mi></mml:msub></mml:mrow><mml:mo>/</mml:mo><mml:mrow><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msub><mml:mi>α</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>+</mml:mo><mml:mn>...</mml:mn><mml:mo>+</mml:mo><mml:msub><mml:mi>α</mml:mi><mml:mi>K</mml:mi></mml:msub></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:mrow><mml:mo>,</mml:mo></mml:mrow></mml:math></disp-formula>Another option is to use <italic>p</italic>(<italic>r</italic>|<italic>Y</italic>; <italic>α</italic>) to compute an exceedance probability, <italic>φ</italic><sub><italic>k</italic></sub>, which corresponds to the belief that model <italic>k</italic> is more likely than any other (of the <italic>K</italic> models compared), given the data from all subjects:<disp-formula id="fd8"><label>(8)</label><mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mo>φ</mml:mo><mml:mi>k</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:munder><mml:mo>∏</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>≠</mml:mo><mml:mi>k</mml:mi></mml:mrow></mml:munder><mml:mrow><mml:msub><mml:mi>r</mml:mi><mml:mi>k</mml:mi></mml:msub><mml:mo>&gt;</mml:mo><mml:mrow><mml:mrow><mml:msub><mml:mi>r</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow><mml:mi>Y</mml:mi><mml:mo>;</mml:mo><mml:mi>α</mml:mi></mml:mrow></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:mrow></mml:math></disp-formula>Exceedance probabilities are particularly intuitive when comparing just two models (see, for example, <xref rid="fig6" ref-type="fig">Fig. 6</xref>B) as they can be written:<disp-formula id="fd9"><label>(9)</label><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mo>φ</mml:mo><mml:mn>1</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mrow><mml:mrow><mml:msub><mml:mi>r</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>&gt;</mml:mo><mml:msub><mml:mi>r</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow><mml:mi>Y</mml:mi><mml:mo>;</mml:mo><mml:mi>α</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>=</mml:mo><mml:mi>p</mml:mi><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:mrow><mml:mrow><mml:msub><mml:mi>r</mml:mi><mml:mn>1</mml:mn></mml:msub><mml:mo>&gt;</mml:mo><mml:mn>0.5</mml:mn></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow><mml:mi>Y</mml:mi><mml:mo>;</mml:mo><mml:mi>α</mml:mi></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:mrow></mml:math></disp-formula></p>
+          <p>In the next section, we describe how this approach can be applied voxel-wise to previously obtained log-evidence maps, in order to construct posterior probability maps and exceedance probability maps for Bayesian inference at the group level.</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Bayesian model selection maps</title>
+        <sec>
+          <title>Within-subject maps</title>
+          <p>In an earlier work, <xref rid="bib25" ref-type="bibr">Penny et al. (2005)</xref> developed a Bayesian spatiotemporal model for fMRI data, which allows inferences to be made about regionally specific effects using posterior probability maps (PPMs). Similar approaches have been developed previously by <xref rid="bib15 bib36" ref-type="bibr">Hartvig and Jensen (2000) and Woolrich et al. (2004b)</xref>. PPMs represent images of the probability that a contrast of parameter estimates exceeds some specified threshold and their construction has previously been described in <xref rid="bib7" ref-type="bibr">Friston and Penny (2003)</xref>.</p>
+          <p>The model developed by <xref rid="bib25" ref-type="bibr">Penny et al. (2005)</xref> extends previous Bayesian modelling approaches for fMRI (<xref rid="bib8 bib9" ref-type="bibr">Friston et al., 2002a,b</xref>) by, among other things, introducing a spatial prior on the regression coefficients. This prior embodies the knowledge that activations are spatially contiguous and results in an ability to detect more subtle activations. Although this spatial prior was initially two-dimensional (limited to voxels contained in the same slice), this work has since been extended to three-dimensional priors (<xref rid="bib14" ref-type="bibr">Harrison et al., 2008</xref>).</p>
+          <p>In more recent work, <xref rid="bib26" ref-type="bibr">Penny et al. (2007)</xref> have shown how the model evidence can be used to construct within-subject PPMs for model selection. As compared to model comparison based on <italic>F</italic>-tests using classical inference, this approach has the advantage of allowing the comparison of non-nested models. Additionally, it allows for the simultaneous comparison of an arbitrary number of models. As compared to earlier work (<xref rid="bib7" ref-type="bibr">Friston and Penny, 2003</xref>) based on PPMs of effect size, the approach is advantageous in not requiring an effect size threshold.</p>
+          <p>In this technical note, we have combined the mapping approach used in <xref rid="bib26" ref-type="bibr">Penny et al. (2007)</xref> to provide log-evidence maps for each model and subject, with the RFX approach described in <xref rid="bib31" ref-type="bibr">Stephan et al. (2009)</xref> in order to produce group maps for model selection.</p>
+        </sec>
+        <sec>
+          <title>Group maps</title>
+          <p>Once the log-evidence maps have been estimated for each subject and model, as described above, it is possible to construct between-subject posterior probability maps that enable inference on model space at the group level. These maps are created by applying the RFX approach described above at every voxel, <italic>i</italic>, of the log-evidence data, which produces a family of posterior distributions, <italic>p</italic>(<italic>r</italic><sub><italic>ki</italic></sub>|<italic>Y</italic><sub><italic>i</italic></sub>). We can then construct the PPMs for each model <italic>k</italic> by plotting the posterior expectation, 〈<italic>r</italic><sub><italic>ki</italic></sub>|<italic>Y</italic><sub><italic>i</italic></sub>〉 for every voxel <italic>i</italic> (Eq. (<xref rid="fd7" ref-type="disp-formula">7</xref>)) at which the value exceeds a user-specified threshold, <italic>γ</italic>.</p>
+          <p>In addition to the group-level PPMs, the RFX approach also allows the construction of exceedance probability maps (EPMs). These constitute an exceedance probability for each voxel <italic>i</italic>, <italic>φ</italic><sub><italic>ki</italic></sub> (see Eq. (<xref rid="fd8" ref-type="disp-formula">8</xref>)) and for each model <italic>k</italic>. Again, these maps are thresholded at a user-specified value <italic>γ</italic>.</p>
+          <p>The maps described here can be constructed as whole-brain images or images from selected regions of interest. The latter can be created by specifying a mask image, which limits the construction of the maps to voxels contained in the mask. Such masks can be created, for example, using a functional localiser analysis (<xref rid="bib10" ref-type="bibr">Friston et al., 2006</xref>). The overall approach for creating BMS maps for group studies is shown in <xref rid="fig2" ref-type="fig">Fig. 2</xref>.</p>
+          <p>It is also possible to create group maps using an FFX rather than the above RFX approach. This is implemented simply by summing the log-evidence images over subjects for each model (see Eq (<xref rid="fd3" ref-type="disp-formula">3</xref>)). Posterior model probabilities are then obtained by exponentiating the resulting sums and normalising to unity.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec>
+      <title>Results</title>
+      <p>In this section, we illustrate the application of our method to fMRI data acquired from subjects performing a simple Posner-type cued target detection task. Imaging data were recorded using a Siemens VISION system (Siemens, Erlangen, Germany) operating at 2 T. A total of 330 functional volumes (28 slices) were recorded for each subject, using T2⁎-weighted MRI transverse echo-planar images (EPI) (64 × 64 matrix, 3 × 3 × 5 mm<sup>3</sup> voxel size, TE = 40 ms) with blood oxygenation level dependent (BOLD) contrast. Effective repetition time (TR) per volume was 2.15 s.</p>
+      <p>Imaging data were preprocessed using Statistical Parametric Mapping (SPM5, Wellcome Trust Centre for Neuroimaging, <ext-link xlink:href="http://www.fil.ion.ucl.ac.uk/spm/" ext-link-type="uri">http://www.fil.ion.ucl.ac.uk/spm/</ext-link>) implemented in Matlab 6 (The Mathworks Inc., USA). Functional volumes were realigned and unwarped (<xref rid="bib1" ref-type="bibr">Andersson et al., 2001</xref>), and the resulting volumes were normalised to a standard EPI template based on the Montreal Neurological Institute (MNI) reference brain in Talairach space (<xref rid="bib34" ref-type="bibr">Talairach and Tournoux, 1988</xref>) and resampled to 3 × 3 × 3 mm voxels. The time series in each voxel were high pass filtered at 1/128 Hz to remove low frequency confounds and scaled to a grand mean of 100 over voxels and scans within each session.</p>
+      <p>Twelve subjects responded to a right- or left-sided target (“+ O” or “O +”) appearing for 250 ms on a screen by spatially compatible button presses using the right and left index finger, respectively. The target was preceded by a visuospatial cue (“&lt; + &lt;” or “&gt; + &gt;”) presented for 250 ms and appearing 1000 ms before the target. Four different event types were presented randomly: validly cued right and left button presses (66 trials each), and invalidly cued right and left button presses (17 trials each). During null events (165 trials), the central fixation cross was maintained with no presentation of cue or target, and no corresponding button press. The intertrial interval was 2000 ms. Responses were recorded by computer using COGENT Cognitive Interface Software (Wellcome Trust Centre for Neuroimaging, London, UK).</p>
+      <sec>
+        <title>Nested models</title>
+        <p>To construct the BMS maps described above, we began by specifying two different models for the acquired fMRI data.</p>
+        <p>First, we specified a ‘Validity’ model (model 1), including a column of 1's for the session mean and additional regressors for validly and invalidly cued trials. These two regressors were parametrically modulated by reaction times. Second, we specified a ‘Null’ model (model 2) comprising a single column for the session mean. Comparison of these two models could therefore be implemented using a standard <italic>F</italic>-test approach with classical SPMs, because model 2 is nested within model 1. More generally, however, the BMS approach does not require the models to be nested (see below).</p>
+        <p>Each model was estimated with SPM5, using the first-level Bayesian estimation procedure described in <xref rid="bib25" ref-type="bibr">Penny et al. (2005)</xref>. This produced a voxel-wise whole-brain log-model evidence map for every subject and model estimated (see left panel of <xref rid="fig2" ref-type="fig">Fig. 2</xref>). These maps were then smoothed with an 8 mm half width Gaussian kernel.</p>
+        <p>We then applied the RFX approach described above to the group model evidence data in a voxel-wise manner. This procedure yielded a posterior probability map (PPM) and exceedance probability map (EPM) for each model. In addition, we compared these PPMs with those obtained using a FFX analysis.</p>
+        <p><xref rid="fig3" ref-type="fig">Fig. 3</xref> shows the group-level PPMs for the ‘Validity’ model (model 1) constructed using the FFX (A) and RFX (B) method, and thresholded in order to show the brain regions where the posterior probability for model 1 is above <italic>γ</italic> = 0.75.</p>
+        <p>These regions show strong evidence in favour of the ‘Validity’ model. More specifically, these regions comprise brain areas one would a priori expect to be generally involved in a Posner-type task as used in the example data set presented here (<xref rid="bib27" ref-type="bibr">Rounis et al., 2006</xref>), including motor areas (peak voxel Talairach coordinates [<italic>x</italic>, <italic>y</italic>, <italic>z</italic>] in millimeters: left supplementary motor area [0, 5, 56], right precentral gyrus [33, − 4, 53], and left precentral gyrus [− 51, − 4, 56]) as well as visual- and attention-related regions (Talairach coordinates [<italic>x</italic>, <italic>y</italic>, <italic>z</italic>] in millimeters: right inferior temporal gyrus [57, − 67, 2], left inferior temporal gyrus [− 51, − 76, 2], and left middle temporal gyrus [− 54, − 73, 5]). <xref rid="fig3" ref-type="fig">Fig. 3</xref> shows that the FFX and RFX approaches for inference on model space yielded similar results. However, because the FFX approach does not accommodate between-subject variability the resulting inferences are somewhat over-confident. This is also illustrated in <xref rid="fig4" ref-type="fig">Fig. 4</xref> where, for example, the position of the crossbars indicates a cluster that is only visible for the FFX maps.</p>
+        <p>The probabilities obtained for both models at the peak voxel of this cluster are shown in <xref rid="fig5" ref-type="fig">Fig. 5</xref>. As can be seen, the RFX analysis produces lower posterior probabilities for model 1 than does the FFX approach. Moreover, this probability is approximately 0.7 (<xref rid="fig5" ref-type="fig">Fig. 5</xref>B), which is slightly below the threshold, <italic>γ</italic> = 0.75, used for constructing the maps in <xref rid="fig4" ref-type="fig">Fig. 4</xref>. For this reason the corresponding cluster is missing in the RFX map (<xref rid="fig4" ref-type="fig">Fig. 4</xref>B).</p>
+        <p><xref rid="fig6" ref-type="fig">Fig. 6</xref>A plots the exceedance probability map (EPM) for the ‘Validity’ model using a threshold of <italic>γ</italic> = 0.95. For this model, the exceedance probability is given by <italic>φ</italic><sub><italic>i</italic></sub><sub>1 </sub>= <italic>p</italic>(<italic>r</italic><sub><italic>i</italic></sub><sub>1</sub> &gt; 0.5) and <xref rid="fig6" ref-type="fig">Fig. 6</xref>A plots <italic>φ</italic><sub><italic>i</italic></sub><sub>1</sub> only at those voxels for which <italic>φ</italic><sub><italic>i</italic></sub><sub>1</sub> &gt; <italic>γ</italic>. This map is similar to the PPM shown in <xref rid="fig3" ref-type="fig">Fig. 3</xref>B, which plots 〈<italic>r</italic><sub><italic>i</italic></sub><sub>1</sub>〉 at those voxels for which 〈<italic>r</italic><sub><italic>i</italic></sub><sub>1</sub>〉 &gt; <italic>γ</italic>.</p>
+        <p>To better illustrate what is being plotted in <xref rid="fig6" ref-type="fig">Fig. 6</xref>A, we have plotted the posterior distribution for the same model, <italic>p</italic>(<italic>r</italic><sub>1</sub>|<italic>Y</italic>), obtained at one example voxel (<xref rid="fig6" ref-type="fig">Fig. 6</xref>B). The shaded region corresponds to <italic>r</italic><sub>1</sub> &gt; 0.5 and for this voxel encompasses 94.1% of the total mass of the posterior distribution. Therefore, the exceedance probability value plotted for this voxel is 0.941.</p>
+        <p><xref rid="bib31" ref-type="bibr">Stephan et al. (2009)</xref> have noted that the RFX approach is more robust in the presence of outliers than is the FFX method. We examined this in our data by inspecting regions in the BMS maps showing contradictory results for FFX and RFX. Consequently, we found groups of voxels at which model 1 was clearly the best model for the FFX analysis and model 2 for the RFX. We then looked at the log-model evidence values for all subjects at these voxels and found that the reason for the discrepancy was indeed an outlying subject. <xref rid="fig7" ref-type="fig">Fig. 7</xref> shows an example of this, where almost all subjects indicate that model 2 is best, except for a single outlying subject with an extreme evidence value favouring model 1.</p>
+        <p>The posterior probabilities obtained for this voxel (for which one of the subjects is an outlier) reveal that the FFX results are in favour of the ‘Validity’ model, while RFX suggests that the ‘Null’ model is better (<xref rid="fig8" ref-type="fig">Figs. 8</xref>A and B), as can also be seen in the respective PPMs (<xref rid="fig9" ref-type="fig">Fig. 9</xref>). Moreover, the exceedance probability value for the ‘Null’ model is almost 80%, which indicates strong evidence in favour of model 2 at this voxel.</p>
+        <p>These results corroborate <xref rid="bib31" ref-type="bibr">Stephan et al. (2009)</xref> who have also shown that the RFX approach is more robust in the presence of outliers.</p>
+      </sec>
+      <sec>
+        <title>Non-nested models</title>
+        <p>The BMS approach presented here is particularly suited for comparing non-nested models. Here, we use the aforementioned example dataset to illustrate how BMS can be applied to compare models for which there is no natural nesting.</p>
+        <p>In principle, there is no upper bound on the number of models to be compared; however, for the purpose of this technical note, we focus on two alternative non-nested models. Previous work has shown that the history of past events in an experimental task can be formalized using information theory (<xref rid="bib32 bib13" ref-type="bibr">Strange et al., 2005; Harrison et al., 2006</xref>), under ideal observer assumptions. One finding was that activity in a widespread frontoparietal network, including bilateral fusiform, parietal, lateral and medial premotor and inferior frontal regions, as well as in bilateral thalamus relates to the surprise conveyed by a trial event. This activation pattern is similar to the task-related activity shown by our ‘Validity’ model. The ‘surprise’ inherent in an event (e.g., an infrequently occurring invalidly cued trial) is based on the probability of that event, given previous trials. Here, we calculated surprise from posterior probabilities updated on a trial-by-trial basis using Bayes rule (see <xref rid="bib32 bib18" ref-type="bibr">Strange et al. (2005) and Mars et al. (2008)</xref> for further details). This was then used to predict neuronal responses measured in our fMRI experiment. More specifically, we modeled the onsets of trials with a stick function that was parametrically modulated by the surprise on a given trial. We refer to this model as the ‘Ideal Observer’ model.</p>
+        <p>Alternatively, one can relax the assumption that participants are ideal observers. One could, for example, compare a number of models in which the duration and rate of decay with which past observations (trials) are weighted are differently parameterized. For illustrating the BMS approach, we here focus on one case only, in which only a window of data comprising the four most recent trials was taken into account for computing surprise (see <xref rid="bib6" ref-type="bibr">Bestmann et al. (2008)</xref> for details). We refer to this model as the ‘Window’ model. This model is suboptimal from an information theoretic perspective because the observer fails to properly accumulate the evidence available within a block. However, as the brain also has other criteria to optimise (e.g., energy use, speed of response), it could be that imaging data provide evidence for it.</p>
+        <p>Each of the above models was estimated using the first-level Bayesian estimation procedure, as described above, producing voxel-wise whole-brain log-model evidence maps for every subject and model estimated. These maps were then smoothed with an 8 mm half width Gaussian kernel.</p>
+        <p><xref rid="fig10" ref-type="fig">Fig. 10</xref> shows the group-level PPM for the two locations in which the posterior model probability for the ‘Ideal Observer’ model is greater than <italic>γ</italic> = 0.6. We focused explicitly on task-related brain regions, as identified in the group-level PPM for the ‘Validity’ model (see <xref rid="fig3" ref-type="fig">Fig. 3</xref>B). Our BMS suggests that activity in these two regions (Talairach coordinates [<italic>x</italic>, <italic>y</italic>, <italic>z</italic>] in millimeters: supplementary motor area [6, 5, 56] and right superior parietal lobule [36, − 58, 59]) is best explained by the surprise conveyed by an event, as estimated by an ideal observer.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>In this note, we have presented the construction of posterior probability maps allowing for Bayesian model selection at the group level. These maps are produced by combining a model evidence mapping approach with an RFX approach for model selection.</p>
+      <p>We have illustrated our method by applying it to fMRI data from a group study and compared the resulting maps with those obtained using a FFX analysis. As expected, both analyses yielded similar results, but the posterior model probabilities from FFX appeared over-confident. This observation reflects the fact that the RFX inference properly accommodates between-subject variability, whereas FFX does not.</p>
+      <p>Another important point is the behaviour of the method in the presence of outliers. Since the RFX approach takes into account group heterogeneity, it has proven (<xref rid="bib31" ref-type="bibr">Stephan et al., 2009</xref>) to be more robust than FFX. In our fMRI analysis, we have confirmed this result. Moreover, we have observed that the two analyses yield contradictory results for brain regions where one of the subjects provides strong evidence in favour of one particular model, contrary to the rest of the subjects. The results from FFX are adversely influenced by this single subject, whereas the RFX inference was not.</p>
+      <p>A minor disadvantage of our new approach is that it relies on the prior computation of log-evidence maps for each subject and model. These computations are more time consuming than the standard statistical parametric mapping approach by a factor of five to ten. However, these individual subject maps need only be computed once for all subsequent group BMS analyses. The method proposed here for constructing BMS maps is not so computationally demanding and takes on average less than half an hour to create whole-brain PPMs for the comparison between two models using the log-evidence images from 12 subjects on a standard PC. Moreover, we envisage that our new approach may be most usefully applied to regions or networks of regions previously identified using functional localiser methods. The use of these localisers has the advantage of speeding up the computation and reducing its time to approximately less than a minute for a region with a few thousand voxels.</p>
+      <p>In the current work, log-evidence maps were smoothed by a user-specified FWHM Gaussian kernel. This will be finessed in future work to include a spatial model over <italic>r</italic> and its smoothness estimated using a novel Bayesian framework. This would mirror corresponding developments in the analysis of group data from M/EEG source reconstructions (<xref rid="bib17" ref-type="bibr">Litvak and Friston, 2008</xref>).</p>
+      <p>The product of the analysis procedures described in this paper are posterior probability maps. These show voxels where the posterior probability over model frequency exceeds some user-specified value. In a previous work (<xref rid="bib7" ref-type="bibr">Friston and Penny, 2003</xref>), we have derived PPMs over effect size. We note that, as is common-place in Bayesian inference, these posterior inferences could be augmented with the use of decision theory. This requires the costs of false negative and false-positive decisions to be specified. One can then use decision theory to make decisions which minimise, for example, the posterior expected loss (<xref rid="bib12" ref-type="bibr">Gelman et al., 1995</xref>). In addition, we note a connection between posterior probabilities and false discovery rate, in which if above threshold values are declared as activations, a posterior probability of greater than 95% implies a rate of false discoveries less than 5% (<xref rid="bib7" ref-type="bibr">Friston and Penny, 2003</xref>). It is also possible to relate posterior probabilities to the realised false discovery rate (rather than an upper bound or the expected FDR) (<xref rid="bib20" ref-type="bibr">Muller et al., 2007</xref>). Finally, we note that a comprehensive Bayesian thresholding approach has been implemented by <xref rid="bib37" ref-type="bibr">Woolrich et al. (2005)</xref>. This work uses explicit models of the null and alternative hypotheses based on Gaussian and Gamma variates. This requires a further computationally expensive stage of model fitting, based on spatially regularised discrete Markov random fields, but has the benefit that false-positive and true-positive rates can be controlled explicitly.</p>
+      <p>Unlike classical inference using <italic>F</italic>-tests, our framework allows for comparison of non-nested models, which we hypothesize will be useful in a number of experimental domains. One such domain is model-based fMRI (<xref rid="bib21" ref-type="bibr">O'Doherty et al., 2007</xref>) in which computational models are first fitted to behavioural data, and sets of regressors derived to be used as predictors of brain imaging data. A typical example is the study of behavioural control using computational models and fMRI (<xref rid="bib19" ref-type="bibr">Montague et al., 2004</xref>). The use of model comparison maps in addition to model-based fMRI would allow brain imaging data to directly adjudicate, for example, between different computation models of value updating (<xref rid="bib19" ref-type="bibr">Montague et al., 2004</xref>). In this paper, we have compared information theoretic models of novelty processing, and this will continue to be the subject of future publications.</p>
+    </sec>
+    <sec>
+      <title>Software note</title>
+      <p>The algorithms described in this note have been incorporated into the current version of the SPM software (SPM8, <ext-link xlink:href="http://www.fil.ion.ucl.ac.uk/spm/" ext-link-type="uri">http://www.fil.ion.ucl.ac.uk/spm/</ext-link>). Bayesian model selection can be implemented and the results visualised via the user interface (Stats &gt; Bayesian Model Selection &gt; BMS: Maps). This calls lower-level routines such as the random effects model selection function, ‘spm_bms’.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the Wellcome Trust(W.P. and L.H.), the Portuguese Foundation for Science and Technology (FCT, Portugal; M.J.R.), and the Biotechnology and Biological Sciences Research Council (BBSRC, UK; S.B.).</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Andersson</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Hutton</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modeling geometric deformations in EPI time series</article-title>
+          <source>NeuroImage</source>
+          <year>May 2001</year>
+          <volume>13</volume>
+          <fpage>903</fpage>
+          <lpage>919</lpage>
+          <pub-id pub-id-type="pmid">11304086</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beal</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Ghahramani</surname>
+              <given-names>Z.</given-names>
+            </name>
+          </person-group>
+          <article-title>The variational Bayesian EM algorithms for incomplete data: with application to scoring graphical model structures</article-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Bernardo</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Bayarri</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Berger</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Dawid</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>Bayesian Statistics 7</source>
+          <year>2003</year>
+          <publisher-name>Cambridge University Press</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="other">Beal, Matthew J., 2003 <italic>Variational Algorithms for Approximate Bayesian Inference</italic>. PhD thesis, University College London, May 2003.</citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Behrens</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Hunt</surname>
+              <given-names>L.T.</given-names>
+            </name>
+            <name>
+              <surname>Woolrich</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Rushworth</surname>
+              <given-names>M.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Associative learning of social value</article-title>
+          <source>Nature</source>
+          <year>Nov 2008</year>
+          <volume>456</volume>
+          <fpage>245</fpage>
+          <lpage>249</lpage>
+          <pub-id pub-id-type="pmid">19005555</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bernardo</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian theory</article-title>
+          <source>Meas. Sci. Technol.</source>
+          <year>2001</year>
+          <volume>12</volume>
+          <fpage>221</fpage>
+          <lpage>222</lpage>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bestmann</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Blankenburg</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Mars</surname>
+              <given-names>R.B.</given-names>
+            </name>
+            <name>
+              <surname>Haggard</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Rothwell</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Influence of uncertainty and surprise on human corticospinal excitability during preparation for action</article-title>
+          <source>Curr. Biol.</source>
+          <year>May 2008</year>
+          <volume>18</volume>
+          <fpage>775</fpage>
+          <lpage>780</lpage>
+          <pub-id pub-id-type="pmid">18485711</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Posterior probability maps and SPMs</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>19</volume>
+          <issue>3</issue>
+          <fpage>1240</fpage>
+          <lpage>1249</lpage>
+          <pub-id pub-id-type="pmid">12880849</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Glaser</surname>
+              <given-names>D.E.</given-names>
+            </name>
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.N.A.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Phillips</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Classical and Bayesian inference in neuroimaging: applications</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>16</volume>
+          <fpage>484</fpage>
+          <lpage>512</lpage>
+          <pub-id pub-id-type="pmid">12030833</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Phillips</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Hinton</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Classical and Bayesian inference in neuroimaging: theory</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>16</volume>
+          <fpage>465</fpage>
+          <lpage>483</lpage>
+          <pub-id pub-id-type="pmid">12030832</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Rotshtein</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Geng</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Sterzer</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.N.</given-names>
+            </name>
+          </person-group>
+          <article-title>A critique of functional localisers</article-title>
+          <source>NeuroImage</source>
+          <year>May 2006</year>
+          <volume>30</volume>
+          <fpage>1077</fpage>
+          <lpage>1087</lpage>
+          <pub-id pub-id-type="pmid">16635579</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="book">
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <source>Statistical Parametric Mapping: The Analysis of Functional Brain Images</source>
+          <year>2007</year>
+          <publisher-name>Academic Press</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="book">
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Gelman</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Carlin</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Stern</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>Bayesian Data Analysis</source>
+          <year>1995</year>
+          <publisher-name>Chapman and Hall</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Duggins</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Encoding uncertainty in the hippocampus</article-title>
+          <source>Neural Netw.</source>
+          <year>Jun 2006</year>
+          <volume>19</volume>
+          <fpage>535</fpage>
+          <lpage>546</lpage>
+          <pub-id pub-id-type="pmid">16527453</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Diffusion-based spatial priors for functional magnetic resonance images</article-title>
+          <source>NeuroImage</source>
+          <year>Jun 2008</year>
+          <volume>41</volume>
+          <fpage>408</fpage>
+          <lpage>423</lpage>
+          <pub-id pub-id-type="pmid">18387821</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hartvig</surname>
+              <given-names>N.V.</given-names>
+            </name>
+            <name>
+              <surname>Jensen</surname>
+              <given-names>J.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spatial mixture modeling of fMRI data</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>Dec 2000</year>
+          <volume>11</volume>
+          <fpage>233</fpage>
+          <lpage>248</lpage>
+          <pub-id pub-id-type="pmid">11144753</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kass</surname>
+              <given-names>R.E.</given-names>
+            </name>
+            <name>
+              <surname>Raftery</surname>
+              <given-names>A.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayes factors</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <year>1995</year>
+          <volume>90</volume>
+          <fpage>773</fpage>
+          <lpage>795</lpage>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Litvak</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electromagnetic source reconstruction for group studies</article-title>
+          <source>NeuroImage</source>
+          <year>1995</year>
+          <volume>42</volume>
+          <issue>4--24</issue>
+          <fpage>1490</fpage>
+          <lpage>1498</lpage>
+          <pub-id pub-id-type="pmid">18639641</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mars</surname>
+              <given-names>R.B.</given-names>
+            </name>
+            <name>
+              <surname>Debener</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gladwin</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Haggard</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Rothwell</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Bestmann</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Trial-by-trial fluctuations in the event-related electroencephalogram reflect dynamic changes in the degree of surprise</article-title>
+          <source>J. Neurosci.</source>
+          <year>Nov 2008</year>
+          <volume>28</volume>
+          <fpage>12539</fpage>
+          <lpage>12545</lpage>
+          <pub-id pub-id-type="pmid">19020046</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Montague</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Hyman</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>J.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational roles for dopamine in behavioural control</article-title>
+          <source>Nature</source>
+          <year>Oct 2004</year>
+          <volume>431</volume>
+          <fpage>760</fpage>
+          <lpage>767</lpage>
+          <pub-id pub-id-type="pmid">15483596</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <citation citation-type="other">Muller, P., Parmigiani, G., and Rice, K., 2007 FDR and Bayesian Multiple Comparisons Rules. In <italic>Bayesian Statistics 8: Proceedings of the Eighth Valencia International Meeting</italic>, July 2007.</citation>
+      </ref>
+      <ref id="bib21">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>O’Doherty</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Hampton</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Model-based fMRI and its application to reward learning and decision making</article-title>
+          <source>Ann. N.Y. Acad. Sci.</source>
+          <year>May 2007</year>
+          <volume>1104</volume>
+          <fpage>35</fpage>
+          <lpage>53</lpage>
+          <pub-id pub-id-type="pmid">17416921</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Random effects analysis</article-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>Statistical Parametric Mapping: The Analysis of Functional Brain Images</source>
+          <year>2006</year>
+          <publisher-name>Elsevier</publisher-name>
+          <publisher-loc>London</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variational Bayesian inference for fMRI time series</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>19</volume>
+          <issue>3</issue>
+          <fpage>727</fpage>
+          <lpage>741</lpage>
+          <pub-id pub-id-type="pmid">12880802</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparing dynamic causal models</article-title>
+          <source>NeuroImage</source>
+          <year>2004</year>
+          <volume>22</volume>
+          <issue>3</issue>
+          <fpage>1157</fpage>
+          <lpage>1172</lpage>
+          <pub-id pub-id-type="pmid">15219588</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Trujillo-Bareto</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian fMRI time series analysis with spatial priors</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <issue>2</issue>
+          <fpage>350</fpage>
+          <lpage>362</lpage>
+          <pub-id pub-id-type="pmid">15627578</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Trujillo-Barreto</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian comparison of spatially regularised general linear models</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2007</year>
+          <volume>28</volume>
+          <issue>4</issue>
+          <fpage>275</fpage>
+          <lpage>293</lpage>
+          <pub-id pub-id-type="pmid">17133400</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rounis</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Siebner</surname>
+              <given-names>H.R.</given-names>
+            </name>
+            <name>
+              <surname>Pesenti</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Rothwell</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Acute changes in frontoparietal activity after repetitive transcranial magnetic stimulation over the dorsolateral prefrontal cortex in a cued reaction time task</article-title>
+          <source>J. Neurosci.</source>
+          <year>Sep 2006</year>
+          <volume>26</volume>
+          <fpage>9629</fpage>
+          <lpage>9638</lpage>
+          <pub-id pub-id-type="pmid">16988033</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sato</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Yoshioka</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kajihara</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Toyama</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Goda</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Doya</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Kawato</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Hierarchical Bayesian estimation for MEG inverse problem</article-title>
+          <source>NeuroImage</source>
+          <year>Nov 2004</year>
+          <volume>23</volume>
+          <fpage>806</fpage>
+          <lpage>826</lpage>
+          <pub-id pub-id-type="pmid">15528082</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic causal models and Bayesian selection</article-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>Statistical Parametric Mapping: The Analysis of Functional Brain Images</source>
+          <year>2007</year>
+          <publisher-name>Elsevier</publisher-name>
+          <publisher-loc>London</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Weiskopf</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Drysdale</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>Robinson</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparing hemodynamic models with DCM</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>38</volume>
+          <fpage>387</fpage>
+          <lpage>401</lpage>
+          <pub-id pub-id-type="pmid">17884583</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Daunizeau</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Moran</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian model selection for group studies</article-title>
+          <source>NeuroImage</source>
+          <year>2009</year>
+          <volume>46</volume>
+          <issue>3</issue>
+          <fpage>1004</fpage>
+          <lpage>1017</lpage>
+          <pub-id pub-id-type="pmid">19306932</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Strange</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>Duggins</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Information theory, novelty and hippocampal responses: unpredicted or unpredictable?</article-title>
+          <source>Neural Netw.</source>
+          <year>Apr 2005</year>
+          <volume>18</volume>
+          <fpage>225</fpage>
+          <lpage>230</lpage>
+          <pub-id pub-id-type="pmid">15896570</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Summerfield</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Koechlin</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A neural representation of prior information during perceptual inference</article-title>
+          <source>Neuron</source>
+          <year>Jul 2008</year>
+          <volume>59</volume>
+          <fpage>336</fpage>
+          <lpage>347</lpage>
+          <pub-id pub-id-type="pmid">18667160</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Talairach</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tournoux</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Co-Planar Stereotaxic Atlas of the Human Brain</article-title>
+          <year>1988</year>
+          <publisher-name>Thieme Medical Publishers</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Woolrich</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Behrens</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Constrained linear basis sets for HRF modelling using variational Bayes</article-title>
+          <source>NeuroImage</source>
+          <year>2004</year>
+          <volume>21</volume>
+          <fpage>1748</fpage>
+          <lpage>1761</lpage>
+          <comment>Apr</comment>
+          <pub-id pub-id-type="pmid">15050595</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Woolrich</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Jenkinson</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Brady</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fully Bayesian spatio-temporal modeling of fMRI data</article-title>
+          <source>IEEE Trans. Med. Imaging</source>
+          <year>2004</year>
+          <volume>23</volume>
+          <fpage>213</fpage>
+          <lpage>231</lpage>
+          <comment>Feb</comment>
+          <pub-id pub-id-type="pmid">14964566</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Woolrich</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Behrens</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Beckmann</surname>
+              <given-names>C.F.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>S.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mixture models with adaptive spatial regularization for segmentation with an application to fMRI data</article-title>
+          <source>IEEE Trans. Med. Imaging</source>
+          <year>Jan 2005</year>
+          <volume>24</volume>
+          <fpage>1</fpage>
+          <lpage>11</lpage>
+          <pub-id pub-id-type="pmid">15638182</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Graphical models underlying (A) fixed and (B) random effects inference on model space at the group level. FFX assigns a model, drawn using <italic>r</italic>, to be used by all members of the group, while for RFX, a (potentially different) model is assigned to each member of the group. Mult(<italic>m</italic>;1, <italic>r</italic>) corresponds to Mult(<italic>m</italic>; N, <italic>r</italic>), when the number of observations <italic>N</italic> is equal to 1. See the main text for a detailed explanation of the two different inference approaches.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Schematic representation of the method for constructing Bayesian model selection (BMS) maps for group studies. (1) The first step involves estimating log-evidence maps for each subject and model. (2) The RFX approach for BMS described in the text is then applied in a voxel-wise manner to the log-evidence data. (3) The BMS maps (posterior probability map, PPM; exceedance probability map, EPM) for each model are then constructed by plotting the posterior and exceedance probabilities at each voxel (〈<italic>r</italic><sub><italic>ki</italic></sub>〉 and <italic>φ</italic><italic><sub>ki</sub></italic>, respectively), using a threshold, <italic>γ</italic>, to visualise the resulting image. See the main text for a detailed explanation of the different steps involved in this procedure.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Group-level PPMs for the ‘Validity’ model from (A) fixed and (B) random effects analysis. The maps therefore show brain regions encoding cue validity. These maps were thresholded to show regions where the posterior model probability of the ‘Validity’ model is greater than <italic>γ</italic> = 0.75. The FFX approach does not account for between-subject variability and, consequently, can appear over-confident.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Group-level PPMs (<italic>z</italic> = 59 mm, Talairach coordinates) for the ‘Validity’ model from (A) fixed and (B) random effects analysis. The maps were thresholded to show regions where the posterior probability of the ‘Validity’ model is greater than <italic>γ</italic> = 0.75. The position of the crossbars (Talairach coordinates: [− 21, − 73, 59] mm) indicates a cluster that is only visible for the FFX maps, suggesting that this approach may be over-confident.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Posterior model probabilities obtained by comparing the ‘Validity’ and ‘Null’ model (models 1 and 2, respectively) at an example voxel, [− 21, − 73, 59] mm (Talairach coordinates), using a (A) fixed and (B) random effects analysis. For the RFX analysis, we include the exceedance probabilities at the same voxel. As can be seen, the RFX analysis produces lower posterior probabilities for model 1 than does the FFX approach.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>(A) Group-level exceedance probability map (EPM) (log-odds scale) for the ‘Validity’ model. The map was thresholded to show regions where the exceedance probability for the ‘Validity’ model is greater than <italic>γ</italic> = 0.95. (B) Posterior distribution and exceedance probability for the same model at an example voxel, [− 21, − 73, 59] mm (Talairach coordinates).</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Log-model evidence differences between the ‘Null’ and ‘Validity’ models (model 2 and model 1, respectively) at voxel [− 29, 0, 49] mm (Talairach coordinates), for the 12 subjects analysed. The data clearly show that one subject (bottom row) is an outlier.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig8">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Posterior model probabilities obtained by comparing the ‘Validity’ and ‘Null’ model (models 1 and 2, respectively) at voxel [− 29, 0, 49] mm (Talairach coordinates), using a (A) fixed and (B) random effects analysis. For the RFX analysis, we include the exceedance probabilities at the same voxel. The voxel chosen here belongs to a brain region where FFX and RFX analyses yield different results due to the presence of an outlier (see <xref rid="fig7" ref-type="fig">Fig. 7</xref>).</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="fig9">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Group-level PPMs (slice <italic>z</italic> = 49 mm, Talairach coordinates) for the ‘Validity’ model from (A) fixed and (B) random effects analysis. The maps were thresholded to show regions where the posterior model probability of the ‘Validity’ model is greater than <italic>γ</italic> = 0.75. The crossbars indicate a cluster of voxels where one of the subjects is clearly an outlier (<xref rid="fig7" ref-type="fig">Fig. 7</xref>).</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+    <fig id="fig10">
+      <label>Fig. 10</label>
+      <caption>
+        <p>Group-level PPM for the ‘Ideal Observer’ model from random effects analysis. The map is thresholded to show regions where the posterior model probability of the ‘Ideal Observer’ model is greater than <italic>γ</italic> = 0.6.</p>
+      </caption>
+      <graphic xlink:href="gr10"/>
+    </fig>
+  </floats-wrap>
+</article>

@@ -1,0 +1,984 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Methods</journal-id>
+      <journal-title-group>
+        <journal-title>Methods (San Diego, Calif.)</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1046-2023</issn>
+      <issn pub-type="epub">1095-9130</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2977854</article-id>
+      <article-id pub-id-type="pmid">20385236</article-id>
+      <article-id pub-id-type="publisher-id">YMETH2583</article-id>
+      <article-id pub-id-type="doi">10.1016/j.ymeth.2010.04.003</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>AutoMeDIP-seq: A high-throughput, whole genome, DNA methylation assay</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Butcher</surname>
+            <given-names>Lee M.</given-names>
+          </name>
+          <email>l.butcher@ucl.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Beck</surname>
+            <given-names>Stephan</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>UCL Cancer Institute, Paul O’Gorman Building, University College London, 72 Huntley Street, London WC1E 6BT, UK</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. <email>l.butcher@ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>11</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>11</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>52</volume>
+      <issue>3-13</issue>
+      <fpage>223</fpage>
+      <lpage>231</lpage>
+      <history>
+        <date date-type="accepted">
+          <day>3</day>
+          <month>4</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Inc.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>DNA methylation is an epigenetic mark linking DNA sequence and transcription regulation, and therefore plays an important role in phenotypic plasticity. The ideal whole genome methylation (methylome) assay should be accurate, affordable, high-throughput and agnostic with respect to genomic features. To this end, the methylated DNA immunoprecipitation (MeDIP) assay provides a good balance of these criteria. In this <italic>Methods</italic> paper, we present AutoMeDIP-seq, a technique that combines an automated MeDIP protocol with library preparation steps for subsequent second-generation sequencing. We assessed recovery of DNA sequences covering a range of CpG densities using <italic>in vitro</italic> methylated λ-DNA fragments (and their unmethylated counterparts) spiked-in against a background of human genomic DNA. We show that AutoMeDIP is more reliable than manual protocols, shows a linear recovery profile of fragments related to CpG density (<italic>R</italic><sup>2</sup> = 0.86), and that it is highly specific (&gt;99%). AutoMeDIP-seq offers a competitive approach to high-throughput methylome analysis of medium to large cohorts.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>DNA methylation</kwd>
+        <kwd>Automation</kwd>
+        <kwd>Whole genome</kwd>
+        <kwd>High-throughput sequencing</kwd>
+        <kwd>MeDIP</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <label>1</label>
+      <title>Introduction</title>
+      <p>DNA methylation is an indispensible, tissue-specific epigenetic mark occurring predominantly at CG dinucleotides (CpGs) in mammalian genomes. It refers to the post-replication maintenance or <italic>de novo</italic> addition of a methyl group to the carbon-5 position of the cytosine pyrimidine ring by DNA methyltransferases to form 5-methylcytosine (5mC). DNA methylation has important consequences for gene expression by contributing to the remodelling of chromatin via recruitment of methyl-CpG-binding domain (MBD) protein complexes and subsequent chromatin modifiers. Disease phenotypes have been shown to arise when these activities are perturbed, resulting in undesired gene expression or silencing; this is most notable in carcinogenesis (for reviews, see <xref rid="bib1 bib2" ref-type="bibr">[1,2]</xref>).</p>
+      <p>Although DNA methylation was discovered 60 years ago – and has been shown to be involved in human disease some 25 years ago – efficient technologies for genome-wide methylation analysis have only become available fairly recently with the introduction of the microarray and, more recently, second-generation sequencing, exemplified by Solexa (Illumina), SOLiD (Applied Biosystems) and PSQ (Roche) chemistries. To date, most studies have focussed on DNA methylation at gene promoters and CpG islands, as methylation at these regions defines cellular identity and aberrant methylation here is likely to contribute rare but significant changes to the phenotype, however; recent evidence suggests that regions most likely to undergo change in DNA methylation may occur at loci outside gene promoters and CpG islands – so called CpG island shores <xref rid="bib3" ref-type="bibr">[3]</xref>. Changes here are thought to be more frequent but also more subtle, thus contributing synergistically to disease phenotypes.</p>
+      <p>From a methodological point of view, assaying these putatively functional regions presents two issues. Firstly, analyses need to encompass the whole genome: there are &gt;28 million CpG sites scattered throughout the haploid human genome (the methylome) and it remains technically challenging to capture the majority of these (for an overview of these methodologies, see <xref rid="bib4 bib5" ref-type="bibr">[4,5]</xref>). Secondly, these techniques need to be scalable for use with large cohorts to maximise statistical power to elucidate reliable differentially methylated regions (DMRs).</p>
+      <p>Second-generation sequencing has eased the former burden; for example, Solexa sequencing coupled with bisulfite conversion (MethylC-seq) recently provided the first human DNA methylome at single CpG resolution <xref rid="bib6" ref-type="bibr">[6]</xref>. At the current cost however, MethylC-seq is precluded from routine use on large cohorts and leaves the latter burden unresolved.</p>
+      <p>One approach that strikes a good balance between coverage, resolution, throughput and cost is to combine second-generation sequencing with the methylated DNA immunoprecipitation (MeDIP) assay <xref rid="bib7" ref-type="bibr">[7]</xref>. MeDIP is an enrichment-based technique <xref rid="bib8" ref-type="bibr">[8]</xref> that uses an antibody against 5mC to capture the methylated fraction of a genome suitable for array-based analysis (MeDIP-chip; <xref rid="bib9 bib10 bib11" ref-type="bibr">[9–11]</xref>) or sequencing-based analysis (MeDIP-seq; <xref rid="bib7" ref-type="bibr">[7]</xref>). The main advantage of MeDIP is that genomic capture is relatively unbiased and not limited to restriction sites or CpG islands. At ∼100 bp resolution, MeDIP-seq offers comparable coverage at much lower cost than MethylC-seq. However, throughput is currently limited due to the manual procedure of the MeDIP step, an issue we address here.</p>
+      <p>Traditionally, issues with throughput have been alleviated using automation – an approach used here. The recent development of the SX-8G IP-Star by Diagenode opens the way to perform up to 16 automated MeDIP (AutoMeDIP) or ChIP (AutoChIP) assays per run that, with some considerations, are compatible with subsequent second-generation sequencing. In this study, we focus on AutoMeDIP and describe a quality control (QC) procedure using <italic>in vitro</italic> methylated lambda (λ) DNA sequences to demonstrate reliability, sensitivity and specificity of the method. In addition, we provide practical considerations for combining AutoMeDIP with Illumina Genome Analyzer II (GAII) library preparation for subsequent sequencing (AutoMeDIP-seq). We believe AutoMeDIP-seq offers a competitive approach to high-throughput whole genome methylation (methylome) analysis of medium to large cohorts.</p>
+    </sec>
+    <sec sec-type="methods">
+      <label>2</label>
+      <title>Methods</title>
+      <p>Although the focus of this Methods article is the application of AutoMeDIP, we begin by describing the generation of the λ-DNA fragments for the QC procedure. We next describe the automated platform itself and finally, a workflow.</p>
+      <sec>
+        <label>2.1</label>
+        <title>Reagents and equipment</title>
+        <p>λ-DNA, restriction enzymes and methyltransferases (and their appropriate buffers) from New England Bioscience (Ipswich, MA). PCR buffers, Taq DNA polymerase and dNTPs from Abgene Ltd. (Epsom, UK). Primers and quantitative PCR master mixes from Eurogentec (Liège, Belgium). Zymo Clean &amp; Concentrator-5 columns from Cambridge Bioscience (Cambridge, UK). QIAquick, MinElute and Gel Extraction kits, columns 96-well plate equivalents from QIAGEN (Crawley, UK). 50× Tris–acetate–EDTA from Thistle Scientific (Glasgow, UK). Low-melting-point agarose from VWR (Lutterworth, UK). MeDIP reagents, 8-strip tube magnetic rack, Bioruptor UCD-200 sonicator and SX-8G IP-Star automated MeDIP and ChIP platform from Diagenode (Liège, Belgium). Illumina Paired End DNA Sample Prep reagents from Illumina (San Diego, CA). BioAnalyzer 2100 and DNA chips from Agilent (Wokingham, UK). Genecatcher DNA purification kits from Invitrogen (Paisley, UK). ND-1000 spectrophotometer from NanoDrop (Wilmington, DE).</p>
+      </sec>
+      <sec>
+        <label>2.2</label>
+        <title>DNA</title>
+        <p>Lambda (λ) DNA was spiked-in against a fixed amount of sheared human genomic DNA. λ-DNA is an ideal spike because its genomic sequence shares no homology with human (or other mammalian) genomes, nor with Illumina GAII Paired End adapter, PCR primer or sequencing primer sequences.</p>
+        <sec>
+          <label>2.2.1</label>
+          <title>Generation of λ-DNA fragments</title>
+          <p>A total of six λ-DNA fragments were constructed using PCR. PCR was carried out in final reaction of 25 μl, containing 0.625 U Taq DNA polymerase; 1× reaction buffer containing 1.5 mM MgCl<sub>2</sub>; 0.2 mM each dNTPs; 500 mM each forward and reverse primers; and ∼6.6 × 10<sup>−4</sup> pM (∼10,000 copies) λ-DNA. Reactions were incubated on a thermal cycler with the following conditions: (a) 94 °C for 2 min, (b) 32 cycles of 94 °C for 20 s, <italic>T<sub>A</sub></italic> °C for 30 s, and 72 °C for 60 s, and (c) 72 °C for 5 min, where <italic>T<sub>A</sub></italic> °C is the annealing temperature indicated in <xref rid="tbl1" ref-type="table">Table 1</xref>.</p>
+          <p>PCRs were purified on Clean &amp; Concentrator columns and eluted in 10 μl molecular biology grade water. Fragments were size-evaluated using an Agilent 2100 Bioanalyzer with DNA 1000 chips. On average, a single PCR generates enough fragments for more than 500,000 spike-in experiments.</p>
+        </sec>
+        <sec>
+          <label>2.2.2</label>
+          <title><italic>In vitro</italic> methylation of λ-DNA fragments</title>
+          <p>Each purified fragment was split into two aliquots; fragments from one aliquot were <italic>in vitro</italic> methylated while fragments from the other were unprocessed, thereby forming unmethylated counterparts. <italic>In vitro</italic> methylation was accomplished by incubating λ-DNA in a final reaction volume of 20 μl containing 1 μg λ-DNA, 2 μl 10× NEBuffer 2, 4 U SssI methyltransferase and 160 μM <italic>S</italic>-adenosylmethionine (SAM) at 37 °C for 1 h then 65 °C for 20 min. DNA was purified on Clean &amp; Concentrator columns and eluted in 20 μl dH<sub>2</sub>0.</p>
+          <p>To test the extent of <italic>in vitro</italic> methylation each amplicon was designed to contain at least one 5′-ACGT-3′ motif, which is recognised by the CpG methylation-sensitive restriction endonuclease, <italic>HpyCH4</italic>IV: cleavage at this motif only occurs in the absence of CpG methylation. <italic>In vitro</italic> methylated PCR fragments were incubated at 37 °C for 1 h, and stopped by heat inactivation at 65 °C for 20 min in a final reaction volume of 25 μl containing 1 μg λ-DNA, 2.5 μl 10× NEBuffer 1, and 10 U <italic>HpyCH4</italic>IV. Following incubation, λ-DNA was purified on Clean &amp; Concentrator columns and eluted in 10 μl dH<sub>2</sub>O. Each purified λ-DNA product was evaluated for endonuclease activity using an Agilent 2100 Bioanalyzer with DNA 1000 chips; molarities of each fragment were quantified against a standard of known concentration using qPCR (using nested qPCR primers; see <xref rid="tbl1" ref-type="table">Table 1</xref>) to construct an equimolar spike-cocktail containing each <italic>in vitro</italic> methylated fragment. The spike-cocktail was diluted to approximately 120,000 copy number per microlitre for experiments. (A separate spike-cocktail was constructed that contained unmethylated spikes to assess aspects of specificity.)</p>
+        </sec>
+        <sec>
+          <label>2.2.3</label>
+          <title>Endogenous human genomic DNA</title>
+          <p>Human genomic DNA was used as an endogenous reference to maintain reaction stoichiometry. Whole blood was extracted and pooled from 10 human individuals. DNA was purified in 10 ml batches using Invitrogen GeneCatcher kits according to the manufacturer’s instructions. All purified batches were re-pooled, quantified using spectrophotometry and run on 2% agarose gels to confirm high (&gt;10 Kb) molecular weight. Pooled-blood DNA was diluted to 100 ng/μl and sonicated in 10 μg batches using 1.5 ml tubes. The Bioruptor was set to ‘high’ (320 W) for ten 15-min cycles, each consisting of 30 s ON/30 s OFF. After each cycle the sonicator tank was replenished with ice-cold (but ice-free) water. (We have found the presence of ice in the tank contributes to the accumulation of droplets on the tube-wall and lid, which then avoid sonication.) The electropherogram in <xref rid="fig1" ref-type="fig">Fig. 1</xref> illustrates the size-range of DNA fragments after sonication; we aim to obtain &gt;20% of the sample between 150 and 200 bp, and more than 90% &lt;500 bp.</p>
+          <p>We recommend starting MeDIP-seq with 6 μg genomic DNA. This amount takes into account losses associated with purification steps between Illumina GAII library preparation, and the iterative nature of verifying sonicated fragments (we have found DNA from different sources also influences sonication time).</p>
+        </sec>
+      </sec>
+      <sec id="sec1">
+        <label>2.3</label>
+        <title>Automation</title>
+        <sec>
+          <label>2.3.1</label>
+          <title>Diagenode SX-8G IP-Star</title>
+          <p>The SX-8G IP-Star (referred to henceforth as “IP-Star”) is a bench-mountable robotic platform. It weighs 130 kg and has a footprint of 1070 mm (<italic>W</italic>) × 650 (<italic>D</italic>) × 770 (<italic>H</italic>). Additional headroom (470 mm) is also required to open the fascia and gain access to the bed of the IP-Star (see <xref rid="fig2" ref-type="fig">Fig. 2</xref>). The bed consists of two 96-well Peltier heat blocks compatible with 96-well skirtless plates; six modules to hold 96-well skirted plates at room temperature; and six 96-tip-holder modules. A single 8-channel head uses 200 μl disposable filter tips to move about <italic>x</italic>-, <italic>y</italic>- and <italic>z</italic>-axes to aspirate, dispense and mix liquid. Dispensing-volume tolerances are estimated at &lt;20%, &lt;5% and &lt;2% for dispensations between 5–9, 10–19 and 20–200 μl, respectively. The IP-Star executes automated protocols and individual movements via a graphical user interface (GUI) that currently runs on Windows XP operating systems.</p>
+          <p>Depending on the number of IPs per run, MeDIP is performed on either one (1–8 MeDIPs) or both (9–16 MeDIPs) Peltier heat blocks. A single MeDIP is currently performed in a 12-strip tube. Each DNA sample requires a single 12-well row of the heat block, and thus, a single channel of the 8-channel dispensing head.</p>
+          <p>Reagents, sonicated DNA sample, and λ-DNA spike-ins are dispensed into a 12-strip tube prior to starting an AutoMeDIP. AutoMeDIP is started via the GUI and the IP-Star moves sequentially across the wells performing the first three (of four) MeDIP stages: (1) bead washing, (2) immunoselection, and (3) immunoprecipitation. At stage (4) (methylated DNA isolation) a user intervention step is required to dispense Input DNA into one well 1, and proteinase K into wells containing immunoprecipitated DNA (well 12) and newly added Input DNA (well 1).</p>
+        </sec>
+      </sec>
+      <sec>
+        <label>2.4</label>
+        <title>Workflow</title>
+        <p>The AutoMeDIP-seq workflow is presented in <xref rid="fig3" ref-type="fig">Fig. 3</xref>. It is our preference to perform MeDIP between steps 3 and 4 of Illumina GAII library prep to avoid ligating adapters to λ-DNA spike-ins (for MeDIP QC only), and thus circumvent their sequencing during cluster generation. We also recommend running a ‘reference’ DNA sample alongside study samples for quality control purposes toward the end of the method. Where appropriate, this sample is referred to as the ‘reference’ DNA sample.</p>
+        <sec>
+          <label>2.4.1</label>
+          <title>Illumina GAII Paired End sample prep (steps 1–3 of 5)</title>
+          <p>Purify the sonicated DNA on QIAGEN QIAquick columns/plates according to the manufacturer’s instructions and elute in 31 μl buffer EB (recovered volume is 30 μl). Quantitate the DNA using spectrophotometry.</p>
+          <p>Step 1 is an end-repair reaction. In a 100 μl final reaction volume, add 45 μl H<sub>2</sub>O, 10 μl T4 DNA ligase buffer (with 10 mM ATP), 4 μl dNTP mix, 5 μl T4 DNA polymerase, 1 μl Klenow DNA polymerase, and 5 μl T4 Polynucleotide kinase (PNK) to the 30 μl genomic DNA; incubate at 20 °C for 30 min then purify on QIAGEN QIAquick columns/plates and elute in 33 μl buffer EB.</p>
+          <p>Step 2 creates an A base overhang to the 3′ ends of end-repaired fragments to prepare them for adapter-ligation. In a final volume of 50 μl, add 5 μl Klenow buffer, 10 μl dATP, and 3 μl Klenow fragment (3′–5′ exo<sup>−</sup>) to the 32 μl DNA sample; incubate at 37 °C for 30 min then purify on QIAGEN MinElute columns/plates and elute in 10 μl buffer EB. Quantitate the DNA.</p>
+          <p>Step 3 (final step before MeDIP) ligates adapters to the ends of the DNA fragments to facilitate adapter-mediated enrichment by PCR prior to cluster generation. This step is optimised for 5 μg starting template so the proportion of adapters added should be titrated accordingly and the reaction volume made up with buffer EB. On the basis of 5 μg starting template, add 25 μl DNA ligase buffer, 10 μl adapter oligo mix, and 5 μl T4 DNA ligase to the 10 μl sample DNA to create a 50 μl final reaction volume; incubate at 20 °C for 15 min then purify on QIAGEN QIAquick columns/plates and elute in 30 μl buffer EB.</p>
+          <p>Measure the DNA concentration following purification: the yield of DNA should have increased due to incorporation of ∼65 bp of adapter sequences at fragment ends. The concentration should therefore be adjusted to maintain the appropriate molar ratio between genomic DNA and anti-5-methylcytidine during MeDIP. This is accomplished by dividing the observed spectrophotometric read (<italic>conc<sub>obs</sub></italic>) by the ratio of post-adapter-ligated fragment size to average pre-adapter-ligated fragment size to give a concentration of genomic DNA (<italic>conc<sub>genomic</sub></italic>):<disp-formula><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="italic">conc</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">genomic</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="italic">conc</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">obs</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mrow><mml:mfenced open="{" close="}"><mml:mrow><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="italic">bp</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi mathvariant="italic">sample</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="italic">bp</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">adapters</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="italic">bp</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi mathvariant="italic">sample</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced></mml:mrow></mml:mrow></mml:mfrac></mml:math></disp-formula>rearranged to give:<disp-formula><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi mathvariant="italic">conc</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">genomic</mml:mi></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="italic">conc</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">obs</mml:mi></mml:mrow></mml:msub><mml:mo>×</mml:mo><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="italic">bp</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi mathvariant="italic">sample</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="italic">bp</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi mathvariant="italic">sample</mml:mi></mml:mrow></mml:msub><mml:mo>+</mml:mo><mml:mrow><mml:mo>∑</mml:mo></mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="italic">bp</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">adapters</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac></mml:math></disp-formula>where <inline-formula><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mover accent="true"><mml:mrow><mml:mi mathvariant="italic">bp</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="true">¯</mml:mo></mml:mrow></mml:mover></mml:mrow><mml:mrow><mml:mi mathvariant="italic">sample</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></inline-formula> is the average size (bp) of the sonicated genomic DNA sample, and <inline-formula><alternatives><textual-form specific-use="jats-markup">∑<italic>bp</italic><sub><italic>adapters</italic></sub></textual-form><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:mo>∑</mml:mo><mml:msub><mml:mrow><mml:mi mathvariant="italic">bp</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">adapters</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> is the sum of adapter lengths (bp) in the adapter mix. For example, a spectrophotometric read of 100 ng/μl for a sample with an average pre-adapter-ligated fragment size 175 bp, would yield <italic>conc<sub>genomic</sub></italic> of 72.9 ng/μl. Given the 30 μl eluate, this equates to approximately 2.2 μg of DNA sample suitable for MeDIP.</p>
+        </sec>
+        <sec>
+          <label>2.4.2</label>
+          <title>AutoMeDIP using the IP-Star</title>
+          <p>Reagents and reaction mixes are dispensed by hand prior to starting an AutoMeDIP run and are illustrated in <xref rid="fig4" ref-type="fig">Fig. 4</xref>. Because MeDIP only works using single-stranded DNA, the first reaction mix (“incubation mix”) needs to be denatured. To prepare the incubation mix, add 1.2 μg adapter-ligated DNA, 24 μl 5× MagBuffer A, 6 μl MagBuffer B, 3 μl λ-DNA spike-in (diluted to contain ∼120,000 copies per μl), and make up to 90 μl with H<sub>2</sub>O and pipette mix; incubate at 100 °C for 10 min, spin briefly if necessary, and snap-cool for 10 min on ice. The incubation mix is prepared 20% in excess; 75 μl is used for MeDIP and 7.5 μl is reserved for Input. Input DNA is not usually sequenced but used for quality control purposes (see Section <xref rid="sec4" ref-type="sec">3.2</xref>).</p>
+          <p>The second reaction mix – “antibody mix” – is prepared on ice: in the following order add 2 μl MagBuffer C, 0.6 μl 5× MagBuffer A, 0.15 μl anti-5-methylcytidine, and 2.25 μl H<sub>2</sub>O and pipette mix. Because antibody is supplied at 1 μg/μl, 150 ng anti-5-methylcytidine is used per MeDIP – a CpG:anti-5mC molar ratio of approximately 25:1.</p>
+          <p>Dispense reagents into their appropriate wells as indicated in <xref rid="fig4" ref-type="fig">Fig. 4</xref>. Use inverse pipetting when dispensing reaction mixes to avoid bubbles and the introduction of dead volumes; because the IP-Star mixes during the automated protocol it is not necessary to pipette mix when dispensing single reagents.</p>
+          <p>Switch on the IP-Star and controlling computer. Open the GUI and the IP-Star door. When performing less than eight MeDIPs, place six tips per row in a tip-holder module and place strip-tubes containing the reagents and reaction mixes in the corresponding rows on the right-hand Peltier heat block; when performing between 9 and 16 MeDIPs, place nine tips per row in a tip-holder module and place strip-tubes in corresponding rows across both Peltier heat blocks. Close the door of the IP-Star. Double-click the graphical representation of appropriate tip-holder module until a full module of tips appears. Open the Protocol folder, select the relevant protocol and click “Start”. Alternatively, click “Modify” to specify the immunoselection time and temperature; changes can be made, saved, and then executed via the screens that follow. (Our preference is at least 7.5 h immunoselection at 4 °C.) A final confirmation window will appear; click “OK” to execute the chosen automated protocol or “CANCEL” to abort. Upon clicking “OK” the automated protocol will commence as previously described (see Section <xref rid="sec1" ref-type="sec">2.3</xref>).</p>
+          <p>After the final immunoprecipitation in MagWash Buffer 2, the methylated DNA/anti-5mC/bead complex is eluted in 100 μl DNA Isolation Buffer. Follow the instruction in the dialogue box that appears: for each MeDIP add 1 μl proteinase K to wells 1 and 12, and 7.5 μl incubation mix (containing Input DNA) into well 1. Pipette mix the contents of well 12 after adding proteinase K to ensure the beads are in suspension. Cap the column of wells 1 and 12 using 8-strip tube caps. Click “OK”. Follow the instructions of the second dialogue box: close the IP-Star door. Click “OK”. The IP-Star will activate the enzyme by heating to 55 °C for 15 min, then denature the enzyme by heating to 95 °C for a further 15 min, then finally cool the sample to 4 °C where the IP-Star holds this temperature until switched off. The AutoMeDIP reaction is complete.</p>
+        </sec>
+        <sec>
+          <label>2.4.3</label>
+          <title>Capture the methylation-enriched fraction of DNA</title>
+          <p>Upon completion of the run, open the door and remove all strip-tubes from the Peltier blocks. If no further reactions are to be performed, exit the GUI and turn off the IP-Star. Separate the wells containing Input DNA (well 1) and MeDIP DNA (well 12) from the rest of the strip-tubes and briefly spin in a microfuge to collect any condensate. Place the tubes in a magnetic rack and leave for 10 min in a fridge or on ice to capture the beads. Remove the supernatant of both Input and MeDIP and place in clean, labelled tubes. Discard the beads. Proceed to QC.</p>
+        </sec>
+        <sec>
+          <label>2.4.4</label>
+          <title>MeDIP QC 1</title>
+          <p>The first MeDIP quality control directly assesses the efficiency of the MeDIP reaction using quantitative PCR (qPCR). Because qPCR efficiency improves with shorter fragments we designed nested qPCR primers within each fragment (see <xref rid="tbl1" ref-type="table">Table 1</xref>). qPCRs for each region are performed in triplicate for both Input and MeDIP DNA. Per qPCR assay add 6.25 μl 2× SYBR reaction buffer (including 8 mM MgCl<sub>2</sub>), 0.625 μl primer pair (10 μM forward and 10 μM reverse), 4.375 μl H<sub>2</sub>O, and 1.25 μl DNA sample. Run with the following thermal cycling conditions: (a) 95 °C for 5 min, (b) 40 cycles of 95 °C for 15 s, 60 °C for 15 s (including single fluorescence read per cycle), (c) dissociation curve.</p>
+          <p>MeDIP efficiency is indexed by recovery, which is calculated using the cycle threshold (<italic>C<sub>t</sub></italic>) values of MeDIP (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>C</italic><sub><italic>t</italic><sub><italic>MeDIP</italic></sub></sub></textual-form><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">MeDIP</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>) and Input (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>C</italic><sub><italic>t</italic><sub><italic>Input</italic></sub></sub></textual-form><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">Input</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>) samples. Because the proportion of Input DNA in 100 μl DIB solution is 10% of that used at the start of MeDIP, Input <italic>C<sub>t</sub></italic> values are adjusted to represent 100% starting template by subtracting a number of Cts (<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>C</italic><sub><italic>t</italic><sub><italic>Input</italic>_<italic>adj</italic></sub></sub></textual-form><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">Input</mml:mi><mml:mo>_</mml:mo><mml:mi mathvariant="italic">adj</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>):<disp-formula><label>(3)</label><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">Input</mml:mi><mml:mo>_</mml:mo><mml:mi mathvariant="italic">adj</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi mathvariant="normal">log</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mo>%</mml:mo></mml:mrow><mml:mrow><mml:mi mathvariant="italic">Input</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi mathvariant="normal">log</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mn>2</mml:mn><mml:mi mathvariant="italic">AE</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac></mml:math></disp-formula>where %<italic><sub>Input</sub></italic> is the proportion of Input (to MeDIP) used and <italic>AE</italic> is the amplification efficiency of the primers (expressed as a decimal and determined empirically). Recovery is calculated as:<disp-formula><label>(4)</label><alternatives><textual-form specific-use="jats-markup"><italic>recovery</italic>(%) = 2<italic>AE</italic><sup>((<italic>C</italic><sub><italic>t</italic><sub><italic>Input</italic></sub></sub> - <italic>C</italic><sub><italic>t</italic><sub><italic>Input</italic>_<italic>adj</italic></sub></sub>) - <italic>C</italic><sub><italic>t</italic><sub><italic>MeDIP</italic></sub></sub>)</sup>×100</textual-form><mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:mi mathvariant="italic">recovery</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mo>%</mml:mo><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mn>2</mml:mn><mml:msup><mml:mrow><mml:mi mathvariant="italic">AE</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">Input</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">Input</mml:mi><mml:mo>_</mml:mo><mml:mi mathvariant="italic">adj</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">MeDIP</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup><mml:mo>×</mml:mo><mml:mn>100</mml:mn></mml:math></alternatives></disp-formula></p>
+          <p>Incorporating recovery of unmethylated spike-ins allows the calculation of specificity. (For the purposes of this paper we conducted separate experiments containing an unmethylated spike-cocktail; see Section <xref rid="sec3" ref-type="sec">3</xref> for how we implement unmethylated and methylated spike-ins within the same DNA sample for QC.) Specificity is calculated as:<disp-formula id="fd1"><label>(5)</label><mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mi mathvariant="italic">specificity</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>-</mml:mo><mml:mrow><mml:mfenced open="{" close="}"><mml:mrow><mml:mfrac><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="italic">recovery</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">unmeth</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi mathvariant="italic">recovery</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">meth</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula></p>
+          <p>Although this can be more directly expressed in terms of Cts:<disp-formula><label>(6)</label><alternatives><textual-form specific-use="jats-markup"><italic>specificity</italic> = 1 - (<italic>C</italic><sub><italic>t</italic><sub><italic>meth</italic></sub></sub> - <italic>C</italic><sub><italic>t</italic><sub><italic>unmeth</italic></sub></sub>)</textual-form><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:mi mathvariant="italic">specificity</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>-</mml:mo><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">meth</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">unmeth</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:math></alternatives></disp-formula>it is more convenient to use Eq. <xref rid="fd1" ref-type="disp-formula">(5)</xref> in a study setting, as methylated and unmethylated spike-ins are genomically distinct regions, which have their own amplification efficiencies that can be accounted for (see Section <xref rid="sec3" ref-type="sec">3</xref>).</p>
+        </sec>
+        <sec>
+          <label>2.4.5</label>
+          <title>Illumina GAII sample prep parts 4–5</title>
+          <p>Step 4 of library prep is an adapter-mediated PCR to enrich the presence of methylated fragments for hybridisation to the flowcell and cluster generation. In a final reaction volume of 50 μl, add 25 μl Phusion High-Fidelity DNA Polymerase, 1 μl PE Primer 1.0, and 1 μl PE Primer 2.0, to 23 μl MeDIP DNA (DNA does not need to be purified). For final QC purposes (see Section <xref rid="sec2" ref-type="sec">2.4.6</xref>), setup a separate PCR to also amplify the Input fraction of ‘reference’ DNA. Incubate on a thermal cycler with the following conditions: (a) 98 °C for 30 s, (b) 12 cycles of 98 °C for 10 s, 65 °C for 30 s, and 72 °C for 30 s, (c) 72 °C for 5 min, and (d) 4 °C hold. Electrophorese 5 μl PCR product on a 2% agarose TBE gel (or Bioanalyzer) to confirm the PCR has worked: a smear (shifted ∼120 bp higher than the pre-library prep sonicated DNA) should be visible. Purify on QIAGEN QIAquick columns/plates, elute in 30 μl buffer EB and quantitate.</p>
+          <p>Step 5 of sample prep creates a library insert size for cluster generation. To avoid cross-contamination of samples, prepare separate 2% gels for each MeDIP sample using 100 ml 1× TAE, 2 g low melting-point agarose, 50 μg ethidium bromide (final EtBr concentration: 0.5 μg/ml), and 6 mm-wide gel combs. After mixing each sample with an appropriate quantity of loading dye, dispense the sample between two lanes of 50 bp ladder, with at least 2 cm between each loaded lane. Electrophorese for 60 min at 120 V. To prevent cross-linking the DNA, place a strip of aluminium foil on a UV transilluminator, sufficient to cover the lane of MeDIP sample. Because the gel is fragile, place it on the UV transilluminator with care so that the MeDIP sample lane is on top of the foil. Using a UV face shield, switch on the UV transilluminator. (Because of the foil, only the 50 bp ladder should be visible.) With a clean scalpel and ruler, cut two vertical lines either side of the MeDIP sample lane; using same scalpel, make a horizontal cut at 300 bp; with a clean scalpel, make a horizontal cut at 350 bp; very carefully excise the 50 bp range and place in a 1.5 ml tube. Two points are worthy of note here: firstly, the sample size-range has increased ∼120 bp due to the incorporation of PCR primer sequences. Therefore, by excising 300–350 bp this corresponds to selecting ∼180–230 bp of the original genomic DNA size-range. Secondly, although we choose to sequence this size-range, we recommend excising other 50 bp ranges across the full sample size-range (i.e., 220–620 bp) for contingency purposes.</p>
+          <p>Repeat the excision process for all MeDIPs and the ‘reference’ Input sample. Purify each sample using a QIAGEN Gel extraction kit according to the manufacturer’s instructions, with the exception of dissolving agarose at room temperature (see <xref rid="bib12" ref-type="bibr">[12]</xref>) and elute in 30 μl. Proceed to MeDIP QC 2.</p>
+        </sec>
+        <sec id="sec2">
+          <label>2.4.6</label>
+          <title>MeDIP QC 2</title>
+          <p>The purpose of the second QC is to verify the library insert remains enriched for methylated fragments and depleted for unmethylated fragments following PCR and gel excision. Because the λ-DNA fragments are added after adapter-ligation, they are immune to amplification during PCR and thus diluted-out of the MeDIP. Therefore, MeDIP QC 2 tests rely on the endogenous genomic DNA.</p>
+          <p>Two regions likely to be differentially methylated in humans, and the primers to assay these regions, are presented in <xref rid="tbl1" ref-type="table">Table 1</xref>. Although consistent methylation states of these regions have been shown previously in 13 normal somatic tissues, placenta, sperm, and an immortalized cell line <xref rid="bib10" ref-type="bibr">[10]</xref>, we recommend ascertaining the methylation state of your ‘reference’ sample <italic>a priori</italic>: a simple MeDIP reaction is often sufficient.</p>
+          <p>Following purification, quantitate all MeDIP samples and the ‘reference’ Input sample by spectrophotometry. The DNA yield should be between 60 and 500 ng and the 260/280 ratio should be &gt;1.8. Normalize the concentrations of ‘reference’ MeDIP and Input (e.g., 1 ng/μl) and set up triplicate qPCRs for the two genomic regions using the reaction mix and thermal cycling conditions described above (see MeDIP QC 1). Calculate the fold-enrichment ratio for methylated vs. unmethylated regions:<disp-formula><label>(7)</label><mml:math id="M12" altimg="si12.gif" overflow="scroll"><mml:mtext>fold-enrichment ratio</mml:mtext><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mn>2</mml:mn><mml:msup><mml:mrow><mml:mi mathvariant="italic">AE</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">Input</mml:mi><mml:mo>_</mml:mo><mml:mi mathvariant="italic">meth</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">MeDIP</mml:mi><mml:mo>_</mml:mo><mml:mi mathvariant="italic">meth</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup></mml:mrow><mml:mrow><mml:mn>2</mml:mn><mml:msup><mml:mrow><mml:mi mathvariant="italic">AE</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">Input</mml:mi><mml:mo>_</mml:mo><mml:mi mathvariant="italic">unmeth</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">MeDIP</mml:mi><mml:mo>_</mml:mo><mml:mi mathvariant="italic">unmeth</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:mfrac></mml:math></disp-formula></p>
+          <p>In the presence of equally efficient primers, the fold-enrichment ratio can be calculated without Input DNA (i.e., <inline-formula><alternatives><textual-form specific-use="jats-markup">2<italic>AE</italic><sup>(<italic>C</italic><sub><italic>t</italic><sub><italic>MeDIP</italic>_<italic>unmeth</italic></sub></sub> - <italic>C</italic><sub><italic>t</italic><sub><italic>MeDIP</italic>_<italic>meth</italic></sub></sub>)</sup></textual-form><mml:math id="M13" altimg="si13.gif" overflow="scroll"><mml:mrow><mml:mn>2</mml:mn><mml:msup><mml:mrow><mml:mi mathvariant="italic">AE</mml:mi></mml:mrow><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">MeDIP</mml:mi><mml:mo>_</mml:mo><mml:mi mathvariant="italic">unmeth</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">MeDIP</mml:mi><mml:mo>_</mml:mo><mml:mi mathvariant="italic">meth</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>; however, we recommend running at least one Input to verify each primer. The pass threshold is discussed in Section <xref rid="sec4" ref-type="sec">3.2</xref>.</p>
+          <p>As a final validation, run 1 μl sample on an Agilent Bioanalyzer to check the size-range corresponds to that which was excised. Following successful QC, quantitate the sample using either fluorometry or a TaqMan assay (see <xref rid="bib12" ref-type="bibr">[12]</xref> for details) to create a 10 nM dilution used for cluster generation. The methods involved with cluster generation are often handled independently by dedicated personnel at the sequencing institute; for this reason, this paper does not detail these methods.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="sec3">
+      <label>3</label>
+      <title>Results and discussion</title>
+      <p>Recent sequencing efforts have revealed the confluence of rare genetic alterations on phenotypic plasticity. DNA methylation is no exception and analyses need to encompass the whole genome. Moreover, given the individual-specific nature of these events, large cohorts are required to capture the rare but crucial alterations. As a step toward achieving these goals we present AutoMeDIP-seq, a whole genome sequencing technique incorporating an automated MeDIP step that offers increased reproducibility, accuracy and throughput for assessing the methylated fraction of a genome (the “methylome”).</p>
+      <sec>
+        <label>3.1</label>
+        <title>Performance</title>
+        <p>A key advantage of automated protocols over manual protocols is increased reproducibility, and the IP-Star is no exception. <xref rid="fig5" ref-type="fig">Fig. 5</xref> illustrates reproducibility (as a function of “20CpG” recovery; other fragments not shown) for a total of 33 MeDIPs performed on five consecutive days. By way of comparison we also performed MeDIPs using an established manual protocol performed in 1.5 ml microcentrifuge tubes (see <xref rid="bib10" ref-type="bibr">[10]</xref>). As <xref rid="fig5" ref-type="fig">Fig. 5</xref> shows, the automated protocol shows a tighter range of recovery, both within- and between-days compared with the manual protocol. Moreover, recovery is marginally (but consistently) higher for the automated protocol than the manual protocol, although we accept that different immunocapture incubation periods for each protocol were used (manual: 4 h vs. automated: 7.5 h).</p>
+        <p><xref rid="fig6" ref-type="fig">Fig. 6</xref>A demonstrates that recovery of fragments is positively correlated with CpG density (blue spots). It also shows that this relationship is both strong and that the majority of the variance is explained linearly (<italic>R</italic><sup>2</sup> = .86), which is reassuring when compared to previous analogous experiments (e.g., <xref rid="bib13" ref-type="bibr">[13]</xref>). Following adapter-mediated PCR we normalized all MeDIP and Input DNA concentrations to 1 ng/μl, so as to calculate fold-enrichment ratios (described in Section <xref rid="sec2" ref-type="sec">2.4.6</xref>) for each methylated fragment. For comparison we also calculated fold-enrichment scores using the traditional ΔΔ<italic>C<sub>t</sub></italic> method <xref rid="bib14" ref-type="bibr">[14]</xref>. Readers should be aware that because λ-DNA spike-ins are added at the point of setting up AutoMeDIP, they avoid amplification via adapter-mediated PCR; however, because we want to show the effect of adapter-medicated PCR on the fragments, for the purposes of this paper we conducted an experiment by adding λ-DNA spike-ins to the sonicated genomic DNA at the point of starting end-repair. In both calculations we anchored the observed Δ<italic>C<sub>t</sub></italic> of each of the six methylated fragments to the average Δ<italic>C<sub>t</sub></italic> of all six unmethylated fragments (average <inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>C</italic><sub><italic>t</italic><sub><italic>unmethInput</italic></sub></sub> - <italic>C</italic><sub><italic>t</italic><sub><italic>unmethMeDIP</italic></sub></sub></textual-form><mml:math id="M14" altimg="si14.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">unmethInput</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub><mml:mo>-</mml:mo><mml:msub><mml:mrow><mml:mi>C</mml:mi></mml:mrow><mml:mrow><mml:msub><mml:mrow><mml:mi>t</mml:mi></mml:mrow><mml:mrow><mml:mi mathvariant="italic">unmethMeDIP</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:msub></mml:mrow></mml:math></alternatives></inline-formula> = −4.4). The resulting scores are plotted in <xref rid="fig6" ref-type="fig">Fig. 6</xref>B, which illustrates that the original recovery profile is largely maintained after the samples have been amplified by adapter-mediated PCR (<italic>R</italic><sup>2</sup> = .92). Similar to data shown in <xref rid="fig5" ref-type="fig">Fig. 5</xref>, reproducibility is high across all the six regions as indexed by the small error bars (±1 standard error) at each point. Although regions of very low CpG density (CpG% &lt;1.9) are not greatly enriched, MeDIP is capable of enriching not just CpG islands, but also CpG island shores, which is important considering their importance as DMRs in phenotypic plasticity <xref rid="bib3 bib15" ref-type="bibr">[3,15]</xref>. We note however, that generating enough reads to cover regions of very low CpG density requires increased sequencing depth, which significantly impacts on cost.</p>
+        <p>To assess AutoMeDIP specificity, and show recovery of methylated fragments is not random, an unmethylated spike-cocktail was run in parallel to the <italic>in vitro</italic> methylated version. <xref rid="fig6" ref-type="fig">Fig. 6</xref> shows that unmethylated fragments (red spots) were routinely not recovered (range: 0.00–0.15%) and CpG density is not a factor, as expected. Just focussing on discernibly recovered fragments (i.e., CpG% ⩾2.0), these recovery rates translate to specificity estimates ranging from 96.3% (CpG% = 2.8) to 99.9% (CpG% = 5.0).</p>
+      </sec>
+      <sec id="sec4">
+        <label>3.2</label>
+        <title>QC considerations</title>
+        <p>As alluded to in the Methods, implementing these metrics in a substantive study requires additional consideration. The specificity metrics presented here refer to the ratio of methylated-to-unmethylated recovery of the <italic>same</italic> fragment in two <italic>separate</italic> assays; to quality control assays in a substantive study we need to assess the ratio of methylated-to-unmethylated recovery of <italic>different</italic> fragments within one <italic>discrete</italic> assay. To remedy this we spike-in equimolar amounts of unmethylated “15CpG” and methylated “20CpG”. In doing so however, we need to bear in mind that recovery varies by CpG density, and specificity will be inflated if more efficiently-recovered fragments are used as methylated controls.</p>
+        <p>To define reasonable criteria for a QC specificity threshold we draw on previous experience. As shown earlier, recovery of methylated “20CpG” is consistent and reliable when spiked-in against our pooled-blood DNA. However, spiking-in against different study samples (i.e., different methylation profiles) alters reaction stoichiometry and thus recovery; in biologically independent samples tested to date, we have found recovery of methylated “20CpG” ranges from 4.6% to 54.4% (mean = 30.8%, SD = 9.2%) and recovery of unmethylated “15CpG” ranges from 0.01% to 0.87% (mean = 0.11%, SD = 0.20%). Therefore, the first step in defining a suitable QC specificity threshold is to define baseline recovery estimates: we ranked our previous recovery rates of methylated “20CpG” and unmethylated “15CpG” in order of “ideal recovery” (e.g., 1 = high recovery of methylated fragment OR low recovery of unmethylated fragment); we then selected recoveries corresponding to the 90th percentiles (methylated fragment = 21.5%, unmethylated fragment = 0.39%) and used Eq. <xref rid="fd1" ref-type="disp-formula">(5)</xref> to generate a specificity threshold of 98.2% (or approximately 50-fold difference in recovery of methylated fragments over unmethylated fragments). We feel this current threshold provides a reasonable cut-off for quantitatively removing outliers/failures: in our most recent study, 51 of 52 samples passed this QC threshold and were taken forward for sequencing. The mean specificity of samples in this study was 99.6% (SD = 0.7%), which translates to ∼250-fold recovery difference of methylated vs. unmethylated fragments.</p>
+        <p>As with MeDIP QC 1, imposing a threshold for MeDIP QC 2 requires consideration of CpG density and therefore needs to be flexible (see <xref rid="fig6" ref-type="fig">Fig. 6</xref>B). Focusing on a region of 5% CpG density, MeDIPs should be considered suitable for cluster generation if the fold-enrichment ratio is &gt;∼30, indicating a 30-fold increase of methylated fragments over unmethylated fragments (cf. 50-fold in MeDIP QC 1). The rationale for imposing a less stringent threshold at this stage is due to anticipated loss (∼65%) of methylated DNA during PCR- and gel-purification when compared with the unchanging quantity of unmethylated DNA. In other words, qPCR curves for methylated DNA shift right, whereas qPCR curves for unmethylated DNA remain unchanged. Nevertheless, we routinely see fold-enrichment ratios greater than 100 using primers for endogenous DNA (see <xref rid="tbl1" ref-type="table">Table 1</xref>).</p>
+      </sec>
+      <sec>
+        <label>3.3</label>
+        <title>Logistics</title>
+        <p>To process the four key stages of MeDIP for 16 samples ready for the first round of QC, we found the automated protocol cut hands-on time by approximately two-thirds compared with manual methods (40 min cf. 2 h). The automated protocol also has the advantage that hands-on work is spent virtually entirely prior to the MeDIP reactions, meaning users’ time can be split more effectively over other tasks. Most of the hands-on time is saved during bead washing steps, and the fact that post-MeDIP DNA does not need to be purified prior to PCR applications.</p>
+        <p>In terms of throughput, we currently and routinely perform 16 MeDIPs in 24 h, including initial QC. It may be possible however to double throughput by halving the immunoselection incubation time and increasing the temperature; this has not been tested extensively however, and requires further validation.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>4</label>
+      <title>Concluding remarks</title>
+      <p>The regulatory effects of DNA methylation at single loci are likely to act synergistically with other local patterns of DNA methylation, other epigenetic marks and sequence-based genetic polymorphisms. For this reason, it is desirable for methylation studies to move from a candidate approach to whole genome screens; only in this way will the genomic orchestra be heard, allowing the genetic soloists to take centre stage. Although the gold-standard of methylome assays is MethylC-seq, it remains prohibitively expensive, time consuming and labour intensive. AutoMeDIP-seq offers a reasonable higher-throughput alternative that is reliable, sensitive and specific, albeit without the resolution and genomic coverage of MethylC-seq. One drawback of the method is an obvious enrichment bias toward CpG-dense regions of the genome, however; we show that AutoMeDIP is still capable of reliably enriching for fragments &gt;2%. Moreover, because the reduced read-depth that necessarily follows in these regions can be accounted for <italic>in silico</italic> <xref rid="bib7" ref-type="bibr">[7]</xref>, the methylation state at CpG island shores can still be assessed and incorporated into a hypothesis-free approach to highlight specific regions that can be replicated in alternative – possibly higher resolution – assays.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>1</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Feinberg</surname>
+              <given-names>A.P.</given-names>
+            </name>
+          </person-group>
+          <source>Nature</source>
+          <volume>447</volume>
+          <issue>7143</issue>
+          <year>2007</year>
+          <fpage>433</fpage>
+          <lpage>440</lpage>
+          <pub-id pub-id-type="pmid">17522677</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <label>2</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hatchwell</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Greally</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <source>Trends Genet.</source>
+          <volume>23</volume>
+          <issue>11</issue>
+          <year>2007</year>
+          <fpage>588</fpage>
+          <lpage>595</lpage>
+          <pub-id pub-id-type="pmid">17953999</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <label>3</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Irizarry</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <source>Nat. Genet.</source>
+          <volume>41</volume>
+          <issue>2</issue>
+          <year>2009</year>
+          <fpage>178</fpage>
+          <lpage>186</lpage>
+          <pub-id pub-id-type="pmid">19151715</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <label>4</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Beck</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Rakyan</surname>
+              <given-names>V.K.</given-names>
+            </name>
+          </person-group>
+          <source>Trends Genet.</source>
+          <volume>24</volume>
+          <issue>5</issue>
+          <year>2008</year>
+          <fpage>231</fpage>
+          <lpage>237</lpage>
+          <pub-id pub-id-type="pmid">18325624</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <label>5</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Butcher</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Beck</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <source>J. Genet. Genomics</source>
+          <volume>35</volume>
+          <issue>7</issue>
+          <year>2008</year>
+          <fpage>391</fpage>
+          <lpage>401</lpage>
+          <pub-id pub-id-type="pmid">18640619</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <label>6</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lister</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>Nature</source>
+          <volume>462</volume>
+          <issue>7271</issue>
+          <year>2009</year>
+          <fpage>315</fpage>
+          <lpage>322</lpage>
+          <pub-id pub-id-type="pmid">19829295</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <label>7</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Down</surname>
+              <given-names>T.A.</given-names>
+            </name>
+          </person-group>
+          <source>Nat. Biotechnol.</source>
+          <volume>26</volume>
+          <issue>7</issue>
+          <year>2008</year>
+          <fpage>779</fpage>
+          <lpage>785</lpage>
+          <pub-id pub-id-type="pmid">18612301</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <label>8</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mohn</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <source>Methods Mol. Biol.</source>
+          <volume>507</volume>
+          <year>2009</year>
+          <fpage>55</fpage>
+          <lpage>64</lpage>
+          <pub-id pub-id-type="pmid">18987806</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <label>9</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Weber</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Nat. Genet.</source>
+          <volume>37</volume>
+          <issue>8</issue>
+          <year>2005</year>
+          <fpage>853</fpage>
+          <lpage>862</lpage>
+          <pub-id pub-id-type="pmid">16007088</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <label>10</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rakyan</surname>
+              <given-names>V.K.</given-names>
+            </name>
+          </person-group>
+          <source>Genome Res.</source>
+          <volume>18</volume>
+          <issue>9</issue>
+          <year>2008</year>
+          <fpage>1518</fpage>
+          <lpage>1529</lpage>
+          <pub-id pub-id-type="pmid">18577705</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <label>11</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Weber</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <source>Nat. Genet.</source>
+          <volume>39</volume>
+          <issue>4</issue>
+          <year>2007</year>
+          <fpage>457</fpage>
+          <lpage>466</lpage>
+          <pub-id pub-id-type="pmid">17334365</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <label>12</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Quail</surname>
+              <given-names>M.A.</given-names>
+            </name>
+          </person-group>
+          <source>Nat. Methods</source>
+          <volume>5</volume>
+          <issue>12</issue>
+          <year>2008</year>
+          <fpage>1005</fpage>
+          <lpage>1010</lpage>
+          <pub-id pub-id-type="pmid">19034268</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <label>13</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tomazou</surname>
+              <given-names>E.M.</given-names>
+            </name>
+          </person-group>
+          <source>BMC Med. Genomics</source>
+          <volume>1</volume>
+          <year>2008</year>
+          <fpage>19</fpage>
+          <pub-id pub-id-type="pmid">18513384</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib14">
+        <label>14</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pfaffl</surname>
+              <given-names>M.W.</given-names>
+            </name>
+          </person-group>
+          <source>Nucleic Acids Res.</source>
+          <volume>29</volume>
+          <issue>9</issue>
+          <year>2001</year>
+          <fpage>e45</fpage>
+          <pub-id pub-id-type="pmid">11328886</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib15">
+        <label>15</label>
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Doi</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <source>Nat. Genet.</source>
+          <volume>41</volume>
+          <issue>12</issue>
+          <year>2009</year>
+          <fpage>1350</fpage>
+          <lpage>1353</lpage>
+          <pub-id pub-id-type="pmid">19881528</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>L.M.B. and S.B. were supported by the Wellcome Trust (Grant 084071). The experimental work was supported in part by an EU grant (Highthroughput Epigenetic Regulatory Organisation in Chromatin (HEROIC), LSHG-CT-2005-018883) under the 6th Framework Programme to S.B. and the F.H. Muirhead Charitable Trust. We are further grateful to Ignacio Mazon and Jean-Jacques Goval of Diagenode for their support and attention to protocol development of the IP-Star.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Sonicated DNA. An electropherogram produced using an Agilent Bioanalyzer 2100 illustrating the size-range of DNA used in AutoMeDIP-seq. Approximately, 45% of the sample is contained between 150 and 250 bp.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>IP-Star bed. The IP-Star contains multiple locations for tips and plates, which will provide increased flexibility for additional automated protocols.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>AutoMeDIP-seq workflow. It is feasible to process up to 16 samples simultaneously in 2 days including analysis of the two QC steps. When processing more than 16 samples it is recommended that each stage (within curly braces) is completed for all samples before moving onto the next stage. e, electrophorese, p, purify, q, quantitate, qPCR, quantitative polymerase chain reaction.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Reaction mixes for a single AutoMeDIP run. Reagents are mixed and dispensed into 12-strip-tubes prior to starting an AutoMeDIP run, at which point the IP-Star performs MeDIP-sequentially across the wells. Prior to dispensing the incubation mix, DNA must be denatured, otherwise the MeDIP reaction is ineffective.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Reproducibility indexed as a function of recovery for a spiked-in methylated fragment. All but the last category show reproducibility of a methylated fragment (20CpGs) spiked-in against identical human genomic DNA (pooled-blood DNA); the last category involves MeDIPs performed using 55 independent DNAs from an empirical study. The first five categories represent <italic>N</italic> simultaneous MeDIPs performed on separate days and the penultimate category summarises these MeDIPs. Error bars are ±1 standard error of the mean. We observed a similar pattern of reproducibility for other fragments (data not shown).</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Recovery and relative enrichment as a function of CpG density. (A) Recovery of methylated fragments showed a clear positive correlation with CpG density, while non-methylated fragments were consistently unrecovered (&lt;1%), regardless of CpG density. (B) Following adapter-mediated PCR, MeDIP and Input sample concentrations were equalized; we calculated fold-enrichment ratios (blue spots) and – for comparison – relative enrichment using the ΔΔ<italic>C<sub>t</sub></italic> method (black crosses), by normalizing the Δ<italic>C<sub>t</sub></italic> for each methylated fragment against the average Δ<italic>C<sub>t</sub></italic> for all unmethylated fragments. The dashed line indicates a suggested fold-enrichment threshold for quality control purposes and is contingent on the CpG density of the region tested; after gel-purification, samples that pass this QC threshold and also match the expected size-range are suitable for cluster generation. Error bars are ±1 standard error of the mean using three independent AutoMeDIPs.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <table-wrap id="tbl1" position="float" orientation="landscape">
+      <?landscape?>
+      <?legal?>
+      <label>Table 1</label>
+      <caption>
+        <p>PCR primers used to generate λ-DNA fragments and qPCR primers for quantitation of λ-DNA and human DNA regions. The methylated and unmethylated states at human chromosome 22 and 6, respectively were ascertained previously (see <xref rid="bib10" ref-type="bibr">[10]</xref>).</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th>No. CpGs</th>
+            <th>CpG (%)</th>
+            <th>Genome</th>
+            <th>Protocol</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Product size (bp)</th>
+            <th>Primer</th>
+            <th>Sequence (5′–3′)</th>
+            <th>Length</th>
+            <th>GC (%)</th>
+            <th><italic>T<sub>A</sub></italic> (° Fc)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>0.5</td>
+            <td>Lambda</td>
+            <td>PCR</td>
+            <td>23,967</td>
+            <td>24,163</td>
+            <td align="char">197</td>
+            <td>F</td>
+            <td>GAGGTGATAAAATTAACTGC</td>
+            <td align="char">20</td>
+            <td align="char">35.0</td>
+            <td align="char">53</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>GGCTCTACCATATCTCCTA</td>
+            <td align="char">19</td>
+            <td align="char">47.4</td>
+            <td/>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>qPCR</td>
+            <td>24,004</td>
+            <td>24,148</td>
+            <td align="char">145</td>
+            <td>F</td>
+            <td>ACAAGTTGTTTGATCTTTGC</td>
+            <td align="char">20</td>
+            <td align="char">35.0</td>
+            <td align="char">60</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>CCTATGAGCAACGTGTTAG</td>
+            <td align="char">19</td>
+            <td align="char">47.4</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>1.3</td>
+            <td>Lambda</td>
+            <td>PCR</td>
+            <td>27,573</td>
+            <td>27,798</td>
+            <td align="char">226</td>
+            <td>F</td>
+            <td>GCTAATGCTCTGTTACAGGT</td>
+            <td align="char">20</td>
+            <td align="char">45.0</td>
+            <td align="char">53</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>ACTGATAGTGACCTGTTCGT</td>
+            <td align="char">20</td>
+            <td align="char">45.0</td>
+            <td/>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>qPCR</td>
+            <td>27,629</td>
+            <td>27,777</td>
+            <td align="char">149</td>
+            <td>F</td>
+            <td>GCATATGTTGTGTTTTACAG</td>
+            <td align="char">20</td>
+            <td align="char">35.0</td>
+            <td align="char">60</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>GCAACAAATTGATAAGCA</td>
+            <td align="char">18</td>
+            <td align="char">33.3</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>1.9</td>
+            <td>Lambda</td>
+            <td>PCR</td>
+            <td>25,869</td>
+            <td>26,138</td>
+            <td align="char">270</td>
+            <td>F</td>
+            <td>CATGTCCAGAGCTCATTC</td>
+            <td align="char">18</td>
+            <td align="char">50.0</td>
+            <td align="char">53</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>GTTTAAAATCACTAGGCGA</td>
+            <td align="char">19</td>
+            <td align="char">35.0</td>
+            <td/>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>qPCR</td>
+            <td>25,942</td>
+            <td>26,071</td>
+            <td align="char">130</td>
+            <td>F</td>
+            <td>CACTTGAATCTGTGGTTCAT</td>
+            <td align="char">20</td>
+            <td align="char">40.0</td>
+            <td align="char">60</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>TAGAAAAAGACAACTCTGGC</td>
+            <td align="char">20</td>
+            <td align="char">40.0</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>2.8</td>
+            <td>Lambda</td>
+            <td>PCR</td>
+            <td>33,638</td>
+            <td>33,997</td>
+            <td align="char">360</td>
+            <td>F</td>
+            <td>CTGACCATTTCCATCATTC</td>
+            <td align="char">19</td>
+            <td align="char">42.1</td>
+            <td align="char">53</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>GTAACTAAACAGGAGCCG</td>
+            <td align="char">18</td>
+            <td align="char">50.0</td>
+            <td/>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>qPCR</td>
+            <td>33,662</td>
+            <td>33,786</td>
+            <td align="char">125</td>
+            <td>F</td>
+            <td>GAACTCACACACAACACCA</td>
+            <td align="char">19</td>
+            <td align="char">47.4</td>
+            <td align="char">60</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>ACTCTGAATACCGACTCAAT</td>
+            <td align="char">20</td>
+            <td align="char">40.0</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>3.2</td>
+            <td>Lambda</td>
+            <td>PCR</td>
+            <td>28,488</td>
+            <td>28,949</td>
+            <td align="char">462</td>
+            <td>F</td>
+            <td>ATGTATCCATTGAGCATTGCC</td>
+            <td align="char">21</td>
+            <td align="char">42.9</td>
+            <td align="char">53</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>CACGAATCAGCGGTAAAGGT</td>
+            <td align="char">20</td>
+            <td align="char">50.0</td>
+            <td/>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>qPCR</td>
+            <td>28,669</td>
+            <td>28,789</td>
+            <td align="char">121</td>
+            <td>F</td>
+            <td>TATCACTGTTGATTCTCGC</td>
+            <td align="char">19</td>
+            <td align="char">42.1</td>
+            <td align="char">60</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>GGTAAAGAGTTTGGATTAGG</td>
+            <td align="char">20</td>
+            <td align="char">40.0</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>5.0</td>
+            <td>Lambda</td>
+            <td>PCR</td>
+            <td>24,148</td>
+            <td>24,550</td>
+            <td align="char">403</td>
+            <td>F</td>
+            <td>GAGATATGGTAGAGCCGCAGA</td>
+            <td align="char">21</td>
+            <td align="char">52.4</td>
+            <td align="char">65</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>CAGTGCCTCGCAAACTCGGAAGA</td>
+            <td align="char">23</td>
+            <td align="char">56.5</td>
+            <td/>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>qPCR</td>
+            <td>24,202</td>
+            <td>24,309</td>
+            <td align="char">108</td>
+            <td>F</td>
+            <td>GGTGAACTTCCGATAGTG</td>
+            <td align="char">18</td>
+            <td align="char">50.0</td>
+            <td align="char">60</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>CAGTCATAGATGGTCGGT</td>
+            <td align="char">18</td>
+            <td align="char">50.0</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>24<xref rid="tblfn1" ref-type="table-fn">a</xref></td>
+            <td>4.9<xref rid="tblfn1" ref-type="table-fn">a</xref></td>
+            <td>Human</td>
+            <td>qPCR</td>
+            <td>Chr22:50216607</td>
+            <td>Chr22:50216720</td>
+            <td align="char">114</td>
+            <td>F</td>
+            <td>GGGAATATAAGGAGCGCACA</td>
+            <td align="char">18</td>
+            <td align="char">55.6</td>
+            <td align="char">60</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>TCGGTTAAAACGGTCAGGTC</td>
+            <td align="char">18</td>
+            <td align="char">55.6</td>
+            <td/>
+          </tr>
+          <tr>
+            <td>25<xref rid="tblfn1" ref-type="table-fn">a</xref></td>
+            <td>4.9<xref rid="tblfn1" ref-type="table-fn">a</xref></td>
+            <td>Human</td>
+            <td>qPCR</td>
+            <td>Chr6:99841600</td>
+            <td>Chr6:99841709</td>
+            <td align="char">110</td>
+            <td>F</td>
+            <td>CGAGGCGTGAGTTATTCCTG</td>
+            <td align="char">18</td>
+            <td align="char">61.1</td>
+            <td align="char">60</td>
+          </tr>
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td/>
+            <td>R</td>
+            <td>CTCTTGTGGCTGAGCTCCTT</td>
+            <td align="char">18</td>
+            <td align="char">61.1</td>
+            <td/>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tblfn1">
+          <label>a</label>
+          <p>CpG count and CpG% estimated by simulation of amplicon-capturing fragments drawn from a random normal distribution.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-group>
+</article>

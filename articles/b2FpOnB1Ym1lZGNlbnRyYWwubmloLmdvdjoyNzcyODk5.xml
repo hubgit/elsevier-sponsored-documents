@@ -1,0 +1,1022 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">J Neurosci Methods</journal-id>
+      <journal-title>Journal of Neuroscience Methods</journal-title>
+      <issn pub-type="ppub">0165-0270</issn>
+      <issn pub-type="epub">1872-678X</issn>
+      <publisher>
+        <publisher-name>Elsevier/North-Holland Biomedical Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2772899</article-id>
+      <article-id pub-id-type="pmid">19686778</article-id>
+      <article-id pub-id-type="publisher-id">NSM5388</article-id>
+      <article-id pub-id-type="doi">10.1016/j.jneumeth.2009.08.005</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Time-series analysis for rapid event-related skin conductance responses</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bach</surname>
+            <given-names>Dominik R.</given-names>
+          </name>
+          <email>d.bach@fil.ion.ucl.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Flandin</surname>
+            <given-names>Guillaume</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>Karl J.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dolan</surname>
+            <given-names>Raymond J.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>
+        <addr-line>Wellcome Trust Centre for Neuroimaging, University College London, 12 Queen Square, London WC1N 3BG, United Kingdom</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Tel.: +44 20 7833 7472. <email>d.bach@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>11</month>
+        <year>2009</year>
+      </pub-date>
+      <volume>184</volume>
+      <issue>2</issue>
+      <fpage>224</fpage>
+      <lpage>234</lpage>
+      <history>
+        <date date-type="received">
+          <day>13</day>
+          <month>5</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>1</day>
+          <month>7</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>7</day>
+          <month>8</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2009 Elsevier B.V.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>Event-related skin conductance responses (SCRs) are traditionally analysed by comparing the amplitude of individual peaks against a pre-stimulus baseline. Many experimental manipulations in cognitive neuroscience dictate paradigms with short inter trial intervals, precluding accurate baseline estimation for SCR measurements. Here, we present a novel and general approach to SCR analysis, derived from methods used in neuroimaging that estimate responses using a linear convolution model. In effect, the method obviates peak-scoring and makes use of the full SCR. We demonstrate, across three experiments, that the method has face validity in analysing reactions to a loud white noise and emotional pictures, can be generalised to paradigms where the shape of the response function is unknown and can account for parametric trial-by-trial effects. We suggest our approach provides greater flexibility in analysing SCRs than existing methods.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Skin conductance</kwd>
+        <kwd>SCR</kwd>
+        <kwd>Galvanic skin response</kwd>
+        <kwd>GSR</kwd>
+        <kwd>Electrodermal activity</kwd>
+        <kwd>EDA</kwd>
+        <kwd>Convolution</kwd>
+        <kwd>Deconvolution</kwd>
+        <kwd>General linear model</kwd>
+        <kwd>Linear time invariant filter</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <label>1</label>
+      <title>Introduction</title>
+      <p>Skin conductance responses (SCRs) are peripheral indicators of sympathetic activation widely used in psychological and neuroscientific research (<xref rid="bib4" ref-type="bibr">Boucsein, 1992</xref>). In some applications, SCRs constitute the primary outcome variable, for example when analysing the autonomic orienting reflex or conditioned anticipatory fear responses. In other fields, SCRs are used to quantify levels of arousal associated with emotional and cognitive processes. SCRs have an extended temporal profile. In many experimental situations involving rapid stimulus presentation, the evoked SCRs overlap. In particular, in the domain of cognitive neuroscience and functional neuroimaging, where rapid event-related designs are now commonplace, classical analytic methods relying on measuring each evoked response relative to a pre-event baseline are of limited utility.</p>
+      <p>To overcome this limitation, alternative methods have been proposed. <xref rid="bib3" ref-type="bibr">Barry et al. (1993)</xref> attempted to correct the baseline by subtracting each SCR from an extension of the preceding SCR, using graphical tools. <xref rid="bib11" ref-type="bibr">Lim et al. (1997)</xref> converted this idea into a numerically tractable problem by assuming a skin conductance response function with four parameters optimised for each individual response. The amplitude for this response is then scored individually as in classical analysis methods (<xref rid="bib9 bib10 bib14" ref-type="bibr">Lim et al., 1999a,b; Williams et al., 2004</xref>). This method is limited by the number of overlapping responses such that when responses are close together, their parameters need to be estimated at the same time. It is also not clear under which circumstances such combined estimations have unique solutions. In contrast, <xref rid="bib1" ref-type="bibr">Alexander et al. (2005)</xref> derived measures for individual SCRs by assuming an underlying sudomotor nerve signal that drives the SCR. The relationship between the two is described as a differential equation, integration of which yields the driver function. Peaks of the driver function are isolated, and individual SCRs are calculated from peaks in the estimated driver signal. Unlike more elaborate deconvolution methods (e.g. Wiener deconvolution), this approach does not explicitly model measurement noise, and must therefore cope with noise in the estimated driver signal. This is reduced by smoothing the driver function and applying ad hoc restrictions on the peak detection algorithm.</p>
+      <p>All of the aforementioned approaches share two main disadvantages with classical peak-scoring methods. Firstly, they do not make use of all available information, as only peak amplitude and latency, or the area under the curve, are analysed. Secondly, and more importantly, all three make implicit assumptions about the shape of the SCR that are not fully described in analytical terms and are therefore not testable. The method of <xref rid="bib11" ref-type="bibr">Lim et al. (1997)</xref> comes closest to specifying an analytical response model. However, since different functions and parameters are used for each response, and later collapsed by analysing the amplitude value, this specification is lost.</p>
+      <p>Here, we describe a completely novel approach that compares the SCR time series as a whole to a predicted time series using a general linear convolution model. The method is akin to the analysis of event-related functional magnetic resonance imaging (fMRI) data, and shares with the latter the problem of a temporally extended response function. In the first part of this paper, we describe our overall approach and outline its assumptions. The model is then applied to unselected (i.e. representative) samples of SCR time series. In experiment 1, we test an invariance assumption on which the models rests and derive a canonical skin conductance response function. Experiment 2 demonstrates deconvolution for different ISIs and demonstrates the use of the canonical response function. In experiment 3, we further validate this model in the context of a more complex experiment involving SCRs to emotional pictures. To make the method widely accessible, we have created an open-source software suite for Matlab R2007 and upwards, named <italic>SCRalyze</italic>, freely available under the <italic>GNU General Public License</italic> and obtainable from <italic>scralyze.sourceforge.net</italic>.</p>
+    </sec>
+    <sec>
+      <label>2</label>
+      <title>Model description</title>
+      <p>The challenge addressed by our model is to separate, or deconvolve, overlapping SCRs evoked by different experimental manipulations. To render this problem uniquely solvable, we make simplifying assumptions (see appendix for a more formal description; see <xref rid="bib6" ref-type="bibr">Friston et al., 1994</xref> for an application of this idea in fMRI). We do not claim that SCR time series conform to these assumptions in any strict sense, but we demonstrate that the method is robust to violations of underlying assumptions. However, we explicitly describe these assumptions in order to render them testable and go on to demonstrate that they are sufficiently met with regard to practical implementation.</p>
+      <p>The assumptions are: (a) the shape of the response is constant within an individual and level of an experimental factor, although the amplitude can vary as a function of the input; (b) two overlapping responses constitute the sum of two single responses; (c) at some time-point after each response, the signal returns to zero, as approximated by high-pass filtering the signal and thereby removing slow changes in the skin conductance level (SCL). These assumptions can be formalised by positing that the filtered SCR time series is the output of a finite Linear Time Invariant (LTI) filter, given a specified input function (see <xref rid="fig1" ref-type="fig">Fig. 1</xref>). It turns out that a violation of these model assumptions leads to greater error terms and conservative testing.</p>
+      <sec>
+        <label>2.1</label>
+        <title>Specifying the impulse response function</title>
+        <p>The shape of the response is described by an impulse response function, assumed to be constant within each individual and level of experimental factor. This function needs to be specified and we consider two approaches for this specification. (a) The first is to assume that the response function is unknown and derive its shape from the data. This approach only makes assumptions about the duration of the response and models the finite impulse response filter with a number of boxcar functions covering the desired response length (see <xref rid="fig2" ref-type="fig">Fig. 2</xref>). This approach is often termed <italic>FIR model</italic> in fMRI research; in this paper we will call it an <italic>uninformed finite impulse response filter</italic>. (b) The second approach assumes that responses are relatively stereotyped and uses a “canonical” response function that entails knowledge about the expected shape of the response. This is preferable, since deconvolution with an uninformed finite impulse response filter poses the risk of overfitting, or taking random fluctuations in the signal as indicative of a meaningful response. Variations in the responses between individuals and conditions can be accounted for by using basis functions derived from Taylor expansions of the canonical response function with respect to its parameters, which is usually time. For example, an SCR slightly shifted in time can be expressed as a linear combination of the canonical response and its derivative with respect to time. In experiment 1, we demonstrate how these derivatives account for variance in the shape of the response, and effectively reduce residual variance. A combination of these basis functions constitutes an “informed basis set”. Note that the approach (a) is the limiting case of an informed basis set that is the least informed allowing for almost any form of the impulse response function.</p>
+      </sec>
+      <sec>
+        <label>2.2</label>
+        <title>Constructing a predicted response with a linear convolution filter</title>
+        <p>In brief, we assume that the SCR time series is the output of an LTI filter, given some specified input functions (see <xref rid="fig1" ref-type="fig">Fig. 1</xref>). The input functions will usually be a series of impulses, corresponding to the onsets of specific experimental events. Our prime interest is the amplitude of the response, which is a function of the input under a fixed response function. We can reframe this with a weighting coefficient that is multiplied with the fixed (i.e. standard) input function (e.g. a Dirac delta function per event) and fixed response function. To estimate this weighting coefficient, we construct a predicted time series by convolving the standard input function with the response function, which is defined as a mixture of basis functions. Mathematically, this is the same as a mixture of input functions each convolved with a basis function. The weighting coefficients of this mixture are the parameters of the ensuing general linear model, where the explanatory variables are formed by convolving each input with each basis function and constitute a <italic>design matrix X</italic> (see appendix for details). By inverting this model, we estimate the weighting coefficients and thus, the amplitude of the response.</p>
+      </sec>
+      <sec>
+        <label>2.3</label>
+        <title>Statistical inference</title>
+        <p>We assume as <italic>H</italic><sub>0</sub> that an experimental manipulation does not lead to a skin conductance response (i.e. the amplitude of the response is zero), or that two conditions have similar responses (that is, that the difference of their amplitudes equals zero). Inference can be drawn on a within-subject level or between-subjects level. Inference on the within-subject level is affected by autocorrelations in the residuals that render the effective degrees of freedom smaller than the number of data points. One can apply methods to correct the degrees of freedom (as is done in fMRI, see <xref rid="bib5" ref-type="bibr">Friston et al., 2008</xref>), or use maximum likelihood estimators of the model parameters. This is a non-trivial problem that lies beyond the scope of this paper. Since we are mainly interested in group effects, we only discuss group-level inference that tests for the consistency of responses over individuals. In this case, ordinary least squares parameter estimates on the within-subject level are sufficient for drawing group-level inferences in a summary-statistics approach widely employed in fMRI analyses. For each participant, contrasts or mixtures of parameter estimates of interest are formulated (e.g., the difference between the amplitude of two condition-specific responses). Under the <italic>H</italic><sub>0</sub>, these will have zero mean which can be tested at the group level using one-sample <italic>t</italic>-tests. An alternative (and mathematically equivalent) approach, used in this paper, is to extract parameter estimates for each individual regressor and use them in a second (between-subject) level ANOVA model, using the partitioned between-subject error variance to test for effects. Arithmetically, both approaches are equivalent to a random effects model given equal variance for different subjects and a balanced experimental design (<xref rid="bib5" ref-type="bibr">Friston et al., 2008</xref>).</p>
+      </sec>
+      <sec>
+        <label>2.4</label>
+        <title>Trial-by-trial variations</title>
+        <p>Scoring SCRs on a trial-by-trial basis, as in a classical analysis method, allows <italic>post hoc</italic> correlations with trial-by-trial explanatory variables, for example subjective arousal. Post hoc analysis in this form is not possible within the framework described here. However, such relations can be formulated as <italic>a priori</italic> hypotheses and tested within the same model. That is, a regressor can be formed that encodes parametric trial-by-trial variations. To model these parametric effects, the stick function encoding event onsets can be multiplied with any parameter before convolving it with the response function. Mean-centring the resulting regressor ensures it will not explain the average effect of this experimental condition, but only trial-by-trial variations within this condition. The concept of parametric modulators is again derived from fMRI analysis and will be illustrated in experiment 2 and 3.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>3</label>
+      <title>Experiment 1</title>
+      <p>An assumption in our approach is that although response amplitude may vary, the shape of the skin conductance response is constant within one individual and level of experimental factors. Using a canonical basis function posits that responses are sufficiently similar across event types, and between different individuals. Sufficiency, in this framework, means that a major part of the variance can be explained by one response function. Therefore, in the first experiment, we sought to explore within and between subject variability in skin conductance responses. From the responses elicited, we aimed to establish a canonical response function for use in further experiments.</p>
+      <p>We used loud sounds and aversive pictures to elicit responses. Event onsets were separated by an interval of 30 s or more in order to unambiguously define response tails. Acquired responses were subjected on a trial-by-trial basis to principal component analysis in order to find the response function that would explain maximal variance. For each type of stimulus, 10 responses per participant were obtained, thus providing a dataset of 440 responses across both events and across the whole study sample. We used the whole dataset rather than rejecting “artifacts” and “non-responses” as this makes estimation of the residual variance more conservative. Also, for development of a canonical response, non-systematic noise does not influence the first PCA component and thus leaves the derived response function unaffected.</p>
+      <sec sec-type="methods">
+        <label>3.1</label>
+        <title>Methods</title>
+        <sec>
+          <label>3.1.1</label>
+          <title>Participants and design</title>
+          <p>The experiment followed a single factorial design with two levels (aversive pictures, aversive sounds). 22 healthy unmedicated participants (11 male, 11 female, mean age ± standard deviation: 22 ± 4.8 years, range 18–34 years) were recruited from the general population and received monetary compensation for their participation. All participants gave written informed consent, and the study was approved by the local ethics committee.</p>
+        </sec>
+        <sec>
+          <label>3.1.2</label>
+          <title>Stimuli and apparatus</title>
+          <p>Broadband white noise sounds of 1 s length (10 ms onset and offset ramp, ∼95 dB sound pressure level) were delivered via headphones (PX-660 Pro Luxe, Fujikon, Hong-Kong, China). Aversive pictures were drawn from the International Affective Picture System (IAPS; <xref rid="bib8" ref-type="bibr">Lang et al., 2005</xref>) by using the 10 most arousing negative (valence lower than one standard deviation below the mean for the whole set) pictures and were presented for 1 s. In order to enhance SCR (<xref rid="bib4" ref-type="bibr">Boucsein, 1992</xref>), stimuli were given additional salience by tasking participants to press the cursor up or down key on a standard computer keyboard to indicate whether they liked the stimulus or not. Stimuli were presented in random order with a maximum of three events of one type in succession. Inter stimulus interval (ISI) between trials was randomly chosen to be 29 s, 34 s, or 39 s, with a mean of 34 s for each participant. The experiment was programmed in Cogent (Version 2000v1.25; <ext-link xlink:href="http://www.vislab.ucl.ac.uk/Cogent" ext-link-type="uri">www.vislab.ucl.ac.uk/Cogent</ext-link>) on Matlab (Version 6.5; MathWorks; Natick MA; USA), and run on a personal computer with a Pentium 4 processor and a SoundMax soundcard (Analog Devices, Norwood MA, USA).</p>
+          <p>Skin conductance was recorded on thenar/hypothenar of the non-dominant hand using 8 mm Ag/AgCl cup electrodes (EL258, Biopac Systems Inc., Goleta CA, USA) and 0.5%-NaCl electrode paste (GEL101; Biopac Systems Inc., Goleta CA, USA). In order to avoid motion artefacts (e.g. due to key presses performed with the other hand), we used a motion-restraining armrest. Recordings were conducted in a magnetically shielded room (MSR), using a custom-build constant voltage coupler (2.5 V), based on a differential amplifier and DC-powered by a 12 V battery to minimise electromagnetic noise. The output of the coupler was converted into an optical pulse frequency. This varies sampling rate over time, such that the effective time resolution is determined by the lowest transmission frequency. The lowest sampling rate encountered in any participant was 36.7 Hz. This pulse signal was transmitted using fibre optics, digitally converted outside the MSR with 2 μs time resolution (Micro1401, Cambridge Electronic Design, Cambridge, UK), and recorded (Spike2, Cambridge Electronic Design, Cambridge, UK). Stimulus onset was signalled by TTL pulses of 10 ms length via the stimulus computer's parallel port, and recorded simultaneously with the same time resolution. Temperature and relative humidity of the experimental room were between 18–24 °C, and 30–63%, respectively.</p>
+        </sec>
+      </sec>
+      <sec>
+        <label>3.2</label>
+        <title>Data analysis</title>
+        <p>Data analysis was carried out in Matlab (Version 7.4; MathWorks, Natick MA, USA) using custom-made code that is available from the authors. Prior to analysis, skin conductance data were converted back to a waveform signal with 100 Hz time resolution, bandpass filtered with a first order Butterworth filter and cut-off frequencies of 5 Hz, and 0.0159 Hz (corresponding to a time constant of 10 s), respectively, and downsampled to 10 Hz sampling rate. The time-series was then <italic>z</italic>-transformed to account for between-subjects variance in SCR amplitude, which can be due to peripheral and non-specific factors such as skin properties. The 30 s following each event onset were extracted and analysed. Despite filtering, skin conductance level can be different between trials and consequently data from each individual trial was mean-centred. Since SCR might be related to behavioural responses rather than to stimulus onset, we additionally analysed data according to the time point of the button press. This did not explain more variance than an analysis time-locked to stimulus onset, and results from this analysis are omitted for the sake of brevity.</p>
+      </sec>
+      <sec>
+        <label>3.3</label>
+        <title>Results</title>
+        <p>We extracted responses on a trial-by-trial basis and subjected the whole dataset to principal component analysis (PCA) to reduce the number of responses to a set of basis functions that explain the data efficiently. PCA maximises the eigenvalue of the first component, and thus, the first component accounts for the maximum variance that can be explained by one basis function. Results are depicted in <xref rid="fig3" ref-type="fig">Fig. 3</xref>. The first component explained 53.2% of the total variance in responses across participants, conditions, and trials. The second and third component explained 19.2% and 6.5%, while further components only explained a minor variance proportion. Note, that the second component resembles an orthogonalised time derivative of the first component.</p>
+        <p>The residual variance can be further partitioned into between- and within-subjects variance. We accommodated between-subject variance by using one response function per participant, defined as the first PCA component of this participant's responses. This approach explained 67.5% of the total variance. When using one response function for each participant and condition, the first component explained 72.7% of the total variance. This leaves 27.3% within-subject, within-condition variance. Note that this does not only include possible differences in the shape of the response function, but also spontaneous fluctuations of the SCR, and noise due to artefacts associated with the participant or the acquisition equipment.</p>
+        <p>When identifying a canonical response function across individuals, one can assume that this function is the same across stimulus type or that it is different. To answer this question empirically, we asked if taking into account the averaged response for each condition separately, across all participants, could explain more variance than assuming one general response function. This reduced the unexplained variance by 1.6%, which seemed negligible in the present context.</p>
+        <p>After showing that a major component of overall variance across individuals and conditions can be explained by a single response function, we sought an analytical form for this function to make it applicable in the analysis of other data sets. A heuristic search over different functional forms revealed a gamma distribution as having a good fit. We smoothed this function in order to render its time derivative useful in accounting for peak shifts, as explained below. The parameters for this function were optimised using a least-square approach (see appendix). The analytical form of this function could account for 52.2% of the overall variance in the original data set which was only slightly less than the first PCA component.</p>
+        <p>To reduce residual (error) variance, additional basis functions are often used in fMRI research. Since they are orthogonalised with respect to the canonical response function, they do not change parameter estimates for the canonical response of interest, but increase statistical power by reducing residual variance. In developing such functions, two options are available: one can use empirical PCA components, or in a more analytical fashion, construct derivatives of the canonical response function that account for variations in the timing and shape of the response. Here, we chose the second, more general approach. The response function was differentiated with respect to time and smoothing window size (and thus, peak dispersion). As the derivatives are not orthogonal by nature they were orthogonalised with respect to the response function using a serial Gram-Schmidt procedure. The basis set (canonical, temporal derivative and dispersion derivative) is described in the appendix. <xref rid="fig4" ref-type="fig">Fig. 4</xref> shows the orthogonalised basis set as well as examples of the effect of adding or subtracting derivatives from the basis response function. Using the full basis set, the residual variance was reduced from 48.8% to 35.6%.</p>
+        <p>A side issue is the impact of high-pass filtering on the response. Filtering is necessary in order to comply with the assumption of a finite response; however, the choice of the filter will necessarily influence the response shape. We applied high-pass filters between 0 and 0.025 Hz in steps of 0.005 Hz and tested their effect on the first PCA component. In bringing the response back to zero within the 30 s interval, filters between 0.005 and 0.015 Hz were most efficient with an optimum at 0.01 Hz. Applying filters gradually reduced the amount of explained variance from 62.1% (no filter) to 56.0%, 54.5%, 53.4%, 53.3%, and 51.5%, respectively, for increasing cut-off frequency. The mutual differences in the response shape (normalised first PCA component) were within two standard deviations of the residuals. This shows that although filtering does influence the response shape, the effect is small compared to the unexplained variance.</p>
+      </sec>
+      <sec>
+        <label>3.4</label>
+        <title>Summary</title>
+        <p>In summary, we analysed skin conductance responses to auditory and visual stimuli in order to assess the intra- and inter-individual variance in these responses. More than 50% of the total variance in mean-centred responses could be explained by the first PCA component (across all trials, conditions, and participants). About 25% of the total variance was caused by within-subjects, within-condition trial-by-trial variations that include spontaneous fluctuations and noise. We conclude it is possible to collapse responses across trials, and to assume a canonical response function across trials, conditions, and participants. Deviations from these assumptions increase error variance and render testing conservative, thus protecting against false positives. We suggest that further investigation can reveal the proportion of variance that stems from noise and spontaneous fluctuations (thus not affecting the invariance assumption) and from variations in response shape.</p>
+        <p>For an analytical description of the canonical response function, we used a gamma function, convolved with a Gaussian kernel. This function described an almost equal proportion of the variance as the first PCA component. The choice of a smoothed function has a technical justification as both the bi-exponential function favoured by <xref rid="bib11" ref-type="bibr">Lim et al. (1997)</xref> as well as a raw gamma distribution require parameters that render the derivatives unsuitable for the purpose that they are employed in this paper.</p>
+        <p>From the canonical response function (CRF), we constructed temporal and dispersion derivatives to reduce between-subject and between-condition error variance. These were orthogonalised to the CRF and thus formed our “informed basis set”. Re-analysis of the data using this basis set drastically reduced residual variance. It should be noted that there was a small advantage in using two different response functions for the two stimulation types, although this seemed negligible in the context of the present experiment. Also, the response functions derived from this experiment should be applied with a little caution to experimental paradigms that are different from the ones used here. In addition, we show that the filter settings have a small impact on the shape of the response function. Therefore, it might be important to use the same filter settings for analysis that were used for the development of the response function. Future work will explore optimal filter settings in this analysis framework. For the present paper, we continued to use a high-pass filter of 10 s time constant as this is the most well-established setting in the literature.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>4</label>
+      <title>Experiment 2</title>
+      <p>The aim of experiment 2 was to test the utility of our method in the analysis of SCRs in a short ISI paradigm using the CRF derived from experiment 1. Additionally, we sought to investigate the use of parametric modulators to account for habituation of responses. To achieve these goals, we repeatedly elicited SCRs to 95 dB white noise bursts of 1 s length and varied mean ISI in a block-wise fashion (3 s, 9 s, 19 s).</p>
+      <sec sec-type="methods">
+        <label>4.1</label>
+        <title>Methods</title>
+        <sec>
+          <label>4.1.1</label>
+          <title>Participants and design</title>
+          <p>The experiment followed a single factorial design with three levels of the mean ISI (3 s, 9 s, and 19 s). 24 healthy unmedicated participants (12 male, 12 female, mean age ± standard deviation: 27 ± 4.6 years) were recruited from the general population and received monetary compensation for participation. The sample was completely independent from experiment 1, and identical with experiment 3. All participants gave written informed consent, and the study was approved by the local ethics committee.</p>
+        </sec>
+        <sec>
+          <label>4.1.2</label>
+          <title>Stimuli and apparatus</title>
+          <p>In each of the three conditions, as defined by mean ISI, 15 broadband white noise sounds of 1 s length (10 ms onset and offset ramp, ∼95 dB sound pressure level) were delivered via headphones (PX-660 Pro Luxe, Fujikon, Hong-Kong, China). Participants were instructed to press a button on a standard computer keyboard as quickly as possible when they heard a sound. Mean ISI was varied block wise. Blocks were separated by additional intervals of 15 s, and the six possible block orders were balanced across participants. The ISI was randomly jittered within ±30% of the mean ISI. The experiment was programmed in Cogent (Version 2000v1.25; <ext-link xlink:href="http://www.vislab.ucl.ac.uk/Cogent" ext-link-type="uri">www.vislab.ucl.ac.uk/Cogent</ext-link>) on Matlab (Version 6.5.; MathWorks; Natick MA; USA), and run on a personal computer with a Pentium 4 processor and a SoundMax soundcard (Analog Devices, Norwood MA, USA). Skin conductance recordings were obtained as described in experiment 1. The lowest sampling rate encountered in any participant was 31.6 Hz. Temperature and relative humidity of the experimental room were between 20°–25°, and 39%–62%, respectively.</p>
+          <p>Experiment 2 and 3 were conducted on the same sample. Since no direct comparison between the experiments was intended and the paradigm in experiment 2 was assumed to be less susceptible to habituation, experiment 2 always followed experiment 3 after a short break.</p>
+        </sec>
+        <sec>
+          <label>4.1.3</label>
+          <title>Data analysis</title>
+          <p>Data analysis was carried out in Matlab (Version 7.4; MathWorks, Natick MA, USA) using custom-made code that is available from the authors. Prior to analysis, skin conductance data were pre-processed as described in experiment 1.</p>
+        </sec>
+      </sec>
+      <sec>
+        <label>4.2</label>
+        <title>Results</title>
+        <p>In a first step, we analysed the SCR time-series with different regressors for each ISI, using an uninformed finite impulse response filter of 30 s length and time bins of 1 s. Thus, the averaged SCR could be estimated for each condition with a time resolution of 1 s. <xref rid="fig5" ref-type="fig">Fig. 5</xref> (top panel) shows the results and demonstrates that the filter effectively deconvolves the time-series even at short ISIs. That is, although the peak of each response extends into the following events, the shape of the averaged response can be isolated. However, the estimated response shape differed between the ISIs (<italic>F</italic><sub>72, 576</sub> = 2.6; <italic>p</italic> &lt; .0001), an effect that could be due to estimation imprecision or to real differences due to the stimulus repetition rate. Also, it also can be seen in <xref rid="fig5" ref-type="fig">Fig. 5</xref> (top panel) that the model using an uninformed finite impulse response filter is not particularly effective in estimating the tail of the response. Therefore, a method that imposes more constraints on the shape of the expected response might be preferable.</p>
+        <p>Here, we used the informed basis set derived from experiment 1 to create a second model and to estimate the amplitude of the canonical response function (and its derivatives) for responses at each ISI. As SCRs can decrease over time and consequently to demonstrate how this can be tested within the present framework, we included an additional regressor for each ISI that modelled a linearly decreasing effect of time. This entailed a parametric modulation of the input function and convolution with the canonical response function. This regressor was orthogonalised with respect to the main regressor for each block, and in addition we included orthogonalised time and dispersion derivatives for each regressor. Parameter estimates scaling the canonical response function were extracted from each participant and analysed on the second level with a one way ANOVA model with the factor ISI and <italic>post hoc</italic> one-sample <italic>t</italic>-tests. This revealed a significant response at each ISI, and a significant effect of a time-dependent decrease of SCR across all ISIs (all <italic>p</italic> &lt; .001). The overall response was larger at longer ISIs (<italic>F</italic><sub>2, 46</sub> = 31.0; <italic>p </italic>&lt; .001), while there was no significant effect of ISI on adaptation (<italic>F</italic><sub>2, 46</sub> = 1.4; <italic>p</italic> &gt; .25). To compare the implicit condition-specific SCR functions under the uninformed finite impulse response and the canonical convolution models, <xref rid="fig5" ref-type="fig">Fig. 5</xref> (bottom panel) shows the estimated responses based on the informed model. These are simply the mixture of informed basis functions weighted by the least squares parameter estimates. It can be seen that the uninformed finite impulse response (middle panel) and the informed basis set (bottom panel) give similar results but the informed estimates are regularised and smoother.</p>
+      </sec>
+      <sec>
+        <label>4.3</label>
+        <title>Summary</title>
+        <p>The aim of experiment 2 was to demonstrate the use of the linear deconvolution method for the detection of SCRs at short ISIs. In a first analysis, an uninformed finite impulse response model was used. Thus, we show that deconvolution of responses is possible even at short ISIs. However, the shape of the estimated response differed with ISI. This might reflect non-linearities in the summation of SCRs or to over-fitting of the filter. To preclude over-fitting, we used a convolution model based on the canonical response function and its derivatives from experiment 1 and were able to detect responses at all ISIs, and to demonstrate adaptation (i.e., the physiological homologue of behavioural habituation) within the blocks.</p>
+        <p>While adaptation was independent of ISI, responses were higher at longer ISIs which suggests that SCRs to successive stimuli that occur rapidly are attenuated in relation to equivalent responses to stimuli that are presented sparsely. This might imply that non-linear saturation is a feature of SCRs when presented in fast succession. We show however that under that the assumption of linearity, SCRs can be de-convolved and effectively analysed. Thus, we have shown with this example that these putative nonlinearities can be modelled perfectly well with a linear convolution model provided ISI-dependent effects are included explicitly.</p>
+        <p>In conclusion, we have demonstrated that it is possible to deconvolve skin conductance time-series at short ISIs, and that the use of a canonical response function facilitates detection of responses and time-dependent changes in this response, such as adaptation. Furthermore, even if there are nonlinear interactions between stimuli occurring in quick succession, these can be modelled using a linear convolution model that incorporates ISI as an experimental factor. This experiment however tested SCRs in a rather simple paradigm and therefore does not allow a statement as to whether this method would also be useful in more complex designs. In experiment 3 we address such a design.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>5</label>
+      <title>Experiment 3</title>
+      <p>Here, we used our method in a complex paradigm with emotional stimuli implemented by presenting aversive and neutral pictures at different ISIs, enabling us to investigate whether effects depended on ISI. In addition, we applied a classical peak-scoring analysis to directly compare its power to detect condition-specific differences with our deconvolution approach.</p>
+      <sec>
+        <label>5.1</label>
+        <title>Participants and design</title>
+        <p>The experiment used a 2 × 3 factorial design with the factors picture type (aversive, neutral), and mean ISI (3 s, 9 s, and 19 s). It was conducted on the same sample (<italic>N</italic> = 24) and preceded experiment 2.</p>
+      </sec>
+      <sec>
+        <label>5.2</label>
+        <title>Stimuli and apparatus</title>
+        <p>Stimuli were drawn from the International Affective Picture System (IAPS; <xref rid="bib8" ref-type="bibr">Lang et al., 2005</xref>) using the 90 most arousing and negative (valence lower than one standard deviation below the mean for the whole set) pictures as aversive stimuli, and the 90 least arousing neutral (valence within mean ± standard deviation for the whole set) pictures as neutral stimuli. Each of the two picture types was randomly assigned to three aversive and three neutral sets with similar arousal ratings, respectively.</p>
+        <p>The assignment of the three aversive and the three neutral sets to ISI levels was balanced across participants. Neutral and aversive stimuli were randomly interleaved for each participant. Pictures were presented for 1 s. Stimulus onset was randomly varied around the mean ISI with a jitter of 0.08 s, 0.68 s, and 1.68 s, respectively. Participants were tasked to press the cursor up or down key of a standard computer keyboard to indicate whether they liked the stimulus or not. Skin conductance recordings were obtained as described in experiment 1. The lowest sampling rate encountered in any participant was 30.5 Hz.</p>
+      </sec>
+      <sec>
+        <label>5.3</label>
+        <title>Data analysis</title>
+        <p>Data analysis was carried out in Matlab (Version 7.4.0; MathWorks, Natick MA, USA) using custom-made code that is available from the authors. Prior to analysis, skin conductance data were pre-processed as described in experiment 1. For each of the six event types, a stick function encoding event onsets was convolved with the canonical skin conductance response function derived from experiment 1. Orthogonalised temporal and dispersion derivatives were included as separate regressors to account for between-subject and between-conditions variance in response shape. Subjective dichotomous likeability ratings were included as additional parametric regressors for each event type, orthogonalised to the main regressor and its derivatives, to account for variance within the event type. To account for adaptation of responses, additional regressors were included that modelled a linear decrease of responses over all trials. Parameter estimates for the canonical response function were extracted for each participant, and together with behavioural measures of response accuracy, likeability rating and reaction times, tested at the group level in SPSS (Version 12; Chicago IL, USA). Greenhouse-Geisser correction for degrees of freedom was used in all repeated measures ANOVAs.</p>
+        <p>For comparative purposes, skin conductance data were also analysed using a classical peak-scoring approach that extracted the maximum amplitude between 0 and 5 s after event onset and corrected for a baseline between 0.5 and 0 s before event onset, either thresholding peaks at 0.1 μS or not thresholding. A further analysis was conducted using an analytical form of the method proposed by <xref rid="bib3" ref-type="bibr">Barry et al. (1993)</xref>. The first derivative of the skin conductance time-series was smoothed over a time window of ±1 s around each event onset and was used to construct a tangent to the skin conductance time-series through the event onset. This tangent was then used to correct the time series, and from the corrected time series, the maximum was extracted as described above, either thresholded or unthresholded.</p>
+        <p>Using in house software we also reproduced the methods described by <xref rid="bib11" ref-type="bibr">Lim et al. (1997)</xref> and <xref rid="bib1" ref-type="bibr">Alexander et al. (2005)</xref>. To emulate the approach of Lim et al., we re-sampled the signal to 1/256 s time resolution, cut out 10 s epochs following each event and fitted the six-parameter function (using gradient search and a least square error criterion). This provided estimates of peak latency and amplitude. For the Alexander method, we re-sampled the signal to 0.02 ms time resolution, integrated and smoothed the estimated driver function and its derivative. We then estimated the threshold <italic>P</italic> for peak detection from the data. No peaks could be identified in any dataset. We did not pursue this approach further.</p>
+      </sec>
+      <sec>
+        <label>5.4</label>
+        <title>Results</title>
+        <sec>
+          <label>5.4.1</label>
+          <title>Reaction times, accuracy and likability</title>
+          <p>Behavioural measures are listed in <xref rid="tbl1" ref-type="table">Table 1</xref>. Aversive pictures were less likely to be missed and to be rated as likeable, and reaction times were quicker. Reaction times were longer when the ISI was longer.</p>
+        </sec>
+        <sec>
+          <label>5.4.2</label>
+          <title>Skin conductance responses</title>
+          <p>Parameter estimates for the different regressors are summarized in <xref rid="tbl2" ref-type="table">Table 2</xref>. Parameter estimates for the CRF deviated from zero across conditions and participants, as shown by a significant intercept, indicating that SCRs could be detected. Parameter estimates were dependent on ISI, with higher parameter estimates at longer ISIs. As expected, aversive pictures yielded higher parameter estimates than neutral pictures, while this differential effect was not dependent on ISI. In addition, we show a significant trial-by-trial correlation of likeability ratings with the skin conductance responses within all conditions. This effect was not dependent on picture type or ISI. Note that this analysis accounted only for variance in likeability ratings within conditions, not between conditions.</p>
+          <p>Using the alternative approaches, we could demonstrate that SCRs were elicited in response to picture viewing, but there was no effect of picture type or ISI in any of the analyses.</p>
+        </sec>
+      </sec>
+      <sec>
+        <label>5.5</label>
+        <title>Summary</title>
+        <p>In an emotional picture viewing paradigm, we show evoked SCRs and an effect of ISI on SCR amplitude. We observed higher responses to aversive than to neutral pictures, a differential effect not dependent on ISI, indicating the power of our model to detect condition differences even at very short ISIs. Subjective likeability ratings were associated with skin conductance responses within all conditions and ISIs. This is in line with previous studies using longer ISIs (<xref rid="bib2" ref-type="bibr">Amrhein et al., 2004</xref>).</p>
+        <p>To demonstrate that our algorithm is more powerful than previous methods, we analysed results using a peak-to-baseline scoring method, a baseline correction method similar to the one proposed by <xref rid="bib3" ref-type="bibr">Barry et al. (1993)</xref>, and the 6-parameter model of <xref rid="bib11" ref-type="bibr">Lim et al. (1997)</xref>. In these analyses, SCRs could be detected, but no differential effect of picture type was observed. We failed to detect any responses with the approach of <xref rid="bib1" ref-type="bibr">Alexander et al. (2005)</xref> due to its problematic handling of measurement noise.</p>
+      </sec>
+    </sec>
+    <sec>
+      <label>6</label>
+      <title>Discussion</title>
+      <p>In this paper we propose a novel approach to the analysis of evoked skin conductance responses that resolves the problem of overlapping responses encountered in paradigms involving short stimulus onset asynchronies (ISI). This approach is based on modern methods for analysing blood oxygen level dependent (BOLD) responses in functional magnetic resonance imaging, where similar issues arise. Beyond practical purposes, its main advantage is the analytical description of the underlying assumptions that posit a linear time invariant system as generator of SCRs.</p>
+      <p>In our experiment involving SCRs to loud white noise bursts and aversive pictures, we show that just one response function can explain the major proportion of the within- and between-subject variance. Hence, we developed a skin conductance canonical response function. Time and dispersion derivatives of the CRF were then used to account for inter-individual differences and explained a significant amount of additional variance. In a second experiment we use this CRF and show that the method is capable of de-convolving SCRs to loud white noise bursts at ISIs as short as 3 s, and of testing <italic>a priori</italic> hypotheses about parametric trial-to-trial effects on SCRs, in this case adaption. In a third experiment we demonstrate that differences in SCRs in response to aversive and neutral pictures, as well as modulation of responses by subjective ratings, can be detected at a range of ISIs. Comparative evaluations also suggested that our method is superior to other peak-scoring algorithms, which for the present dataset could not detect an effect of picture valence.</p>
+      <p>We conclude that our model is viable for analysing SCR in short ISI paradigms. However, several limitations need to be taken into account. At the ISIs used in the present study (that is, 3–19 s), the response seems to be dependent on ISI, thus pointing to non-linearities. This suggests that stimuli presented at different ISIs should be modelled as different levels of an experimental (ISI) factor and that other factors may interact with ISI. Future work will explore this, as well as the impact of stimulus type on shape and time-invariance of SCRs. In addition, it would be preferable to relate SCR shape not only to experimental input, but also to sudomotor nerve activity as e.g. measured by microneurography (<xref rid="bib12" ref-type="bibr">Macefield and Wallin, 1996</xref>), and sweat gland opening as revealed by videomicroscopy (<xref rid="bib13" ref-type="bibr">Nishiyama et al., 2001</xref>). Such experiments might lead to a better understanding of the methods presented here. A second limitation is the utility of the approach for detecting whether responses are elicited to a repeated stimulus where long ISI paradigms offer greater power for statistical reasons, as the predicted time-series contains more variance than at short ISIs (<xref rid="bib5" ref-type="bibr">Friston et al., 2008</xref>). This is well recognised in fMRI research. However, for detecting condition differences, it has been shown that in fMRI, short ISIs offer greater power, as more events of each type can be realised. Experiment 3 aimed at testing such differences in a paradigm with two interleaved event types. We could show that the difference between event types was not dependent on ISI, thus making short ISI designs potentially more efficient.</p>
+      <p>The analytical form of our model has the advantage that all assumptions are made explicit. This may be perceived as implying that more assumptions are made in our model than in classical SCR analysis. Such an impression is misleading as classical methods also make assumptions, albeit without describing or testing them. As an example, the assumption that the response peak or the area under the curve reflects precise estimates of the input signal only pertains when the response shape is constant. When response shape varies, this assumption needs to be explicitly stated and justified. In contrast, the assumptions of our model are stated in fully analytical terms and are therefore easy to test using model comparison. Also, our model can be expanded to deal with less strict assumptions. For example, if the linearity assumption is violated, one could use a non-linear convolution model based on Volterra kernels (see <xref rid="bib7" ref-type="bibr">Friston et al., 1998</xref> for an application in fMRI).</p>
+      <p>To conclude, we present a novel approach to the analysis of event-related SCRs and show its efficiency in detecting responses and condition-specific differences of these responses at long and short ISIs, and therefore offers an alternative to classical approaches. Our model makes explicit assumptions that are sufficiently met for practical implementation and can be further validated using model comparison. As our method uses all available information, instead of just one number per event as in classical methods, it may be more powerful and offer greater experimental flexibility than previous approaches to SCR analysis.</p>
+    </sec>
+    <sec>
+      <label>Appendix A</label>
+      <p>The assumption made in this paper is that the skin conductance response <italic>s</italic>(<italic>t</italic>) is the output of a finite Linear Time-Invariant filter:<list list-type="simple"><list-item><label>•</label><p>The linearity property satisfies the superposition principle that the response at a given time caused by two or more stimuli is the sum of the responses which would have been elicited by each stimulus individually.</p></list-item><list-item><label>•</label><p>The time-invariant property means that the output does not explicitly depend on time, which corresponds here to say that the impulse response function is not a function of time except expressed by input.</p></list-item><list-item><label>•</label><p>The finite property states that the response settles to zero after a finite interval.</p></list-item></list></p>
+      <p>A LTI filter is entirely characterised by its impulse response function <italic>h</italic>(<italic>t</italic>) in such a way that the SCR is simply the convolution of the input signal <italic>u</italic>(<italic>t</italic>) with the impulse response function that models the time delay of the skin conductance response and its specific shape<disp-formula><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mi>s</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>h</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>⊗</mml:mo><mml:mi>u</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msubsup><mml:mo>∫</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mo>∞</mml:mo></mml:mrow><mml:mrow><mml:mo>+</mml:mo><mml:mo>∞</mml:mo></mml:mrow></mml:msubsup><mml:mrow><mml:mi>h</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mi>τ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mi>u</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>τ</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mtext> </mml:mtext><mml:mtext>d</mml:mtext><mml:mi>τ</mml:mi></mml:mrow></mml:mrow></mml:math></disp-formula></p>
+      <p>Note that the convolution is a linear operator.<xref rid="fn1" ref-type="fn">1</xref></p>
+      <p>Deconvolution is the process of filtering the observed output signal <italic>s</italic>(<italic>t</italic>) to recover the input signal <italic>u</italic>(<italic>t</italic>) by removing the effect of the convolution filter <italic>h</italic>(<italic>t</italic>).This is an ill-posed problem even in the absence of observation noise, thus requiring some form of regularisation.</p>
+      <p>In the following we will assume that the impulse response function <italic>h</italic>(<italic>t</italic>) is known (estimated from a principal component analysis on an independent dataset) and we will call it the <italic>canonical response function</italic> <mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mi>c</mml:mi><mml:mi>a</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math>, or CRF. We assume that it has a parametric form using a Gaussian smoothed probability density function of a Gamma distribution:<disp-formula><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mi>c</mml:mi><mml:mi>a</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mi>N</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>⊗</mml:mo><mml:mi>G</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math></disp-formula>where <italic>N</italic>(<italic>t</italic>) is a centered Gaussian function with a standard deviation <italic>σ</italic> of 0.5657 s.<disp-formula><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:mi>N</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msqrt><mml:mrow><mml:mn>2</mml:mn><mml:mi>π</mml:mi></mml:mrow></mml:msqrt><mml:mi>σ</mml:mi></mml:mrow></mml:mfrac><mml:mtext> </mml:mtext><mml:msup><mml:mtext>e</mml:mtext><mml:mrow><mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:msup><mml:mi>t</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mo stretchy="true">/</mml:mo><mml:mrow><mml:mn>2</mml:mn><mml:msup><mml:mi>σ</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mrow></mml:mrow></mml:msup></mml:mrow></mml:math></disp-formula>and <italic>G</italic>(<italic>t</italic>) is a probability density function of a Gamma distribution:<disp-formula><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:mi>G</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mi>l</mml:mi><mml:mi>h</mml:mi></mml:msup><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>t</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mi>h</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:msup><mml:mtext>e</mml:mtext><mml:mrow><mml:mo>−</mml:mo><mml:mi>l</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>t</mml:mi><mml:mn>0</mml:mn></mml:msub><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:msup></mml:mrow><mml:mrow><mml:mi>Γ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>h</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula>for <italic>t &gt; t</italic><sub>0</sub> and 0 otherwisewhere the parameters <italic>h</italic> and <italic>l</italic> describe the shape and the inverse scale (rate) of the distribution, respectively, <italic>t</italic><sub>0</sub> is the delay of the response and <italic>Γ</italic> is the Gamma function defined as:<disp-formula><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mrow><mml:mi>Γ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>x</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:msubsup><mml:mo>∫</mml:mo><mml:mn>0</mml:mn><mml:mo>∞</mml:mo></mml:msubsup><mml:mrow><mml:msup><mml:mi>t</mml:mi><mml:mrow><mml:mi>x</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:msup><mml:mtext>e</mml:mtext><mml:mrow><mml:mo>−</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:msup><mml:mtext> </mml:mtext><mml:mtext>d</mml:mtext><mml:mi>t</mml:mi></mml:mrow></mml:mrow></mml:math></disp-formula></p>
+      <p>In practice, the Gaussian function was truncated within a centered window of 4 s and the CRF was specified for the time interval of 0–120 s and was set to 0 everywhere else.</p>
+      <p>The parameters of this analytical form of the CRF are estimated using the dataset presented in experiment 1 of this paper using a least-square approach. The estimated parameters are:<disp-formula><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:mrow><mml:mfenced open="{"><mml:mrow><mml:mtable columnalign="left"><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>^</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:mn>0.9445</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:mover accent="true"><mml:mi>l</mml:mi><mml:mo>^</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:mn>0.1037</mml:mn></mml:mrow></mml:mtd></mml:mtr><mml:mtr columnalign="left"><mml:mtd columnalign="left"><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>t</mml:mi><mml:mo>^</mml:mo></mml:mover><mml:mn>0</mml:mn></mml:msub><mml:mo>=</mml:mo><mml:mn>2.9971</mml:mn></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula></p>
+      <p>To take into account that this <italic>canonical</italic> response might not fit equally well the actual impulse response function for different conditions or individuals, it is possible to define a constrained basis set spanning the space of possible responses: this is called an <italic>informed basis set</italic> <mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mo>{</mml:mo><mml:msubsup><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mi>inf</mml:mi></mml:mrow><mml:mi>i</mml:mi></mml:msubsup><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>}</mml:mo></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>…</mml:mo><mml:mi>N</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math>. One way to construct this basis set is to perform a multivariate first-order Taylor expansion of the canonical response along parameters that are expected to vary between experimental conditions or subjects. Here we will consider time and dispersion parameters. Thus, for the construction of the temporal derivative <mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:mrow><mml:mo>∂</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mi>c</mml:mi><mml:mi>a</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:math>, the canonical function is differentiated with respect to time. The dispersion derivative <mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mrow><mml:mo>∂</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mi>c</mml:mi><mml:mi>a</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo>/</mml:mo><mml:mo>∂</mml:mo><mml:mi>σ</mml:mi></mml:mrow></mml:math> is obtained by computing the difference between the original CRF and the same one convolved with a wider Gaussian window (8 s duration and a standard deviation of 1.1314 s).</p>
+      <p>The <italic>informed basis set</italic> capturing the CRF is therefore:<disp-formula><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mo>{</mml:mo><mml:msubsup><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mi>inf</mml:mi></mml:mrow><mml:mi>i</mml:mi></mml:msubsup><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>}</mml:mo></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>…</mml:mo><mml:mn>3</mml:mn></mml:mrow></mml:msub><mml:mo>=</mml:mo><mml:mfenced open="{" close="}"><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mi>c</mml:mi><mml:mi>a</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:mo>,</mml:mo><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mi>c</mml:mi><mml:mi>a</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:mi>t</mml:mi></mml:mrow></mml:mfrac><mml:mo>,</mml:mo><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mi>c</mml:mi><mml:mi>a</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:mi>σ</mml:mi></mml:mrow></mml:mfrac></mml:mrow></mml:mfenced></mml:mrow></mml:math></disp-formula></p>
+      <p>This basis set was orthogonalised using a serial Gram-Schmidt process as implemented in the SPM software (spm_orth.m). This does not change the space spanned by the basis set but will make sure that the effect explained by the canonical response is not partialed out by the other regressors of the basis set.</p>
+      <p>The impulse response function for a particular dataset can now be appropriately modelled by a linear combination of the functions comprised in the informed basis set.</p>
+      <p>The skin conductance response <italic>s</italic>(<italic>t</italic>) with <italic>M</italic> experimental conditions can then be expressed as<disp-formula><mml:math id="M12" altimg="si12.gif" overflow="scroll"><mml:mrow><mml:mi>s</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>m</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>M</mml:mi></mml:munderover><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>N</mml:mi></mml:munderover><mml:mrow><mml:msub><mml:mi>β</mml:mi><mml:mrow><mml:mi>m</mml:mi><mml:mi>n</mml:mi></mml:mrow></mml:msub><mml:msubsup><mml:mover accent="true"><mml:mi>h</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mrow><mml:mi>inf</mml:mi></mml:mrow><mml:mi>n</mml:mi></mml:msubsup><mml:mo>⊗</mml:mo><mml:msub><mml:mover accent="true"><mml:mi>u</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>m</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mrow></mml:mrow></mml:math></disp-formula>where <mml:math id="M13" altimg="si13.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>u</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>m</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:math> is a time-dependent input parameter of interest (e.g. an event onset function) with unit amplitude for condition <italic>m</italic>, defined as a sum of Dirac delta functions centered on the onsets <mml:math id="M14" altimg="si14.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mo>{</mml:mo><mml:msubsup><mml:mi>τ</mml:mi><mml:mi>k</mml:mi><mml:mi>M</mml:mi></mml:msubsup><mml:mo>}</mml:mo></mml:mrow><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>…</mml:mo><mml:mi>K</mml:mi></mml:mrow></mml:msub></mml:mrow></mml:math> of the events of condition <italic>m</italic><disp-formula><mml:math id="M15" altimg="si15.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mover accent="true"><mml:mi>u</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mi>m</mml:mi></mml:msub><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="false">)</mml:mo><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mi>K</mml:mi><mml:mi>m</mml:mi></mml:msub></mml:mrow></mml:munderover><mml:mrow><mml:mi>δ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:msubsup><mml:mi>τ</mml:mi><mml:mi>k</mml:mi><mml:mi>m</mml:mi></mml:msubsup><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula>and <italic>β</italic> is a vector containing the weights of the linear combination.</p>
+      <p>Note that this framework allows to model parametric modulations such as time (adaptation effect) or any other factors and any non-linear effect of those using polynomial expansion. For example, if <mml:math id="M16" altimg="si16.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mrow><mml:mo>{</mml:mo><mml:msub><mml:mi>p</mml:mi><mml:mi>k</mml:mi></mml:msub><mml:mo>}</mml:mo></mml:mrow><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>…</mml:mo><mml:msub><mml:mi>K</mml:mi><mml:mi>m</mml:mi></mml:msub></mml:mrow></mml:msub></mml:mrow></mml:math> is such a parametric modulator, defined for all events, then another input parameter can be defined by<disp-formula><mml:math id="M17" altimg="si17.gif" overflow="scroll"><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>k</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mi>K</mml:mi><mml:mi>m</mml:mi></mml:msub></mml:mrow></mml:munderover><mml:mrow><mml:msubsup><mml:mi>p</mml:mi><mml:mi>k</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mi>δ</mml:mi><mml:mo stretchy="false">(</mml:mo><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:msubsup><mml:mi>τ</mml:mi><mml:mi>k</mml:mi><mml:mi>m</mml:mi></mml:msubsup><mml:mo stretchy="false">)</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula>to model quadratic interactions between the variate <italic>p</italic> and the trials.</p>
+      <p>All of this can be rephrased in terms of a general linear model (GLM): let <italic>Y</italic> contain <italic>T</italic> observed datapoints of a skin conductance time-series and <italic>X</italic> a <italic>T</italic> × <italic>L</italic> matrix containing <italic>L</italic> regressors, called the <italic>design matrix</italic>, constructed as explained above (convolution of all the input functions with the informed basis set), then the GLM can be expressed as<disp-formula><mml:math id="M18" altimg="si18.gif" overflow="scroll"><mml:mrow><mml:mi>Y</mml:mi><mml:mo>=</mml:mo><mml:mi>X</mml:mi><mml:mi>β</mml:mi><mml:mo>+</mml:mo><mml:mi>ε</mml:mi></mml:mrow></mml:math></disp-formula>where <italic>β</italic> is defined as before (a <italic>L</italic> × 1 vector of weights or effect sizes) and <italic>ɛ</italic> is the error term that is assumed to be i.i.d. (independent and identically distributed) Gaussian noise.</p>
+      <p>Under these assumptions, the maximum likelihood estimators are obtained through the Gauss-Markov theorem and are equal to the ordinary least square estimates (OLS):<disp-formula><mml:math id="M19" altimg="si19.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>β</mml:mi><mml:mo>^</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="false">(</mml:mo><mml:msup><mml:mi>X</mml:mi><mml:mi>T</mml:mi></mml:msup><mml:mi>X</mml:mi><mml:mo stretchy="false">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:msup><mml:mi>X</mml:mi><mml:mi>T</mml:mi></mml:msup><mml:mi>Y</mml:mi></mml:mrow></mml:math></disp-formula></p>
+      <p>Note that this is a linear operation: the estimates <mml:math id="M20" altimg="si20.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>β</mml:mi><mml:mo>^</mml:mo></mml:mover></mml:math> are obtained through a linear combination of the data <italic>Y</italic>.</p>
+      <p>If <italic>X</italic> is not of full rank, the model can still be inverted using the Moore-Penrose pseudoinverse.</p>
+      <p>Inverting a GLM can then be seen as a way to perform linear deconvolution. If the basis set is chosen to be a series of boxcar functions for each time bin, then no assumption is made on the shape of the impulse response function (apart from its length). If some constraints are added by using an informed basis set (restricting the domain of variations spanned the response to some plausible ones) then it still corresponds to some deconvolution that will likely provide some more robust estimates of the response. The extreme case is to only use the canonical response and in such a case, the response is assumed to be known and only the amplitude of the response remains to be estimated.</p>
+      <p>At last, once inverted, it is possible to perform some statistical inference on the estimated parameters to, for example, compare the effect sizes elicited by two conditions, using <italic>T</italic> or <italic>F</italic> tests. This can be done on the group level using a hierarchical summary statistics approach which is equivalent to a random effects model given equal variance for different subjects and a balanced experimental design (<xref rid="bib5" ref-type="bibr">Friston et al., 2008</xref>).</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>This research was funded by a Programme Grant to RJD from the Wellcome Trust and by a Personal Grant to DRB from the Swiss National Science Foundation. We wish to thank Alfonso Reid who constructed the voltage coupler used in the reported experiments and provided technical support. Eric Featherstone and Chloe Hutton provided code for the <italic>SCRalyze</italic> data import interface that also relies on the SON library written by Malcolm Lidierth at King's College London. All experiments were programmed using Cogent 2000, and Cogent Graphics, developed at University College London by the Cogent 2000 team and by John Romaya, respectively.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1">
+        <label>1</label>
+        <p>We use the continuous representation using integration but everything holds for discrete data by replacing integrals with sums.</p>
+      </fn>
+    </fn-group>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alexander</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Trengove</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Johnston</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>August</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Gordon</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Separating individual skin conductance responses in a short interstimulus-interval paradigm</article-title>
+          <source>J Neurosci Methods</source>
+          <year>2005</year>
+          <volume>146</volume>
+          <fpage>116</fpage>
+          <lpage>123</lpage>
+          <pub-id pub-id-type="pmid">15935228</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Amrhein</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Muhlberger</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pauli</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Wiedemann</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modulation of event-related brain potentials during affective picture processing: a complement to startle reflex and skin conductance response?</article-title>
+          <source>Int J Psychophysiol</source>
+          <year>2004</year>
+          <volume>54</volume>
+          <fpage>231</fpage>
+          <lpage>240</lpage>
+          <pub-id pub-id-type="pmid">15331214</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barry</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Feldmann</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gordon</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Cocker</surname>
+              <given-names>K.I.</given-names>
+            </name>
+            <name>
+              <surname>Rennie</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Elicitation and habituation of the electrodermal orienting response in a short interstimulus interval paradigm</article-title>
+          <source>Int J Psychophysiol</source>
+          <year>1993</year>
+          <volume>15</volume>
+          <fpage>247</fpage>
+          <lpage>253</lpage>
+          <pub-id pub-id-type="pmid">8119843</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boucsein</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electrodermal activity</article-title>
+          <year>1992</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>Berlin</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical parametric mapping: the analysis of functional brain images</article-title>
+          <year>2008</year>
+          <publisher-name>Academic Press</publisher-name>
+          <publisher-loc>London</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Jezzard</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of functional MRI time-series</article-title>
+          <source>Hum Brain Mapp</source>
+          <year>1994</year>
+          <volume>1</volume>
+          <fpage>153</fpage>
+          <lpage>171</lpage>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Rees</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlinear event-related responses in fMRI</article-title>
+          <source>Magn Reson Med</source>
+          <year>1998</year>
+          <volume>39</volume>
+          <fpage>41</fpage>
+          <lpage>52</lpage>
+          <pub-id pub-id-type="pmid">9438436</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="other">Lang PJ, Bradley MM, Cuthbert BN. International affective picture system (IAPS): affective ratings of pictures and instruction manual. Technical Report A-6. University of Florida: Gainesville, FL; 2005.</citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lim</surname>
+              <given-names>C.L.</given-names>
+            </name>
+            <name>
+              <surname>Gordon</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Harris</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Bahramali</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>W.M.</given-names>
+            </name>
+            <name>
+              <surname>Manor</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Electrodermal activity in schizophrenia: a quantitative study using a short interstimulus paradigm</article-title>
+          <source>Biol Psychiatry</source>
+          <year>1999</year>
+          <volume>45</volume>
+          <fpage>127</fpage>
+          <lpage>135</lpage>
+          <pub-id pub-id-type="pmid">9894584</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lim</surname>
+              <given-names>C.L.</given-names>
+            </name>
+            <name>
+              <surname>Gordon</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Rennie</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Wright</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Bahramali</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>W.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamics of SCR, EEG, and ERP activity in an oddball paradigm with short interstimulus intervals</article-title>
+          <source>Psychophysiology</source>
+          <year>1999</year>
+          <volume>36</volume>
+          <fpage>543</fpage>
+          <lpage>551</lpage>
+          <pub-id pub-id-type="pmid">10442022</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lim</surname>
+              <given-names>C.L.</given-names>
+            </name>
+            <name>
+              <surname>Rennie</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Barry</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Bahramali</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Lazzaro</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Manor</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Decomposing skin conductance into tonic and phasic components</article-title>
+          <source>Int J Psychophysiol</source>
+          <year>1997</year>
+          <volume>25</volume>
+          <fpage>97</fpage>
+          <lpage>109</lpage>
+          <pub-id pub-id-type="pmid">9101335</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Macefield</surname>
+              <given-names>V.G.</given-names>
+            </name>
+            <name>
+              <surname>Wallin</surname>
+              <given-names>B.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The discharge behaviour of single sympathetic neurones supplying human sweat glands</article-title>
+          <source>J Auton Nerv Syst</source>
+          <year>1996</year>
+          <volume>61</volume>
+          <fpage>277</fpage>
+          <lpage>286</lpage>
+          <pub-id pub-id-type="pmid">8988486</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nishiyama</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Sugenoya</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Matsumoto</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Iwase</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Mano</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Irregular activation of individual sweat glands in human sole observed by a videomicroscopy</article-title>
+          <source>Auton Neurosci</source>
+          <year>2001</year>
+          <volume>88</volume>
+          <fpage>117</fpage>
+          <lpage>126</lpage>
+          <pub-id pub-id-type="pmid">11474541</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Williams</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Das</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Boucsein</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Sokolov</surname>
+              <given-names>E.N.</given-names>
+            </name>
+            <name>
+              <surname>Brammer</surname>
+              <given-names>M.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The dynamics of cortico-amygdala and autonomic activity over the experimental time course of fear perception</article-title>
+          <source>Brain Res Cogn Brain Res</source>
+          <year>2004</year>
+          <volume>21</volume>
+          <fpage>114</fpage>
+          <lpage>123</lpage>
+          <pub-id pub-id-type="pmid">15325419</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Convolved time-series: an example from functional magnetic resonance imaging (fMRI). Top: event onsets are specified as a stick, or delta function. Middle: the canonical hemodynamic response function is the most parsimonious response function used in fMRI research. Bottom: convolution of the event onset function with the response function results in a time series that reflects the overlay of single responses.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Basis set for an uninformed finite impulse response model, with 30 time bins of 1 s length. Each time bin codes a regressor across events. An idealised example for typical parameter estimates in fMRI is shown below. This procedure of estimating a response function is profoundly different from “averaging” responses, since during averaging, overlapping segments are accounted for several times.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Principal component analysis (PCA) of the responses across all participants, conditions, and trials. Top: the three first components that together explain 78.9% of the overall variability in response shape. Note that the second component resembles a derivative with respect to time of the first component. Bottom: A smoothed gamma distribution (dotted) was fitted to the first component of the PCA (solid line, depicted with standard deviation as grey shadow) to describe the response function's analytical form.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Orthogonalised informed basis set and the effect of adding derivatives to the CRF in order to shift or smooth the response peak.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Experiment 2: Example of estimating the response shape, using an uninformed finite impulse response model that consists of a number of boxcar functions for each time bin during the response. Here, we used 30 post-stimulus time bins of 1 s length. Top: Fitted responses across the study sample for the three different ISIs, mean ± standard error across participants. For comparison, the broken line depicts the canonical response function (CRF), derived from experiment 1. Middle: Continuous data for one participant at an ISI of 3 s. Event onsets are marked on the <italic>x</italic>-axis. The observed and predicted responses are shown as solid and broken lines, respectively. Bottom: Similar to the middle panel, this panel shows observed and predicted responses for the same participant, using the canonical response function and its two derivatives. Note that for comparison, this model did not include adaptation parameters. Adaptation parameters further improved the model fit, as pointed out in the text.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <table-wrap position="float" id="tbl1">
+      <label>Table 1</label>
+      <caption>
+        <p>Experiment 3: Behavioural results (mean ± standard error of the mean) for the six experimental conditions. Accuracy refers to the number of responses made per condition (in %). We report uncorrected degrees of freedom, <italic>F</italic>-values, <italic>ɛ</italic>-values according to Greenhouse-Geisser, and corrected <italic>p</italic>-values.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th/>
+            <th align="left">ISI</th>
+            <th align="left">3 s</th>
+            <th align="left">9 s</th>
+            <th align="left">19 s</th>
+            <th align="left">Picture type</th>
+            <th align="left">ISI</th>
+            <th align="left">Interaction</th>
+          </tr>
+          <tr>
+            <th/>
+            <th/>
+            <th align="left">Mean ± SEM</th>
+            <th align="left">Mean ± SEM</th>
+            <th align="left">Mean ± SEM</th>
+            <th align="left"><italic>F</italic>(1, 23) <italic>ɛ</italic></th>
+            <th align="left"><italic>F</italic>(2, 46) <italic>ɛ</italic></th>
+            <th align="left"><italic>F</italic>(2, 46) <italic>ɛ</italic></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">Accuracy (%)</td>
+            <td align="left">Neutral</td>
+            <td align="char">99.4 ± 0.6</td>
+            <td align="char">99.4 ± 0.3</td>
+            <td align="char">97.9 ± 0.66</td>
+            <td align="char">8.4<sup>**</sup></td>
+            <td align="char">3.2</td>
+            <td align="char">1.3</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">Aversive</td>
+            <td align="char">99.8 ± 0.1</td>
+            <td align="char">99.6 ± 0.4</td>
+            <td align="char">99.4 ± 0.33</td>
+            <td align="char">1</td>
+            <td align="char">0.591</td>
+            <td align="char">0.893</td>
+          </tr>
+          <tr>
+            <td colspan="8" align="left">  </td>
+          </tr>
+          <tr>
+            <td align="left">Rating as likeable (%)</td>
+            <td align="left">Neutral</td>
+            <td align="char">73.3 ± 2.8</td>
+            <td align="char">76.0 ± 3.9</td>
+            <td align="char">74.7 ± 3.6</td>
+            <td align="char">531.9<sup>***</sup></td>
+            <td align="char">&lt;1</td>
+            <td align="char">&lt;1</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">Aversive</td>
+            <td align="char">6.7 ± 2.2</td>
+            <td align="char">6.1 ± 2.2</td>
+            <td align="char">5.9 ± 1.3</td>
+            <td align="char">1</td>
+            <td align="char">0.946</td>
+            <td align="char">0.830</td>
+          </tr>
+          <tr>
+            <td colspan="8" align="left">  </td>
+          </tr>
+          <tr>
+            <td align="left">Reaction time (ms)</td>
+            <td align="left">Neutral</td>
+            <td align="char">1008 ± 34</td>
+            <td align="char">1063 ± 48</td>
+            <td align="char">1118 ± 50</td>
+            <td align="char">26.7<sup>***</sup></td>
+            <td align="char">7.6<sup>**</sup></td>
+            <td align="char">&lt;1</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">Aversive</td>
+            <td align="char">858 ± 38</td>
+            <td align="char">920 ± 52</td>
+            <td align="char">970 ± 51</td>
+            <td align="char">1</td>
+            <td align="char">0.963</td>
+            <td align="char">0.990</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p><sup>**</sup><italic>p</italic> &lt; .01; <sup>***</sup><italic>p</italic> &lt; .001.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap position="float" id="tbl2">
+      <label>Table 2</label>
+      <caption>
+        <p>Experiment 3: Parameter estimates (arbitrary units) for skin conductance responses (mean ± standard error of the mean) for the six experimental conditions. In the present model, a significant intercept refers to the fact that parameter estimates deviate from zero, and shows that an effect was detected across all experimental conditions. (Estimated) SCR peak amplitude in the lower part of the table is reported in μS (mean ± standard error of the mean). The table states uncorrected degrees of freedom, <italic>F</italic>-values, <italic>ɛ</italic>-values according to Greenhouse-Geisser, and corrected <italic>p</italic>-values.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th/>
+            <th align="left">ISI</th>
+            <th align="left">3 s</th>
+            <th align="left">9 s</th>
+            <th align="left">19 s</th>
+            <th align="left">Intercept</th>
+            <th align="left">Picture type</th>
+            <th align="left">ISI</th>
+            <th align="left">Interaction</th>
+          </tr>
+          <tr>
+            <th/>
+            <th/>
+            <th align="left">Mean ± SEM</th>
+            <th align="left">Mean ± SEM</th>
+            <th align="left">Mean ± SEM</th>
+            <th align="left"><italic>F</italic>(1, 23)</th>
+            <th align="left"><italic>F</italic>(1, 23) <italic>ɛ</italic></th>
+            <th align="left"><italic>F</italic>(2, 46) <italic>ɛ</italic></th>
+            <th align="left"><italic>F</italic>(2, 46) <italic>ɛ</italic></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">SCR (parameter estimate)</td>
+            <td align="left">Neutral</td>
+            <td align="char">−1.1 ± 6.2</td>
+            <td align="char">19.0 ± 12.0</td>
+            <td align="char">40.5 ± 15.0</td>
+            <td rowspan="2" align="center" valign="middle">6.3<xref rid="tbl2fn1" ref-type="table-fn">*</xref></td>
+            <td align="char">5.1<xref rid="tbl2fn1" ref-type="table-fn">*</xref></td>
+            <td align="char">6.1<xref rid="tbl2fn1" ref-type="table-fn">*</xref></td>
+            <td align="char">&lt;1</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">Aversive</td>
+            <td align="char">11.8 ± 5.7</td>
+            <td align="char">22.2 ± 13.4</td>
+            <td align="char">50.0 ± 16.5</td>
+            <td align="char">1</td>
+            <td align="char">0.722</td>
+            <td align="char">0.818</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="left">  </td>
+          </tr>
+          <tr>
+            <td rowspan="2" align="left">Effect of stimulus rating on SCR (parameter estimate)</td>
+            <td align="left">Neutral</td>
+            <td align="char">16.6 ± 10.7</td>
+            <td align="char">0.8 ± 12.8</td>
+            <td align="char">0.3 ± 8.0</td>
+            <td rowspan="2" align="center" valign="middle">5.2<xref rid="tbl2fn1" ref-type="table-fn">*</xref></td>
+            <td align="char">1.3</td>
+            <td align="char">&lt;1</td>
+            <td align="char">&lt;1</td>
+          </tr>
+          <tr>
+            <td align="left">Aversive</td>
+            <td align="char">20.1 ± 15.3</td>
+            <td align="char">20.4 ± 12.8</td>
+            <td align="char">19.8 ± 22.9</td>
+            <td align="char">1</td>
+            <td align="char">0.968</td>
+            <td align="char">0.899</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="left">  </td>
+          </tr>
+          <tr>
+            <td align="left">SCR (peak-scoring)</td>
+            <td align="left">Neutral</td>
+            <td align="char">0.015 ± 0.003</td>
+            <td align="char">0.014 ± 0.005</td>
+            <td align="char">0.014 ± 0.005</td>
+            <td rowspan="2" align="center" valign="middle">16.6<xref rid="tbl2fn2" ref-type="table-fn">**</xref></td>
+            <td align="char">&lt;1</td>
+            <td align="char">&lt;1</td>
+            <td align="char">1.6</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">Aversive</td>
+            <td align="char">0.018 ± 0.006</td>
+            <td align="char">0.009 ± 0.003</td>
+            <td align="char">0.012 ± 0.004</td>
+            <td align="char">1</td>
+            <td align="char">0.990</td>
+            <td align="char">0.853</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="left">  </td>
+          </tr>
+          <tr>
+            <td align="left">SCR (according to <xref rid="bib3" ref-type="bibr">Barry et al., 1993</xref>)</td>
+            <td align="left">Neutral</td>
+            <td align="char">0.033 ± 0.005</td>
+            <td align="char">0.027 ± 0.004</td>
+            <td align="char">0.005 ± 0.029</td>
+            <td rowspan="2" align="center" valign="middle">51.9<xref rid="tbl2fn2" ref-type="table-fn">**</xref></td>
+            <td align="char">&lt;1</td>
+            <td align="char">2.0</td>
+            <td align="char">2.2</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">Aversive</td>
+            <td align="char">0.030 ± 0.004</td>
+            <td align="char">0.027 ± 0.004</td>
+            <td align="char">0.029 ± 0.005</td>
+            <td align="char">1</td>
+            <td align="char">0.862</td>
+            <td align="char">0.977</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="left">  </td>
+          </tr>
+          <tr>
+            <td align="left">SCR (according to <xref rid="bib11" ref-type="bibr">Lim et al., 1997</xref>)</td>
+            <td align="left">Neutral</td>
+            <td align="char">0.7 ± 0.4</td>
+            <td align="char">0.3 ± 0.1</td>
+            <td align="char">0.3 ± 0.1</td>
+            <td rowspan="2" align="center" valign="middle">6.2<xref rid="tbl2fn1" ref-type="table-fn">*</xref></td>
+            <td align="char">2.4</td>
+            <td align="char">1.4</td>
+            <td align="char">1.6</td>
+          </tr>
+          <tr>
+            <td/>
+            <td align="left">Aversive</td>
+            <td align="char">1.9 ± 0.9</td>
+            <td align="char">0.7 ± 0.3</td>
+            <td align="char">0.3 ± 0.1</td>
+            <td align="char">1</td>
+            <td align="char">0.565</td>
+            <td align="char">0.690</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn id="tbl2fn1">
+          <label>*</label>
+          <p><italic>p</italic> &lt; .05.</p>
+        </fn>
+      </table-wrap-foot>
+      <table-wrap-foot>
+        <fn id="tbl2fn2">
+          <label>**</label>
+          <p><italic>p</italic> &lt; .01.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-wrap>
+</article>

@@ -1,0 +1,1692 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Gene</journal-id>
+      <journal-title-group>
+        <journal-title>Gene</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0378-1119</issn>
+      <issn pub-type="epub">1879-0038</issn>
+      <publisher>
+        <publisher-name>Elsevier/North-Holland</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3113163</article-id>
+      <article-id pub-id-type="pmid">21435384</article-id>
+      <article-id pub-id-type="publisher-id">GENE36855</article-id>
+      <article-id pub-id-type="doi">10.1016/j.gene.2011.03.005</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>HOCTAR database: A unique resource for microRNA target prediction</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Gennarino</surname>
+            <given-names>Vincenzo Alessandro</given-names>
+          </name>
+          <email>gennarin@bcm.edu</email>
+          <xref rid="af0005" ref-type="aff">a</xref>
+          <xref rid="cr0005" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sardiello</surname>
+            <given-names>Marco</given-names>
+          </name>
+          <xref rid="af0005" ref-type="aff">a</xref>
+          <xref rid="af0015" ref-type="aff">c</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mutarelli</surname>
+            <given-names>Margherita</given-names>
+          </name>
+          <xref rid="af0005" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dharmalingam</surname>
+            <given-names>Gopuraja</given-names>
+          </name>
+          <xref rid="af0005" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Maselli</surname>
+            <given-names>Vincenza</given-names>
+          </name>
+          <xref rid="af0010" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Lago</surname>
+            <given-names>Giampiero</given-names>
+          </name>
+          <xref rid="af0005" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Banfi</surname>
+            <given-names>Sandro</given-names>
+          </name>
+          <xref rid="af0005" ref-type="aff">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="af0005"><label>a</label>Telethon Institute of Genetics and Medicine (TIGEM), 80131 Naples, Italy</aff>
+      <aff id="af0010"><label>b</label>Department of Soil, Plant, Environmental and Animal Production Sciences, Federico II University, Italy</aff>
+      <aff id="af0015"><label>c</label>Jan and Dan Duncan Neurological Research Institute at Texas Children's Hospital, Houston, Texas 77030, USA</aff>
+      <author-notes>
+        <corresp id="cr0005"><label>⁎</label>Corresponding author at: Department of Molecular and Human Genetics, Baylor College of Medicine; Jan and Dan Duncan Neurological Research Institute at Texas Children's Hospital, Houston, Texas 77030, USA. Tel.: + 39 832 824 8898; fax + 39 713 798 6523. <email>gennarin@bcm.edu</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>01</day>
+        <month>7</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>01</day>
+        <month>7</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>480</volume>
+      <issue>1-2</issue>
+      <fpage>51</fpage>
+      <lpage>58</lpage>
+      <history>
+        <date date-type="accepted">
+          <day>14</day>
+          <month>3</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier B.V.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>microRNAs (miRNAs) are the most abundant class of small RNAs in mammals. They play an important role in regulation of gene expression by inducing mRNA cleavage or translational inhibition. Each miRNA targets an average of 100–200 genes by binding, preferentially, to their 3′ UTRs by means of partial sequence complementarity. Most miRNAs are localized within transcriptional units, termed host genes, and show similar expression behavior with respect to their corresponding host genes. Considering the impact of miRNA in the regulation of gene expression and their involvement in a growing number of human disorders, it is vital to develop sensitive computational approaches able to identify miRNA target genes. The HOCTAR database (db) is a publicly available resource collecting ranked list of predicted target genes for 290 intragenic miRNAs annotated in human. HOCTARdb is a unique resource that integrates miRNA target prediction genes and transcriptomic data to score putative miRNA targets looking at the expression behavior of their host genes. We demonstrated, by testing 135 known validated target genes (either at the translational or transcriptional level) for different miRNAs, that the miRNA target prediction lists present in HOCTARdb are highly reliable. Moreover, HOCTARdb associates biological roles to each miRNA-controlled transcriptional network by means of Gene Ontology analysis. This information is easily accessible through a user-friendly query page. The HOCTARdb is available at <ext-link ext-link-type="uri" xlink:href="http://hoctar.tigem.it/">http://hoctar.tigem.it/</ext-link>. We believe that a detailed relationship between miRNAs and their target genes and a constant update of the information contained in HOCTARdb will provide an extremely valuable resource to assist the researcher in the discovery of miRNA target genes.</p>
+      </abstract>
+      <kwd-group>
+        <title>Abbreviations</title>
+        <kwd>TFEB, transcription factor EB</kwd>
+        <kwd>HTT, huntingtin</kwd>
+        <kwd>TMEM49, transmembrane protein 49</kwd>
+        <kwd>AKT1, v-akt murine thymoma viral oncogene homolog 1</kwd>
+      </kwd-group>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>microRNA</kwd>
+        <kwd>Target prediction</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="s0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>MicroRNAs (miRNAs) are potent modulators of gene expression (<xref rid="bb0070" ref-type="bibr">He and Hannon, 2004</xref>). They have been found to play critical roles in a growing number of biological functions and human diseases (<xref rid="bb0170 bb0030 bb0025 bb0185 bb0125" ref-type="bibr">Thai et al.; Dalmay and Edwards, 2006; Chang and Mendell, 2007; Zhang, 2008; Meola et al., 2009</xref>). Structurally, miRNAs are single-stranded non-coding RNAs of 19–25 nucleotides in length, generated from hairpin-shaped transcripts. miRNAs cause translational repression and mRNA degradation by binding, with an imperfect pairing, to the 3′ untranslated region (3′ UTR) of their target genes (<xref rid="bb0095 bb0050" ref-type="bibr">Kim, 2005; Giraldez et al., 2006</xref>). Current estimates indicate that each miRNA may regulate, on average, the expression of 100–200 mRNAs (<xref rid="bb0005 bb0120" ref-type="bibr">Ambros, 2004; Lim et al., 2005</xref>). Currently, there are 718 annotated miRNAs in human (<xref rid="bb0055" ref-type="bibr">Griffiths-Jones, 2004</xref>), localized in intragenic (60% of cases) or in intergenic (40%) regions. Intragenic miRNAs are contained within transcriptional units termed “host genes” (<xref rid="bb0105" ref-type="bibr">Kim et al., 2009</xref>), which are generally protein-coding. Recent work demonstrated that many intronic miRNAs and their host genes are co-transcribed from a common promoter (<xref rid="bb0150 bb0100" ref-type="bibr">Rodriguez et al., 2004; Kim and Kim, 2007</xref>). The large impact of miRNAs in the regulation of biological processes has determined a strong interest in novel technologies for the detection/prediction of miRNA target genes (<xref rid="bb0175" ref-type="bibr">Thomas et al., 2010</xref>) to dissect their regulatory gene networks and understand their function. Current efforts are dedicated to both experimental (<xref rid="bb0010 bb0160" ref-type="bibr">Baek et al., 2008; Selbach et al., 2008</xref>) and bioinformatic (<xref rid="bb0110 bb0020 bb0035 bb0045" ref-type="bibr">Krek et al., 2005; Betel et al., 2008; Friedman et al., 2009; Gennarino et al., 2009</xref>) approaches to address miRNA target identification. However, giving the laborious nature of the experiments needed for target validation, and considering that most ad-hoc developed high-throughput techniques (e.g. p-Silac) are costly and only validate a few target genes (<xref rid="bb0120" ref-type="bibr">Lim et al., 2005</xref>), it is imperative to improve <italic>in silico</italic> approaches to identify miRNA target genes.</p>
+      <p>Recently we have developed a new and efficient approach to perform miRNA target prediction, the HOCTAR (Host Gene Oppositely Correlated Targets) procedure (<xref rid="bb0045" ref-type="bibr">Gennarino et al., 2009</xref>). This procedure is based on gene expression analysis and exploits the inverse correlation existing between the expression behavior of a host gene and the target genes of the corresponding intragenic miRNA. The analysis of dozens of validated miRNA targets showed that the HOCTAR procedure is generally applicable to all intragenic miRNAs and that its performance overruns that of first-generation prediction softwares, which are based on sequence analysis alone (<xref rid="bb0045" ref-type="bibr">Gennarino et al., 2009</xref>).</p>
+      <p>In this paper we describe the HOCTAR database (HOCTARdb), which collects the results of HOCTAR analyses for 290 human intragenic miRNAs. The HOCTAR database is publicly available to the scientific community at the web address <ext-link ext-link-type="uri" xlink:href="http://hoctar.tigem.it">http://hoctar.tigem.it</ext-link>.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="s0010">
+      <label>2</label>
+      <title>Materials and methods</title>
+      <sec id="s0015">
+        <label>2.1</label>
+        <title>The HOCTAR procedure</title>
+        <p>The lists of putative target genes were compiled, using default parameters, by retrieving the latest releases of PicTar (release March 2007) (<xref rid="bb0110" ref-type="bibr">Krek et al., 2005</xref>), TargetScan (release 5.1) (<xref rid="bb0035" ref-type="bibr">Friedman et al., 2009</xref>) and miRanda (release September 2008) (<xref rid="bb0020" ref-type="bibr">Betel et al., 2008</xref>). In the case of TargetScan (<xref rid="bb0035" ref-type="bibr">Friedman et al., 2009</xref>), we considered the predicted conserved targets. For PicTar, we selected the targets which were found to be conserved in mammalian genomes (<xref rid="bb0110" ref-type="bibr">Krek et al., 2005</xref>). For each intragenic miRNA, we compiled a non-redundant list of predicted mRNA targets by pooling all corresponding miRanda, TargetScan, and PicTar predictions. Expression correlation analysis of miRNA host genes and putative targets was based on total of 217 microarray data sets (3583 microarray experiments) downloaded from GEO repository (<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/geo/">http://www.ncbi.nlm.nih.gov/geo/</ext-link>) (<xref rid="bb0015" ref-type="bibr">Barrett et al., 2007</xref>). All experiments were performed on the same microarray platform, the HG-U133A GeneChip array (GPL96, Feb 19, 2002) and each dataset was normalized and pre-processed independently. For each probe targeting a miRNA host gene, the 3% most anti-correlated probes (using Pearson correlation coefficient) were selected in each data set and all the lists were combined and ranked according to the number of occurrences and to the average rank in the single lists. As input to the HOCTAR procedure we used all the probes corresponding to the selected miRNA host genes and represented in the HG-U133A array, as assessed through the analysis of the Affymetrix website (<ext-link ext-link-type="uri" xlink:href="http://www.affymetrix.com/index.affx">http://www.affymetrix.com/index.affx</ext-link>).</p>
+      </sec>
+      <sec id="s0020">
+        <label>2.2</label>
+        <title>HOCTAR database</title>
+        <p>The dataset is stored into a relationship database on MySQL platform, version 5.0.44, whereas all the necessary scripts to store and query the database were written in Perl v5.8.8 (built for i686-linux) object-oriented scripting language. The web interface was written using PHP 4.4.7, it is freely accessible and supported by all common internet browsers. All data are stored on a Gentoo LINUX Server. HOCTARdb is freely available at <ext-link ext-link-type="uri" xlink:href="http://hoctar.tigem.it/">http://hoctar.tigem.it/</ext-link>.</p>
+      </sec>
+      <sec id="s0025">
+        <label>2.3</label>
+        <title>Gene ontology</title>
+        <p>Gene Ontology (GO) analyses were performed with the web tool DAVID at <ext-link ext-link-type="uri" xlink:href="http://david.abcc.ncifcrf.gov/home.jsp">http://david.abcc.ncifcrf.gov/home.jsp</ext-link> using default parameters (<xref rid="bb0165" ref-type="bibr">Sherman et al., 2007</xref>). GO analyses were performed on the first 30th, 50th, and 100th percentile of HOCTAR ranked lists for all 290 miRNA analyzed. After performing the analysis, only BP, MF and CC categories with a P-value ≤ 0.001, FDR ≤ 5, and fold enrichment ≥ 2 in the analysis of the 50th percentile lists were retained. Redundant terms and non-informative terms (e.g., multigene family) were discarded. Results are collected in the HOCTARdb at <ext-link ext-link-type="uri" xlink:href="http://hoctar.tigem.it">http://hoctar.tigem.it</ext-link>.</p>
+      </sec>
+    </sec>
+    <sec id="s0035">
+      <label>3</label>
+      <title>Results</title>
+      <sec id="s0040">
+        <label>3.1</label>
+        <title>Construction and contents</title>
+        <p>The lists of human intragenic miRNAs and corresponding host genes were downloaded from miRBase (release 13.0) (<xref rid="bb0060" ref-type="bibr">Griffiths-Jones, 2006</xref>). We considered host genes for these analysis only those that a) had a sequence overlapping that of the precursor miRNA either in introns, exons, or UTRs, b) were transcribed from the same strand as the miRNA, and c) were represented in the HG-U133A Affymetrix platform, which mostly includes known genes. By using HOCTAR we analyzed 230 host genes and 377 Affymetrix probes corresponding to 290 human miRNAs. 265,136 miRNA target predictions are present in HOCTARdb corresponding to a non-redundant total of 9963 genes. All host gene-intragenic miRNA relationships were manually verified by using the UCSC Genome Browser (release 2006/March; <ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>). Gene Ontology (GO) analyses of putative miRNA targets were performed following HOCTAR analyses to assign a tentative biological function to the miRNA gene networks analyzed. Gene Ontology results have been deposited in HOCTARdb as charts, in which the fold enrichment for each significantly over-represented category is reported.</p>
+      </sec>
+      <sec id="s0045">
+        <label>3.2</label>
+        <title>HOCTARdb overview</title>
+        <p>A first set of HOCTAR results was released online when we first described the principles of the procedure (<xref rid="bb0045" ref-type="bibr">Gennarino et al., 2009</xref>). HOCTARdb contains a substantial improvement over these preliminary data in terms of number of miRNAs analyzed (n = 290), number of expression datasets considered for the meta-analysis (217 microarray datasets), and number of putative target genes analyzed for each miRNA. HOCTARdb is the first and unique database to use expression data for scoring putative miRNA targets by examining the expression behavior of their host genes: HOCTARdb includes and re-analyzes all miRNA target predictions generated by softwares such as miRanda, TargetScan and PicTar (<xref rid="bb0110 bb0020 bb0035" ref-type="bibr">Krek et al., 2005; Betel et al., 2008; Friedman et al., 2009</xref>). For these reasons, we believe that HOCTARdb is a valuable resource for the ‘wet lab’ researcher willing to investigate miRNA regulatory networks, in that it provides exclusive and experimentally-supported information for the identification of target genes of human miRNAs.</p>
+      </sec>
+      <sec id="s0050">
+        <label>3.3</label>
+        <title>HOCTAR validation</title>
+        <p>The HOCTAR procedure combines the observations that the expression of a given intragenic miRNA is mimicked by the expression of its host gene, and that the expression of a given miRNA is anti-correlated to the expression of its target genes. Following these assumptions, the HOCTAR procedure examines the expression behavior of miRNA host genes and putative target genes in multiple publicly available expression microarray datasets, and ranks putative targets from the most to the least anti-regulated with respect to the host gene.</p>
+        <p>To test the efficiency of HOCTAR in predicting miRNA target genes, we analyzed 135 validated target genes for 28 different intragenic miRNAs selected from PubMed (<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/">http://www.ncbi.nlm.nih.gov/pubmed/</ext-link>) and DIANA TarBase (<xref rid="bb0140" ref-type="bibr">Papadopoulos et al., 2009</xref>) (see <xref rid="ec0005" ref-type="supplementary-material">Supplementary Table S1</xref> for a complete list). The results showed that, out of 135 validated targets, 125 (91%), 112 (83%) and 65 (48%) were included within the first 50th, 30th and 10th percentile of the HOCTAR ranked lists, respectively (<xref rid="f0005" ref-type="fig">Fig. 1</xref>). To further assess the performance of the HOCTAR procedure, we decided to test the two datasets of target genes validated by p-Silac procedure from Baek et al. and Selbach et al. (<xref rid="bb0010 bb0160" ref-type="bibr">Baek et al., 2008; Selbach et al., 2008</xref>). We found that 95% (Selbach et al. gene subset) and 87% (Baek et al. gene subset) of the putative target genes of the intragenic miRNAs analyzed in the latter reports fall within the first 50th percentile of the HOCTAR ranked list (data not shown).</p>
+        <p>Overall, this indicates that the genes present at the top of HOCTAR ranked list have a higher probability of representing <italic>bona fide</italic> targets of miRNAs (<xref rid="f0005" ref-type="fig">Fig. 1</xref>). Given the HOCTAR performance relative to the first 50th percentile of prediction ranked lists, we decided to fix this as a threshold to consider <italic>bona fide</italic> target genes. In HOCTARdb, the target genes that fall within the fixed threshold are highlighted (see <xref rid="s0060" ref-type="sec">Section 3.5</xref>). We observed that the average number of predicted target genes present in the first 50th percentile of HOCTAR (n = 357) is comparable with the number of targets predicted by miRanda (n = 1603), TargetScan (n = 721) and PicTar (n = 496).</p>
+      </sec>
+      <sec id="s0055">
+        <label>3.4</label>
+        <title>Utility</title>
+        <p>HOCTARdb is an interactive, user-friendly database for identifying and analyzing putative target genes for intragenic human miRNAs. The database is publicly available at <ext-link ext-link-type="uri" xlink:href="http://hoctar.tigem.it">http://hoctar.tigem.it</ext-link>. The Entity-Relation design connecting HOCTARdb 8 tables is illustrated in <xref rid="f0010" ref-type="fig">Fig. 2</xref>. The graph shows the attributes (arrow and circle) for each entity (tables) and the relationships (square and rhombus, respectively) among the entities. HOCTARdb can be queried by information regarding either miRNAs or target genes. The analyses of all examined miRNA regulatory networks include Gene Ontology results that tentatively assign them a specific function.</p>
+      </sec>
+      <sec id="s0060">
+        <label>3.5</label>
+        <title>User interface</title>
+        <p>HOCTARdb contents are accessible through a user-friendly retrieval system where simple and advanced search forms are available. The main page briefly summarizes HOCTAR aims, provides some results and allows the user to submit a search (<xref rid="f0015" ref-type="fig">Fig. 3</xref>). There are two main ways for interrogating HOCTARdb: (i) by selecting a miRNA using either an alphabetically sorted pull-down menu (e.g. hsa-miR-26a-2) in the “microRNA” query, or (ii) by selecting a gene through its gene symbol (HUGO Gene Name) in the “Target Gene Name” query to look for miRNAs that may possibly target it.</p>
+        <sec id="s0065">
+          <label>3.5.1</label>
+          <title>“microRNA” query</title>
+          <p>Following the miRNA query, the user is redirected to a new page (<xref rid="f0020" ref-type="fig">Fig. 4</xref>) for selecting the host gene's Affymetrix probe of interest and retrieving the corresponding ranked list of target genes. Each prediction list is available for downloading as an excel (.xls) file. For each probe, the link “View Gene Ontology” provides access to the results of the GO analysis, represented as a chart (<xref rid="f0025" ref-type="fig">Fig. 5</xref>). Moreover, this page provides link to the miRBase (<xref rid="bb0060" ref-type="bibr">Griffiths-Jones, 2006</xref>) database, which contains further information on the genomic organization of miRNAs. Predicted target genes that fall within the first 50th percentile in the prediction ranked list are highlighted (bold characters). Finally, each predicted target gene is linked to the full list of its predicted targeting miRNAs (see below).</p>
+        </sec>
+        <sec id="s0070">
+          <label>3.5.2</label>
+          <title>“Target Gene Name” query</title>
+          <p>By using the “Target Gene Name” query the user can retrieve all intragenic miRNAs predicted to bind the selected target gene. Following the selection of the target gene of interest, the user is redirected to a page reporting the putative targeting miRNAs (<xref rid="f0030" ref-type="fig">Fig. 6</xref>). In this page, the green and the red colors indicate miRNAs whose predicted targeting fall, respectively, above or below the set threshold corresponding to the 50th percentile of the HOCTAR prediction ranked lists. Moreover, by clicking on each of these miRNAs the user is redirected to the corresponding ranked list of predicted targets miRNA (see above). Download is also available for the predicted miRNA binding lists.</p>
+        </sec>
+      </sec>
+      <sec id="s0075">
+        <label>3.6</label>
+        <title>HOCTARdb integration with other databases</title>
+        <p>We integrated HOCTARdb with the miRBase database (<xref rid="bb0060" ref-type="bibr">Griffiths-Jones, 2006</xref>), which provides more detailed information about the genomic organization of analyzed miRNAs, including an evolutionary overview. Furthermore, each gene reported in HOCTARdb is linked to a gene card information page provided by the HUGO database (<ext-link ext-link-type="uri" xlink:href="http://www.genenames.org/data/hgnc_data.php?hgnc_id:-">http://www.genenames.org/data/hgnc_data.php?hgnc_id:-</ext-link>). A link to the help section and several links to related online resources such as TargetScan, PicTar, miRanda, miRBase and g:Profiler (<xref rid="bb0090 bb0055 bb0110 bb0145 bb0020 bb0035 bb0085" ref-type="bibr">Kent et al., 2002; Griffiths-Jones, 2004; Krek et al., 2005; Reimand et al., 2007; Betel et al., 2008; Friedman et al., 2009; Hubbard et al., 2009</xref>) are provided in the main page.</p>
+      </sec>
+    </sec>
+    <sec id="s0080">
+      <label>4</label>
+      <title>Discussions and conclusions</title>
+      <p>miRNAs are small molecules that play an important role in gene regulation by controlling the expression of multiple target genes. miRNAs maintain different equilibrium of gene expression in different human tissues, and their dysregulation is implicated in various diseases (<xref rid="bb0170 bb0075 bb0115 bb0125 bb0130 bb0180" ref-type="bibr">Thai et al.; Hebert and De Strooper, 2009; Latronico and Condorelli, 2009; Meola et al., 2009; Negrini et al., 2009; Xiao and Rajewsky, 2009</xref>). Based on multiple tests on known miRNA targets, we have demonstrated that the HOCTAR procedure is effective in identifying miRNA target genes.</p>
+      <p>HOCTAR integrates transcriptomic data and <italic>in silico</italic> prediction tools to perform miRNA target prediction. The main difference between HOCTARdb and already available resources (<xref rid="bb0110 bb0020 bb0035" ref-type="bibr">Krek et al., 2005; Betel et al., 2008; Friedman et al., 2009</xref>) is the procedure used to identify putative miRNA target genes. HOCTARdb includes all data generated by miRanda, TargetScan and PicTar and assigns to all identified putative targets a score based on their transcriptional behavior with respect to the miRNA host genes, which represent reliable proxies for the miRNAs themselves (<xref rid="bb0080 bb0045" ref-type="bibr">Huang et al., 2007; Gennarino et al., 2009</xref>). Other strategies for miRNA target identification based on the evaluation of inverse expression relationships between miRNAs and mRNAs have been devised (<xref rid="bb0080" ref-type="bibr">Huang et al., 2007</xref>). However, an advantage of HOCTAR over the latter procedures is that it utilizes the same set of microarray experiments to simultaneously monitor the expression of both miRNAs and putative targets (<xref rid="bb0045" ref-type="bibr">Gennarino et al., 2009</xref>).</p>
+      <p>Obviously, the HOCTAR procedure cannot be used at present to identify miRNA targets exclusively regulated at the translational level. On the other hand, several observations confirmed that the transcriptional effects of miRNA action on the expression levels of their targets represent a rather widespread phenomenon (<xref rid="bb0120 bb0010 bb0160 bb0045" ref-type="bibr">Lim et al., 2005; Baek et al., 2008; Selbach et al., 2008; Gennarino et al., 2009</xref>). Even if, recently it has been show that the impact of miRNAs on gene expression and destabilization of target mRNAs is the predominant reason for reduced protein output (<xref rid="bb0065" ref-type="bibr">Guo et al.</xref>).</p>
+      <p>Differently from other miRNA target prediction databases, HOCTARdb is able to provide different prediction target lists for identical miRNAs present in multiple copies and localized within different host genes. These lists differ in the ranking of the predictions, which are based on the expression data pertaining to the specific host gene. We believe that HOCTAR represents a very sensitive tool for miRNA target prediction (<xref rid="f0005" ref-type="fig">Fig. 1</xref>).</p>
+      <p>Recently, it has been reported that, in 30% of cases, intragenic miRNAs have their own promoters, which are independent from those of their host genes (<xref rid="bb0040 bb0135" ref-type="bibr">Fujita et al., 2008; Ozsolak et al., 2008</xref>). Surprisingly, the HOCTAR procedure seems to be efficient also in the latter cases, such as for example, miR-21 and its “near host gene” <italic>TMEM49</italic> which do not share the same promoter (<xref rid="bb0040" ref-type="bibr">Fujita et al., 2008</xref>). However, all miR-21 experimentally validated targets (see <xref rid="ec0005" ref-type="supplementary-material">Supplementary Table S1</xref>) rank high in the HOCTAR prediction list (<ext-link ext-link-type="uri" xlink:href="http://hoctar.tigem.it">http://hoctar.tigem.it</ext-link>). This suggests that intragenic miRNAs and their corresponding host genes may be coregulated even if they have independent promoters although further studies are necessary to better understand the mechanisms regulating the expression of miRNAs.</p>
+      <p>Importantly, HOCTARdb assigns a tentative biological role to the examined miRNA regulatory networks by means of Gene Ontology analyses. By applying the HOCTAR tool we have recently identified <italic>TFEB</italic>, a master regulator of lysosomal-dependent degradation pathways, as a target gene for miR-128, which is involved in neurodegenerative diseases (<xref rid="bb0155" ref-type="bibr">Sardiello et al., 2009</xref>). We found that <italic>TFEB</italic> overexpression was able to prevent the accumulation of mutant huntingtin (HTT) in cell lines containing a transgenic, aggregate-prone HTT allele with 105 CAG repeats responsible for Huntington's disease (<xref rid="bb0155" ref-type="bibr">Sardiello et al., 2009</xref>). The discovery of miR-128 as a <italic>TFEB</italic>-targeting miRNA suggests a possible molecular pathway linking miR-128 overexpression to neurodegenerative diseases, highlighting the utility of the HOCTAR tool and database for the experimental researcher.</p>
+      <p>For these reasons, we decided to further implement the HOCTAR procedure and to deposit all HOCTAR information in a user-friendly database, the HOCTARdb. A constant update of HOCTARdb contents will help researchers in selecting miRNAs targeting their genes of interest for experimental work, and also will contribute to the dissection of the regulatory gene networks that involve miRNA control.</p>
+      <p>Link/URL:<list list-type="simple"><list-item><label>1.</label><p>UCSC Genome Bioinformatics [<ext-link ext-link-type="uri" xlink:href="http://genome.ucsc.edu/">http://genome.ucsc.edu/</ext-link>].</p></list-item><list-item><label>2.</label><p>NCBI PubMed [<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/pubmed/">http://www.ncbi.nlm.nih.gov/pubmed/</ext-link>].</p></list-item><list-item><label>3.</label><p>HUGO Gene Name Card [<ext-link ext-link-type="uri" xlink:href="http://www.genenames.org/data/hgnc_data.php?hgnc_id">http://www.genenames.org/data/hgnc_data.php?hgnc_id</ext-link>:-].</p></list-item><list-item><label>4.</label><p>NCBI Gene Expression Omnibus (GEO) [<ext-link ext-link-type="uri" xlink:href="http://www.ncbi.nlm.nih.gov/geo/">http://www.ncbi.nlm.nih.gov/geo/</ext-link>]</p></list-item><list-item><label>5.</label><p>Affimetrix NetAffx™ Analysis Center [<ext-link ext-link-type="uri" xlink:href="http://www.affymetrix.com/analysis/index.affx">http://www.affymetrix.com/analysis/index.affx</ext-link>]</p></list-item></list></p>
+      <p>The following are the supplementary materials related to this article.<supplementary-material content-type="local-data" id="ec0005"><caption><p>Additional file 1 — List of experimentally supported miRNA-target pairs used for HOCTAR validation.</p></caption><media xlink:href="mmc1.doc" mimetype="application" mime-subtype="msword"/></supplementary-material></p>
+      <p>Supplementary materials related to this article can be found online at <ext-link ext-link-type="doi" xlink:href="10.1016/j.gene.2011.03.005">doi:10.1016/j.gene.2011.03.005</ext-link>.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bb0005">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ambros</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <article-title>The functions of animal microRNAs</article-title>
+          <source>Nature</source>
+          <volume>431</volume>
+          <year>2004</year>
+          <fpage>350</fpage>
+          <lpage>355</lpage>
+          <pub-id pub-id-type="pmid">15372042</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0010">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Baek</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Villen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Shin</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Camargo</surname>
+              <given-names>F.D.</given-names>
+            </name>
+            <name>
+              <surname>Gygi</surname>
+              <given-names>S.P.</given-names>
+            </name>
+            <name>
+              <surname>Bartel</surname>
+              <given-names>D.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>The impact of microRNAs on protein output</article-title>
+          <source>Nature</source>
+          <volume>455</volume>
+          <year>2008</year>
+          <fpage>64</fpage>
+          <lpage>71</lpage>
+          <pub-id pub-id-type="pmid">18668037</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0015">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Barrett</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Troup</surname>
+              <given-names>D.B.</given-names>
+            </name>
+            <name>
+              <surname>Wilhite</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Ledoux</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Rudnev</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Evangelista</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>I.F.</given-names>
+            </name>
+            <name>
+              <surname>Soboleva</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Tomashevsky</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Edgar</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>NCBI GEO: mining tens of millions of expression profiles—database and tools update</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>35</volume>
+          <year>2007</year>
+          <fpage>D760</fpage>
+          <lpage>D765</lpage>
+          <pub-id pub-id-type="pmid">17099226</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0020">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Betel</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Wilson</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Gabow</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Marks</surname>
+              <given-names>D.S.</given-names>
+            </name>
+            <name>
+              <surname>Sander</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>The microRNA.org resource: targets and expression</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>36</volume>
+          <year>2008</year>
+          <fpage>D149</fpage>
+          <lpage>D153</lpage>
+          <pub-id pub-id-type="pmid">18158296</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0025">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chang</surname>
+              <given-names>T.C.</given-names>
+            </name>
+            <name>
+              <surname>Mendell</surname>
+              <given-names>J.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>microRNAs in vertebrate physiology and human disease</article-title>
+          <source>Annu. Rev. Genomics Hum. Genet.</source>
+          <volume>8</volume>
+          <year>2007</year>
+          <fpage>215</fpage>
+          <lpage>239</lpage>
+          <pub-id pub-id-type="pmid">17506656</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0030">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dalmay</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Edwards</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>MicroRNAs and the hallmarks of cancer</article-title>
+          <source>Oncogene</source>
+          <volume>25</volume>
+          <year>2006</year>
+          <fpage>6170</fpage>
+          <lpage>6175</lpage>
+          <pub-id pub-id-type="pmid">17028596</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0035">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friedman</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Farh</surname>
+              <given-names>K.K.</given-names>
+            </name>
+            <name>
+              <surname>Burge</surname>
+              <given-names>C.B.</given-names>
+            </name>
+            <name>
+              <surname>Bartel</surname>
+              <given-names>D.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Most mammalian mRNAs are conserved targets of microRNAs</article-title>
+          <source>Genome Res.</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>92</fpage>
+          <lpage>105</lpage>
+          <pub-id pub-id-type="pmid">18955434</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0040">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fujita</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ito</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Mizutani</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Minoguchi</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Yamamichi</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Sakurai</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Iba</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>miR-21 gene expression triggered by AP-1 is sustained through a double-negative feedback mechanism</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>378</volume>
+          <year>2008</year>
+          <fpage>492</fpage>
+          <lpage>504</lpage>
+          <pub-id pub-id-type="pmid">18384814</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0045">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gennarino</surname>
+              <given-names>V.A.</given-names>
+            </name>
+            <name>
+              <surname>Sardiello</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Avellino</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Meola</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Maselli</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Anand</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Cutillo</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Ballabio</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Banfi</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>MicroRNA target prediction by expression analysis of host genes</article-title>
+          <source>Genome Res.</source>
+          <volume>19</volume>
+          <year>2009</year>
+          <fpage>481</fpage>
+          <lpage>490</lpage>
+          <pub-id pub-id-type="pmid">19088304</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0050">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Giraldez</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Mishima</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Rihel</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Grocock</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Van Dongen</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Inoue</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Enright</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Schier</surname>
+              <given-names>A.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Zebrafish MiR-430 promotes deadenylation and clearance of maternal mRNAs</article-title>
+          <source>Science</source>
+          <volume>312</volume>
+          <year>2006</year>
+          <fpage>75</fpage>
+          <lpage>79</lpage>
+          <pub-id pub-id-type="pmid">16484454</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0055">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Griffiths-Jones</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>The microRNA registry</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>32</volume>
+          <year>2004</year>
+          <fpage>D109</fpage>
+          <lpage>D111</lpage>
+          <pub-id pub-id-type="pmid">14681370</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0060">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Griffiths-Jones</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>miRBase: the microRNA sequence database</article-title>
+          <source>Meth. Mol. Biol.</source>
+          <volume>342</volume>
+          <year>2006</year>
+          <fpage>129</fpage>
+          <lpage>138</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0065">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Guo</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Ingolia</surname>
+              <given-names>N.T.</given-names>
+            </name>
+            <name>
+              <surname>Weissman</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Bartel</surname>
+              <given-names>D.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mammalian microRNAs predominantly act to decrease target mRNA levels</article-title>
+          <source>Nature</source>
+          <volume>466</volume>
+          <year>2010</year>
+          <fpage>835</fpage>
+          <lpage>840</lpage>
+          <pub-id pub-id-type="pmid">20703300</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0070">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>He</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Hannon</surname>
+              <given-names>G.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>MicroRNAs: small RNAs with a big role in gene regulation</article-title>
+          <source>Nat. Rev. Genet.</source>
+          <volume>5</volume>
+          <year>2004</year>
+          <fpage>522</fpage>
+          <lpage>531</lpage>
+          <pub-id pub-id-type="pmid">15211354</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0075">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hebert</surname>
+              <given-names>S.S.</given-names>
+            </name>
+            <name>
+              <surname>De Strooper</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Alterations of the microRNA network cause neurodegenerative disease</article-title>
+          <source>Trends Neurosci.</source>
+          <volume>32</volume>
+          <year>2009</year>
+          <fpage>199</fpage>
+          <lpage>206</lpage>
+          <pub-id pub-id-type="pmid">19268374</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0080">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Huang</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Babak</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Corson</surname>
+              <given-names>T.W.</given-names>
+            </name>
+            <name>
+              <surname>Chua</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Khan</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gallie</surname>
+              <given-names>B.L.</given-names>
+            </name>
+            <name>
+              <surname>Hughes</surname>
+              <given-names>T.R.</given-names>
+            </name>
+            <name>
+              <surname>Blencowe</surname>
+              <given-names>B.J.</given-names>
+            </name>
+            <name>
+              <surname>Frey</surname>
+              <given-names>B.J.</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>Q.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Using expression profiling data to identify human microRNA targets</article-title>
+          <source>Nat. Meth.</source>
+          <volume>4</volume>
+          <year>2007</year>
+          <fpage>1045</fpage>
+          <lpage>1049</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0085">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hubbard</surname>
+              <given-names>T.J.</given-names>
+            </name>
+            <name>
+              <surname>Aken</surname>
+              <given-names>B.L.</given-names>
+            </name>
+            <name>
+              <surname>Ayling</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ballester</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Beal</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Bragin</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Brent</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Clapham</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Clarke</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Coates</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Fairley</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Fitzgerald</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Fernandez-Banet</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Gordon</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Graf</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Haider</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Hammond</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Holland</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Howe</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Jenkinson</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Kahari</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Keefe</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Keenan</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Kinsella</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Kokocinski</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Kulesha</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Lawson</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Longden</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Megy</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Meidl</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Overduin</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Parker</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pritchard</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Rios</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Schuster</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Slater</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Smedley</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Spooner</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Spudich</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Trevanion</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Vilella</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Vogel</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Wilder</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Zadissa</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Birney</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Cunningham</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Curwen</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Durbin</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Fernandez-Suarez</surname>
+              <given-names>X.M.</given-names>
+            </name>
+            <name>
+              <surname>Herrero</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kasprzyk</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Proctor</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Searle</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Flicek</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Ensembl 2009</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>D690</fpage>
+          <lpage>D697</lpage>
+          <pub-id pub-id-type="pmid">19033362</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0090">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kent</surname>
+              <given-names>W.J.</given-names>
+            </name>
+            <name>
+              <surname>Sugnet</surname>
+              <given-names>C.W.</given-names>
+            </name>
+            <name>
+              <surname>Furey</surname>
+              <given-names>T.S.</given-names>
+            </name>
+            <name>
+              <surname>Roskin</surname>
+              <given-names>K.M.</given-names>
+            </name>
+            <name>
+              <surname>Pringle</surname>
+              <given-names>T.H.</given-names>
+            </name>
+            <name>
+              <surname>Zahler</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Haussler</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>The human genome browser at UCSC</article-title>
+          <source>Genome Res.</source>
+          <volume>12</volume>
+          <year>2002</year>
+          <fpage>996</fpage>
+          <lpage>1006</lpage>
+          <pub-id pub-id-type="pmid">12045153</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0095">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>V.N.</given-names>
+            </name>
+          </person-group>
+          <article-title>MicroRNA biogenesis: coordinated cropping and dicing</article-title>
+          <source>Nat. Rev. Mol. Cell Biol.</source>
+          <volume>6</volume>
+          <year>2005</year>
+          <fpage>376</fpage>
+          <lpage>385</lpage>
+          <pub-id pub-id-type="pmid">15852042</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0100">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>Y.K.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>V.N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Processing of intronic microRNAs</article-title>
+          <source>EMBO J.</source>
+          <volume>26</volume>
+          <year>2007</year>
+          <fpage>775</fpage>
+          <lpage>783</lpage>
+          <pub-id pub-id-type="pmid">17255951</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0105">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kim</surname>
+              <given-names>V.N.</given-names>
+            </name>
+            <name>
+              <surname>Han</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Siomi</surname>
+              <given-names>M.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Biogenesis of small RNAs in animals</article-title>
+          <source>Nat. Rev. Mol. Cell Biol.</source>
+          <volume>10</volume>
+          <year>2009</year>
+          <fpage>126</fpage>
+          <lpage>139</lpage>
+          <pub-id pub-id-type="pmid">19165215</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0110">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krek</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Grun</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Poy</surname>
+              <given-names>M.N.</given-names>
+            </name>
+            <name>
+              <surname>Wolf</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Rosenberg</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Epstein</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>MacMenamin</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>da Piedade</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Gunsalus</surname>
+              <given-names>K.C.</given-names>
+            </name>
+            <name>
+              <surname>Stoffel</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Rajewsky</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Combinatorial microRNA target predictions</article-title>
+          <source>Nat. Genet.</source>
+          <volume>37</volume>
+          <year>2005</year>
+          <fpage>495</fpage>
+          <lpage>500</lpage>
+          <pub-id pub-id-type="pmid">15806104</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0115">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Latronico</surname>
+              <given-names>M.V.</given-names>
+            </name>
+            <name>
+              <surname>Condorelli</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>MicroRNAs and cardiac pathology</article-title>
+          <source>Nat. Rev. Cardiol.</source>
+          <volume>6</volume>
+          <year>2009</year>
+          <fpage>419</fpage>
+          <lpage>429</lpage>
+          <pub-id pub-id-type="pmid">19434076</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0120">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lim</surname>
+              <given-names>L.P.</given-names>
+            </name>
+            <name>
+              <surname>Lau</surname>
+              <given-names>N.C.</given-names>
+            </name>
+            <name>
+              <surname>Garrett-Engele</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Grimson</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Schelter</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Castle</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Bartel</surname>
+              <given-names>D.P.</given-names>
+            </name>
+            <name>
+              <surname>Linsley</surname>
+              <given-names>P.S.</given-names>
+            </name>
+            <name>
+              <surname>Johnson</surname>
+              <given-names>J.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Microarray analysis shows that some microRNAs downregulate large numbers of target mRNAs</article-title>
+          <source>Nature</source>
+          <volume>433</volume>
+          <year>2005</year>
+          <fpage>769</fpage>
+          <lpage>773</lpage>
+          <pub-id pub-id-type="pmid">15685193</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0125">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meola</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Gennarino</surname>
+              <given-names>V.A.</given-names>
+            </name>
+            <name>
+              <surname>Banfi</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>microRNAs and genetic diseases</article-title>
+          <source>Pathogenetics</source>
+          <volume>2</volume>
+          <year>2009</year>
+          <fpage>7</fpage>
+          <pub-id pub-id-type="pmid">19889204</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0130">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Negrini</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Nicoloso</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>Calin</surname>
+              <given-names>G.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>MicroRNAs and cancer—new paradigms in molecular oncology</article-title>
+          <source>Curr. Opin. Cell Biol.</source>
+          <volume>21</volume>
+          <year>2009</year>
+          <fpage>470</fpage>
+          <lpage>479</lpage>
+          <pub-id pub-id-type="pmid">19411171</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0135">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ozsolak</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Poling</surname>
+              <given-names>L.L.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>X.S.</given-names>
+            </name>
+            <name>
+              <surname>Roeder</surname>
+              <given-names>R.G.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Song</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Fisher</surname>
+              <given-names>D.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Chromatin structure analyses identify miRNA promoters</article-title>
+          <source>Genes Dev.</source>
+          <volume>22</volume>
+          <year>2008</year>
+          <fpage>3172</fpage>
+          <lpage>3183</lpage>
+          <pub-id pub-id-type="pmid">19056895</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0140">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Papadopoulos</surname>
+              <given-names>G.L.</given-names>
+            </name>
+            <name>
+              <surname>Reczko</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Simossis</surname>
+              <given-names>V.A.</given-names>
+            </name>
+            <name>
+              <surname>Sethupathy</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Hatzigeorgiou</surname>
+              <given-names>A.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The database of experimentally supported targets: a functional update of TarBase</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>37</volume>
+          <year>2009</year>
+          <fpage>D155</fpage>
+          <lpage>D158</lpage>
+          <pub-id pub-id-type="pmid">18957447</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0145">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reimand</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kull</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Peterson</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Hansen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Vilo</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>g:Profiler—a web-based toolset for functional profiling of gene lists from large-scale experiments</article-title>
+          <source>Nucleic Acids Res.</source>
+          <volume>35</volume>
+          <year>2007</year>
+          <fpage>W193</fpage>
+          <lpage>W200</lpage>
+          <pub-id pub-id-type="pmid">17478515</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0150">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rodriguez</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Griffiths-Jones</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ashurst</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Bradley</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of mammalian microRNA host genes and transcription units</article-title>
+          <source>Genome Res.</source>
+          <volume>14</volume>
+          <year>2004</year>
+          <fpage>1902</fpage>
+          <lpage>1910</lpage>
+          <pub-id pub-id-type="pmid">15364901</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0155">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sardiello</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Palmieri</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>di Ronza</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Medina</surname>
+              <given-names>D.L.</given-names>
+            </name>
+            <name>
+              <surname>Valenza</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Gennarino</surname>
+              <given-names>V.A.</given-names>
+            </name>
+            <name>
+              <surname>Di Malta</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Donaudy</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Embrione</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Polishchuk</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Banfi</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Parenti</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Cattaneo</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Ballabio</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>A gene network regulating lysosomal biogenesis and function</article-title>
+          <source>Science</source>
+          <volume>325</volume>
+          <year>2009</year>
+          <fpage>473</fpage>
+          <lpage>477</lpage>
+          <pub-id pub-id-type="pmid">19556463</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0160">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Selbach</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Schwanhausser</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Thierfelder</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Fang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Khanin</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Rajewsky</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Widespread changes in protein synthesis induced by microRNAs</article-title>
+          <source>Nature</source>
+          <volume>455</volume>
+          <year>2008</year>
+          <fpage>58</fpage>
+          <lpage>63</lpage>
+          <pub-id pub-id-type="pmid">18668040</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0165">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sherman</surname>
+              <given-names>B.T.</given-names>
+            </name>
+            <name>
+              <surname>Huang da</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Tan</surname>
+              <given-names>Q.</given-names>
+            </name>
+            <name>
+              <surname>Guo</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Bour</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Stephens</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Baseler</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Lane</surname>
+              <given-names>H.C.</given-names>
+            </name>
+            <name>
+              <surname>Lempicki</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>DAVID Knowledgebase: a gene-centered database integrating heterogeneous gene annotation resources to facilitate high-throughput gene functional analysis</article-title>
+          <source>BMC Bioinform.</source>
+          <volume>8</volume>
+          <year>2007</year>
+          <fpage>426</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bb0170">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thai</surname>
+              <given-names>T.H.</given-names>
+            </name>
+            <name>
+              <surname>Christiansen</surname>
+              <given-names>P.A.</given-names>
+            </name>
+            <name>
+              <surname>Tsokos</surname>
+              <given-names>G.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Is there a link between dysregulated miRNA expression and disease?</article-title>
+          <source>Discov Med</source>
+          <volume>10</volume>
+          <year>2010</year>
+          <fpage>184</fpage>
+          <lpage>194</lpage>
+          <pub-id pub-id-type="pmid">20875339</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0175">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thomas</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lieberman</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lal</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Desperately seeking microRNA targets</article-title>
+          <source>Nat. Struct. Mol. Biol.</source>
+          <volume>17</volume>
+          <year>2010</year>
+          <fpage>1169</fpage>
+          <lpage>1174</lpage>
+          <pub-id pub-id-type="pmid">20924405</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0180">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Xiao</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Rajewsky</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>MicroRNA control in the immune system: basic principles</article-title>
+          <source>Cell</source>
+          <volume>136</volume>
+          <year>2009</year>
+          <fpage>26</fpage>
+          <lpage>36</lpage>
+          <pub-id pub-id-type="pmid">19135886</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bb0185">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zhang</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>MicroRNomics: a newly emerging approach for disease biology</article-title>
+          <source>Physiol. Genomics</source>
+          <volume>33</volume>
+          <year>2008</year>
+          <fpage>139</fpage>
+          <lpage>147</lpage>
+          <pub-id pub-id-type="pmid">18303086</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>We are grateful to Mario Traditi and Gennaro Oliva for their technical support. This work was supported by the Italian Telethon Foundation.</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="f0005">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Testing the performance of HOCTAR. The diagram displays the ranking, in a percentile format, of 135 previously validated miRNA target genes (blue vertical lines). The distribution of the validated target genes is enriched at the top positions of the HOCTAR prediction ranked lists. In particular, 123 out of the 135 (91%), 112 out of the 135 (83%), and 65 out of the 135 (48%) validated targets fall within the first 50th, 30th and 10th percentile of the HOCTAR ranked lists, respectively.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="f0010">
+      <label>Fig. 2</label>
+      <caption>
+        <p>HOCTARdb relational framework. The Entity-Relationship diagram shows for each entities the corresponding attributes (arrow and circle) and the relationship between the entities (rhombus and square, respectively). Primary keys are indicated in gray, foreign keys in blue, and other keys in white. The ‘mirna’ entities represent the main body of the database.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="f0015">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Main query page. The HOCTARdb homepage (see text for details).</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="f0020">
+      <label>Fig. 4</label>
+      <caption>
+        <p>HOCTARdb intermediate query page. See description in the text.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="f0025">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Gene Ontology analysis of HOCTARdb predictions. The GO chart, obtained through the DAVID server, shows the specific GO categories enriched in HOCTAR ranked prediction list.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="f0030">
+      <label>Fig. 6</label>
+      <caption>
+        <p>HOCTARdb “Target Gene Name” selection. The miRNAs associated to prediction lists in which the selected target gene (<italic>AKT1 in the example</italic>) falls above or below the set threshold are indicated in green and red, respectively.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+  </floats-group>
+</article>

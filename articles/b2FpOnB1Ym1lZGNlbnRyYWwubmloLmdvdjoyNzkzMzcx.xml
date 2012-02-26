@@ -1,0 +1,2239 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title>Neuroimage</journal-title>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2793371</article-id>
+      <article-id pub-id-type="pmid">19778619</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG6560</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2009.09.011</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Estimating the transfer function from neuronal activity to BOLD using simultaneous EEG-fMRI</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Rosa</surname>
+            <given-names>M.J.</given-names>
+          </name>
+          <email>mjoao@fil.ion.ucl.ac.uk</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Kilner</surname>
+            <given-names>J.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Blankenburg</surname>
+            <given-names>F.</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Josephs</surname>
+            <given-names>O.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Penny</surname>
+            <given-names>W.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>a</sup>Wellcome Trust Centre for Neuroimaging, UCL Institute of Neurology, University College London, 12 Queen Square, WC1N 3BG, UK</addr-line>
+      </aff>
+      <aff id="aff2">
+        <addr-line><sup>b</sup>Department of Neurology and Bernstein Center for Computational Neuroscience, Charite, Berlin, Germany</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. <email>mjoao@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>1</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>49</volume>
+      <issue>2</issue>
+      <fpage>1496</fpage>
+      <lpage>1509</lpage>
+      <history>
+        <date date-type="received">
+          <day>25</day>
+          <month>2</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>3</day>
+          <month>9</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>11</day>
+          <month>9</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Inc.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>Previous studies using combined electrical and hemodynamic measurements of brain activity, such as EEG and (BOLD) fMRI, have yielded discrepant results regarding the relationship between neuronal activity and the associated BOLD response. In particular, some studies suggest that this link, or transfer function, depends on the frequency content of neuronal activity, while others suggest that total neuronal power accounts for the changes in BOLD. Here we explored this dependency by comparing different frequency-dependent and -independent transfer functions, using simultaneous EEG-fMRI. Our results suggest that changes in BOLD are indeed associated with changes in the spectral profile of neuronal activity and that these changes do not arise from one specific spectral band. Instead they result from the dynamics of the various frequency components together, in particular, from the relative power between high and low frequencies. Understanding the nature of the link between neuronal activity and BOLD plays a crucial role in improving the interpretability of BOLD images as well as on the design of more robust and realistic models for the integration of EEG and fMRI.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Functional magnetic resonance imaging (fMRI), with blood oxygen level dependent (BOLD) contrast, is an established method for making inferences about regionally specific activations in the brain (<xref rid="bib9" ref-type="bibr">Frackowiak et al., 2003</xref>). However, the relationship between BOLD and neuronal activity is still under debate, in particular, it is still unclear how the hemodynamic response is influenced by the temporal dynamics of the underlying neuronal activity.</p>
+      <p>One of the approaches used to study this relationship is to combine information from hemodynamic measures, such as fMRI, and electrophysiological measures, such as electroencephalography (EEG) and magnetoencephalography (MEG). EEG and MEG are well established non-invasive techniques and are well suited to studying the temporal dynamics of neuronal activity since they provide direct measurement of this activity with high temporal resolution (<xref rid="bib19" ref-type="bibr">Hämäläinen et al., 1993</xref>).</p>
+      <p>In humans, the study of correlations between EEG and fMRI signals has been pioneered by epilepsy researchers, such as <xref rid="bib31 bib47" ref-type="bibr">Lemieux et al. (2001) and Salek-Haddadi et al. (2002)</xref>. However, most of our present knowledge about neurovascular coupling has come from animal research and the combination of metabolic/vascular measurements, such as cerebral blood flow (CBF), with local field potentials (LFPs) and single/multi-unit activity (S/MUA) recordings. LFPs correspond primarily to weighted averages of synchronized dendro-somatic components of synaptic signals in a neuronal population, while S/MUA measure the action potentials of a single neuronal cell or population of cells, respectively (<xref rid="bib33" ref-type="bibr">Logothetis, 2008</xref>). These studies confirm that BOLD is indeed related to neuronal activity (<xref rid="bib30" ref-type="bibr">Lauritzen, 2001</xref>), and although both LFPs and MUA correlate with the BOLD response, this response can be predicted more accurately from the LFPs (<xref rid="bib32" ref-type="bibr">Logothetis et al., 2001</xref>).</p>
+      <p>More recently, <xref rid="bib53 bib56" ref-type="bibr">Thomsen et al. (2004) and Viswanathan and Freeman (2007)</xref> have used co-localised measures of LFPs, MUA, and CBF in animals to show that when synaptic and spiking activity is uncoupled, changes in CBF do not reflect the underlying spiking activity and relate closer to the measured LFPs. These studies have therefore confirmed that BOLD primarily reflects changes in the synaptic input of neuronal populations as opposed to their spiking output. This reflects an emerging consensus in which BOLD is thought to result from pre-synaptic activity and the release of neurotransmitters, in particular glutamate (<xref rid="bib10" ref-type="bibr">Friston, 2008</xref>). This release triggers a response in surrounding glial cells, especially astrocytes, leading to the generation of vasodilatory signals and consequently BOLD (<xref rid="bib39" ref-type="bibr">Nair, 2005</xref>). As well as indirectly causing BOLD, glutamate will increase post-synaptic activity and therefore the LFP. Increases in LFP frequency would therefore be accompanied by faster glutamate recycling and consequently a larger BOLD signal.</p>
+      <p>While the above physiological perspective would suggest that BOLD should be sensitive to the frequency content of neuronal activity, results from the neuroimaging literature are not completely clear cut. For example, some studies (see next paragraph) suggest that BOLD is mainly dependent on the total energy, or total spectral power, of neuronal activity. Others (see next but one paragraph), suggest that BOLD is sensitive to a certain range of frequencies or results from more complicated dynamics.</p>
+      <p>Among those proposing a relationship between BOLD and total neuronal power, <xref rid="bib57" ref-type="bibr">Wan et al. (2006)</xref> have found significant correlation between the mean power (mean square current source density estimates during visual stimulation) of source-reconstructed EEG data in human primary visual cortex and a neuronal efficacy parameter, derived from fitting a balloon model to fMRI data (<xref rid="bib13" ref-type="bibr">Friston et al., 2000</xref>). Similarly, <xref rid="bib40" ref-type="bibr">Nangini et al. (2008)</xref> propose that the energy density, as measured by the square of the equivalent current dipole (ECD) waveforms from source-reconstructed MEG data, is a better representation for the neuronal input functions than the stimulus functions conventionally used in convolution models for the analysis of fMRI data (<xref rid="bib12" ref-type="bibr">Friston et al., 1995b</xref>). In addition to these studies, theoretical models for integrating EEG/MEG and fMRI (<xref rid="bib42 bib54 bib3" ref-type="bibr">Nunez and Silberstein, 2000; Trujillo-Barreto et al., 2001; Babajani and Soltanian-Zadeh, 2006</xref>) assume a relationship between indices of neuronal activity and BOLD that is independent of the frequency of this activity. For instance, <xref rid="bib3" ref-type="bibr">Babajani and Soltanian-Zadeh (2006)</xref> use a neural mass model of neuronal activity and propose that the squared post-synaptic membrane potential from both excitatory and inhibitory cells from a given cortical area drives increases in cerebral blood flow, and consequently BOLD.</p>
+      <p>Among those proposing a relation between BOLD and the frequency structure of electrophysiological signals, <xref rid="bib16 bib36" ref-type="bibr">Goldman et al. (2002), Moosmann et al. (2003)</xref>, and <xref rid="bib27" ref-type="bibr">Laufs et al. (2003)</xref> have shown that reductions in ongoing scalp EEG alpha power in humans correlate with increases in BOLD activity. <xref rid="bib25" ref-type="bibr">Lachaux et al. (2007)</xref> have found, using intra-cranial recordings in epileptic patients, a close spatial correspondence between regions of fMRI activation and sites showing EEG energy variation in the gamma band. <xref rid="bib37" ref-type="bibr">Mukamel et al. (2005)</xref> have found positive correlations between LFPs and BOLD at high gamma-range frequencies ([40, 130] Hz) and negative correlations at low/alpha-range frequencies ([5, 15] Hz) in auditory cortex of neurosurgical patients. In addition, <xref rid="bib41" ref-type="bibr">Niessing et al. (2005)</xref> have shown that fluctuations in hemodynamic response tightly correlate with the power of LFP oscillations, recorded in cat primary visual cortex, in the same high-frequency (gamma) range.</p>
+      <p><xref rid="bib21" ref-type="bibr">Kilner et al. (2005)</xref> note that from the perspective of fMRI, neuronal activation is proportional to relative metabolic demands or rate of energy dissipation (1/s units). In terms of EEG, the effect of activation is to shift the spectral profile toward higher frequencies (1/s units) with a reduction in amplitude. This led <xref rid="bib21" ref-type="bibr">Kilner et al. (2005)</xref> to propose a ‘Heuristic’ model that links these two observations via a dimensionality analysis. This Heuristic specifies that BOLD activations are accompanied by an increase in the ‘average’ frequency of EEG neuronal activity, where average is defined in the root mean square (RMS) sense. Thus increases in higher frequencies, such as the gamma range, relative to lower frequencies, such as the alpha range, would lead to increases in BOLD. Conversely, increases in alpha relative to gamma would lead to decreases in BOLD.</p>
+      <p>Moreover, using data from <xref rid="bib41" ref-type="bibr">Niessing et al. (2005)</xref> the Heuristic model has been shown to provide a better fit than a model based on gamma correlation alone (<xref rid="bib22" ref-type="bibr">Kilner et al., 2007</xref>). In similar spirit to the idea underlying the Heuristic, <xref rid="bib28" ref-type="bibr">Laufs et al. (2006a)</xref> have found that BOLD deactivations in humans are associated with increases in the ratio between theta and alpha bands (measured with scalp EEG), and that these deactivations cease when there is a decrease in this ratio and an increase in the beta/alpha ratio.</p>
+      <p>More recently, <xref rid="bib15" ref-type="bibr">Goense and Logothetis (2008)</xref> used simultaneous intra-cortical LFP-BOLD recordings and a multiple regression model in which activity in many different frequency bands, covering the entire LFP range of frequencies, were used to predict BOLD activity in alert behaving monkeys. The results showed that all bands explained a significant part of the BOLD response.</p>
+      <p>The link between neuronal activity and BOLD has been investigated at both a microscopic scale, using invasive, co-localised recordings in animals (e. g. <xref rid="bib32 bib41 bib15" ref-type="bibr">Logothetis et al., 2001; Niessing et al., 2005; Goense and Logothetis, 2008</xref>) and at a macroscopic scale using simultaneous EEG-fMRI in humans (<xref rid="bib31 bib16 bib27 bib36" ref-type="bibr">Lemieux et al., 2001; Goldman et al., 2002; Laufs et al., 2003; Moosmann et al., 2003</xref>). A problem with the macroscopic approach is that the electrophysiological measure, EEG, is not co-localised with BOLD. This issue can be addressed by the use of principal component analysis (PCA) (<xref rid="bib29" ref-type="bibr">Laufs et al., 2006b</xref>), independent component analysis (<xref rid="bib6 bib7" ref-type="bibr">Eichele et al., 2005, 2009</xref>), or source reconstruction (<xref rid="bib57" ref-type="bibr">Wan et al., 2006</xref>).</p>
+      <p>In this paper, we use simultaneous EEG-fMRI in humans and employ a visual flicker stimulation paradigm to elicit evoked activity in sensory cortex. As scalp EEG measures the activity of multiple distributed neuronal processes, we used a PCA approach to isolate activity that was primarily related to the stimulus paradigm. The resulting time series was then used as a surrogate for neuronal activity.</p>
+      <p>We then regressed the fMRI data onto convolved features of the power spectrum of the first principal component of the EEG data. We use a standard statistical parametric mapping (SPM) approach employing <italic>F</italic>-tests to compare models embodying different transfer functions. These are (i) a total power model, (ii) a frequency response model, comprising multiple regression onto power in different frequency bands, and (iii) a Heuristic model in which BOLD is predicted by the RMS EEG frequency.</p>
+      <p>The paper is structured as follows. In the <xref rid="sec1" ref-type="sec">Materials and methods</xref> section, we describe the experimental paradigm and the simultaneous acquisition of EEG and fMRI data. We also describe the pre-processing steps used for artefact removal and define the transfer functions investigated and the methods used to compare models. The <xref rid="sec3" ref-type="sec">Results</xref> section presents the results from the SPM analysis, and in the <xref rid="sec4" ref-type="sec">Discussion</xref> section these results are discussed in light of previous results from the literature.</p>
+    </sec>
+    <sec sec-type="materials|methods" id="sec1">
+      <title>Materials and methods</title>
+      <sec>
+        <title>Subjects and task</title>
+        <p>Three healthy volunteers (three male, mean age = 35 ± 4 years) participated in the study after giving informed consent. Subjects were exposed to visual flicker stimuli of a number of different frequencies. A reversing black and white checkerboard (11 × 11 squares, size 13 cm × 13 cm) was delivered via a computer monitor (60 Hz refresh rate) and projected on a screen positioned 47 ± 1 cm from a 45° mirror located 11 ± 3 cm from the subject (visual angle = 6.5 ± 0.5°). The stimulation (reversing) frequencies used were 2.00, 3.75, 5.00, 6.00, 7.50, 10.00, 15.00, and 30.00 Hz. Stimuli were delivered in epochs of 5 scans (15.3 s), followed by periods of 15.3 s of rest (blank screen), and the order of stimulus blocks (e.g. 10 Hz, 6 Hz, 5 Hz, etc.) was randomised. Subjects were instructed to view a fixation cross which was visible during both rest and stimulus periods, and no overt response was required in either condition. Three consecutive sessions of the same experimental task were recorded for each subject. Although luminance levels were not held constant for the different flicker frequencies, the variations in luminance were measured using a lux meter placed in front of the visual display unit. This allowed luminance variations to be regressed out during subsequent statistical analyses, when required.</p>
+        <p>As the aim of our experiment was to investigate the neurovascular coupling driven by a large electrophysiological response in sensory cortex, the inter-subject variability was expected (and found) to be low. It is therefore appropriate (<xref rid="bib44" ref-type="bibr">Penny and Holmes, 2006</xref>) to acquire data from a small number of subjects (three), to report results in the form of case studies, and to summarize these results using fixed-effects SPMs (see below). This follows the precedent of <xref rid="bib57" ref-type="bibr">Wan et al. (2006)</xref> who also used a case study approach with a small number of subjects (five).</p>
+      </sec>
+      <sec>
+        <title>EEG acquisition</title>
+        <p>EEG was acquired simultaneously with fMRI using a synchronized imaging protocol (<xref rid="bib34" ref-type="bibr">Mandelkow et al., 2006</xref>) and an MR-compatible BrainAmp amplifier and BrainCap EEG cap with ring Ag/AgCl electrodes (Brainproducts GmbH, Munich, Germany). Raw EEG was sampled at 5 kHz and a low-pass filter (cutoff frequency: 1 kHz) was used. This system provided 29 EEG channels, 2 EOG channels, and 1 ECG channel. The electrodes were distributed according to the 10/20 system, and the reference electrode was located between Fz and Cz. EEG was also recorded outside of the MRI environment (in a dark and acoustically isolated room), so that the effect of MRI-induced artefacts and their removal could be assessed. We additionally measured the pulse using a pulse oxymeter attached to the subject's finger and the locations of the EEG electrodes were digitised with a Polhemus digitiser.</p>
+      </sec>
+      <sec>
+        <title>fMRI acquisition</title>
+        <p>Images were acquired from a 1.5-T whole-body scanner (Magnetom Sonata, Siemens Medical, Erlangen, Germany) operated with its standard body transmit and CP head receive coil. The manufacturer's standard automatic 3D-shim procedure was performed at the beginning of each experiment. The scanner produced T2⁎-weighted images with a single-shot gradient-echo EPI sequence. Whole-brain images consisting of 34 contiguous transverse slices, on a 64 × 64 grid, were acquired every 3.06 s resulting in a total of 320 functional scans for each of the three sessions of each subject (slice thickness = 2 mm, gap between slices = 1 mm, repetition time TR = 90 ms, flip angle = 90°, echo time TE = 50 ms, field of view FOV = 192 × 192 mm<sup>2</sup>, and therefore 3 × 3 × 3 mm voxel resolution). Whole-brain structural scans were also acquired using a T1-weighted 3D-Modified Driven Equilibrium Fourier Transform (MDEFT) sequence (<xref rid="bib5" ref-type="bibr">Deichmann et al., 2004</xref>) in 176 sagittal partitions with an image matrix of 256 × 256 (TR = 12 ms, TE = 4 ms, flip angle = 23°, and voxel size 1 × 1 × 1 mm).</p>
+      </sec>
+      <sec>
+        <title>EEG data analysis</title>
+        <p>Acquisition of EEG in the MRI environment induces gradient and cardiac-related artefacts, such as the ballistocardiogram artefact (<xref rid="bib17" ref-type="bibr">Goldman et al., 2000</xref>). The data acquired inside the scanner were corrected off-line using facilities in the Brain Vision Analyzer software package (Brainproducts GmbH, Munich, Germany) (<xref rid="bib1" ref-type="bibr">Allen et al., 2000</xref>). First, the gradient artefact was removed via mean subtraction with template drift compensation. Cardiac-related artefacts were then removed by subtracting the first three principal components that were time locked to pulse oxymeter readings. EEG data acquired outside the scanner were not processed in this way. Both the data acquired inside and outside the scanner were then high-pass filtered (0.5 Hz) to reduce slow drifts in the signal.</p>
+        <p>After MR-related artefact removal and filtering, the inside and outside EEG data were visually inspected for other artefacts, such as eye-blinks, as well as movement-related artefacts. Due to their proximity to the subjects' eyes, the Fp1 and Fp2 electrodes contained too many eye-blink artefacts to be included in the analysis.</p>
+        <p>After visual inspection, the EEG data from the remaining channels were then processed to form a single representative ‘scalp EEG’ time series, by projecting the data onto a subspace defined by its first principal eigenvector <italic>u</italic><sub>1</sub>.</p>
+        <p>In previous work, <xref rid="bib36 bib27" ref-type="bibr">Moosmann et al. (2003) and Laufs et al. (2003)</xref> have generated a single representative time series by computing the mean over a subset of activated electrodes (e.g. 01, 02, P1, P2). We have used a spatial eigen decomposition method because this data-driven approach produces the single time series which, out of all possible linear projections, captures most variance in the original data. However, as brain activity in our paradigm is primarily driven by activity in visual cortex this spatial eigenmode is primarily loaded onto posterior electrodes, as is shown below.</p>
+        <p>The principal eigenvectors can be computed from a singular value decomposition (SVD) of the data. If <italic>Y</italic> is an <italic>n</italic><sub><italic>e</italic></sub> × <italic>n</italic><sub><italic>t</italic></sub> matrix of EEG data, with <italic>n</italic><sub><italic>e</italic></sub> electrodes and <italic>n</italic><sub><italic>t</italic></sub> time points, then an SVD gives <italic>Y</italic> = <italic>USV</italic><sup><italic>T</italic></sup>, and the projection is given by <mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>y</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo>=</mml:mo><mml:msubsup><mml:mi>u</mml:mi><mml:mn>1</mml:mn><mml:mi>T</mml:mi></mml:msubsup><mml:mi>Y</mml:mi></mml:mrow></mml:math>, where <italic>u</italic><sub>1</sub> is the first column of <italic>U</italic>.</p>
+        <p>To investigate the spectral properties of the scalp signal, <mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>y</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:math>, we decomposed it into the time-frequency domain. This decomposition was obtained by convolving the signal with Morlet wavelets, <italic>G</italic>, where for each time point <italic>t</italic> and frequency <italic>f</italic>:<disp-formula id="fd1"><label>(1)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mi>G</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>f</mml:mi><mml:mo>,</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mi>A</mml:mi><mml:mi mathvariant="normal">exp</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mo>−</mml:mo><mml:msup><mml:mi>t</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:msubsup><mml:mi>σ</mml:mi><mml:mi>t</mml:mi><mml:mn>2</mml:mn></mml:msubsup><mml:mo stretchy="true">)</mml:mo><mml:mi mathvariant="normal">exp</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mn>2</mml:mn><mml:mi>i</mml:mi><mml:mi>π</mml:mi><mml:mi>f</mml:mi><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>,</mml:mo></mml:mrow></mml:math></disp-formula>where <mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:mi>A</mml:mi><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>σ</mml:mi><mml:mi>t</mml:mi></mml:msub><mml:msqrt><mml:mi>π</mml:mi></mml:msqrt><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo>/</mml:mo><mml:mn>2</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:math>, <italic>σ</italic><sub><italic>t</italic></sub> = 1/(2π<italic>σ</italic><sub><italic>f</italic></sub>), <italic>σ</italic><sub><italic>f</italic></sub> = <italic>f</italic>/<italic>R</italic>, and <italic>R</italic> = 7 is the ‘wavelet factor’. The time-varying power of the signal around frequency, <italic>f</italic>, is then given by the squared modulus of the convolution (<xref rid="bib52" ref-type="bibr">Tallon-Baudry and Bertrand, 1999</xref>):<disp-formula id="fd2"><label>(2)</label><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:mi>P</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>f</mml:mi><mml:mo>,</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:msup><mml:mrow><mml:mrow><mml:mo stretchy="true">|</mml:mo><mml:mrow><mml:mi>G</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>f</mml:mi><mml:mo>,</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>*</mml:mo><mml:mover accent="true"><mml:mi>y</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo stretchy="true">|</mml:mo></mml:mrow></mml:mrow><mml:mn>2</mml:mn></mml:msup><mml:mo>,</mml:mo></mml:mrow></mml:math></disp-formula>and the power spectrum for all frequencies and time points can be represented by the matrix <italic>P</italic> with dimensions <italic>n</italic><sub><italic>f</italic></sub> × <italic>n</italic><sub><italic>t</italic></sub>, where <italic>n</italic><sub><italic>f</italic></sub> is the number of frequencies.</p>
+      </sec>
+      <sec id="sec2">
+        <title>Transfer functions</title>
+        <p>From the spectrum of the EEG data, <italic>P</italic>, we constructed regressors defining the different transfer functions we were interested in comparing. These represent the functional link between neuronal activity and BOLD.</p>
+        <p>The first model, motivated by the result of <xref rid="bib57" ref-type="bibr">Wan et al. (2006)</xref>, assumes that neurovascular coupling is a power transducer. To this end we derived a feature corresponding to the ‘Total Power’ (TP) in the scalp EEG time series. This was obtained by summing the EEG power over all frequencies analyzed ([1, 40] Hz):<disp-formula id="fd3"><label>(3)</label><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>q</mml:mi><mml:mrow><mml:mi>T</mml:mi><mml:mi>P</mml:mi></mml:mrow></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mi>n</mml:mi><mml:mi>f</mml:mi></mml:msub></mml:mrow></mml:munderover><mml:mrow><mml:mi>P</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>f</mml:mi><mml:mo>,</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>.</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula>The second model, following <xref rid="bib15" ref-type="bibr">Goense and Logothetis (2008)</xref>, assumes that BOLD is best explained by a linear combination of activity in different frequency bands. We refer to this as the ‘Frequency Response’ (FR) model and consider three variants, each with a different number of frequency bands. These comprise (i) three bands of low frequencies [1, 7] Hz, alpha frequencies [8, 15] Hz, and higher frequencies [5, 40] Hz; (ii) five bands of delta [1, 4] Hz, theta [4, 8] Hz, alpha [8, 13] Hz, beta [13, 30] Hz, and lower gamma [30, 40] Hz activity; and (iii) eight bands of 5 Hz each, from 1 to 40 Hz. The time series for each band were obtained by summing the power in the corresponding frequency interval, <italic>b </italic>= [<italic>f</italic><sub>min</sub>, <italic>f</italic><sub>max</sub>]:<disp-formula id="fd4"><label>(4)</label><mml:math id="M7" altimg="si7.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>q</mml:mi><mml:mrow><mml:mtext>FR</mml:mtext></mml:mrow></mml:msub><mml:msub><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mi>b</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo>=</mml:mo><mml:msub><mml:mi>f</mml:mi><mml:mrow><mml:mtext>min</mml:mtext></mml:mrow></mml:msub></mml:mrow><mml:mrow><mml:msub><mml:mi>f</mml:mi><mml:mrow><mml:mtext>max</mml:mtext></mml:mrow></mml:msub></mml:mrow></mml:munderover><mml:mrow><mml:mi>P</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>f</mml:mi><mml:mo>,</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>.</mml:mo></mml:mrow></mml:mrow></mml:math></disp-formula>The resulting time series for each band, <italic>b</italic>, correspond to different columns of the same design matrix (see below).</p>
+        <p>The third model, which we refer to as the ‘Heuristic’ model based on <xref rid="bib21" ref-type="bibr">Kilner et al. (2005)</xref>, assumes that BOLD is best explained by a linear convolution of the ‘root mean squared frequency’ (RMSF) function. This is given by<disp-formula id="fd5"><label>(5)</label><mml:math id="M8" altimg="si8.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>q</mml:mi><mml:mrow><mml:mtext>RMSF</mml:mtext></mml:mrow></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:msqrt><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mi>n</mml:mi><mml:mi>f</mml:mi></mml:msub></mml:mrow></mml:munderover><mml:mrow><mml:msup><mml:mi>f</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mover accent="true"><mml:mi>P</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="true">(</mml:mo><mml:mi>f</mml:mi><mml:mo>,</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msqrt><mml:mo>,</mml:mo></mml:mrow></mml:math></disp-formula>where <mml:math id="M9" altimg="si9.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>P</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math> is the corresponding normalised power spectrum of the representative scalp time series. This function describes how changes in the relative power of the different frequencies in the EEG spectrum could be associated with changes in BOLD.</p>
+        <p>We also investigated two variants of the Heuristic. The first, uses the un-normalised power spectrum <italic>P</italic>, instead of <mml:math id="M10" altimg="si10.gif" overflow="scroll"><mml:mover accent="true"><mml:mi>P</mml:mi><mml:mo>˜</mml:mo></mml:mover></mml:math>:<disp-formula id="fd6"><label>(6)</label><mml:math id="M11" altimg="si11.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>q</mml:mi><mml:mrow><mml:mtext>uRMSF</mml:mtext></mml:mrow></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:msqrt><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mi>n</mml:mi><mml:mi>f</mml:mi></mml:msub></mml:mrow></mml:munderover><mml:mrow><mml:msup><mml:mi>f</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mi>P</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>f</mml:mi><mml:mo>,</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:msqrt><mml:mo>.</mml:mo></mml:mrow></mml:math></disp-formula> We refer to this as the ‘un-normalised Heuristic’ (u-Heuristic). Second, to test for the importance of the non-linearity introduced by the square root in the RMSF function, we defined the function,<disp-formula id="fd7"><label>(7)</label><mml:math id="M12" altimg="si12.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>q</mml:mi><mml:mrow><mml:mtext>MSF</mml:mtext></mml:mrow></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mi>n</mml:mi><mml:mi>f</mml:mi></mml:msub></mml:mrow></mml:munderover><mml:mrow><mml:msup><mml:mi>f</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mover accent="true"><mml:mi>P</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="true">(</mml:mo><mml:mi>f</mml:mi><mml:mo>,</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>,</mml:mo></mml:mrow></mml:math></disp-formula>which is a linear version of Eq. (<xref rid="fd5" ref-type="disp-formula">5</xref>). We refer to this as the ‘linear Heuristic’ (l-Heuristic) model.</p>
+        <p>To further test the importance of the non-linearity, we defined another function based on a linear convolution of the ‘mean frequency’ (MF) of the EEG signal:<disp-formula id="fd8"><label>(8)</label><mml:math id="M13" altimg="si13.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>q</mml:mi><mml:mrow><mml:mtext>MF</mml:mtext></mml:mrow></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>f</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mi>n</mml:mi><mml:mi>f</mml:mi></mml:msub></mml:mrow></mml:munderover><mml:mrow><mml:mi>f</mml:mi><mml:mover accent="true"><mml:mi>P</mml:mi><mml:mo>˜</mml:mo></mml:mover><mml:mo stretchy="true">(</mml:mo><mml:mi>f</mml:mi><mml:mo>,</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>.</mml:mo></mml:mrow></mml:math></disp-formula></p>
+        <p>Finally, we constructed one last frequency-independent transfer function purely based on variations of amplitude in the EEG signal, as captured by the global field power (GFP). The GFP corresponds to the root mean square deviations between all electrodes in a given potential field (<xref rid="bib49" ref-type="bibr">Skrandies, 1995</xref>):<disp-formula id="fd9"><label>(9)</label><mml:math id="M14" altimg="si14.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>q</mml:mi><mml:mrow><mml:mtext>GFP</mml:mtext></mml:mrow></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:msqrt><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mi>n</mml:mi><mml:mi>e</mml:mi></mml:msub></mml:mrow></mml:munderover><mml:mrow><mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:msub><mml:mi>U</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>−</mml:mo><mml:mover accent="true"><mml:mi>U</mml:mi><mml:mo>―</mml:mo></mml:mover><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mrow></mml:msqrt><mml:mo>,</mml:mo></mml:mrow></mml:math></disp-formula>where <mml:math id="M15" altimg="si15.gif" overflow="scroll"><mml:mrow><mml:mover accent="true"><mml:mi>U</mml:mi><mml:mo>―</mml:mo></mml:mover><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msub><mml:mi>n</mml:mi><mml:mi>e</mml:mi></mml:msub></mml:mrow></mml:mfrac><mml:msubsup><mml:mo>∑</mml:mo><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mrow><mml:msub><mml:mi>n</mml:mi><mml:mi>e</mml:mi></mml:msub></mml:mrow></mml:msubsup><mml:mrow><mml:msub><mml:mi>U</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>t</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math> is the mean of the potential across electrodes at a given time point. This is a reference-free measure and allowed us to compare the previously described transfer functions, which are all based on the power spectrum of the EEG data, with a measure based simply on the amplitude of the EEG signal.</p>
+        <p>For each of the above models, the time series were convolved with an informed basis set to accommodate variability in the hemodynamic response. This basis set includes the canonical hemodynamic response function (HRF), as well as its first temporal and dispersion derivatives (<xref rid="bib11" ref-type="bibr">Friston et al., 1995a</xref>). The two derivative regressors allow for variations, across subjects and across the brain, in the peak response time and duration of the hemodynamic response. The temporal derivative, for example, allows for peak responses that are approximately one second earlier or later than is usual.</p>
+        <p>The convolved time series were then downsampled to match the fMRI sampling rate and served as regressors of interest in the subsequent general linear model (GLM) (<xref rid="bib12" ref-type="bibr">Friston et al., 1995b</xref>).</p>
+        <p>As we are using an informed basis set with 3 basis functions, the Total Power, Heuristic, u-Heuristic, l-Heuristic, MF, and GFP models are implemented using 3 design matrix columns. There are therefore 3 corresponding regression coefficients of interest to estimate for each of these models. The Frequency Response model is implemented with 9, 15, or 24 columns for the 3-, 5-, or 8-band model, respectively. The coefficients of interest as well as the total number of parameters estimated for each function are summarised in <xref rid="tbl1" ref-type="table">Table 1</xref>.</p>
+      </sec>
+      <sec>
+        <title>fMRI data analysis</title>
+        <p>The fMRI data were pre-processed with SPM8 software (<ext-link xlink:href="http://www.fil.ion.ucl.ac.uk/" ext-link-type="uri">http://www.fil.ion.ucl.ac.uk/</ext-link>spm/) implemented in Matlab (The Mathworks, Inc.). The first five scans of each session were discarded, and the pre-processing steps included (a) realigning the images to the first scan and coregistering the structural scan of each subject with the mean functional image from all sessions; (b) correcting for differences in acquisition time between slices and normalising all the functional and structural scans to a standard EPI template based on the Montreal Neurological Institute (MNI) reference brain in Talairach space (<xref rid="bib51" ref-type="bibr">Talairach and Tournoux, 1988</xref>); and (c) smoothing the functional images (Gaussian kernel, 8 mm half width). The movement parameters obtained from the realignment step were included in the subsequent GLM analyses as confounding covariates (<xref rid="tbl1" ref-type="table">Table 1</xref>). The data were also high-pass filtered, with a cutoff period of 128 s.</p>
+        <p>We report analyses based on the first 100 scans of each session due to suspected movement-related (i.e. high amplitude and high-frequency) artefacts present in the EEG signal, after approximately 5 min of recording, in more than one session and subject. However, we later visually re-inspected the EEG signal and decided to include some of the previously discarded scans, and re-analysed the data using 200 scans per session. This new analysis yielded very similar results and strengthened the findings obtained with less data (see below).</p>
+        <p>For each subject, we first looked at the effect of the experimental task. We used the onsets of the stimuli as regressors, and inferences based on the statistical parametric maps (SPMs) from a fixed-effects group analysis were considered significant at <italic>p</italic> &lt; 0.05, corrected for multiple comparisons using random field theory (<xref rid="bib12" ref-type="bibr">Friston et al., 1995b</xref>). Inference was based on <italic>F</italic>-tests, which test for the additional variance explained by a set of regressors of interest. We also used these maps to generate a mask image, which we refer to as the ‘BOLD activation mask’. This mask allows us to look at correlations between model predictors and BOLD, limited to the voxels activated by the checkerboard stimuli.</p>
+      </sec>
+      <sec>
+        <title>Model comparisons</title>
+        <p>In this section, we describe the comparisons between transfer functions that were performed in order to investigate the link between neuronal activity and BOLD.</p>
+        <p>We began by looking at correlations between individual functions and the BOLD signal, by using these functions in <italic>separate design matrices</italic>. This was followed by a more formal comparison, which included regressors from multiple models in the <italic>same design matrix</italic>.</p>
+        <p>Inference in both cases was based on <italic>F</italic>-tests. In the first case we test for the effect of each model alone, i.e. without taking into account the rest of the models. This is to reproduce previously published results, that each feature of neuronal activity is predictive of BOLD. In the second case, a significant <italic>F</italic>-statistic for a particular transfer function suggests that model explains BOLD variability that cannot be explained by any of the other functions in that design matrix (<xref rid="bib12" ref-type="bibr">Friston et al., 1995b</xref>). This allows us to infer that one model is better than another.</p>
+        <p>These tests were performed using contrast vectors (<xref rid="bib14" ref-type="bibr">Friston et al., 2007</xref>) that select the regressors of interest for each model, including the temporal and dispersion derivative regressors (<xref rid="tbl1" ref-type="table">Table 1</xref>). The criteria used to evaluate the models included the <italic>F</italic>-scores, the number of voxels above the <italic>p</italic> &lt; 0.05 (FWE corrected) and <italic>p</italic> &lt; 0.001 (uncorrected) thresholds, as well as the location of these voxels (inside or outside the ‘BOLD activation mask’) for each function (<xref rid="tbl3" ref-type="table">Table 3</xref>).</p>
+        <p>The transfer functions were compared as follows (a summary of these comparisons can be found in <xref rid="tbl1" ref-type="table">Table 1</xref>):<list list-type="simple"><list-item><label>i.</label><p>In order to ascertain whether our main transfer functions showed significant correlations with BOLD, as suggested by the results from the literature on which these functions were based (see <xref rid="sec2" ref-type="sec">Transfer functions</xref> section), we correlated the Total Power, Heuristic, and Frequency Response (3 bands) models individually with BOLD, as described above.</p></list-item><list-item><label>ii.</label><p>Subsequently, we compared the frequency-dependent functions (Heuristic and Frequency Response) with the main frequency-independent function, Total Power. We implemented two pairwise comparisons (a) Total Power versus Heuristic and (b) Total Power versus Frequency Response (3 bands), which allowed us to probe whether the link between BOLD and neuronal activity is frequency dependent.</p></list-item><list-item><label>iii.</label><p>We then implemented a three-way comparison (Total Power, Frequency Response with 3, 5 or 8 bands and Heuristic) to finally determine which transfer function provides a better fit to the BOLD data, when all models are taken into account.</p></list-item><list-item><label>iv.</label><p>We also performed a similar comparison but we have included the GFP transfer function together with the previous models. This allowed us to assess whether a model based on the amplitude of the EEG signal, rather than its spectral content, was a better predictor of BOLD.</p></list-item><list-item><label>v.</label><p>To determine whether the Frequency Response model performs better with less frequency bands, in particular with just a single band, we have performed two pairwise comparisons between (a) the Heuristic and the power in the Alpha frequencies (8 to 15 Hz) and between (b) the Heuristic and the power in the high (Beta/Gamma) frequency band (15 to 40 Hz).</p></list-item><list-item><label>vi.</label><p>Finally, to investigate different properties of the Heuristic model, as described above, we implemented several pairwise comparisons. These included the Heuristic versus (a) the u-Heuristic, (b) the l-Heuristic, (c) the MF function, and (d) the Frequency Response model with 5 and 8 bands constructed using the normalised power spectrum.</p></list-item></list></p>
+        <p>For each of the above comparisons, we used a fixed-effects group analysis using 3-sessions of data from three subjects (9 sessions in total), giving rise to a total of 900 scans. Subsequent analyses based on 1800 scans (200 scans per session, as mentioned above) produced very similar results. These fixed-effects SPMs summarise the results over the three subjects (<xref rid="bib44" ref-type="bibr">Penny and Holmes, 2006</xref>). We also computed SPMs for each subject in isolation, in a case study approach (see below).</p>
+        <p>The total number of regressors for each of the design matrices used is summarised in <xref rid="tbl1" ref-type="table">Table 1</xref>. For example, for the main three-way comparison (iii.) the design matrix employed 198 regressors (198 = 3 regressors of interest for Total Power, 3 for the Heuristic, 9 for the three-band Frequency Response model, 6 for the movement regressors, and 1 for the session mean × 9 sessions). The stimulus onset-based regressors were not included in these design matrices since they do not provide a plausible biological model, or link, between BOLD and underlying neuronal activity.</p>
+      </sec>
+    </sec>
+    <sec id="sec3">
+      <title>Results</title>
+      <sec>
+        <title>Artefact correction and SVD</title>
+        <p>To remove scanning artefacts from the EEG, the data were processed as described in the <xref rid="sec1" ref-type="sec">Materials and methods</xref> section. <xref rid="fig1" ref-type="fig">Fig. 1</xref> shows the first 10 s of an example time series from corrected EEG data for (a) the mean of electrodes O1 and O2 and (b) the scalp signal obtained from the SVD. As can be seen, the data appear uncontaminated by MR-related artefacts and is relatively free from other artefacts, such as eye-blinks. A prominent ∼ 10 Hz waveform can also be easily detected in these signals.</p>
+        <p>The fact that the time courses of these two signals look very similar (<xref rid="fig1" ref-type="fig">Fig. 1</xref>) was expected, since the first principal component of the EEG is primarily driven by activity from posterior regions. This is confirmed by plotting the topography of this component, as shown in <xref rid="fig2" ref-type="fig">Fig. 2</xref>. In addition, the first component explains 67% of the total variance of the data, which should provide a good representation of EEG activity.</p>
+        <p>After this step, we computed Steady State Visual Evoked Responses (SSVERs) to further assess the goodness of the MR-related artefact correction method. These SSVERs were computed by first epoching the artefact-corrected 29-electrode EEG data acquired inside the MRI scanner, for each subject/session, in half-second (500 ms) post-stimulus window and then averaging across trials. Spectral analysis was then performed on the epoched and averaged EEG, using the data from electrode O2 (8 averaged epoch time series corresponding to the different stimuli used). The time-frequency spectra were constructed using Wavelets, as previously described in the <xref rid="sec1" ref-type="sec">Materials and methods section</xref> (<xref rid="fd1 fd2" ref-type="disp-formula">Eqs. 1 and 2</xref>). The same procedure was then performed to obtain the SSVERs for the EEG data acquired outside the MRI scanner with the same experimental conditions, including the same paradigm. The responses obtained for both datasets were then compared. <xref rid="fig3" ref-type="fig">Fig. 3</xref> shows the averaged SSVERs over all sessions of one representative subject for different frequencies of visual flicker.</p>
+        <p>As can be seen in <xref rid="fig3" ref-type="fig">Fig. 3</xref>, the major component of the spectra is at the second harmonic of the stimulus frequency. This result was expected since for reversing stimuli the SSVERs are usually produced at the phase-reversal or alternation frequency, which is twice the stimulation frequency (<xref rid="bib4" ref-type="bibr">Burkitt et al., 2000</xref>). This fact also explains why almost no response is seen for the 30-Hz stimulus, for the range of frequencies here analysed (1 to 40 Hz).</p>
+        <p>However, for the purpose of this work, we were only interested in the similarity between the responses obtained inside and outside the scanner and as can be seen in <xref rid="fig3" ref-type="fig">Fig. 3</xref> the close correspondence indicates that the MRI artefacts can be removed without filtering out the signal of interest.</p>
+        <p>The SSVERs were not used in the subsequent regression analysis. To compare the different transfer functions, we used the raw (artefact corrected, un-averaged and projected onto its first principal component) EEG data.</p>
+      </sec>
+      <sec>
+        <title>Effect of the experimental task</title>
+        <p>We then looked at the effects of visual flicker on both the EEG and fMRI data. For the EEG data, the SSVER spectra shown in <xref rid="fig3" ref-type="fig">Fig. 3</xref> provide evidence that visual cortical neurons synchronized their firing to the stimuli, leading to strong EEG responses at the second harmonic of the stimulus frequency.</p>
+        <p>For the fMRI data, both single subject and fixed-effects group analyses showed significant bilateral activation (<italic>p</italic> &lt; 0.05 (FWE)) in visual areas of the occipital cortex (<xref rid="fig4" ref-type="fig">Fig. 4</xref>). These areas were identified with the help of the ‘Anatomy Toolbox’ for SPM software (<xref rid="bib8" ref-type="bibr">Eickhoff et al., 2005</xref>). Talairach coordinates of cluster maxima [<italic>x</italic>,<italic>y</italic>,<italic>z</italic>] mm: right cuneus [12, − 101, 18], left superior occipital gyrus [− 9, − 101, 15], and right calcarine gyrus [3, − 92, 3] (<xref rid="tbl2" ref-type="table">Table 2</xref>). The fMRI images from the group analysis in <xref rid="fig4" ref-type="fig">Fig. 4</xref> were used to create the BOLD activation mask, so that subsequent analyses could be restricted to BOLD activated regions.</p>
+        <p>In a separate analysis (not shown) which controlled for variation in luminance levels using an additional regressor of no interest, BOLD activity was shown to have an inverted U-shaped response to flicker frequency. The peak response was for a flicker frequency of 7.5 Hz and dropped off sharply above 15 Hz, agreeing closely with previous studies <xref rid="bib48 bib43" ref-type="bibr">Singh et al. (2003), Parkes et al. (2004)</xref>, and <xref rid="bib57" ref-type="bibr">Wan et al. (2006)</xref>. This result also explains why the amplitude of the SSVERs plotted in <xref rid="fig3" ref-type="fig">Fig. 3</xref> decreases with increasing stimulus frequency, for both the responses obtained inside and outside the scanner (<xref rid="fig3" ref-type="fig">Fig. 3</xref>).</p>
+      </sec>
+      <sec>
+        <title>Relationship between neuronal activity and BOLD</title>
+        <p><xref rid="fig5" ref-type="fig">Fig. 5</xref> plots example regressors for the Total Power, Heuristic, and Frequency Response (3 bands) models derived from <xref rid="fd3 fd4 fd5" ref-type="disp-formula">Eqs. 3, 4, and 5</xref>, convolved with the Hemodynamic Response Function and downsampled to the fMRI frequency of acquisition. <xref rid="fig5" ref-type="fig">Fig. 5</xref>d plots an example BOLD time series for the same time interval and subject, at the most significant cluster maximum from <xref rid="fig4" ref-type="fig">Fig. 4</xref> (fixed-effects group analysis), in relation to the paradigm. As can be seen there is an increase in BOLD during the ‘Task’ blocks which is better reflected in the Heuristic than in the other models. The highest frequency band of the Frequency Response model (<xref rid="fig5" ref-type="fig">Fig. 5</xref>c, black) also seems to follow BOLD more closely than the time series from the other bands.</p>
+        <p>The SPM analyses with the separate design matrices (one for each model) showed significant (<italic>p</italic> &lt; 0.05 (FWE)) correlations between each model and the observed BOLD signal, as can be seen in <xref rid="fig6" ref-type="fig">Fig. 6</xref>. The locations of maximal correlation for each model were not far apart and were included in the voxels activated by the experimental task shown in <xref rid="fig4" ref-type="fig">Fig. 4</xref>. Although all functions correlated with BOLD, the Heuristic produced higher maximal <italic>F</italic>-scores and more voxels above the chosen threshold (<italic>p</italic> &lt; 0.05 (FWE)) than the other two models (<xref rid="fig6" ref-type="fig">Fig. 6</xref>).</p>
+        <p>The contrast estimates for the most significant voxel for each model showed that the Heuristic correlates positively with the amplitude of the BOLD response, while Total Power and the first frequency band of the 3-band Frequency Response model correlated negatively with this response (<xref rid="fig7" ref-type="fig">Fig. 7</xref>). Other sites showed significant correlation between BOLD and the other two frequency bands (not shown).</p>
+        <p>We then performed two pairwise comparisons (a) between Total Power and Heuristic and (b) between Total Power and the Frequency Response model (<xref rid="fig8" ref-type="fig">Fig. 8</xref>). We included the regressors for the two functions, we were interested in comparing in the same design matrix. The results clearly revealed that the Heuristic provides a much better fit to the data than Total Power. For the second comparison it was difficult to see the effects of each model, since the regressors for the Total Power and particularly the firstband from the Frequency Response function (3 bands) were highly correlated.</p>
+        <p>The three-way comparison, using regressors from all models in the same design matrix, showed a much more widespread and stronger relationship between the Heuristic regressors and the BOLD signal compared to the Total Power or the Frequency Response functions, <italic>p</italic> &lt; 0.001 (uncorrected) (<xref rid="fig9" ref-type="fig">Fig. 9</xref>). Furthermore, only the Heuristic showed significant correlations when we corrected for multiple comparisons, (<italic>p</italic> &lt; 0.05 (FWE), using a small volume correction (SVC) over the bold activation mask), and the clusters that remained after SVC were located in the right and left calcarine gyrus (Talairach coordinates [<italic>x</italic>,<italic>y</italic>,<italic>z</italic>] mm: [3, − 92, 10] and [− 6, − 77, 15, respectively) and in the left cerebellum (Talairach coordinates [<italic>x</italic>,<italic>y</italic>,<italic>z</italic>]: [− 12, − 62, − 12] (<xref rid="tbl2" ref-type="table">Table 2</xref>).</p>
+        <p>These results are summarised in <xref rid="tbl3" ref-type="table">Table 3</xref>, where the number of voxels and the highest <italic>F</italic>-scores obtained for each model, within and outside the activation mask, for different thresholds can be found. The number of voxels, as well as the <italic>F</italic>-statistics, in both locations and thresholds were significantly higher for the Heuristic than for the other models (<xref rid="tbl3" ref-type="table">Table 3</xref>).</p>
+        <p>This three-way comparison is the main result of our paper and it was replicated in a case study analysis (<xref rid="bib44" ref-type="bibr">Penny and Holmes, 2006</xref>) in which data from the different subjects were analysed separately. The individual results were very consistent across subjects: the Heuristic model was markedly superior for all three subjects (individual SPMs not shown), by producing higher <italic>F</italic>-scores than the rest of the models and more activated voxels inside and outside the brain activation mask. These results are summarised in <xref rid="tbl3" ref-type="table">Table 3</xref> (individual tables not shown).</p>
+        <p>These results were also reproduced when we analysed 1800 scans instead of 900 (see above). Moreover, the inclusion of more data produced even higher statistics and more significant voxels (in the same brain areas reported) for the Heuristic than for the other models (not shown).</p>
+        <p>We also compared our three main models (Heuristic, Total Power, and Frequency Response (3 bands)) with the global field power of the EEG signal as described in the <xref rid="sec1" ref-type="sec">Materials and methods</xref> section. Therefore, we added this model to our fixed-effects design matrix. However, the inclusion of this function did not affect the previously obtained results (maps not shown), and the Heuristic again provided a better fit to the data, by producing more spatially distributed significant activations (<italic>p</italic> &lt; 0.05, FWE corrected) and higher <italic>F</italic>-scores than the other models, including the GFP. These comparisons allowed us to reject the hypothesis that a model based purely on variations of amplitude across the EEG channels could provide a better fit to the BOLD data.</p>
+        <p>In addition, when we compared the Heuristic with the single-band Frequency Response models, the Heuristic also revealed more significant voxels and higher statistics than the Alpha and Beta/Gamma power. Moreover, inside the brain activation mask, the number of voxels where the Heuristic provided a better fit (FWE corrected) was 939 (maximum <italic>F</italic>-statistic: 23.9) when compared with Alpha, and 1480 (<italic>F</italic><sub>max</sub> = 31.8) when compared with Beta/Gamma. These two models showed only 69 (<italic>F</italic><sub>max</sub> = 16.8) and 293 (<italic>F</italic><sub>max</sub> = 20.9) activated voxels in this region, respectively. This result showed that reducing the number of bands in the Frequency Response model did not improve the performance of this model when compared to the Heuristic.</p>
+        <p>As an aside, we note that although the fMRI data were slice time corrected, significant variability was explained by the temporal derivative regressors (SPMs not shown), and therefore their inclusion in data analyses such as these are recommended (see for example <xref rid="fig7" ref-type="fig">Fig. 7</xref>a).</p>
+        <p>Comparing the Heuristic model and its un-normalised version, the u-Heuristic, revealed that the Heuristic significantly correlated (<italic>p</italic> &lt; 0.05 (FWE)) with the observed BOLD data in most of the brain areas revealed when this function was compared to the Total Power and the Frequency Response models (<xref rid="fig10" ref-type="fig">Fig. 10</xref>). Applying the BOLD activation mask showed that the site with the most significant result was located again in the right calcarine gyrus (Talairach coordinates [<italic>x</italic>,<italic>y</italic>,<italic>z</italic>] mm: [15, − 80, 15], <italic>p</italic> = 1.71e− 09 (FWE), SVC) (<xref rid="tbl2" ref-type="table">Table 2</xref>). In this area, BOLD correlated positively with the Heuristic and negatively with u-Heuristic.</p>
+        <p>Finally we looked at the importance of the non-linearity present in the RMSF function for the Heuristic model, introduced by the square root operator (the R in RMSF). This was addressed by performing the following two-way model comparisons between (i) the Heuristic and its linear version, the l-Heuristic (Eq. <xref rid="fd7" ref-type="disp-formula">7</xref>); (ii) the Heuristic and the Frequency Response model but using normalised power (eight bands of 5 Hz each); and (iii) the Heuristic and the mean frequency function (Eq. <xref rid="fd8" ref-type="disp-formula">8</xref>). The rationale behind the second comparison is that the Frequency Response model based on normalised rather than un-normalised power should be able to implement the transfer function by assigning regression coefficients, <italic>β</italic><sub><italic>f</italic></sub> = <italic>f</italic><sup>2</sup>. The results from these comparisons (SPMs not shown) were very similar. Although when analysed separately all these functions correlate significantly with the BOLD data at a high statistical threshold (<italic>p</italic> &lt; 0.05 (FWE)), when put in the same design matrix none of the models is able to uniquely explain significant variation in BOLD. These results indicate that the non-linearity introduced by the square root function is not critical.</p>
+      </sec>
+    </sec>
+    <sec id="sec4">
+      <title>Discussion</title>
+      <p>In this paper, we have used simultaneously acquired EEG and fMRI data, with a visual flicker stimulation task, to probe the transfer function from neuronal activity to BOLD. We compared three different models, each assuming BOLD is sensitive to a different feature of the EEG. These were (i) the Total Power model, (ii) the Frequency Response model, and (iii) the Heuristic model. When analysed in separate design matrices, all transfer functions correlated with the observed BOLD data, as expected.</p>
+      <p>For the Frequency Response model, all bands showed significant correlations with the data, in agreement with recent monkey EEG-fMRI results (<xref rid="bib15" ref-type="bibr">Goense and Logothetis, 2008</xref>).</p>
+      <p>One initially surprising finding was that, at the location of maximal correlation, Total Power correlated negatively rather than positively with BOLD. However, this can be understood by noting that most of the power in the EEG signal, over rest and stimulus blocks, lies in the lower frequencies of the spectrum. This was confirmed by the negative correlation found in the lowest frequency band of the 3-band Frequency Response model in agreement with <xref rid="bib37 bib28" ref-type="bibr">Mukamel et al. (2005) and Laufs et al. (2006a)</xref>. Work in which positive correlation was observed, for example <xref rid="bib57" ref-type="bibr">Wan et al. (2006)</xref>, focussed rather on event-related power (rather than power in both rest and stimulus blocks). In addition, the fact that we modelled the relation between neuronal activity and BOLD in both stimulus and rest blocks together, implies that the Heuristic is also applicable to spontaneous neural activity.</p>
+      <p>The results of the two-way model comparison, between Total Power and the Heuristic, showed that the transfer function from neuronal activity to BOLD is frequency dependent. The three-way comparison was again clearly in favour of the Heuristic which was shown to explain significantly more BOLD activity than the other two models.</p>
+      <p>Independent of model, the majority of the voxels that were significantly correlated with the regressors were in the occipital cortex (<xref rid="fig6" ref-type="fig">Fig. 6</xref>). This is not surprising as we used flickering visual stimuli. What is perhaps surprising is that other brain areas outside of the occipital cortex (such as the cerebellum and temporal cortex) were also significantly correlated with some of the regressors, most notably for the Heuristic model (<xref rid="fig9" ref-type="fig">Fig. 9</xref>). It should be noted that as the Heuristic is a function of the power spectrum and is not a function of any one particular frequency, it may capture some dynamics that are not a simple entrainment of neural populations at some harmonic of the flicker rate.</p>
+      <p>One concern we had regarding the two and three-way comparison results was that the Heuristic may be better than the Frequency Response model simply because of the small number (three) of frequency bands used. However, our conclusions remained unchanged for frequency response models with additional numbers of bands (five and eight). Conversely, one might also think that the Frequency Response model could do better with a smaller number of frequency bands. The limiting case of this is a single frequency band. Two-way model comparisons, however, revealed the Heuristic to be better than using either (8–15 Hz) alpha or (15–40 Hz) high (beta/gamma) power alone.</p>
+      <p>Our attention then turned to what it is about the Heuristic that makes it a good model. We first addressed the issue of power normalisation. Comparison with a ‘scaled’ Heuristic, based on un-normalised rather than normalised spectra, revealed the original Heuristic to be clearly superior. The use of normalised power therefore seems important.</p>
+      <p>We then addressed the issue of non-linearity. This derives from the square root operator in Eq. <xref rid="fd5" ref-type="disp-formula">5</xref> (the R in RMS). A direct comparison of the Heuristic with its linear version based on the MSF, as well as the Heuristic and the MF model, showed that when included together in the same design, the predictive power of both functions were reduced by the other. Similarly, model comparison of a normalised Frequency Response model with the Heuristic revealed that neither model showed superior predictive power. These results together indicate that, empirically, the non-linearity introduced by the square root function does not appear to be critical. A caveat however is that this conclusion may only be valid for the range of frequencies generated in this experiment (1 to 40 Hz).</p>
+      <p>A concern with the model comparison approach taken in this paper is that it is based on GLMs and <italic>F</italic>-tests, which restrict one to making inferences about nested models. If no natural nesting exists, then the regressors from all models are placed in the same design matrix and <italic>F</italic>-tests used to infer whether sets of variables explain additional variance. While this approach is commonplace (<xref rid="bib14" ref-type="bibr">Friston et al., 2007</xref>), it is nonetheless suboptimal as compared to direct comparison of models using the Bayesian model evidence criterion (<xref rid="bib45" ref-type="bibr">Penny et al., 2007</xref>). We have recently extended this Bayesian model comparison approach to data from group studies (<xref rid="bib46" ref-type="bibr">Rosa et al., in press</xref>) and plan to apply it to our EEG-fMRI data.</p>
+      <p>A further concern in the analyses we have presented here is in the use of EEG regressors as a surrogate for neuronal activity. This approach has previously been used by a number of groups (<xref rid="bib31 bib16 bib27 bib36" ref-type="bibr">Lemieux et al., 2001; Goldman et al., 2002; Laufs et al., 2003; Moosmann et al., 2003</xref>). In this paper, we followed the same rationale but additionally employed a visual flicker stimulation paradigm to elicit evoked activity in sensory cortex. We then used the first principal component of the EEG data to isolate activity that was primarily related to the stimulus paradigm. We note that this approach could be improved in a number of ways. First, one could employ multiple PCA or ICA components (<xref rid="bib55 bib6 bib7" ref-type="bibr">Vigario et al., 2000; Eichele et al., 2005, 2009</xref>), which might better isolate activity from specific processes or brain regions. Second, one could use regressors derived from EEG source reconstructions as in <xref rid="bib57" ref-type="bibr">Wan et al. (2006)</xref>. A problem with these approaches, however, is that they are no longer compatible with a whole-brain SPM analysis approach, as that requires the same design matrix at all voxels. They are nevertheless worth pursuing and we hope to do so in future publications.</p>
+      <p>In the longer term, however, we envisage that such ‘asymmetric’ (<xref rid="bib21" ref-type="bibr">Kilner et al., 2005</xref>) regression approaches will be superseded by ‘symmetric’ forward models, such as proposed in <xref rid="bib50" ref-type="bibr">Sotero and Trujillo-Barreto (2008)</xref>. Interestingly, this forward modelling approach based on neural mass models also supports the Heuristic, as exogenous input causes both a BOLD activation and an increase in the mean LFP frequency (<xref rid="bib50" ref-type="bibr">Sotero and Trujillo-Barreto, 2008</xref>).</p>
+      <p>Some results in the literature may appear at odds with the Heuristic. For instance the positive correlations with alpha power found in the thalamus by <xref rid="bib16" ref-type="bibr">Goldman et al. (2002)</xref> and in other regions (<xref rid="bib18" ref-type="bibr">Gonçalves et al., 2006</xref>). However, the Heuristic describes a relationship based on normalised not absolute power. Therefore, if increases in alpha were, for example, accompanied by decreases in lower frequencies (delta/theta), this would be compatible with the Heuristic. Using separately acquired fMRI and source-reconstructed MEG data, <xref rid="bib38" ref-type="bibr">Muthukumaraswamy and Singh (2008)</xref> showed stimulus-related increases in gamma band activity without corresponding changes in BOLD. However, while this result clearly speaks against the gamma-BOLD hypothesis, it does not necessarily speak against the Heuristic. This is again because the Heuristic depends on the normalised power of the whole spectrum.</p>
+      <p>An interesting inference to be drawn from <xref rid="bib38" ref-type="bibr">Muthukumaraswamy and Singh (2008)</xref> is that gamma band power may reflect the synchronized activity of <italic>local</italic> neuronal ensembles. This view fits in with neural network modelling results (<xref rid="bib23" ref-type="bibr">Kopell et al., 2000</xref>) and power-law analyses of electrocorticogram data (<xref rid="bib35" ref-type="bibr">Miller et al., 2007</xref>). While BOLD can be sensitive to changes in the gamma band, as many studies have shown, it is also sensitive to activity in the whole spectral domain, including the more spatially dispersed lower frequencies (<xref rid="bib23" ref-type="bibr">Kopell et al., 2000</xref>), and processes reflecting large-scale neuromodulatory input (<xref rid="bib33" ref-type="bibr">Logothetis, 2008</xref>).</p>
+      <p>The original paper that described the Heuristic model was partly inspired by the results of EEG-fMRI integration in the study of epilepsy. In this field, increased slow wave activity has been shown to be associated with decreased BOLD (<xref rid="bib2" ref-type="bibr">Archer et al., 2003</xref>) while spike and wave discharges (with high-frequency components) have been shown to cause BOLD activations (<xref rid="bib24 bib20" ref-type="bibr">Krakow et al., 2001; Hamandi et al., 2004</xref>). This would be entirely in agreement with the Heuristic model.</p>
+      <p>To our knowledge, this paper reports the first study where the model proposed by <xref rid="bib21" ref-type="bibr">Kilner et al. (2005)</xref> has been empirically tested using human brain imaging data. It is also the first work in which different putative functions for the relationship between BOLD and spectral characteristics of neuronal activity, as measured with EEG, have been explicitly compared.</p>
+      <p>To this end we designed a study providing experimental control over the frequency structure of the EEG signal by entraining networks to visual stimulation at different frequencies. Our results suggest that changes in BOLD are indeed associated with changes in the spectral profile of the underlying neuronal activity, and that these changes do not arise from a single spectral band. Instead they result from the dynamics of the various frequency components together, in particular, the relative contribution of high and low frequencies as proposed in <xref rid="bib21" ref-type="bibr">Kilner et al. (2005)</xref>.</p>
+      <p>Although we entrained networks to visual stimulation, we have no reason to anticipate different results if neuronal activity were modulated by different cognitive processes. However, this is an empirical question that should be addressed in future studies. The current paper provides evidence in favour of the Heuristic model but, of course, as with any scientific experiment does not prove that the underlying theory is true. We expect that as data are gathered from additional experimental paradigms and sensory modalities, a balance of evidence will emerge.</p>
+      <p>We expect that fMRI recorded concurrently with intra-cranial EEG will play a major role in these investigations as this will provide more direct access to the various cortical and subcortical regions that have little impact on the scalp EEG. This may help to resolve to what extent, if at all, BOLD and EEG are differentially sensitive to endogenous lower frequency ‘global’ states versus higher frequency local processing (<xref rid="bib26" ref-type="bibr">Laufs, 2008</xref>).</p>
+      <p>Understanding the nature of the link between neuronal activity and BOLD plays a crucial role in improving the interpretability of BOLD imaging and relating electrical and hemodynamic measures of human brain function. Finding the optimal transfer function should also aid the design of more robust and realistic models for the integration of EEG and fMRI, leading to estimates of neuronal activity with higher spatial and temporal resolution, than are currently available.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was supported by the Wellcome Trust and the Portuguese Foundation for Science and Technology (FCT).</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Allen</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A method for removing imaging artifact from continuous EEG recorded during functional MRI</article-title>
+          <source>NeuroImage</source>
+          <year>2000</year>
+          <volume>120</volume>
+          <issue>2</issue>
+          <fpage>230</fpage>
+          <lpage>239</lpage>
+          <pub-id pub-id-type="pmid">10913328</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Archer</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Abbott</surname>
+              <given-names>D.F.</given-names>
+            </name>
+            <name>
+              <surname>Waites</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Jackson</surname>
+              <given-names>G.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>fMRI “deactivation” of the posterior cingulate during generalized spike and wave</article-title>
+          <source>NeuroImage</source>
+          <year>Dec 2003</year>
+          <volume>20</volume>
+          <fpage>1915</fpage>
+          <lpage>1922</lpage>
+          <pub-id pub-id-type="pmid">14683697</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Babajani</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Soltanian-Zadeh</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Integrated MEG/EEG and fMRI model based on neural masses</article-title>
+          <source>Biomed. Eng. IEEE Trans.</source>
+          <year>September 2006</year>
+          <volume>530</volume>
+          <issue>9</issue>
+          <fpage>1794</fpage>
+          <lpage>1801</lpage>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Burkitt</surname>
+              <given-names>G.R.</given-names>
+            </name>
+            <name>
+              <surname>Silberstein</surname>
+              <given-names>R.B.</given-names>
+            </name>
+            <name>
+              <surname>Cadusch</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Wood</surname>
+              <given-names>A.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Steady-state visual evoked potentials and travelling waves</article-title>
+          <source>Clin. Neurophysiol.</source>
+          <year>Feb 2000</year>
+          <volume>111</volume>
+          <fpage>246</fpage>
+          <lpage>258</lpage>
+          <pub-id pub-id-type="pmid">10680559</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Deichmann</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Schwarzbauer</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Optimisation of the 3D MDEFT sequence for anatomical brain imaging: technical implications at 1.5 and 3 T</article-title>
+          <source>NeuroImage</source>
+          <year>Feb 2004</year>
+          <volume>21</volume>
+          <fpage>757</fpage>
+          <lpage>767</lpage>
+          <pub-id pub-id-type="pmid">14980579</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eichele</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Specht</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Moosmann</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Jongsma</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Quiroga</surname>
+              <given-names>R.Q.</given-names>
+            </name>
+            <name>
+              <surname>Nordby</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Hugdahl</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessing the spatiotemporal evolution of neuronal activation with single-trial event-related potentials and functional MRI</article-title>
+          <source>Proc. Natl. Acad. Sci. U.S.A.</source>
+          <year>Dec 2005</year>
+          <volume>102</volume>
+          <fpage>17798</fpage>
+          <lpage>17803</lpage>
+          <pub-id pub-id-type="pmid">16314575</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eichele</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Calhoun</surname>
+              <given-names>V.D.</given-names>
+            </name>
+            <name>
+              <surname>Debener</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Mining EEG-fMRI using independent component analysis</article-title>
+          <source>Int. J. Psychophysiol.</source>
+          <year>July 2009</year>
+          <volume>73</volume>
+          <issue>1</issue>
+          <fpage>53</fpage>
+          <lpage>61</lpage>
+          <pub-id pub-id-type="pmid">19223007</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Eickhoff</surname>
+              <given-names>S.B.</given-names>
+            </name>
+            <name>
+              <surname>Stephan</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Mohlberg</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Grefkes</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Fink</surname>
+              <given-names>G.R.</given-names>
+            </name>
+            <name>
+              <surname>Amunts</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Zilles</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new SPM toolbox for combining probabilistic cytoarchitectonic maps and functional imaging data</article-title>
+          <source>NeuroImage</source>
+          <year>May 2005</year>
+          <volume>25</volume>
+          <fpage>1325</fpage>
+          <lpage>1335</lpage>
+          <pub-id pub-id-type="pmid">15850749</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Zeki</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Human Brain Function</article-title>
+          <edition>2nd edition</edition>
+          <year>2003</year>
+          <publisher-name>Academic Press</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neurophysiology: the brain at work</article-title>
+          <source>Curr. Biol.</source>
+          <year>May 2008</year>
+          <volume>18</volume>
+          <fpage>418</fpage>
+          <lpage>420</lpage>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Characterizing evoked hemodynamics with fMRI</article-title>
+          <source>NeuroImage</source>
+          <year>1995</year>
+          <volume>2</volume>
+          <fpage>157</fpage>
+          <lpage>165</lpage>
+          <pub-id pub-id-type="pmid">9343598</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Statistical parametric maps in functional imaging: a general linear approach</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>1995</year>
+          <volume>2</volume>
+          <fpage>189</fpage>
+          <lpage>210</lpage>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Nonlinear responses in fMRI: the Balloon model, Volterra kernels and other hemodynamics</article-title>
+          <source>NeuroImage</source>
+          <year>2000</year>
+          <volume>12</volume>
+          <fpage>466</fpage>
+          <lpage>477</lpage>
+          <pub-id pub-id-type="pmid">10988040</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="book">
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.J.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.E.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <source>Statistical Parametric Mapping: The Analysis of Functional Brain Images</source>
+          <year>2007</year>
+          <publisher-name>Academic Press</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goense</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Logothetis</surname>
+              <given-names>N.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neurophysiology of the BOLD fMRI signal in awake monkeys</article-title>
+          <source>Curr. Biol.</source>
+          <year>May 2008</year>
+          <volume>18</volume>
+          <fpage>631</fpage>
+          <lpage>640</lpage>
+          <pub-id pub-id-type="pmid">18439825</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goldman</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Stern</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Engel</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Simultaneous EEG and fMRI of the alpha rhythm</article-title>
+          <source>NeuroReport</source>
+          <year>2002</year>
+          <volume>180</volume>
+          <issue>13</issue>
+          <fpage>2492</fpage>
+          <lpage>2587</lpage>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goldman</surname>
+              <given-names>R.I.</given-names>
+            </name>
+            <name>
+              <surname>Stern</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Engel</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>M.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Acquiring simultaneous EEG and functional MRI</article-title>
+          <source>Clin. Neurophysiol.</source>
+          <year>Nov 2000</year>
+          <volume>111</volume>
+          <fpage>1974</fpage>
+          <lpage>1980</lpage>
+          <pub-id pub-id-type="pmid">11068232</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gonçalves</surname>
+              <given-names>S.I.</given-names>
+            </name>
+            <name>
+              <surname>de Munck</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Pouwels</surname>
+              <given-names>P.J.</given-names>
+            </name>
+            <name>
+              <surname>Schoonhoven</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Kuijer</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Maurits</surname>
+              <given-names>N.M.</given-names>
+            </name>
+            <name>
+              <surname>Hoogduin</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Van Someren</surname>
+              <given-names>E.J.</given-names>
+            </name>
+            <name>
+              <surname>Heethaar</surname>
+              <given-names>R.M.</given-names>
+            </name>
+            <name>
+              <surname>Lopes da Silva</surname>
+              <given-names>F.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Correlating the alpha rhythm to BOLD using simultaneous EEG/fMRI: inter-subject variability</article-title>
+          <source>NeuroImage</source>
+          <year>Mar 2006</year>
+          <volume>30</volume>
+          <fpage>203</fpage>
+          <lpage>213</lpage>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hämäläinen</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Hari</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Ilmoniemi</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Knuutila</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lounasmaa</surname>
+              <given-names>O.V.</given-names>
+            </name>
+          </person-group>
+          <article-title>Magnetoencephalography—theory, instrumentation, and applications to noninvasive studies of the working human brain</article-title>
+          <source>Rev. Mod. Phys.</source>
+          <year>Apr 1993</year>
+          <volume>650</volume>
+          <issue>2</issue>
+          <fpage>413</fpage>
+          <lpage>497</lpage>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hamandi</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Salek-Haddadi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Fish</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Lemieux</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>EEG/functional MRI in epilepsy: The Queen Square Experience</article-title>
+          <source>J. Clin. Neurophysiol.</source>
+          <year>2004</year>
+          <volume>21</volume>
+          <fpage>241</fpage>
+          <lpage>248</lpage>
+          <pub-id pub-id-type="pmid">15509913</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Mattout</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Henson</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Hemodynamic correlates of EEG: a heuristic</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>28</volume>
+          <fpage>280</fpage>
+          <lpage>286</lpage>
+          <pub-id pub-id-type="pmid">16023377</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kilner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Niessing</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Galuske</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Multimodal fusion: neuronal activity and the hemodynamic response</article-title>
+          <source>Conference Abstract: Human Brain Mapping</source>
+          <year>2007</year>
+          <publisher-name>Chicago</publisher-name>
+          <publisher-loc>USA</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kopell</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Ermentrout</surname>
+              <given-names>G.B.</given-names>
+            </name>
+            <name>
+              <surname>Whittington</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Traub</surname>
+              <given-names>R.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gamma rhythms and beta rhythms have different synchronization properties</article-title>
+          <source>Proc. Natl. Acad. Sci. U.S.A.</source>
+          <year>Feb 2000</year>
+          <volume>97</volume>
+          <fpage>1867</fpage>
+          <lpage>1872</lpage>
+          <pub-id pub-id-type="pmid">10677548</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Krakow</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Lemieux</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Messina</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Scott</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Symms</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Duncan</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Fish</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spatio-temporal imaging of focal interictal epileptiform activity using EEG-triggered functional MRI</article-title>
+          <source>Epileptic Disord.</source>
+          <year>Jun 2001</year>
+          <volume>3</volume>
+          <fpage>67</fpage>
+          <lpage>74</lpage>
+          <pub-id pub-id-type="pmid">11431168</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lachaux</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Fonlupt</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Kahane</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Minotti</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Hoffmann</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Bertrand</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Baciu</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Relationship between task-related gamma oscillations and BOLD signal: new insights from combined fMRI and intracranial EEG</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>Dec 2007</year>
+          <volume>28</volume>
+          <fpage>1368</fpage>
+          <lpage>1375</lpage>
+          <pub-id pub-id-type="pmid">17274021</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Laufs</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Endogenous brain oscillations and related networks detected by surface EEG-combined fMRI</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>Jul 2008</year>
+          <volume>29</volume>
+          <fpage>762</fpage>
+          <lpage>769</lpage>
+          <pub-id pub-id-type="pmid">18465797</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Laufs</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Kleinschmidt</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Beyerle</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Eger</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Salek-Haddadi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Preibisch</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Krakow</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>EEG-correlated fMRI of human alpha activity</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>40</volume>
+          <issue>19</issue>
+          <fpage>1463</fpage>
+          <lpage>1476</lpage>
+          <pub-id pub-id-type="pmid">12948703</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Laufs</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Holt</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Elfont</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Krams</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Paul</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Krakow</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Kleinschmidt</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Where the BOLD signal goes when alpha EEG leaves</article-title>
+          <source>NeuroImage</source>
+          <year>Jul 2006</year>
+          <volume>31</volume>
+          <fpage>1408</fpage>
+          <lpage>1418</lpage>
+          <pub-id pub-id-type="pmid">16537111</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Laufs</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Lengler</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Hamandi</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Kleinschmidt</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Krakow</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>Linking generalized spike-and-wave discharges and resting state brain activity by using EEG/fMRI in a patient with absence seizures</article-title>
+          <source>Epilepsia</source>
+          <year>Feb 2006</year>
+          <volume>47</volume>
+          <fpage>444</fpage>
+          <lpage>448</lpage>
+          <pub-id pub-id-type="pmid">16499775</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lauritzen</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Relationship of spikes, synaptic activity, and local changes of cerebral blood flow</article-title>
+          <source>J. Cereb. Blood Flow Metab.</source>
+          <year>Dec 2001</year>
+          <volume>21</volume>
+          <fpage>1367</fpage>
+          <lpage>1383</lpage>
+          <pub-id pub-id-type="pmid">11740198</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lemieux</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Salek-Haddadi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Allen</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Toms</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Scott</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Krakow</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Turner</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Fish</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Event-related fMRI with simultaneous and continuous EEG: description of the method and initial case report</article-title>
+          <source>NeuroImage</source>
+          <year>Sep 2001</year>
+          <volume>14</volume>
+          <fpage>780</fpage>
+          <lpage>787</lpage>
+          <pub-id pub-id-type="pmid">11506550</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Logothetis</surname>
+              <given-names>N.K.</given-names>
+            </name>
+            <name>
+              <surname>Pauls</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Augath</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Trinath</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Oeltermann</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neurophysiological investigation of the basis of the fMRI signal</article-title>
+          <source>Nature</source>
+          <year>July 2001</year>
+          <volume>412</volume>
+          <fpage>150</fpage>
+          <lpage>157</lpage>
+          <pub-id pub-id-type="pmid">11449264</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Logothetis</surname>
+              <given-names>N.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>What we can do and what we cannot do with fMRI</article-title>
+          <source>Nature</source>
+          <year>Jun 2008</year>
+          <volume>453</volume>
+          <fpage>869</fpage>
+          <lpage>878</lpage>
+          <pub-id pub-id-type="pmid">18548064</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mandelkow</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Halder</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Boesiger</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Brandeis</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Synchronization facilitates removal of MRI artifacts from concurrent EEG recordings and increases usable bandwidth</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>320</volume>
+          <issue>3</issue>
+          <fpage>1120</fpage>
+          <lpage>1126</lpage>
+          <pub-id pub-id-type="pmid">16861010</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Miller</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Leuthardt</surname>
+              <given-names>E.C.</given-names>
+            </name>
+            <name>
+              <surname>Schalk</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Rao</surname>
+              <given-names>R.P.</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>N.R.</given-names>
+            </name>
+            <name>
+              <surname>Moran</surname>
+              <given-names>D.W.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>J.W.</given-names>
+            </name>
+            <name>
+              <surname>Ojemann</surname>
+              <given-names>J.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spectral changes in cortical surface potentials during motor movement</article-title>
+          <source>J. Neurosci.</source>
+          <year>Feb 2007</year>
+          <volume>27</volume>
+          <fpage>2424</fpage>
+          <lpage>2432</lpage>
+          <pub-id pub-id-type="pmid">17329441</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moosmann</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Rittera</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Krastela</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Brinka</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Theesa</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Blankenburg</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Taskina</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Obriga</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Villringer</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Correlates of alpha rhythm in functional magnetic resonance imaging and near infrared spectroscopy</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>200</volume>
+          <issue>1</issue>
+          <fpage>145</fpage>
+          <lpage>158</lpage>
+          <pub-id pub-id-type="pmid">14527577</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mukamel</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Gelbard</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Arieli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Hasson</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Fried</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Malach</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coupling between neuronal firing, field potentials, and fMRI in human auditory cortex</article-title>
+          <source>Science</source>
+          <year>Aug 2005</year>
+          <volume>309</volume>
+          <fpage>951</fpage>
+          <lpage>954</lpage>
+          <pub-id pub-id-type="pmid">16081741</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Muthukumaraswamy</surname>
+              <given-names>S.D.</given-names>
+            </name>
+            <name>
+              <surname>Singh</surname>
+              <given-names>K.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional decoupling of BOLD and gamma-band amplitudes in human primary visual cortex</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>Aug 2008</year>
+          <volume>30</volume>
+          <issue>7</issue>
+          <fpage>2000</fpage>
+          <lpage>2007</lpage>
+          <pub-id pub-id-type="pmid">18729078</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nair</surname>
+              <given-names>D.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>About being BOLD</article-title>
+          <source>Brain Res. Brain Res. Rev.</source>
+          <year>Dec 2005</year>
+          <volume>50</volume>
+          <fpage>229</fpage>
+          <lpage>243</lpage>
+          <pub-id pub-id-type="pmid">16213027</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nangini</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Tam</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Graham</surname>
+              <given-names>S.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A novel method for integrating MEG and BOLD fMRI signals with the linear convolution model in human primary somatosensory cortex</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>Jan 2008</year>
+          <volume>29</volume>
+          <fpage>97</fpage>
+          <lpage>106</lpage>
+          <pub-id pub-id-type="pmid">17290370</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Niessing</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ebisch</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Schmidt</surname>
+              <given-names>K.E.</given-names>
+            </name>
+            <name>
+              <surname>Niessing</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Singer</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Galuske</surname>
+              <given-names>R.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Hemodynamic signals correlate tightly with synchronized gamma oscillations</article-title>
+          <source>Science</source>
+          <year>Aug 2005</year>
+          <volume>309</volume>
+          <fpage>948</fpage>
+          <lpage>951</lpage>
+          <pub-id pub-id-type="pmid">16081740</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nunez</surname>
+              <given-names>P.L.</given-names>
+            </name>
+            <name>
+              <surname>Silberstein</surname>
+              <given-names>R.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the relationship of synaptic activity to macroscopic measurements: does co-registration of EEG with fMRI make sense?</article-title>
+          <source>Brain Topogr.</source>
+          <year>2000</year>
+          <volume>13</volume>
+          <fpage>79</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="pmid">11154104</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Parkes</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Fries</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Kerskens</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Norris</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Reduced BOLD response to periodic visual stimulation</article-title>
+          <source>NeuroImage</source>
+          <year>2004</year>
+          <volume>210</volume>
+          <issue>1</issue>
+          <fpage>236</fpage>
+          <lpage>243</lpage>
+          <pub-id pub-id-type="pmid">14741661</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Random effects analysis</article-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Kiebel</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <source>Statistical Parametric Mapping: The analysis of functional brain images</source>
+          <year>2006</year>
+          <publisher-name>Elsevier</publisher-name>
+          <publisher-loc>London</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Trujillo-Barreto</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian comparison of spatially regularised general linear models</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2007</year>
+          <volume>280</volume>
+          <issue>4</issue>
+          <fpage>275</fpage>
+          <lpage>293</lpage>
+          <pub-id pub-id-type="pmid">17133400</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib46">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rosa</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Bestmann</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Harrison</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Bayesian model selection maps for group studies</article-title>
+          <source>NeuroImage</source>
+          <year>2009</year>
+          <volume>47</volume>
+          <fpage>S145</fpage>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salek-Haddadi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Merschhemke</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lemieux</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Fish</surname>
+              <given-names>D.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Simultaneous EEG-correlated ictal fMRI</article-title>
+          <source>NeuroImage</source>
+          <year>May 2002</year>
+          <volume>16</volume>
+          <fpage>32</fpage>
+          <lpage>40</lpage>
+          <pub-id pub-id-type="pmid">11969315</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib48">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Singh</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Kim</surname>
+              <given-names>T.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Correlation between BOLD-fMRI and EEG signal changes in response to visual stimulus frequency in humans</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>Jan 2003</year>
+          <volume>49</volume>
+          <fpage>108</fpage>
+          <lpage>114</lpage>
+          <pub-id pub-id-type="pmid">12509825</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib49">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Skrandies</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Visual information processing: topography of brain electrical activity</article-title>
+          <source>Biol. Psychol.</source>
+          <year>1995</year>
+          <volume>40</volume>
+          <fpage>1</fpage>
+          <lpage>15</lpage>
+          <pub-id pub-id-type="pmid">7647172</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib50">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sotero</surname>
+              <given-names>R.C.</given-names>
+            </name>
+            <name>
+              <surname>Trujillo-Barreto</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Biophysical model for integrating neuronal activity, EEG, fMRI and metabolism</article-title>
+          <source>NeuroImage</source>
+          <year>Jan 2008</year>
+          <volume>39</volume>
+          <fpage>290</fpage>
+          <lpage>309</lpage>
+          <pub-id pub-id-type="pmid">17919931</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib51">
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Talairach</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tournoux</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Co-Planar Stereotaxic Atlas of the Human Brain</article-title>
+          <year>1988</year>
+          <publisher-name>Thieme Medical Publishers</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib52">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tallon-Baudry</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Bertrand</surname>
+              <given-names>O.</given-names>
+            </name>
+          </person-group>
+          <article-title>Oscillatory gamma activity in humans and its role in object representation</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <year>1999</year>
+          <volume>30</volume>
+          <issue>4</issue>
+        </citation>
+      </ref>
+      <ref id="bib53">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Thomsen</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Offenhauser</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Lauritzen</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Principal neuron spiking: neither necessary nor sufficient for cerebral blood flow in rat cerebellum</article-title>
+          <source>J. Physiol. (Lond.)</source>
+          <year>Oct 2004</year>
+          <volume>560</volume>
+          <fpage>181</fpage>
+          <lpage>189</lpage>
+          <pub-id pub-id-type="pmid">15272036</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib54">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Trujillo-Barreto</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Martinez-Montes</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Melie-Garcia</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Valdes-Sosa</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>A symmetrical Bayesian model for fMRI and EEG/MEG neuroimage fusion</article-title>
+          <source>Int. J. Bioelectromagnetism</source>
+          <year>2001</year>
+          <fpage>3</fpage>
+        </citation>
+      </ref>
+      <ref id="bib55">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vigario</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Särelä</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Jousmäki</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Hämäläinen</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Oja</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Independent component approach to the analysis of EEG and MEG recordings</article-title>
+          <source>IEEE Trans. Biomed. Eng.</source>
+          <year>May 2000</year>
+          <volume>47</volume>
+          <fpage>589</fpage>
+          <lpage>593</lpage>
+          <pub-id pub-id-type="pmid">10851802</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib56">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Viswanathan</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Freeman</surname>
+              <given-names>R.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neurometabolic coupling in cerebral cortex reflects synaptic more than spiking activity</article-title>
+          <source>Nat. Neurosci.</source>
+          <year>Oct 2007</year>
+          <volume>10</volume>
+          <fpage>1308</fpage>
+          <lpage>1312</lpage>
+          <pub-id pub-id-type="pmid">17828254</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib57">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wan</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Riera</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Iwata</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Takahashi</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Wakabayashi</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kawashima</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>The neural basis of the hemodynamic response nonlinearity in human primary visual cortex: Implications for neurovascular coupling mechanism</article-title>
+          <source>NeuroImage</source>
+          <year>2006</year>
+          <volume>320</volume>
+          <issue>3</issue>
+          <fpage>616</fpage>
+          <lpage>625</lpage>
+          <pub-id pub-id-type="pmid">16697664</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>Example of artefact-corrected EEG time series for the first 10 seconds of the first visual stimulation period: (a) mean activity of electrodes O1 and O2. (b) Projection onto first principal component (SVD time series).</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Topography (2D) of the EEG first principal component for a representative subject. The locations of the occipital and frontal electrodes are indicated by their respective names.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Power spectra of the SSVERs for EEG acquired outside (left) and inside the scanner (right) averaged over the three sessions of one representative subject. The frequencies on top of each plot correspond to the reversing frequencies of the visual flicker stimuli.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Effect of visual flicker stimulation on fMRI data. Single-subject analyses (3 sessions per subject) and fixed-effects group analysis (9 sessions in total), <italic>p</italic> &lt; 0.05 (FWE). The voxel locations on the left correspond to the most significant cluster maximum for the group analysis (Talairach space).</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Example regressors for (a) Total Power, (b) Heuristic, and (c) Frequency Response (3 bands) models after convolution with the HRF (subject 2). (d) Example BOLD time series for the same period of time and subject, at the most significant cluster maximum ([12, − 101, 18] mm, Talairach space) from the fixed-effects group analysis of the main effects of visual stimulation (<xref rid="fig4" ref-type="fig">Fig. 4</xref>).</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Fixed-effects SPM analyses (<italic>p</italic> &lt; 0.001 (uncorrected)) for the Heuristic, Total Power, and Frequency Response (3 bands) models analysed in separate design matrices. The voxel locations on the left correspond to the most significant cluster maximum after small volume correction with the BOLD activation mask (Talairach space).</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig7">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Contrast estimates and 90% CI for (a) Heuristic, (b) Total Power, and (c) Frequency Response with 3 bands (analysed individually). The estimates include the canonical HRF, as well as its temporal and dispersion derivatives.</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig8">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Two-way model comparison between (a) Total Power versus Heuristic and (b) Total Power versus Frequency Response (fixed-effects SPM analyses (<italic>p</italic> &lt; 0.001 (uncorrected)). The voxel locations on the left correspond to the most significant cluster maximum after small volume correction with the BOLD activation mask (Talairach space). These <italic>F</italic>-maps show the correlations between EEG and BOLD that are uniquely attributable to each model within a pair.</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="fig9">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Three-way model comparison: fixed-effects SPM analyses (<italic>p</italic> &lt; 0.001 (uncorrected)). Heuristic, Total Power, and Frequency Response (3 bands). The voxel locations on the left correspond to the most significant cluster maximum after small volume correction with the BOLD activation mask (Talairach space). These <italic>F</italic>-maps show correlations between EEG and BOLD that are uniquely attributable to each model.</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+    <fig id="fig10">
+      <label>Fig. 10</label>
+      <caption>
+        <p>Comparison between Heuristic and its un-normalised version, the u-Heuristic: fixed-effects SPM analysis (<italic>p</italic> &lt; 0.001 (uncorrected)). The voxel locations on the left correspond to the most significant cluster maximum after small volume correction with the BOLD activation mask (Talairach space). These <italic>F</italic>-maps show correlations between EEG and BOLD that are uniquely attributable to each model.</p>
+      </caption>
+      <graphic xlink:href="gr10"/>
+    </fig>
+    <table-wrap position="float" id="tbl1">
+      <label>Table 1</label>
+      <caption>
+        <p>Summary of model comparisons and corresponding number of estimated parameters.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th colspan="2" valign="top">Model comparisons</th>
+            <th valign="top"><italic>n</italic><sub>R </sub>× <italic>n</italic><sub>BF </sub>+ <italic>n</italic><sub>C </sub>= <italic>n</italic><sub>P</sub></th>
+            <th valign="top"><italic>n</italic><sub><italic>P</italic></sub> (9 sessions)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3" valign="top">i.</td>
+            <td valign="top">Heuristic</td>
+            <td valign="top">1 × 3 + 7 = 10</td>
+            <td valign="top">90</td>
+          </tr>
+          <tr>
+            <td valign="top">Total power (TP)</td>
+            <td valign="top">1 × 3 + 7 = 10</td>
+            <td valign="top">90</td>
+          </tr>
+          <tr>
+            <td valign="top">Frequency response 3 bands (FR<sup>3</sup>)</td>
+            <td valign="top">3 × 3 + 7 = 16</td>
+            <td valign="top">144</td>
+          </tr>
+          <tr>
+            <td rowspan="2" valign="top">ii.</td>
+            <td valign="top">TP vs. Heuristic</td>
+            <td valign="top">(1 + 1) × 3 + 7 = 13</td>
+            <td valign="top">117</td>
+          </tr>
+          <tr>
+            <td valign="top">TP vs. FR<sup>3</sup></td>
+            <td valign="top">(1 + 3) × 3 + 7 = 19</td>
+            <td valign="top">171</td>
+          </tr>
+          <tr>
+            <td valign="top">iii.</td>
+            <td valign="top">TP vs. FR<sup>3</sup> vs. Heuristic</td>
+            <td valign="top">(1 + 3 + 1) × 3 + 7 = 22</td>
+            <td valign="top">198</td>
+          </tr>
+          <tr>
+            <td valign="top">iv.</td>
+            <td valign="top">TP vs. FR<sup>3</sup> vs. Heuristic vs. GFP</td>
+            <td valign="top">(1 + 3 + 1+ 1) × 3 + 7 = 25</td>
+            <td valign="top">225</td>
+          </tr>
+          <tr>
+            <td valign="top">v.</td>
+            <td valign="top">Heuristic vs. FR<sup>1</sup></td>
+            <td valign="top">(1 + 1) × 3 + 7 = 13</td>
+            <td valign="top">117</td>
+          </tr>
+          <tr>
+            <td rowspan="2" valign="top">vi.</td>
+            <td valign="top">Heuristic vs. u/l-Heuristic/MF</td>
+            <td valign="top">(1 + 1) × 3 + 7 = 13</td>
+            <td valign="top">117</td>
+          </tr>
+          <tr>
+            <td valign="top">Heuristic vs. FR<sup>5</sup>/FR<sup>8</sup></td>
+            <td valign="top">(1 + 5/8) × 3 + 7 = 25/34</td>
+            <td valign="top">225/306</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>For one session: <italic>n</italic><sub>R</sub> is the number of regressors of interest for each transfer functions; <italic>n</italic><sub>BF</sub> is the number of basis functions, which is always 3 (canonical HRF, temporal, and dispersion derivative); <italic>n</italic><sub>C</sub> is always 7 and corresponds to the number of confounds (6 motion parameters and 1 mean regressor); and <italic>n</italic><sub>P</sub> is the total number of parameters to be estimated for each comparison.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+    <table-wrap position="float" id="tbl2">
+      <label>Table 2</label>
+      <caption>
+        <p>Anatomical location in Talairach space of the sites with significant results from the three-way model comparison (fixed-effects SPM analysis, without SVC).</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th valign="top">Regressors</th>
+            <th valign="top">[<italic>x</italic>,<italic>y</italic>,<italic>z</italic>] (mm)</th>
+            <th valign="top">Location</th>
+            <th valign="top">Inference</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="3" valign="top">Stimuli</td>
+            <td valign="top">[12, − 101, 18]</td>
+            <td valign="top">Right cuneus</td>
+            <td valign="top"><italic>p</italic> &lt; 0.05 (FWE)</td>
+          </tr>
+          <tr>
+            <td valign="top">[− 9, -101, 15]</td>
+            <td valign="top">Left Superior Occipital Gyrus</td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">[3, − 92, 3]</td>
+            <td valign="top">Right calcarine gyrus</td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td rowspan="5" valign="top">Heuristic</td>
+            <td valign="top">[− 6, − 77, 15]</td>
+            <td valign="top">Left Calcarine Gyrus</td>
+            <td valign="top"><italic>p</italic> &lt; 0.05 (FWE)</td>
+          </tr>
+          <tr>
+            <td valign="top">[3, − 92, 10]</td>
+            <td valign="top">Right calcarine gyrus</td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">[− 54, − 17, 9]</td>
+            <td valign="top">Left Superior Temporal Gyrus</td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">[60, − 11, 15]</td>
+            <td valign="top">Right Rolandic Operculum</td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">[− 12, − 62, − 12]</td>
+            <td valign="top">Left Cerebellum</td>
+            <td valign="top"/>
+          </tr>
+          <tr>
+            <td valign="top">Total power</td>
+            <td valign="top">[− 48, − 74, 12]</td>
+            <td valign="top">Left Middle Temporal Gyrus</td>
+            <td valign="top"><italic>p</italic> &lt; 0.001 (uncorrected)</td>
+          </tr>
+          <tr>
+            <td rowspan="2" valign="top">Frequency response</td>
+            <td valign="top">[− 48, − 74, 12]</td>
+            <td valign="top">Left Middle Temporal Gyrus</td>
+            <td valign="top"><italic>p</italic> &lt; 0.001 (uncorrected)</td>
+          </tr>
+          <tr>
+            <td valign="top">[− 42, − 74, − 15]</td>
+            <td valign="top">Left Cerebellum</td>
+            <td valign="top"/>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <table-wrap position="float" id="tbl3">
+      <label>Table 3</label>
+      <caption>
+        <p>Summary of results for the three-way comparison between Total Power (TP), the Heuristic, and the 3-band Frequency Response (FR) models from the fixed-effects group analysis (<xref rid="fig9" ref-type="fig">Fig. 9</xref>).</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th rowspan="2" valign="top">Location</th>
+            <th rowspan="2" valign="top">Threshold</th>
+            <th colspan="3" valign="top"><italic>n</italic><sub>vox</sub>|<italic>F</italic><sub>max</sub><hr/></th>
+          </tr>
+          <tr>
+            <th valign="top">Heuristic</th>
+            <th valign="top">TP</th>
+            <th valign="top">FR<sup>3</sup></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="5" valign="top">Within BAM</td>
+          </tr>
+          <tr>
+            <td rowspan="2" valign="top"/>
+            <td valign="top"><italic>p</italic> &lt; 0.05 (FWE)</td>
+            <td valign="top">17|13.3</td>
+            <td valign="top">0|–</td>
+            <td valign="top">0|–</td>
+          </tr>
+          <tr>
+            <td valign="top"><italic>p</italic> &lt; 0.001 (uncorrected)</td>
+            <td valign="top">620|13.3</td>
+            <td valign="top">5|8.2</td>
+            <td valign="top">18|4.9</td>
+          </tr>
+          <tr>
+            <td colspan="5" valign="top">Outside BAM</td>
+          </tr>
+          <tr>
+            <td rowspan="2" valign="top"/>
+            <td valign="top"><italic>p</italic> &lt; 0.05 (FWE)</td>
+            <td valign="top">7|13.3</td>
+            <td valign="top">0|–</td>
+            <td valign="top">0|–</td>
+          </tr>
+          <tr>
+            <td valign="top"><italic>p</italic> &lt; 0.001 (uncorrected)</td>
+            <td valign="top">801|13.3</td>
+            <td valign="top">46|9.6</td>
+            <td valign="top">95|4.8</td>
+          </tr>
+        </tbody>
+      </table>
+      <table-wrap-foot>
+        <fn>
+          <p>‘BAM’ is the brain activation mask obtained from the main effects of stimulation (<xref rid="fig4" ref-type="fig">Fig. 4</xref>); <italic>n</italic><sub>vox</sub> is the total number of voxels within a certain area; and <italic>F</italic><sub>max</sub> the maximum <italic>F</italic>-statistic within that region.</p>
+        </fn>
+      </table-wrap-foot>
+    </table-wrap>
+  </floats-wrap>
+</article>

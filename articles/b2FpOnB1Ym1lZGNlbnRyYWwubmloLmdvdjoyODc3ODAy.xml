@@ -1,0 +1,523 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="brief-report">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Int J Psychophysiol</journal-id>
+      <journal-title-group>
+        <journal-title>International Journal of Psychophysiology</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">0167-8760</issn>
+      <issn pub-type="epub">1872-7697</issn>
+      <publisher>
+        <publisher-name>Elsevier</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2877802</article-id>
+      <article-id pub-id-type="pmid">20144665</article-id>
+      <article-id pub-id-type="publisher-id">INTPSY10116</article-id>
+      <article-id pub-id-type="doi">10.1016/j.ijpsycho.2010.01.011</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Short Communication</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Analytic measures for quantification of arousal from spontaneous skin conductance fluctuations</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Bach</surname>
+            <given-names>Dominik R.</given-names>
+          </name>
+          <email>d.bach@fil.ion.ucl.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+          <xref rid="fn1" ref-type="fn">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>Karl J.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Dolan</surname>
+            <given-names>Raymond J.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>Wellcome Trust Centre for Neuroimaging, University College London, 12 Queen Square, London WC1N 3BG, United Kingdom</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Tel.: + 44 20 7833 7472. <email>d.bach@fil.ion.ucl.ac.uk</email></corresp>
+        <fn id="fn1">
+          <label>1</label>
+          <p>The data re-analysed in this paper was acquired while the first author was pursuing an MSc degree at the Institute for Psychology and Ergonomics, Technical University of Berlin, Germany.</p>
+        </fn>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <month>4</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <month>4</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>76</volume>
+      <issue>1</issue>
+      <fpage>52</fpage>
+      <lpage>55</lpage>
+      <history>
+        <date date-type="received">
+          <day>5</day>
+          <month>12</month>
+          <year>2009</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>28</day>
+          <month>1</month>
+          <year>2010</year>
+        </date>
+        <date date-type="accepted">
+          <day>29</day>
+          <month>1</month>
+          <year>2010</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier B.V.</copyright-statement>
+        <copyright-year>2010</copyright-year>
+        <copyright-holder>Elsevier B.V.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>Autonomic arousal is often indexed by spontaneous fluctuations in skin conductance. Here, we derive a simple measure of sympathetic arousal, using a convolution model of how sudomotor bursting causes fluctuations in skin conductivity. Under this model, the time-integral of measured conductance is proportional to the frequency and amplitude of sudomotor bursts. We demonstrate the validity of this measure in relation to finite impulse response models, and show that it is a better predictor of autonomic arousal, relative to conventional measures.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Skin conductance (SCR)</kwd>
+        <kwd>Galvanic skin response (GSR)</kwd>
+        <kwd>Electrodermal activity (EDA)</kwd>
+        <kwd>Linear time-invariant filter (LTI)</kwd>
+        <kwd>Area under the curve (AUC)</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <p>Emotional arousal is often indexed by measuring skin conductance [<italic>SC</italic>]. <italic>SC</italic> changes are mainly dependent on the activity of sweat glands innervated by the sympathetic branch of the autonomic nervous system [ANS]. The most frequently used measures of tonic ANS activity are the number of spontaneous fluctuations [<italic>SF</italic>] in skin conductance, the amplitude of these fluctuations, and the overall level of the skin conductance [<italic>SCL</italic>] (see for an overview <xref rid="bib7" ref-type="bibr">Boucsein, 1992</xref>).</p>
+    <p>Many methods for <italic>SF</italic> detection require visual inspection, and introduce a subjective element into the analysis. Existing computational strategies for <italic>SF</italic> mandate a search for peaks in the signal, and the exclusion of peaks that do not to resemble a canonical response. These exclusions are based either on a heuristic of estimated rise and decay time or, alternatively, by fitting polynomials to the response and excluding those that cannot be fitted (see e.g. <xref rid="bib13 bib12" ref-type="bibr">Trosiener and Kayser, 1993; Storm et al., 2000</xref> for examples of such algorithms). The particular analytical form, and the parameters used, in these approaches are optimised to reflect a reference standard that is derived from visual scoring and not from theory. This means that although a relationship exists between the number, or amplitude, of <italic>SF</italic> and sympathetic arousal, the precise relationship between the number of <italic>detected SF</italic> and sympathetic arousal is difficult to describe in analytic terms. These shortcomings suggest a need for a measure that provides a more precise mapping between an analytical form and the physiological variable under study. This approach differs from signal deconvolution strategies (<xref rid="bib1 bib6" ref-type="bibr">Alexander et al., 2005; Benedek and Kaernbach, 2009</xref>) that try to recover the sudomotor nerve activity time series but do not quantify sympathetic arousal.</p>
+    <p>Here, we develop a simple measure of autonomic arousal based on linear time-invariant [LTI] assumptions and validate it on a previously published dataset in the context of anxiety aroused by public speaking anticipation. Software implementation of this method is freely available as function scr_sf_auc.m within the previously published software suite <italic>SCRalyze</italic> (<xref rid="bib4 bib5" ref-type="bibr">Bach et al., 2009; 2010</xref>) obtainable from <ext-link ext-link-type="uri" xlink:href="http://scralyze.sourceforge.net">http://scralyze.sourceforge.net</ext-link> under the <italic>GNU General Public License</italic>.</p>
+    <sec>
+      <label>1</label>
+      <title>Theoretical overview</title>
+      <p><italic>SF</italic> are caused by sporadic and spontaneous (i.e. unrelated to experimentally presented events) activity of the sudomotor nerve (<xref rid="bib7" ref-type="bibr">Boucsein, 1992</xref>). Spontaneous firing occurs in short bursts with a duration of around 500–1000 ms, separated by longer intervals, and is followed by opening of sweat glands (<xref rid="bib9 bib10" ref-type="bibr">Macefield and Wallin, 1996; Nishiyama et al., 2001</xref>). The number of sweat glands recruited is linearly related to the amplitude of a firing burst (<xref rid="bib10" ref-type="bibr">Nishiyama et al., 2001</xref>). Consequently, it is plausible to assume that the amplitude of an <italic>SF</italic> is linearly related to the amplitude of the firing burst. Further, it appears from previous research that both the number and the amplitude of bursts reflect sympathetic arousal.</p>
+      <p>It is biophysically plausible that the measured signal has some relationship with sudomotor nerve [<italic>SN</italic>] firing and reasonable to assume that this relation is constant (that is, time-invariant), and that two subsequent responses will build up in a linear fashion. Under these LTI assumptions, and in the absence of noise, it is easy to see that the time-integral (or area under the curve) of an <italic>SC</italic> time series is simply the <italic>SCL</italic>, plus the number of responses <italic>n</italic>, scaled by their amplitude <italic>a</italic>, and multiplied by a constant <italic>c</italic>. This constant is the time-integral of a single response to an input of unit amplitude (i.e., the response function; <italic>RF</italic>).<disp-formula id="eq1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mi>L</mml:mi><mml:mo>+</mml:mo><mml:mi>S</mml:mi><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>⊗</mml:mo><mml:mi>R</mml:mi><mml:mi>F</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>⇒</mml:mo></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mo>∫</mml:mo><mml:mrow><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced></mml:mrow></mml:mrow><mml:mo>ⅆ</mml:mo><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mi>L</mml:mi><mml:mo>+</mml:mo><mml:mi>c</mml:mi><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:msub><mml:mi>a</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo>=</mml:mo><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mi>L</mml:mi><mml:mo>+</mml:mo><mml:mi>c</mml:mi><mml:mi>n</mml:mi><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>―</mml:mo></mml:mover></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>c</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo>∫</mml:mo><mml:mrow><mml:mi>R</mml:mi><mml:mi>F</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced></mml:mrow></mml:mrow><mml:mo>ⅆ</mml:mo><mml:mi>t</mml:mi></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>S</mml:mi><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>=</mml:mo><mml:mrow><mml:munderover><mml:mo>∑</mml:mo><mml:mrow><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:mrow><mml:msub><mml:mi>a</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mi>δ</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:msub><mml:mi>T</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mfenced></mml:mrow></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula>where we describe <italic>SN</italic> as a Dirac delta function, and where <italic>ā</italic> is the mean amplitude of spontaneous fluctuations occurring at times <italic>T</italic><sub><italic>i</italic></sub>: <italic>i</italic> ∊ 1,…,<italic>n</italic>.<xref rid="fn2" ref-type="fn">2</xref> The <italic>SCL</italic>-corrected time-integral, or area under curve [<italic>AUC</italic>], which is simple to compute, should therefore reflect the number and amplitude of sudomotor bursts and the status of the sympathetic nervous system. In reality, LTI assumptions are unlikely to be met completely. However, we can posit that<disp-formula id="eq2"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mrow><mml:mo>∫</mml:mo><mml:mrow><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced></mml:mrow></mml:mrow><mml:mo>ⅆ</mml:mo><mml:mi>t</mml:mi><mml:mo>=</mml:mo><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mi>L</mml:mi><mml:mo>+</mml:mo><mml:mi>c</mml:mi><mml:mi>n</mml:mi><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>―</mml:mo></mml:mover><mml:mo>+</mml:mo><mml:mi>e</mml:mi></mml:mrow></mml:math></disp-formula>where <italic>e</italic> denotes some error that absorbs random fluctuations and any violations of time-invariance and linearity assumptions. This is the model that we seek to validate in this paper. Note that a similar measure has been used in applied psychophysiology to quantify arousal during anaesthesia (<xref rid="bib8" ref-type="bibr">Ledowski et al., 2007</xref>), but has not been formally derived or validated. Here, we provide a measure for the integrated time series, corrected for <italic>SCL</italic> by subtracting the lowest signal value, which we refer to as the area under the curve.</p>
+      <p>An alternative measure that has been previously used is the spectral power of the signal (<xref rid="bib11" ref-type="bibr">Shimomura et al., 2008</xref>). If we regard the skin conductance time series <italic>SC</italic> as a convolution of a time series of sudomotor firing bursts <italic>SN</italic> with a time-invariant response function<disp-formula id="eq3"><label>(3)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mtable><mml:mtr><mml:mtd><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>−</mml:mo><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mi>L</mml:mi><mml:mo>=</mml:mo><mml:mi>S</mml:mi><mml:mi>N</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>⊗</mml:mo><mml:mi>R</mml:mi><mml:mi>F</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced><mml:mo>⇒</mml:mo></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>F</mml:mi><mml:mi>T</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mo>−</mml:mo><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mi>L</mml:mi></mml:mrow></mml:mfenced><mml:mo>=</mml:mo><mml:mi>F</mml:mi><mml:mi>T</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>S</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:mfenced><mml:mi>F</mml:mi><mml:mi>T</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>R</mml:mi><mml:mi>F</mml:mi></mml:mrow></mml:mfenced></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula>then, according to the convolution theorem, we can write the Fourier transform [<italic>FT</italic>] of the skin conductance time series as a product of the <italic>FT</italic> of nerve firing and response function. This is the same as Eq. <xref rid="eq1" ref-type="disp-formula">(1)</xref> but now we are treating the sudomotor input as a continuous times series (as opposed to a series of discrete events). The overall spectral power of the (<italic>SCL</italic>-corrected) skin conductance time series will vary with the amplitude of sudomotor firing, while the frequency of sudomotor bursts will influence low frequencies of the spectral power (because the inter-burst interval determines the lower frequencies): an increase in the (low) frequency of bursts will shift the frequency of spectral power in lower ranges. More formally, for a rectangular (sudomotor pulse) wave of duration <italic>d</italic>, occurring every 1/<italic>n</italic> seconds (i.e., a burst frequency of <italic>n</italic>), the Fourier coefficients are:<disp-formula id="eq4"><label>(4)</label><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:mi>F</mml:mi><mml:mi>T</mml:mi><mml:msub><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>S</mml:mi><mml:mi>N</mml:mi></mml:mrow></mml:mfenced><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mo>sin</mml:mo><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>i</mml:mi><mml:mi>π</mml:mi><mml:mi>n</mml:mi><mml:mi>d</mml:mi></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>i</mml:mi><mml:mi>π</mml:mi></mml:mrow></mml:mfrac><mml:mo>⇒</mml:mo><mml:mfrac><mml:mrow><mml:mo>∂</mml:mo><mml:mi>F</mml:mi><mml:msub><mml:mi>T</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mrow><mml:mo>∂</mml:mo><mml:mi>n</mml:mi></mml:mrow></mml:mfrac><mml:mo>=</mml:mo><mml:mo>ⅆ</mml:mo><mml:mo>cos</mml:mo><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>i</mml:mi><mml:mi>π</mml:mi><mml:mi>n</mml:mi><mml:mi>d</mml:mi></mml:mrow></mml:mfenced><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+      <p>This simply says that the change in the Fourier coefficients with burst frequency is greatest at low frequencies (low <italic>i</italic>) because cos(<italic>iπnd</italic>) decreases with increasing <italic>i</italic>, given that <italic>nd</italic> &lt; 1. This is why it has been proposed previously to quantify sympathetic arousal by integrating the spectral power of the SC signal over low frequencies (<xref rid="bib11" ref-type="bibr">Shimomura et al., 2008</xref>). However, Eq. <xref rid="eq4" ref-type="disp-formula">(4)</xref> describes the power spectrum of the (unknown) <italic>SN</italic> and does not directly apply to the <italic>SC</italic> power spectrum. In fact, Eq. <xref rid="eq3" ref-type="disp-formula">(3)</xref> means that the burst frequency will have its greatest impact on spectral power of the <italic>SC</italic> when it matches the peak frequencies of the response function. Therefore, the <italic>SC</italic> power spectrum captures the frequency overlap between the response function and sudomotor firing, but not the sudomotor firing itself.</p>
+      <p>If the spectral power of the response function is known, it is possible to recover the firing frequency, or even the time series of sudomotor firing using<disp-formula id="eq5"><label>(5)</label><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:mi>S</mml:mi><mml:mi>N</mml:mi><mml:mo>=</mml:mo><mml:mi>F</mml:mi><mml:msup><mml:mi>T</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow></mml:msup><mml:mfenced open="(" close=")"><mml:mfrac><mml:mrow><mml:mi>F</mml:mi><mml:mi>T</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mo>−</mml:mo><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mi>L</mml:mi></mml:mrow></mml:mfenced></mml:mrow><mml:mrow><mml:mi>F</mml:mi><mml:mi>T</mml:mi><mml:mfenced open="(" close=")"><mml:mrow><mml:mi>R</mml:mi><mml:mi>F</mml:mi></mml:mrow></mml:mfenced></mml:mrow></mml:mfrac></mml:mfenced><mml:mtext>.</mml:mtext></mml:mrow></mml:math></disp-formula></p>
+      <p>However, noise and response variability render Eq. <xref rid="eq5" ref-type="disp-formula">(5)</xref> useless for practical purposes (see <xref rid="bib1" ref-type="bibr">Alexander et al., 2005</xref> for a similar deconvolution approach in the time domain that does not account for noise). Although classical methods are available for deconvolution with known noise spectra (e.g., Wiener deconvolution and related approaches), we pursue the time domain formulation in Eq. <xref rid="eq2" ref-type="disp-formula">(2)</xref>, because its application does not rely on knowing the noise spectrum.</p>
+    </sec>
+    <sec>
+      <label>2</label>
+      <title>Data</title>
+      <p>We analysed a dataset published previously (<xref rid="bib2 bib3" ref-type="bibr">Bach and Erdmann, 2007, 2008</xref>) that contained 1153 <italic>SF</italic> from four measurements of 40 healthy male university students (18–35 years) that were subjected to a public speaking anticipation paradigm after giving informed consent. The main focus of this paper was the interaction of habitual and situational symptom focusing, operationalised as attention towards neck muscle tension. The main experimental manipulation had no effect on indices of skin conductance such that data from the different experimental groups were combined for the present analysis, where we focus on the effect of the public speaking treatment. There were two baseline measurements, one measurement after announcement of a public speech, and another measurement after announcement of the speech topic. This allowed us to separate the effects of anxiety and cognitive effort.</p>
+      <p>After skin cleansing with propanol, skin conductance was recorded on thenar/hypothenar of the non-dominant hand using 8 mm Ag/AgCl cup electrodes (Coulbourn, Whitehall PA, USA) and 0.5%-NaCl electrode gel (Par, Berlin, Germany). 0.5 V constant voltage was provided by a S77-21 coupler (Coulbourn). The signal was band pass filtered (0.015 and 5 Hz), digitally converted with 10 Hz sampling rate (DI-205, Dataq, Akron OH, USA) and recorded (Windaq, Dataq). Each of four measurements lasted 120 s. The middle 60 s were analysed using a semi-automatic method (Event Detection and Analysis, <xref rid="bib13" ref-type="bibr">Trosiener and Kayser, 1993</xref>) with a threshold of 0.025 μS. Note that this analysis had been done in the context of the original experiment (<xref rid="bib2" ref-type="bibr">Bach and Erdmann, 2007</xref>), before the present method was developed, such that it can be regarded as unbiased.</p>
+      <p>Data analysis was carried out in Matlab (7.4, MathWorks, Natick MA, USA) using custom code that is available from the authors: this returns<disp-formula id="eq6"><label>(6)</label><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mrow><mml:mi>A</mml:mi><mml:mi>U</mml:mi><mml:mi>C</mml:mi><mml:mo>=</mml:mo><mml:mrow><mml:mo>∫</mml:mo><mml:mrow><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mfenced open="(" close=")"><mml:mi>t</mml:mi></mml:mfenced></mml:mrow></mml:mrow><mml:mo>ⅆ</mml:mo><mml:mi>t</mml:mi><mml:mo>−</mml:mo><mml:mi>S</mml:mi><mml:mi>C</mml:mi><mml:mi>L</mml:mi><mml:mo>=</mml:mo><mml:mi>c</mml:mi><mml:mi>n</mml:mi><mml:mover accent="true"><mml:mi>a</mml:mi><mml:mo>―</mml:mo></mml:mover><mml:mo>+</mml:mo><mml:mi>e</mml:mi></mml:mrow></mml:math></disp-formula>from Eq. <xref rid="eq1" ref-type="disp-formula">(1)</xref>. After importing 60 s segments of <italic>SC</italic> into Matlab, no further signal conditioning was applied.</p>
+    </sec>
+    <sec>
+      <label>3</label>
+      <title>Results</title>
+      <p>First, we quantified the validity of our linear time-invariant (LTI) assumptions (implicit in Eq. <xref rid="eq1" ref-type="disp-formula">(1)</xref>) by ensuring we could account for the majority of observed variance with a simple LTI convolution model. To deconvolve potentially overlapping <italic>SC</italic> responses, we used least-squares deconvolution under an uninformed finite impulse response function model (<xref rid="bib4" ref-type="bibr">Bach et al., 2009</xref>), consisting of 120 delta functions (or stick functions), one for each datapoint over a time window of (− 4, 8) s. We assumed a sudomotor input of fixed amplitude occurring before any <italic>SF</italic> peaks as identified by a semi-automated analysis. The estimated finite impulse response function from fitting this LTI model to the entire dataset is depicted in <xref rid="fig1" ref-type="fig">Fig. 1</xref>A.</p>
+      <p>This response function was then applied once to each peak in the entire dataset, and the amplitude of each peak was estimated. This model could explain 85.4% of the observed variance, thus suggesting that the time-invariance assumption is largely met.</p>
+      <p>We then sought to validate Eq. <xref rid="eq6" ref-type="disp-formula">(6)</xref> which implies that there is a close relation between the number and amplitude (<italic>n</italic> × ā) of <italic>SF</italic> from conventional analysis and the new <italic>AUC</italic> measure. Also, it predicts that the constant of proportionality between the two measures equals the time-integral of the finite impulse <italic>RF</italic>.</p>
+      <p><xref rid="fig1" ref-type="fig">Fig. 1</xref>B–D depicts the correlations of <italic>AUC</italic> with the number of responses, mean amplitude or responses, and number × mean amplitude (<italic>n</italic> × ā). The latter shows about 89% shared variance, suggesting a high degree of convergent validity between the conventional and <italic>AUC</italic> measures. The regression slope when regressing <italic>AUC</italic> on <italic>n</italic> × ā was 3.53 s. This is remarkably similar to the integral of the impulse response function; <italic>c</italic> = 3.61 s, based on the finite impulse response function estimated above (see Eq. <xref rid="eq6" ref-type="disp-formula">(6)</xref>). This provides evidence for the validity of LTI assumptions. Note that the intercept was positive, such that the observed <italic>AUC</italic> takes an above zero value when number × mean amplitude is zero.</p>
+      <p>In order to render the two measures directly comparable, we multiplied the conventionally derived amplitude × number of responses with the constant <italic>c</italic> such that they were brought to the same units and scale. In a 2 (treatment: baseline/anticipation) × 2 (method) repeated measures ANOVA, both the conventionally derived measure (<italic>F</italic><sub>1, 39</sub> = 29.9; <italic>p</italic> &lt; 0.0001) and the <italic>AUC</italic> (<italic>F</italic><sub>1, 39</sub> = 41.7; <italic>p</italic> &lt; 0.0001) could predict autonomic arousal in the public speaking paradigm, but <italic>AUC</italic> made the more precise prediction as shown in the treatment × method interaction (<italic>F</italic><sub>1, 39</sub> = 42.3; <italic>p</italic> &lt; 0.0001), as shown in <xref rid="fig1" ref-type="fig">Fig. 1</xref>E.</p>
+      <p>We then classified each epoch from each participant as either baseline or anticipation and tried to predict these categories, across all participants, from amplitude × number of responses and from <italic>AUC</italic>. Again, <italic>AUC</italic> was a better predictor (<italic>r</italic> = 0.38) than amplitude × number of responses (<italic>r</italic> = 0.30). Thus, <italic>AUC</italic> explained a higher proportion of variance in the categories. For this difference, we computed an <italic>F</italic>- and its associated <italic>p</italic>-value as (variance explained by <italic>AUC</italic> − variance explained by conventional analysis) / residual variance, corrected by the respective degrees of freedom (<italic>F</italic><sub>1, 159</sub> = 8.7; <italic>p</italic> &lt; 0.005).</p>
+    </sec>
+    <sec>
+      <label>4</label>
+      <title>Discussion</title>
+      <p>In this paper, we derive a summary statistic for sympathetic arousal as indexed by spontaneous fluctuations (<italic>SF</italic>) of the skin conductance. We show that it is possible to do so in a purely analytic fashion, without ad-hoc adjustments and complicated algorithms or visual control. The statistic we derive, namely the area under the curve <italic>AUC</italic>, or skin conductance level (<italic>SCL</italic>)-corrected time-integral, is closely related to number and amplitude of <italic>SF</italic> as scored by an independent, conventional method. It predicts experimentally manipulated autonomic arousal in a public speaking paradigm and is a significantly better predictor than the amplitude and number of <italic>SF</italic> estimated conventionally and may therefore provide a less noisy estimate of sudomotor activity. This is not surprising, as we also show that <italic>SF</italic>s seem to be largely time-invariant and only differ in amplitude, rather than in their shape. In fact, our model is parsimonious as it uses only one response function for the whole sample and will therefore underestimate the explainable variance, but still can explain more than 80%. This is higher than for event-related skin conductance responses (<italic>SCR</italic>), where explained variance using one response function across individuals is typically estimated at around 50% (<xref rid="bib5" ref-type="bibr">Bach et al., 2010</xref>). Note, however, that in the analysis of <italic>SCR</italic>, <italic>SF</italic> constitute noise and contribute to residual within-subject variance, whereas in the present approach, they are the responses of interest. As a limitation of our approach, we note that the conventionally derived <italic>number</italic> of responses is a better predictor of autonomic arousal than the number × mean amplitude. In other words, although our <italic>AUC</italic> measure provides a less noisy quantification of combined response number and amplitude than conventional analysis, this might not be the optimal quantification of autonomic arousal. Future work will investigate methods to recover the number of responses independent from their amplitude.</p>
+      <p>In summary, we show that the time-integral of the skin conductance time series provides a simple quantification for autonomic arousal that is computationally inexpensive and requires no subjective element. This approach could in theory be extended to quantify event-related (evoked and anticipatory) responses, although here one might be more interested in separating event-related from spontaneous responses which requires some regularisation of the possible response, e.g. in a general linear convolution model [GLM] (<xref rid="bib4" ref-type="bibr">Bach et al., 2009</xref>).</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Alexander</surname>
+              <given-names>D.M.</given-names>
+            </name>
+            <name>
+              <surname>Trengove</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Johnston</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Cooper</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>August</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Gordon</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Separating individual skin conductance responses in a short interstimulus-interval paradigm</article-title>
+          <source>J. Neurosci. Methods</source>
+          <volume>146</volume>
+          <year>2005</year>
+          <fpage>116</fpage>
+          <lpage>123</lpage>
+          <pub-id pub-id-type="pmid">15935228</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bach</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Erdmann</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <article-title>Influences of habitual and situational bodily symptom focusing on stress responses</article-title>
+          <source>Cogn Emot</source>
+          <volume>21</volume>
+          <year>2007</year>
+          <fpage>1091</fpage>
+          <lpage>1101</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bach</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Erdmann</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Subjective bodily symptoms during anticipation of public speaking: influence of habitual symptom perception and actual symptom focusing [Article in German]</chapter-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Janke</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Schmidt-Daffy</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Debus</surname>
+              <given-names>G.</given-names>
+            </name>
+          </person-group>
+          <source>Experimentelle Emotionspsychologie</source>
+          <year>2008</year>
+          <publisher-name>Pabst</publisher-name>
+          <publisher-loc>Lengerich</publisher-loc>
+          <fpage>603</fpage>
+          <lpage>615</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bach</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Time-series analysis for rapid event-related skin conductance responses</article-title>
+          <source>J. Neurosci. Methods</source>
+          <volume>184</volume>
+          <year>2009</year>
+          <fpage>224</fpage>
+          <lpage>234</lpage>
+          <pub-id pub-id-type="pmid">19686778</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bach</surname>
+              <given-names>D.R.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modelling event-related skin conductance responses</article-title>
+          <source>Int. J, Psychophysiol.</source>
+          <volume>75</volume>
+          <year>2010</year>
+          <fpage>349</fpage>
+          <lpage>356</lpage>
+          <pub-id pub-id-type="pmid">20093150</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <mixed-citation publication-type="other">Benedek, M., Kaernbach, C., 2009. Decomposition of skin conductance data by means of nonnegative deconvolution. Psychophysiology. In press.</mixed-citation>
+      </ref>
+      <ref id="bib7">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Boucsein</surname>
+              <given-names>W.</given-names>
+            </name>
+          </person-group>
+          <chapter-title>Electrodermal Activity</chapter-title>
+          <year>1992</year>
+          <publisher-name>Springer</publisher-name>
+          <publisher-loc>Berlin</publisher-loc>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ledowski</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Preuss</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Ford</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Paech</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>McTernan</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kapila</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Schug</surname>
+              <given-names>S.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>New parameters of skin conductance compared with Bispectral Index monitoring to assess emergence from total intravenous anaesthesia</article-title>
+          <source>Br. J. Anaesth.</source>
+          <volume>99</volume>
+          <year>2007</year>
+          <fpage>547</fpage>
+          <lpage>551</lpage>
+          <pub-id pub-id-type="pmid">17617556</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Macefield</surname>
+              <given-names>V.G.</given-names>
+            </name>
+            <name>
+              <surname>Wallin</surname>
+              <given-names>B.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>The discharge behaviour of single sympathetic neurones supplying human sweat glands</article-title>
+          <source>J. Auton. Nerv. Syst.</source>
+          <volume>61</volume>
+          <year>1996</year>
+          <fpage>277</fpage>
+          <lpage>286</lpage>
+          <pub-id pub-id-type="pmid">8988486</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nishiyama</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Sugenoya</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Matsumoto</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Iwase</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Mano</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Irregular activation of individual sweat glands in human sole observed by a videomicroscopy</article-title>
+          <source>Auton. Neurosci.</source>
+          <volume>88</volume>
+          <year>2001</year>
+          <fpage>117</fpage>
+          <lpage>126</lpage>
+          <pub-id pub-id-type="pmid">11474541</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shimomura</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Yoda</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Sugiura</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Horiguchi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Iwanaga</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Katsuura</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Use of frequency domain analysis of skin conductance for evaluation of mental workload</article-title>
+          <source>J. Physiol Anthropol.</source>
+          <volume>27</volume>
+          <year>2008</year>
+          <fpage>173</fpage>
+          <lpage>177</lpage>
+          <pub-id pub-id-type="pmid">18832780</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Storm</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Fremming</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Odegaard</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Martinsen</surname>
+              <given-names>O.G.</given-names>
+            </name>
+            <name>
+              <surname>Morkrid</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>The development of a software program for analyzing spontaneous and externally elicited skin conductance changes in infants and adults</article-title>
+          <source>Clin. Neurophysiol.</source>
+          <volume>111</volume>
+          <year>2000</year>
+          <fpage>1889</fpage>
+          <lpage>1898</lpage>
+          <pub-id pub-id-type="pmid">11018507</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Trosiener</surname>
+              <given-names>H.-J.</given-names>
+            </name>
+            <name>
+              <surname>Kayser</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis and interactive control of electrodermal and cardiac activity: a computer program for IBM-PCs and compatibles</article-title>
+          <source>J. Psychophysiol.</source>
+          <volume>7</volume>
+          <year>1993</year>
+          <fpage>171</fpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgements</title>
+      <p>We thank Prof. Gisela Erdmann who provided SCR data from her laboratory for re-analysis. This research was funded by a Programme Grant to RJD from the Wellcome Trust and by a Personal Grant to DRB from the Swiss National Science Foundation.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn2">
+        <label>2</label>
+        <p>We chose to use continuous representation here, but all equations hold for discrete data by replacing integrals with sums.</p>
+      </fn>
+    </fn-group>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>A: The response function estimated across participants with an uninformed finite impulse response model that deconvolves potentially overlapping responses. The time at 0 s corresponds to peak time as detected by semi-automated conventional analysis. B–D: Correlation of the <italic>AUC</italic> with conventional <italic>SF</italic> measures, derived from semi-automated conventional analysis. All correlations were significant (<italic>p</italic> &lt; 0.0001). E: <italic>AUC</italic> (black) and number × mean response amplitude (multiplied with the scaling constant <italic>c</italic>) predict autonomic arousal in a public speaking anticipation experiment, but <italic>AUC</italic> is a better predictor (see text for statistical inference). BL1 and BL2: baseline measurements. R1: measurement after announcement of a public speech. R2: measurement after announcement of the speech topic. Values are shown as mean and standard error.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+  </floats-group>
+</article>

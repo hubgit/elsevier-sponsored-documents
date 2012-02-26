@@ -1,0 +1,566 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="brief-report">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title-group>
+        <journal-title>Neuroimage</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3221040</article-id>
+      <article-id pub-id-type="pmid">19944173</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG6751</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2009.10.090</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Technical Note</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Topological FDR for neuroimaging</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Chumbley</surname>
+            <given-names>J.</given-names>
+          </name>
+          <email>jrchum@gmail.com</email>
+          <xref rid="aff1" ref-type="aff">a</xref>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Worsley</surname>
+            <given-names>K.</given-names>
+          </name>
+          <xref rid="aff2" ref-type="aff">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Flandin</surname>
+            <given-names>G.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Friston</surname>
+            <given-names>K.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">a</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1"><label>a</label>Wellcome Trust Centre for Neuroimaging, 12 Queen Square, London; WC1N 3BG, UK</aff>
+      <aff id="aff2"><label>b</label>Department of Statistics, University of Chicago, Chicago, IL, USA</aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. <email>jrchum@gmail.com</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>15</day>
+        <month>2</month>
+        <year>2010</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>15</day>
+        <month>2</month>
+        <year>2010</year>
+      </pub-date>
+      <volume>49</volume>
+      <issue>4-3</issue>
+      <fpage>3057</fpage>
+      <lpage>3064</lpage>
+      <history>
+        <date date-type="received">
+          <day>15</day>
+          <month>6</month>
+          <year>2009</year>
+        </date>
+        <date date-type="accepted">
+          <day>28</day>
+          <month>10</month>
+          <year>2009</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2010 Elsevier Inc.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract>
+        <p>In this technical note, we describe and validate a topological false discovery rate (FDR) procedure for statistical parametric mapping. This procedure is designed to deal with signal that is continuous and has, in principle, unbounded spatial support. We therefore infer on topological features of the signal, such as the existence of local maxima or peaks above some threshold. Using results from random field theory, we assign a <italic>p</italic>-value to each maximum in an <italic>SPM</italic> and identify an adaptive threshold that controls false discovery rate, using the Benjamini and Hochberg (BH) procedure (1995). This provides a natural complement to conventional family wise error (FWE) control on local maxima. We use simulations to contrast these procedures; both in terms of their relative number of discoveries and their spatial accuracy (via the distribution of the Euclidian distance between true and discovered activations). We also assessed two other procedures: cluster-wise and voxel-wise FDR procedures. Our results suggest that (a) FDR control of maxima or peaks is more sensitive than FWE control of peaks with minimal cost in terms of false-positives, (b) voxel-wise FDR is substantially less accurate than topological FWE or FDR control. Finally, we present an illustrative application using an fMRI study of visual attention.</p>
+      </abstract>
+    </article-meta>
+  </front>
+  <body>
+    <sec>
+      <title>Introduction</title>
+      <p>Numerous authors have remarked that the fundamental effects of interest in fMRI are distributed and spatially continuous (e.g. <xref rid="bib8" ref-type="bibr">Heller et al 2006</xref>, see also <xref rid="bib10 bib3" ref-type="bibr">Pacifico et al 2004 and Benjamini and Heller 2007</xref>). A recent communication (<xref rid="bib5" ref-type="bibr">Chumbley and Friston, 2009</xref>) proposed a solution based upon conditional <italic>p</italic>-values associated with the spatial extent of excursion sets above an arbitrary threshold (conditional on such a set existing). Here, we revisit the same issue and present an equivalent solution based on <italic>p</italic>-values associated with maxima or peaks in a Statistical Parametric Map (SPM). This allows us to assign FDR adjusted <italic>p</italic>-values (which we shall refer to as <italic>q</italic>-values) to both peaks and clusters within any SPM on image data.</p>
+      <p>Most instances of image analysis deal with signals that are continuous functions of some support; for example, anatomical space, time and frequency in EEG analyses or various combinations of space, time and frequency: In <xref rid="bib5" ref-type="bibr">Chumbley and Friston (2009</xref>) we discuss why signal is continuous in the majority of neuroimaging applications and have reviewed the various image reconstruction procedures and biophysical mechanisms that generate continuous signals. If signal is a continuous function of the search space, strictly speaking, every discovery is a true discovery, because signal is everywhere. These conditions present a challenge to the conventional application of FDR to separate tests or voxels.</p>
+      <p>In <xref rid="bib5" ref-type="bibr">Chumbley and Friston (2009)</xref> we described a solution based upon the topological features of the SPM. This involved controlling the false-discovery rate, not of voxels, but of connected components of the excursion set above some threshold (i.e., controlling the false-discovery rate of clusters). In this note, we pursue the same theme but control the false-discovery rate of maxima or peaks. Maxima or peaks are the most common topological features of activation profiles reported in the literature. Peaks are a useful characterisation of regionally specific responses because they have a well-defined location (usually reported in a standard anatomical space) and lend themselves to data-basing. Note that a simple<xref rid="fn1" ref-type="fn">1</xref> suprathreshold region in an SPM could contain several peaks. Only at high thresholds, will the number of suprathreshold regions and peaks be equal. Usually, people display the SPM, at some threshold, as a maximum intensity projection or rendered image and then discuss peaks that survive a statistical criterion.</p>
+      <p>In what follows, we will consider signal to be a continuous function of a statistical search space and an effect or activation to be some topological feature of this function. In particular, we will consider an activation to be a peak of the signal and a discovery to be the corresponding peak in the statistical process or SPM. We thus convert a continuous process (signal) to a topological feature (activation) that does or does not exist. Finally, we may choose to define “true positive” and “false positive” topological decisions (with a latitude that is not possible in the definition of decisions in discrete tests). For example, one might reasonably label a discovered peak in an SPM “true positive” if it lies within one FWHM of a true peak in the underlying signal, and “false positive” otherwise. However, this categorisation of discoveries as true or false depends on an arbitrary threshold (here one FWHM). More generally then, we consider the full distribution on the distance between observed and true maxima under a procedure. This measure of the spatial accuracy is of interest <italic>per se</italic> and can be readily transformed back into a qualitative false-positive rate (by evaluating its cumulative density at any specified distance). To assess accuracy, one can compare these distributions of spatial error, over procedures.</p>
+      <p>This note comprises three sections. In the first, we present the theory behind the control for false-discovery rates of peaks. We then assess its performance in relation to conventional peak FWE in terms of two complementary measures: (a) the relative number of discoveries and (b) the spatial displacement of each discovered peak from the true underlying peak (defined as the minimum distance between true activations and discoveries). We report conditions under which the peak-BH procedure identifies more activations (as measured by a) at a negligible cost of identifying more false ones (as measured by b). This enables us to compare different procedures in quantitative terms, while side-stepping the different definitions of a discovery (e.g. of “activation”) under voxel-wise and topological approaches. In the final section, we apply the alternative procedures (FWE and FDR on peaks and FDR on clusters and voxels) to a standard fMRI dataset (the fMRI study of visual attention available at <ext-link ext-link-type="uri" xlink:href="http://www.fil.ion.ucl.ac.uk/spm">http://www.fil.ion.ucl.ac.uk/spm</ext-link>).</p>
+    </sec>
+    <sec>
+      <title>Theory</title>
+      <p>In this section, we present the theory behind topological inference based on FDR for peaks. The usual approach to topological inference is as follows. First, derive the null distribution of the SPM, assuming no signal and Gaussian error fields. Then define a random set <italic>A</italic><sub>h,s</sub> of simple regions within the SPM, where each region exceeds <italic>h</italic> in height and <italic>s</italic> in spatial extent (<italic>h</italic><sub><italic>i</italic></sub> &gt; <italic>h</italic>,<italic>s<sub>i</sub></italic> &gt; <italic>s</italic>)with <italic>i</italic> = 1, …, <italic>M</italic><sub><italic>h,s</italic></sub>. Finally, derive the distribution of <italic>M</italic><sub><italic>h,s</italic></sub>, under the assumptions described in <xref rid="bib7" ref-type="bibr">Friston et al., 1996</xref>. This allows one to calibrate the thresholds (<italic>h,s</italic>) to control the expected number of false positives <italic>E</italic>(<italic>M</italic><sub><italic>h,s</italic></sub>), or until the probability of getting any false positives <italic>p</italic>(<italic>M</italic><sub><italic>h,s</italic></sub> &gt; 0) is sufficiently small; this is the family-wise error (FWE) rate. Having established the decision criterion (<italic>h,s</italic>) any observed region satisfying (<italic>h</italic><sub><italic>i</italic></sub> &gt; <italic>h,s<sub>i</sub></italic> &gt; <italic>s</italic>) indicates the qualitative existence of one or more maxima in the underlying signal field (e.g., “an activation”).</p>
+      <p>An alternative approach, used in this work, views the random excursion set <italic>A</italic><sub><italic>h,s</italic></sub> as comprising two random subsets <italic>A</italic><sub><italic>h,s</italic></sub>⊇ = {<italic>A</italic><sub><italic>h,s,f</italic></sub>, <italic>A</italic><sub><italic>h,s,t</italic></sub>} of false- and true-positive domains. The integer count of simple regions in <italic>A</italic><sub><italic>h,s</italic></sub> is now <italic>M</italic><sub><italic>h,s</italic></sub> = <italic>M</italic><sub><italic>h,s,f</italic></sub> + <italic>M</italic><sub><italic>h,s,t</italic></sub>. We use a simple algorithm (<xref rid="bib2" ref-type="bibr">Benjamini and Hochberg, 1995</xref>) to calibrate (<italic>h,s</italic>) so that <italic>M</italic><sub><italic>h,s,f</italic></sub>/<italic>M</italic><sub><italic>h,s</italic></sub> &lt; <italic>α</italic> on average. This approach does not seek to restrict the absolute number of false-positive regions (as above), but their fraction among all regions declared positive; this is the false discovery rate (FDR). This work (together with <xref rid="bib5" ref-type="bibr">Chumbley and Friston, 2009</xref>) considers special cases, where either <italic>h</italic> or <italic>s</italic> are fixed in advance.</p>
+      <p>Briefly, we harvest the peaks above some user-specified threshold <italic>u</italic> and compute the <italic>p</italic>-values for each of these peaks. We then evaluate the corresponding <italic>q</italic>-values and threshold that controls the expected false-discovery rate (using <xref rid="bib2" ref-type="bibr">Benjamini and Hochberg 1995</xref>). Note that we are controlling the false-discovery rate of peaks, not voxels. This critical distinction applies equally to the control of false-positive rates in conventional topological inference; namely, when we adjust the <italic>p</italic>-values for multiple comparisons using random field theory, we are controlling the false-positive rate of <italic>peaks</italic> or <italic>maxima</italic> within the SPM (not voxels): The expected number of false-positive voxels depends on the false-positive rate of peaks times the expected number of voxels subtending one peak. As the expected number of voxels per peak is always greater than one, the expected false-positive rate of voxels is always greater than the false-positive rate of peaks.</p>
+      <p>To compute the threshold for control of FDR, and associated <italic>q</italic>-values, we need the uncorrected <italic>p</italic>-value for each local peak in the SPM. We can compute the uncorrected <italic>p</italic>-value for peaks above some threshold using standard results from random field theory. This computation is based upon the fact that the <italic>p</italic>-value for a peak <italic>Z</italic> surpassing a threshold <italic>u</italic>, obtains by simply normalizing according to Bayes rule:<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>p</mml:mi><mml:mi>u</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>z</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mi>p</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>Z</mml:mi><mml:mo>&gt;</mml:mo><mml:mi>z</mml:mi><mml:mo stretchy="true">|</mml:mo><mml:mi>Z</mml:mi><mml:mo>&gt;</mml:mo><mml:mi>u</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:mi>p</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>Z</mml:mi><mml:mo>&gt;</mml:mo><mml:mi>z</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:mi>p</mml:mi><mml:mo stretchy="true">(</mml:mo><mml:mi>Z</mml:mi><mml:mo>&gt;</mml:mo><mml:mi>u</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula></p>
+      <p>Provided the regional excursions remain simple, the right hand side reports conditional <italic>p</italic>-values for <italic>u</italic> as follows.<disp-formula id="fd2"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mtable columnalign="left"><mml:mtr><mml:mtd><mml:msub><mml:mi>p</mml:mi><mml:mi>u</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>z</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>≈</mml:mo><mml:mfrac><mml:mrow><mml:mi>E</mml:mi><mml:msub><mml:mi>C</mml:mi><mml:mi>D</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>z</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:mi>E</mml:mi><mml:msub><mml:mi>C</mml:mi><mml:mi>D</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>u</mml:mi><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mfrac></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mi>E</mml:mi><mml:msub><mml:mi>C</mml:mi><mml:mi>D</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>u</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>&gt;</mml:mo><mml:mi>E</mml:mi><mml:msub><mml:mi>C</mml:mi><mml:mi>D</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>z</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>≥</mml:mo><mml:mn>0</mml:mn><mml:mo>⇒</mml:mo><mml:mn>1</mml:mn><mml:mo>≥</mml:mo><mml:msub><mml:mi>p</mml:mi><mml:mi>u</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>z</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>≥</mml:mo><mml:mn>0</mml:mn></mml:mtd></mml:mtr></mml:mtable></mml:math></disp-formula></p>
+      <p>Here <italic>EC</italic><sub><italic>D</italic></sub> is the Euler characteristic density, the expected rate of emission of peaks per <italic>resel</italic> (a measure of effective volume after accounting for non-isotropic smoothness in a <italic>D</italic>-dimensional space). While there is an exact expression for the Euler characteristic at all <italic>u</italic> (<xref rid="bib11" ref-type="bibr">Taylor and Worsley 2007</xref>), regions only remain simple for roughly <italic>u</italic> &gt; 2.5.</p>
+      <p>In short, the uncorrected <italic>p</italic>-value is simply the ratio of the rates of getting peaks above <italic>u</italic> and <italic>z</italic>, which is available from standard results in random field theory (<xref rid="bib12 bib6" ref-type="bibr">Worsley et al 1992, Friston et al 1994</xref>). For example, in the cases of <italic>t</italic> fields, with <italic>v</italic> degrees of freedom, the right hand side has the following form (see <xref rid="bib13" ref-type="bibr">Worsley et al 1996</xref>),<disp-formula id="fd3"><label>(3)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>p</mml:mi><mml:mi>u</mml:mi></mml:msub><mml:mo stretchy="true">(</mml:mo><mml:mi>z</mml:mi><mml:mo stretchy="true">)</mml:mo><mml:mo>=</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mi>z</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mi>ν</mml:mi></mml:mfrac><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="true">(</mml:mo><mml:mi>ν</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="true">(</mml:mo><mml:mfrac><mml:mrow><mml:mi>ν</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>ν</mml:mi></mml:mfrac><mml:msup><mml:mi>z</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:msup><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mn>1</mml:mn><mml:mo>+</mml:mo><mml:mfrac><mml:mrow><mml:msup><mml:mi>u</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow><mml:mi>ν</mml:mi></mml:mfrac><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mrow><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo>/</mml:mo><mml:mn>2</mml:mn><mml:mo stretchy="true">(</mml:mo><mml:mi>ν</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:msup><mml:mo stretchy="true">(</mml:mo><mml:mfrac><mml:mrow><mml:mi>ν</mml:mi><mml:mo>−</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>ν</mml:mi></mml:mfrac><mml:msup><mml:mi>u</mml:mi><mml:mn>2</mml:mn></mml:msup><mml:mo>−</mml:mo><mml:mn>1</mml:mn><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mfrac></mml:mrow></mml:math></disp-formula></p>
+      <p>These uncorrected <italic>p</italic>-values for maxima can then be submitted to an FDR-control algorithm (<xref rid="bib2" ref-type="bibr">Benjamini and Hochberg 1995</xref>), which returns a threshold that controls the expected false-discovery rate. Note that a conventional FDR procedure would rank the uncorrected <italic>p</italic>-values associated with <italic>all voxels</italic>, treating them as a collection of discrete tests.</p>
+      <p>Generally, independence of the <italic>p</italic>-values and the number of tests is not needed in the BH procedure because the number of tests is fixed and the “distribution functions” are essentially deterministic. However, in our case, the number of <italic>p</italic>-values is itself a random variable because it corresponds to the number of maxima in an observed SPM. We therefore have to appeal to the Poisson clumping heuristic (<xref rid="bib1" ref-type="bibr">Aldous, 1989</xref>) to motivate the assumption that the uncorrected <italic>p</italic>-values of the peaks are independent of their number. Intuitively, this means that the occurrence of a peak in one part of the SPM does not depend on the height of a peak in another part. Clearly, this rests on the smoothness of the SPM being smaller than its domain and, implicitly, a large number of peaks. Only under these circumstances is it sensible to control FDR. This means that the FDR procedures discussed above are only meaningfully applied when peaks are defined by a relatively low threshold on SPMs with a large number of <italic>resels</italic> (i.e., a high Lipschitz–Killing curvature; <xref rid="bib11" ref-type="bibr">Taylor and Worsley 2007</xref>).</p>
+    </sec>
+    <sec>
+      <title>Assessing FDR</title>
+      <p>We must take care when evaluating the performance of an FDR-control algorithm in the context of an alternative hypothesis that involves continuous signal with unbounded support. This is because under this condition, FDR on voxels is zero (because, strictly speaking, there is signal everywhere). We therefore use a performance measure based on topological features; namely, the smallest distance between the true activation (the peak of the signal) and the discoveries (peaks in the SPM). Notice that the “minimum distance” between a true activation and any peak in the SPM is well defined, even if the peak is not (e.g., a ridge of peaks) . However, this minimum distance measure is a pragmatic choice, which may confound attempts to put the numerical results presented below on a firm mathematical footing.</p>
+      <p>This minimum distance measure allows us to quantify the spatial specificity of the FDR-control procedure, without making strong assumptions about the nature of signal or its spatial support. In other words, by defining a true activation as a peak in the signal and a discovery as a supra-threshold peak in the SPM, we have a well-defined measure of the spatial relationship between the two that avoids defining a discovery in terms of voxels.</p>
+      <p>With this in mind, we define a vector-valued statistic <italic>D</italic> of the field under the alternative hypothesis (i.e., spatially smooth deterministic signal plus random field noise) such that the <italic>i-</italic>th element:<inline-formula><alternatives><textual-form specific-use="jats-markup"><italic>D</italic><sub><italic>i</italic></sub> = min || <italic>X</italic><sub><italic>i</italic></sub>−μ<sub><italic>j</italic></sub> || :<italic>i</italic> = 1, …, I</textual-form><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>D</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>=</mml:mo><mml:mi>min</mml:mi><mml:mrow><mml:mo>||</mml:mo><mml:mrow><mml:msub><mml:mi>X</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>μ</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow><mml:mo>||</mml:mo></mml:mrow><mml:mo>:</mml:mo><mml:mi>i</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn><mml:mo>,</mml:mo><mml:mo>…</mml:mo><mml:mo>,</mml:mo><mml:mn>I</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>, where <italic>I</italic> is the (random) number of discoveries. <inline-formula><alternatives><textual-form specific-use="jats-markup"> || <italic>X</italic><sub><italic>i</italic></sub>−μ<sub><italic>j</italic></sub> || </textual-form><mml:math id="M5" altimg="si5.gif" overflow="scroll"><mml:mrow><mml:mrow><mml:mo>||</mml:mo><mml:mrow><mml:msub><mml:mi>X</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>μ</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow><mml:mo>||</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></inline-formula> is the Euclidian distance between the location of an <italic>observed</italic> local peak <italic>X</italic><sub><italic>i</italic></sub> and a <italic>true</italic> local peak in the underlying signal; the <italic>μ</italic><sub><italic>i</italic></sub> each belong to the set of true peak locations <italic>Q</italic>.</p>
+      <p>We can then consider the distribution of minimum distances, <italic>p</italic><sub>proc</sub>(<italic>d</italic><sub><italic>i</italic></sub>) corresponding to the random variables <italic>D</italic><sub><italic>i</italic></sub> associated with the discoveries from each procedure (proc). This distribution over the spatial displacements quantifies the spatial inaccuracy of a procedure. Using <italic>Φ</italic><sub>proc</sub>(<italic>d</italic><sub><italic>i</italic></sub>) to denote the cumulative density function of <italic>p</italic><sub>proc</sub>(<italic>d</italic><sub><italic>i</italic></sub>), 1-<italic>Φ</italic><sub>proc</sub>(<italic>d</italic><sub><italic>i</italic></sub>) reports the rate of displacements more extreme than <italic>d</italic><sub><italic>i</italic></sub>.</p>
+      <p>In the next section, we compare topological FDR based upon peaks (peak-FDR) and clusters (cluster-FDR) and conventional voxel-wise FDR, based upon uncorrected voxel-wise <italic>p</italic>-values (voxel-FDR) against the benchmark of peak-FWE. We therefore contrast each procedure's displacement error with that of topological peak-FWE using:<disp-formula id="fd4"><label>(4)</label><alternatives><textual-form specific-use="jats-markup">Φ<sub><italic>F</italic><italic>W</italic><italic>E</italic></sub>(<italic>d</italic><sub><italic>i</italic></sub>)−Φ<sub><italic>p</italic><italic>r</italic><italic>o</italic><italic>c</italic></sub>(<italic>d</italic><sub><italic>i</italic></sub>)</textual-form><mml:math id="M6" altimg="si6.gif" overflow="scroll"><mml:mrow><mml:msub><mml:mi>Φ</mml:mi><mml:mrow><mml:mi>F</mml:mi><mml:mi>W</mml:mi><mml:mi>E</mml:mi></mml:mrow></mml:msub><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msub><mml:mi>d</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow><mml:mo>−</mml:mo><mml:msub><mml:mi>Φ</mml:mi><mml:mrow><mml:mi>p</mml:mi><mml:mi>r</mml:mi><mml:mi>o</mml:mi><mml:mi>c</mml:mi></mml:mrow></mml:msub><mml:mrow><mml:mo stretchy="true">(</mml:mo><mml:mrow><mml:msub><mml:mi>d</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow><mml:mo stretchy="true">)</mml:mo></mml:mrow></mml:mrow></mml:math></alternatives></disp-formula></p>
+      <p>This reports accuracy of a procedure (proc) relative to peak-FWE i.e. the rate of displacements more extreme than <italic>d</italic><sub><italic>i</italic></sub> attained using proc relative to that attained using standard peak-FWE control. To complement this measure, we also plotted <italic>Φ</italic><sub>FWE</sub>(<italic>d</italic><sub><italic>i</italic></sub>) against <italic>Φ</italic><sub>proc</sub>(<italic>d</italic><sub><italic>i</italic></sub>) (cf, a ROC curve). In these plots, a loss of spatial accuracy, relative to the FWE threshold means that for any distance, the number of discoveries <italic>Φ</italic><sub>proc</sub>(<italic>d</italic><sub><italic>i</italic></sub>) &lt; <italic>Φ</italic><sub>FWE</sub>(<italic>d</italic><sub><italic>i</italic></sub>) will fall and the resulting curves will lie above the <italic>Φ</italic><sub>proc</sub> = <italic>Φ</italic><sub>FWE</sub> diagonal.</p>
+      <p>These two measures collectively summarize spatial accuracy. Note that spatial accuracy can always be increased at the expense of increased conservativeness by raising the height threshold <italic>u</italic>. This is because higher thresholds admit a fewer regions into the excursion set by chance, leaving a higher prevalence of regions with true underlying activation. Therefore, we also examined <italic>r</italic><sub>peak</sub> = dim(<italic>D</italic><sub>proc</sub>) / dim(<italic>D</italic><sub>peakFWE</sub>), the ratio of total peak-FDR and peak-FWE discoveries, irrespective of whether they are spatially accurate or not. As there are no convenient analytic results for <italic>D</italic><sub><italic>i</italic></sub>, we proceed with simulations.</p>
+    </sec>
+    <sec>
+      <title>Simulations and comparative evaluations</title>
+      <p>In this section, we present comparative evaluations of the different decision procedures using exactly the same simulated signal and error processes. We generated SPMs with 15 degrees of freedom by simulating 16 volumes of data and applying a voxel-wise <italic>t</italic> transformation. The data were a linear mixture of smooth signal and smooth noise. The noise was formed by convolving random number fields, sampled from a unit normal distribution, with a Gaussian kernel of four voxels in width. Signal was simulated by convolving (delta) stick functions with Gaussian kernels and adding them to the noise. We used a range of true activations <italic>n</italic>∈{2,4,8,16,32,64}, distributed uniformly at random over the search space. Each activation was generated by convolving a stick function at a randomly chosen voxel with a Gaussian kernel of variable width. The height of these functions was sampled from the chi-squared distribution with one degree of freedom. The width of the Gaussian kernel was sampled from a truncated Gamma distribution (truncated at four) of mean four and variance sixteen (shape and scale parameters of one and four respectively). The signal therefore comprised activations of positive height and varying width that was lower bounded by the smoothness of the noise.</p>
+      <p>We computed the adjusted <italic>p</italic>-values controlling family-wise error, the uncorrected voxel, peak and cluster <italic>p</italic>-values and their BH thresholds. The last two <italic>p</italic>-values require the pre-specification of a height threshold <italic>u</italic>, which we varied between 2.5 and 5.5. We then computed <italic>D</italic><sub><italic>i</italic></sub>, the distance to the nearest true activation, for each activation discovered by the peak-FWE, peak-FDR, cluster-FDR, voxel-FDR procedures; all at 0.05 threshold. To ensure the distributions of distances were comparable across the four thresholding techniques, we only considered distances between true activations and peaks in the SPMs. This means that we ignored voxels in the voxel-FDR analysis that were not maxima and included all peaks in significant clusters in the cluster-FDR. Note that generally, one would elect to control either FDR on clusters (i.e., regions) or peaks. Given that clusters and peaks are distinct topological features, the ensuing inferences are categorically different. However, our assessment of spatial accuracy can be applied to both clusters and peaks because each cluster must contain one or more peaks.</p>
+      <p>We simulated 2000 SPMs and accumulated the distribution of minimum distances, <italic>p</italic><sub>proc</sub>(<italic>d</italic><sub><italic>i</italic></sub>) corresponding to the random variables <italic>D</italic><sub><italic>i</italic></sub> associated with the discoveries from each procedure (proc).</p>
+    </sec>
+    <sec>
+      <title>Results</title>
+      <p><xref rid="fig1" ref-type="fig">Fig. 1</xref> (left) shows <italic>Φ</italic><sub>FWE</sub>(<italic>d</italic><sub><italic>i</italic></sub>), the cumulative distribution function of minimum distance from observed to true maxima as disclosed by peak-FWE control. It can be seen that 95% of discovered activations fall within a FWHM of a true maxima in the underlying signal, irrespective of the number of maxima in the underlying simulation (plots for <italic>n</italic> = 2, 4, 8, 16, 32, 64 are superimposed). Rows in the right hand panel (<xref rid="fig1" ref-type="fig">Fig. 1</xref>) give two complementary measures that contrast spatial accuracy of (a) peak-FDR, (b) cluster-FDR and (c) voxel-FDR with respect to the peak-FWE reference. The former two require a feature-defining threshold, here 2.5. Irrespective of the number of activations in the underlying signal they show that peak-FDR is less accurate than cluster-FDR, which is in turn less accurate than peak-FDR. The latter is practically indistinguishable in its spatial accuracy from peak-FWE. As the threshold is increased to 3.5, 4.5, 5.5 (<xref rid="fig2" ref-type="fig">Figs. 2</xref>, <xref rid="fig3" ref-type="fig">3</xref>, <xref rid="fig4" ref-type="fig">4</xref>) the spatial accuracy of cluster-FDR increases. The spatial accuracy of peak-FDR with respect to peak-FWE is at ceiling with respect to peak-FWE throughout.</p>
+      <p>To characterise the sensitivity of the FDR procedures relative to the peak-FWE procedure, we then examined <italic>r</italic><sub>peak</sub>, the ratio of total discoveries. <xref rid="fig5" ref-type="fig">Fig. 5</xref> shows that for any threshold <italic>u</italic> and any number of activations <italic>n</italic>, voxel-FDR is more sensitive than extent-FDR, which in turn is more sensitive than peak-FDR. Peak-FDR tends to become more conservative with higher thresholds or fewer true activations. Providing the feature-inducing threshold <italic>u</italic> is not too high (here approximately <italic>u</italic> &lt; 5) peak-FDR is more sensitive than peak-FWE (top left). The imperative to use a low threshold must, of course, be balanced against the assumptions of random field theory, which require a reasonably high threshold.</p>
+      <p>In summary, these results validate peak-FDR and illustrate the conditions under which it is more sensitive than conventional FWE control. This increased sensitivity incurs a negligible cost in terms of accuracy or false positives (see <xref rid="fig1" ref-type="fig">Fig. 1</xref>). Strictly speaking, the true voxel-wise FDR must be zero if the signal is unbounded. However, there is nothing to prevent us considering the voxel-wise BH procedure as a candidate for furnishing statistical control over topological inferences (here the number of peaks in the excursion set). Evaluated from this perspective we see that conventional voxel-FDR discovers more local peaks than conventional FWE control (<xref rid="fig4" ref-type="fig">Fig. 4</xref>), but only at the expense of spatial accuracy (or failure to control discoveries that are false under a spatial criterion).</p>
+    </sec>
+    <sec>
+      <title>An illustrative application</title>
+      <p>In this section, we illustrate the application of the four procedures above to an empirical fMRI data set. We use a standard data set, which is available from <ext-link ext-link-type="uri" xlink:href="http://www.fil.ion.ucl.ac.uk/spm">http://www.fil.ion.ucl.ac.uk/spm</ext-link>, so that readers can reproduce the analyses below. These data have been used previously to illustrate various developments in data analysis.</p>
+      <p>Subjects were studied with fMRI under identical stimulus conditions (visual motion subtended by radially moving dots) under different attentional tasks (detection of velocity changes). The data were acquired from normal subjects at 2-Tesla using a Magnetom VISION (Siemens, Erlangen) whole-body MRI system, equipped with a head volume coil. Contiguous multi-slice T2⁎-weighted fMRI images were obtained with a gradient echo-planar sequence (TE = 40 ms, TR = 3.22 s, matrix size = 64 × 64 × 32, voxel size 3 × 3 × 3 mm). The subjects had four consecutive hundred-scan sessions comprising a series of ten-scan blocks under five different conditions D F A F N F A F N S. The first condition (D) was a dummy condition to allow for magnetic saturation effects. F (Fixation) corresponds to a low-level baseline where the subjects viewed a fixation point at the centre of a screen. In condition A (Attention) subjects viewed 250 dots moving radially from the centre at 4.7 degrees per second and were asked to detect changes in radial velocity. In condition N (No attention) the subjects were asked simply to view the moving dots. In condition S (Stationary) subjects viewed stationary dots. The order of A and N was swapped for the last two sessions. In all conditions, subjects fixated the centre of the screen. In a pre-scanning session the subjects were given five trials with five speed changes (reducing to 1%). During scanning there were no speed changes. No overt response was required in any condition. Data from the first subject are used here. We smoothed the data with Gaussian FWHM of 4, which is typical for single-subject fMRI.</p>
+      <p><xref rid="fig5" ref-type="fig">Fig. 5</xref> shows the results of conventional SPM analyses, using a linear convolution model formed by convolving box-car stimulus functions with a canonical hemodynamic response function and its temporal derivative. The stimulus functions encoded the presence of photic stimulation, visual motion and attention. The <italic>SPM</italic>s in <xref rid="fig6" ref-type="fig">Fig. 6</xref> test for an effect of motion and in trans-axial slices though V5 or human MT. The four <italic>SPM</italic>s are thresholded at 0.05 using peak-FWE, peak-FDR, cluster-FDR and voxel-FDR. The feature defining threshold was <italic>u</italic> = 3.</p>
+      <p>These SPMs recapitulate the general features seen in the simulations. The number of peaks in the whole brain surviving each of these thresholds increases monotonically from 27 (peak-FWE) to 96 peaks (voxel-FDR): peak-FWE &lt; peak-FDR &lt; cluster-FDR &lt; voxel-FDR.</p>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>In this note, we have presented a topological FDR procedure that can be applied to peaks in an SPM. This is homologous to equivalent random field theory adjustments that assign corrected <italic>p</italic>-values to maxima and thereby control the false-positive rate of peaks. This procedure finds more peaks than FWE with a negligible cost in terms of spatial accuracy. In comparison with conventional voxel-wise FDR-control procedures, the peak-wise FDR control has fewer false positives and can be applied when signal or treatment effects are distributed in a continuous fashion over tests of voxels.</p>
+      <p>To quantify the performance of false-discovery rate schemes one needs to define, operationally, what one means by a true or false discovery. This is, in fact, a difficult problem in the context of continuous signals because there is no necessary one-to-one relation between the topological features of signal and the associated SPM. This is true irrespective of the multiple comparisons procedure. In other words, even using conventional control over family-wise error, one can never make an inference about where a signal came from. However, anecdotally, people usually associate the location of a peak in the SPM with the source of the underlying signal. We have tried to capture this anecdotal association by looking at the distribution of the distances between true activations and discoveries, under a number of different thresholding procedures. This avoids labelling voxels as true or false, while using a metric that relates the discoveries to true underlying activations. One might have defined a discovery as true or false by simply thresholding the known signal and requiring true discoveries to lie over thresholded signal. However, this implicitly defines an activation as signal above some specified threshold, which is unknown. Furthermore, we could arbitrarily adjust the true and false discovery rates by changing the threshold used to define activation. For example, a very small threshold would mean that all discoveries were true discoveries and the FDR would be zero. Conversely, a very high threshold would mean that all discoveries were false and the FDR would be 100%. The advantage of using topological features like maxima is that they do not require an arbitrary threshold on signal for their definition. Having said this, our uncorrected <italic>p</italic>-values do require a threshold to define an excursion set for subsequent topological FDR control. However, this threshold is applied <italic>post hoc</italic> to the statistical process, not to the signal.</p>
+      <p>We have emphasised the implications of signal with unbounded support because this lies at the heart of topological inference and distinguishes statistical parametric mapping from conventional approaches to large families of statistical tests. In a conventional setting, each test (i.e., voxel) can be declared significant. This is not the case in topological inference because only topological features are tested. This is called for when treatment effects (e.g., activations) are distributed in a continuous way over tests (e.g., voxels). This is what topological inference (SPM) was developed for. However, signals do not always have unbounded support; and even if they did mathematically, they may not in practice (e.g., after smoothing, the height of a signal will be trivially small a few FWHM from its centre. Similarly, finite-support smoothing preserves compactness; i.e. some voxels may have no signal after smoothing). Does this mean topological FDR is contraindicated when smoothness is small? No, a small smoothness means the number of peaks increases and topological FDR will approximate the results of conventional FDR control on voxels. However, the converse is not true; if the signal is distributed, conventional FDR (as currently applied in neuroimaging) is compromised. This is because the FDR of voxels is generally smaller than the FDR of regional responses, for any given threshold.</p>
+      <p>The concept of distributed signal is not introduced to undermine the appropriate use of voxel-wise methods in certain cases: “All models are wrong, but some are useful” (<xref rid="bib4" ref-type="bibr">Box and Draper, 1987</xref>). However, if continuous regional effects are of interest, then one requires statistical error-control of regional inferences. The regional error-control performance of voxel-wise methods can be verified <italic>post-hoc</italic> on a case-by-case basis (according to some definition of regional activation). For example, voxel-wise Bonferroni control incidentally guarantees error-control on regional peaks as we have defined them (e.g. <xref rid="bib9" ref-type="bibr">Nichols and Hayasaka, 2003</xref>). Conversely, voxel-wise methods may fail to control regional error rates in other contexts (<xref rid="bib5" ref-type="bibr">Chumbley and Friston, in press</xref> ).</p>
+      <p>In conclusion, we have supplemented our previous report of FDR control based upon the spatial extent of clusters to include a procedure that assigns FDR <italic>q</italic>-values to maxima within SPMs. We have quantified the performance of this procedure in terms of the spatial specificity of the ensuing discoveries and, providing the excursion threshold is sufficiently low, found it to perform largely as expected. Our conclusions, however, depend upon the particular model for signal used in our simulations. This dependency highlights the difficulty of assessing FDR procedures in general and, in particular, the sorts of signals entailed by neuroimaging.</p>
+    </sec>
+    <sec>
+      <title>Software note</title>
+      <p>The topological FDR procedures based upon spatial extent and peak values will be implemented in SPM8 and SurfStat, which is available as academic freeware from <ext-link ext-link-type="uri" xlink:href="http://wwww.fil.ion.ucl.ac.uk/SPM">http://wwww.fil.ion.ucl.ac.uk/SPM</ext-link> and <ext-link ext-link-type="uri" xlink:href="http://www.math.mcgill.ca/keith/surfstat">http://www.math.mcgill.ca/keith/surfstat</ext-link>.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aldous</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Probability approximations via the Poisson Clumping Heuristic</article-title>
+          <source>Series Appl. Math. Sci.</source>
+          <volume>77</volume>
+          <issue>XV, 269</issue>
+          <year>1989</year>
+          <fpage>25</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bib2">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Benjamini</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Hochberg</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Controlling the false discovery rate—a practical and powerful approach to multiple testing</article-title>
+          <source>J. R. Stat. Soc., B Met.</source>
+          <volume>57</volume>
+          <issue>1</issue>
+          <year>1995</year>
+          <fpage>289</fpage>
+          <lpage>300</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib3">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Benjamini</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Heller</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>False discovery rates for spatial signals</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <volume>102</volume>
+          <issue>480</issue>
+          <year>2007</year>
+          <fpage>1272</fpage>
+          <lpage>1281</lpage>
+          <comment>(10)</comment>
+        </element-citation>
+      </ref>
+      <ref id="bib4">
+        <element-citation publication-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Box</surname>
+              <given-names>G.E.P.</given-names>
+            </name>
+            <name>
+              <surname>Draper</surname>
+              <given-names>N.R.</given-names>
+            </name>
+          </person-group>
+          <source>Empirical Model-Building and Response Surfaces</source>
+          <year>1987</year>
+          <publisher-name>Wiley</publisher-name>
+          <fpage>424</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bib5">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chumbley</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>False discovery rate revisited: FDR and topological inference using Gaussian random fields</article-title>
+          <source>NeuroImage</source>
+          <volume>44</volume>
+          <issue>1</issue>
+          <year>2009</year>
+          <fpage>62</fpage>
+          <lpage>70</lpage>
+          <pub-id pub-id-type="pmid">18603449</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib6">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.J.</given-names>
+            </name>
+            <name>
+              <surname>Mazziotta</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Assessing the significance of focal activations using their spatial extent</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>1</volume>
+          <year>1994</year>
+          <fpage>214</fpage>
+          <lpage>220</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib7">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Holmes</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting activations in PET and fMRI: levels of inference and power</article-title>
+          <source>NeuroImage</source>
+          <volume>4</volume>
+          <issue>3 Pt. 1</issue>
+          <year>1996</year>
+          <fpage>223</fpage>
+          <lpage>235</lpage>
+          <comment>Dec</comment>
+          <pub-id pub-id-type="pmid">9345513</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib8">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Heller</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Stanley</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Yekutieli</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Rubin</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Benjamini</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cluster-based analysis of FMRI data</article-title>
+          <source>NeuroImage</source>
+          <volume>1</volume>
+          <issue>33 (2)</issue>
+          <year>2006</year>
+          <fpage>599</fpage>
+          <lpage>608</lpage>
+          <comment>Nov</comment>
+          <pub-id pub-id-type="pmid">16952467</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib9">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nichols</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Hayasaka</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Controlling the family-wise error rate in functional neuroimaging: a comparative review</article-title>
+          <source>Stat. Methods Med. Res.</source>
+          <volume>12</volume>
+          <issue>5</issue>
+          <year>2003</year>
+          <fpage>419</fpage>
+          <lpage>446</lpage>
+          <comment>Oct</comment>
+          <pub-id pub-id-type="pmid">14599004</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib10">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pacifico</surname>
+              <given-names>M.P.</given-names>
+            </name>
+            <name>
+              <surname>Genovese</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Verdinelli</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Wasserman</surname>
+              <given-names>L.</given-names>
+            </name>
+          </person-group>
+          <article-title>False discovery control for random fields</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <volume>99</volume>
+          <issue>468</issue>
+          <year>2004</year>
+          <fpage>1002</fpage>
+          <lpage>1014</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib11">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting sparse signal in random fields, with an application to brain mapping</article-title>
+          <source>J. Am. Stat. Assoc.</source>
+          <volume>102</volume>
+          <year>2007</year>
+          <fpage>913</fpage>
+          <lpage>928</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib12">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Marrett</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Neelin</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>A three-dimensional statistical analysis for CBF activation studies in human brain</article-title>
+          <source>J. Cereb. Blood Flow Metab.</source>
+          <volume>12</volume>
+          <year>1992</year>
+          <fpage>900</fpage>
+          <lpage>918</lpage>
+          <pub-id pub-id-type="pmid">1400644</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib13">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Marrett</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Neelin</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Vandal</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A unified statistical approach for determining significant signals in images of cerebral activation</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <volume>4</volume>
+          <year>1996</year>
+          <fpage>58</fpage>
+          <lpage>73</lpage>
+          <pub-id pub-id-type="pmid">20408186</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was funded by CoMPLEX, UCL and the Wellcome trust. We are very grateful to Marcia Bennett for helping prepare this manuscript.</p>
+    </ack>
+    <fn-group>
+      <fn id="fn1">
+        <label>1</label>
+        <p>Connected excursion sets with no holes, handles, etc.</p>
+      </fn>
+    </fn-group>
+  </back>
+  <floats-group>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>This figure shows the rate at which, in comparison to peak-FWE, peaks identified by various FDR procedures lie beyond a distance <italic>d</italic> in mm of the true signal peak<italic>.</italic> These results suggest uniformly higher spatial errors for all FDR procedures. For topological FDR, the relative displacement errors are small: Left: the cumulative density function (<italic>cdf</italic>) of displacement errors from conventional peak-FWE under <italic>n</italic> = 2, 4, 8,16, 32, 64 true activations. Right: the first column plots the <italic>cdf</italic> from the FWE procedure against the <italic>cdf</italic> of the FDR procedures (in the case of peak- and cluster-FDR, the feature-inducing threshold <italic>u</italic> = 2.5). A procedure has less spatial accuracy than peak-FWE when these functions lie above the dotted lines. The second column plots the difference in cumulative densities as a function of distance. Here, inaccuracy means a difference that is greater than zero. The three rows compare peak-FWE with peak-FDR, cluster-FDR and voxel-FDR.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Same as the right panels in <xref rid="fig1" ref-type="fig">Fig. 1</xref> but using a threshold of <italic>u</italic> = 3.5.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Same as <xref rid="fig2" ref-type="fig">Fig. 2</xref> but using a threshold of <italic>u</italic> = 4.5.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Same as <xref rid="fig2" ref-type="fig">Fig. 2</xref> but using a threshold of <italic>u</italic> = 5.5.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig5">
+      <label>Fig. 5</label>
+      <caption>
+        <p>These plots describe the relative number of discoveries with three procedures; peak-FDR (top left), cluster-FDR (top right) and voxel-FDR (bottom left), compared to conventional peak-FWE. Each plot describes the dependence of this relative-sensitivity measure on the number of underlying activations (<italic>n</italic> = 2, 4, 8, 16, 32, 64) under a range of feature-inducing thresholds (<italic>u</italic> = 2.5, 3.5, 4.5, 5.5 ). For any threshold <italic>u</italic> and any number of activations <italic>n</italic>, voxel-FDR is more sensitive than cluster-FDR, which in turn is more sensitive than peak-FDR. Providing the feature-inducing threshold <italic>u</italic> is not too high (here approximately <italic>u</italic> &lt; 5) peak-FDR is more sensitive than peak-FWE.</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig6">
+      <label>Fig. 6</label>
+      <caption>
+        <p>SPMs thresholded according to (a) peak-FWE (b) peak-FDR (c) cluster-FDR (d) voxel-FDR.</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+  </floats-group>
+</article>

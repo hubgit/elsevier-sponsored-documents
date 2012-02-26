@@ -1,0 +1,3567 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Neuroimage</journal-id>
+      <journal-title>Neuroimage</journal-title>
+      <issn pub-type="ppub">1053-8119</issn>
+      <issn pub-type="epub">1095-9572</issn>
+      <publisher>
+        <publisher-name>Academic Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2652023</article-id>
+      <article-id pub-id-type="pmid">19150501</article-id>
+      <article-id pub-id-type="publisher-id">YNIMG5873</article-id>
+      <article-id pub-id-type="doi">10.1016/j.neuroimage.2008.12.017</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Dissociating functional brain networks by decoding the between-subject variability</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Seghier</surname>
+            <given-names>Mohamed L.</given-names>
+          </name>
+          <email>m.seghier@fil.ion.ucl.ac.uk</email>
+          <xref rid="cor1" ref-type="corresp">⁎</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Price</surname>
+            <given-names>Cathy J.</given-names>
+          </name>
+        </contrib>
+      </contrib-group>
+      <aff>
+        <addr-line>Wellcome Trust Centre for Neuroimaging, Wellcome Department of Imaging Neuroscience, Institute of Neurology, UCL, 12 Queen Square, London WC1N 3BG, UK</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>⁎</label>Corresponding author. Fax: +44 20 7813 1420. <email>m.seghier@fil.ion.ucl.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>01</day>
+        <month>4</month>
+        <year>2009</year>
+      </pub-date>
+      <volume>45</volume>
+      <issue>2</issue>
+      <fpage>349</fpage>
+      <lpage>359</lpage>
+      <history>
+        <date date-type="received">
+          <day>22</day>
+          <month>9</month>
+          <year>2008</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>6</day>
+          <month>11</month>
+          <year>2008</year>
+        </date>
+        <date date-type="accepted">
+          <day>8</day>
+          <month>12</month>
+          <year>2008</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2009 Elsevier Inc.</copyright-statement>
+        <copyright-year>2008</copyright-year>
+        <copyright-holder>Elsevier Inc.</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Abstract</title>
+        <p>In this study we illustrate how the functional networks involved in a single task (e.g. the sensory, cognitive and motor components) can be segregated without cognitive subtractions at the second-level. The method used is based on meaningful variability in the patterns of activation between subjects with the assumption that regions belonging to the same network will have comparable variations from subject to subject. fMRI data were collected from thirty nine healthy volunteers who were asked to indicate with a button press if visually presented words were semantically related or not. Voxels were classified according to the similarity in their patterns of between-subject variance using a second-level unsupervised fuzzy clustering algorithm. The results were compared to those identified by cognitive subtractions of multiple conditions tested in the same set of subjects. This illustrated that the second-level clustering approach (on activation for a single task) was able to identify the functional networks observed using cognitive subtractions (e.g. those associated with vision, semantic associations or motor processing). In addition the fuzzy clustering approach revealed other networks that were not dissociated by the cognitive subtraction approach (e.g. those associated with high- and low-level visual processing and oculomotor movements). We discuss the potential applications of our method which include the identification of “hidden” or unpredicted networks as well as the identification of systems level signatures for different subgroupings of clinical and healthy populations.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Functional MRI</kwd>
+        <kwd>Fuzzy clustering</kwd>
+        <kwd>Between-subject variance</kwd>
+        <kwd>Inter-individual variability</kwd>
+        <kwd>Across-subject variability</kwd>
+        <kwd>Semantic decision</kwd>
+        <kwd>Language</kwd>
+        <kwd>Networks</kwd>
+        <kwd>Default network</kwd>
+        <kwd>Second-level analysis</kwd>
+        <kwd>Cognitive subtractions</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec1">
+      <title>Introduction</title>
+      <p>Functional magnetic resonance imaging studies are based on the premise that different types of cognitive and sensorimotor processes are supported by functionally segregated networks that integrate in unique combinations to allow the processing of an infinite number of tasks. For example, a task that entails categorisation of visual stimuli with a finger-press response involves a minimum of three functional networks that support (i) visual processing (ii) categorisation and (iii) the finger press. Typically, these networks are segregated following the well-known logic of “cognitive subtraction” that compares neuronal activation during a range of different conditions, each tapping a different process (e.g. visual processing without a manual response or manual response without visual processing). The problems associated with cognitive subtractions, which assume that brain functions are additive, are well recognised (for a critical review see <xref rid="bib29 bib60 bib77 bib86" ref-type="bibr">Friston et al., 1996; Newman et al., 2001; Sartori and Umilta, 2000; Sidtis et al., 1999</xref>). The limitation we address here is that cognitive subtraction in fMRI only targets networks that are anticipated <italic>a priori</italic> (i.e. those explicitly considered during condition selection), thereby leaving hidden other potentially interesting networks that are not predicted on the basis of <italic>a priori</italic> knowledge. To address this limitation, we propose a novel approach that segregates functional networks on the basis of between-subject variability in one representative measure of brain activity for a single task/condition, without the need for other conditions or cognitive subtractions. In other words, we argue here that segregating networks for a given task/condition can be achieved by considering the between-subject dimension “only” without any <italic>a priori</italic> knowledge.</p>
+      <p>To illustrate our rationale, we start by considering the impact of between-subject variability on our hypothetical visual categorisation task (<xref rid="fig1" ref-type="fig">Fig. 1</xref>). In this task, we assume that there are three integrated functional networks. Network 1 involves visual and perceptual processing; Network 2 involves categorisation and decision making; and Network 3 involves finger press responses. We further assume that all subjects engage the three functional networks “differently” when performing the task, but, because the networks are functionally segregated (and spatially distinct), the level of activation in one network is not completely correlated with the level of activation in the other networks (i.e. the networks operate independently). Therefore a single subject may have high activation relative to the other subjects in one network but low activation relative to the other subjects in another network. For example, subject 4 in <xref rid="fig1" ref-type="fig">Fig. 1</xref> has relatively high activation for visual processing but relatively low activation for motor processing (see horizontal bars in <xref rid="fig1" ref-type="fig">Fig. 1</xref>). This results from individual differences in how a subject performs the same task, as commonly observed in multi-subject fMRI studies (for more details see <xref rid="bib44 bib55 bib59 bib82 bib83" ref-type="bibr">Kherif et al., 2003; Miller and Van Horn, 2007; Nadeau et al., 1998; Seghier et al., 2007, 2008a</xref>).</p>
+      <p>There are two critical points to note. First, activation at any given voxel will have a between-subject variability profile (BSVP) which reflects the range of activation across subjects (see vertical bars in <xref rid="fig1" ref-type="fig">Fig. 1</xref>). Second, if this voxel is part of a functional network, then we expect that other voxels in the same network will have a similar BSVP. In contrast, we expect that when two voxels are parts of different functional networks, they will have different BSVPs. The segregation of different functional networks then reduces to the output from clustering algorithms that cluster/aggregate voxels with similar between-subject variability profiles. In other words, the rationale behind our work can be rephrased as follows: there is a meaningful structure in the between-subject variability that can be decoded by assuming that regions belonging to the same network will have comparable variations (i.e. BSVPs) from subject to subject.</p>
+      <p>The key assumption in the above rationale is that the between-subject variability profile (BSVP) is more dominated by the engagement of a particular functional network than by other inevitable sources of variability from, for example, differences in local anatomy or regional hemodynamics. Support for this assumption comes from previous studies that have used between-subject variability to identify large-scale cortical networks during rest (<xref rid="bib17" ref-type="bibr">Damoiseaux et al., 2006</xref>), object recognition (<xref rid="bib90" ref-type="bibr">Sugiura et al., 2007</xref>), word and symbol perception (<xref rid="bib71" ref-type="bibr">Reinke et al., 2008</xref>), overt word reading (<xref rid="bib84" ref-type="bibr">Seghier et al., 2008b</xref>), emotional memory suppression (<xref rid="bib20" ref-type="bibr">Depue et al., 2007</xref>), and brain structure (<xref rid="bib52" ref-type="bibr">Mechelli et al., 2005</xref>). Our approach is based on the same assumptions as these studies (c.f. <xref rid="bib84" ref-type="bibr">Seghier et al., 2008b</xref>) but our perspective is fundamentally different: we want to dissociate, in the between-subject dimension, sets of functional networks that combine together to support a given task. Our approach also contrasts with previous studies that explored the between-subject variability in the time domain (e.g. <xref rid="bib37 bib38 bib40 bib63" ref-type="bibr">Hasson et al., 2004; Hejnar et al., 2007; Jaaskelainen et al., 2008; Pinel et al., 2007</xref>) because we define each subject's contribution by one representative measure only (e.g. effect size or percent signal change for the one task of interest), hence eliminating the time dimension (i.e. the within-subject variability) and focusing only on the between-subject dimension (as illustrated in <xref rid="fig1" ref-type="fig">Fig. 1</xref>). Our focus on between-subject variability is also motivated by the fact that, in fMRI data, between-subject variability generally dominates within-subject variability (e.g. <xref rid="bib56 bib87" ref-type="bibr">Miller et al., 2002; Smith et al., 2005</xref>).</p>
+      <p>To summarise, we aim to dissociate functional networks, in the absence of any <italic>a priori</italic> knowledge at the second-level, by using a data-driven (clustering) approach to decode the between-subject variability during the execution of a single task. To illustrate our approach we report an fMRI study of visual word categorisation in thirty-nine subjects, and systematically compare the results of the conventional cognitive subtraction approach with our between-subject variability clustering approach (referred to here as second-level clustering). This demonstrates that the second-level clustering identifies all the expected networks, and in addition reveals dissociations that were not predicted <italic>a priori</italic>. Having demonstrated the feasibility of this approach, we describe how it could be applied to the subgrouping of clinical populations, particularly when the use of a single task maximizes sensitivity while minimizing patient time in the scanner.</p>
+    </sec>
+    <sec sec-type="methods" id="sec2">
+      <title>Methods</title>
+      <p>The aim of our experiment was to identify expected and unexpected functional subsystems (networks) that underlie successful performance on a visual categorisation task that is commonly used in clinical practice. The task, known as “<italic>pyramids and palm trees</italic>” (<xref rid="bib39" ref-type="bibr">Howard and Patterson, 1992</xref>), involves three visually presented words, with one target above and two choices below. The subject is required to indicate which of the two choices below is most closely related to the target above. For example, when the target is “pyramid” and the two alternative choices are “oak tree” or “palm tree”, the correct response is “palm tree” because pyramids are more likely to be found in the vicinity of palm trees than oak trees. This choice of task is motivated by its clinical application in standard behavioural assessments (e.g. <xref rid="bib92" ref-type="bibr">Swinburn et al., 2004</xref>) and its use as a test of semantic function in many previous functional imaging studies (e.g. <xref rid="bib58 bib96 bib97" ref-type="bibr">Mummery et al., 1998; Vandenberghe et al., 1996; Vandenbulcke et al., 2007</xref>).</p>
+      <sec>
+        <title>Subjects</title>
+        <p>Thirty-nine healthy right-handed subjects (15 males, 24 females) with a wide age range (30 ± 19 years, age range 13–74 years) gave written informed consent to participate in this study. Age range was deliberately wide for additional sources of between-subject variability (see below for more details). Subjects were native English speakers, had normal or corrected-to-normal vision, with no history of neurological or psychiatric disorders. The study was approved by the National Hospital and Institute of Neurology's joint medical ethics committee.</p>
+      </sec>
+      <sec>
+        <title>Task analysis</title>
+        <p>The pyramids and palm trees task is expected to involve a minimum of (i) visual and perceptual processing; (ii) semantic associations; (iii) categorisation and decision making; (iv) finger press response. Each of these networks may divide into other expected or unexpected functional subcomponents. To generate <italic>a priori</italic> hypotheses for interpreting the results of our clustering algorithm, we start with a conventional cognitive subtraction approach that included one activation condition and one baseline condition (see <xref rid="fig2" ref-type="fig">Fig. 2</xref>), interspersed with fixation. The activation condition consisted of matching written object names according to the closest semantic relationship. The baseline consisted of blocks of perceptual matching of unfamiliar Greek letters according to the visual attributes. As in previous studies (e.g. <xref rid="bib96" ref-type="bibr">Vandenberghe et al., 1996</xref>), it served to control for visuo-attentional and sensorimotor processes involved in semantic categorisation tasks (for a similar rationale see (<xref rid="bib16 bib83 bib81" ref-type="bibr">Cousin et al., 2007; Seghier et al., 2008a, 2004</xref>). We also deliberately introduced two between-subject variables to provide an additional test for the clustering algorithm. The first between-subject variable related to the motor response: 27 subjects (12 males, 15 females) were instructed to respond with the index and middle fingers on their right hand and 12 subjects (3 males, 9 females) were instructed to respond with the index and middle fingers on their left hand. This “external” manipulation of the motor output could then be used as a landmark (i.e. witness) of the success of the network segregation. In other words, our second-level clustering should reveal differences in the involvement of the left-hand and right-hand sensorimotor networks. Our second between-subject variable was the age of the participants, this ranged from 13–74 years. Note that the external manipulation (i.e. motor output and age) of the sources of variability is not needed <italic>per se</italic> for the use of the second-level clustering but was included here to validate the success of our method.</p>
+      </sec>
+      <sec>
+        <title>Paradigm and stimuli</title>
+        <p>Data for the different conditions shown in <xref rid="fig2" ref-type="fig">Fig. 2</xref> were collected in two separate scanning runs/sessions with the order of conditions counterbalanced within and across session. Within each session, there were 24 blocks of stimuli, each lasting 18.8 s with an additional 12 blocks of fixation, each lasting 14.4 s and occurring every two stimulus blocks. Over the experiment, there were 16 blocks presenting written object names and 8 blocks presenting strings of unfamiliar Greek symbols. In addition, there were 24 blocks presenting pictures of objects and non-objects that were not included in the analysis reported here. Each block was preceded by a written instruction (e.g. “match words” which stayed on the screen for 3.6 s). Each stimulus (trial) stayed on the screen for 4.3 s. Hence each 18.8 s block was 3.6 s of instruction and 15.2 s of stimuli. The participants were asked to indicate whether (i) the stimulus on the lower-left or lower-right was more semantically related to the stimulus above (e.g. is “truck” or “ship” most closely related to “anchor”) or (ii) the unfamiliar symbols on the lower-left or lower-right were visually identical to the ones above. Responses were recorded using a button box held under either the right or left hand (see above) with a left finger press indicating the lower left stimulus and a right finger press indicating the lower right stimulus. To ensure that the task was understood correctly, all subjects were provided with detailed instructions and underwent a short training session before entering the scanner with a different set of stimuli.</p>
+      </sec>
+      <sec>
+        <title>MRI acquisition</title>
+        <p>Data were acquired on a 1.5 T Siemens system (Siemens Medical Systems, Erlangen, Germany). Functional imaging consisted of an EPI GRE sequence (TR = 3600 ms, TE = 50 ms, Flip = 90°, FOV = 192 mm, matrix = 64 × 64, 40 axial slices with 3 × 3 × 3 mm<sup>3</sup> voxel size). The acquired multi-slice volume was positioned on sagittal scout images. Functional scanning was always preceded by 14.4 s of dummy scans to ensure tissue steady-state magnetization. After functional data collection, anatomical acquisition was obtained to cover the whole brain at high resolution using a T1-weighted sequence to acquire 176 slices with a voxel size of 1 × 1 × 1 mm<sup>3</sup>.</p>
+      </sec>
+      <sec>
+        <title>Data (first-level) analysis</title>
+        <p>Data processing and statistical analyses were carried out with the Statistical Parametric Mapping SPM5 software package (Wellcome Trust Centre for Neuroimaging, London UK, <ext-link xlink:href="http://www.fil.ion.ucl.ac.uk/spm/" ext-link-type="uri">http://www.fil.ion.ucl.ac.uk/spm/</ext-link>). All functional volumes were spatially realigned, un-warped, normalised to the MNI space, and smoothed with an isotropic 6-mm FWHM Gaussian kernel, with a resulting voxel size of 2 × 2 × 2 mm<sup>3</sup>. The unified normalisation–segmentation procedure of SPM5 was used during the normalisation of the functional brains (<xref rid="bib2" ref-type="bibr">Ashburner and Friston, 2005</xref>). Time-series from each voxel were high-pass filtered (1/128 Hz cut-off) to remove low-frequency noise and signal drift. The pre-processed functional volumes for each subject were then submitted to a fixed-effects analysis, using the general linear model at each voxel. Each stimulus onset (except fixation) was modelled as an event encoded in condition-specific ‘Dirac Delta-Functions’. The resulting stimulus functions were convolved with a canonical hemodynamic response function to form regressors for the linear model. Parameter estimates (i.e. beta images) were assessed with least square regression analysis (e.g. <xref rid="bib101" ref-type="bibr">Worsley and Friston, 1995</xref>). Our contrasts of interest were the main effect of semantic categorisation and perceptual matching conditions (relative to fixation). These contrast images represent summary images (i.e., contrast of maximum likelihood parameter estimates or the weighted beta images, see <xref rid="bib65" ref-type="bibr">Poline, 2003</xref>) for the effects of interest. Because the fixation condition was not explicitly modelled as a regressor in our design matrix, the contrast images were equal to the beta images assessed by least square regression analysis. Thus, from this first-level analysis, these contrast (beta) images quantify how the fMRI signal changes with respect to the regressors and relative to an implicit baseline (here the baseline is coded in the constant term of our general linear model and includes all the unmodelled brain activity including the fixation). In other words, these contrast images are obtained by a cognitive subtraction between semantic words and an implicit baseline (fixation) but critically no other comparisons of conditions (i.e. subtractions) occurred in the second-level analysis during the fuzzy clustering.</p>
+      </sec>
+      <sec>
+        <title>Second-level analyses of all conditions using cognitive subtractions</title>
+        <p>In the cognitive subtraction approach, two contrast images for each subject were entered in a second-level ANOVA with four conditions, two for the subjects who responded with their right hand and two for the subjects who responded with their left hand. We then computed the main effects of subject group, task and the main of effect of all conditions relative to fixation.</p>
+        <p>For the purposes of this paper, the results of this ANOVA serve only to provide <italic>a priori</italic> expectations for the clustering algorithm. Therefore, because our clustering algorithm used data collected during semantic decisions on written words only, our cognitive conjunction analysis focuses on identifying the functional networks required by this task. At a minimum these will include areas involved in low- and high-level visual processing, semantic associations, categorisation and a finger press response. Using the cognitive subtraction analysis, we identified these networks as follows:<list list-type="simple"><list-item><label>•</label><p>Finger press response areas were identified in the main effect of subject group which compared activation for the subjects who responded with (a) their left hand to the subjects who responded with their right hand and (b) vice versa.</p></list-item><list-item><label>•</label><p>Visuo-attentional and perceptual processing areas were identified as those that were activated by (a) all conditions relative to fixation, after excluding all voxels that were differentially activated by type of task or subject group; and (b) the main effect of perceptual matching relative to semantic decision.</p></list-item><list-item><label>•</label><p>Semantic associations were identified by the main effect of task which compared semantic to perceptual decisions.</p></list-item><list-item><label>•</label><p>Deactivations (relative to fixation) were identified that were either common to all conditions or specific to semantic categorisations.</p></list-item><list-item><label>•</label><p>Finally, we assessed the effect of age on semantic categorisation by including the age of the participants as a covariate in an SPM regression analysis.</p></list-item></list></p>
+        <p>Significant results from the cognitive subtractions are reported at <italic>p</italic> &lt; 0.05 with a correction for multiple comparisons across the whole brain made on the basis of extent (minimum cluster size of 65 voxels at <italic>p</italic> &lt; 0.001 uncorrected).</p>
+      </sec>
+      <sec>
+        <title>Second-level clustering</title>
+        <p>For voxel selection, we ran a one sample <italic>t</italic>-test (i.e. random-effects analysis) on the contrast images for semantic decisions on words. Data for all subjects were pooled irrespective of whether they responded with their left or right hand. All other conditions (i.e. perceptual conditions) were excluded to avoid mixing between- and within-subject variability. From our between-subject second-level analysis, we generated a statistical parametric map of the <italic>F</italic> statistic at each voxel SPM{<italic>F</italic>}, which characterised differences in activation for semantic decisions on words relative to fixation over the whole group. Our clustering analysis was limited to those voxels with an <italic>F</italic> value &gt; 5 (see section 1 of the <xref rid="app1" ref-type="sec">Supplementary material</xref> for more details). No other conditions were entered into the clustering algorithm. Note that the beta values for semantic decision on words have negligible dependency on other conditions in the first-level analysis (e.g. perceptual matching) because the correlations between regressors were very weak in our block design. Thus, the parameter estimations of the beta values, with least square regression analysis, scale the contribution of each regressor to the data and therefore cannot be explained by a mixture of other regressors.</p>
+        <p>The clustering algorithm was based on the popular Fuzzy C-mean (FCM) clustering approach (<xref rid="bib5 bib6" ref-type="bibr">Bezdek, 1981; Bezdek et al., 1997</xref>). See section 2 of the <xref rid="app1" ref-type="sec">Supplementary material</xref> for more details. A detailed description of FCM algorithm can be found elsewhere (e.g. <xref rid="bib6 bib25 bib31" ref-type="bibr">Bezdek et al., 1997; Fadili et al., 2001; Golay et al., 1998</xref>). The parameter “m” controlling the degree of fuzziness was set to 1.5 throughout this study (<xref rid="bib25" ref-type="bibr">Fadili et al., 2001</xref>). For appropriate clustering of the contrast images (i.e. second-level clustering), we used the hyperbolic correlation of <xref rid="bib31" ref-type="bibr">Golay et al. (1998)</xref> as a measure of similarity between voxels. It is interesting to note that this measure of similarity is based on the computation of the Pearson correlation coefficient between the BSVP of each voxel and the centroid of each cluster, irrespective of the mean (i.e. group) effect in that voxel.</p>
+        <p>Before running the FCM algorithm, we first ensured that each subject had normal activation levels in order to avoid some clusters being dominated by outlier subjects. This was achieved by using a modified fuzzy clustering approach that allows the detection of outlier subjects (<xref rid="bib82" ref-type="bibr">Seghier et al., 2007</xref>). From this analysis, we excluded two outlier subjects which left 37 subjects for second-level clustering (for more details about this procedure, see section 3 of the <xref rid="app1" ref-type="sec">Supplementary material</xref>). Critically, the “true” number of clusters (i.e. optimal number of classes) is unknown in FCM. To determine the most likely number of clusters, we used a previously described cluster-validity index that derives the optimal number of clusters in an unsupervised manner (<xref rid="bib72 bib91" ref-type="bibr">Rezaee et al., 1998; Sun et al., 2004</xref>). Practically, FCM was repeated several times with the number of clusters varying from 2 to 39, the optimal number of clusters for our dataset was that when the cluster validity index was at a minimum. For more details see section 4 of the <xref rid="app1" ref-type="sec">Supplementary material</xref>.</p>
+      </sec>
+      <sec>
+        <title>Motivation for using the fuzzy clustering approach</title>
+        <p>To dissociate functional networks on the basis of between-subject variability, we needed a method that was data-driven, unsupervised, and based on an appropriate similarity metric (here the correlation between BSVPs). We chose the popular FCM algorithm (as detailed in section 2 of the <xref rid="app1" ref-type="sec">Supplementary material</xref>) because it is (i) easy to implement for diverse measures of similarity (here the hyperbolic correlation distance), (ii) robust when the number of expected clusters is high, and (iii) ensures rich and fine segregation of different subcomponents (high sensitivity). These issues are detailed in some previous fMRI studies that compared FCM to ICA (e.g. <xref rid="bib21 bib54 bib88" ref-type="bibr">Dimitriadou et al., 2004; Meyer-Baese et al., 2004; Smolders et al., 2007</xref>). Furthermore, we ensured an optimal implementation of the FCM algorithm by (i) performing an unsupervised search for the optimal number of clusters (as detailed in section 4 of the <xref rid="app1" ref-type="sec">Supplementary material</xref>), (ii) setting the parameter “m” controlling the degree of fuzziness to a value within the range of values commonly used in FCM on fMRI datasets (e.g. <xref rid="bib24 bib25 bib31 bib57" ref-type="bibr">Fadili et al., 2000, 2001; Golay et al., 1998; Moller et al., 2002</xref>), (iii) using a highly sensitive similarity metric to identify correlated BSVPs (see Fig. 7 in <xref rid="bib31" ref-type="bibr">Golay et al., 1998</xref>), (iv) increasing the sensitivity of the clustering by focusing mainly on meaningful voxels (see section 1 of the <xref rid="app1" ref-type="sec">Supplementary material</xref> and for a similar rationale see <xref rid="bib24 bib33 bib35 bib57 bib82" ref-type="bibr">Fadili et al., 2000; Goutte et al., 1999; Gu et al., 2005; Moller et al., 2002; Seghier et al., 2007</xref>), (v) ensuring a high reliability of the clustering by removing outliers (i.e. deviant observations that may drive the calculation of the centroids) (e.g. for a discussion see <xref rid="bib18 bib43 bib47 bib75" ref-type="bibr">Dave and Krishnapuram, 1997; Kharin, 1997; Leski, 2003; Salem and Nandi, in press</xref>).</p>
+      </sec>
+    </sec>
+    <sec id="sec3">
+      <title>Results</title>
+      <sec>
+        <title>Task behaviour</title>
+        <p>Task accuracy and mean response times for semantic decisions on written words were 92 ± 6% and 1737 ms (range = 1264–2455 ms).</p>
+      </sec>
+      <sec>
+        <title>Cognitive subtractions on activation and baseline conditions</title>
+        <p>To recap, these results serve only to provide <italic>a priori</italic> expectations for the clustering algorithm that was limited to semantic decisions on words only. In this context, we start by reporting the between-subject factor (i.e. the finger press response) because this allows us to explicitly test whether the second-level clustering approach (based on between-subject variance) can detect variability in our subjects that is known <italic>a priori</italic>. We then report increased or decreased activations for semantic categorisation relative to fixation or perceptual matching because these patterns will also be identified in the second-level clustering approach. A total of eight patterns obtained by cognitive subtractions are illustrated in <xref rid="fig3" ref-type="fig">Fig. 3</xref>.</p>
+        <sec>
+          <title>Finger press response</title>
+          <p>As expected, sensorimotor cortex activation was contralateral to the hand used while cerebellar activation was ipsilateral to the hand used. Thus, subjects who used their right hand fingers increased activation in their left sensorimotor cortex and the right cerebellum (see “R-motor” in <xref rid="fig3" ref-type="fig">Fig. 3</xref>). In contrast, subjects who used their left hand fingers increased activation in the right sensorimotor cortex, SMA and the left cerebellum (see “L-motor” in <xref rid="fig3" ref-type="fig">Fig. 3</xref>).</p>
+        </sec>
+        <sec>
+          <title>Visual categorisation</title>
+          <p>Activation that was common to semantic and perceptual decisions relative to fixation, but not differentially activated by task or subject group, was identified in the cerebellum, medial occipital and superior parietal lobes (see “Visual” in <xref rid="fig3" ref-type="fig">Fig. 3</xref>). This pattern represented visuo-attentional and categorisation processes that were common to all conditions irrespective of group.</p>
+        </sec>
+        <sec>
+          <title>Perceptual processing</title>
+          <p>Activation for perceptual matching relative to semantic categorisations (i.e. unfamiliar symbols relative to familiar words) was observed in bilateral ventral–posterior middle occipital gyri with more extent in the right hemisphere (see “Perceptual” in <xref rid="fig3" ref-type="fig">Fig. 3</xref>). This pattern includes high-visual areas that are more involved in processing and matching unfamiliar visual stimuli.</p>
+        </sec>
+        <sec>
+          <title>Semantic associations</title>
+          <p>Activation for semantic relative to perceptual categorisations was observed in the left inferior frontal, left prefrontal and left posterior temporal lobe (see “Semantic” in <xref rid="fig3" ref-type="fig">Fig. 3</xref>). The corresponding but less significant effects in the homologue areas in the right hemisphere did not survive our statistical threshold. On the other hand, we also observed a significant positive relationship between age and semantic associations in mainly the right prefrontal, right precentral, right posterior temporal, left inferior frontal and cerebellum regions (see “Age” in <xref rid="fig3" ref-type="fig">Fig. 3</xref>).</p>
+        </sec>
+        <sec>
+          <title>Deactivation relative to fixation</title>
+          <p>Deactivation for semantic and perceptual conditions relative to fixation was observed in bilateral angular gyri, anterior and posterior cingulate cortex, medial frontal gyrus, precuneus, and the right anterior middle temporal gyrus, see “Deact-All” in <xref rid="fig3" ref-type="fig">Fig. 3</xref>. Deactivation (relative to fixation) for semantic decisions more than perceptual matching was observed in the posterior cingulate, right parietal lobule and medial frontal gyrus (see “Deact-Sem” in <xref rid="fig3" ref-type="fig">Fig. 3</xref>).</p>
+        </sec>
+      </sec>
+      <sec>
+        <title>Clustering approach on semantic categorisation of written words only</title>
+        <p>The unsupervised FCM on all voxels with an <italic>F</italic> &gt; 5 found the optimal number of networks to be 10 (i.e. optimal value for our cluster validity index; see <xref rid="app1" ref-type="sec">Figure S3 of the Supplementary material</xref>). <xref rid="fig4" ref-type="fig">Fig. 4</xref> illustrates these 10 networks which aggregate voxels with similar between-subject variability profiles (BSVPs). Before describing the predicted and nonpredicted networks below, there are two points to note. First, although we have numbered the networks 1a to 4b, their numbering is arbitrary as one network is not valued as more likely than another. We have therefore chosen to report them in an order that follows the order of the patterns in the cognitive subtractions results (as in <xref rid="fig3" ref-type="fig">Fig. 3</xref>). Second, the similarity measure used to cluster the voxels with FCM is based on correlations in BSVPs at the voxel level and thus independently from their mean values. In other words, the clustering was “blind” to whether the voxel was activated or deactivated relative to fixation.</p>
+        <sec>
+          <title>Two networks associated with the finger press response</title>
+          <p>As predicted, motor regions associated with the finger press response were grouped in two separate clusters (<xref rid="fig4" ref-type="fig">Fig. 4</xref>): cluster 1a shows left sensorimotor cortex and the right cerebellum, and cluster 1b shows the right sensorimotor cortex, SMA and left cerebellum. The precise identification of these networks validates the clustering algorithm's ability to identify variance that was introduced <italic>a priori</italic> by including two different groups of subjects. These clusters are almost identical to the motor patterns obtained by cognitive subtractions. In addition, we note that cluster 1a also included unpredicted but plausible motor related activation in the thalamus. This may have been lost in the cognitive subtraction approach due to high within- or between-subject variability.</p>
+        </sec>
+        <sec>
+          <title>Four networks associated with visual categorisation</title>
+          <p>Cluster 2a included voxels from the medial occipital cortex in the vicinity of low-level visual areas (primary visual cortex and other secondary visual areas, e.g. V2). These regions are likely to be involved during the first step of visual processing of presented stimuli (i.e. written words). Remarkably, the second-level clustering was more successful at isolating these low-level (V1/V2) areas than cognitive subtractions where these areas were grouped with other high-level visual and attentional regions (e.g. see pattern “Visual” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>). Moreover, these high-level visual areas were further segregated in other clusters. Ventral visual categorisation areas were identified in cluster 2b, including mainly voxels in the cerebellum, located bilaterally in lobule VI (<xref rid="bib79" ref-type="bibr">Schmahmann et al., 2000</xref>), and the inferior occipital gyrus (<xref rid="fig4" ref-type="fig">Fig. 4</xref>). These regions are comparable to cerebellar regions that were implicated in visual categorisation irrespective of task or group (see pattern “Visual” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>). Likewise, cluster 2c showed high-level visual areas located more laterally in the occipital lobe with more extent in the right hemisphere. These regions of cluster 2c were almost identical to the pattern “Perceptual” (<xref rid="fig3" ref-type="fig">Fig. 3</xref>) identified by cognitive subtractions of unfamiliar symbols relative to familiar written words. Finally, cluster 2d included bilateral insular, subcortical and frontal eye-field regions. This cluster may be involved in occulo-motor processing during the implicit reading of the three words presented as a triad. Note that the identified frontal eye-field regions overlap with the dorsal frontal regions identified by cognitive subtraction of effects that are common to all tasks (see top slice of pattern “Visual” in <xref rid="fig3" ref-type="fig">Fig. 3</xref>).</p>
+        </sec>
+        <sec>
+          <title>Two networks associated with semantic associations</title>
+          <p>The clustering algorithm identified one network that corresponded to areas with increased activation for semantic relative to perceptual categorisation (<xref rid="fig4" ref-type="fig">Fig. 4</xref>). Cluster 3a included the left prefrontal, left parietal and bilateral occipito-temporal cortex. This left dominant semantic network is comparable to the pattern identified by cognitive subtractions. The notable differences consisted of the detection of more foci in right occipito-temporal and left parietal lobule regions with clustering than cognitive subtractions, whereas the reverse was observed in ventral inferior frontal and posterior middle temporal regions (see cluster 3a of <xref rid="fig4" ref-type="fig">Fig. 4</xref> and pattern “Semantic” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>). Likewise, cluster 3b included right prefrontal cortex, right inferior parietal lobule, left inferior frontal gyrus, cerebellum and bilateral subcortical regions (<xref rid="fig4" ref-type="fig">Fig. 4</xref>). The BSVP of this cluster showed a very strong positive correlation with age (<italic>r</italic> = 0.65, <italic>p</italic> = 0.00001). This suggests that cluster 3b regions are more activated by older subjects during semantic association, and this corresponds to the age effects observed with cognitive subtractions (e.g. pattern “Age” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>). The identification of cluster 3b is not unexpected as age (range 13–74 years) was deliberately introduced as an additional source of variability.</p>
+        </sec>
+        <sec>
+          <title>Deactivated networks</title>
+          <p>Cluster 4a consisted of regions that were mainly deactivated during the semantic decision task, including regions in the orbito-frontal or the medial frontal cortex, anterior and posterior cingulate cortex, bilateral angular gyrus, and the left ventral inferior frontal gyrus. These regions corresponded closely to those that were deactivated in the cognitive subtraction pattern “Deact-All” (<xref rid="fig3" ref-type="fig">Fig. 3</xref>). In contrast, cluster 4b (<xref rid="fig4" ref-type="fig">Fig. 4</xref>) included regions in the medial frontal, precuneus, posterior cingulate, left insula and right parietal lobule. These correspond to those showing stronger deactivation during semantic categorisation than perceptual matching tasks in the cognitive subtraction approach (pattern “Deact-Sem” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>). The clustering, however, identified more regions in cluster 4b than cognitive subtractions (e.g. precuneus and left insula).</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec>
+      <title>Discussion</title>
+      <p>In this study, we present an alternative way of dissociating functional brain networks involved in the execution of a given cognitive task. Our rationale is based on the objective assumption that random subject to subject variations in activation patterns contain meaningful information about the level of involvement of different networks (e.g. <xref rid="bib44 bib55 bib59 bib82 bib83" ref-type="bibr">Kherif et al., 2003; Miller and Van Horn, 2007; Nadeau et al., 1998; Seghier et al., 2007, 2008a</xref>). We demonstrate the feasibility of this approach using data from a relatively large number (i.e. 39) of subjects performing a popular semantic decision task. By looking at between-subject variability in brain activation, we successfully dissociated several networks that were differentially engaged during semantic decisions on written words without any comparison to other tasks or conditions. This contrasts to the well-known cognitive subtractions method that dissociates functional networks for a single task by comparing activation to experimentally designed baseline conditions (for more details about the problematic issue of an activation baseline, see <xref rid="bib8 bib10 bib60 bib89" ref-type="bibr">Binder et al., 1999; Brandt, 2006; Newman et al., 2001; Stark and Squire, 2001</xref>). Decoding the between-subject variability with second-level clustering is a more “specific” way of characterising networks involved in the task of interest because it doesn't depend on how subjects are performing in other irrelevant tasks or conditions. Below, we discuss the meaningfulness of the networks segregated for the semantic task by directly comparing the results of second-level clustering to those identified using cognitive subtractions.</p>
+      <p>Before comparing second-level clustering to cognitive subtractions, it is important to keep in mind the fundamental differences between the two approaches (e.g. when comparing <xref rid="fig3 fig4" ref-type="fig">Fig. 3 to Fig. 4</xref>). First, as mentioned above, the second-level clustering findings are specific to the semantic decision on words, whereas the cognitive subtractions depended on the comparison of different conditions in our experimental design. Second, the computational framework in both techniques is fundamentally different because voxels are clustered on the basis of the similarity between their BSVPs irrespective of their average activation values. This means that the critical information is in the similarity of the shape of the variance across-subjects in different regions and this is not affected by the standard deviation of the between-subject variance. Consequently, when between-subject or within-subject variance is high, second-level clustering is likely to have higher sensitivity than cognitive subtractions.</p>
+      <p>In the context of our semantic task, we expected the involvement of the following processes: (i) visual and perceptual processing of presented written words, (ii) semantic associations between the words of the presented triad, (iii) categorisation and decision making, and (iv) finger press response. Each of these processes may divide into other expected or unexpected functional subcomponents. We start by discussing networks that correspond to the finger-press response in the cognitive subtraction analysis because this factor was deliberately manipulated between subjects which allows us to explicitly test whether the second-level clustering approach (based on between-subject variance) can detect known between-subject variability.</p>
+      <sec>
+        <title>Finger press response</title>
+        <p>As predicted, motor regions associated with the finger press response were segregated in two separate clusters 1a and 1b (<xref rid="fig4" ref-type="fig">Fig. 4</xref>) for right and left hand responses respectively. These clusters are almost identical to the motor patterns obtained by cognitive subtractions (patterns “R-motor” and “L-motor” in <xref rid="fig3" ref-type="fig">Fig. 3</xref>). Note, however, the interesting identification of the thalamus for right hand responses with second-level clustering (cluster 1a) that was not visible with cognitive subtractions (pattern “R-motor”), although it fits well with the known circuitry of voluntary finger movement (e.g. <xref rid="bib41" ref-type="bibr">Jancke et al., 2000</xref>). The absence of this effect in Cluster 1b (the left hand motor response) may reflect the small number of subjects who made a left hand response (<italic>n</italic> = 12) which would limit the sensitivity of the clustering to detect consistency in the inter-subject variability. Conversely, the absence of thalamic activation in the cognitive subtractions (right-handed responders versus left handed responders or vice versa) could be a consequence of high between-subject variability in the mean activation difference. Indeed, if we lowered the statistical threshold (<italic>p</italic> &lt; 0.05 uncorrected), thalamic activation was detected for each group (peak at <italic>Z</italic> = 2.8 in the left thalamus for right &gt; left handed responders; <italic>Z</italic> = 2.5 in the right thalamus for left &gt; right handed responders). As mentioned above, the successful identification of these motor networks validates the clustering algorithm's ability to identify variance that was caused by different processes in the between-subject dimension (i.e. variance introduced here <italic>a priori</italic> by including two different groups of subjects).</p>
+      </sec>
+      <sec>
+        <title>Visual networks</title>
+        <p>Four networks (<xref rid="fig4" ref-type="fig">Fig. 4</xref>) were segregated including a set of low-level visual regions involved in the early step of visual processing of presented words (cluster 2a) and high-level visual and perceptual areas involved in global word processing and categorisation (clusters 2b and 2c). These areas are concordant with the well-known organisation of the visual system (e.g. <xref rid="bib94" ref-type="bibr">Tootell et al., 1998</xref>). Interestingly, despite including one condition only, the second-level clustering was more successful at isolating this low-level visual activity (V1/V2 areas in cluster 2a) than the cognitive subtractions method (i.e. low-level areas were grouped with other visual areas in cognitive subtraction pattern “Visual” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>).</p>
+        <p>It is interesting to note that the clustering of occipital voxels into low-level and high-level areas is concordant with previous work that identified comparable networks during rest after fMRI data decomposition across space, time and subjects (e.g. <xref rid="bib14 bib17 bib76" ref-type="bibr">Calhoun et al., 2008; Damoiseaux et al., 2006; Salvador et al., 2005</xref>). The identified cerebellar regions in cluster 2b (<xref rid="fig4" ref-type="fig">Fig. 4</xref>) were also comparable to cerebellar regions in cognitive subtraction pattern “Visual” (<xref rid="fig3" ref-type="fig">Fig. 3</xref>), suggesting their potential role in visual categorisation processing (<xref rid="bib13" ref-type="bibr">Calhoun et al., 2001</xref>). Likewise, regions in cluster 2c are almost identical to those that showed higher activation for matching unfamiliar symbols relative to familiar words in the cognitive subtractions (pattern “Perceptual” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>). These regions have previously been observed during tasks that engaged matching visual stimuli (e.g. <xref rid="bib12 bib30" ref-type="bibr">Bundesen et al., 2002; Gerlach et al., 1999</xref>) and their activity has been shown to be modulated by task difficulty (<xref rid="bib30" ref-type="bibr">Gerlach et al., 1999</xref>). This suggests that the differences in activation during the processing of written words (as demonstrated by the clustering) may reflect differences in task difficulty (or efficiency) between subjects. Indeed, we observed that the BSVP (i.e. centroid) of cluster 2c was highly correlated to the in-scanner response times (RTs) of the semantic task (<italic>r</italic> = − 0.52, <italic>p</italic> = 0.001), suggesting that the involvement of these regions increased with efficient word processing.</p>
+        <p>Finally, cluster 2d included regions that were involved in occulo-motor processing (e.g. <xref rid="bib48" ref-type="bibr">Lynch and Tian, 2005</xref>). These regions were grouped in the cognitive subtraction with other visual and categorisation areas that were common to semantic and perceptual decisions (pattern “Visual” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>). To segregate (isolate) these regions with cognitive subtraction, additional control conditions would have been needed. This observation provides further support for the sensitivity of second-level clustering in segregating all the known processes involved in our semantic decision task.</p>
+      </sec>
+      <sec>
+        <title>Semantic network</title>
+        <p>The left dominant pattern identified with cognitive subtractions (pattern “Semantic” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>), when comparing semantic categorisation versus perceptual matching, is consistent with many previous studies (e.g. <xref rid="bib7 bib16 bib64 bib69 bib73 bib81" ref-type="bibr">Billingsley et al., 2001; Cousin et al., 2007; Poldrack et al., 1999; Pugh et al., 1996; Ricci et al., 1999; Seghier et al., 2004</xref>). With second-level clustering, the semantic network (i.e. cluster 3a of <xref rid="fig4" ref-type="fig">Fig. 4</xref>) is comparable to this pattern, except that left middle temporal activation was weaker and ventral inferior frontal activation was absent. The apparent inconsistency was easily explained, however, because the posterior part of the ventral inferior frontal gyrus was clustered with the areas showing an effect of age (i.e. driven by older subjects in cluster 3b). In contrast, the anterior part was associated with the deactivated network (cluster 4a in <xref rid="fig4" ref-type="fig">Fig. 4</xref>). This is interesting because re-examination of the pattern “Semantic” (<xref rid="fig3" ref-type="fig">Fig. 3</xref>) in the cognitive subtraction analysis indicated that the strong semantic effect in this anterior part was in fact partly driven by deactivation in the perceptual matching conditions. In summary, these differences between the two methods could easily be understood in view of the fundamental differences between a method with an <italic>a priori</italic> knowledge and a data-driven method (e.g. see illustrations in <xref rid="bib13 bib51" ref-type="bibr">Calhoun et al., 2001; McKeown et al., 1998</xref>).</p>
+        <p>A second cluster (3b) also identified parts of the known semantic network that was primarily activated by older subjects in the semantic decision task (e.g. <xref rid="bib1 bib50" ref-type="bibr">Aizenstein et al., 2006; Marsh et al., 2006</xref>). Critically, the identification of cluster 3b highlights the sensitivity of the between-subject dimension to tease out the effect of demographic variables (e.g. age).</p>
+      </sec>
+      <sec>
+        <title>Deactivated networks</title>
+        <p>Remarkably, although the clustering was “blind” to whether the voxel was activated or not relative to fixation, deactivated regions were clustered together into two separate clusters (clusters 4a and 4b, <xref rid="fig4" ref-type="fig">Fig. 4</xref>). These deactivated regions, including the medial frontal cortex, anterior and posterior cingulate cortex, and bilateral angular gyri, were comparable to the “default” network that might be “suspended” when subjects are engaged in a task (e.g. <xref rid="bib17 bib27 bib34 bib70 bib76 bib95" ref-type="bibr">Damoiseaux et al., 2006; Fransson, 2006; Greicius et al., 2003; Raichle et al., 2001; Salvador et al., 2005; van den Heuvel et al., 2008</xref>). Interestingly, the segregation of deactivated regions in two different networks (i.e. clusters 4a and 4b) is in line with recent fMRI studies that segregated different parts of the anterior and posterior cingulate cortex and the medial frontal cortex into separate clusters (<xref rid="bib14 bib95" ref-type="bibr">Calhoun et al., 2008; van den Heuvel et al., 2008</xref>). Moreover, <xref rid="bib14" ref-type="bibr">Calhoun et al. (2008)</xref> showed that these two resting state networks were also consistently identified when subjects performed an auditory oddball task. In our case, the notable difference between clusters 4a and 4b was that cluster 4a included regions deactivated irrespective of task or group (similar to cognitive subtraction pattern “Deact-All” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>), whereas cluster 4b included regions that were more deactivated during the semantic than perceptual matching task (i.e. regions identified in pattern “Deact-Sem” of <xref rid="fig3" ref-type="fig">Fig. 3</xref>). In sum, the dissociation of deactivated regions, as observed with cognitive subtractions, was mirrored in the second-level clustering.</p>
+      </sec>
+      <sec>
+        <title>Potential applications</title>
+        <p>We have shown here how clustering fMRI data in the between-subject dimension can complement the widely-used cognitive subtraction approach. The advantage of second-level clustering is that it can identify networks that were not explicitly modelled by appropriate control conditions in the experimental design (e.g. clusters 2a, 2b, and 2d). It can also detect areas where the significance of the effect is low in the cognitive subtraction approach because of high within- or between-subject variance. In addition, our second-level clustering approach provides a very useful means to study clinical populations who are unable to switch between multiple tasks or uncomfortable staying in the scanner for long periods of time (e.g. by limiting the acquisition time to the main conditions of interest). Moreover, by studying the networks identified in different populations, abnormalities can be investigated at the systems rather than the regional level (e.g. by searching for similarities and differences between the identified clusters/networks in different populations). Our second-level clustering approach may therefore provide systems level signatures for different clinical populations.</p>
+        <p>Another clinical application would be to use the second-level clustering to identify different subtypes of patients within the same population. A broad literature has already shown that the same task can be implemented by different cognitive strategies in both diseased and healthy populations (e.g. <xref rid="bib4 bib9 bib14 bib28 bib45 bib61 bib66 bib74 bib99 bib100" ref-type="bibr">Berl et al., 2005; Bluhm et al., 2007; Calhoun et al., 2008; Friston and Price, 2003; Kherif et al., in press; Noppeney et al., 2004; Price and Friston, 2002; Rombouts et al., 2005; Waites et al., 2006; Wang et al., 2007</xref>). These cognitive differences will have repercussions on the between-subject variance which might enable our second-level clustering approach to dissociate patient subtypes without the need for multiple task and baseline measurements. For instance, it may be the case that the centroids of some specific networks are driven by a subgroup of patients, which would suggest that specific networks have been engaged by this subgroup. This was illustrated in our own data where we found right hemisphere networks that were more activated in older than younger subjects. Thus, by dissociating subjects in terms of their activation pattern, we were able to examine post-hoc how these subjects differed on other measures (e.g. behavioural or demographic).</p>
+        <p>In the same way, the second-level clustering approach should help to dissociate and characterise the possible degenerate systems that support the same task (i.e. many-to-one structure-to-function relationships, see for more details <xref rid="bib28 bib61 bib66" ref-type="bibr">Friston and Price, 2003; Noppeney et al., 2004; Price and Friston, 2002</xref>). This would be a valuable contribution to patient studies that are generally interested in how to predict or characterise the different mechanisms of recovery. For instance, by identifying the different networks (i.e. degenerate systems) that sustain the execution of a given function, one could predict that damage to a particular region may cause abnormally low activity in other intact regions of the same network (e.g. the disconnected network) and/or abnormally high activity in a set of regions of the remaining networks (e.g. compensatory networks) (see examples in <xref rid="bib68 bib67" ref-type="bibr">Price et al., 2003, 2001</xref>).</p>
+      </sec>
+      <sec>
+        <title>Practical issues</title>
+        <p>Some practical issues should be acknowledged when performing second-level clustering. Specifically, this approach based on only one representative value per subject: (i) ignores possible fluctuations of networks over time, for instance when subject's strategies vary between trials (e.g. <xref rid="bib26" ref-type="bibr">Fox et al., 2007</xref>). This however should not be a problem if there are sufficient trials with successful performance; (ii) considers that anatomical inter-individual variability is negligible after spatial normalisation and smoothing. This assumption is reasonable as the scale of the anatomical variability is much smaller (e.g. <xref rid="bib42 bib104" ref-type="bibr">Juch et al., 2005; Zilles et al., 1997</xref>) compared to the large-scale networks that we observed here in the between-subject dimension; (iii) is sensitive to the presence of outlier subjects who might dominate the segregation of networks (e.g. <xref rid="bib82 bib98" ref-type="bibr">Seghier et al., 2007; Wager et al., 2005</xref>), and for this reason we excluded outliers in our current sample before clustering; (iv) relies on the method used for clustering (ICA, fuzzy clustering) and the determination of the expected/optimal number of classes/components (e.g. <xref rid="bib21 bib88" ref-type="bibr">Dimitriadou et al., 2004; Smolders et al., 2007</xref>).</p>
+        <p>Furthermore, one important issue concerns the assessment of the reliability/consistency of the clustering algorithm. Several approaches have previously been proposed (e.g. <xref rid="bib11 bib22 bib53 bib75 bib103" ref-type="bibr">Breckenridge, 1989; Duann et al., 2003; Meinecke et al., 2002; Salem and Nandi, in press; Ylipaavalniemi and Vigário, 2008</xref>); in the context of second-level clustering, different practical procedures might be very useful. First, removing outlier subjects (see <xref rid="sec2" ref-type="sec">Methods</xref> section above for more details) will help to guarantee a good reliability of the clustering. Second, depending on initial conditions (<xref rid="bib5" ref-type="bibr">Bezdek, 1981</xref>), the FCM algorithm may converge to different fuzzy partitions (i.e. local minima, see illustration in Fig. 1 of <xref rid="bib103" ref-type="bibr">Ylipaavalniemi and Vigário, 2008</xref>) and may lead to the detection of spurious partitions (<xref rid="bib57" ref-type="bibr">Moller et al., 2002</xref>). One possible way to overcome this problem is to iterate the FCM algorithm on the same dataset with several different random initialisations (for more details see <xref rid="bib15 bib57 bib62" ref-type="bibr">Chuang et al., 1999; Moller et al., 2002; Pena et al., 1999</xref>) as it is unlikely that different initialisations will lead to the same local minima. Thus, randomising the initial conditions allows the optimum solution to converge from different directions of optimisation. Third, using resampling methods, including bootstrap and delete-k Jackknife (<xref rid="bib19 bib23 bib85 bib102" ref-type="bibr">Davidson and Hinkley, 1997; Efron and Tibshirani, 1993; Shao and Tu, 1995; Wu, 1986</xref>), would help to objectively assess the reliability/consistency of the identified clusters. For instance, it is feasible to check if the obtained clusters were consistent (or replicable) by repeating the clustering several times on all but (randomly) k subjects (for a similar rationale see <xref rid="bib83" ref-type="bibr">Seghier et al., 2008a</xref>). However, when using these resampling methods, either by deleting k subjects or by sampling with replacement, it is critical to ensure that the generated subsamples are representative of the main features of the original dataset (i.e. here in terms of age, gender and motor output). For example, in our dataset, with a limited number of subjects who responded with their left hand (12 subjects), the motor output factor might not be sufficiently appreciated by the clustering of each generated subsample.</p>
+        <p>On the other hand, one main practical advantage of the clustering approach is its applicability for the existing fMRI studies with standard block or event-related paradigms. For example, it does not require particular acquisition schemes, as is the case for other data-driven approaches in the time domain where continuous rest or uncontrolled stimulation are usually employed (e.g. <xref rid="bib3 bib17 bib27 bib36 bib37 bib40 bib49 bib95" ref-type="bibr">Bartels and Zeki, 2004; Damoiseaux et al., 2006; Fransson, 2006; Hampson et al., 2002; Hasson et al., 2004; Jaaskelainen et al., 2008; Malinen et al., 2007; van den Heuvel et al., 2008</xref>). The approach is also highly feasible in the context of the growing interest in databases that involve fMRI studies with large numbers of subjects (see <xref rid="bib46 bib78 bib80 bib93" ref-type="bibr">Kiehl et al., 2005; Schapiro et al., 2004; Schmithorst et al., 2007; Szaflarski et al., 2006</xref>).</p>
+        <p>Finally, because no <italic>a priori</italic> knowledge was used in second-level clustering, the interpretation of identified clusters is more challenging than with cognitive subtractions (a common problem in data-driven approaches, see <xref rid="bib15 bib25 bib32" ref-type="bibr">Chuang et al., 1999; Fadili et al., 2001; Gomez-Laberge et al., 2008</xref>). Here, we compared the identified clusters to the patterns found by cognitive subtractions, which was very helpful to assert a function/role to each cluster. However, having identified the function of the areas with one sample of participants scanned with multiple conditions, we can then scan a second population (e.g. patients) to establish how the normal networks are disrupted. In addition, demographic or behavioural variables can help explain/interpret the identified clusters. For instance, age effects were relevant for interpreting cluster 3b. In the same way, using in-scanner response times (RTs), we observed that the BSVP (i.e. centroid) of cluster 3a (the semantic network) was negatively correlated to the differences in RTs between the semantic and perceptual tasks (<italic>r</italic> = − 0.39, <italic>p</italic> = 0.02). We can therefore infer that the involvement of regions of cluster 3a increases with fast (efficient) semantic processing speed.</p>
+      </sec>
+    </sec>
+    <sec>
+      <title>Conclusion</title>
+      <p>We have shown here the feasibility and meaningfulness of using the between-subject dimension for segregating different functional networks for a semantic decision task. The identified networks included low- and high-level visual processing, semantic categorisation, decision making and motor response networks. Compared to the commonly used cognitive subtractions, our method showed high sensitivity despite only using one experimental condition. Our method can be used to reveal “hidden” or unpredicted networks that might be difficult to identify using standard cognitive subtractions between manipulated tasks/stimuli. Moreover, in addition to the existing literature about the resting-state networks, this work points to the importance of taking into account the operation of different networks that interact in the between-subject dimension during the execution of a particular cognitive task.</p>
+    </sec>
+    <sec id="app1" sec-type="supplementary-material">
+      <label>Appendix A</label>
+      <title>Supplementary data</title>
+      <p>
+        <supplementary-material content-type="local-data" id="N0x1cfcd00N0x2c96280">
+          <caption>
+            <title>Supplementary material</title>
+          </caption>
+          <media xlink:href="mmc1.pdf" mimetype="application" mime-subtype="pdf"/>
+        </supplementary-material>
+      </p>
+    </sec>
+    <sec sec-type="supplementary-material">
+      <label>Appendix B</label>
+      <title>Supplementary data</title>
+      <p>Supplementary data associated with this article can be found, in the online version, at <ext-link xlink:href="doi:10.1016/j.neuroimage.2008.12.017" ext-link-type="uri">doi:10.1016/j.neuroimage.2008.12.017</ext-link>.</p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>This work was funded by the Welcome Trust and the James S. MacDonnell Foundation (conducted as part of the Brain Network Recovery Group initiative). We would like to thank our three radiographers (Amanda Brennan, Janice Glensman and David Bradbury) as well as Clare Shakeshaft and Laura Stewart for their help with fMRI data collection. We would also like to thank Ferath Kherif for his valuable suggestions on the manuscript.</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <label>Aizenstein et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aizenstein</surname>
+              <given-names>H.J.</given-names>
+            </name>
+            <name>
+              <surname>Butters</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Fiqurski</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Andrew Stenger</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Nebes</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Reynolds</surname>
+              <given-names>C.R.</given-names>
+            </name>
+            <name>
+              <surname>Carter</surname>
+              <given-names>C.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Prefrontal and striatal activation in elderly subjects during concurrent implicit and explicit sequence learning</article-title>
+          <source>Neurobiol. Aging</source>
+          <year>2006</year>
+          <volume>27</volume>
+          <fpage>741</fpage>
+          <lpage>751</lpage>
+          <pub-id pub-id-type="pmid">15935517</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <label>Ashburner and Friston, 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Unified segmentation</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>26</volume>
+          <fpage>839</fpage>
+          <lpage>851</lpage>
+          <pub-id pub-id-type="pmid">15955494</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <label>Bartels and Zeki, 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bartels</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Zeki</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional brain mapping during free viewing of natural scenes</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2004</year>
+          <volume>21</volume>
+          <fpage>75</fpage>
+          <lpage>85</lpage>
+          <pub-id pub-id-type="pmid">14755595</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <label>Berl et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Berl</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Balsamo</surname>
+              <given-names>L.M.</given-names>
+            </name>
+            <name>
+              <surname>Xu</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>E.N.</given-names>
+            </name>
+            <name>
+              <surname>Weinstein</surname>
+              <given-names>S.L.</given-names>
+            </name>
+            <name>
+              <surname>Conry</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Pearl</surname>
+              <given-names>P.L.</given-names>
+            </name>
+            <name>
+              <surname>Sachs</surname>
+              <given-names>B.C.</given-names>
+            </name>
+            <name>
+              <surname>Grandin</surname>
+              <given-names>C.B.</given-names>
+            </name>
+            <name>
+              <surname>Frattali</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Ritter</surname>
+              <given-names>F.J.</given-names>
+            </name>
+            <name>
+              <surname>Sato</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Theodore</surname>
+              <given-names>W.H.</given-names>
+            </name>
+            <name>
+              <surname>Gaillard</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Seizure focus affects regional language networks assessed by fMRI</article-title>
+          <source>Neurology</source>
+          <year>2005</year>
+          <volume>65</volume>
+          <fpage>1604</fpage>
+          <lpage>1611</lpage>
+          <pub-id pub-id-type="pmid">16301489</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <label>Bezdek, 1981</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bezdek</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <source>Pattern Recognition with Fuzzy Objective Functions Algorithms</source>
+          <year>1981</year>
+          <publisher-name>Plenum Press</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <label>Bezdek et al., 1997</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bezdek</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Hall</surname>
+              <given-names>L.O.</given-names>
+            </name>
+            <name>
+              <surname>Clark</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Goldgof</surname>
+              <given-names>D.B.</given-names>
+            </name>
+            <name>
+              <surname>Clarke</surname>
+              <given-names>L.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Medical image analysis with fuzzy models</article-title>
+          <source>Stat. Methods Med. Res.</source>
+          <year>1997</year>
+          <volume>6</volume>
+          <fpage>191</fpage>
+          <lpage>214</lpage>
+          <pub-id pub-id-type="pmid">9339497</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <label>Billingsley et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Billingsley</surname>
+              <given-names>R.L.</given-names>
+            </name>
+            <name>
+              <surname>McAndrews</surname>
+              <given-names>M.P.</given-names>
+            </name>
+            <name>
+              <surname>Crawley</surname>
+              <given-names>A.P.</given-names>
+            </name>
+            <name>
+              <surname>Mikulis</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional MRI of phonological and semantic processing in temporal lobe epilepsy</article-title>
+          <source>Brain</source>
+          <year>2001</year>
+          <volume>124</volume>
+          <fpage>1218</fpage>
+          <lpage>1227</lpage>
+          <pub-id pub-id-type="pmid">11353737</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <label>Binder et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Binder</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Frost</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Hammeke</surname>
+              <given-names>T.A.</given-names>
+            </name>
+            <name>
+              <surname>Bellgowan</surname>
+              <given-names>P.S.</given-names>
+            </name>
+            <name>
+              <surname>Rao</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Cox</surname>
+              <given-names>R.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Conceptual processing during the conscious resting state. A functional MRI study</article-title>
+          <source>J. Cogn. Neurosci.</source>
+          <year>1999</year>
+          <volume>11</volume>
+          <fpage>80</fpage>
+          <lpage>95</lpage>
+          <pub-id pub-id-type="pmid">9950716</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <label>Bluhm et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bluhm</surname>
+              <given-names>R.L.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lanius</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Osuch</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Boksman</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Neufeld</surname>
+              <given-names>R.W.</given-names>
+            </name>
+            <name>
+              <surname>Théberge</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Schaefer</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Williamson</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Spontaneous low-frequency fluctuations in the BOLD signal in schizophrenic patients: anomalies in the default network</article-title>
+          <source>Schizophr. Bull.</source>
+          <year>2007</year>
+          <volume>33</volume>
+          <fpage>1004</fpage>
+          <lpage>1012</lpage>
+          <pub-id pub-id-type="pmid">17556752</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <label>Brandt, 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Brandt</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>How to see what you are looking for in fMRI and PET — or the crucial baseline condition</article-title>
+          <source>J. Neurol.</source>
+          <year>2006</year>
+          <volume>253</volume>
+          <fpage>551</fpage>
+          <lpage>555</lpage>
+          <pub-id pub-id-type="pmid">16767538</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <label>Breckenridge, 1989</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Breckenridge</surname>
+              <given-names>J.N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Replicating cluster analysis: method, consistency, and validity</article-title>
+          <source>Multivar. Behav. Res.</source>
+          <year>1989</year>
+          <volume>24</volume>
+          <fpage>147</fpage>
+          <lpage>161</lpage>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <label>Bundesen et al., 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bundesen</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Larsen</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kyllingsbaek</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Paulson</surname>
+              <given-names>O.B.</given-names>
+            </name>
+            <name>
+              <surname>Law</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Attentional effects in the visual pathways: a whole-brain PET study</article-title>
+          <source>Exp. Brain Res.</source>
+          <year>2002</year>
+          <volume>147</volume>
+          <fpage>394</fpage>
+          <lpage>406</lpage>
+          <pub-id pub-id-type="pmid">12428147</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <label>Calhoun et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Calhoun</surname>
+              <given-names>V.D.</given-names>
+            </name>
+            <name>
+              <surname>Adali</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>McGinty</surname>
+              <given-names>V.B.</given-names>
+            </name>
+            <name>
+              <surname>Pekar</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Watson</surname>
+              <given-names>T.D.</given-names>
+            </name>
+            <name>
+              <surname>Pearlson</surname>
+              <given-names>G.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>fMRI activation in a visual-perception task: network of areas detected using the general linear model and independent components analysis</article-title>
+          <source>NeuroImage</source>
+          <year>2001</year>
+          <volume>14</volume>
+          <fpage>1080</fpage>
+          <lpage>1088</lpage>
+          <pub-id pub-id-type="pmid">11697939</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <label>Calhoun et al., 2008</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Calhoun</surname>
+              <given-names>V.D.</given-names>
+            </name>
+            <name>
+              <surname>Kiehl</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Pearlson</surname>
+              <given-names>G.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Modulation of temporally coherent brain networks estimated using ICA at rest and during cognitive tasks</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2008</year>
+          <volume>29</volume>
+          <fpage>828</fpage>
+          <lpage>838</lpage>
+          <pub-id pub-id-type="pmid">18438867</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <label>Chuang et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Chuang</surname>
+              <given-names>K.H.</given-names>
+            </name>
+            <name>
+              <surname>Chiu</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>J.H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Model-free functional MRI analysis using kohonen clustering neural network and fuzzy c-means</article-title>
+          <source>IEEE Trans. Med. Imag.</source>
+          <year>1999</year>
+          <volume>18</volume>
+          <fpage>1117</fpage>
+          <lpage>1128</lpage>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <label>Cousin et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cousin</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Peyrin</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Pichat</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Lamalle</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Le Bas</surname>
+              <given-names>J.F.</given-names>
+            </name>
+            <name>
+              <surname>Baciu</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional MRI approach for assessing hemispheric predominance of regions activated by a phonological and a semantic task</article-title>
+          <source>Eur. J. Radiol.</source>
+          <year>2007</year>
+          <volume>63</volume>
+          <fpage>274</fpage>
+          <lpage>285</lpage>
+          <pub-id pub-id-type="pmid">17339089</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <label>Damoiseaux et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Damoiseaux</surname>
+              <given-names>J.S.</given-names>
+            </name>
+            <name>
+              <surname>Rombouts</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Barkhof</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Scheltens</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Stam</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Smith</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Beckmann</surname>
+              <given-names>C.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Consistent resting-state networks across healthy subjects</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>2006</year>
+          <volume>103</volume>
+          <fpage>13848</fpage>
+          <lpage>13853</lpage>
+          <pub-id pub-id-type="pmid">16945915</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <label>Dave and Krishnapuram, 1997</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dave</surname>
+              <given-names>R.N.</given-names>
+            </name>
+            <name>
+              <surname>Krishnapuram</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robust clustering methods: a united view</article-title>
+          <source>IEEE Trans. Fuzzy Sys.</source>
+          <year>1997</year>
+          <volume>5</volume>
+          <fpage>270</fpage>
+          <lpage>293</lpage>
+        </citation>
+      </ref>
+      <ref id="bib19">
+        <label>Davidson and Hinkley, 1997</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Davidson</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Hinkley</surname>
+              <given-names>D.V.</given-names>
+            </name>
+          </person-group>
+          <source>Bootstrap Methods and Their Application</source>
+          <year>1997</year>
+          <publisher-name>University Press</publisher-name>
+          <publisher-loc>Cambridge</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib20">
+        <label>Depue et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Depue</surname>
+              <given-names>B.E.</given-names>
+            </name>
+            <name>
+              <surname>Curran</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Banich</surname>
+              <given-names>M.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Prefrontal regions orchestrate suppression of emotional memories via a two-phase process</article-title>
+          <source>Science</source>
+          <year>2007</year>
+          <volume>317</volume>
+          <fpage>215</fpage>
+          <lpage>219</lpage>
+          <pub-id pub-id-type="pmid">17626877</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib21">
+        <label>Dimitriadou et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Dimitriadou</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Barth</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Windischberger</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Hornik</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Moser</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>A quantitative comparison of functional MRI cluster analysis</article-title>
+          <source>Artif. Intell. Med.</source>
+          <year>2004</year>
+          <volume>31</volume>
+          <fpage>57</fpage>
+          <lpage>71</lpage>
+          <pub-id pub-id-type="pmid">15182847</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib22">
+        <label>Duann et al., 2003</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Duann</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Jung</surname>
+              <given-names>T.P.</given-names>
+            </name>
+            <name>
+              <surname>Makeig</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Sejnowsk</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Consistency of INFOMAX ICA decomposition of functional brain imaging data</article-title>
+          <source>4th Inter Symp ICA Blind Signal Separation (ICA2003)</source>
+          <year>2003</year>
+          <publisher-name>Nara, Japan</publisher-name>
+          <fpage>289</fpage>
+          <lpage>294</lpage>
+        </citation>
+      </ref>
+      <ref id="bib23">
+        <label>Efron and Tibshirani, 1993</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Efron</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Tibshirani</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <source>An Introduction to the Bootstrap</source>
+          <year>1993</year>
+          <publisher-name>Chapman &amp; Hall</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib24">
+        <label>Fadili et al., 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fadili</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Ruan</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bloyet</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Mazoyer</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>A multistep unsupervised fuzzy clustering analysis of fMRI time series</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2000</year>
+          <volume>10</volume>
+          <fpage>160</fpage>
+          <lpage>178</lpage>
+          <pub-id pub-id-type="pmid">10949054</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib25">
+        <label>Fadili et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fadili</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Ruan</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Bloyet</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Mazoyer</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>On the number of clusters and the fuzziness index for unsupervised FCA application to BOLD fMRI time series</article-title>
+          <source>Med. Image Anal.</source>
+          <year>2001</year>
+          <volume>5</volume>
+          <fpage>55</fpage>
+          <lpage>67</lpage>
+          <pub-id pub-id-type="pmid">11231177</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib26">
+        <label>Fox et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fox</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Snyder</surname>
+              <given-names>A.Z.</given-names>
+            </name>
+            <name>
+              <surname>Vincent</surname>
+              <given-names>J.L.</given-names>
+            </name>
+            <name>
+              <surname>Raichle</surname>
+              <given-names>M.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Intrinsic fluctuations within cortical systems account for intertrial variability in human behavior</article-title>
+          <source>Neuron</source>
+          <year>2007</year>
+          <volume>56</volume>
+          <fpage>171</fpage>
+          <lpage>184</lpage>
+          <pub-id pub-id-type="pmid">17920023</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib27">
+        <label>Fransson, 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fransson</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>How default is the default mode of brain function? Further evidence from intrinsic BOLD signal fluctuations</article-title>
+          <source>Neuropsychologia</source>
+          <year>2006</year>
+          <volume>44</volume>
+          <fpage>2836</fpage>
+          <lpage>2845</lpage>
+          <pub-id pub-id-type="pmid">16879844</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib28">
+        <label>Friston and Price, 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Degeneracy and redundancy in cognitive anatomy</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <year>2003</year>
+          <volume>7</volume>
+          <fpage>151</fpage>
+          <lpage>152</lpage>
+          <pub-id pub-id-type="pmid">12691761</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib29">
+        <label>Friston et al., 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Fletcher</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.J.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>The trouble with cognitive subtraction</article-title>
+          <source>NeuroImage</source>
+          <year>1996</year>
+          <volume>4</volume>
+          <fpage>97</fpage>
+          <lpage>104</lpage>
+          <pub-id pub-id-type="pmid">9345501</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib30">
+        <label>Gerlach et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gerlach</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Law</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Gade</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Paulson</surname>
+              <given-names>O.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Perceptual differentiation and category effects in normal object recognition: a PET study</article-title>
+          <source>Brain</source>
+          <year>1999</year>
+          <volume>122</volume>
+          <fpage>2159</fpage>
+          <lpage>2170</lpage>
+          <pub-id pub-id-type="pmid">10545400</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib31">
+        <label>Golay et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Golay</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Kollias</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Stoll</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Meier</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Valavanis</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Boesiger</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new correlation-based fuzzy logic clustering algorithm for fMRI</article-title>
+          <source>Magn. Reson. Med.</source>
+          <year>1998</year>
+          <volume>40</volume>
+          <fpage>249</fpage>
+          <lpage>260</lpage>
+          <pub-id pub-id-type="pmid">9702707</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib32">
+        <label>Gomez-Laberge et al., 2008</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gomez-Laberge</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Adler</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>Cameron</surname>
+              <given-names>I.I.</given-names>
+            </name>
+            <name>
+              <surname>Nguyen</surname>
+              <given-names>T.T.</given-names>
+            </name>
+            <name>
+              <surname>Hogan</surname>
+              <given-names>M.M.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Selection criteria for the analysis of data-driven clusters in cerebral fMRI</article-title>
+          <source>IEEE Trans. Biomed. Engineer.</source>
+          <year>2008</year>
+          <volume>55</volume>
+          <fpage>2372</fpage>
+          <lpage>2380</lpage>
+        </citation>
+      </ref>
+      <ref id="bib33">
+        <label>Goutte et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Goutte</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Toft</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Rostrup</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Nielsen</surname>
+              <given-names>F.A.</given-names>
+            </name>
+            <name>
+              <surname>Hansen</surname>
+              <given-names>L.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>On clustering fMRI time series</article-title>
+          <source>NeuroImage</source>
+          <year>1999</year>
+          <volume>9</volume>
+          <fpage>298</fpage>
+          <lpage>310</lpage>
+          <pub-id pub-id-type="pmid">10075900</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib34">
+        <label>Greicius et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Greicius</surname>
+              <given-names>M.D.</given-names>
+            </name>
+            <name>
+              <surname>Krasnow</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Reiss</surname>
+              <given-names>A.L.</given-names>
+            </name>
+            <name>
+              <surname>Menon</surname>
+              <given-names>V.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional connectivity in the resting brain: a network analysis of the default mode hypothesis</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>2003</year>
+          <volume>100</volume>
+        </citation>
+      </ref>
+      <ref id="bib35">
+        <label>Gu et al., 2005</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gu</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Cao</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Zheng</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Aihua</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Treatment of ill-balanced datasets of fMRI with modified fuzzy c-means method</article-title>
+          <source>27th Ann Confer IEEE Eng Med Biol. Soc.</source>
+          <year>2005</year>
+          <publisher-name>Shanghai China</publisher-name>
+          <fpage>1411</fpage>
+          <lpage>1414</lpage>
+        </citation>
+      </ref>
+      <ref id="bib36">
+        <label>Hampson et al., 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hampson</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Peterson</surname>
+              <given-names>B.S.</given-names>
+            </name>
+            <name>
+              <surname>Skudlarski</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Gatenby</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Gore</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detection of functional connectivity using temporal correlations in MR images</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2002</year>
+          <volume>15</volume>
+          <fpage>247</fpage>
+          <lpage>262</lpage>
+          <pub-id pub-id-type="pmid">11835612</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib37">
+        <label>Hasson et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hasson</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Nir</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Levy</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Fuhrmann</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Malach</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Intersubject synchronization of cortical activity during natural vision</article-title>
+          <source>Science</source>
+          <year>2004</year>
+          <volume>303</volume>
+          <fpage>1634</fpage>
+          <lpage>1640</lpage>
+          <pub-id pub-id-type="pmid">15016991</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib38">
+        <label>Hejnar et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hejnar</surname>
+              <given-names>M.P.</given-names>
+            </name>
+            <name>
+              <surname>Kiehl</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Calhoun</surname>
+              <given-names>V.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Interparticipant correlations: a model free fMRI analysis technique</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2007</year>
+          <volume>28</volume>
+          <fpage>860</fpage>
+          <lpage>867</lpage>
+          <pub-id pub-id-type="pmid">17133393</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib39">
+        <label>Howard and Patterson, 1992</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Howard</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Patterson</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <source>The Pyramid and Palm Trees Test: A Test of Semantic Access from Words and Pictures</source>
+          <year>1992</year>
+          <publisher-name>Thames Valley Test Company</publisher-name>
+          <publisher-loc>Bury St. Edmunds</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib40">
+        <label>Jaaskelainen et al., 2008</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jaaskelainen</surname>
+              <given-names>I.P.</given-names>
+            </name>
+            <name>
+              <surname>Koskentalo</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Balk</surname>
+              <given-names>M.H.</given-names>
+            </name>
+            <name>
+              <surname>Autti</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Kauramaki</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Pomren</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Sams</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Inter-subject synchronization of prefrontal cortex hemodynamic activity during natural viewing</article-title>
+          <source>Open Neuroimag. J.</source>
+          <year>2008</year>
+          <volume>2</volume>
+          <fpage>14</fpage>
+          <lpage>19</lpage>
+          <pub-id pub-id-type="pmid">19018313</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib41">
+        <label>Jancke et al., 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jancke</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Loose</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Lutz</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Specht</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>N.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cortical activations during paced finger-tapping applying visual and auditory pacing stimuli</article-title>
+          <source>Brain Res. Cogn. Brain Res.</source>
+          <year>2000</year>
+          <volume>10</volume>
+          <fpage>51</fpage>
+          <lpage>66</lpage>
+          <pub-id pub-id-type="pmid">10978692</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib42">
+        <label>Juch et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Juch</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Zimine</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Seghier</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Lazeyras</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Fasel</surname>
+              <given-names>J.H.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Anatomical variability of the lateral frontal lobe surface: implication for intersubject variability in language neuroimaging</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>504</fpage>
+          <lpage>514</lpage>
+          <pub-id pub-id-type="pmid">15627592</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib43">
+        <label>Kharin, 1997</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kharin</surname>
+              <given-names>Y.</given-names>
+            </name>
+          </person-group>
+          <article-title>Robustness of clustering under outliers</article-title>
+          <source>Lect. Notes Comput. Sci.</source>
+          <year>1997</year>
+          <volume>1280</volume>
+          <fpage>501</fpage>
+          <lpage>511</lpage>
+        </citation>
+      </ref>
+      <ref id="bib44">
+        <label>Kherif et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kherif</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Mériaux</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Benali</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Flandin</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Brett</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Group analysis in functional neuroimaging: selecting subjects using similarity measures</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <fpage>2197</fpage>
+          <lpage>2208</lpage>
+          <pub-id pub-id-type="pmid">14683722</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib45">
+        <label>Kherif et al., in press</label>
+        <citation citation-type="other">Kherif, F., Josse, G., Seghier, M.L., Price, C.J., in press. The main sources of inter-subject variability in neuronal activation for reading aloud. J. Cogn. Neurosci (published online 14th August 2008).</citation>
+      </ref>
+      <ref id="bib46">
+        <label>Kiehl et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Kiehl</surname>
+              <given-names>K.A.</given-names>
+            </name>
+            <name>
+              <surname>Stevens</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Laurens</surname>
+              <given-names>K.R.</given-names>
+            </name>
+            <name>
+              <surname>Pearlson</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Calhoun</surname>
+              <given-names>V.D.</given-names>
+            </name>
+            <name>
+              <surname>Liddle</surname>
+              <given-names>P.F.</given-names>
+            </name>
+          </person-group>
+          <article-title>An adaptive reflexive processing model of neurocognitive function: supporting evidence from a large scale (n=100) fMRI study of an auditory oddball task</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>899</fpage>
+          <lpage>915</lpage>
+          <pub-id pub-id-type="pmid">15808990</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib47">
+        <label>Leski, 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Leski</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards a robust fuzzy clustering</article-title>
+          <source>Fuzzy Sets Sys.</source>
+          <year>2003</year>
+          <volume>137</volume>
+          <fpage>215</fpage>
+          <lpage>233</lpage>
+        </citation>
+      </ref>
+      <ref id="bib48">
+        <label>Lynch and Tian, 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lynch</surname>
+              <given-names>J.C.</given-names>
+            </name>
+            <name>
+              <surname>Tian</surname>
+              <given-names>J.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cortico-cortical networks and cortico-subcortical loops for the higher control of eye movements</article-title>
+          <source>Prog. Brain Res.</source>
+          <year>2005</year>
+          <volume>151</volume>
+          <fpage>461</fpage>
+          <lpage>501</lpage>
+          <pub-id pub-id-type="pmid">16221598</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib49">
+        <label>Malinen et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Malinen</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Hlushchuk</surname>
+              <given-names>Y.</given-names>
+            </name>
+            <name>
+              <surname>Hari</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards natural stimulation in fMRI—issues of data analysis</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>35</volume>
+          <fpage>131</fpage>
+          <lpage>139</lpage>
+          <pub-id pub-id-type="pmid">17208459</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib50">
+        <label>Marsh et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Marsh</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Zhu</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Schultz</surname>
+              <given-names>R.T.</given-names>
+            </name>
+            <name>
+              <surname>Quackenbush</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Royal</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Skudlarski</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Peterson</surname>
+              <given-names>B.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>A developmental fMRI study of self-regulatory control</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2006</year>
+          <volume>27</volume>
+          <fpage>848</fpage>
+          <lpage>863</lpage>
+          <pub-id pub-id-type="pmid">16421886</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib51">
+        <label>McKeown et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>McKeown</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Makeig</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Brown</surname>
+              <given-names>G.G.</given-names>
+            </name>
+            <name>
+              <surname>Jung</surname>
+              <given-names>T.P.</given-names>
+            </name>
+            <name>
+              <surname>Kindermann</surname>
+              <given-names>S.S.</given-names>
+            </name>
+            <name>
+              <surname>Bell</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Sejnowski</surname>
+              <given-names>T.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of fMRI data by blind separation into independent spatial components</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>1998</year>
+          <volume>6</volume>
+          <fpage>160</fpage>
+          <lpage>188</lpage>
+          <pub-id pub-id-type="pmid">9673671</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib52">
+        <label>Mechelli et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Structural covariance in the human cortex</article-title>
+          <source>J. Neurosci.</source>
+          <year>2005</year>
+          <volume>25</volume>
+          <fpage>8303</fpage>
+          <lpage>8310</lpage>
+          <pub-id pub-id-type="pmid">16148238</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib53">
+        <label>Meinecke et al., 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meinecke</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Ziehe</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Kawanabe</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Muller</surname>
+              <given-names>K.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A resampling approach to estimate the stability of one-dimensional or multidimensional independent components</article-title>
+          <source>IEEE Trans. Biomed. Eng.</source>
+          <year>2002</year>
+          <volume>49</volume>
+          <fpage>1514</fpage>
+          <lpage>1525</lpage>
+          <pub-id pub-id-type="pmid">12549733</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib54">
+        <label>Meyer-Baese et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Meyer-Baese</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Wismueller</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lange</surname>
+              <given-names>O.</given-names>
+            </name>
+          </person-group>
+          <article-title>Comparison of two exploratory data analysis methods for fMRI: unsupervised clustering versus independent component analysis</article-title>
+          <source>IEEE Trans. Inf. Technol. Biomed.</source>
+          <year>2004</year>
+          <volume>8</volume>
+          <fpage>387</fpage>
+          <lpage>398</lpage>
+          <pub-id pub-id-type="pmid">15484444</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib55">
+        <label>Miller and Van Horn, 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Miller</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>Van Horn</surname>
+              <given-names>J.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Individual variability in brain activations associated with episodic retrieval: a role for large-scale databases</article-title>
+          <source>Int. J. Psychophysiol.</source>
+          <year>2007</year>
+          <volume>63</volume>
+          <fpage>205</fpage>
+          <lpage>213</lpage>
+          <pub-id pub-id-type="pmid">16806546</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib56">
+        <label>Miller et al., 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Miller</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>Van Horn</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Wolford</surname>
+              <given-names>G.L.</given-names>
+            </name>
+            <name>
+              <surname>Handy</surname>
+              <given-names>T.C.</given-names>
+            </name>
+            <name>
+              <surname>Valsangkar-Smyth</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Inati</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Grafton</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Gazzaniga</surname>
+              <given-names>M.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Extensive individual differences in brain activations associated with episodic retrieval are reliable over time</article-title>
+          <source>J. Cogn. Neurosci.</source>
+          <year>2002</year>
+          <volume>14</volume>
+          <fpage>1200</fpage>
+          <lpage>1214</lpage>
+          <pub-id pub-id-type="pmid">12495526</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib57">
+        <label>Moller et al., 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Moller</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Ligges</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Georgiewa</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Grunling</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Kaiser</surname>
+              <given-names>W.A.</given-names>
+            </name>
+            <name>
+              <surname>Witte</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Blanz</surname>
+              <given-names>B.</given-names>
+            </name>
+          </person-group>
+          <article-title>How to avoid spurious cluster validation? A methodological investigation on simulated and fMRI data</article-title>
+          <source>NeuroImage</source>
+          <year>2002</year>
+          <volume>17</volume>
+          <fpage>431</fpage>
+          <lpage>446</lpage>
+          <pub-id pub-id-type="pmid">12482096</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib58">
+        <label>Mummery et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Mummery</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Patterson</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Hodges</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional neuroanatomy of the semantic system: divisible by what?</article-title>
+          <source>J. Cogn. Neurosci.</source>
+          <year>1998</year>
+          <volume>10</volume>
+          <fpage>766</fpage>
+          <lpage>777</lpage>
+          <pub-id pub-id-type="pmid">9831743</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib59">
+        <label>Nadeau et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Nadeau</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Williamson</surname>
+              <given-names>D.J.</given-names>
+            </name>
+            <name>
+              <surname>Crosson</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Gonzalez Rothi</surname>
+              <given-names>L.J.</given-names>
+            </name>
+            <name>
+              <surname>Heilman</surname>
+              <given-names>K.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional imaging: heterogeneity in task strategy and functional anatomy and the case for individual analysis</article-title>
+          <source>Neuropsychiatry Neuropsychol. Behav. Neurol.</source>
+          <year>1998</year>
+          <volume>11</volume>
+          <fpage>83</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="pmid">9652489</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib60">
+        <label>Newman et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Newman</surname>
+              <given-names>S.D.</given-names>
+            </name>
+            <name>
+              <surname>Tweig</surname>
+              <given-names>D.B.</given-names>
+            </name>
+            <name>
+              <surname>Carpenter</surname>
+              <given-names>P.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Baseline conditions and subtractive logic in neuroimaging</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2001</year>
+          <volume>14</volume>
+          <fpage>228</fpage>
+          <lpage>235</lpage>
+          <pub-id pub-id-type="pmid">11668654</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib61">
+        <label>Noppeney et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Noppeney</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Degenerate neuronal systems sustaining cognitive functions</article-title>
+          <source>J. Anat.</source>
+          <year>2004</year>
+          <volume>205</volume>
+          <fpage>433</fpage>
+          <lpage>442</lpage>
+          <pub-id pub-id-type="pmid">15610392</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib62">
+        <label>Pena et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pena</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Lozano</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Larranaga</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>An empirical comparison of four initialization methods for the K-Means algorithm</article-title>
+          <source>Pattern Recogn. Lett.</source>
+          <year>1999</year>
+          <volume>20</volume>
+          <fpage>1027</fpage>
+          <lpage>1040</lpage>
+        </citation>
+      </ref>
+      <ref id="bib63">
+        <label>Pinel et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pinel</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Thirion</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Meriaux</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Jobert</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Serres</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Le Bihan</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.B.</given-names>
+            </name>
+            <name>
+              <surname>Dehaene</surname>
+              <given-names>S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Fast reproducible identification and large-scale databasing of individual functional cognitive networks</article-title>
+          <source>BMC Neurosci.</source>
+          <year>2007</year>
+          <volume>8</volume>
+          <fpage>91</fpage>
+          <pub-id pub-id-type="pmid">17973998</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib64">
+        <label>Poldrack et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poldrack</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Wagner</surname>
+              <given-names>A.D.</given-names>
+            </name>
+            <name>
+              <surname>Prull</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Desmond</surname>
+              <given-names>J.E.</given-names>
+            </name>
+            <name>
+              <surname>Glover</surname>
+              <given-names>G.H.</given-names>
+            </name>
+            <name>
+              <surname>Gabrieli</surname>
+              <given-names>J.D.E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional specialization for semantic and phonological processing in the left inferior prefrontal cortex</article-title>
+          <source>NeuroImage</source>
+          <year>1999</year>
+          <volume>10</volume>
+          <fpage>15</fpage>
+          <lpage>35</lpage>
+          <pub-id pub-id-type="pmid">10385578</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib65">
+        <label>Poline, 2003</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Poline</surname>
+              <given-names>J.B.</given-names>
+            </name>
+          </person-group>
+          <article-title>Contrasts and classical inference</article-title>
+          <person-group person-group-type="editor">
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Frith</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Dolan</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Zeki</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Ashburner</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Penny</surname>
+              <given-names>W.D.</given-names>
+            </name>
+          </person-group>
+          <source>Human Brain Function</source>
+          <year>2003</year>
+          <publisher-name>Academic Press</publisher-name>
+          <publisher-loc>London</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib66">
+        <label>Price and Friston, 2002</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Degeneracy and cognitive anatomy</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <year>2002</year>
+          <volume>6</volume>
+          <fpage>416</fpage>
+          <lpage>421</lpage>
+          <pub-id pub-id-type="pmid">12413574</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib67">
+        <label>Price et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Warburton</surname>
+              <given-names>E.A.</given-names>
+            </name>
+            <name>
+              <surname>Moore</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic diaschisis: anatomically remote and context-sensitive human brain lesions</article-title>
+          <source>J. Cogn. Neurosci.</source>
+          <year>2001</year>
+          <volume>13</volume>
+          <fpage>419</fpage>
+          <lpage>429</lpage>
+          <pub-id pub-id-type="pmid">11388916</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib68">
+        <label>Price et al., 2003</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Gorno-Tempini</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Graham</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Biggio</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Mechelli</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Petterson</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Noppeney</surname>
+              <given-names>U.</given-names>
+            </name>
+          </person-group>
+          <article-title>Normal and pathological reading: converging data from lesion and imaging studies</article-title>
+          <source>NeuroImage</source>
+          <year>2003</year>
+          <volume>20</volume>
+          <fpage>276</fpage>
+          <lpage>289</lpage>
+          <pub-id pub-id-type="pmid">14527588</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib69">
+        <label>Pugh et al., 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pugh</surname>
+              <given-names>K.R.</given-names>
+            </name>
+            <name>
+              <surname>Shaywitz</surname>
+              <given-names>B.A.</given-names>
+            </name>
+            <name>
+              <surname>Shaywitz</surname>
+              <given-names>S.E.</given-names>
+            </name>
+            <name>
+              <surname>Constable</surname>
+              <given-names>R.T.</given-names>
+            </name>
+            <name>
+              <surname>Skudlarski</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Fulbright</surname>
+              <given-names>R.K.</given-names>
+            </name>
+            <name>
+              <surname>Bronen</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Shankweiler</surname>
+              <given-names>D.P.</given-names>
+            </name>
+            <name>
+              <surname>Katz</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Fletcher</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Gore</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Cerebral organization of component processes in reading</article-title>
+          <source>Brain</source>
+          <year>1996</year>
+          <volume>119</volume>
+          <fpage>1221</fpage>
+          <lpage>1238</lpage>
+          <pub-id pub-id-type="pmid">8813285</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib70">
+        <label>Raichle et al., 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Raichle</surname>
+              <given-names>M.E.</given-names>
+            </name>
+            <name>
+              <surname>MacLeod</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Snyder</surname>
+              <given-names>A.Z.</given-names>
+            </name>
+            <name>
+              <surname>Powers</surname>
+              <given-names>W.J.</given-names>
+            </name>
+            <name>
+              <surname>Gusnard</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Shulman</surname>
+              <given-names>G.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>A default mode of brain function</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>2001</year>
+          <volume>98</volume>
+          <fpage>676</fpage>
+          <lpage>682</lpage>
+          <pub-id pub-id-type="pmid">11209064</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib71">
+        <label>Reinke et al., 2008</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Reinke</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Fernandes</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Schwindt</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>O'Craven</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Grady</surname>
+              <given-names>C.L.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional specificity of the visual word form area: general activation for words and symbols but specific network activation for words</article-title>
+          <source>Brain Lang.</source>
+          <year>2008</year>
+          <volume>104</volume>
+          <fpage>180</fpage>
+          <lpage>189</lpage>
+          <pub-id pub-id-type="pmid">17531309</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib72">
+        <label>Rezaee et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rezaee</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Lelieveldt</surname>
+              <given-names>B.P.F.</given-names>
+            </name>
+            <name>
+              <surname>Reider</surname>
+              <given-names>J.H.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new cluster validity index for the fuzzy c-mean</article-title>
+          <source>Pattern Recogn. Lett.</source>
+          <year>1998</year>
+          <volume>19</volume>
+          <fpage>237</fpage>
+          <lpage>246</lpage>
+        </citation>
+      </ref>
+      <ref id="bib73">
+        <label>Ricci et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ricci</surname>
+              <given-names>P.T.</given-names>
+            </name>
+            <name>
+              <surname>Zelkowicz</surname>
+              <given-names>B.J.</given-names>
+            </name>
+            <name>
+              <surname>Nebes</surname>
+              <given-names>R.D.</given-names>
+            </name>
+            <name>
+              <surname>Meltzer</surname>
+              <given-names>C.C.</given-names>
+            </name>
+            <name>
+              <surname>Mintun</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Becker</surname>
+              <given-names>J.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional neuroanatomy of semantic memory: recognition of semantic associations</article-title>
+          <source>NeuroImage</source>
+          <year>1999</year>
+          <volume>9</volume>
+          <fpage>88</fpage>
+          <lpage>96</lpage>
+          <pub-id pub-id-type="pmid">9918730</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib74">
+        <label>Rombouts et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rombouts</surname>
+              <given-names>S.A.</given-names>
+            </name>
+            <name>
+              <surname>Barkhof</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Goekoop</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Stam</surname>
+              <given-names>C.J.</given-names>
+            </name>
+            <name>
+              <surname>Scheltens</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Altered resting state networks in mild cognitive impairment and mild Alzheimer's disease: an fMRI study</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2005</year>
+          <volume>26</volume>
+          <fpage>231</fpage>
+          <lpage>239</lpage>
+          <pub-id pub-id-type="pmid">15954139</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib75">
+        <label>Salem and Nandi, in press</label>
+        <citation citation-type="other">Salem, S.A., Nandi, A.K., in press. Development of assessment criteria for clustering algorithms. Pattern Anal. Applic. (published online 26th January 2008). <ext-link xlink:href="doi:10.1007/s10044-007-0099-1" ext-link-type="uri">doi:10.1007/s10044-007-0099-1</ext-link>.</citation>
+      </ref>
+      <ref id="bib76">
+        <label>Salvador et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Salvador</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Suckling</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Coleman</surname>
+              <given-names>M.R.</given-names>
+            </name>
+            <name>
+              <surname>Pickard</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Menon</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Bullmore</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Neurophysiological architecture of functional magnetic resonance images of human brain</article-title>
+          <source>Cereb. Cortex</source>
+          <year>2005</year>
+          <volume>15</volume>
+          <fpage>1332</fpage>
+          <lpage>1342</lpage>
+          <pub-id pub-id-type="pmid">15635061</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib77">
+        <label>Sartori and Umilta, 2000</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sartori</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Umilta</surname>
+              <given-names>C.</given-names>
+            </name>
+          </person-group>
+          <article-title>How to avoid the fallacies of cognitive subtraction in brain imaging</article-title>
+          <source>Brain Lang.</source>
+          <year>2000</year>
+          <volume>74</volume>
+          <fpage>191</fpage>
+          <lpage>212</lpage>
+          <pub-id pub-id-type="pmid">10950914</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib78">
+        <label>Schapiro et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schapiro</surname>
+              <given-names>M.B.</given-names>
+            </name>
+            <name>
+              <surname>Schmithorst</surname>
+              <given-names>V.J.</given-names>
+            </name>
+            <name>
+              <surname>Wilke</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Byars</surname>
+              <given-names>A.W.</given-names>
+            </name>
+            <name>
+              <surname>Strawsburg</surname>
+              <given-names>R.H.</given-names>
+            </name>
+            <name>
+              <surname>Holland</surname>
+              <given-names>S.K.</given-names>
+            </name>
+          </person-group>
+          <article-title>BOLD fMRI signal increases with age in selected brain regions in children</article-title>
+          <source>NeuroReport</source>
+          <year>2004</year>
+          <volume>15</volume>
+          <fpage>2575</fpage>
+          <lpage>2578</lpage>
+          <pub-id pub-id-type="pmid">15570155</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib79">
+        <label>Schmahmann et al., 2000</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmahmann</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Doyen</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Toga</surname>
+              <given-names>A.W.</given-names>
+            </name>
+            <name>
+              <surname>Petrides</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Evans</surname>
+              <given-names>A.C.</given-names>
+            </name>
+          </person-group>
+          <source>MRI Atlas of The Human Cerebellum</source>
+          <year>2000</year>
+          <publisher-name>Academic Press</publisher-name>
+          <publisher-loc>California-USA</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib80">
+        <label>Schmithorst et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Schmithorst</surname>
+              <given-names>V.J.</given-names>
+            </name>
+            <name>
+              <surname>Holland</surname>
+              <given-names>S.K.</given-names>
+            </name>
+            <name>
+              <surname>Plante</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Object identification and lexical/semantic access in children: a functional magnetic resonance imaging study of word–picture matching</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2007</year>
+          <volume>28</volume>
+          <fpage>1060</fpage>
+          <lpage>1074</lpage>
+          <pub-id pub-id-type="pmid">17133401</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib81">
+        <label>Seghier et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seghier</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Lazeyras</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Pegna</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Annoni</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Zimine</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Mayer</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Michel</surname>
+              <given-names>C.M.</given-names>
+            </name>
+            <name>
+              <surname>Khateb</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variability of fMRI activation during a phonological and semantic language task in healthy subjects</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2004</year>
+          <volume>23</volume>
+          <fpage>140</fpage>
+          <lpage>155</lpage>
+          <pub-id pub-id-type="pmid">15449358</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib82">
+        <label>Seghier et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seghier</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Detecting subject-specific activations using fuzzy clustering</article-title>
+          <source>NeuroImage</source>
+          <year>2007</year>
+          <volume>36</volume>
+          <fpage>594</fpage>
+          <lpage>605</lpage>
+          <pub-id pub-id-type="pmid">17478103</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib83">
+        <label>Seghier et al., 2008a</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seghier</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Lazeyras</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Pegna</surname>
+              <given-names>A.J.</given-names>
+            </name>
+            <name>
+              <surname>Annoni</surname>
+              <given-names>J.M.</given-names>
+            </name>
+            <name>
+              <surname>Khateb</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Group analysis and the subject factor in functional magnetic resonance imaging: analysis of fifty right-handed healthy subjects in a semantic language task</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2008</year>
+          <volume>29</volume>
+          <fpage>461</fpage>
+          <lpage>477</lpage>
+          <pub-id pub-id-type="pmid">17538950</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib84">
+        <label>Seghier et al., 2008b</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Seghier</surname>
+              <given-names>M.L.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>H.L.</given-names>
+            </name>
+            <name>
+              <surname>Schofield</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Ellis</surname>
+              <given-names>C.L.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Inter-subject variability in the use of two different neuronal networks for reading aloud familiar words</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>42</volume>
+          <fpage>1226</fpage>
+          <lpage>1236</lpage>
+          <pub-id pub-id-type="pmid">18639469</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib85">
+        <label>Shao and Tu, 1995</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Shao</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Tu</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>The Jackknife and Bootstrap</source>
+          <year>1995</year>
+          <publisher-name>Springer</publisher-name>
+        </citation>
+      </ref>
+      <ref id="bib86">
+        <label>Sidtis et al., 1999</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sidtis</surname>
+              <given-names>J.J.</given-names>
+            </name>
+            <name>
+              <surname>Strother</surname>
+              <given-names>S.C.</given-names>
+            </name>
+            <name>
+              <surname>Anderson</surname>
+              <given-names>J.R.</given-names>
+            </name>
+            <name>
+              <surname>Rottenberg</surname>
+              <given-names>D.A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Are brain functions really additive?</article-title>
+          <source>NeuroImage</source>
+          <year>1999</year>
+          <volume>9</volume>
+          <fpage>490</fpage>
+          <lpage>496</lpage>
+          <pub-id pub-id-type="pmid">10329288</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib87">
+        <label>Smith et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smith</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Beckmann</surname>
+              <given-names>C.F.</given-names>
+            </name>
+            <name>
+              <surname>Ramnani</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Woolrich</surname>
+              <given-names>M.W.</given-names>
+            </name>
+            <name>
+              <surname>Bannister</surname>
+              <given-names>P.R.</given-names>
+            </name>
+            <name>
+              <surname>Jenkinson</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Matthews</surname>
+              <given-names>P.M.</given-names>
+            </name>
+            <name>
+              <surname>McGonigle</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Variability in fMRI: a re-examination of inter-session differences</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2005</year>
+          <volume>24</volume>
+          <fpage>248</fpage>
+          <lpage>257</lpage>
+          <pub-id pub-id-type="pmid">15654698</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib88">
+        <label>Smolders et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Smolders</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>De Martino</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Staeren</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Scheunders</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Sijbers</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Goebel</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Formisano</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dissecting cognitive stages with time-resolved fMRI data: a comparison of fuzzy clustering and independent component analysis</article-title>
+          <source>Magn. Reson. Imaging</source>
+          <year>2007</year>
+          <volume>25</volume>
+          <fpage>860</fpage>
+          <lpage>868</lpage>
+          <pub-id pub-id-type="pmid">17482412</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib89">
+        <label>Stark and Squire, 2001</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stark</surname>
+              <given-names>C.E.</given-names>
+            </name>
+            <name>
+              <surname>Squire</surname>
+              <given-names>L.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>When zero is not zero: the problem of ambiguous baseline conditions in fMRI</article-title>
+          <source>Proc. Natl. Acad. Sci. U. S. A.</source>
+          <year>2001</year>
+          <volume>98</volume>
+          <fpage>12760</fpage>
+          <lpage>12766</lpage>
+          <pub-id pub-id-type="pmid">11592989</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib90">
+        <label>Sugiura et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sugiura</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Willmes</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Shah</surname>
+              <given-names>N.J.</given-names>
+            </name>
+            <name>
+              <surname>Zilles</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Fink</surname>
+              <given-names>G.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of intersubject variability in activation: an application to the incidental episodic retrieval during recognition test</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2007</year>
+          <volume>28</volume>
+          <fpage>49</fpage>
+          <lpage>58</lpage>
+          <pub-id pub-id-type="pmid">16718653</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib91">
+        <label>Sun et al., 2004</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Sun</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Jiang</surname>
+              <given-names>Q.</given-names>
+            </name>
+          </person-group>
+          <article-title>FCM-based model selection algorithms for determining the number of clusters</article-title>
+          <source>Pattern Recogn.</source>
+          <year>2004</year>
+          <volume>37</volume>
+          <fpage>2027</fpage>
+          <lpage>2037</lpage>
+        </citation>
+      </ref>
+      <ref id="bib92">
+        <label>Swinburn et al., 2004</label>
+        <citation citation-type="book">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Swinburn</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Porter</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Howard</surname>
+              <given-names>D.</given-names>
+            </name>
+          </person-group>
+          <source>The Comprehensive Aphasia Test</source>
+          <year>2004</year>
+          <publisher-name>Psychology Press</publisher-name>
+          <publisher-loc>New York</publisher-loc>
+        </citation>
+      </ref>
+      <ref id="bib93">
+        <label>Szaflarski et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Szaflarski</surname>
+              <given-names>J.P.</given-names>
+            </name>
+            <name>
+              <surname>Holland</surname>
+              <given-names>S.K.</given-names>
+            </name>
+            <name>
+              <surname>Schmithorst</surname>
+              <given-names>V.J.</given-names>
+            </name>
+            <name>
+              <surname>Byars</surname>
+              <given-names>A.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>fMRI study of language lateralization in children and adults</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2006</year>
+          <volume>27</volume>
+          <fpage>202</fpage>
+          <lpage>212</lpage>
+          <pub-id pub-id-type="pmid">16035047</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib94">
+        <label>Tootell et al., 1998</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Tootell</surname>
+              <given-names>R.B.H.</given-names>
+            </name>
+            <name>
+              <surname>Hadjikhani</surname>
+              <given-names>N.K.</given-names>
+            </name>
+            <name>
+              <surname>Mendola</surname>
+              <given-names>J.D.</given-names>
+            </name>
+            <name>
+              <surname>Marrett</surname>
+              <given-names>S.</given-names>
+            </name>
+            <name>
+              <surname>Dale</surname>
+              <given-names>A.M.</given-names>
+            </name>
+          </person-group>
+          <article-title>From retinotopy to recognition: fMRI in human visual cortex</article-title>
+          <source>Trends Cogn. Sci.</source>
+          <year>1998</year>
+          <volume>2</volume>
+          <fpage>174</fpage>
+          <lpage>183</lpage>
+        </citation>
+      </ref>
+      <ref id="bib95">
+        <label>van den Heuvel et al., 2008</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>van den Heuvel</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Mandl</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Hulshoff Pol</surname>
+              <given-names>H.</given-names>
+            </name>
+          </person-group>
+          <article-title>Normalized cut group clustering of resting-state fMRI data</article-title>
+          <source>PLoS ONE</source>
+          <year>2008</year>
+          <volume>3</volume>
+          <fpage>e2001</fpage>
+          <pub-id pub-id-type="pmid">18431486</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib96">
+        <label>Vandenberghe et al., 1996</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vandenberghe</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Price</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Wise</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Josephs</surname>
+              <given-names>O.</given-names>
+            </name>
+            <name>
+              <surname>Frackowiak</surname>
+              <given-names>R.S.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional anatomy of a common semantic system for words and pictures</article-title>
+          <source>Nature</source>
+          <year>1996</year>
+          <volume>383</volume>
+          <fpage>254</fpage>
+          <lpage>256</lpage>
+          <pub-id pub-id-type="pmid">8805700</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib97">
+        <label>Vandenbulcke et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Vandenbulcke</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Peeters</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Dupont</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Van Hecke</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Vandenberghe</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Word reading and posterior temporal dysfunction in amnestic mild cognitive impairment</article-title>
+          <source>Cereb. Cortex</source>
+          <year>2007</year>
+          <volume>17</volume>
+          <fpage>542</fpage>
+          <lpage>551</lpage>
+          <pub-id pub-id-type="pmid">16603712</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib98">
+        <label>Wager et al., 2005</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wager</surname>
+              <given-names>T.D.</given-names>
+            </name>
+            <name>
+              <surname>Keller</surname>
+              <given-names>M.C.</given-names>
+            </name>
+            <name>
+              <surname>Lacey</surname>
+              <given-names>S.C.</given-names>
+            </name>
+            <name>
+              <surname>Jonides</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Increased sensitivity in neuroimaging analyses using robust regression</article-title>
+          <source>NeuroImage</source>
+          <year>2005</year>
+          <volume>26</volume>
+          <fpage>99</fpage>
+          <lpage>113</lpage>
+          <pub-id pub-id-type="pmid">15862210</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib99">
+        <label>Waites et al., 2006</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Waites</surname>
+              <given-names>A.B.</given-names>
+            </name>
+            <name>
+              <surname>Briellmann</surname>
+              <given-names>R.S.</given-names>
+            </name>
+            <name>
+              <surname>Saling</surname>
+              <given-names>M.M.</given-names>
+            </name>
+            <name>
+              <surname>Abbott</surname>
+              <given-names>D.F.</given-names>
+            </name>
+            <name>
+              <surname>Jackson</surname>
+              <given-names>G.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Functional connectivity networks are disrupted in left temporal lobe epilepsy</article-title>
+          <source>Ann. Neurol.</source>
+          <year>2006</year>
+          <volume>59</volume>
+          <fpage>335</fpage>
+          <lpage>343</lpage>
+          <pub-id pub-id-type="pmid">16404743</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib100">
+        <label>Wang et al., 2007</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Liang</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Wang</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Tian</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>X.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Jiang</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Altered functional connectivity in early Alzheimer's disease: a resting-state fMRI study</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>2007</year>
+          <volume>28</volume>
+          <fpage>967</fpage>
+          <lpage>978</lpage>
+          <pub-id pub-id-type="pmid">17133390</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib101">
+        <label>Worsley and Friston, 1995</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Worsley</surname>
+              <given-names>K.J.</given-names>
+            </name>
+            <name>
+              <surname>Friston</surname>
+              <given-names>K.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analysis of fMRI time-series revisited—again</article-title>
+          <source>NeuroImage</source>
+          <year>1995</year>
+          <volume>2</volume>
+          <fpage>173</fpage>
+          <lpage>181</lpage>
+          <pub-id pub-id-type="pmid">9343600</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib102">
+        <label>Wu, 1986</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wu</surname>
+              <given-names>C.F.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Jackknife, bootstrap and other resampling methods in regression analysis</article-title>
+          <source>Ann. Stat.</source>
+          <year>1986</year>
+          <volume>14</volume>
+          <fpage>1261</fpage>
+          <lpage>1295</lpage>
+        </citation>
+      </ref>
+      <ref id="bib103">
+        <label>Ylipaavalniemi and Vigário, 2008</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ylipaavalniemi</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Vigário</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Analyzing consistency of independent components: an fMRI illustration</article-title>
+          <source>NeuroImage</source>
+          <year>2008</year>
+          <volume>39</volume>
+          <fpage>169</fpage>
+          <lpage>180</lpage>
+          <pub-id pub-id-type="pmid">17931888</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib104">
+        <label>Zilles et al., 1997</label>
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Zilles</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Schleicher</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Langemann</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Amunts</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Morosan</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Palomero-Gallagher</surname>
+              <given-names>N.</given-names>
+            </name>
+            <name>
+              <surname>Schormann</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Mohlberg</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Burgel</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Steinmetz</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Schlaug</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Roland</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Quantitative analysis of sulci in the human cerebral cortex: development, regional heterogeneity, gender difference, asymmetry, intersubject variability and cortical architecture</article-title>
+          <source>Hum. Brain Mapp.</source>
+          <year>1997</year>
+          <volume>5</volume>
+          <fpage>218</fpage>
+          <lpage>221</lpage>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Fig. 1</label>
+      <caption>
+        <p>A schematic view of a hypothetical fMRI experiment with N subjects (see <xref rid="sec1" ref-type="sec">Introduction</xref> section for more details).</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Examples of stimuli used in our paradigm: the activation task (semantic decision on written familiar object names) and the baseline (perceptual matching of unfamiliar Greek symbols).</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Cognitive subtractions results: for each pattern, identified regions are shown in red-to-yellow colour coding on three axial slices (at <italic>p</italic> &lt; 0.001 uncorrected, minimum cortical volume of 0.52 ml (65 voxels)). See <xref rid="sec3" ref-type="sec">Results</xref> section for a list of these patterns.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Second-level clustering results: for each cluster, from 1a to 5b, segregated networks (regions) are shown in red-to-yellow colour coding on three axial slices (only voxels with degree of membership <italic>U</italic> bigger than 1/3 are shown). See <xref rid="sec3" ref-type="sec">Results</xref> section for a list of these clusters.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+  </floats-wrap>
+</article>

@@ -1,0 +1,1122 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="research-article">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Comput Biol Chem</journal-id>
+      <journal-title-group>
+        <journal-title>Computational Biology and Chemistry</journal-title>
+      </journal-title-group>
+      <issn pub-type="ppub">1476-9271</issn>
+      <issn pub-type="epub">1476-928X</issn>
+      <publisher>
+        <publisher-name>Elsevier</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">3267019</article-id>
+      <article-id pub-id-type="pmid">22000804</article-id>
+      <article-id pub-id-type="publisher-id">CBAC6192</article-id>
+      <article-id pub-id-type="doi">10.1016/j.compbiolchem.2011.08.002</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Article</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>Direct correlation analysis improves fold recognition</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Sadowski</surname>
+            <given-names>Michael I.</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Maksimiak</surname>
+            <given-names>Katarzyna</given-names>
+          </name>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Taylor</surname>
+            <given-names>William R.</given-names>
+          </name>
+          <email>wtaylor@nimr.mrc.ac.uk</email>
+          <xref rid="cor0005" ref-type="corresp">⁎</xref>
+        </contrib>
+      </contrib-group>
+      <aff>Division of Mathematical Biology, MRC National Institute for Medical Research, The Ridgeway, Mill Hill, London NW7 1AA, UK</aff>
+      <author-notes>
+        <corresp id="cor0005"><label>⁎</label>Corresponding author. Tel.: +44 208 816 2298; fax: +44 208 816 2460. <email>wtaylor@nimr.mrc.ac.uk</email></corresp>
+      </author-notes>
+      <pub-date pub-type="pmc-release">
+        <day>12</day>
+        <month>10</month>
+        <year>2011</year>
+      </pub-date>
+      <!-- PMC Release delay is 0 months and 0 days and was based on the
+							<pub-date pub-type="ppub"/>. -->
+      <pub-date pub-type="ppub">
+        <day>12</day>
+        <month>10</month>
+        <year>2011</year>
+      </pub-date>
+      <volume>35</volume>
+      <issue>5</issue>
+      <fpage>323</fpage>
+      <lpage>332</lpage>
+      <history>
+        <date date-type="received">
+          <day>15</day>
+          <month>7</month>
+          <year>2011</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>11</day>
+          <month>8</month>
+          <year>2011</year>
+        </date>
+        <date date-type="accepted">
+          <day>11</day>
+          <month>8</month>
+          <year>2011</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2011 Elsevier Ltd.</copyright-statement>
+        <copyright-year>2011</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <license-p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</license-p>
+        </license>
+      </permissions>
+      <abstract abstract-type="graphical">
+        <sec>
+          <title>Graphical abstract</title>
+          <p>
+            <fig id="fig0065" position="anchor">
+              <graphic xlink:href="fx3"/>
+            </fig>
+          </p>
+        </sec>
+        <sec>
+          <title>Highlights</title>
+          <p>► The problem of protein prediction from sequence is difficult and incompletely solved. ► We show that a new method based on correlated mutations in a multiple sequence alignment, filtered through a process to extract direct contacts provide powerful constraints on selecting the correct fold in a large number of well constructed decoy models.</p>
+        </sec>
+      </abstract>
+      <abstract>
+        <p>The extraction of correlated mutations through the method of direct information (DI) provides predicted contact residue pairs that can be used to constrain the three dimensional structures of proteins. We apply this method to a large set of decoy protein folds consisting of many thousand well-constructed models, only tens of which have the correct fold. We find that DI is able to greatly improve the ranking of the true (native) fold but others still remain high scoring that would be difficult to discard due to small shifts in the core beta sheets.</p>
+      </abstract>
+      <kwd-group>
+        <title>Keywords</title>
+        <kwd>Protein fold recognition</kwd>
+        <kwd>Decoy models</kwd>
+        <kwd>Direct information</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec0005">
+      <label>1</label>
+      <title>Introduction</title>
+      <p>For many years it has been thought that physical interaction between residues in a protein structure would create constraints on mutation that would then be apparent in an evolutionary analysis of a multiple sequence alignment. The analysis of coordinated changes across a multiple sequence alignment might then be used to detect interacting residues from which spatial proximity could be inferred (<xref rid="bib0005 bib0045 bib0085 bib0040" ref-type="bibr">Altschuh et al., 1987; Hatrick and Taylor, 1994; Neher, 1994; Gobel et al., 1994</xref>). Since these early attempts, there have been many additional improvements and new approaches, including consideration of phylogenetic effects (<xref rid="bib0090 bib0095 bib0140" ref-type="bibr">Pollock and Taylor, 1997; Pollock et al., 1999; Wang et al., 2006</xref>) and structural effects (<xref rid="bib0100 bib0135" ref-type="bibr">Singer et al., 2002; Valencia and Pazos, 2002</xref>) and also both together (<xref rid="bib0065" ref-type="bibr">Lapedes et al., 1999</xref>). Almost always these methods produced inconclusive results, and none were powerful enough to generate constraints that would allow the specification of a 3D protein structure, with the limitation usually being identified as insufficient sequence data.</p>
+      <p>A more recent attempt using the method of statistical coupling analysis (SCA) brought revived interest through promising results combined with experimentation (<xref rid="bib0075 bib0110 bib0105" ref-type="bibr">Lockless and Ranganathan, 1999; Suel et al., 2003; Socolich et al., 2005</xref>) and this approach produced encouraging results when combined with a method that generated realistic structural models (<xref rid="bib0030" ref-type="bibr">Bartlett and Taylor, 2007</xref>). Using models derived from an orthogonal source avoided the need to rely on the quality of the predicted contact to construct a model using distance geometry as the sets of distances had only to be evaluated, not created by the correlation signal. This made it less critical to determine whether the correlated signal resulted from a direct contact or from an indirect effect in which triples or chains of residues were co-evolving, a known confounding effect for methods based on standard estimates of correlation such as mutual information (MI).</p>
+      <p>In the more general case of solving a structure using predicted contacts such indirect correlations cause significant problems and lead to insoluble constraints on the system, creating a need to tease apart the direct correlations from the indirect correlations. This is a difficult problem and although the statistical framework to deal with it had been established some time ago (<xref rid="bib0065" ref-type="bibr">Lapedes et al., 1999</xref>) it had largely been ignored until recently (<xref rid="bib0150 bib0035" ref-type="bibr">Weigt et al., 2009; Burger and van Nimwegen, 2010</xref>). The method of Weigt and co-workers was primarily focused on the interaction of two proteins but besides the inter-molecular interactions, the intra-molecular interactions are also identified. For some small members of the chemotaxis Y family (cheY), these appeared to be sufficient to identify the correct fold from a collection of decoys but probably not strong enough for direct calculation of a unique fold by distance geometry. On a larger family of Ras proteins (<xref rid="bib0145" ref-type="bibr">Weigt, 2011</xref>), there is a very clear intra-molecular signal which could prove to be very powerful in fold recognition.</p>
+      <p>In this work, we use a of collection of model or “decoy” folds, similar to those tested previously with the SCA method, to evaluate the power of direct correlation analysis (DCA) at ranking the folds and discriminating the native fold from a very large multitude of well constructed decoys.</p>
+    </sec>
+    <sec id="sec0010">
+      <label>2</label>
+      <title>Results and discussion</title>
+      <sec id="sec0015">
+        <label>2.1</label>
+        <title>Generation of decoy models</title>
+        <p>Decoy models were generated completely automatically using our previously published methods (<xref rid="bib0120 bib0125" ref-type="bibr">Taylor et al., 2008, 2009</xref>) that are implemented as the server PLATO which was used to make predictions for the recent CASP-9 exercise.</p>
+        <p>This method takes only a single sequence and compiles a multiple alignment (filtered to remove redundancy) that is used to predict secondary structures with the PSIPRED method (<xref rid="bib0060" ref-type="bibr">Jones, 2000</xref>). However, to avoid any bias towards known structures, the PSIPRED sequence database is composed only of sequences from the aligned family of the protein being predicted.</p>
+        <p>As described in more detail in Section <xref rid="sec0040" ref-type="sec">4</xref>, the resulting secondary structures are mapped onto all idealised frameworks (Forms) that can support them and the chain paths are enumerated combinatorially to generate a wide variety of different folds. Each fold is elaborated into an alpha carbon model that is evaluated both by standard measures of protein structure and in the current work, by the predicted contact data from direct correlation information (DCA) (see Section <xref rid="sec0040" ref-type="sec">4</xref> for details).</p>
+        <p>As previously (<xref rid="bib0030" ref-type="bibr">Bartlett and Taylor, 2007</xref>), we consider a collection of proteins drawn from the three-layer αβα architecture and focus principally on two proteins for which there is also published data. One of these is of moderate size (128 residues) representing the cheY-family (3chy) (<xref rid="bib0150" ref-type="bibr">Weigt et al., 2009</xref>) while the other is a larger protein with 166 residues representing the ras-family (5p21) (<xref rid="bib0145" ref-type="bibr">Weigt, 2011</xref>). CheY had been used previously in a study of correlated changes in sequence using the statistical coupling analysis (SCA) method (<xref rid="bib0075" ref-type="bibr">Lockless and Ranganathan, 1999</xref>) and had performed well using those data (<xref rid="bib0030" ref-type="bibr">Bartlett and Taylor, 2007</xref>). However it was not the best protein used in that study with two others attaining better results and two worse. The ras (p21) protein, although only slightly larger, results in many more possible folds (because of the combinatoric nature of the model generating algorithm). This combined with an unusual connection of the more N-terminal edge of the domain makes it a difficult target.</p>
+        <p>The cheY-family alignment gave rise to 8567 models which contained 1216 different folds as distinguished by their secondary structure topology strings (see Section <xref rid="sec0040" ref-type="sec">4</xref>). As these are unique, only one string corresponds to the correct fold although sometimes it is reasonable to consider minor deviations from this. Taking the strictest definition, the total set of 8567 folds contained only 23 correct folds which have the topology string:<list list-type="simple"><list-item><p>+B+0.−A+0.+B−1.−a+0.+B+1.−a+1.+B+2.−a+2.+B+3.−A+1.</p></list-item></list></p>
+        <p>These constituted the true matches that were used to calculate the receiver–operator curves (ROC) that we used to characterise the success of each scoring scheme below. The basic scoring scheme used to rank the full set of folds is based on a combination of simple physico-chemical properties (<xref rid="bib0130" ref-type="bibr">Taylor et al., 2006</xref>). In the PLATO protocol, this measure is used to reduce the full set prior to a more detailed evaluation which with the current cheY-family resulted in a reduced selection of 1332 folds containing 16 true folds: an enrichment of over four fold from 0.27% to 1.2%. This re-scoring lifted the first occurrence of the true fold from position 30 to 1.</p>
+        <p>The longer ras sequence (166 residues) generated almost double the number of models as cheY (15623) on the initial stage of PLATO, containing 4164 distinct folds. These were reduced to 2372 models (637 folds) after re-scoring and filtering to produce the final ranked list. In the initial (full) list, there were 20 correct folds and 12 in the final (best) list with topology string:<list list-type="simple"><list-item><p>+B+0.−A+0.−B−2.+B−1.−a+0.+B+1.−a+1.+B+2.−a+2.+B+3.−A+1.</p></list-item></list></p>
+        <p>Because of the unusual topological arrangement on the amino terminal edge of the domain, comprising a βα-unit linked to a β-hairpin by a parallel connection (+B+0.-A+0.-B-2.+B-1), the true folds were ranked much lower in these lists with the top fold at rank 247 in the full list and 38 in the re-ranked (best) list. This puts the correct answers well below what would be considered for full molecular refinement and energy calculation (or serious consideration in the CASP exercise).</p>
+      </sec>
+      <sec id="sec0020">
+        <label>2.2</label>
+        <title>CheY-family model re-ranking</title>
+        <p>Introducing the contribution from the pairs of residues identified from the direct correlation analysis made a powerful positive contribution to the re-ranked order. The correct fold retained its top position and many more true folds were encountered higher in the ranking. This can be seen in the ROC plot <xref rid="fig0015" ref-type="fig">Fig. 1</xref> as a shift in the curves towards the upper left corner from the ranking based only on the PLATO score (purple) to those with a increasing contribution from the DCA score. Although the difference in these latter curves is small, a slightly better performance is obtained with roughly an equal contribution from DCA and PLATO scores (green).</p>
+        <p>While good, this result is not a dramatic improvement over the shift in curve obtained previously (<xref rid="bib0030" ref-type="bibr">Bartlett and Taylor, 2007</xref>) using the statistical coupling analysis (SCA) method which does not incorporate any evaluation of DCA. However, for this type of comparison the ROC plots are not ideal as the <italic>X</italic>-axis represents the complete ranking of 8000+ folds and the ones we are primarily interested in is the extent to which the 20-odd true folds are found near the origin. In this region, it can be noted that there is a distinct shift of the contact weighted curves towards the <italic>Y</italic>-axis, indicating that more true folds have a better ranking than with SCA. To expand this region, we simply plotted the raw ranked data as log(rank) along the <italic>X</italic>-axis and the number of true folds on <italic>Y</italic> (<xref rid="fig0020" ref-type="fig">Fig. 2</xref>).</p>
+        <p>The numbers of true hits are plotted for final reduced list of PLATO models (<xref rid="fig0020" ref-type="fig">Fig. 2</xref>) when ranked by their PLATO score (red), the DCA score (green) and the combined PLATO–DCA score (blue) which is slightly better than either individually. On the full list of models, however, the shift in ranking is more dramatic with the top true fold rising from 30 to position 9 with the combined score.</p>
+        <p>The quality of the top ranked true models is typical of that reported previously (<xref rid="bib0120" ref-type="bibr">Taylor et al., 2008</xref>) with RMS deviation from the native structure of 4.6/125 (Å/res.) for the refined PLATO ranking (<xref rid="fig0025" ref-type="fig">Fig. 3</xref>) and 4.0/120 (Å/res). for the full list of folds (<xref rid="fig0030" ref-type="fig">Fig. 4</xref>).</p>
+        <p>Besides the rank and quality of the true models, it is informative to examine the nature of the folds that are in competition with the true fold. This can be easily seen from the lists of ranked topology strings for both the final (left) and initial (right) PLATO + DCA rankings (where a ‘*’ marks correct folds):<fig id="fig0005"><graphic xlink:href="fx1"/></fig></p>
+        <p>The dominant fold that shadows and often betters the true fold is very similar and has only a single exchange of two positions with the initial β-strand moving to the central position in the five stranded sheet:<list list-type="simple"><list-item><p>+B+0.−A+0.+B−2.−a+0.+B−1.−a+1.+B+1.−a+2.+B+2.−A+1.</p></list-item></list></p>
+        <p>It can be seen from the distance plot of the DCA that this is not a strongly constrained region as the first strand (lower left corner) has only a few predicted contacts with its consecutive helix and none with other β-strands (<xref rid="fig0035" ref-type="fig">Fig. 5</xref>). Even with much better constraints, it is likely that such errors would still arise as they can be seen even when RMS-based superposition is used to select model structures (<xref rid="bib0050" ref-type="bibr">Hollup et al., 2011</xref>).</p>
+      </sec>
+      <sec id="sec0025">
+        <label>2.3</label>
+        <title>Ras-family model re-ranking</title>
+        <p>The protocols and analysis described above for the cheY family were repeated on the larger ras (p21) family using an unbiased automatic prediction of model structures by PLATO and an equivalent density of contacts predicted by direct information (DCA). As can be seen from the contact map (<xref rid="fig0040" ref-type="fig">Fig. 6</xref>) the ras family contains many well distributed correct contacts and the ROC plot based on the re-ranked list identified all the correct folds under a level of 0.01 (1-sensitivity). As such a plot is not visually informative, we plotted the raw data against log(rank) as described above (<xref rid="fig0045" ref-type="fig">Fig. 7</xref>).</p>
+        <p>It can be seen from these plots, that the contribution of DCA lifted the rank of the top true fold into the top 10 in both the initial and final PLATO fold lists with the contribution from the PLATO scores having less effect. These produce a slight improvement of the top rank in the full list to fifth place (<xref rid="fig0045" ref-type="fig">Fig. 7</xref>b) but have a correspondingly slight detrimental effect on the final PLATO list (<xref rid="fig0045" ref-type="fig">Fig. 7</xref>a).</p>
+        <p>The resulting models corresponding to the top true hits have a worse RMS deviation from the native structure relative to the cheY family, even allowing for the larger size of the Ras structure. This comes mostly from variations in the long β-hairpin on the amino terminal edge of the domain discussed above. The fold which is ranked top in both lists has an RMS of 7.5/157 (Å/res.) but taking a smaller subset of residues, that excludes some of the problematic hairpin, reduces this to 5.5/100 which is more typical for a domain of this size (<xref rid="bib0120" ref-type="bibr">Taylor et al., 2008</xref>). The model is shown in <xref rid="fig0050" ref-type="fig">Fig. 8</xref> along with its comparison to the native.</p>
+        <p>As with CHEY, it is informative to look at the folds that are in competition with the true fold as these can reveal weaknesses in the constraints. The top ten ranked folds for each list are shown as above (’*’ = true):<fig id="fig0010"><graphic xlink:href="fx2"/></fig></p>
+        <p>There is a wider variety of fold variants ranked higher than the true fold than was seen for the cheY models but these are again dominated by variations in which β-strands have swapped positions in the sheet, especially in the problematic hairpin region on the N-terminal end of the domain. The top scoring fold in both lists has the edge hairpin split either side of the initial strand (<xref rid="fig0055" ref-type="fig">Fig. 9</xref>) but is otherwise correct. Again this corresponds to a region of sparse contacts in the data. Interestingly, this model has a better superposition on the native structure than the top true fold with an RMS of 5.0/116 (Å/res.), confirming the observation that any RMS based measure is not ideal for evaluating topological correspondence (<xref rid="bib0050" ref-type="bibr">Hollup et al., 2011</xref>).</p>
+      </sec>
+      <sec id="sec0030">
+        <label>2.4</label>
+        <title>Summary of results for all proteins</title>
+        <p>In addition to the two proteins considered in detail above, the method was run automatically over the other proteins included in the analysis of <xref rid="bib0030" ref-type="bibr">Bartlett and Taylor (2007)</xref> with the exception of the protein with PDB code: 1di0, as this protein is strongly multimeric and does not have a large sequence family.</p>
+        <p>In <xref rid="tbl0005" ref-type="table">Table 1</xref>, it can be seen that for every protein considered, the inclusion of DCA contact information has resulted in an improvement in the rank of the top true fold.</p>
+      </sec>
+    </sec>
+    <sec id="sec0035">
+      <label>3</label>
+      <title>Conclusions</title>
+      <p>We have shown in this study that direct contact information extracted from an analysis of residue covariation provides a powerful contribution to improving the ranking of the true fold in a large collection of well-formed decoy folds. The examples considered share a similar architecture but have different folds and have in the past presented different challenges to an <italic>ab initio</italic> prediction approach. cheY is compact and regular with well formed secondary structure elements that obey standard packing rules. At almost 130 residues, the cheY structure would be considered to be at, or beyond, the limit of anything that could be predicted without structural information. With almost 40 more residues, the Ras structure would certainly be beyond all folding methods and with some unusual packing arrangements (discussed above) presents a difficult challenge for prediction.</p>
+      <p>Applied to the cheY derived decoys, the DCA scores made a marked improvement in the ranks of the true folds. This was better than previous results using the SCA method, but not dramatically so. The covering of the contacts was uneven, allowing considerable freedom in some secondary structure elements (SSE) to adopt alternative positions and still score well. This was particularly deleterious in the case of the first β-strand which can adopt an alternative position in the sheet that still preserves its few contacts and buried hydrophobic environment. Similarly, if there are only a few constraints all to the same region of a SSE, then both orientations of the SSE will be equally favoured. This was seen mostly in the terminal α-helix which, of course, is less well ‘tied-down’ by its chain connections. As determined previously in the context of distance geometry applications, the minimal ideal distribution of constraints is to have them covering both ends of every SSE (<xref rid="bib0015" ref-type="bibr">Aszódi et al., 1995</xref>).</p>
+      <p>The better quality of the constraints on the Ras structure produced a dramatic improvement in the ranking of the true folds, bringing them within the top 10 and to rank 5 in the best situation—close enough to be selected as a solution for the CASP experiment. Despite the high quality of the Ras data, alternative fold solutions still remained high scoring, especially when the constraints involved β-strand positions in the sheet. Without constraints to adjacent strands, the swapping of strands to adjacent positions in the sheet is effectively undetectable over longer ranges. For example in the Ras models, the edge β-hairpin was split by the N-terminal strand. The constraints on these positions were imposed mainly from the helices that pack either side but from this position, the distances in the alternative folds are similar.</p>
+      <p>The use of direct information can be very powerful and in our test examples, comes close to bringing the correct fold within a sufficiently small number of alternatives that could be evaluated using more computationally expensive methods based on all-atom refined folds. In this work we wanted only to test the power of the method at the fold-recognition level based on simple scoring measures. However, it was of interest to see if the data were sufficient to generate a unique (or any) structure using distance geometry but using the DRAGON program (<xref rid="bib0020" ref-type="bibr">Aszódi and Taylor, 1994</xref>) this was unsuccessful, suggesting that the use of pre-formed models derived from ideal folds provides an important contribution.</p>
+    </sec>
+    <sec sec-type="methods" id="sec0040">
+      <label>4</label>
+      <title>Methods</title>
+      <sec id="sec0045">
+        <label>4.1</label>
+        <title>Model generation using PLATO</title>
+        <p>A server for <italic>ab initio</italic> protein structure prediction using ideal forms (<xref rid="bib0115" ref-type="bibr">Taylor, 2002</xref>) was developed. This was essentially a fully automated version of the previously described build method (<xref rid="bib0120" ref-type="bibr">Taylor et al., 2008</xref>), however it included refinements to enable a fully automatic solution and improve model selection and ranking.</p>
+        <p>Profiles for target sequences were generated by alignment to a local copy of the NR database using PSIBLAST (<xref rid="bib0010" ref-type="bibr">Altschul et al., 1997</xref>) following which the alignment was culled to a small number of representatives. Predictions of secondary structure were made using two methods (PSIPRED, <xref rid="bib0055" ref-type="bibr">Jones, 1999</xref>, <xref rid="bib0060" ref-type="bibr">Jones, 2000</xref> and YASPIN, <xref rid="bib0070" ref-type="bibr">Lin et al., 2005</xref>) for all representatives in the alignment. Predictions were grouped and converted to element-level predictions by testing all possible alternatives for ambiguous elements: present/absent for short elements (less than 3 for strands, less than 4 for helices) and helix/strand for ambiguous regions.</p>
+        <p>For each prediction, all compatible ideal forms were identified and used as templates for prediction. A given form provides a lattice representation for an arrangement of secondary structures in either a three-layer α/β/α, four-layer α/β/β/α or polyhedral all-α arrangement. Possible topologies were generated for each lattice by generating all permutations compatible with lengths of predicted loops and sequence hydrophobicity. In a novel step the choice of lattice was filtered by comparison with known SSE sequences using BLAST. A population of thousands of α-carbon models was generated in this way for each domain.</p>
+        <p>All generated models were based only on α-carbon positions and full atomic models were not used generated in this work but can be automatically constructed from the α-carbon positions with good accuracy (<xref rid="bib0080" ref-type="bibr">MacDonald et al., 2009</xref>).</p>
+      </sec>
+      <sec id="sec0050">
+        <label>4.2</label>
+        <title>Topology string encoding and matching</title>
+        <p>The folds for the model structures were encoded as strings that specify the coordinates of the chain through the lattice (Form). Each match to a Form allows the fold to be specified by its path over the underlying lattice. This can be done in a simple coordinate system which uses the letters “A”, “B” and “C” (or “a” if the layer is α) for the three layers, and a number for position in the layer with the remaining dimension requiring only two values, “+” or “−”, to designate front and back. The first SSE to enter a layer is assigned position 0 and the first strand in the sheet takes the positive orientation, giving “+B+0” in the string. The first α-helix then sets the top/bottom orientation by assigning its layer as “A”. The resulting strings (referred to as “topology strings”) are quite easy to read and visualise the fold. Two examples are given in <xref rid="fig0060" ref-type="fig">Fig. 10</xref>.</p>
+      </sec>
+      <sec id="sec0055">
+        <label>4.3</label>
+        <title>Contact calculation and model evaluation</title>
+        <p>As previously, residue contacts were predicted from pfam multiple sequence alignments (<xref rid="bib0030" ref-type="bibr">Bartlett and Taylor, 2007</xref>). Staring from a standard calculation of mutual information between alignment positions (<xref rid="bib0150" ref-type="bibr">Weigt et al., 2009</xref>), these values were normalised using a heuristic implementation of the direct information algorithm (<xref rid="bib0065" ref-type="bibr">Lapedes et al., 1999</xref>) and renormalised to improve consistency with expected cumulative residue packing distributions (<xref rid="bib0025" ref-type="bibr">Aszódi and Taylor, 1995</xref>). Residue contact pairs calculated by the direct information algorithm of <xref rid="bib0150" ref-type="bibr">Weigt et al. (2009)</xref> were taken from supplementary information for the cheY family and for the ras family from <xref rid="bib0145" ref-type="bibr">Weigt (2011)</xref> which were kindly verified by the author.</p>
+        <p>The models were assessed by summing the distance between pairs of residues over the contact list, resulting in a value (<italic>D</italic>) that should be as small as possible. As the PLATO scores (<italic>P</italic>) are larger for good models, the two scores were combined as <italic>P</italic>/<italic>D</italic> making the combination scale insensitive.</p>
+      </sec>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib0005">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Altschuh</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Lesk</surname>
+              <given-names>A.M.</given-names>
+            </name>
+            <name>
+              <surname>Bloomer</surname>
+              <given-names>A.C.</given-names>
+            </name>
+            <name>
+              <surname>Klug</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Correlation of coordinated amino-acid substitutions with function in tobamoviruses</article-title>
+          <source>Protein Eng.</source>
+          <volume>1</volume>
+          <year>1987</year>
+          <fpage>228</fpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0010">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Altschul</surname>
+              <given-names>S.F.</given-names>
+            </name>
+            <name>
+              <surname>Madden</surname>
+              <given-names>T.L.</given-names>
+            </name>
+            <name>
+              <surname>Schäffer</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>J.H.</given-names>
+            </name>
+            <name>
+              <surname>Zhang</surname>
+              <given-names>Z.</given-names>
+            </name>
+            <name>
+              <surname>Miller</surname>
+              <given-names>W.</given-names>
+            </name>
+            <name>
+              <surname>Lipman</surname>
+              <given-names>D.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Gapped BLAST and PSI-BLAST: a new generation of protein database search programs</article-title>
+          <source>Nucl. Acid Res.</source>
+          <volume>25</volume>
+          <year>1997</year>
+          <fpage>3389</fpage>
+          <lpage>3402</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0015">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aszódi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Gradwell</surname>
+              <given-names>M.J.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Global fold determination from a small number of distance restraints</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>251</volume>
+          <year>1995</year>
+          <fpage>308</fpage>
+          <lpage>326</lpage>
+          <pub-id pub-id-type="pmid">7643405</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0020">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aszódi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Secondary structure formation in model polypeptide chains</article-title>
+          <source>Protein Eng.</source>
+          <volume>7</volume>
+          <year>1994</year>
+          <fpage>633</fpage>
+          <lpage>644</lpage>
+          <pub-id pub-id-type="pmid">8073033</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0025">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Aszódi</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Estimating polypeptide α-carbon distances from multiple sequence alignments</article-title>
+          <source>J. Math. Chem.</source>
+          <volume>17</volume>
+          <year>1995</year>
+          <fpage>167</fpage>
+          <lpage>184</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0030">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Bartlett</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Using scores derived from statistical coupling analysis to distinguish correct and incorrect folds in <italic>de-novo</italic> protein structure prediction</article-title>
+          <source>Proteins: Struct. Funct. Bioinfo.</source>
+          <volume>71</volume>
+          <year>2007</year>
+          <fpage>950</fpage>
+          <lpage>959</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0035">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Burger</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>van Nimwegen</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>Disentangling direct from indirect co-evolution of residues in protein alignments</article-title>
+          <source>PLoS Comp. Biol.</source>
+          <volume>6</volume>
+          <year>2010</year>
+          <fpage>1</fpage>
+          <lpage>17</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0040">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Gobel</surname>
+              <given-names>U.</given-names>
+            </name>
+            <name>
+              <surname>Sander</surname>
+              <given-names>C.</given-names>
+            </name>
+            <name>
+              <surname>Schneider</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Valencia</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Correlated mutations and residue contacts in proteins</article-title>
+          <source>Protein Struct. Funct. Genet.</source>
+          <volume>18</volume>
+          <year>1994</year>
+          <fpage>309</fpage>
+          <lpage>317</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0045">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hatrick</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Sequence conservation and correlation measures in protein structure prediction</article-title>
+          <source>Comput. Chem.</source>
+          <volume>18</volume>
+          <year>1994</year>
+          <fpage>245</fpage>
+          <lpage>250</lpage>
+          <pub-id pub-id-type="pmid">16649265</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0050">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hollup</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>Sadowski</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Jonassen</surname>
+              <given-names>I.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Exploring the limits of fold discrimination by structural alignment: a large scale benchmark using decoys of known fold</article-title>
+          <source>Comput. Biol. Chem.</source>
+          <volume>35</volume>
+          <year>2011</year>
+          <fpage>174</fpage>
+          <lpage>188</lpage>
+          <pub-id pub-id-type="pmid">21704264</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0055">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Protein secondary structure prediction based on position-specific scoring matrices</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>292</volume>
+          <year>1999</year>
+          <fpage>195</fpage>
+          <lpage>202</lpage>
+          <pub-id pub-id-type="pmid">10493868</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0060">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Jones</surname>
+              <given-names>D.T.</given-names>
+            </name>
+          </person-group>
+          <article-title>The PSIPRED protein structure prediction server</article-title>
+          <source>Bioinformatics</source>
+          <volume>16</volume>
+          <year>2000</year>
+          <fpage>404</fpage>
+          <lpage>405</lpage>
+          <pub-id pub-id-type="pmid">10869041</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0065">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lapedes</surname>
+              <given-names>A.S.</given-names>
+            </name>
+            <name>
+              <surname>Giraud</surname>
+              <given-names>B.G.</given-names>
+            </name>
+            <name>
+              <surname>Liu</surname>
+              <given-names>L.</given-names>
+            </name>
+            <name>
+              <surname>Stormo</surname>
+              <given-names>G.D.</given-names>
+            </name>
+          </person-group>
+          <source>Stat. Mol. Biol.</source>
+          <volume>33</volume>
+          <year>1999</year>
+          <fpage>236</fpage>
+          <lpage>256</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0070">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lin</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Simossis</surname>
+              <given-names>V.A.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Heringa</surname>
+              <given-names>J.</given-names>
+            </name>
+          </person-group>
+          <article-title>A simple and fast secondary structure prediction method using hidden neural networks</article-title>
+          <source>Bioinformatics</source>
+          <volume>21</volume>
+          <year>2005</year>
+          <fpage>152</fpage>
+          <lpage>159</lpage>
+          <pub-id pub-id-type="pmid">15377504</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0075">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Lockless</surname>
+              <given-names>S.W.</given-names>
+            </name>
+            <name>
+              <surname>Ranganathan</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolutionarily conserved pathways of energetic connectivity in protein families</article-title>
+          <source>Science</source>
+          <volume>286</volume>
+          <issue>5438</issue>
+          <year>1999</year>
+          <fpage>295</fpage>
+          <lpage>299</lpage>
+          <pub-id pub-id-type="pmid">10514373</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0080">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>MacDonald</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Maksimiak</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Sadowski</surname>
+              <given-names>M.I.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title><italic>de novo</italic> backbone scaffolds for protein design</article-title>
+          <source>Protein Struct. Funct. Bioinf.</source>
+          <volume>78</volume>
+          <year>2009</year>
+          <fpage>1311</fpage>
+          <lpage>1325</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0085">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Neher</surname>
+              <given-names>E.</given-names>
+            </name>
+          </person-group>
+          <article-title>How frequent are correlated changes in families of protein sequences?</article-title>
+          <source>Proc. Natl. Acad. Sci. U.S.A.</source>
+          <volume>91</volume>
+          <year>1994</year>
+          <fpage>98</fpage>
+          <lpage>102</lpage>
+          <pub-id pub-id-type="pmid">8278414</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0090">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pollock</surname>
+              <given-names>D.D.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Effectiveness of correlation analysis in identifying protein residues undergoing correlated evolution</article-title>
+          <source>Protein Eng.</source>
+          <volume>10</volume>
+          <year>1997</year>
+          <fpage>647</fpage>
+          <lpage>657</lpage>
+          <pub-id pub-id-type="pmid">9278277</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0095">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Pollock</surname>
+              <given-names>D.D.</given-names>
+            </name>
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Goldman</surname>
+              <given-names>N.</given-names>
+            </name>
+          </person-group>
+          <article-title>Coevolving protein residues: maximum likelihood identification and relationship to structure</article-title>
+          <source>J. Mol. Biol.</source>
+          <volume>287</volume>
+          <year>1999</year>
+          <fpage>187</fpage>
+          <lpage>198</lpage>
+          <pub-id pub-id-type="pmid">10074416</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0100">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Singer</surname>
+              <given-names>M.S.</given-names>
+            </name>
+            <name>
+              <surname>vriend</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Bywater</surname>
+              <given-names>R.P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Prediction of protein residue contacts with a PDB-derived likelihood matrix</article-title>
+          <source>Protein Eng.</source>
+          <volume>15</volume>
+          <year>2002</year>
+          <fpage>721</fpage>
+          <lpage>725</lpage>
+          <pub-id pub-id-type="pmid">12456870</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0105">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Socolich</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Lockless</surname>
+              <given-names>S.W.</given-names>
+            </name>
+            <name>
+              <surname>Russ</surname>
+              <given-names>W.P.</given-names>
+            </name>
+            <name>
+              <surname>Lee</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Gardner</surname>
+              <given-names>K.H.</given-names>
+            </name>
+            <name>
+              <surname>Ranganathan</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolutionary information for specifying a protein fold</article-title>
+          <source>Nature</source>
+          <volume>437</volume>
+          <issue>7058</issue>
+          <year>2005</year>
+          <fpage>512</fpage>
+          <lpage>518</lpage>
+          <pub-id pub-id-type="pmid">16177782</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0110">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Suel</surname>
+              <given-names>G.M.</given-names>
+            </name>
+            <name>
+              <surname>Lockless</surname>
+              <given-names>S.W.</given-names>
+            </name>
+            <name>
+              <surname>Wall</surname>
+              <given-names>M.A.</given-names>
+            </name>
+            <name>
+              <surname>Ranganathan</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Evolutionarily conserved networks of residues mediate allosteric communication in proteins</article-title>
+          <source>Nat. Struct. Biol.</source>
+          <volume>10</volume>
+          <issue>1</issue>
+          <year>2003</year>
+          <fpage>59</fpage>
+          <lpage>69</lpage>
+          <pub-id pub-id-type="pmid">12483203</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0115">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+          </person-group>
+          <article-title>A periodic table for protein structure</article-title>
+          <source>Nature</source>
+          <volume>416</volume>
+          <year>2002</year>
+          <fpage>657</fpage>
+          <lpage>660</lpage>
+          <pub-id pub-id-type="pmid">11948354</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0120">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Bartlett</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Chelliah</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Klose</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Sheldon</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Jonassen</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Prediction of protein structure from ideal forms</article-title>
+          <source>Proteins: Struct. Funct. Bioinfo.</source>
+          <volume>70</volume>
+          <year>2008</year>
+          <fpage>1610</fpage>
+          <lpage>1619</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0125">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Hollup</surname>
+              <given-names>S.M.</given-names>
+            </name>
+            <name>
+              <surname>MacDonnald</surname>
+              <given-names>J.T.</given-names>
+            </name>
+            <name>
+              <surname>Jonassen</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Probing the “dark matter” of protein fold-space</article-title>
+          <source>Structure</source>
+          <volume>17</volume>
+          <year>2009</year>
+          <fpage>1244</fpage>
+          <lpage>1252</lpage>
+          <pub-id pub-id-type="pmid">19748345</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0130">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Taylor</surname>
+              <given-names>W.R.</given-names>
+            </name>
+            <name>
+              <surname>Lin</surname>
+              <given-names>K.</given-names>
+            </name>
+            <name>
+              <surname>Klose</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Fraternali</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Jonassen</surname>
+              <given-names>I.</given-names>
+            </name>
+          </person-group>
+          <article-title>Dynamic domain threading</article-title>
+          <source>Proteins Struct. Funct. Bioinfo.</source>
+          <volume>64</volume>
+          <year>2006</year>
+          <fpage>601</fpage>
+          <lpage>614</lpage>
+        </element-citation>
+      </ref>
+      <ref id="bib0135">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Valencia</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Pazos</surname>
+              <given-names>F.</given-names>
+            </name>
+          </person-group>
+          <article-title>Computational methods for the prediction of protein interactions</article-title>
+          <source>Curr. Opin. Struct. Biol.</source>
+          <volume>12</volume>
+          <year>2002</year>
+          <fpage>368</fpage>
+          <lpage>373</lpage>
+          <pub-id pub-id-type="pmid">12127457</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0140">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Wang</surname>
+              <given-names>B.</given-names>
+            </name>
+            <name>
+              <surname>Chen</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Huang</surname>
+              <given-names>D.</given-names>
+            </name>
+            <name>
+              <surname>Li</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lok</surname>
+              <given-names>T.</given-names>
+            </name>
+            <name>
+              <surname>Lyu</surname>
+              <given-names>M.</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicting protein interaction sites from residue spatial sequence profile and evolution rate</article-title>
+          <source>FEBS Lett.</source>
+          <volume>580</volume>
+          <year>2006</year>
+          <fpage>380</fpage>
+          <lpage>384</lpage>
+          <pub-id pub-id-type="pmid">16376878</pub-id>
+        </element-citation>
+      </ref>
+      <ref id="bib0145">
+        <mixed-citation publication-type="other">Weigt, M., 2011. Interprotein residue contacts and interaction specificity in bacterial signal transduction. KITP online archives. <ext-link ext-link-type="uri" xlink:href="http://online.kitp.ucsb.edu/online/viral11/weigt">http://online.kitp.ucsb.edu/online/viral11/weigt</ext-link> (slide 13).</mixed-citation>
+      </ref>
+      <ref id="bib0150">
+        <element-citation publication-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Weigt</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>White</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Szurmantc</surname>
+              <given-names>H.</given-names>
+            </name>
+            <name>
+              <surname>Hochc</surname>
+              <given-names>J.A.</given-names>
+            </name>
+            <name>
+              <surname>Hwa</surname>
+              <given-names>T.</given-names>
+            </name>
+          </person-group>
+          <article-title>Identification of direct residue contacts in protein/protein interaction by message passing</article-title>
+          <source>PNAS</source>
+          <volume>106</volume>
+          <year>2009</year>
+          <fpage>67</fpage>
+          <lpage>72</lpage>
+          <pub-id pub-id-type="pmid">19116270</pub-id>
+        </element-citation>
+      </ref>
+    </ref-list>
+    <ack>
+      <title>Acknowledgement</title>
+      <p>This work was supported by the MRC (UK) under project code: U117581331 (Taylor).</p>
+    </ack>
+  </back>
+  <floats-group>
+    <fig id="fig0015">
+      <label>Fig. 1</label>
+      <caption>
+        <p>ROC plots for CHEY based on the frequency of occurrence of the true fold in the ranked list of models (see text for details). In part a, the purple curve is based on the raw PLATO scores where as the other curves are increasingly weighted by DCA contact data in the order: blue &lt; green &lt; red, with the green curve being close to equal weighting. Part b shows the corresponding data from (<xref rid="bib0030" ref-type="bibr">Bartlett and Taylor, 2007</xref>) with the raw physico-chemical scored folds plotted in green and the SCA weighted ranking in red. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+      <attrib>Reproduced with permission.</attrib>
+    </fig>
+    <fig id="fig0020">
+      <label>Fig. 2</label>
+      <caption>
+        <p>Log ‘ROC’ plots for CHEY. The cumulated number of true folds (<italic>Y</italic>-axis) is plotted against the log value of the position in the ranked fold data: a for the final (best) and b for the initial (full) number of folds generated by PLATO. On each plot, green is the ranking for the DCA contacts alone, red is the raw PLATO score and blue their combined score. Dashed lines are calculated from the data of Weigt et al. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig0025">
+      <label>Fig. 3</label>
+      <caption>
+        <p>Top scoring true fold for CHEY as identified in the final (best) PLATO ranking by the combined physico-chemical and DCA score. Parts a + b constitute a stereo pair of the alpha-carbon trace coloured by secondary structure type (α = red, β = green). Parts c + d are also a stereo pair of the same fold superposed on the native structure (3chy) and coloured from amino (blue) to carboxy (red) for both structures. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig0030">
+      <label>Fig. 4</label>
+      <caption>
+        <p>Top scoring true fold for CHEY as identified in the initial (full) PLATO ranking by the combined physico-chemical and DCA score. The parts are as in <xref rid="fig0025" ref-type="fig">Fig. 3</xref>.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+    <fig id="fig0035">
+      <label>Fig. 5</label>
+      <caption>
+        <p>Distance and DCA plot for CHEY. (a) The contact map for 3chy is plotted for residue pairs closer than 8 Å (green), over which the residue pairs identified by DCA are plotted in red with the current method in the top-left and the Weigt et al. method lower-right. Parts b + c are a stereo pair showing the residues selected by DCA as spheres with fine lines linking pairs. (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr5"/>
+    </fig>
+    <fig id="fig0040">
+      <label>Fig. 6</label>
+      <caption>
+        <p>Distance and DCA plot for Ras (plotted as in <xref rid="fig0035" ref-type="fig">Fig. 5</xref>). (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr6"/>
+    </fig>
+    <fig id="fig0045">
+      <label>Fig. 7</label>
+      <caption>
+        <p>Log ‘ROC’ plots for Ras (plotted as in <xref rid="fig0020" ref-type="fig">Fig. 2</xref>). (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr7"/>
+    </fig>
+    <fig id="fig0050">
+      <label>Fig. 8</label>
+      <caption>
+        <p>Top scoring true fold for Ras (plotted as in <xref rid="fig0025" ref-type="fig">Fig. 3</xref>). (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr8"/>
+    </fig>
+    <fig id="fig0055">
+      <label>Fig. 9</label>
+      <caption>
+        <p>Top scoring fold for Ras with the region that differs from the native emphasised as a thicker trace. This change is not apparent from the overall RMSD value which is lower than that obtained with the correct topology (plotted as in <xref rid="fig0025" ref-type="fig">Fig. 3</xref>). (For interpretation of the references to color in this figure legend, the reader is referred to the web version of the article.)</p>
+      </caption>
+      <graphic xlink:href="gr9"/>
+    </fig>
+    <fig id="fig0060">
+      <label>Fig. 10</label>
+      <caption>
+        <p>Example topology strings. Two small αβα layer proteins fitting form 1–5–3 (a) (one helix above and three below a five-stranded sheet) and form 2-5-2 (b) are shown as topology diagrams with their corresponding topology strings below. In the topology diagrams, helices are depicted as circles and β-strands as triangles. In the topology strings, the three layers of secondary structure (αβα) are designated A (top), B and C, respectively. Each SSE is given a label of three parts indicating orientation (“ + ”, “−”), layer and position in the layer. The first SSE in each layer is, by definition, at position 0 with others numbered relative to this. In the topology diagram negative numbers lie to the left, positive to the right. Similarly, in the strings, a positive orientation corresponds to a SSE approaching (“out of the page”) in the diagrams.</p>
+      </caption>
+      <graphic xlink:href="gr10"/>
+    </fig>
+    <table-wrap id="tbl0005" position="float">
+      <label>Table 1</label>
+      <caption>
+        <p>Fold recognition over five decoy sets. For the five proteins considered (PDB) each decoy in the PLATO selected set (best) and complete set (full) was ranked by the basic PLATO scoring scheme (base) and by the DCA augmented combined score (comb). The ranked positions are the first occurrence of the true fold in the list (with the position counting only unique folds in parentheses). The root mean square deviation (RMSD) value is calculated over the number of residues shown in parentheses for the top model in the combined ranking of the best PLATO set. These values are typical although the 2trx variant selected had a short helix/loop in an exposed configuration giving a higher than average value for this fold.</p>
+      </caption>
+      <table frame="hsides" rules="groups">
+        <thead>
+          <tr>
+            <th align="left">PDB code</th>
+            <th colspan="2" align="left">Number of decoy models<hr/></th>
+            <th colspan="2" align="left">True fold rank (base)<hr/></th>
+            <th colspan="2" align="left">True fold rank (comb)<hr/></th>
+            <th align="left">Comb best top model</th>
+          </tr>
+          <tr>
+            <th/>
+            <th align="left">Best</th>
+            <th align="left">Full</th>
+            <th align="left">Best</th>
+            <th align="left">Full</th>
+            <th align="left">Best</th>
+            <th align="left">Full</th>
+            <th align="left">RMSD (Å/res)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">2trx</td>
+            <td align="char">4397</td>
+            <td align="char">29647</td>
+            <td align="char">9(6)</td>
+            <td align="char">23(6)</td>
+            <td align="char">7(4)</td>
+            <td align="char">22(10)</td>
+            <td align="char">6.17/100</td>
+          </tr>
+          <tr>
+            <td align="left">1coz</td>
+            <td align="char">2822</td>
+            <td align="char">21052</td>
+            <td align="char">15(11)</td>
+            <td align="char">55(18)</td>
+            <td align="char">13(10)</td>
+            <td align="char">30(10)</td>
+            <td align="char">5.42/109</td>
+          </tr>
+          <tr>
+            <td align="left">3chy</td>
+            <td align="char">1332</td>
+            <td align="char">8567</td>
+            <td align="char">1(1)</td>
+            <td align="char">30(9)</td>
+            <td align="char">1(1)</td>
+            <td align="char">19(4)</td>
+            <td align="char">4.62/125</td>
+          </tr>
+          <tr>
+            <td align="left">1f4p</td>
+            <td align="char">4243</td>
+            <td align="char">25676</td>
+            <td align="char">68(37)</td>
+            <td align="char">20(12)</td>
+            <td align="char">57(31)</td>
+            <td align="char">7(6)</td>
+            <td align="char">6.32/141</td>
+          </tr>
+          <tr>
+            <td align="left">5p21</td>
+            <td align="char">2372</td>
+            <td align="char">15623</td>
+            <td align="char">38(21)</td>
+            <td align="char">247(98)</td>
+            <td align="char">25(15)</td>
+            <td align="char">52(24)</td>
+            <td align="char">6.25/156</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </floats-group>
+</article>

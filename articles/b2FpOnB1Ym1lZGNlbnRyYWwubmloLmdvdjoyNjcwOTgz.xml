@@ -1,0 +1,778 @@
+<article xmlns="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dtd.nlm.nih.gov/2.0/xsd/archivearticle http://dtd.nlm.nih.gov/2.0/xsd/archivearticle.xsd" article-type="announcement">
+  <front>
+    <journal-meta>
+      <journal-id journal-id-type="nlm-ta">Structure</journal-id>
+      <journal-title>Structure (London, England : 1993)</journal-title>
+      <issn pub-type="ppub">0969-2126</issn>
+      <publisher>
+        <publisher-name>Cell Press</publisher-name>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <article-id pub-id-type="pmc">2670983</article-id>
+      <article-id pub-id-type="pmid">19217389</article-id>
+      <article-id pub-id-type="publisher-id">STFODE1710</article-id>
+      <article-id pub-id-type="doi">10.1016/j.str.2008.12.011</article-id>
+      <article-categories>
+        <subj-group subj-group-type="heading">
+          <subject>Ways &amp; Means</subject>
+        </subj-group>
+      </article-categories>
+      <title-group>
+        <article-title>“Conditional Restraints”: Restraining the Free Atoms in ARP/wARP</article-title>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Mooij</surname>
+            <given-names>Wijnand T.M.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Cohen</surname>
+            <given-names>Serge X.</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Joosten</surname>
+            <given-names>Krista</given-names>
+          </name>
+          <xref rid="aff1" ref-type="aff">1</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Murshudov</surname>
+            <given-names>Garib N.</given-names>
+          </name>
+          <email>garib@ysbl.york.ac.uk</email>
+          <xref rid="aff2" ref-type="aff">2</xref>
+          <xref rid="cor1" ref-type="corresp">∗</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Perrakis</surname>
+            <given-names>Anastassis</given-names>
+          </name>
+          <email>a.perrakis@nki.nl</email>
+          <xref rid="aff1" ref-type="aff">1</xref>
+          <xref rid="cor2" ref-type="corresp">∗∗</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff1">
+        <addr-line><sup>1</sup>Department of Biochemistry, The Netherlands Cancer Institute, Plesmanlaan 121, 1066 CX Amsterdam, The Netherlands</addr-line>
+      </aff>
+      <aff id="aff2">
+        <addr-line><sup>2</sup>Structural Biology Laboratory, Department of Chemistry, University of York, Heslington, York YO10 5YW, UK</addr-line>
+      </aff>
+      <author-notes>
+        <corresp id="cor1"><label>∗</label>Corresponding author <email>garib@ysbl.york.ac.uk</email></corresp>
+        <corresp id="cor2"><label>∗∗</label>Corresponding author <email>a.perrakis@nki.nl</email></corresp>
+      </author-notes>
+      <pub-date pub-type="ppub">
+        <day>13</day>
+        <month>2</month>
+        <year>2009</year>
+      </pub-date>
+      <volume>17</volume>
+      <issue>2-3</issue>
+      <fpage>183</fpage>
+      <lpage>189</lpage>
+      <history>
+        <date date-type="received">
+          <day>18</day>
+          <month>11</month>
+          <year>2008</year>
+        </date>
+        <date date-type="rev-recd">
+          <day>19</day>
+          <month>12</month>
+          <year>2008</year>
+        </date>
+        <date date-type="accepted">
+          <day>23</day>
+          <month>12</month>
+          <year>2008</year>
+        </date>
+      </history>
+      <permissions>
+        <copyright-statement>© 2009 ELL &amp; Excerpta Medica.</copyright-statement>
+        <copyright-year>2009</copyright-year>
+        <copyright-holder>Elsevier Ltd</copyright-holder>
+        <license>
+          <p>This document may be redistributed and reused, subject to <ext-link ext-link-type="uri" xlink:href="http://www.elsevier.com/wps/find/authorsview.authors/supplementalterms1.0">certain conditions</ext-link>.</p>
+        </license>
+      </permissions>
+      <abstract>
+        <title>Summary</title>
+        <p>The automated building of a protein model into an electron density map remains a challenging problem. In the ARP/wARP approach, model building is facilitated by initially interpreting a density map with free atoms of unknown chemical identity; all structural information for such chemically unassigned atoms is discarded. Here, this is remedied by applying restraints between free atoms, and between free atoms and a partial protein model. These are based on geometric considerations of protein structure and tentative (conditional) assignments for the free atoms. Restraints are applied in the REFMAC5 refinement program and are generated on an ad hoc basis, allowing them to fluctuate from step to step. A large set of experimentally phased and molecular replacement structures showcases individual structures where automated building is improved drastically by the conditional restraints. The concept and implementation we present can also find application in restraining geometries, such as hydrogen bonds, in low-resolution refinement.</p>
+      </abstract>
+      <kwd-group>
+        <kwd>PROTEINS</kwd>
+        <kwd>CELLBIO</kwd>
+      </kwd-group>
+    </article-meta>
+  </front>
+  <body>
+    <sec id="sec1">
+      <title>Introduction</title>
+      <p>The determination of a protein structure by X-ray crystallography is a process that involves many different stages, from protein production, crystallization, and data collection, to structure solution and refinement. To increase throughput or to facilitate use by a wider (nonexpert) user base, automation remains an active field of research for all the steps involved. This is certainly the case for the final stages of structure determination: the building of a protein model. Over the years, much progress has been made in the field, exemplified in the development of software packages such as MAID (<xref rid="bib10" ref-type="bibr">Levitt, 2001</xref>), Resolve (<xref rid="bib17" ref-type="bibr">Terwilliger, 2003</xref>), Textal (<xref rid="bib8" ref-type="bibr">Ioerger and Sacchettini, 2003</xref>), the implementation of the latter two packages in the PHENIX AutoBuild Wizard (<xref rid="bib18" ref-type="bibr">Terwilliger et al., 2008</xref>), Buccaneer (<xref rid="bib3" ref-type="bibr">Cowtan, 2006</xref>), ACMI (<xref rid="bib4" ref-type="bibr">DiMaio et al., 2007</xref>), and ARP/wARP (<xref rid="bib9 bib14" ref-type="bibr">Langer et al., 2008; Perrakis et al., 1999</xref>). For high-resolution datasets the task of constructing a protein model from an electron density map can now often be completed fully automatically. For low-resolution data, however, model building remains a largely manual and time-consuming procedure. So, there is a continuing need to extend the applicability of automated model-building methods to lower resolution.</p>
+      <p>The ARP/wARP software suite performs automated model building by coupling refinement with model building in an iterative fashion (<xref rid="bib14" ref-type="bibr">Perrakis et al., 1999</xref>). In this approach, an electron density map is filled with “free” atoms. After initial model building, some of these atoms obtain a chemical identity. From then on, a hybrid model, consisting of free atoms and atoms that are part of a protein model, is iteratively refined and updated.</p>
+      <p>Free atoms serve two reasons in the ARP/wARP formulation: first, they are used to obtain better electron density maps through refinement; second, during model building they serve both as possible Cα guides for the protein backbone and as guides for the sequence assignment. In the case of high-resolution data, both these procedures work very well, as atoms will be recognizable in density, and enough observations for refinement are available. As a result, most of the free atoms are approximately in the right place. At lower resolutions, it becomes difficult to distinguish individual atoms. Also, it becomes difficult to refine the free atoms or hybrid model structure with the limited number of experimental observations and without chemical restraints. Thus, the errors in the positions of the free atoms become larger, and the electron density maps of significantly lesser quality. A way to remedy this situation is by adding structural information either in the context of the free atoms model or the hybrid model.</p>
+      <p>In addition to relying on the experimental information to guide the atoms to their desired position, the building and refinement process may be helped by pushing free atoms to positions that are likely, based on general knowledge of protein structure. Indeed, this is just what is done in standard restrained refinement, where a protein model is refined against the crystallographic data, under the geometric restraints of known bond length, angles, and torsion angles. Here, we want to extend this type of restraints to the free-atom part of the ARP/wARP model. Some very generic structural restraints can be added without sacrificing the ability of free atoms to “become” any protein atom. However, adding more specific restraints is at odds with the concept of chemically unassigned atoms. Conditional optimization provides one solution to this problem. In this approach, no final chemical assignments are ever made, but instead all possible assignments are considered simultaneously (<xref rid="bib16" ref-type="bibr">Scheres and Gros, 2004</xref>). In the present work, which was inspired by conditional optimization, we implemented a less elaborate but computationally efficient approximation based on discrete model-building decisions. This is in line with the ARP/wARP framework, where a number of decisions on chemical assignments are made (e.g., in the main chain tracing as well as in the sequence docking stage). Despite these hard-decision steps, the overall process is tolerant to incorrect decisions: in the subsequent building step, ARP/wARP “forgets” its previous assignments, allowing for errors to be easily corrected.</p>
+      <p>This article describes the approach used in generating restraints for use in ARP/wARP, their implementation in REFMAC5 (<xref rid="bib13" ref-type="bibr">Murshudov et al., 1997</xref>), and test results on the use of these restraints for datasets from the ARP/wARP Depot (<xref rid="bib1" ref-type="bibr">Cohen et al., 2004</xref>).</p>
+    </sec>
+    <sec id="sec2">
+      <title>Results and Discussion</title>
+      <sec id="sec2.1" sec-type="">
+        <title>Computational Methods</title>
+        <p>The ARP/wARP workflow has been described previously (<xref rid="bib12" ref-type="bibr">Morris et al., 2003</xref>). In summary, it consists of a number of tasks that are performed in an iterative fashion, and briefly outlined as follows:</p>
+        <p>Start: The procedure typically starts by building a model of free atoms in an electron density map. In the case of a molecular replacement solution, alternative ways of starting are possible and are discussed elsewhere (<xref rid="bib2" ref-type="bibr">Cohen et al., 2008</xref>).</p>
+        <p>Refinement: Refinement of the model is performed using the maximum-likelihood techniques as implemented in REFMAC5.</p>
+        <p>Model update: After refinement, the model is updated by adding and/or removing atoms. Atoms with a low electron density value in the 2mFo-DFc map or too far from all other atoms are removed; free atoms are added at positions of high density in the mFo-DFc map, provided they are close to existing atoms.</p>
+        <p>Model building: Pattern recognition techniques are employed to construct the protein model based on the current atomic coordinates and electron density maps. First, the main chain is built (<xref rid="bib11" ref-type="bibr">Morris et al., 2002</xref>), and then efforts are made to identify the side chains using prior knowledge of the protein sequence (sequence docking).</p>
+        <p>In the classic ARP/wARP system, the number and sequence of these steps was fixed (<xref rid="bib14" ref-type="bibr">Perrakis et al., 1999</xref>). Recently a new, more adaptive control system was developed (<xref rid="bib1" ref-type="bibr">Cohen et al., 2004</xref>), where the order and number of steps is dependent on the progress of the refinement and model building.</p>
+        <p>In the current work, the task of generating restraints that are specific for free atoms is added to the workflow. This task is performed in each refinement step (with the exception of the initial refinement before the first model building). The restraints generated are subsequently used in a REFMAC5 refinement through a newly implemented functionality that allows the specification of restraints on a per-atom basis. Here, we first describe the restraint functions that were implemented in REFMAC5 to facilitate conditional restraints. We then describe in detail how conditional restraints are generated for two cases: one applicable to all free atoms and one applicable at the interface between the protein atoms and the free atoms in the hybrid model.</p>
+        <sec id="sec2.1.1">
+          <title>Implementation of External Restraints in REFMAC5</title>
+          <p>To facilitate the application of conditional restraints we implemented the following functions in the macromolecular refinement software REFMAC5 (<xref rid="bib13" ref-type="bibr">Murshudov et al., 1997</xref>). All of these restraints can be specified with a simple syntax in a text file that can be read by REFMAC5.</p>
+          <p>Quadratic restraints have the general form<disp-formula id="fd1"><label>(1)</label><mml:math id="M1" altimg="si1.gif" overflow="scroll"><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msubsup><mml:mi>σ</mml:mi><mml:mi>q</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:mfrac><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:math></disp-formula>where <italic>m</italic> stands for model and <italic>i</italic> for ideal; <italic>q</italic> stands for the restrained quantity (distance, angle, or chiral volume) and σ for the associated expected standard deviation. These restraints are typically used in macromolecular refinement to restrain quantities such as bonds and angles to known values (<xref rid="fig1" ref-type="fig">Figure 1</xref>).</p>
+          <p>Interval restraints have the general form<disp-formula id="fd2"><label>(2)</label><mml:math id="M2" altimg="si2.gif" overflow="scroll"><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msubsup><mml:mi>σ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>l</mml:mi></mml:mrow><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:mfrac><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>l</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mtd><mml:mtd><mml:mrow><mml:mtext>if</mml:mtext><mml:msub><mml:mi>q</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>&lt;</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>l</mml:mi></mml:msub></mml:mrow></mml:mtd><mml:mtd><mml:mrow/></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mrow><mml:mtext>if</mml:mtext><mml:msub><mml:mi>q</mml:mi><mml:mi>l</mml:mi></mml:msub><mml:mo>&lt;</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>&lt;</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>h</mml:mi></mml:msub></mml:mrow></mml:mtd><mml:mtd><mml:mrow/></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msubsup><mml:mi>σ</mml:mi><mml:mrow><mml:mi>i</mml:mi><mml:mi>h</mml:mi></mml:mrow><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:mfrac><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>h</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mtd><mml:mtd><mml:mrow><mml:mtext>if</mml:mtext><mml:msub><mml:mi>q</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>&gt;</mml:mo><mml:msub><mml:mi>q</mml:mi><mml:mi>h</mml:mi></mml:msub></mml:mrow></mml:mtd><mml:mtd><mml:mrow/></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mrow></mml:mrow></mml:math></disp-formula>and were implemented for bonds and distances. In interval restraints instead of an ideal value for each quantity, if the measured value (<italic>q<sub>m</sub></italic>) becomes less than a lower bound of the defined interval (<italic>q<sub>l</sub></italic>) then restraints with strength <italic>σ<sub>il</sub></italic> are applied; if <italic>q<sub>m</sub></italic> is higher than <italic>q<sub>h</sub></italic> then a restraint with strength <italic>σ<sub>ih</sub></italic> is applied; if the distance is within the interval (<italic>q<sub>l</sub></italic> … <italic>q<sub>h</sub></italic>) then no restraint is applied. Note that this function is continuous up to the first derivative with respect to <italic>q<sub>m</sub></italic>, whereas the second derivative is discontinuous. Interval restraints have the advantage of giving equal preference to a number of values, while disallowing others (<xref rid="fig1" ref-type="fig">Figure 1</xref>). They are well suited for restraining (e.g., chemical bonds) when it is not known exactly what the atoms are and thus the ideal expected value for that chemical bond.</p>
+          <p>Planarity restraints have the general form<disp-formula id="fd3"><label>(3)</label><mml:math id="M3" altimg="si3.gif" overflow="scroll"><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msubsup><mml:mi>σ</mml:mi><mml:mi>p</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:mfrac><mml:munderover><mml:mi>∑</mml:mi><mml:mrow><mml:mi>j</mml:mi><mml:mo>=</mml:mo><mml:mn>1</mml:mn></mml:mrow><mml:mi>n</mml:mi></mml:munderover><mml:mrow><mml:mo>(</mml:mo><mml:mi>a</mml:mi><mml:msub><mml:mi>x</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mi>b</mml:mi><mml:msub><mml:mi>y</mml:mi><mml:mi>j</mml:mi></mml:msub></mml:mrow><mml:mo>+</mml:mo><mml:mi>c</mml:mi><mml:msub><mml:mi>z</mml:mi><mml:mi>j</mml:mi></mml:msub><mml:mo>+</mml:mo><mml:mi>d</mml:mi><mml:msup><mml:mo>)</mml:mo><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:math></disp-formula>where are <italic>a</italic>, <italic>b</italic>, <italic>c</italic>, and <italic>d</italic> are coefficients of the plane that is least-squares fit to the <italic>n</italic> atoms that must be on the same plane. Because these coefficients are calculated using the same atoms, they are functions of the atomic position, and in derivative calculation this is taken into account.</p>
+          <p>Repulsion restraints have the form<disp-formula id="fd4"><label>(4)</label><mml:math id="M4" altimg="si4.gif" overflow="scroll"><mml:mrow><mml:mrow><mml:mo>{</mml:mo><mml:mrow><mml:mtable><mml:mtr><mml:mtd><mml:mrow><mml:mfrac><mml:mn>1</mml:mn><mml:mrow><mml:msubsup><mml:mi>σ</mml:mi><mml:mi>v</mml:mi><mml:mn>2</mml:mn></mml:msubsup></mml:mrow></mml:mfrac><mml:msup><mml:mrow><mml:mo>(</mml:mo><mml:msub><mml:mi>d</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>−</mml:mo><mml:msub><mml:mi>d</mml:mi><mml:mi>i</mml:mi></mml:msub><mml:mo>)</mml:mo></mml:mrow><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:mtd><mml:mtd><mml:mrow><mml:mtext>if</mml:mtext><mml:msub><mml:mi>d</mml:mi><mml:mi>m</mml:mi></mml:msub><mml:mo>&lt;</mml:mo><mml:msub><mml:mi>d</mml:mi><mml:mi>i</mml:mi></mml:msub></mml:mrow></mml:mtd></mml:mtr><mml:mtr><mml:mtd><mml:mn>0</mml:mn></mml:mtd><mml:mtd><mml:mrow><mml:mtext>otherwise</mml:mtext></mml:mrow></mml:mtd></mml:mtr></mml:mtable></mml:mrow></mml:mrow></mml:mrow></mml:math></disp-formula>where the ideal distance, <italic>d<sub>i</sub></italic>, is atom pair specific and depends on atom type and the nature of interaction between them. If both atoms are free atoms, then <italic>d<sub>i</sub> = 2r<sub>free</sub></italic> (where <italic>r<sub>free</sub></italic> is the default van der Waals radius for free atoms and is equal to 0.6). If one of the atoms is free and another is from the macromolecular model then the distance for activation of repulsion restraint is equal to <italic>max</italic>(<italic>d<sub>inc</sub>, r<sub>prot</sub>+r<sub>free</sub>-d<sub>inc</sub></italic>), where <italic>r<sub>prot</sub></italic> and <italic>r<sub>free</sub></italic> are the van de Waals radii protein atoms and free atoms, respectively, and <italic>d<sub>inc</sub></italic> is a default minimal value (0.7 Å). Similar to interval restraint, this function is continuous up to the first derivative, and the second derivative is discontinuous. If two atoms are bonded with covalent (or free-atom) bonds, then there are no repulsion restraints between them. Similarly, atoms that are two bonds apart do not contribute to repulsion restraints. If atoms are three bonds are apart (torsion angle-related atoms), then their van de Waals radius is reduced (by 0.3 Å).</p>
+        </sec>
+        <sec id="sec2.1.2">
+          <title>General Restraints between Free Atoms</title>
+          <sec id="sec2.1.2.1">
+            <title>Bond Distance Restraints</title>
+            <p>General distance restraints can be applied to all free atoms. Protein geometry dictates that no atom should have more than three bonded neighbors, and all bonded atoms should be in the range 1.2–1.6 Å. At the same time, the closest nonbonded atoms cannot be closer than 2.5 Å from each other. If two atoms lie between 1.6 Å and 2.5 Å from each other, this is most likely wrong—the only exceptions in proteins are sulphurs in disulphide bonds and metal ions. If during the bond restraint assignment more than three neighbors are found within bonding radius, the closest neighbors are chosen and assigned as bonded. An additional requirement in the selection of bonds is that three-membered or four-membered rings are not allowed. If such a cyclic structure would be generated, the longest bond in this ring is removed. Free atoms that are bonded are given an interval distance restraint. The allowed region for the interatomic distance is set to 1.34–1.53 Å, which spans all main chain bond length with the exception of the C = O bond and the vast majority of other bonds in a protein structure. Outside this region a restraint with a standard deviation of 0.03 Å is applied.</p>
+          </sec>
+          <sec id="sec2.1.2.2">
+            <title>Bond Angle Restraints</title>
+            <p>Any atom in a protein is either sp<sup>2</sup> or sp<sup>3</sup> hybridized, dictating that bond angles should be either ∼109.5° or ∼120°. This information is exploited in the context of free atoms by interval distance restraints between free atoms that are separated by two bonds. The allowed range of distances is set to 2.34–2.65 Å (these bounds are based on the distance tables by <xref rid="bib15" ref-type="bibr">Scheres and Gros [2003]</xref>). Outside this range, distance restraints with a standard deviation of 0.06 Å are applied.</p>
+          </sec>
+          <sec id="sec2.1.2.3">
+            <title>Repulsion Restraints</title>
+            <p>Free atoms with three bonds should not get any more neighbors, and to this end such atoms are given an increased van der Waals radius (1.2 Å instead of the usual 0.6 Å for free atoms, which allows them to make bonds without repulsion), to push any further neighbors away.</p>
+          </sec>
+          <sec id="sec2.1.2.4">
+            <title>Planarity Restraints</title>
+            <p>Because proteins do not contain rings of sp<sup>3</sup> atoms (with the exception of proline), it is reasonable to assume that any small cyclic structure formed within the free-atom model should be planar. To this end, all five- and six-membered rings in the free-atom part of the model are identified, and a planarity restraint is added for the atoms in such rings. In addition, one to three neighbors in the rings are assigned appropriate bond angle restraints, depending on the type of the ring (108° or 120°, σ = 3.0°), instead of the previously mentioned interval restraints. Rings of seven, eight, or nine atoms are broken by removing the bond distance restraints for the longest bond in such rings.</p>
+          </sec>
+        </sec>
+        <sec id="sec2.1.3">
+          <title>Specific Restraints between Protein and Free Atoms</title>
+          <p>For the more-specific restraints at the interface between the protein and the free-atom part of ARP/wARP's hybrid model, four points of extension of the protein model are considered. Restraints to the dummy atoms are then based on a putative chemical assignment of the free atoms that are close by.</p>
+          <sec id="sec2.1.3.1">
+            <title>Cα's Carbon Atoms with Unknown Residue Type</title>
+            <p>The initial step of the model building in ARP/wARP is to construct a main chain trace. When subsequent sequence docking for a certain main-chain segment fails, this segment will remain in the model as a polyglycine peptide. For each residue in these undocked parts of the protein model, the dummy atoms within 1.5 Å of the calculated Cβ position are identified. For the atom closest to the ideal Cβ position, bond distance and angle restraints are generated based on normal protein (<xref rid="bib5" ref-type="bibr">Engh and Huber, 1991</xref>) geometry targets. Also, a chiral volume restraint for the Cα atom is added.</p>
+          </sec>
+          <sec id="sec2.1.3.2">
+            <title>Amide Nitrogen Atoms of Undocked Chains</title>
+            <p>At this position a free atom may be bonded if the residue is a proline. To this end, if a free atom closer to the ideal Cδ position exists (within 1.5 Å), it is checked for whether it is involved in a five-member ring involving the amide N and Cα. If so, bond and angle restraints are added for this dummy (Cδ) atom, and a planarity restraint for the amide N atom.</p>
+          </sec>
+          <sec id="sec2.1.3.3">
+            <title>C Termini of Main-Chain Segments</title>
+            <p>At the endpoints of all main-chain segments (either in sequence or undocked), the position of the next amide N atom is calculated, and the free atom closest to it (within 1.5 Å) is identified. Normal protein bond distances and angles are assigned to that free atom. Next, the putative next Cα atom is calculated, and free atoms closest to it (within 1.5 Å) are identified, assuming a <italic>trans</italic> peptide bond. For this atom again, bond length and angle deviations are added, as well as a torsion restraint for the putative amide bond (180°, σ = 5°).</p>
+          </sec>
+          <sec id="sec2.1.3.4">
+            <title>N Termini of Main-Chain Segments</title>
+            <p>An ideal position for the preceding carbonyl C atom cannot be calculated. Instead, the atom closest to any position at the correct bond length and angle (but with unspecified torsion—i.e., a circle on a cone) is identified. This closest atom (within 1.5 Å) is then assigned bond length and angle restraints appropriate for a backbone carbonyl carbon atom. Then two bonded free atoms are searched for, that could be Cα and O atoms (within 1.5 Å of their ideal positions), assuming a <italic>trans</italic> peptide bond. Again, Engh-Huber restraints are applied to their bonds and angles involving the putative C atom and the protein atoms (<xref rid="bib5" ref-type="bibr">Engh and Huber, 1991</xref>). Additionally, a torsion restraint for the new peptide plane is added, and any additional bonds on the putative O atom (other than to the putative C) are removed.</p>
+          </sec>
+        </sec>
+        <sec id="sec2.1.4">
+          <title>On the Choice of Parameters for Conditional restraints</title>
+          <p>The ideal (or target) values for all restraints were based on chemical knowledge about proteins. Most values used in this study were extracted from the REFMAC5 dictionary. The expected standard deviations were optimized by trial and error in a small “training set” of structures (two to five at different stages of the project), which was not part of the test set. These values are tabulated in <xref rid="app2" ref-type="sec">Table S1</xref>, available online. We chose to implement all restraints that made chemical sense for atoms of unknown identity; thus, no detailed study of the effect of the different categories of restraints was made. At the same time, we could not find any category of restraints that would be systematically violated and therefore we did not eliminate any of our original ideas in the course of development and testing. It should be noted that our restraints are valid only for protein structures. In the presence of nucleic acids, for example, assuming planarity of six-membered rings would clearly be incorrect. One should also consider treating separately the double-ring systems of pyrimidines, and possibly the purine rings as well. Such considerations might be facilitated by recent developments in the ARP/wARP software (<xref rid="bib7" ref-type="bibr">Hattne and Lamzin, 2008</xref>).</p>
+        </sec>
+        <sec id="sec2.1.5">
+          <title>Free-Atom Removal</title>
+          <p>In addition to generating restraints for REFMAC5 refinement, the restraints program “weeds out” some free atoms around the protein part of the model. This is only performed after a new cycle of main-chain building and sequence docking. In further atom update and refinement steps we allow the building of new free atoms close to any protein atom, to facilitate the correction of any wrong assignments made in the main-chain/side-chain building step.</p>
+          <p>The atom removal is performed in various layers. First, all atoms closer than 1.0 Å to any protein atom are removed, unless they are selected to be directly bonded to the protein (i.e., to any of the protein extension points described previously). Then, atoms closer than 2.0 Å are removed unless they are separated from a protein atom with less than three bonds. Last, atoms closer than 2.5 Å to any protein atom are removed unless they are separated from a protein atom by less than four bonds.</p>
+        </sec>
+        <sec id="sec2.1.6">
+          <title>Composition of the Test Set</title>
+          <p>The effect of restraints on the automated model building was tested on a number of datasets from the ARP/wARP Depot (<ext-link xlink:href="http://xtal.nki.nkl/Depot" ext-link-type="uri">http://xtal.nki.nkl/Depot</ext-link>). Depot holds various user-contributed cases for both experimentally phased structures and molecular replacement solutions, with the initially obtained maps and the final models. The Depot contains a few structures from Structural Genomics initiatives, without being dominated by them, because these tend to be much better data than the average for that resolution. The test set contains structures over a wide spectrum of resolution, with less emphasis on high-resolution structures, and is thus designed to challenge rather than to flatter ARP/wARP performance. All available experimentally phased structures from Depot that were not complexes were used. From the molecular replacement cases, a subset of structures was used where the sequence identity and/or the completeness of the MR search model was less than 70% of the final model. This selection was done to prevent testing the method on essentially correct molecular replacement solutions. The use of restraints was added to the <italic>warp_tracing.sh</italic> shell script of ARP/wARP release 7.1-beta. This script runs 10 cycles of model (re)building, with five cycles of atom update and REFMAC5 refinement in between. Restraints for the free atoms were generated before each call to REFMAC5, with the exception of the first call prior to the initial model building. For comparison, otherwise-identical runs were performed with the use of conditional restraints switched off. Results were analyzed comparing the number of Cαs in the automatically build model to that in the known final structure. We refer as “correct Cα” to a Cα that lies within 1 Å of a Cα in the final model and has correct peptide directionality. We also compare the number of the Cαs with correctly identified side chains and refer to them as “correct residues.”</p>
+        </sec>
+        <sec id="sec2.1.7">
+          <title>Implementation and Availability</title>
+          <p>The code to generate a restraints dictionary for input in REFMAC was written in Java and makes use of the OpenAstexViewer library (<xref rid="bib6" ref-type="bibr">Hartshorn, 2002</xref>; <ext-link xlink:href="http://openastexviewer.net/" ext-link-type="uri">http://openastexviewer.net/</ext-link>). The use of atom-specific restraints in protein structure refinement was implemented in REFMAC, and this functionality is available now in version 5.5. Here we used version 5.5.0054. The restraints methods will be available from release 7.1 of the ARP/wARP package in 2009.</p>
+        </sec>
+      </sec>
+      <sec id="sec2.2">
+        <title>Overall Performance</title>
+        <p>The test set contains 47 experimentally phased and 52 molecular replacement structures. For the 47 experimentally phased structures, the average performance of ARP/wARP with conditional restraints increases from 67% to 74% correct Cαs, and from 54% to 66% correct residues (summarized in <xref rid="fig2" ref-type="fig">Figure 2</xref>A). For the 52 molecular replacement test cases, the number of correct Cαs increases from 54% to 59%, and of correct residues from 47% to 54% (summarized in <xref rid="fig2" ref-type="fig">Figure 2</xref>B). One could thus conclude that the overall effect of conditional restraints was a medium improvement in the completeness of the final models. These averages, however, do not reflect the large effects observed for individual cases.</p>
+      </sec>
+      <sec id="sec2.3">
+        <title>Conditional Restraints Starting from Experimental Maps</title>
+        <p>For the experimentally phased structures test cases at higher resolution (&lt;2.0 Å), conditional restraints show the most dramatic improvement for a small protein at 1.6 Å with an average initial phase error of 60°. Without the use of conditional restraints, ARP/wARP fails to improve on the initial electron density map; the automated building does not progress from the initial model. With conditional restraints, however, the complete protein is automatically built. Additional improvements are in the low-resolution 2.2–2.8 Å range, with two cases that conditional restraints lift from the 40%–60% completeness region (which is a model hardly useful for the end user in practice) to models more than 90% complete. In several other cases the model completeness increases between 10% and 50%, resulting in significantly more complete models in low resolution. A noteworthy example is observed for a protein at 2.4 Å, where the use of conditional restraints results in a nearly complete model (more than 90% of the Cαs built and residues assigned), where without conditional restraints, only three-quarters of the Cαs is built and only half of the residues was correctly identified. This difference in performance is depicted in <xref rid="fig3" ref-type="fig">Figure 3</xref>. As can be seen, the use of conditional restraints leads to a number of β strands in the core of the protein being built, additional loops being built, and various strands and helices being extended, compared with the ARP/wARP run without conditional restraints. Note that the use of conditional restraints does not have adverse effects in model completeness, and this result justifies their use as default in ARP/wARP.</p>
+      </sec>
+      <sec id="sec2.4">
+        <title>Conditional Restraints Starting from Molecular Replacement</title>
+        <p>For the molecular replacement cases the biggest improvement is observed for a structure at 1.65 Å. Here, the molecular replacement search model was around half of the protein under consideration. The initial model building step in ARP/wARP finds ∼30% of Cαs and residues. Without restraints, after 10 cycles this increases to ∼60% and 40% respectively. With the use of conditional restraints, an essentially complete model is built. Drastic results are also observed for a case at 2.3 Å where initial model building finds 60% of the Cαs and 45% of residues. Without restraints, not much is added to this (65% and 55%); with restraints, the final model is almost complete, encompassing 90% correct Cαs and residues. Other cases show modest but significant improvements in model completeness. Again, adverse effects of the use of restraints hardly occur.</p>
+      </sec>
+      <sec id="sec2.5">
+        <title>Conditional Restraints Performance as Function of Resolution and Phase Error</title>
+        <p>In <xref rid="fig4" ref-type="fig">Figure 4</xref> we display the improvements achieved by the use of conditional restraints plotted against resolution and the phase error of the starting map (which is known because we have the final model from which we can calculate final phases). For the experimentally phased test set, the majority of cases where conditional restraints are beneficial are in resolution between 2.2 and 2.8 Å, whereas for the molecular replacement set, there is no clear resolution range. In terms of phase error, however, it is now clear that all cases fall roughly within a range of 45° to 70° phase error. This trend can be explained. If the initial model has low phase error, the restraints have no effect, and for these cases the model can already be built completely by ARP/wARP without them. On the other extreme, for very large phase errors, ARP/wARP can hardly build any residues, and hence the use of restraints does not rescue anything because the information added is not sufficient to improve the phases to such an extent that it leads to an interpretable model. However, at the borderline of density that is still (in varying degrees) interpretable by ARP/wARP, conditional restraints have a large positive effect in the completeness of the models build by ARP/wARP.</p>
+      </sec>
+      <sec id="sec2.6">
+        <title>Application of Conditional Restraints</title>
+        <p>The addition of conditional restraints for ARP/wARP's free atoms can significantly help the automatic interpretation of electron density maps by the automated model building and refinement procedure. The present study indicates there is little if any reason not to use conditional restraints on free atoms routinely in ARP/wARP. Given an individual case, it may do nothing, but it may also be the difference between building the structure automatically or not.</p>
+        <p>We are currently working on various ideas to increase the impact of the use of these restraints. One of the approaches aims to harvest information available from the sequence docking. When sequence docking fails, it may be possible to still obtain reasonable guesses for at least a number of individual side chains. Placing new free atoms according to such side-chain assignments may improve the generated restraints because the bonding environment for such newly placed atoms will then consist of chemically sensibly geometries.</p>
+        <p>Conditional restraints, and in particular the interval distance restraints, pave the way for two more general applications. First, the conditional interval restraints described previously, unlike quadratic penalty restraints, are well suited for hydrogen bonding distances, which are especially important in low-resolution refinement. One needs to add to the current conditional restraints module a functionality that in each cycle of refinement could derive upper and lower bounds for potential hydrogen bonds and feed them to the refinement module. Furthermore, discrete (conditional) decisions after each refinement step would be important to allow for conformational changes during refinement and new bonds formed and others to be broken. Second, the same technique can be applied for transferring information from a higher-resolution structure to a lower-resolution one. That may dramatically improve behavior of refinement at low resolution and help to extract biologically significant information from limited and noisy data. One can foresee potential application of this to X-ray structure analysis of a macromolecular complex or multidomain proteins for which high-resolution structures of component proteins or domains are available. Again, the conditional idea whereby the applicability of specific restraints is updated in each step, combined with interval penalty restraints to allow restraining long-distance features of the high-resolution structure to the lower resolution one, is likely to be of benefit.</p>
+      </sec>
+    </sec>
+    <sec id="app1" sec-type="supplementary-material">
+      <title>Supplemental Data</title>
+      <p>Supplemental Data include one table and can be found with this article online at <ext-link xlink:href="http://www.cell.com/structure/supplemental/S0969-2126(09)00027-6/" ext-link-type="uri">http://www.cell.com/structure/supplemental/S0969-2126(09)00027-6/</ext-link>.</p>
+    </sec>
+    <sec id="app2" sec-type="supplementary-material">
+      <title>Supplemental Data</title>
+      <p>
+        <supplementary-material content-type="local-data" id="mmc1">
+          <caption>
+            <title>Document S1. One Table</title>
+          </caption>
+          <media xlink:href="mmc1.pdf" mimetype="application" mime-subtype="pdf"/>
+        </supplementary-material>
+      </p>
+    </sec>
+  </body>
+  <back>
+    <ack>
+      <title>Acknowledgments</title>
+      <p>We thank Victor Lamzin and Piet Gros for stimulating discussions. W.T.M.M., S.X.C., K.J., and A.P. thank the National Institutes of Health (Grant R01 GM62612), S.X.C. thanks NWO/CW (VENI 700.55.405), and G.N.M. thanks the Wellcome Trust (Grant 064405/Z/01/A) for funding. This work was performed under the coordination of the European Union BIOXHIT FW6 Integrated Project (Grant LSHG-CT-2003-503420).</p>
+    </ack>
+    <ref-list>
+      <title>References</title>
+      <ref id="bib1">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cohen</surname>
+              <given-names>S.X.</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Fernandez</surname>
+              <given-names>F.J.</given-names>
+            </name>
+            <name>
+              <surname>Ben Jelloul</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Kakaris</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Parthasarathy</surname>
+              <given-names>V.</given-names>
+            </name>
+            <name>
+              <surname>Lamzin</surname>
+              <given-names>V.S.</given-names>
+            </name>
+            <name>
+              <surname>Kleywegt</surname>
+              <given-names>G.J.</given-names>
+            </name>
+            <name>
+              <surname>Perrakis</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Towards complete validated models in the next generation of ARP/wARP</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2004</year>
+          <volume>60</volume>
+          <fpage>2222</fpage>
+          <lpage>2229</lpage>
+          <pub-id pub-id-type="pmid">15572775</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib2">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cohen</surname>
+              <given-names>S.X.</given-names>
+            </name>
+            <name>
+              <surname>Ben Jelloul</surname>
+              <given-names>M.</given-names>
+            </name>
+            <name>
+              <surname>Long</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Vagin</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Knipscheer</surname>
+              <given-names>P.</given-names>
+            </name>
+            <name>
+              <surname>Lebbink</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Sixma</surname>
+              <given-names>T.K.</given-names>
+            </name>
+            <name>
+              <surname>Lamzin</surname>
+              <given-names>V.S.</given-names>
+            </name>
+            <name>
+              <surname>Murshudov</surname>
+              <given-names>G.N.</given-names>
+            </name>
+            <name>
+              <surname>Perrakis</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>ARP/wARP and molecular replacement: the next generation</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2008</year>
+          <volume>64</volume>
+          <fpage>49</fpage>
+          <lpage>60</lpage>
+          <pub-id pub-id-type="pmid">18094467</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib3">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Cowtan</surname>
+              <given-names>K.</given-names>
+            </name>
+          </person-group>
+          <article-title>The Buccaneer software for automated model building. 1. Tracing protein chains</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2006</year>
+          <volume>62</volume>
+          <fpage>1002</fpage>
+          <lpage>1011</lpage>
+          <pub-id pub-id-type="pmid">16929101</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib4">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>DiMaio</surname>
+              <given-names>F.</given-names>
+            </name>
+            <name>
+              <surname>Kondrashov</surname>
+              <given-names>D.A.</given-names>
+            </name>
+            <name>
+              <surname>Bitto</surname>
+              <given-names>E.</given-names>
+            </name>
+            <name>
+              <surname>Soni</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Bingman</surname>
+              <given-names>C.A.</given-names>
+            </name>
+            <name>
+              <surname>Phillips</surname>
+              <given-names>G.N.</given-names>
+            </name>
+            <name>
+              <surname>Shavlik</surname>
+              <given-names>J.W.</given-names>
+            </name>
+          </person-group>
+          <article-title>Creating protein models from electron-density maps using particle-filtering methods</article-title>
+          <source>Bioinformatics</source>
+          <year>2007</year>
+          <volume>23</volume>
+          <fpage>2851</fpage>
+          <lpage>2858</lpage>
+          <pub-id pub-id-type="pmid">17933855</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib5">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Engh</surname>
+              <given-names>R.A.</given-names>
+            </name>
+            <name>
+              <surname>Huber</surname>
+              <given-names>R.</given-names>
+            </name>
+          </person-group>
+          <article-title>Accurate bond and angle parameters for X-ray protein structure refinement</article-title>
+          <source>Acta Cryst.</source>
+          <year>1991</year>
+          <volume>A47</volume>
+          <fpage>392</fpage>
+          <lpage>400</lpage>
+        </citation>
+      </ref>
+      <ref id="bib6">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hartshorn</surname>
+              <given-names>M.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>AstexViewer: a visualisation aid for structure-based drug design</article-title>
+          <source>J. Comput. Aided Mol. Des.</source>
+          <year>2002</year>
+          <volume>16</volume>
+          <fpage>871</fpage>
+          <lpage>881</lpage>
+          <pub-id pub-id-type="pmid">12825620</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib7">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Hattne</surname>
+              <given-names>J.</given-names>
+            </name>
+            <name>
+              <surname>Lamzin</surname>
+              <given-names>V.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Pattern-recognition-based detection of planar objects in three-dimensional electron-density maps</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2008</year>
+          <volume>D64</volume>
+          <fpage>834</fpage>
+          <lpage>842</lpage>
+          <pub-id pub-id-type="pmid">18645232</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib8">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Ioerger</surname>
+              <given-names>T.R.</given-names>
+            </name>
+            <name>
+              <surname>Sacchettini</surname>
+              <given-names>J.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>TEXTAL system: artificial intelligence techniques for automated protein model building</article-title>
+          <source>Methods Enzymol.</source>
+          <year>2003</year>
+          <volume>374</volume>
+          <fpage>244</fpage>
+          <lpage>270</lpage>
+          <pub-id pub-id-type="pmid">14696377</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib9">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Langer</surname>
+              <given-names>G.</given-names>
+            </name>
+            <name>
+              <surname>Cohen</surname>
+              <given-names>S.X.</given-names>
+            </name>
+            <name>
+              <surname>Lamzin</surname>
+              <given-names>V.S.</given-names>
+            </name>
+            <name>
+              <surname>Perrakis</surname>
+              <given-names>A.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated macromolecular model building for X-ray crystallography using ARP/wARP version 7</article-title>
+          <source>Nat. Protoc.</source>
+          <year>2008</year>
+          <volume>3</volume>
+          <fpage>1171</fpage>
+          <lpage>1179</lpage>
+          <pub-id pub-id-type="pmid">18600222</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib10">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Levitt</surname>
+              <given-names>D.G.</given-names>
+            </name>
+          </person-group>
+          <article-title>A new software routine that automates the fitting of protein X-ray crystallographic electron-density maps</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2001</year>
+          <volume>57</volume>
+          <fpage>1013</fpage>
+          <lpage>1019</lpage>
+          <pub-id pub-id-type="pmid">11418771</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib11">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morris</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Perrakis</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lamzin</surname>
+              <given-names>V.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>ARP/wARP's model-building algorithms. I. The main chain</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2002</year>
+          <volume>58</volume>
+          <fpage>968</fpage>
+          <lpage>975</lpage>
+          <pub-id pub-id-type="pmid">12037299</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib12">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Morris</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Perrakis</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Lamzin</surname>
+              <given-names>V.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>ARP/wARP and automatic interpretation of protein electron density maps</article-title>
+          <source>Methods Enzymol.</source>
+          <year>2003</year>
+          <volume>374</volume>
+          <fpage>229</fpage>
+          <lpage>244</lpage>
+          <pub-id pub-id-type="pmid">14696376</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib13">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Murshudov</surname>
+              <given-names>G.N.</given-names>
+            </name>
+            <name>
+              <surname>Vagin</surname>
+              <given-names>A.A.</given-names>
+            </name>
+            <name>
+              <surname>Dodson</surname>
+              <given-names>E.J.</given-names>
+            </name>
+          </person-group>
+          <article-title>Refinement of macromolecular structures by the maximum-likelihood method</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>1997</year>
+          <volume>53</volume>
+          <fpage>240</fpage>
+          <lpage>255</lpage>
+          <pub-id pub-id-type="pmid">15299926</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib14">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Perrakis</surname>
+              <given-names>A.</given-names>
+            </name>
+            <name>
+              <surname>Morris</surname>
+              <given-names>R.</given-names>
+            </name>
+            <name>
+              <surname>Lamzin</surname>
+              <given-names>V.S.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated protein model building combined with iterative structure refinement</article-title>
+          <source>Nat. Struct. Biol.</source>
+          <year>1999</year>
+          <volume>6</volume>
+          <fpage>458</fpage>
+          <lpage>463</lpage>
+          <pub-id pub-id-type="pmid">10331874</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib15">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scheres</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Gros</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>Development of a force field for conditional optimization of protein structures</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2003</year>
+          <volume>59</volume>
+          <fpage>438</fpage>
+          <lpage>446</lpage>
+          <pub-id pub-id-type="pmid">12595700</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib16">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Scheres</surname>
+              <given-names>S.H.</given-names>
+            </name>
+            <name>
+              <surname>Gros</surname>
+              <given-names>P.</given-names>
+            </name>
+          </person-group>
+          <article-title>The potentials of conditional optimization in phasing and model building of protein crystal structures</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2004</year>
+          <volume>60</volume>
+          <fpage>2202</fpage>
+          <lpage>2209</lpage>
+          <pub-id pub-id-type="pmid">15572773</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib17">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Terwilliger</surname>
+              <given-names>T.C.</given-names>
+            </name>
+          </person-group>
+          <article-title>Automated main-chain model building by template matching and iterative fragment extension</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2003</year>
+          <volume>59</volume>
+          <fpage>38</fpage>
+          <lpage>44</lpage>
+          <pub-id pub-id-type="pmid">12499537</pub-id>
+        </citation>
+      </ref>
+      <ref id="bib18">
+        <citation citation-type="journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Terwilliger</surname>
+              <given-names>T.C.</given-names>
+            </name>
+            <name>
+              <surname>Grosse-Kunstleve</surname>
+              <given-names>R.W.</given-names>
+            </name>
+            <name>
+              <surname>Afonine</surname>
+              <given-names>P.V.</given-names>
+            </name>
+            <name>
+              <surname>Moriarty</surname>
+              <given-names>N.W.</given-names>
+            </name>
+            <name>
+              <surname>Zwart</surname>
+              <given-names>P.H.</given-names>
+            </name>
+            <name>
+              <surname>Hung</surname>
+              <given-names>L.W.</given-names>
+            </name>
+            <name>
+              <surname>Read</surname>
+              <given-names>R.J.</given-names>
+            </name>
+            <name>
+              <surname>Adams</surname>
+              <given-names>P.D.</given-names>
+            </name>
+          </person-group>
+          <article-title>Iterative model building, structure refinement and density modification with the PHENIX AutoBuild wizard</article-title>
+          <source>Acta Crystallogr. D Biol. Crystallogr.</source>
+          <year>2008</year>
+          <volume>64</volume>
+          <fpage>61</fpage>
+          <lpage>69</lpage>
+          <pub-id pub-id-type="pmid">18094468</pub-id>
+        </citation>
+      </ref>
+    </ref-list>
+  </back>
+  <floats-wrap>
+    <fig id="fig1">
+      <label>Figure 1</label>
+      <caption>
+        <p>Graphical Comparison of the Functions Used for Quadratic and Interval Restraints</p>
+        <p>The function used for the interval restraint is shown with the default values as a solid black line. The quadratic restraints for all main chain bonds are shown as dashed lines; black in the Ca-C, blue the N-Ca and C-N bonds, and red the C = O bond.</p>
+      </caption>
+      <graphic xlink:href="gr1"/>
+    </fig>
+    <fig id="fig2">
+      <label>Figure 2</label>
+      <caption>
+        <p>Analysis of the Performance of ARP/wARP Model Building with and without Conditional Restraints</p>
+        <p>Test sets are ordered by resolution. The light gray bar indicates the percentage of correct residues as defined in text. The improvement using conditional restraints is depicted as a darker gray bar; in the cases that conditional restraints led to a worse model, the difference is noted as a negative bar.</p>
+        <p>(A) Results for the experimentally phased cases.</p>
+        <p>(B) Results for the molecular replacement cases.</p>
+      </caption>
+      <graphic xlink:href="gr2"/>
+    </fig>
+    <fig id="fig3">
+      <label>Figure 3</label>
+      <caption>
+        <p>Differences in Model Completeness Using Classic ARP/wARP and Conditional Restraints</p>
+        <p>(A) Red areas indicate the main chain is not docked in sequence.</p>
+        <p>(B) All the main chain found was docked in sequence. Pictures made with OpenAstexViewer.</p>
+      </caption>
+      <graphic xlink:href="gr3"/>
+    </fig>
+    <fig id="fig4">
+      <label>Figure 4</label>
+      <caption>
+        <p>Analysis of the Improvements Achieved by the Use of Restraints as a Function of Resolution and Phase Error</p>
+        <p>Black and gray circles denote an increase in the percentage of correct residues for the experimentally phased and the molecular replacement test cases respectively; red and washed-out red circles denote a decrease. In both cases, the observed change is proportional to the area of the circle. Blue and washed out blue dots denote no change.</p>
+      </caption>
+      <graphic xlink:href="gr4"/>
+    </fig>
+  </floats-wrap>
+</article>
